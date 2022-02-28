@@ -1,5 +1,5 @@
 STUID = ysyx_22040734
-STUNAME = 刘佳郡
+STUNAME = Liu jiajun
 
 # DO NOT modify the following code!!!
 
