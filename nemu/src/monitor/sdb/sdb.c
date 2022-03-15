@@ -24,7 +24,7 @@ static char* rl_gets() {
     line_read = NULL;
   }
 
-  line_read = readline(BEGIN(49, 34)"(neme) "CLOSE);
+  line_read = readline(BEGIN(49, 34)"(nemu) "CLOSE);
 
   if (line_read && *line_read) {
     add_history(line_read);
