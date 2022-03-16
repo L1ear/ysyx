@@ -52,6 +52,12 @@ static int cmd_info(char *args) {
   return 0;
 }
 
+static int cmd_x(char *args) {
+  char *mem_end = args + strlen(args);
+  printf("%s,%s",args,mem_end);
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -65,7 +71,8 @@ static struct {
 
   /* TODO: Add more commands */
   { "si", "Single excute",  cmd_si},
-  { "info", "Print program state",  cmd_info}
+  { "info", "Print program state",  cmd_info},
+  { "x",  "scan the mem", cmd_x}
 };
 
 #define NR_CMD ARRLEN(cmd_table)
