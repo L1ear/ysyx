@@ -15,7 +15,31 @@ static int is_batch_mode = false;
 void init_regex();
 void init_wp_pool();
 
-
+int htoi(char s[])
+{
+    int i;
+    int n = 0;
+    if (s[0] == '0' && (s[1]=='x' || s[1]=='X'))
+    {
+            i = 2;
+        }
+    else
+    {
+            i = 0;
+        }
+    for (; (s[i] >= '0' && s[i] <= '9') || (s[i] >= 'a' && s[i] <= 'z') || (s[i] >='A' && s[i] <= 'Z');++i)
+    {
+            if (tolower(s[i]) > '9')
+            {
+                        n = 16 * n + (10 + tolower(s[i]) - 'a');
+                    }
+            else
+            {
+                        n = 16 * n + (tolower(s[i]) - '0');
+                    }
+        }
+    return n;
+}
 
 
 /* We use the `readline' library to provide more flexibility to read from stdin. */
@@ -72,7 +96,7 @@ static int cmd_x(char *args) {
   if (bg_addr >= mem_end) {
     bg_addr = NULL;
   }
-  printf("the amount of mem: %d\nthe begin addr: %d \n",atoi(mem_cnt),atoi(bg_addr));
+  printf("the amount of mem: %d\nthe begin addr: %d \n",atoi(mem_cnt),htoi(bg_addr));
 
   return 0;
 }
