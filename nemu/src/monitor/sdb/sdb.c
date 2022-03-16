@@ -39,12 +39,16 @@ static int cmd_c(char *args) {
 }
 
 static int cmd_si(char *args) {
-  printf("*args is %d\n",*args -48);
   cpu_exec(*args -48);
   return 0;
 }
 
 static int cmd_q(char *args) {
+  return -1;
+}
+
+static int cmd_info(char *args) {
+  if(*args == 'r')  isa_reg_display();
   return -1;
 }
 
@@ -60,7 +64,8 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
 
   /* TODO: Add more commands */
-  { "si", "Single excute",  cmd_si}
+  { "si", "Single excute",  cmd_si},
+  { "info", "Print program state",  cmd_info}
 };
 
 #define NR_CMD ARRLEN(cmd_table)

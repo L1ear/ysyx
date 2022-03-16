@@ -9,6 +9,9 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
+	int i;
+	for(i = 0; i<32; i++)
+		printf("reg%d is: %x",i,check_reg_idx(i));
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
