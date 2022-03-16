@@ -81,7 +81,7 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
-  // int i;
+  int i;
   char *mem_end = args + strlen(args);
   printf("%p,%p\n",args,mem_end);
   /* extract the first token as the command */
@@ -99,9 +99,10 @@ static int cmd_x(char *args) {
     bg_addr = NULL;
   }
   printf("the amount of mem: %d\nthe begin addr: %ld \n",atoi(mem_cnt),htoi(bg_addr));
-
-    printf("%08lx\n",paddr_read(htoi(bg_addr),4));
-
+  for(i = 0; i<atoi(mem_cnt); i++)
+  {
+    printf("%08lx\n",paddr_read(htoi(bg_addr)+i*4,4));
+  }
   return 0;
 }
 
