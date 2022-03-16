@@ -69,7 +69,7 @@ static int cmd_x(char *args) {
   if (bg_addr >= mem_end) {
     bg_addr = NULL;
   }
-  printf("the amount of mem: %d\n the begin addr: %d \n",atoi(mem_cnt),atoi(bg_addr));
+  printf("the amount of mem: %d\nthe begin addr: %d \n",atoi(mem_cnt),atoi(bg_addr));
   return 0;
 }
 
