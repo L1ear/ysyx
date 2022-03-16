@@ -100,7 +100,7 @@ static int cmd_x(char *args) {
   }
   printf("the amount of mem: %d\nthe begin addr: %ld \n",atoi(mem_cnt),htoi(bg_addr));
 
-    printf("%lx\n",paddr_read(htoi(bg_addr),1));
+    printf("%lx\n",paddr_read(htoi(bg_addr),4));
 
   return 0;
 }
