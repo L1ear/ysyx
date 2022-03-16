@@ -54,7 +54,7 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args) {
   char *mem_end = args + strlen(args);
-  printf("%s,%s",args,mem_end);
+  printf("%s,%s\n",args,mem_end);
   return 0;
 }
 
