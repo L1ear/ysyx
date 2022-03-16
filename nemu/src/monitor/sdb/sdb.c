@@ -65,11 +65,11 @@ static int cmd_x(char *args) {
   /* treat the remaining string as the arguments,
     * which may need further parsing
     */
-  char *bg_addr = mem_cnt + strlen(mem_cnt) + 1;
+  char *bg_addr = mem_cnt + strlen(mem_cnt) + 3;
   if (bg_addr >= mem_end) {
     bg_addr = NULL;
   }
-  printf("the amount of mem: %d\nthe begin addr: %d \n",atoi(mem_cnt),atoi(bg_addr));
+  printf("the amount of mem: %d\nthe begin addr: %s \n",atoi(mem_cnt),bg_addr);
   return 0;
 }
 
