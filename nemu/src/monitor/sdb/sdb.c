@@ -39,6 +39,7 @@ static int cmd_c(char *args) {
 }
 
 static int cmd_si(char *args) {
+  printf("*args is %d\n",*args);
   cpu_exec(*args);
   return 0;
 }
