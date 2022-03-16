@@ -92,7 +92,7 @@ static int cmd_x(char *args) {
   /* treat the remaining string as the arguments,
     * which may need further parsing
     */
-  char *bg_addr = mem_cnt + strlen(mem_cnt) + 3;
+  char *bg_addr = mem_cnt + strlen(mem_cnt) + 1;
   if (bg_addr >= mem_end) {
     bg_addr = NULL;
   }
