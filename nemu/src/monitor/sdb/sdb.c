@@ -3,6 +3,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "sdb.h"
+#include "memory/paddr.h"
 
 #define CLOSE "\001\033[0m\002"                 // 关闭所有属性
 #define BLOD  "\001\033[1m\002"                 // 强调、加粗、高亮
@@ -80,6 +81,7 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
+  // int i;
   char *mem_end = args + strlen(args);
   printf("%p,%p\n",args,mem_end);
   /* extract the first token as the command */
@@ -97,6 +99,8 @@ static int cmd_x(char *args) {
     bg_addr = NULL;
   }
   printf("the amount of mem: %d\nthe begin addr: %ld \n",atoi(mem_cnt),htoi(bg_addr));
+
+    printf("%lx",paddr_read(htoi(bg_addr),1));
 
   return 0;
 }
