@@ -15,10 +15,10 @@ static int is_batch_mode = false;
 void init_regex();
 void init_wp_pool();
 
-int htoi(char s[])
+uint64_t htoi(char s[])
 {
     int i;
-    int n = 0;
+    uint64_t n = 0;
     if (s[0] == '0' && (s[1]=='x' || s[1]=='X'))
     {
             i = 2;
@@ -92,11 +92,11 @@ static int cmd_x(char *args) {
   /* treat the remaining string as the arguments,
     * which may need further parsing
     */
-  char *bg_addr = mem_cnt + strlen(mem_cnt) + 1;
+  char *bg_addr = mem_cnt + strlen(mem_cnt) + 3;
   if (bg_addr >= mem_end) {
     bg_addr = NULL;
   }
-  printf("the amount of mem: %d\nthe begin addr: %d \n",atoi(mem_cnt),htoi(bg_addr));
+  printf("the amount of mem: %d\nthe begin addr: %ld \n",atoi(mem_cnt),htoi(bg_addr));
 
   return 0;
 }
