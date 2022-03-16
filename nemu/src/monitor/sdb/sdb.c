@@ -49,7 +49,7 @@ static int cmd_q(char *args) {
 
 static int cmd_info(char *args) {
   if(*args == 'r')  isa_reg_display();
-  return -1;
+  return 0;
 }
 
 static int cmd_help(char *args);
