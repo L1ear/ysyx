@@ -55,6 +55,21 @@ static int cmd_info(char *args) {
 static int cmd_x(char *args) {
   char *mem_end = args + strlen(args);
   printf("%p,%p\n",args,mem_end);
+  /* extract the first token as the command */
+  char *mem_cnt = strtok(args, " ");
+  if (mem_cnt == NULL) { 
+    printf("Please enter the number of mem you want show, and the address where to begin");
+    return 0;
+   }
+
+  /* treat the remaining string as the arguments,
+    * which may need further parsing
+    */
+  char *bg_addr = mem_cnt + strlen(mem_cnt) + 1;
+  if (bg_addr >= mem_end) {
+    bg_addr = NULL;
+  }
+  printf("the amount of mem: %s\n the begin addr: %s \n",mem_cnt,bg_addr);
   return 0;
 }
 
