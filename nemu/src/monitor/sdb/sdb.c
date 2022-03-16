@@ -15,6 +15,9 @@ static int is_batch_mode = false;
 void init_regex();
 void init_wp_pool();
 
+
+
+
 /* We use the `readline' library to provide more flexibility to read from stdin. */
 static char* rl_gets() {
   static char *line_read = NULL;
@@ -70,6 +73,7 @@ static int cmd_x(char *args) {
     bg_addr = NULL;
   }
   printf("the amount of mem: %d\nthe begin addr: %d \n",atoi(mem_cnt),atoi(bg_addr));
+
   return 0;
 }
 
