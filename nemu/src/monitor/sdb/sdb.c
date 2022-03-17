@@ -83,7 +83,7 @@ static int cmd_info(char *args) {
 static int cmd_x(char *args) {
   int i;
   char *mem_end = args + strlen(args);
-  printf("%p,%p\n",args,mem_end);
+  //printf("%p,%p\n",args,mem_end);
   /* extract the first token as the command */
   char *mem_cnt = strtok(args, " ");
   if (mem_cnt == NULL) { 

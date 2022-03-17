@@ -60,7 +60,7 @@ static void execute(uint64_t n) {
   Decode s;
   for (;n > 0; n --) {
     //printf("%lu\n",n);
-    printf("in excute %d\n",nemu_state.state);
+    //printf("in excute %d\n",nemu_state.state);
     exec_once(&s, cpu.pc);
     g_nr_guest_inst ++;
     trace_and_difftest(&s, cpu.pc);
