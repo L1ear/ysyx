@@ -98,7 +98,7 @@ static int cmd_x(char *args) {
   if (bg_addr >= mem_end) {
     bg_addr = NULL;
   }
-  printf("the amount of mem: %d\nthe begin addr: %ld \n",atoi(mem_cnt),htoi(bg_addr));
+  printf("the amount of mem: %d\nthe begin addr: %lx \n",atoi(mem_cnt),htoi(bg_addr));
   for(i = 0; i<atoi(mem_cnt); i++)
   {
     printf("%08lx\n",paddr_read(htoi(bg_addr)+i*4,4));
