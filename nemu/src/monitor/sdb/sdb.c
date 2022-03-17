@@ -82,14 +82,15 @@ static int cmd_info(char *args) {
 
 static int cmd_x(char *args) {
   int i;
+  if (args == NULL) { 
+    printf("Please enter the number of mem you want show, and the address where to begin");
+    return 0;
+  }
   char *mem_end = args + strlen(args);
   //printf("%p,%p\n",args,mem_end);
   /* extract the first token as the command */
   char *mem_cnt = strtok(args, " ");
-  if (mem_cnt == NULL) { 
-    printf("Please enter the number of mem you want show, and the address where to begin");
-    return 0;
-   }
+
 
   /* treat the remaining string as the arguments,
     * which may need further parsing
