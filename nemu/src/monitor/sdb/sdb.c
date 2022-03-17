@@ -103,7 +103,7 @@ static int cmd_x(char *args) {
     bg_addr = NULL;
   }
   if (bg_addr == NULL) { 
-    printf("Please enter the number of mem you want show, and the address where to begin\n");
+    printf("Please enter the number of mem you want show, and the address where to begin in format:0x(xxxxxxxx) \n");
     return 0;
   }
   //printf("the amount of mem: %d\nthe begin addr: %lx \n",atoi(mem_cnt),htoi(bg_addr));
