@@ -114,21 +114,8 @@ static int cmd_x(char *args) {
   return 0;
 }
 
-static int cmd_p(char *args) {
-  int i;
-  if (args == NULL) { 
-    printf("Please enter the number of mem you want show, and the address where to begin\n");
-    return 0;
-  }
-  char *mem_end = args + strlen(args);
-  //printf("%p,%p\n",args,mem_end);
-  /* extract the first token as the command */
-  char *mem_cnt = strtok(args, " ");
-  if (mem_cnt == NULL) { 
-    printf("Please enter the number of mem you want show, and the address where to begin\n");
-    return 0;
-  }
-}
+
+
 static int cmd_help(char *args);
 
 static struct {
