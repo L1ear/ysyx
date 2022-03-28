@@ -131,7 +131,7 @@ static struct {
   { "si", "Single excute",  cmd_si},
   { "info", "Print program state",  cmd_info},
   { "x",  "scan the mem", cmd_x},
-  { "p",  "expression evaluation",  cmd_p}
+  { "p",  "expression evaluation",  cmd_x}
 };
 
 #define NR_CMD ARRLEN(cmd_table)
