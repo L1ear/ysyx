@@ -114,7 +114,15 @@ static int cmd_x(char *args) {
   return 0;
 }
 
-
+static int cmd_p(char *args) {
+  int i;
+  if (args == NULL) { 
+    printf("Please enter the number of mem you want show, and the address where to begin\n");
+    return 0;
+  }
+  
+  return 0;
+}
 
 static int cmd_help(char *args);
 
@@ -131,7 +139,7 @@ static struct {
   { "si", "Single excute",  cmd_si},
   { "info", "Print program state",  cmd_info},
   { "x",  "scan the mem", cmd_x},
-  { "p",  "expression evaluation",  cmd_x}
+  { "p",  "expression evaluation",  cmd_p}
 };
 
 #define NR_CMD ARRLEN(cmd_table)
