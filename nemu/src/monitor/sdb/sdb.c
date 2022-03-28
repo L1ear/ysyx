@@ -128,7 +128,7 @@ static int cmd_p(char *args) {
     printf("Please enter the number of mem you want show, and the address where to begin\n");
     return 0;
   }
-
+}
 static int cmd_help(char *args);
 
 static struct {
