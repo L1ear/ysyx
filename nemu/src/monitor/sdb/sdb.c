@@ -15,7 +15,7 @@ static int is_batch_mode = false;
 
 void init_regex();
 void init_wp_pool();
-static bool make_token(char *e);
+bool make_token();
 
 uint64_t htoi(char s[])
 {
