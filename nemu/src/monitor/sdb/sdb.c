@@ -118,12 +118,12 @@ static int cmd_x(char *args) {
 
 static int cmd_p(char *args) {
   //int i;
-  bool* sucess;
+  bool* success;
   if (args == NULL) { 
     printf("Please enter the expression\n");
     return 0;
   }
-  expr(args, sucess);
+  expr(args, success);
   return 0;
 }
 
