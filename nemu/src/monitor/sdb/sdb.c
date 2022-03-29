@@ -117,10 +117,10 @@ static int cmd_x(char *args) {
 static int cmd_p(char *args) {
   //int i;
   if (args == NULL) { 
-    printf("Please enter the number of mem you want show, and the address where to begin\n");
+    printf("Please enter the expression\n");
     return 0;
   }
-  
+  make_token(args);
   return 0;
 }
 
