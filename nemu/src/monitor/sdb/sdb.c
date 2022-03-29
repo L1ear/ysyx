@@ -119,7 +119,7 @@ static int cmd_x(char *args) {
 static int cmd_p(char *args) {
   //int i;
   bool *success;
-  *sucess = true;
+  *success = true;
   if (args == NULL) { 
     printf("Please enter the expression\n");
     return 0;
