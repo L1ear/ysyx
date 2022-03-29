@@ -16,7 +16,7 @@ static int is_batch_mode = false;
 
 void init_wp_pool();
 void init_regex();
-bool make_token(char *e);
+word_t expr(char *e, bool *success);
 
 uint64_t htoi(char s[])
 {
@@ -118,11 +118,12 @@ static int cmd_x(char *args) {
 
 static int cmd_p(char *args) {
   //int i;
+  bool* sucess;
   if (args == NULL) { 
     printf("Please enter the expression\n");
     return 0;
   }
-  make_token(args);
+  expr(args, sucess);
   return 0;
 }
 
