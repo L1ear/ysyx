@@ -94,7 +94,7 @@ static bool make_token(char *e) {
             case TK_INT:
               tokens[nr_token].type = rules[i].token_type;
               strncpy(tokens[nr_token].str, substr_start, substr_len);
-              printf("%s\n",tokens[nr_token].str);
+              Log("get number%s\n",tokens[nr_token].str);
               nr_token ++;
               break;
           default: Log("error!");
@@ -109,6 +109,8 @@ static bool make_token(char *e) {
       return false;
     }
   }
+
+
 
   return true;
 }
