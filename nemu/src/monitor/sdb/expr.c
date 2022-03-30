@@ -25,7 +25,9 @@ static struct rule {
   {"\\+", '+'},         // plus
   {"==", TK_EQ},        // equal
   {"[0-9]*", TK_INT},   // decimal number
-  {"\\(", '('}
+  {"\\(", '('},
+  {"\\)", ')'},
+  {"\\*", '*'}
 };
 
 #define NR_REGEX ARRLEN(rules)
@@ -102,6 +104,14 @@ static bool make_token(char *e) {
               tokens[nr_token].type = rules[i].token_type;
               nr_token ++;
               break;
+            case ')':
+              tokens[nr_token].type = rules[i].token_type;
+              nr_token ++;
+              break;
+            case '*':
+              tokens[nr_token].type = rules[i].token_type;
+              nr_token ++;
+              break; 
           default: Log("error!");
         }
 
