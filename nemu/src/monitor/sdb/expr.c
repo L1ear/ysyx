@@ -79,9 +79,19 @@ static bool make_token(char *e) {
          * of tokens, some extra actions should be performed.
          */
 
-        // switch (rules[i].token_type) {
-        //   default: //TODO();
-        // }
+        switch (rules[i].token_type) {
+            case TK_NOTYPE :
+              break;
+            case '+' :
+              tokens[nr_token].type = rules[i].token_type;
+              nr_token ++;
+              break;
+            case TK_EQ :
+              tokens[nr_token].type = rules[i].token_type;
+              nr_token ++;
+              break;
+          default: Log("error!");
+        }
 
         break;
       }
