@@ -24,10 +24,11 @@ static struct rule {
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
   {"==", TK_EQ},        // equal
+  {"\\*", '*'},
   {"[0-9]*", TK_INT},   // decimal number
   {"\\(", '('},
   {"\\)", ')'},
-  {"\\*", '*'}
+
 };
 
 #define NR_REGEX ARRLEN(rules)
