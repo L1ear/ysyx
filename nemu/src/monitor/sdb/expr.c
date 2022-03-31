@@ -138,10 +138,15 @@ static bool make_token(char *e) {
   return true;
 }
 
-
-uint32_t eval(int p, int q) {
+/*递归求值函数
+*参数：   p,q:  表达式在tokens数组里的起始和结束位置
+*返回值:  -1：   表示未正常求得值
+*        其他:  表示求得的值
+*/
+word_t eval(int p, int q) {
   if (p > q) {
     /* Bad expression */
+    return -1;
   }
   else if (p == q) {
     /* Single token.
@@ -173,11 +178,11 @@ uint32_t eval(int p, int q) {
         return val1 * val2;
       case '/': 
         return val1 / val2;
-      default: printf("def\n");assert(0);
+      default: Log("Wrong main operation\n");assert(0);
     }
   }
   else {
-    printf("else\n");
+    Log("Wrong expression!\n");
     assert(0);
   } 
   return -1;
@@ -302,17 +307,25 @@ int operator_find(int p,int q){
   return op;
 }
 
-
+/*表达式求值，若成功求值，则返回求得的值
+*参数：   e:      表达式的起始地址;
+*        success:是否成功的标志位;
+*返回值： 求得的值
+*/
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
     return 0;
   }
-  Log("nr_token: %d\n",nr_token);
-  Log("the value of expr is: %d",eval(0, nr_token-1));
+  // Log("nr_token: %d\n",nr_token);
+  // Log("the value of expr is: %d",eval(0, nr_token-1));
   
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
-
-  return 0;
+  word_t value = eval(0, nr_token-1);
+  if(value==-1){
+    *success = false;
+    return 0;
+  }
+  else return value;
 }
