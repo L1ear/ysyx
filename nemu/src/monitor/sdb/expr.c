@@ -157,6 +157,7 @@ uint32_t eval(int p, int q) {
     return eval(p + 1, q - 1);
   }
   else if (check_parentheses(p, q) == 0){
+    printf("p: %d and q: %d\n",p,q);
     int op = operator_find(p,q);
     Log("op: %d\n",op);
     
@@ -165,7 +166,6 @@ uint32_t eval(int p, int q) {
 
     switch (tokens[op].type) {
       case '+':
-        
         return val1 + val2;
       case '-': 
         return val1 - val2;
