@@ -189,16 +189,16 @@ int check_parentheses(int p, int q)
     
     if (i == 1) {
     	if(flag == 1&&j== 1){
-			printf("匹配且被包围");
+			Log("匹配且被包围");
       return 1; 	
 		}
 		else{
-			printf("匹配但不被包围,可以求值\n");
+			Log("匹配但不被包围,可以求值\n");
       return 0;
 		}
     }
     else {
-        printf("括号不匹配！\n");
+        Log("括号不匹配！\n");
         return -1;
     }
     return 0;
