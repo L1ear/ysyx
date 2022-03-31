@@ -175,10 +175,13 @@ uint32_t eval(int p, int q) {
         return val1 * val2;
       case '/': 
         return val1 / val2;
-      default: assert(0);
+      default: printf("def\n");assert(0);
     }
   }
-  else  assert(0);
+  else {
+    printf("else\n");
+    assert(0);
+  } 
   return -1;
 }
 
