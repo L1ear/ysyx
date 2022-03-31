@@ -8,7 +8,7 @@ uint32_t eval(int p, int q);
 int check_parentheses(int p, int q);
 int fun(int start, int end);
 int pir(char op);
-int operator_find(p,q);
+int operator_find(int p,int q);
 
 
 #endif

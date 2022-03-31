@@ -271,7 +271,7 @@ int pir(char op)
   }
   return -1;
 }
-int operator_find(p,q){
+int operator_find(int p,int q){
   int i,nr_p=0;
   int op,pir = -1;
   for (i = p,i <= 1; i++){
