@@ -264,7 +264,7 @@ int op_pir(char op)
 }
 int operator_find(int p,int q){
   int i,nr_p=0;
-  int op,pir = -1;
+  int op=-1,pir = -1;
   for (i = p;i <= 1; i++){
     if (tokens[i].type == '('){
       nr_p++;
