@@ -138,7 +138,7 @@ static bool make_token(char *e) {
 }
 
 
-uint32_t eval(int p, int q) {
+static uint32_t eval(int p, int q) {
   if (p > q) {
     /* Bad expression */
   }
@@ -174,7 +174,7 @@ uint32_t eval(int p, int q) {
   else  assert(0);
 }
 
-int check_parentheses(int p, int q)
+static int check_parentheses(int p, int q)
 {
   int i = 0;
   int lparenthesis=0,rparenthesis=0,parenthesis = 0;
