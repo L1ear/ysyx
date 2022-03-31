@@ -283,7 +283,7 @@ int operator_find(int p,int q){
       }
     }
     if (tokens[i].type == '+' ||tokens[i].type == '-' ||tokens[i].type == '*' ||tokens[i].type == '/'){
-      if (pir(tokens[t].type)>pir) {
+      if (pir(tokens[i].type)>pir) {
         op = i;
       }   
     }
