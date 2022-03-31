@@ -177,16 +177,6 @@ uint32_t eval(int p, int q) {
 
 int check_parentheses(int p, int q)
 {
-  int i = 0;
-  int lparenthesis=0,rparenthesis=0,parenthesis = 0;
-  for(i = q; i<=q; i++)
-  {
-    if(tokens[i].type = '(')  parenthesis++;
-    else if(tokens[i].type = ')') parenthesis--;
-  }
-  if(parenthesis!= 0) return -1;  //fatal error: bad expression--parenthesis dose not match
-
-  int length = q-p+1;
   int flag=0;
   if(tokens[p].type=='(' && tokens[q].type==')'){
     flag = 1;
@@ -217,7 +207,7 @@ int fun(int start, int end)
 {
     char chLeft;        // 左括号
     char chRight;       // 右括号
-    while ((start <= end) && (str[start] != '\0'))
+    while (start <= end)
     {
         switch (tokens[start].type)
         {
@@ -275,7 +265,7 @@ int pir(char op)
 int operator_find(int p,int q){
   int i,nr_p=0;
   int op,pir = -1;
-  for (i = p,i <= 1; i++){
+  for (i = p;i <= 1; i++){
     if (tokens[i].type == '('){
       nr_p++;
       i++;
