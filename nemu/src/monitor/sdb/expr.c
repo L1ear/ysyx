@@ -284,10 +284,11 @@ int operator_find(int p,int q){
             ++nr_p;
         if (tokens[i].type == ')')
             --nr_p;
-        i++;    
+            
         if (nr_p == 0){
           break;
         }
+        i++;
       }
     }
     if (tokens[i].type == '+' ||tokens[i].type == '-' ||tokens[i].type == '*' ||tokens[i].type == '/'){
