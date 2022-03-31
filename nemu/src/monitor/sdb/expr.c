@@ -259,7 +259,18 @@ int fun(int start, int end)
     }
     return 1;
 }
-
+int pir(char op)
+{
+  switch (op)
+  {
+    case '*':
+    case '/': return 0;
+    case '+':
+    case '-': return 1;
+    default: Log("error!");
+  }
+  return -1;
+}
 int operator_find(p,q){
   int i,nr_p=0;
   int op,pir = -1;
@@ -288,18 +299,7 @@ int operator_find(p,q){
   }
   return op;
 }
-int pir(char op)
-{
-  switch (op)
-  {
-    case '*':
-    case '/': return 0;
-    case '+':
-    case '-': return 1;
-    default: Log("error!");
-  }
-  return -1;
-}
+
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
