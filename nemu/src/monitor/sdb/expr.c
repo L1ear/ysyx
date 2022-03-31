@@ -181,6 +181,7 @@ int check_parentheses(int p, int q)
   int flag=0;
   if(tokens[p].type=='(' && tokens[q].type==')'){
     flag = 1;
+    Log("flag\n");
 	}
 	int i,j;
   i = fun(p, q);
@@ -191,11 +192,11 @@ int check_parentheses(int p, int q)
     	if(flag == 1&&j== 1){
 			Log("匹配且被包围");
       return 1; 	
-		}
-		else{
-			Log("匹配但不被包围,可以求值\n");
-      return 0;
-		}
+      }
+      else{
+        Log("匹配但不被包围,可以求值\n");
+        return 0;
+      }
     }
     else {
         Log("括号不匹配！\n");
