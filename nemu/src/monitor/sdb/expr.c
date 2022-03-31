@@ -148,6 +148,7 @@ uint32_t eval(int p, int q) {
      * For now this token should be a number.
      * Return the value of the number.
      */
+    return atoi(tokens[p].str);
   }
   else if (check_parentheses(p, q) == 1) {
     /* The expression is surrounded by a matched pair of parentheses.
@@ -157,7 +158,7 @@ uint32_t eval(int p, int q) {
   }
   else if (check_parentheses(p, q) == 0){
     int op = operator_find(p,q);
-    printf("%d\n",op);
+    Log("op: %d\n",op);
     return 0;
     uint32_t val1 = eval(p, op - 1);
     uint32_t val2 = eval(op + 1, q);
@@ -301,7 +302,7 @@ word_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  printf("%d\n",nr_token);
+  Log("nr_token: %d\n",nr_token);
   eval(0, nr_token-1);
   
   /* TODO: Insert codes to evaluate the expression. */
