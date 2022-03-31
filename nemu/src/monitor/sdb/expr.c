@@ -138,18 +138,6 @@ static bool make_token(char *e) {
 }
 
 
-word_t expr(char *e, bool *success) {
-  if (!make_token(e)) {
-    *success = false;
-    return 0;
-  }
-  eval(0, nr_token);
-  /* TODO: Insert codes to evaluate the expression. */
-  //TODO();
-
-  return 0;
-}
-
 uint32_t eval(int p, int q) {
   if (p > q) {
     /* Bad expression */
@@ -276,7 +264,7 @@ int operator_find(p,q){
   int i,nr_p=0;
   int op,pir = -1;
   for (i = p,i <= 1; i++){
-    if (tokens[t].type == '('){
+    if (tokens[i].type == '('){
       nr_p++;
       i++;
 
@@ -311,4 +299,16 @@ int pir(char op)
     default: Log("error!");
   }
   return -1;
+}
+
+word_t expr(char *e, bool *success) {
+  if (!make_token(e)) {
+    *success = false;
+    return 0;
+  }
+  eval(0, nr_token);
+  /* TODO: Insert codes to evaluate the expression. */
+  //TODO();
+
+  return 0;
 }
