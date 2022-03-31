@@ -310,4 +310,5 @@ int pir(char op)
     case '-': return 1;
     default: Log("error!");
   }
+  return -1;
 }
