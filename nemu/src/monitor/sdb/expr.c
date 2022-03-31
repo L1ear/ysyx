@@ -293,7 +293,7 @@ int operator_find(p,q){
       }
     }
     if (tokens[t].type == '+' ||tokens[t].type == '-' ||tokens[t].type == '*' ||tokens[t].type == '/'){
-      if (op(tokens[t].type)>pir) {
+      if (pir(tokens[t].type)>pir) {
         op = i;
       }   
     }
@@ -304,9 +304,10 @@ int pir(char op)
 {
   switch (op)
   {
-  case '*':
-  case '/': return 0;
-  case '+':
-  case '-': return 1;
+    case '*':
+    case '/': return 0;
+    case '+':
+    case '-': return 1;
+    default: Log("error!");
   }
 }
