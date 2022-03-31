@@ -300,7 +300,7 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   printf("%d\n",nr_token);
-  eval(0, nr_token);
+  eval(0, nr_token-1);
   
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
