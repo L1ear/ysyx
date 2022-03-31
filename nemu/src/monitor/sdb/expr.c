@@ -165,7 +165,8 @@ uint32_t eval(int p, int q) {
 
     switch (tokens[op].type) {
       case '+':
-        return 3;
+      printf("value: %d",val1 + val2);
+        return val1 + val2;
       case '-': 
         return val1 - val2;
       case '*': 
