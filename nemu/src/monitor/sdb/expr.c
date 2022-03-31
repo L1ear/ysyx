@@ -4,6 +4,7 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
+#include "sdb.h"
 
 enum {
   TK_NOTYPE = 256, TK_EQ,TK_INT,
