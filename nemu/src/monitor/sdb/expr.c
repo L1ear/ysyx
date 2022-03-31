@@ -138,8 +138,10 @@ static bool make_token(char *e) {
   return true;
 }
 
-
+int cycle =0;
 uint32_t eval(int p, int q) {
+  cycle++;
+  if (cycle>10) assert(0);
   if (p > q) {
     /* Bad expression */
   }
