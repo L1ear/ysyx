@@ -16,6 +16,31 @@ static char *code_format =
 "  return 0; "
 "}";
 
+static void gen_rand_expr(){
+  char str[20];
+  itoa(rand(), str, 10);
+  strcat(buf,str);
+}
+static void gen(char cha){
+  char pcha[2] = {cha};
+  strcat(buf,pcha);
+}
+static void gen_rand_op(){
+  switch (choose(4)) {
+    case 0:
+      char pcha[2] = {'+'};
+      strcat(buf,pcha);
+    case 1:
+      char pcha[2] = {'-'};
+      strcat(buf,pcha);
+    case 2:
+      char pcha[2] = {'/'};
+      strcat(buf,pcha);
+    case 3:
+      char pcha[2] = {'*'};
+      strcat(buf,pcha);
+  }
+}
 static void gen_rand_expr() {
   buf[0] = '\0';
     switch (choose(3)) {
