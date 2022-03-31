@@ -281,9 +281,9 @@ int operator_find(p,q){
 
       while (i <= q) // 搜索匹配的右括号 
       {
-        if (tokens[t].type == '(')
+        if (tokens[i].type == '(')
             ++nr_p;
-        if (tokens[t].type == ')')
+        if (tokens[i].type == ')')
             --nr_p;
         i++;    
         if (nr_p == 0){
