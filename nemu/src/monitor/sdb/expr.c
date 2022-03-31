@@ -63,6 +63,7 @@ typedef struct token {
 static Token tokens[32] __attribute__((used)) = {};
 static int nr_token __attribute__((used))  = 0;
 
+//按预设pattern匹配token
 static bool make_token(char *e) {
   int position = 0;
   int i;
@@ -187,7 +188,12 @@ word_t eval(int p, int q) {
   } 
   return -1;
 }
-
+/*括号匹配判断
+*参数：   p,q:  表达式在tokens数组里的起始和结束位置
+*返回值:  -1:   表示括号不匹配
+*        1:    表示括号完全匹配
+*        0:    表示匹配，且可以进行下一步求值
+*/
 int check_parentheses(int p, int q)
 {
   int flag=0;
@@ -196,27 +202,27 @@ int check_parentheses(int p, int q)
     Log("flag\n");
 	}
 	int i,j;
-  i = fun(p, q);
-  j = fun(p+1, q-1);
+  i = fun(p, q);      //  原样进行匹配检测
+  j = fun(p+1, q-1);  //  去掉最外侧后再检查，看是否有最外层括号
     
     
     if (i == 1) {
     	if(flag == 1&&j== 1){
-			Log("匹配且被包围");
+			//Log("匹配且被包围");
       return 1; 	
       }
       else{
-        Log("匹配但不被包围,可以求值\n");
+        //Log("匹配但不被包围,可以求值\n");
         return 0;
       }
     }
     else {
-        Log("括号不匹配\n");
+        //Log("括号不匹配\n");
         return -1;
     }
     return 0;
 }
-
+//括号匹配的具体操作
 int fun(int start, int end)
 {
     char chLeft;        // 左括号
@@ -264,6 +270,7 @@ int fun(int start, int end)
     }
     return 1;
 }
+//返回符号优先级
 int op_pir(char op)
 {
   switch (op)
@@ -276,6 +283,7 @@ int op_pir(char op)
   }
   return -1;
 }
+//搜索主运算符
 int operator_find(int p,int q){
   int i,nr_p=0;
   int op=-1,pir = -1;
