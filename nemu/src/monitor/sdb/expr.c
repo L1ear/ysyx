@@ -173,7 +173,7 @@ uint32_t eval(int p, int q) {
     }
   }
   else  assert(0);
-  return;
+  return -1;
 }
 
 int check_parentheses(int p, int q)
