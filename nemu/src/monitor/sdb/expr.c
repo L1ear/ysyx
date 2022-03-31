@@ -303,7 +303,7 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
   Log("nr_token: %d\n",nr_token);
-  Log("the value of expr is: "eval(0, nr_token-1));
+  Log("the value of expr is: %d"eval(0, nr_token-1));
   
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
