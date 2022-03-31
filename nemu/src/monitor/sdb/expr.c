@@ -165,11 +165,11 @@ uint32_t eval(int p, int q) {
 
     switch (tokens[op].type) {
       case '+': 
-        return val1 / val2;
+        return val1 + val2;
       case '-': 
-        return val1 / val2;
+        return val1 - val2;
       case '*': 
-        return val1 / val2;
+        return val1 * val2;
       case '/': 
         return val1 / val2;
       default: assert(0);
@@ -202,7 +202,7 @@ int check_parentheses(int p, int q)
       }
     }
     else {
-        Log("括号不匹配！\n");
+        Log("括号不匹配\n");
         return -1;
     }
     return 0;
