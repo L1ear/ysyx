@@ -250,7 +250,7 @@ int fun(int start, int end)
     }
     return 1;
 }
-int pir(char op)
+int op_pir(char op)
 {
   switch (op)
   {
@@ -283,7 +283,7 @@ int operator_find(int p,int q){
       }
     }
     if (tokens[i].type == '+' ||tokens[i].type == '-' ||tokens[i].type == '*' ||tokens[i].type == '/'){
-      if (pir(tokens[i].type)>pir) {
+      if (op_pir(tokens[i].type)>pir) {
         op = i;
       }   
     }
