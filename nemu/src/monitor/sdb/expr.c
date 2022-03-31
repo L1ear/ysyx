@@ -226,7 +226,7 @@ int fun(int start, int end)
             int a = 1;
             int b = 0;
             int t = start + 1;
-            while ((t <= end) && (str[t] != '\0')) // 搜索匹配的右括号 
+            while (t <= end) // 搜索匹配的右括号 
             {
                 if (tokens[t].type == chLeft)
                     ++a;
@@ -282,7 +282,7 @@ int operator_find(int p,int q){
         }
       }
     }
-    if (tokens[t].type == '+' ||tokens[t].type == '-' ||tokens[t].type == '*' ||tokens[t].type == '/'){
+    if (tokens[i].type == '+' ||tokens[i].type == '-' ||tokens[i].type == '*' ||tokens[i].type == '/'){
       if (pir(tokens[t].type)>pir) {
         op = i;
       }   
