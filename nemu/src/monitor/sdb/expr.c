@@ -78,8 +78,8 @@ static bool make_token(char *e) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
-        // Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
-        //     i, rules[i].regex, position, substr_len, substr_len, substr_start);
+        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+            i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
 
@@ -102,7 +102,7 @@ static bool make_token(char *e) {
             case TK_INT:
               tokens[nr_token].type = rules[i].token_type;
               strncpy(tokens[nr_token].str, substr_start, substr_len);
-              // Log("get number: %d\n",atoi(tokens[nr_token].str));
+              Log("get number: %d\n",atoi(tokens[nr_token].str));
               nr_token ++;
               break;
             case '(':
@@ -163,9 +163,9 @@ word_t eval(int p, int q) {
     return eval(p + 1, q - 1);
   }
   else if (check_parentheses(p, q) == 0){
-    // printf("p: %d and q: %d\n",p,q);
+    printf("p: %d and q: %d\n",p,q);
     int op = operator_find(p,q);
-    // Log("op: %d\n",op);
+    Log("op: %d\n",op);
     
     uint32_t val1 = eval(p, op - 1);
     uint32_t val2 = eval(op + 1, q);
@@ -179,9 +179,7 @@ word_t eval(int p, int q) {
         return val1 * val2;
       case '/': 
         return val1 / val2;
-      default: 
-      // Log("Wrong main operation\n");
-      assert(0);
+      default: Log("Wrong main operation\n");assert(0);
     }
   }
   else {
@@ -201,7 +199,7 @@ int check_parentheses(int p, int q)
   int flag=0;
   if(tokens[p].type=='(' && tokens[q].type==')'){
     flag = 1;
-    // Log("flag\n");
+    Log("flag\n");
 	}
 	int i,j;
   i = fun(p, q);      //  原样进行匹配检测
