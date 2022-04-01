@@ -130,7 +130,7 @@ static int cmd_p(char *args) {
     Log("please enter a solvable expression\n");
     return 0;
   }
-  Log("the value of expr is: %ld\n",value);
+  Log("the value of expr is: %lu\n",value);
   return 0;
 }
 
