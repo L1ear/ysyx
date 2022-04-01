@@ -16,13 +16,17 @@ void engine_start() {
       printf("open error!\n");
   }
   else printf("open successful!\n");
-  char buf[1024] = {0};
-  word_t result = 0;
-  static bool *success;
-  assert(fscanf(file, "%lu %s", &result, buf));
-  printf("%lu\n", result);
-  printf("%lu\n", expr(buf, success));
-  assert((result == expr(buf, success)));
+  int i;
+  for (i = 0;i<100; i++) {
+    char buf[1024] = {0};
+    word_t result = 0;
+    static bool *success;
+    assert(fscanf(file, "%lu %s", &result, buf));
+     printf("%lu\n", result);
+    // printf("%lu\n", expr(buf, success));
+    assert((result == expr(buf, success)));
+  }
+  
   
 #endif
 }
