@@ -18,6 +18,7 @@ void engine_start() {
   char buf[1024] = {0};
   word_t result = 0;
   assert(fscanf(file, "%lu %s", &result, buf));
+  printf("%lu\n", result);
   printf("%s\n", buf);
 #endif
 }
