@@ -125,15 +125,16 @@ static int cmd_p(char *args) {
     return 0;
   }
   value = expr(args, success);
-   Log("test3\n");
+   
   if(*success == false){
     Log("please enter a solvable expression\n");
     return 0;
   }
+
   Log("the value of expr is: %lu\n",value);
   return 0;
 }
-
+Log("test3\n");
 static int cmd_help(char *args);
 
 static struct {
