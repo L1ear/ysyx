@@ -163,7 +163,7 @@ word_t eval(int p, int q) {
     return eval(p + 1, q - 1);
   }
   else if (check_parentheses(p, q) == 0){
-    printf("p: %d and q: %d\n",p,q);
+    // printf("p: %d and q: %d\n",p,q);
     int op = operator_find(p,q);
     // Log("op: %d\n",op);
     
