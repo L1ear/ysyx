@@ -22,8 +22,9 @@ void engine_start() {
     word_t result = 0;
     static bool *success;
     assert(fscanf(file, "%lu %s", &result, buf));
+       expr(buf, success);
      printf("%lu\n", result);
-     expr(buf, success);
+  
      printf("%lu\n", expr(buf, success));
     assert((result == expr(buf, success)));
   }
