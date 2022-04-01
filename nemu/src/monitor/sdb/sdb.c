@@ -119,7 +119,8 @@ static int cmd_x(char *args) {
 static int cmd_p(char *args) {
   //int i;
   word_t value=0;
-  static bool *success;
+  int suc =0;
+  static bool *success = &suc;
   if (args == NULL) { 
     Log("Please enter the expression\n");
     return 0;
