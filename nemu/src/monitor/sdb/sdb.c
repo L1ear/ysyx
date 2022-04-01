@@ -125,6 +125,7 @@ static int cmd_p(char *args) {
     return 0;
   }
   value = expr(args, success);
+   Log("test3\n");
   if(*success == false){
     Log("please enter a solvable expression\n");
     return 0;
