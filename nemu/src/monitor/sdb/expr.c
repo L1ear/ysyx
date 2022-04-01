@@ -322,6 +322,7 @@ int operator_find(int p,int q){
 *返回值： 求得的值
 */
 word_t expr(char *e, bool *success) {
+  *success = true;
   if (!make_token(e)) {
     *success = false;
     return 0;
