@@ -126,11 +126,12 @@ static int cmd_p(char *args) {
   }
   value = expr(args, success);
   printf("???%d\n",*success);
+  Log("test3\n");
   if(*success == false){
     Log("please enter a solvable expression\n");
     return 0;
   }
-  Log("test3\n");
+  
   Log("the value of expr is: %lu\n",value);
   return 0;
 }
