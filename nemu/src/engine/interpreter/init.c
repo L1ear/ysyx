@@ -23,6 +23,7 @@ void engine_start() {
     static bool *success;
     assert(fscanf(file, "%lu %s", &result, buf));
      printf("%lu\n", result);
+     expr(buf, success);
      printf("%lu\n", expr(buf, success));
     assert((result == expr(buf, success)));
   }
