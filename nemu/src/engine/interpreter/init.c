@@ -1,5 +1,5 @@
 #include <cpu/cpu.h>
-#include <sdb.h>
+#include </home/qw/ysyx-workbench/nemu/src/monitor/sdb/sdb.h>
 
 void sdb_mainloop();
 
