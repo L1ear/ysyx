@@ -119,16 +119,15 @@ static int cmd_x(char *args) {
 static int cmd_p(char *args) {
   //int i;
   word_t value=0;
-  int suc =0;
-  static bool *success = &suc;
+  static bool success;
   if (args == NULL) { 
     Log("Please enter the expression\n");
     return 0;
   }
-  value = expr(args, success);
-  printf("???%d\n",*success);
+  value = expr(args, &success);
+  printf("???%d\n",success);
   Log("test3\n");
-  if(*success == false){
+  if(success == false){
     Log("please enter a solvable expression\n");
     return 0;
   }
