@@ -20,13 +20,12 @@ void engine_start() {
   for (i = 0;i<100; i++) {
     char buf[1024] = {0};
     word_t result = 0;
-    static bool *success;
+    static bool success;
     assert(fscanf(file, "%lu %s", &result, buf));
-       expr(buf, success);
      printf("%lu\n", result);
-  
-     printf("%lu\n", expr(buf, success));
-    assert((result == expr(buf, success)));
+     word_t expr_value = expr(buf, &success);
+     printf("%lu\n", expr_value);
+    assert((result == expr_value));
   }
   
   
