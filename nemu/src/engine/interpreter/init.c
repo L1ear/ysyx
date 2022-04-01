@@ -15,5 +15,8 @@ void engine_start() {
       printf("open error!\n");
   }
   else printf("open successful!\n");
+  char buf[1024] = {0};
+  fscanf(file, "%u %s", buf);
+  printf("%s\n", buf);
 #endif
 }
