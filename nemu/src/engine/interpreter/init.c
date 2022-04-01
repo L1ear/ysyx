@@ -13,7 +13,6 @@ void engine_start() {
   if(file == NULL)
   {
       printf("open error!\n");
-      return 0;
   }
 #endif
 }
