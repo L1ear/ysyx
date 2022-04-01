@@ -14,5 +14,6 @@ void engine_start() {
   {
       printf("open error!\n");
   }
+  else printf("open successful!\n");
 #endif
 }
