@@ -9,7 +9,7 @@ void engine_start() {
   /* Receive commands from user. */
   // sdb_mainloop();
   /* Test expr */
-  FILE *file = fopen("/home/qw/ysyx-workbench/nemu/tools/gen_expr/input", "r");     
+  FILE *file = fopen("/home/qw/ysyx-workbench/nemu/tools/gen-expr/input", "r");     
   if(file == NULL)
   {
       printf("open error!\n");
