@@ -154,6 +154,7 @@ word_t eval(int p, int q) {
      * For now this token should be a number.
      * Return the value of the number.
      */
+    printf("%d\n",p);
     return atoi(tokens[p].str);
   }
   else if (check_parentheses(p, q) == 1) {
