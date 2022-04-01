@@ -7,6 +7,13 @@ void engine_start() {
   cpu_exec(-1);
 #else
   /* Receive commands from user. */
-  sdb_mainloop();
+  // sdb_mainloop();
+  /* Test expr */
+  FILE *file = fopen("../tools/gen_expr/input", "r");     
+  if(file == NULL)
+  {
+      printf("open error!\n");
+      return 0;
+  }
 #endif
 }
