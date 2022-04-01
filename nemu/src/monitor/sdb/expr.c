@@ -163,9 +163,9 @@ word_t eval(int p, int q) {
     return eval(p + 1, q - 1);
   }
   else if (check_parentheses(p, q) == 0){
-    // printf("p: %d and q: %d\n",p,q);
+    printf("p: %d and q: %d\n",p,q);
     int op = operator_find(p,q);
-    // Log("op: %d\n",op);
+    Log("op: %d\n",op);
     
     uint32_t val1 = eval(p, op - 1);
     uint32_t val2 = eval(op + 1, q);
@@ -335,7 +335,6 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
   word_t value = eval(0, nr_token-1);
-  printf("%lu\n",value);
   if(value==-1){
     *success = false;
     return 0;
