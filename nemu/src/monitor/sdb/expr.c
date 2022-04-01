@@ -101,7 +101,7 @@ static bool make_token(char *e) {
               break;
             case TK_INT:
               tokens[nr_token].type = rules[i].token_type;
-              strncpy(tokens[nr_token].str, substr_start, substr_len+1);
+              strncpy(tokens[nr_token].str, substr_start, substr_len);
               // Log("get number: %d\n",atoi(tokens[nr_token].str));
               nr_token ++;
               break;
