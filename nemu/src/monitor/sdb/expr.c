@@ -335,7 +335,7 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
   word_t value = eval(0, nr_token-1);
-  
+  printf("%lu\n",value);
   if(value==-1){
     *success = false;
     return 0;
