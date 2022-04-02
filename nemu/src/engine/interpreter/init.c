@@ -29,7 +29,7 @@ void engine_start() {
      printf("expr_value: %lu\n", expr_value);
      
      if(result != expr_value){
-       err[cnt] = i+1;
+       err[0] = i+1;
        cnt++;
      }
   }
