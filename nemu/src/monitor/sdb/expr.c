@@ -319,7 +319,7 @@ int operator_find(int p,int q){
       }
     }
     if (tokens[i].type == '+' ||tokens[i].type == '-' ||tokens[i].type == '*' ||tokens[i].type == '/'){
-      if (op_pir(tokens[i].type)>pir) {
+      if (op_pir(tokens[i].type)>=pir) {
         op = i;
         pir = op_pir(tokens[i].type);
       }   
