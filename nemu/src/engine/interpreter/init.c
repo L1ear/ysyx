@@ -24,9 +24,9 @@ void engine_start() {
     word_t result = 0;
     static bool success;
     assert(fscanf(file, "%lu %s", &result, buf));
-     printf("%lu %s\n", result,buf);
+    //  printf("%lu %s\n", result,buf);
      word_t expr_value = expr(buf, &success);
-     printf("expr_value: %lu\n", expr_value);
+    //  printf("expr_value: %lu\n", expr_value);
      
      if(result != expr_value){
        err[cnt] = i+1;
