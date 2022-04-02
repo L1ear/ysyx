@@ -3,7 +3,7 @@
 
 #include <common.h>
 
-word_t expr(char *e, bool *success);
+uint32_t expr(char *e, bool *success);
 int eval(int p, int q);
 int check_parentheses(int p, int q);
 int fun(int start, int end);
