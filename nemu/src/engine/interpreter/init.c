@@ -27,8 +27,9 @@ void engine_start() {
      printf("%lu %s\n", result,buf);
      word_t expr_value = expr(buf, &success);
      printf("expr_value: %lu\n", expr_value);
+     erro[cnt] = i+1;
      if(result != expr_value){
-       erro[cnt] = i+1;
+       
        cnt++;
      }
   }
