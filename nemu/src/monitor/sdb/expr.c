@@ -170,8 +170,8 @@ word_t eval(int p, int q) {
     int op = operator_find(p,q);
     Log("op: %d\n",op);
     
-    uint32_t val1 = eval(p, op - 1);
-    uint32_t val2 = eval(op + 1, q);
+    word_t val1 = eval(p, op - 1);
+    word_t val2 = eval(op + 1, q);
 
     switch (tokens[op].type) {
       case '+':
