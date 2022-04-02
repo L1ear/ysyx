@@ -16,7 +16,7 @@ static int is_batch_mode = false;
 
 void init_wp_pool();
 void init_regex();
-word_t expr(char *e, bool *success);
+// uint32_t expr(char *e, bool *success);
 
 uint64_t htoi(char s[])
 {
