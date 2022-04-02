@@ -171,7 +171,9 @@ word_t eval(int p, int q) {
     Log("op: %d\n",op);
     
     word_t val1 = eval(p, op - 1);
+    printf("val1: %lu\n", val1);
     word_t val2 = eval(op + 1, q);
+    printf("val1: %lu\n", val2);
 
     switch (tokens[op].type) {
       case '+':
