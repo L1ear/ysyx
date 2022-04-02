@@ -147,7 +147,7 @@ static bool make_token(char *e) {
 *        其他:  表示求得的值
 */
 int val1_cnt= 0,val2_cnt= 0;
-word_t eval(int p, int q) {
+int eval(int p, int q) {
   if (p > q) {
     /* Bad expression */
     return -1;
@@ -171,10 +171,9 @@ word_t eval(int p, int q) {
     int op = operator_find(p,q);
     Log("op: %d\n",op);
     
-    word_t val1 = eval(p, op - 1);
-    
+    int val1 = eval(p, op - 1);
     printf("cnt1:%d val1: %lu\n", ++val1_cnt, val1);
-    word_t val2 = eval(op + 1, q);
+    int val2 = eval(op + 1, q);
     printf("cnt2:%d val2: %lu\n", ++val2_cnt, val2);
 
     switch (tokens[op].type) {
@@ -343,7 +342,7 @@ word_t expr(char *e, bool *success) {
   
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
-  word_t value = eval(0, nr_token-1);
+  word_t value = (word_t)eval(0, nr_token-1);
   if(value==-1){
     *success = false;
     return 0;
