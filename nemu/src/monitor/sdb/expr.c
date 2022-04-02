@@ -146,6 +146,7 @@ static bool make_token(char *e) {
 *返回值:  -1：   表示未正常求得值
 *        其他:  表示求得的值
 */
+int val1_cnt= 0,val2_cnt= 0;
 word_t eval(int p, int q) {
   if (p > q) {
     /* Bad expression */
@@ -171,9 +172,10 @@ word_t eval(int p, int q) {
     Log("op: %d\n",op);
     
     word_t val1 = eval(p, op - 1);
-    printf("val1: %lu\n", val1);
+    
+    printf("cnt1:%d val1: %lu\n", ++val1_cnt, val1);
     word_t val2 = eval(op + 1, q);
-    printf("val2: %lu\n", val2);
+    printf("cnt2:%d val2: %lu\n", ++val2_cnt, val2);
 
     switch (tokens[op].type) {
       case '+':
