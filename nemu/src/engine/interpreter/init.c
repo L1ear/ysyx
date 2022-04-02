@@ -17,7 +17,7 @@ void engine_start() {
   }
   else printf("open successful!\n");
   int i;
-  for (i = 0;i<5; i++) {
+  for (i = 0;i<1; i++) {
     char buf[1024] = {0};
     word_t result = 0;
     static bool success;
