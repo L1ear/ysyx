@@ -10,6 +10,7 @@ void engine_start() {
   /* Receive commands from user. */
   // sdb_mainloop();
   /* Test expr */
+  int adad = 0;
   FILE *file = fopen("/home/qw/ysyx-workbench/nemu/tools/gen-expr/input", "r");     
   if(file == NULL)
   {
@@ -17,7 +18,7 @@ void engine_start() {
   }
   else printf("open successful!\n");
   int i;
-  int adad = 0;
+  
   int cnt = 0;
   for (i = 0;i<100; i++) {
     char buf[1024] = {0};
