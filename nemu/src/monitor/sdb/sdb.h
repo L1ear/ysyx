@@ -4,7 +4,7 @@
 #include <common.h>
 
 word_t expr(char *e, bool *success);
-word_t eval(int p, int q);
+int eval(int p, int q);
 int check_parentheses(int p, int q);
 int fun(int start, int end);
 int op_pir(char op);
