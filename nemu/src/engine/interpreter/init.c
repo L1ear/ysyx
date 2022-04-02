@@ -27,7 +27,7 @@ void engine_start() {
      printf("expr_value: %lu\n", expr_value);
     assert((result == expr_value));
   }
-  
+  Log("Successed!");
   
 #endif
 }
