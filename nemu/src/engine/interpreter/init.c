@@ -24,7 +24,7 @@ void engine_start() {
     assert(fscanf(file, "%lu %s", &result, buf));
      printf("%lu %s\n", result,buf);
      word_t expr_value = expr(buf, &success);
-     printf("%lu\n", expr_value);
+     printf("expr_value: %lu\n", expr_value);
     assert((result == expr_value));
   }
   
