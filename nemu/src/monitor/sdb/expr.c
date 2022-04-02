@@ -172,9 +172,9 @@ int eval(int p, int q) {
     Log("op: %d\n",op);
     
     int val1 = eval(p, op - 1);
-    printf("cnt1:%d val1: %lu\n", ++val1_cnt, val1);
+    printf("cnt1:%d val1: %d\n", ++val1_cnt, val1);
     int val2 = eval(op + 1, q);
-    printf("cnt2:%d val2: %lu\n", ++val2_cnt, val2);
+    printf("cnt2:%d val2: %d\n", ++val2_cnt, val2);
 
     switch (tokens[op].type) {
       case '+':
