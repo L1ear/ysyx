@@ -331,6 +331,8 @@ int operator_find(int p,int q){
 *返回值： 求得的值
 */
 word_t expr(char *e, bool *success) {
+  val1_cnt = 0;
+  val2_cnt = 0;
   *success = true;
   if (!make_token(e)) {
     *success = false;
@@ -349,6 +351,5 @@ word_t expr(char *e, bool *success) {
   else {
     return value;
   }
-  val1_cnt = 0;
-  val2_cnt = 0;
+  
 }
