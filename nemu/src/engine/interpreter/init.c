@@ -19,7 +19,7 @@ void engine_start() {
   int i;
   int err[100];
   int cnt = 0;
-  for (i = 0;i<100; i++) {
+  for (i = 0;i<10000; i++) {
     char buf[1024] = {0};
     word_t result = 0;
     static bool success;
