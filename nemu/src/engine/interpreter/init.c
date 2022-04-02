@@ -19,7 +19,7 @@ void engine_start() {
   int i;
   int err[10000];
   int cnt = 0;
-  for (i = 0;i<10000; i++) {
+  for (i = 0;i<5000; i++) {
     char buf[1024] = {0};
     word_t result = 0;
     static bool success;
@@ -33,7 +33,8 @@ void engine_start() {
        cnt++;
      }
   }
-  Log("Successed!");
+  
   for (i = 0;i<cnt;i++) printf("neg: %d\n", err[i]);
+  Log("Successed!");
 #endif
 }
