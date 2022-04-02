@@ -329,7 +329,7 @@ int operator_find(int p,int q){
 *        success:是否成功的标志位;
 *返回值： 求得的值
 */
-word_t expr(char *e, bool *success) {
+uint32_t expr(char *e, bool *success) {
   val1_cnt = 0;
   val2_cnt = 0;
   *success = true;
