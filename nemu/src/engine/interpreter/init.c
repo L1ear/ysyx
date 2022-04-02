@@ -29,7 +29,6 @@ void engine_start() {
      if(result != expr_value){
        err[cnt] = i+1;
        cnt++;
-
      }
   }
   Log("Successed!");
