@@ -17,7 +17,7 @@ void engine_start() {
   }
   else printf("open successful!\n");
   int i;
-  int err[100] = {};
+  int erro[100] = {};
   int cnt = 0;
   for (i = 0;i<100; i++) {
     char buf[1024] = {0};
@@ -28,7 +28,7 @@ void engine_start() {
      word_t expr_value = expr(buf, &success);
      printf("expr_value: %lu\n", expr_value);
      if(result != expr_value){
-       err[cnt] = i+1;
+       erro[cnt] = i+1;
        cnt++;
      }
   }
