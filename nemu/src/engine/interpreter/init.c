@@ -34,6 +34,6 @@ void engine_start() {
      }
   }
   Log("Successed!");
-  
+  for (i = 0;i<cnt;i++) printf("neg: %d\n", err[i]);
 #endif
 }
