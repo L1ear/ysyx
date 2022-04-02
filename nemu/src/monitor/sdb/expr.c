@@ -123,6 +123,10 @@ static bool make_token(char *e) {
               tokens[nr_token].type = rules[i].token_type;
               nr_token ++;
               break;
+            case '/' :
+              tokens[nr_token].type = rules[i].token_type;
+              nr_token ++;
+              break;
           default: Log("error!");
         }
 
@@ -337,7 +341,6 @@ uint32_t expr(char *e, bool *success) {
     *success = false;
     return 0;
   }
-  assert(0);
   // Log("nr_token: %d\n",nr_token);
   // Log("the value of expr is: %d",eval(0, nr_token-1));
   
