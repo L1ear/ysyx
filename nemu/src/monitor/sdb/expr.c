@@ -296,16 +296,16 @@ int op_pir(char op)
 int operator_find(int p,int q){
   int i,nr_p=0;
   int op=-1,pir = -1;
-  for (i = q;i >= p; i--){
-    if (tokens[i].type == ')'){
+  for (i = p;i <= q; i++){
+    if (tokens[i].type == '('){
       nr_p++;
       i++;
 
       while (i <= q) // 搜索匹配的右括号 
       {
-        if (tokens[i].type == ')')
-            ++nr_p;
         if (tokens[i].type == '(')
+            ++nr_p;
+        if (tokens[i].type == ')')
             --nr_p;
             
         if (nr_p == 0){
