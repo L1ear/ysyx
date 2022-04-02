@@ -349,4 +349,6 @@ word_t expr(char *e, bool *success) {
   else {
     return value;
   }
+  val1_cnt = 0;
+  val2_cnt = 0;
 }
