@@ -343,7 +343,7 @@ word_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
   word_t value = (word_t)eval(0, nr_token-1);
-  printf("int:%d\n",(int)value)
+  printf("int:%d\n",(int)value);
   if(value==-1){
     *success = false;
     return 0;
