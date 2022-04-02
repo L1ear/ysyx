@@ -78,8 +78,8 @@ static bool make_token(char *e) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
-        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
-            i, rules[i].regex, position, substr_len, substr_len, substr_start);
+        // Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+        //     i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
 
@@ -161,7 +161,7 @@ int eval(int p, int q) {
      * For now this token should be a number.
      * Return the value of the number.
      */
-    printf("%d\n",atoi(tokens[p].str));
+    // printf("%d\n",atoi(tokens[p].str));
     return atoi(tokens[p].str);
   }
   else if (check_parentheses(p, q) == 1) {
@@ -171,14 +171,14 @@ int eval(int p, int q) {
     return eval(p + 1, q - 1);
   }
   else if (check_parentheses(p, q) == 0){
-    printf("p: %d and q: %d\n",p,q);
+    // printf("p: %d and q: %d\n",p,q);
     int op = operator_find(p,q);
-    Log("op: %d\n",op);
+    // Log("op: %d\n",op);
     
     int val1 = eval(p, op - 1);
-    printf("cnt1:%d val1: %d\n", ++val1_cnt, val1);
+    // printf("cnt1:%d val1: %d\n", ++val1_cnt, val1);
     int val2 = eval(op + 1, q);
-    printf("cnt2:%d val2: %d\n", ++val2_cnt, val2);
+    // printf("cnt2:%d val2: %d\n", ++val2_cnt, val2);
 
     switch (tokens[op].type) {
       case '+':
@@ -347,7 +347,7 @@ uint32_t expr(char *e, bool *success) {
   /* TODO: Insert codes to evaluate the expression. */
   //TODO();
   word_t value = (word_t)eval(0, nr_token-1);
-  printf("int:%d\n",(int)value);
+  // printf("int:%d\n",(int)value);
   if(value==-1){
     *success = false;
     return 0;
