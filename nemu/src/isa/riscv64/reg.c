@@ -18,7 +18,7 @@ void isa_reg_display() {
 word_t isa_reg_str2val(const char *s, bool *success) {
   int i;
   printf("%s\n", s);
-  char temp[3] = *s;
+  char temp[3] = s;
   for (i = 0; i<32; i++){
     
     if (temp == regs[i]) {
