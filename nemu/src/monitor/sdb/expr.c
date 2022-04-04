@@ -27,7 +27,7 @@ static struct rule {
   {"\\-", '-'},         // sub
   {"==", TK_EQ},        // equal
   {"\\*", '*'},
-  {"[0-9a-fA-F]+",TK_HEX},  //hex number
+  {"0x[0-9a-fA-F]+",TK_HEX},  //hex number
   {"[0-9]+", TK_INT},   // decimal number
   {"\\(", '('},
   {"\\)", ')'},
