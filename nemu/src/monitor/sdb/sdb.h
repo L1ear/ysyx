@@ -9,6 +9,6 @@ int check_parentheses(int p, int q);
 int fun(int start, int end);
 int op_pir(char op);
 int operator_find(int p,int q);
-
+uint64_t htoi(char s[]);
 
 #endif
