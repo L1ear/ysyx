@@ -20,7 +20,7 @@ word_t isa_reg_str2val(const char *s, bool *success) {
   printf("%s\n", s);
   char temp[3];
   sprintf(temp, "%s", s);
-  for (i = 0; i<3; i++) printf("%c", temp[i]);
+  for (i = 0; i<3; i++) printf("%c\n", temp[i]);
   for (i = 0; i<32; i++){
     
     if (temp == regs[i]) {
