@@ -142,7 +142,7 @@ static bool make_token(char *e) {
             case TK_REG :
               tokens[nr_token].type = rules[i].token_type;
               sprintf(tokens[nr_token].str,"%.*s",substr_len-1, substr_start+1);
-              bool success;
+              bool success = true;
               word_t temp_reg = isa_reg_str2val(tokens[nr_token].str, &success);
               if (success == false) break;
               Log("get number: %ld\n",temp_reg);
