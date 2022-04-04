@@ -23,6 +23,7 @@ word_t isa_reg_str2val(const char *s, bool *success) {
     if (s == regs[i]) {
       printf("matched :%s\n", regs[i]);
       break;
+    }
   }
   return gpr(i);
 }
