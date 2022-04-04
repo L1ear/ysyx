@@ -144,8 +144,9 @@ static bool make_token(char *e) {
               sprintf(tokens[nr_token].str,"%.*s",substr_len-1, substr_start+1);
               bool success;
               word_t temp_reg = isa_reg_str2val(tokens[nr_token].str, &success);
+              if (success == false) break;
               Log("get number: %ld\n",temp_reg);
-              // sprintf(tokens[nr_token].str,"%ld",isa_reg_str2val(substr_start+1));
+              sprintf(tokens[nr_token].str,"%ld",temp_reg);
               break;
           default: Log("error!");
         }
