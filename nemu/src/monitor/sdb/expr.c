@@ -141,8 +141,11 @@ static bool make_token(char *e) {
               break;
             case TK_REG :
               tokens[nr_token].type = rules[i].token_type;
-              // temp_reg;
+              bool success;
+              word_t temp_reg = isa_reg_str2val(substr_start+1, &success);
+              Log("get number: %ld\n",temp_reg);
               // sprintf(tokens[nr_token].str,"%ld",isa_reg_str2val(substr_start+1));
+              break;
           default: Log("error!");
         }
 
