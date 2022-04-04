@@ -131,8 +131,11 @@ static bool make_token(char *e) {
               break;
             case TK_HEX :
               tokens[nr_token].type = rules[i].token_type;
-              strncpy(tokens[nr_token].str, substr_start+2, substr_len);
+              sprintf(tokens[nr_token].str,"%x",substr_start);
+              //strncpy(tokens[nr_token].str, substr_start+2, substr_len);
               Log("get number: %ld\n",htoi(tokens[nr_token].str));
+              memset(tokens[nr_token].str, 0, sizeof(tokens[nr_token].str));
+
               nr_token ++;
               break;
           default: Log("error!");
