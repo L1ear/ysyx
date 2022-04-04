@@ -128,7 +128,7 @@ static bool make_token(char *e) {
               tokens[nr_token].type = rules[i].token_type;
               nr_token ++;
               break;
-            case 'TK_HEX' :
+            case TK_HEX :
               tokens[nr_token].type = rules[i].token_type;
               strncpy(tokens[nr_token].str, substr_start+2, substr_len);
               nr_token ++;
