@@ -18,11 +18,10 @@ void isa_reg_display() {
 word_t isa_reg_str2val(const char *s, bool *success) {
   int i;
   printf("%s\n", s);
-  char *temp;
-  sprintf(temp, "%s", s);
+
   for (i = 0; i<32; i++){
     
-    if (temp == regs[i]) {
+    if (s == regs[i]) {
       printf("matched :%s\n", regs[i]);
       break;
     }
