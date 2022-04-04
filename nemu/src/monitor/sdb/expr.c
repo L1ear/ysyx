@@ -31,7 +31,7 @@ static struct rule {
   {"\\(", '('},
   {"\\)", ')'},
   {"\\/", '/'},
-  {"^([1-9a-fA-F][\\da-fA-F]*|0)$",TK_HEX}  //hex number
+  {"[0-9a-fA-F]+",TK_HEX}  //hex number
 
 };
 
