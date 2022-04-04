@@ -103,10 +103,10 @@ static bool make_token(char *e) {
               break;
             case TK_INT:
               tokens[nr_token].type = rules[i].token_type;
-              // int j;
-              // for (j = 0; j<32; j++)  tokens[nr_token].str[j] = '\0';
-              // strncpy(tokens[nr_token].str, substr_start, substr_len);
-              sprintf(tokens[nr_token].str,"%s",substr_start);
+              int j;
+              for (j = 0; j<32; j++)  tokens[nr_token].str[j] = '\0';
+              strncpy(tokens[nr_token].str, substr_start, substr_len);
+              // sprintf(tokens[nr_token].str,"%s",substr_start);
               // Log("get number: %d\n",atoi(tokens[nr_token].str));
               nr_token ++;
               break;
