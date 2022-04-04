@@ -31,7 +31,7 @@ static struct rule {
   {"\\(", '('},
   {"\\)", ')'},
   {"\\/", '/'},
-  {"?<iAZ>0x[0-9a-f]+",TK_HEX}  //hex number
+  {"\\b0[xX][0-9a-fA-F]+\\b",TK_HEX}  //hex number
 
 };
 
