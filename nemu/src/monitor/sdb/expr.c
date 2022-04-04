@@ -7,7 +7,7 @@
 #include "sdb.h"
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,TK_INT,TK_HEX,
+  TK_NOTYPE = 256, TK_EQ,TK_INT,TK_HEX,TK_REG,
 
   /* TODO: Add more token types */
 
@@ -32,6 +32,7 @@ static struct rule {
   {"\\(", '('},
   {"\\)", ')'},
   {"\\/", '/'},
+  {"$[0-9a-z]{2,3}", TK_REG}，  //reg
   
 
 };
@@ -138,6 +139,10 @@ static bool make_token(char *e) {
               
               nr_token ++;
               break;
+            case TK_REG :
+              tokens[nr_token].type = rules[i].token_type;
+              // temp_reg;
+              // sprintf(tokens[nr_token].str,"%ld",isa_reg_str2val(substr_start+1));
           default: Log("error!");
         }
 
