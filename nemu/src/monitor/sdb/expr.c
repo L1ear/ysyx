@@ -351,8 +351,8 @@ int op_pir(int op)
     case '/':   return 0;
     case '+':
     case '-':   return 1;
-    case TK_EQ: assert(0); return 2;
-    default: Log("error!"); assert(0);
+    case TK_EQ: return 2;
+    default: Log("error!");
   }
   return -1;
 }
