@@ -5,6 +5,7 @@
  */
 #include <regex.h>
 #include "sdb.h"
+#include "memory/paddr.h"
 
 enum {
   TK_NOTYPE = 256, TK_EQ,TK_INT,TK_HEX,TK_REG,TK_POINT,TK_NEG,
@@ -224,7 +225,7 @@ int eval(int p, int q) {
         }
       }
       
-      for(r= q ;r > 0 ;r --) result = vaddr_read(result,4);
+      for(r= q ;r > 0 ;r --) result = paddr_read(result,4);
       return result;
       }
     }
