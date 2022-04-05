@@ -224,7 +224,7 @@ int eval(int p, int q) {
         }
       }
       
-      for(r= q ;r > 0 ;r --) result = paddr_read(result,4);
+      for(r= q ;r > 0 ;r --) result = vaddr_read(result,4);
       return result;
       }
     }
