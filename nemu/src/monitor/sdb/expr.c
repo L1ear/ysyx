@@ -342,7 +342,7 @@ int fun(int start, int end)
     return 1;
 }
 //返回符号优先级
-int op_pir(char op)
+int op_pir(int op)
 {
   switch (op)
   {
