@@ -211,7 +211,7 @@ int eval(int p, int q) {
         }
       }
       
-      for(r =r ;r > 0 ;r --) result = -result;
+      for(r= q ;r > 0 ;r --) result = -result;
       return result;
 
     }
