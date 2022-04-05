@@ -218,7 +218,7 @@ int eval(int p, int q) {
       }
       if (tokens[p].type == TK_POINT){     
         for (r=p;r<=q;r++){
-        if(tokens[r].type == TK_INT){
+        if(tokens[r].type == TK_HEX){
           sscanf(tokens[r].str, "%ld", &result);
           printf("%ld\n",result);
           break;
