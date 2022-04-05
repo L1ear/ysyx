@@ -378,7 +378,7 @@ int operator_find(int p,int q){
         i++;
       }
     }
-    if (tokens[i].type == '+' ||tokens[i].type == '-' ||tokens[i].type == '*' ||tokens[i].type == '/'){
+    if (tokens[i].type == '+' ||tokens[i].type == '-' ||tokens[i].type == '*' ||tokens[i].type == '/'||tokens[i].type == TK_EQ){
       if (op_pir(tokens[i].type)>=pir) {
         op = i;
         pir = op_pir(tokens[i].type);
