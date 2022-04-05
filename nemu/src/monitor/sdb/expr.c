@@ -34,7 +34,7 @@ static struct rule {
   {"\\)", ')'},
   {"\\/", '/'},
   {"\\$[0-9a-z]{2,3}", TK_REG},  //reg
-  
+
 
 };
 
@@ -246,6 +246,8 @@ int eval(int p, int q) {
         return val1 * val2;
       case '/': 
         return val1 / val2;
+      case TK_EQ:
+        return val1 == val2;
       default: 
         // Log("Wrong main operation\n");
         assert(0);
@@ -345,9 +347,10 @@ int op_pir(char op)
   switch (op)
   {
     case '*':
-    case '/': return 0;
+    case '/':   return 0;
     case '+':
-    case '-': return 1;
+    case '-':   return 1;
+    case TK_EQ: return 2;
     default: Log("error!");
   }
   return -1;
