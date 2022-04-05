@@ -7,7 +7,7 @@
 #include "sdb.h"
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,TK_INT,TK_HEX,TK_REG,
+  TK_NOTYPE = 256, TK_EQ,TK_INT,TK_HEX,TK_REG,TK_POINT,TK_NEG,
 
   /* TODO: Add more token types */
 
@@ -141,7 +141,7 @@ static bool make_token(char *e) {
               break;
             case TK_REG :
               tokens[nr_token].type = rules[i].token_type;
-              sprintf(tokens[nr_token].str,"%.*s",substr_len-1, substr_start+1);
+              sprintf(tokens[nr_token].str,"%.*s",substr_len-1, substr_start+1); //使用%.*s可指定字符数目
               bool success = true;
               word_t temp_reg = isa_reg_str2val(tokens[nr_token].str, &success);
               if (success == false) {
@@ -370,7 +370,15 @@ uint32_t expr(char *e, bool *success) {
   // Log("the value of expr is: %d",eval(0, nr_token-1));
   
   /* TODO: Insert codes to evaluate the expression. */
-  //TODO();
+
+   for(int i = 0 ;i<nr_token;i++) {
+    if(tokens[i].type=='*'&&(i==0||(tokens[i-1].type!=TK_INT&&tokens[i].type!=TK_HEX)))
+        tokens[i].type = TK_POINT;
+    if(tokens[i].type=='-'&&(i==0||(tokens[i-1].type!=TK_INT&&tokens[i].type!=TK_HEX)))
+        tokens[i].type = TK_NEG;
+  } 
+
+
   word_t value = (word_t)eval(0, nr_token-1);
   // printf("int:%d\n",(int)value);
   if(value==-1){
