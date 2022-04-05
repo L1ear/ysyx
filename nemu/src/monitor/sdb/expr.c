@@ -228,6 +228,7 @@ int eval(int p, int q) {
       for(r= q ;r > 0 ;r --) result = paddr_read(result,4);
       return result;
       }
+      return -1;
     }
     // Log("op: %d\n",op);
     
@@ -246,8 +247,8 @@ int eval(int p, int q) {
         return val1 * val2;
       case '/': 
         return val1 / val2;
-      // case TK_EQ:
-      //   return val1 == val2;
+      case TK_EQ:
+        return val1 == val2;
       default: 
         // Log("Wrong main operation\n");
         assert(0);
