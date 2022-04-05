@@ -200,7 +200,20 @@ int eval(int p, int q) {
     int op = operator_find(p,q);
     if (op == -1) {
       Log("No find valid operation!");
-      return -1;
+      // return -1;
+      int r;
+      word_t result;
+      if (tokens[p].type == TK_NEG)
+      for (r=p;r<=q;r++){
+        if(tokens[r].type == TK_INT){
+          sscanf(tokens[r].str, "%ld", &result);
+          break;
+        }
+      }
+      
+      for( ;r > 0 ;r --) result = -result;
+      return result;
+
     }
     // Log("op: %d\n",op);
     
