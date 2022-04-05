@@ -136,7 +136,7 @@ static bool make_token(char *e) {
               tokens[nr_token].type = rules[i].token_type;
               sprintf(tokens[nr_token].str,"%ld",htoi(substr_start));
               //strncpy(tokens[nr_token].str, substr_start+2, substr_len);
-              Log("get number: %ld\n",(word_t)atoi(tokens[nr_token].str));
+              Log("get number: %llu\n",(word_t)atoi(tokens[nr_token].str));
               
               nr_token ++;
               break;
