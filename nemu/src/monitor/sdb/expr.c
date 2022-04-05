@@ -198,6 +198,10 @@ int eval(int p, int q) {
   else if (check_parentheses(p, q) == 0){
     // printf("p: %d and q: %d\n",p,q);
     int op = operator_find(p,q);
+    if (op == -1) {
+      Log("No find valid operation!");
+      return -1;
+    }
     // Log("op: %d\n",op);
     
     int val1 = eval(p, op - 1);
