@@ -246,8 +246,8 @@ int eval(int p, int q) {
         return val1 * val2;
       case '/': 
         return val1 / val2;
-      case TK_EQ:
-        return val1 == val2;
+      // case TK_EQ:
+      //   return val1 == val2;
       default: 
         // Log("Wrong main operation\n");
         assert(0);
@@ -350,7 +350,7 @@ int op_pir(int op)
     case '/':   return 0;
     case '+':
     case '-':   return 1;
-    case TK_EQ: assert(0); return 2;
+    // case TK_EQ: assert(0); return 2;
     default: Log("error!");
   }
   return -1;
