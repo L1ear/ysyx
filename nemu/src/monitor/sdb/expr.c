@@ -203,8 +203,8 @@ int eval(int p, int q) {
       // return -1;
       int r;
       word_t result;
-      if (tokens[p].type == TK_NEG)
-      for (r=p;r<=q;r++){
+      if (tokens[p].type == TK_NEG){     
+        for (r=p;r<=q;r++){
         if(tokens[r].type == TK_INT){
           sscanf(tokens[r].str, "%ld", &result);
           printf("%ld\n",result);
@@ -214,7 +214,19 @@ int eval(int p, int q) {
       
       for(r= q ;r > 0 ;r --) result = -result;
       return result;
-
+      }
+      if (tokens[p].type == TK_POINT){     
+        for (r=p;r<=q;r++){
+        if(tokens[r].type == TK_INT){
+          sscanf(tokens[r].str, "%ld", &result);
+          printf("%ld\n",result);
+          break;
+        }
+      }
+      
+      for(r= q ;r > 0 ;r --) result = paddr_read(result,4);
+      return result;
+      }
     }
     // Log("op: %d\n",op);
     
