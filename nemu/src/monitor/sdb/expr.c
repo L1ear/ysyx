@@ -220,7 +220,7 @@ int eval(int p, int q) {
         for (r=p;r<=q;r++){
         if(tokens[r].type == TK_HEX){
           sscanf(tokens[r].str, "%ld", &result);
-          printf("%ld\n",result);
+          printf("%lx\n",result);
           break;
         }
       }
