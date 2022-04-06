@@ -11,10 +11,10 @@ typedef struct watchpoint {
 } WP;
 
 WP* new_wp();
-void free_wp(WP *wp);
+void free_wp(int n);
 
 static WP wp_pool[NR_WP] = {};
-static WP *head = NULL, *free_ = NULL;
+static WP *head = NULL, *free_ = NULL, *begin = NULL;
 
 void init_wp_pool() {
   int i;
@@ -34,7 +34,11 @@ WP* new_wp(){
     assert(0);
   }
 //指针区操作
-  WP* new_link= free_;    //新建链表  
+  WP* new_link;    //新建链表 
+  new_link= free_;
+  if (head == NULL){
+    begin = new_link;
+  } 
   if(head != NULL) {
   	head->next = new_link;
   }
@@ -51,3 +55,41 @@ WP* new_wp(){
 }
 
 
+void free_wp(int n){
+  int i = 0;
+  WP* p = begin,*q = NULL;
+  for (i = 1; p != NULL; i++){
+    if((p->next)->next == NULL){
+      q = p;         //提前预判要删除的是不是最后一个
+    }
+    if(i == n){
+      p->next = free_;
+      free_ = p;
+      break;
+    }
+    p = p->next;
+  }
+  if (p != NULL && q != NULL){
+    head = q;
+  }
+  if (p == NULL){
+    Log("Have not find watchpoint :%d\n", n);
+  }
+}
+
+
+void print_wp(){
+  if (begin == NULL){
+    Log("There is no watchpoint!\n");
+  }
+  else{
+    WP *p = begin;
+    int i=1;
+    do{
+      printf("%d\n",i);
+      p=p->next;
+      i++;
+    }while(p->next != NULL);
+  }
+
+} 
