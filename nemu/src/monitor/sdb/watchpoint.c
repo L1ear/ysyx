@@ -77,7 +77,7 @@ void free_wp(int n){
   }
   if (p != NULL && q != NULL){
     head = q;
-    head->next =NULL;
+    //head->next =NULL;
   }
   if (p == NULL){
     Log("Have not find watchpoint :%d\n", n);
