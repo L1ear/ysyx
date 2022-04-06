@@ -88,7 +88,7 @@ void print_wp(){
     WP *p = begin;
     int i=1;
     do{
-      printf("%d\n",i);
+      printf("%d  %d\n",i,p->NO);
       p=p->next;
       i++;
     }while(p != NULL);
