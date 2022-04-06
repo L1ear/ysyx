@@ -10,6 +10,9 @@ typedef struct watchpoint {
 
 } WP;
 
+WP* new_wp();
+void free_wp(WP *wp);
+
 static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL;
 
@@ -25,4 +28,13 @@ void init_wp_pool() {
 }
 
 /* TODO: Implement the functionality of watchpoint */
+WP* new_wp(){
+  if (free_ == NULL){
+    Log("Fatal error:free is null");
+    assert(0);
+  }
+  WP* new = free_;
+  free_ = free_.next;
+}
+
 
