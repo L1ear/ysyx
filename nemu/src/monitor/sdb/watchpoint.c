@@ -4,6 +4,7 @@
 
 typedef struct watchpoint {
   int NO;
+  bool used;
   struct watchpoint *next;
 
   /* TODO: Add more members if necessary */
@@ -23,6 +24,7 @@ void init_wp_pool() {
   for (i = 0; i < NR_WP; i ++) {
     wp_pool[i].NO = i;
     wp_pool[i].next = (i == NR_WP - 1 ? NULL : &wp_pool[i + 1]);
+    wp_pool[i].used = false;
   }
 
   head = NULL;
@@ -75,6 +77,7 @@ void free_wp(int n){
   }
   if (p != NULL && q != NULL){
     head = q;
+    head->next =NULL;
   }
   if (p == NULL){
     Log("Have not find watchpoint :%d\n", n);
