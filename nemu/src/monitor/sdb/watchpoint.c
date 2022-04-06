@@ -97,5 +97,5 @@ void print_wp(){
 } 
 
 void set_WP(){
-  printf("Set new watchpoint:%x\n",(word_t)new_wp());
+  printf("Set new watchpoint:%lx\n",(word_t)new_wp());
 }
