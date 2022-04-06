@@ -33,9 +33,21 @@ WP* new_wp(){
     Log("Fatal error:free is null");
     assert(0);
   }
-  WP* new_link= free_;
-  free_ = free_->next;
+//指针区操作
+  WP* new_link= free_;    //新建链表  
+  if(head != NULL) {
+  	head->next = new_link;
+  }
+  head = new_link;
+  if(free_->next ==NULL){
+  	Log("WatchPoint is going to be full, please release some\n");
+  }
+  free_ = free_->next;    //处理未使用链表指针
+  new_link->next = NULL;  //处理下一指针 
   return new_link;
+//数据区操作
+//TODO
+
 }
 
 
