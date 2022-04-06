@@ -64,6 +64,7 @@ void free_wp(int n){
   WP* p = begin,*q = NULL;
   for (i = 1; p != NULL; i++){
     if((p->next)->next == NULL){
+      Log("????????");
       q = p;         //提前预判要删除的是不是最后一个
     }
     if ((i+1) == n) p->next = (p->next)->next;
