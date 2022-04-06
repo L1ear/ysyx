@@ -33,9 +33,9 @@ WP* new_wp(){
     Log("Fatal error:free is null");
     assert(0);
   }
-  WP* new = free_;
+  WP* new_link= free_;
   free_ = free_->next;
-  return new;
+  return new_link;
 }
 
 

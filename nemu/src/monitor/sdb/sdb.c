@@ -134,6 +134,14 @@ static int cmd_p(char *args) {
   return 0;
 }
 
+static int cmd_w(char *args) {
+  return 0;
+}
+
+static int cmd_d(char *args) {
+  return 0;
+}
+
 static int cmd_help(char *args);
 
 static struct {
@@ -149,7 +157,9 @@ static struct {
   { "si", "Single excute",  cmd_si},
   { "info", "Print program state",  cmd_info},
   { "x",  "scan the mem", cmd_x},
-  { "p",  "expression evaluation",  cmd_p}
+  { "p",  "expression evaluation",  cmd_p},
+  { "w",  "set watchpoint", cmd_w},
+  { "d",  "delete watchpoint", cmd_d}
 };
 
 #define NR_CMD ARRLEN(cmd_table)
