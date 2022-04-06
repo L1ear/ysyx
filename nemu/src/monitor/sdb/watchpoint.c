@@ -12,6 +12,8 @@ typedef struct watchpoint {
 
 WP* new_wp();
 void free_wp(int n);
+void set_WP();
+void print_wp();
 
 static WP wp_pool[NR_WP] = {};
 static WP *head = NULL, *free_ = NULL, *begin = NULL;
@@ -93,3 +95,7 @@ void print_wp(){
   }
 
 } 
+
+void set_WP(){
+  Log("Set new watchpoint:%x\n",new_wp());
+}

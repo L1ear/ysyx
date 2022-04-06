@@ -13,7 +13,9 @@
 
 static int is_batch_mode = false;
 
-
+void set_WP();
+void free_wp(int n);
+void print_wp();
 void init_wp_pool();
 void init_regex();
 // uint32_t expr(char *e, bool *success);
@@ -79,6 +81,7 @@ static int cmd_q(char *args) {
 
 static int cmd_info(char *args) {
   if(*args == 'r')  isa_reg_display();
+  if(*args == 'w')  print_wp();
   return 0;
 }
 
@@ -135,10 +138,12 @@ static int cmd_p(char *args) {
 }
 
 static int cmd_w(char *args) {
+  set_WP();
   return 0;
 }
 
 static int cmd_d(char *args) {
+  free_wp(atoi(args));
   return 0;
 }
 
