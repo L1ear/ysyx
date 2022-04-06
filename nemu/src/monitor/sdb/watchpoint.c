@@ -34,7 +34,7 @@ WP* new_wp(){
     assert(0);
   }
   WP* new = free_;
-  free_ = free_.next;
+  free_ = free_->next;
 }
 
 
