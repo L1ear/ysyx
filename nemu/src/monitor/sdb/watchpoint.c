@@ -91,7 +91,7 @@ void print_wp(){
       printf("%d\n",i);
       p=p->next;
       i++;
-    }while(p->next != NULL);
+    }while(p != NULL);
   }
 
 } 
