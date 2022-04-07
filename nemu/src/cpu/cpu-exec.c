@@ -31,6 +31,10 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   bool success= false;
   for (;p != NULL; ){
     new_value = expr(p->expr,&success);
+    if(new_value!=p->old_value){
+      nemu_state.state = NEMU_STOP; 
+      break;
+    }
   }
 #endif
 
