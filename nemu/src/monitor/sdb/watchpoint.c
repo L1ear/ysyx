@@ -74,7 +74,7 @@ void free_wp(int n){
     }
     if ((i+1) == n) p->next = (p->next)->next;
     Log("i:%d\n",i);
-    Log("(p->next)->next:%x\n",((p->next)->next));
+    Log("(p->next)->next:%lx\n",(word_t)((p->next)->next));
     if(((p->next)->next) == NULL){
       Log("????????");
       q = p;         //提前预判要删除的是不是最后一个
