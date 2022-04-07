@@ -73,7 +73,7 @@ void free_wp(int n){
       break;
     }
     
-    Log("i:%d\n",i);
+    // Log("i:%d\n",i);
     // Log("(p->next):%lx\n",(word_t)((p->next)));
     if(((p->next)->next) == NULL){
       // Log("????????");
