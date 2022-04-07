@@ -109,7 +109,7 @@ void print_wp(){
     WP *p = begin;
     int i=1;
     do{
-      printf("%d  %d\n",i,p->NO);
+      printf("%d  %d  %s\n",i,p->NO,p->expr);
       p=p->next;
       i++;
     }while(p != NULL);
