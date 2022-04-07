@@ -26,8 +26,12 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
   if (g_print_step) { IFDEF(CONFIG_ITRACE, puts(_this->logbuf)); }
   IFDEF(CONFIG_DIFFTEST, difftest_step(_this->pc, dnpc));
 #ifdef CONFIG_WATCHPOINT
-  WP *p = begin;
-
+  WP* p = begin;
+  word_t new_value=0;
+  bool success= false;
+  for (;p != NULL; ){
+    new_value = expr(p->expr,&success);
+  }
 #endif
 
 }

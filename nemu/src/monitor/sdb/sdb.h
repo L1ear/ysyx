@@ -11,6 +11,6 @@ int op_pir(int op);
 int operator_find(int p,int q);
 uint64_t htoi(char s[]);
 
-typedef struct watchpoint WP;
+typedef struct WP;
 
 #endif
