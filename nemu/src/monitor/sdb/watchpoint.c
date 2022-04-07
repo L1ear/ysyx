@@ -65,7 +65,7 @@ void free_wp(int n){
   for (i = 1; p != NULL; i++){
     x = p->next;
     if(i == n){
-      Log("?");
+      // Log("?");
       if (p == begin)  begin = p->next;
       p->next = free_;
       free_ = p;
@@ -76,11 +76,11 @@ void free_wp(int n){
     Log("i:%d\n",i);
     // Log("(p->next):%lx\n",(word_t)((p->next)));
     if(((p->next)->next) == NULL){
-      Log("????????");
+      // Log("????????");
       q = p;         //提前预判要删除的是不是最后一个
     }
     if ((i+1) == n) p->next = (p->next)->next;
-    Log("(p->next):%lx\n",(word_t)((p->next)));
+    // Log("(p->next):%lx\n",(word_t)((p->next)));
     p = x;
   }
   if (head == begin){
