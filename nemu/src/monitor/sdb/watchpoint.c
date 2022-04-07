@@ -83,14 +83,15 @@ void free_wp(int n){
     Log("(p->next):%lx\n",(word_t)((p->next)));
     p = x;
   }
-  if (p != NULL && q != NULL){
-    head = q;
-    //head->next =NULL;
-  }
   if (head == begin){
     head = NULL;
     begin = NULL;
   }
+  if (p != NULL && q != NULL){
+    head = q;
+    //head->next =NULL;
+  }
+  
   if (p == NULL){
     Log("Have not find watchpoint :%d\n", n);
   }
