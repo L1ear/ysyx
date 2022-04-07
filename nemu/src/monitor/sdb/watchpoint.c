@@ -122,7 +122,6 @@ void print_wp(){
 void set_WP(char *args){
   WP* set_new_wp = new_wp();
   strcpy(set_new_wp->expr, args);
-  word_t value=0;
   static bool success;
 
   set_new_wp->old_value = expr(args, &success);
