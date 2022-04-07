@@ -83,7 +83,7 @@ void free_wp(int n){
     // Log("(p->next):%lx\n",(word_t)((p->next)));
     p = x;
   }
-  if (head == begin){
+  if (head == begin ||begin ==NULL){
     head = NULL;
     begin = NULL;
   }
