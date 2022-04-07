@@ -2,15 +2,7 @@
 
 #define NR_WP 32
 
-typedef struct watchpoint {
-  int NO;
-  bool used;
-  struct watchpoint *next;
 
-  /* TODO: Add more members if necessary */
-  char expr[64];
-  word_t old_value;
-} WP;
 
 WP* new_wp();
 void free_wp(int n);
