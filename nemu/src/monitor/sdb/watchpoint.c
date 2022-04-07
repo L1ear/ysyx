@@ -84,6 +84,7 @@ void free_wp(int n){
   }
   if (p == begin){
     head = NULL;
+    begin = NULL;
   }
   if (p == NULL){
     Log("Have not find watchpoint :%d\n", n);
@@ -92,7 +93,7 @@ void free_wp(int n){
 
 
 void print_wp(){
-  if (begin == NULL){
+  if (head == NULL){
     Log("There is no watchpoint!\n");
   }
   else{
