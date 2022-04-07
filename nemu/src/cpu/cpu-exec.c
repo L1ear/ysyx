@@ -38,6 +38,7 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
       p->old_value = new_value;
       break;
     }
+    p = p->next;
   }
 #endif
 
