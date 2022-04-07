@@ -99,6 +99,7 @@ void free_wp(int n){
 
 
 void print_wp(){
+  Log("?");
   if (head == NULL){
     Log("There is no watchpoint!\n");
   }
