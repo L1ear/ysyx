@@ -66,6 +66,7 @@ void free_wp(int n){
     x = p->next;
     if(i == n){
       Log("?");
+      if (p = begin)  begin = p->next;
       p->next = free_;
       free_ = p;
       Log("delete watchpoint: %d",n);
