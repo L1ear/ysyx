@@ -66,7 +66,7 @@ void free_wp(int n){
     x = p->next;
     
     
-    if ((i+1) == n) p->next = (p->next)->next;
+    
     Log("?");
     if(i == n){
       p->next = free_;
@@ -74,6 +74,7 @@ void free_wp(int n){
       Log("delete watchpoint: %d",n);
       break;
     }
+    if ((i+1) == n) p->next = (p->next)->next;
     if(((p->next)->next) == NULL){
       Log("????????");
       q = p;         //提前预判要删除的是不是最后一个
