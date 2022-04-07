@@ -126,7 +126,6 @@ void set_WP(char *args){
   value = expr(args, &success);
   if(success == false){
     Log("please enter a solvable expression\n");
-    return 0;
   }
   Log("the value of expr is: %lu\n",value);
   printf("Set new watchpoint:%lx\n",(word_t)set_new_wp);
