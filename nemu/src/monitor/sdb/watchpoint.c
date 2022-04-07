@@ -82,7 +82,7 @@ void free_wp(int n){
     head = q;
     //head->next =NULL;
   }
-  if (p == begin){
+  if (head == begin){
     head = NULL;
     begin = NULL;
   }
