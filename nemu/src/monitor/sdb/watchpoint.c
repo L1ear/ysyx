@@ -9,6 +9,7 @@ typedef struct watchpoint {
 
   /* TODO: Add more members if necessary */
   char expr[64];
+  word_t old_value;
 } WP;
 
 WP* new_wp();
@@ -27,6 +28,7 @@ void init_wp_pool() {
     wp_pool[i].used = false;
     int j;
     for (j = 0;j<64; j++) wp_pool[i].expr[i] = '\0';
+    wp_pool[i].old_value = 0;
   }
 
   head = NULL;
@@ -123,9 +125,9 @@ void set_WP(char *args){
   word_t value=0;
   static bool success;
 
-  value = expr(args, &success);
+  set_new_wp->old_value = expr(args, &success);
   if(success == false){
     Log("please enter a solvable expression\n");
   }
-  Log("Set new watchpoint:%lx\nIt's value: %lu\n",(word_t)set_new_wp,value);
+  Log("Set new watchpoint:%lx\nIt's value: %lu\n",(word_t)set_new_wp,set_new_wp->old_value);
 }
