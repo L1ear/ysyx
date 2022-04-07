@@ -64,10 +64,6 @@ void free_wp(int n){
   WP *p = begin,*q = NULL, *x=NULL;
   for (i = 1; p != NULL; i++){
     x = p->next;
-    
-    
-    
-    
     if(i == n){
       Log("?");
       p->next = free_;
@@ -85,6 +81,9 @@ void free_wp(int n){
   if (p != NULL && q != NULL){
     head = q;
     //head->next =NULL;
+  }
+  if (p == begin){
+    head = NULL;
   }
   if (p == NULL){
     Log("Have not find watchpoint :%d\n", n);
