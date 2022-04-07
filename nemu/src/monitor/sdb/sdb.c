@@ -13,7 +13,7 @@
 
 static int is_batch_mode = false;
 
-void set_WP();
+void set_WP(char *args);
 void free_wp(int n);
 void print_wp();
 void init_wp_pool();
@@ -138,7 +138,11 @@ static int cmd_p(char *args) {
 }
 
 static int cmd_w(char *args) {
-  set_WP();
+    if (args == NULL) { 
+    Log("Please enter the expression\n");
+    return 0;
+  }
+  set_WP(args);
   return 0;
 }
 
