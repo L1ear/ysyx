@@ -11,4 +11,15 @@ int op_pir(int op);
 int operator_find(int p,int q);
 uint64_t htoi(char s[]);
 
+
+typedef struct watchpoint {
+  int NO;
+  bool used;
+  struct watchpoint *next;
+
+  /* TODO: Add more members if necessary */
+  char expr[64];
+  word_t old_value;
+} WP;
+
 #endif
