@@ -111,7 +111,7 @@ void print_wp(){
     WP *p = begin;
     int i=1;
     do{
-      printf("%d  %d  %s\n",i,p->NO,p->expr);
+      printf("%d  %d  %s  %lu\n",i,p->NO,p->expr, p->old_value);
       p=p->next;
       i++;
     }while(p != NULL);

@@ -13,6 +13,7 @@ config ISA_riscv64
   bool "riscv64"
 endchoice
 
+
 config ISA
   string
   default "x86" if ISA_x86
@@ -121,6 +122,9 @@ endmenu
 
 menu "Testing and Debugging"
 
+config WATCHPOINT
+  bool "Enable watchpoint"
+  default y
 
 config TRACE
   bool "Enable tracer"
