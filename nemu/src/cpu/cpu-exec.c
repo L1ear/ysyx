@@ -33,6 +33,9 @@ static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
     new_value = expr(p->expr,&success);
     if(new_value!=p->old_value){
       nemu_state.state = NEMU_STOP; 
+      Log("Watchpoint matched: %lx\n",(word_t)(p));
+      Log("old value: %lu   new value: %lu\n",p->old_value,new_value);
+      p->old_value = new_value;
       break;
     }
   }
