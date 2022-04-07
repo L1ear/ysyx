@@ -118,5 +118,16 @@ void print_wp(){
 } 
 
 void set_WP(char *args){
-  printf("Set new watchpoint:%lx\n",(word_t)new_wp());
+  WP* set_new_wp = new_wp();
+  strcpy(set_new_wp->expr, args);
+  word_t value=0;
+  static bool success;
+
+  value = expr(args, &success);
+  if(success == false){
+    Log("please enter a solvable expression\n");
+    return 0;
+  }
+  Log("the value of expr is: %lu\n",value);
+  printf("Set new watchpoint:%lx\n",(word_t)set_new_wp);
 }
