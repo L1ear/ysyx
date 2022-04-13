@@ -73,6 +73,7 @@ static int cmd_c(char *args) {
 static int cmd_si(char *args) {
   if (args == NULL) { 
     cpu_exec(1);
+    Log("PC: %lx\n",cpu.pc);
   }
   else
     cpu_exec(*args -48);
