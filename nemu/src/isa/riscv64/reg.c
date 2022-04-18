@@ -14,7 +14,7 @@ void isa_reg_display() {
     printf("%s is: %016lx    ",reg_name(i,64), gpr(i));
     if (i % 3 == 0)   printf("\n");
   }
-	printf("\n");
+
 
 }
 
