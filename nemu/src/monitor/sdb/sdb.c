@@ -77,7 +77,7 @@ static int cmd_si(char *args) {
     isa_reg_display();
   }
   else
-    cpu_exec(*args -48);
+    cpu_exec(atoi(args));
   return 0;
 }
 
