@@ -74,12 +74,10 @@ static int cmd_si(char *args) {
   if (args == NULL) { 
     cpu_exec(1);
     Log("PC: %lx\n",cpu.pc);
-  }
-  else
-  {
-    cpu_exec(*args -48);
     isa_reg_display();
   }
+  else
+    cpu_exec(*args -48);
   return 0;
 }
 
