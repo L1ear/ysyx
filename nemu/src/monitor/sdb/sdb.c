@@ -76,7 +76,10 @@ static int cmd_si(char *args) {
     Log("PC: %lx\n",cpu.pc);
   }
   else
+  {
     cpu_exec(*args -48);
+    isa_reg_display();
+  }
   return 0;
 }
 
