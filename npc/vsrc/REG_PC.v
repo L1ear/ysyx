@@ -1,3 +1,4 @@
+`include "defines.v"
 module REG_PC (
     input                   clk,
     input                   rst_n,
