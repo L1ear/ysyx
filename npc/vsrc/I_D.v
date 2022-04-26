@@ -5,8 +5,8 @@ module I_D(
     input   [`inst_len-1:0]     inst,
    
     output  reg [4:0]           rd,
-    output  reg [`XLEN-1:0]               src1,
-    output  reg [`XLEN-1:0]               src2,
+    output  reg [`XLEN-1:0]     src1,
+    output  reg [`XLEN-1:0]     src2,
 
     output                      wr_en_o,
     output  [4:0]               reg_addr1_o,
