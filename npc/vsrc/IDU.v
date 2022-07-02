@@ -40,6 +40,8 @@ assign  Rd_o = instr_i[11:7];
 assign  Rs1_o = instr_i[19:15];
 assign  Rs2_o = instr_i[24:20];
 
+import "DPI-C" function void ebreak(); 
+
 always @(*) begin
     branch = `NonBranch;
     RegWrSel = `AluOut;
@@ -209,6 +211,10 @@ always @(*) begin
             RegWrSel = `AluOut;
             MemWr = 1'b0;        
             ALUctr = `AluAdd;            
+        end
+        //调用DPI-C函数
+        `ebreak: begin
+            ebreak();
         end
         default: begin
             //TODO

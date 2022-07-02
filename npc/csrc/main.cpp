@@ -40,8 +40,15 @@ int reset(int i,int n) {
   return i;
 }
 
+//for DPI-C
+#include "svdpi.h"
+#include "Vtop__Dpi.h"
 
-
+int en = 1;
+void ebreak(){
+  en = 0;
+  printf("\n`````````````````````````````````````finished!```````````````````````````````````````````\n");
+}
 
 
 int main()
@@ -57,11 +64,12 @@ int main()
     fp ->dump(0);
     int i = 0;
     i = reset(i,5);
-    for(i;i<=2000;i = i+2)
+    while(en)
     {
       single_cycle(i);
       top->eval();
         // nvboard_update();
+        i = i+2;
     }
     reset(i,10);
 
