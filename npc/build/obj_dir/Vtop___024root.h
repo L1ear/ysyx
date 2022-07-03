@@ -23,7 +23,9 @@ VL_MODULE(Vtop___024root) {
     VL_IN8(rst_n,0,0);
     VL_OUT8(MemWr,0,0);
     VL_OUT8(MemOp,2,0);
+    VL_IN(instr,31,0);
     VL_IN64(DmemDataO,63,0);
+    VL_OUT64(instrAddr,63,0);
     VL_OUT64(DmemAddr,63,0);
     VL_OUT64(DmemDataI,63,0);
 
@@ -41,7 +43,6 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__zero;
     CData/*0:0*/ top__DOT__u_ALU__DOT__cin;
     CData/*0:0*/ top__DOT__u_ALU__DOT__overflow;
-    IData/*31:0*/ top__DOT__instr;
     QData/*63:0*/ top__DOT__NextPc;
     QData/*63:0*/ top__DOT__CurPc;
     QData/*63:0*/ top__DOT__rs1_data;
@@ -55,11 +56,10 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__u_ALU__DOT__shift;
     QData/*63:0*/ top__DOT__u_ALU__DOT__shifter__DOT__temp;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__u_regfiles__DOT__regfiles;
-    VlUnpacked<IData/*31:0*/, 65536> top__DOT__u_instr_mem__DOT__instr_mem;
 
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clk;
-    VlUnpacked<CData/*0:0*/, 2> __Vm_traceActivity;
+    VlUnpacked<CData/*0:0*/, 3> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
     Vtop__Syms* vlSymsp;  // Symbol table

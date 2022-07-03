@@ -15,7 +15,14 @@ void (*ref_difftest_raise_intr)(uint64_t NO) = NULL;
 
 static bool is_skip_ref = false;
 static int skip_dut_nr_inst = 0;
+/*
+ Spike不支持不对齐的访存
 
+RISC-V作为一个RISC架构, 通常是不支持不对齐访存的, 在Spike中执行一条地址不对齐
+的访存指令将会抛出一个异常. 但NEMU为了简化, 没有实现这样的功能, 因此如果让NEMU
+和Spike同时执行这样的指令, DiffTest将会报错. 不过这很可能是你的软件实现(例如klib)
+有问题, 请检查并修改相关代码.
+*/
 // this is used to let ref skip instructions which
 // can not produce consistent behavior with NEMU
 void difftest_skip_ref() {

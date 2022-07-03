@@ -2,7 +2,10 @@
 module top(
 	input   			clk,rst_n,
 	input  [`XLEN-1:0] 	DmemDataO,
+    // instr_mem intputs
+    input  [31:0]       instr,
 
+    output [`XLEN-1:0]  instrAddr,
 	output [`XLEN-1:0] 	DmemAddr,
 	output [`XLEN-1:0] 	DmemDataI,
 	output 				MemWr,
@@ -16,6 +19,7 @@ wire  PCBsrc;
 
 // PC Inputs
 reg   [`XLEN-1:0]  NextPc;
+assign  instrAddr = NextPc;
 
 // PC Outputs
 wire  [`XLEN-1:0]  CurPc;
@@ -43,8 +47,8 @@ wire  less;
 
 wire  zero;
 
-// instr_mem Outputs
-wire  [31:0]  instr;
+
+
 
 // `define     A_4     1'b0
 // `define     A_imm   1'b1
@@ -132,13 +136,13 @@ IDU  u_IDU (
     .branch                  ( branch     )
 );
     
-instr_mem  u_instr_mem (
-    .rst_n                   ( rst_n        ),
-    .clk                     ( clk          ),
-    .instr_addr              ( NextPc	    ),
+// instr_mem  u_instr_mem (
+//     .rst_n                   ( rst_n        ),
+//     .clk                     ( clk          ),
+//     .instr_addr              ( NextPc	    ),
 
-    .instr_o                 ( instr        )
-);
+//     .instr_o                 ( instr        )
+// );
 
 imm_exp  u_imm_exp (
     .instr_imm_i             ( instr[31:7]  ),

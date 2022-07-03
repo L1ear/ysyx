@@ -3,6 +3,8 @@
 #include <cstdio>
 #include <verilated_vcd_c.h>
 
+
+
 #define nvboard 0
 
 
@@ -22,10 +24,13 @@ void nvboard_bind_all_pins(Vtop* top);
 
 
 
+
 void single_cycle(int i) {
   top->clk = 0; top->eval();
   fp ->dump(i);
-  top->clk = 1; top->eval();
+  top->clk = 1; 
+
+  top->eval();
   fp ->dump(i+1);
 }
 
