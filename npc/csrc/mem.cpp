@@ -1,5 +1,7 @@
 #include <isa.h>
 #include <memory/paddr.h>
+#include <stddef.h>
+#include <stdio.h>
 
 static char *img_file = NULL;
 static long load_img() {
