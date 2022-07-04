@@ -1,15 +1,15 @@
 `include "defines.v"
 module top(
-	input   			clk,rst_n,
-	input  [`XLEN-1:0] 	DmemDataO,
+	input   			        clk,rst_n,
+	input       [`XLEN-1:0] 	DmemDataO,
     // instr_mem intputs
-    input  [31:0]       instr,
+    input       [31:0]          instr,
 
-    output [`XLEN-1:0]  instrAddr,
-	output [`XLEN-1:0] 	DmemAddr,
-	output [`XLEN-1:0] 	DmemDataI,
-	output 				MemWr,
-	output [2:0] 		MemOp
+    output reg  [`XLEN-1:0]     instrAddr,
+	output      [`XLEN-1:0]     DmemAddr,
+	output      [`XLEN-1:0] 	DmemDataI,
+	output 				        MemWr,
+	output      [2:0] 		    MemOp
 );
 
 
@@ -19,7 +19,10 @@ wire  PCBsrc;
 
 // PC Inputs
 reg   [`XLEN-1:0]  NextPc;
-assign  instrAddr = NextPc;
+always @(posedge clk) begin
+    instrAddr <= NextPc;
+end
+
 
 // PC Outputs
 wire  [`XLEN-1:0]  CurPc;
@@ -58,7 +61,7 @@ wire  zero;
 //                 ((PCAsrc)?imm:`XLEN'd4) + ((PCBsrc)?rs1_data:CurPc);
 always @(*) begin
     if(~rst_n) begin
-        NextPc = `XLEN'b0;
+        NextPc = `XLEN'h80000000;
     end
     else begin
         NextPc =((PCAsrc)?imm:`XLEN'd4) + ((PCBsrc)?rs1_data:CurPc);

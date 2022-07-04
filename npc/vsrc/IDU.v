@@ -175,7 +175,7 @@ always @(*) begin
         `jal: begin
             Src1Sel = `PC;
             Src2Sel = `src_4;  
-            ExtOp = `immU;  
+            ExtOp = `immJ;  
             RegWrEn = 1'b1;
             branch = `JalCon;
             RegWrSel = `AluOut;

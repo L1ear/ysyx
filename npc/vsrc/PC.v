@@ -8,7 +8,7 @@ module PC (
 
 always @(posedge clk) begin
     if(~rst_n) begin
-        CurPc <= `XLEN'h0;
+        CurPc <= `XLEN'h80000000;
     end
     else begin
         CurPc <= NextPc;

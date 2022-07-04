@@ -65,7 +65,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                 if ((4U & vlSelf->instr)) {
                     vlSelf->top__DOT__Src1Sel = 1U;
                     vlSelf->top__DOT__Src2Sel = 3U;
-                    vlSelf->top__DOT__ExtOp = 2U;
+                    vlSelf->top__DOT__ExtOp = 8U;
                     vlSelf->top__DOT__RegWrEn = 1U;
                     vlSelf->top__DOT__branch = 1U;
                     vlSelf->top__DOT__RegWrSel = 0U;
@@ -233,15 +233,14 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                        >> 0x1fU)))) 
                                                    << 0x14U) 
                                                   | (QData)((IData)(
-                                                                    (1U 
-                                                                     | ((0xff000U 
-                                                                         & vlSelf->instr) 
-                                                                        | ((0x800U 
-                                                                            & (vlSelf->instr 
-                                                                               >> 9U)) 
-                                                                           | (0x7feU 
-                                                                              & (vlSelf->instr 
-                                                                                >> 0x14U)))))))))))
+                                                                    ((0xff000U 
+                                                                      & vlSelf->instr) 
+                                                                     | ((0x800U 
+                                                                         & (vlSelf->instr 
+                                                                            >> 9U)) 
+                                                                        | (0x7feU 
+                                                                           & (vlSelf->instr 
+                                                                              >> 0x14U))))))))))
                                   : ((4U & (IData)(vlSelf->top__DOT__ExtOp))
                                       ? ((2U & (IData)(vlSelf->top__DOT__ExtOp))
                                           ? 0ULL : 
@@ -491,8 +490,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                       : 4ULL) + ((IData)(vlSelf->top__DOT__PCBsrc)
                                                   ? vlSelf->top__DOT__rs1_data
                                                   : vlSelf->top__DOT__CurPc))
-                                 : 0ULL);
-    vlSelf->instrAddr = vlSelf->top__DOT__NextPc;
+                                 : 0x80000000ULL);
 }
 
 void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {

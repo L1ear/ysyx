@@ -20,7 +20,7 @@ always @(*) begin
         `immS:
             imm_o = {{52{instr_imm_i[31]}},instr_imm_i[31:25],instr_imm_i[11:7]};
         `immJ:
-            imm_o = {{44{instr_imm_i[31]}},instr_imm_i[19:12],instr_imm_i[20],instr_imm_i[30:21],1'h1};
+            imm_o = {{44{instr_imm_i[31]}},instr_imm_i[19:12],instr_imm_i[20],instr_imm_i[30:21],1'h0};
         `immB:
             imm_o = {{52{instr_imm_i[31]}},instr_imm_i[7],instr_imm_i[30:25],instr_imm_i[11:8],1'h0};
         default: 
