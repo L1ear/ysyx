@@ -117,22 +117,23 @@ int reset(int i,int n) {
 #include "svdpi.h"
 #include "Vtop__Dpi.h"
 
+#define FMT_WORD "0x%016lx"
 int en = 1;
 void ebreak(){
   en = 0;
   if(top->regA0 == 0)
-    ASNI_FMT("HIT GOOD TRAP", ASNI_FG_GREEN);
+    printf("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08lx\n",top->instrAddr);
   else
-    ASNI_FMT("HIT BAD TRAP", ASNI_FG_RED);
+    printf("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08lx\n",top->instrAddr);
 }
 
 
-int main()
+int main(int argc, char *argv[])
 {
 
     // nvboard_bind_all_pins(&top);
     // nvboard_init();
-
+    parse_args(argc, argv);
     Verilated::traceEverOn(true);
     fp = new VerilatedVcdC;
     top->trace(fp, 99); 
@@ -144,12 +145,11 @@ int main()
     while(en)
     {
       single_cycle(i);
-      top->eval();
         // nvboard_update();
         i = i+2;
         //if(i>=1000) en = 0;
     }
-    reset(i,10);
+    // reset(i,10);
 
 
     delete fp;

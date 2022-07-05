@@ -31,6 +31,8 @@ uint8_t* guest_to_host(paddr_t paddr);
 word_t paddr_read(paddr_t addr, int len);
 void paddr_write(paddr_t addr, int len, word_t data);
 
+
+int parse_args(int argc, char *argv[]);
 uint64_t memread(uint64_t pc,uint8_t len,uint64_t instrAddr);
 void memwrite(uint64_t addr, uint8_t len, uint64_t data,uint64_t instrAddr);
 
@@ -56,26 +58,5 @@ long load_img();
 #define ASNI_BG_CYAN    "\33[1;46m"
 #define ASNI_BG_WHITE   "\33[1;47m"
 #define ASNI_NONE       "\33[0m"
-
-#define ASNI_FMT(str, fmt) fmt str ASNI_NONE
-
-#define log_write(...) IFDEF(CONFIG_TARGET_NATIVE_ELF, \
-  do { \
-    extern FILE* log_fp; \
-    extern bool log_enable(); \
-    if (log_enable()) { \
-      fprintf(log_fp, __VA_ARGS__); \
-      fflush(log_fp); \
-    } \
-  } while (0) \
-)
-
-#define _Log(...) \
-  do { \
-    printf(__VA_ARGS__); \
-    log_write(__VA_ARGS__); \
-  } while (0)
-
-
 
 #endif

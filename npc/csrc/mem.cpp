@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <assert.h>
 #include </home/qw/ysyx-workbench/npc/csrc/mem.h>
+#include <getopt.h>
 
 uint8_t imem[0x8000000] __attribute((aligned(4096)));
 uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
@@ -13,13 +14,14 @@ uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
 
 char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/add-riscv64-npc.bin";
 
-static char *img_file = img;
+static char *img_file = NULL;
 
 
 long load_img() {
   if (img_file == NULL) {
-    printf("No image is given. Use the default build-in image.");
-    return 4096; // built-in image size
+    printf("No image is given. Use the default build-in image.\n");
+    img_file = img;
+    // return 4096; // built-in image size
   }
 
   FILE *fp = fopen(img_file, "rb");
@@ -122,4 +124,29 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
       return;
     default: break;
   }
+}
+
+int parse_args(int argc, char *argv[]) {
+  const struct option table[] = {
+    {"batch"    , no_argument      , NULL, 'b'},
+    {"log"      , required_argument, NULL, 'l'},
+    {"diff"     , required_argument, NULL, 'd'},
+    {"port"     , required_argument, NULL, 'p'},
+    {"help"     , no_argument      , NULL, 'h'},
+    {0          , 0                , NULL,  0 },
+  };
+  int o;
+  while ( (o = getopt_long(argc, argv, "-bhl:d:p:", table, NULL)) != -1) {
+    switch (o) {
+      case 1: printf("***************************************%s\n",optarg);img_file = optarg; return 0;
+      default:
+        printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
+        printf("\t-b,--batch              run with batch mode\n");
+        printf("\t-l,--log=FILE           output log to FILE\n");
+        printf("\t-d,--diff=REF_SO        run DiffTest with reference REF_SO\n");
+        printf("\t-p,--port=PORT          run DiffTest with port PORT\n");
+        printf("\n");
+    }
+  }
+  return 0;
 }
