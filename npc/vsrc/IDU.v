@@ -24,6 +24,7 @@ module IDU(
     output  reg     [3:0]           ALUctr,
     output  reg     [1:0]           Src2Sel,
     output  reg                     Src1Sel,
+    output  reg                     dwsel,
 //To Data memory
     output  reg     [2:0]           MemOp,
     output  reg                     MemWr,
@@ -48,21 +49,24 @@ always @(*) begin
     MemWr = 1'b0;
     RegWrEn = 1'b0;
     ExtOp = 5'b0;                          //默认拓展模块输出0
-    ALUctr = `AluAdd;                         //默认add
+    ALUctr = `AluAdd;                      //默认add
     Src1Sel = `Rs1;                        //默认Rs1    
     Src2Sel = `Rs2;                        //默认Rs2
     MemOp = 3'b0;                          //默认lb
+    dwsel = `out_64;                       //默认64位输出
 //TODO: 补全！！！！！！！！！！！！
     case(opcode)
-        `OP_REG: begin
+        `OP_REG,`OP_REG_32: begin
             Src1Sel = `Rs1;
             Src2Sel = `Rs2;
             MemWr = 1'b0;
             RegWrEn = 1'b1;
             RegWrSel = `AluOut;   //选择Alu输出写入   
             branch = `NonBranch;
+            dwsel = `out_64;
             case(fun_3)
-                `add_sub: begin                                            
+                `add_sub: begin   
+                    dwsel = opcode[3];                                        
                     if(fun_7[5]) begin      //Sub
                         ALUctr = `AluSub;
                     end
@@ -71,6 +75,7 @@ always @(*) begin
                     end
                 end
                 `sll: begin
+                    dwsel = opcode[3];
                     ALUctr = `AluSll;
                 end    
                 `slt: begin
@@ -83,6 +88,7 @@ always @(*) begin
                     ALUctr = `AluXor;
                 end    
                 `sr_l_a: begin
+                    dwsel = opcode[3];
                     if(fun_7[5]) begin      //SRA
                         ALUctr = `AluSra;
                     end
@@ -98,7 +104,7 @@ always @(*) begin
                 end    
             endcase
         end
-        `OP_IMM: begin
+        `OP_IMM,`OP_IMM_32: begin
             Src1Sel = `Rs1;
             Src2Sel = `imm;  
             ExtOp = `immI;  
@@ -108,9 +114,11 @@ always @(*) begin
             MemWr = 1'b0;
             case(fun_3)
                 `addi: begin
+                    dwsel = opcode[3];
                     ALUctr = `AluAdd;
                 end   
                 `slli: begin
+                    dwsel = opcode[3];
                     ALUctr = `AluSll;
                 end   
                 `slti: begin
@@ -123,6 +131,7 @@ always @(*) begin
                     ALUctr = `AluXor;
                 end   
                 `sri_l_a: begin
+                    dwsel = opcode[3];
                     if(fun_7[5]) begin      //SRA
                         ALUctr = `AluSra;
                     end
@@ -154,7 +163,7 @@ always @(*) begin
             RegWrSel = `DmemOut;
             MemWr = 1'b1;
             RegWrEn = 1'b1;
-            ExtOp = `immI;                          
+            ExtOp = `immS;                          
             ALUctr = `AluAdd;                      
             Src1Sel = `Rs1;                       
             Src2Sel = `imm;                        

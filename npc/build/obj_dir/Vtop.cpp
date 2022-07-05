@@ -21,6 +21,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , MemWr{vlSymsp->TOP.MemWr}
     , MemOp{vlSymsp->TOP.MemOp}
     , OPcode{vlSymsp->TOP.OPcode}
+    , regA0{vlSymsp->TOP.regA0}
     , rootp{&(vlSymsp->TOP)}
 {
 }

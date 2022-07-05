@@ -56,7 +56,7 @@ void single_cycle(int i) {
       break;
     case 3:
       memwrite(top->DmemAddr, 8, top->DmemDataI,top->instrAddr);
-      //printf("test:have writen %08x to %08x, read out:%08x",top->DmemDataI,top->DmemAddr,memread(top->DmemAddr,8));
+      // printf("test:have writen %016llx to %08x, read out:%016llx,PC:%08lx\n",top->DmemDataI,top->DmemAddr,memread(top->DmemAddr,8,top->instrAddr),top->instrAddr);
       break;
     default:
       break;
@@ -77,10 +77,14 @@ if(top->OPcode==3)
     top->DmemDataO = SEXT(memread(top->DmemAddr,2,top->instrAddr),16);
     break;
   case 2:
-    top->DmemDataO = SEXT(memread(top->DmemAddr,3,top->instrAddr),32);
+    top->DmemDataO = SEXT(memread(top->DmemAddr,4,top->instrAddr),32);
+    
     break;
   case 3:
+    //memwrite(top->DmemAddr, 4, 0xffffffff,top->instrAddr);
     top->DmemDataO = memread(top->DmemAddr,8,top->instrAddr);
+    // printf("%08lx read out: %016llx\n*******************",top->DmemAddr,memread(top->DmemAddr,8,top->instrAddr));
+    // assert(0);
     break;
   case 4:
     top->DmemDataO = memread(top->DmemAddr,1,top->instrAddr);
@@ -89,7 +93,7 @@ if(top->OPcode==3)
     top->DmemDataO = memread(top->DmemAddr,2,top->instrAddr);
     break;
   case 6:
-    top->DmemDataO = memread(top->DmemAddr,3,top->instrAddr);
+    top->DmemDataO = memread(top->DmemAddr,4,top->instrAddr);
     break;
   default:
     break;
@@ -116,7 +120,10 @@ int reset(int i,int n) {
 int en = 1;
 void ebreak(){
   en = 0;
-  printf("\n`````````````````````````````````````finished!```````````````````````````````````````````\n");
+  if(top->regA0 == 0)
+    ASNI_FMT("HIT GOOD TRAP", ASNI_FG_GREEN);
+  else
+    ASNI_FMT("HIT BAD TRAP", ASNI_FG_RED);
 }
 
 

@@ -10,8 +10,9 @@ module top(
 	output      [`XLEN-1:0] 	DmemDataI,
 	output 				        MemWr,
 	output      [2:0] 		    MemOp,
-//for verilator memory(:p)
-    output      [6:0]           OPcode
+//for verilator dbug(:p)
+    output      [6:0]           OPcode,
+    output      [`XLEN-1:0]     regA0
 );
 
 assign  OPcode = instr[6:0];
@@ -46,6 +47,7 @@ wire  [1:0]  Src2Sel;
 wire  Src1Sel;
 wire  RegWrSel;
 wire  [2:0]  branch;
+wire         dwsel;
 
 // ALU Outputs
 wire  [`XLEN-1:0]  ALUout;
@@ -108,7 +110,9 @@ ALU  u_ALU (
 
 
 wire 	[`XLEN-1:0]		RegWrData;
-assign RegWrData = (RegWrSel)?DmemDataO:ALUout;
+wire    [`XLEN-1:0]     AluTmp;
+assign AluTmp = (dwsel)?{{32{ALUout[31]}},ALUout[31:0]}:ALUout;
+assign RegWrData = (RegWrSel)?DmemDataO:AluTmp;
 regfiles  u_regfiles (
     .clk                     ( clk          ),
     .rs1_addr_i              ( Rs1Addr      ),
@@ -118,7 +122,8 @@ regfiles  u_regfiles (
     .wr_en                   ( RegWrEn      ),
 
     .rs1_data_o              ( rs1_data     ),
-    .rs2_data_o              ( rs2_data     )
+    .rs2_data_o              ( rs2_data     ),
+    .regA0                   ( regA0        )
 );
 
 
@@ -139,7 +144,8 @@ IDU  u_IDU (
     .MemOp                   ( MemOp      ),
     .MemWr                   ( MemWr      ),
     .RegWrSel                ( RegWrSel   ),
-    .branch                  ( branch     )
+    .branch                  ( branch     ),
+    .dwsel                   ( dwsel      )
 );
     
 // instr_mem  u_instr_mem (

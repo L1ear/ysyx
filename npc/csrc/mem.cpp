@@ -39,7 +39,7 @@ long load_img() {
 }
 
 
-uint32_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
+uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   // printf("imem:");
   // for(int i = 0;i<4;i++){
   //   printf("%02x",imem[i]);

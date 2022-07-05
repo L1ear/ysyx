@@ -29,6 +29,7 @@ VL_MODULE(Vtop___024root) {
     VL_OUT64(instrAddr,63,0);
     VL_OUT64(DmemAddr,63,0);
     VL_OUT64(DmemDataI,63,0);
+    VL_OUT64(regA0,63,0);
 
     // LOCAL SIGNALS
     CData/*0:0*/ top__DOT__PCAsrc;
@@ -40,6 +41,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__Src1Sel;
     CData/*0:0*/ top__DOT__RegWrSel;
     CData/*2:0*/ top__DOT__branch;
+    CData/*0:0*/ top__DOT__dwsel;
     CData/*0:0*/ top__DOT__less;
     CData/*0:0*/ top__DOT__zero;
     CData/*0:0*/ top__DOT__u_ALU__DOT__cin;

@@ -16,7 +16,9 @@
 `define     lui                 5'b01101
 `define     auipc               5'b00101
 `define     OP_IMM              5'b00100
+`define     OP_IMM_32           5'b00110
 `define     OP_REG              5'b01100
+`define     OP_REG_32           5'b01110
 `define     jal                 5'b11011
 `define     jalr                5'b11001
 `define     branch              5'b11000
@@ -71,6 +73,9 @@
 `define     lwu                 3'b110
 `define     ld                  3'b011
 
+//ALU out sel
+`define     out_64              1'b0
+`define     out_32              1'b1
 
 //Register write control
 `define     AluOut              1'b0
