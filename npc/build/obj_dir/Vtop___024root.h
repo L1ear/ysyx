@@ -23,6 +23,7 @@ VL_MODULE(Vtop___024root) {
     VL_IN8(rst_n,0,0);
     VL_OUT8(MemWr,0,0);
     VL_OUT8(MemOp,2,0);
+    VL_OUT8(OPcode,6,0);
     VL_IN(instr,31,0);
     VL_IN64(DmemDataO,63,0);
     VL_OUT64(instrAddr,63,0);

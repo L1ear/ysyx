@@ -57,12 +57,12 @@ always @(*) begin
         `OP_REG: begin
             Src1Sel = `Rs1;
             Src2Sel = `Rs2;
+            MemWr = 1'b0;
+            RegWrEn = 1'b1;
+            RegWrSel = `AluOut;   //选择Alu输出写入   
+            branch = `NonBranch;
             case(fun_3)
-                `add_sub: begin
-                        branch = `NonBranch;
-                        RegWrSel = `AluOut;   //选择Alu输出写入   
-                        MemWr = 1'b0;
-                        RegWrEn = 1'b1;                                         
+                `add_sub: begin                                            
                     if(fun_7[5]) begin      //Sub
                         ALUctr = `AluSub;
                     end
@@ -71,25 +71,30 @@ always @(*) begin
                     end
                 end
                 `sll: begin
-                    
+                    ALUctr = `AluSll;
                 end    
                 `slt: begin
-                    
+                    ALUctr = `AluSlt;
                 end
                 `sltu: begin
-                    
+                    ALUctr = `AluSltu;
                 end   
                 `Xor: begin
-                    
+                    ALUctr = `AluXor;
                 end    
                 `sr_l_a: begin
-                    
+                    if(fun_7[5]) begin      //SRA
+                        ALUctr = `AluSra;
+                    end
+                    else begin
+                        ALUctr = `AluSrl;
+                    end
                 end 
                 `Or: begin
-                    
+                    ALUctr = `AluOr;
                 end     
                 `And: begin
-                    
+                    ALUctr = `AluAnd;
                 end    
             endcase
         end
@@ -109,30 +114,51 @@ always @(*) begin
                     ALUctr = `AluSll;
                 end   
                 `slti: begin
-                    
+                    ALUctr = `AluSlt;
                 end   
                 `sltiu: begin
-                    
+                    ALUctr = `AluSltu;
                 end  
                 `Xori: begin
-                    
+                    ALUctr = `AluXor;
                 end   
                 `sri_l_a: begin
-                    
+                    if(fun_7[5]) begin      //SRA
+                        ALUctr = `AluSra;
+                    end
+                    else begin
+                        ALUctr = `AluSrl;
+                    end
                 end
                 `Ori: begin
-                    
+                    ALUctr = `AluOr;
                 end    
                 `Andi: begin
-                    
+                    ALUctr = `AluAnd;
                 end   
             endcase
         end
         `load: begin
-
+            branch = `NonBranch;
+            RegWrSel = `DmemOut;
+            MemWr = 1'b0;
+            RegWrEn = 1'b1;
+            ExtOp = `immI;                          
+            ALUctr = `AluAdd;                      
+            Src1Sel = `Rs1;                       
+            Src2Sel = `imm;                        
+            MemOp = fun_3;
         end  
         `store: begin
-            
+            branch = `NonBranch;
+            RegWrSel = `DmemOut;
+            MemWr = 1'b1;
+            RegWrEn = 1'b1;
+            ExtOp = `immI;                          
+            ALUctr = `AluAdd;                      
+            Src1Sel = `Rs1;                       
+            Src2Sel = `imm;                        
+            MemOp = fun_3;
         end
         `branch: begin
             Src1Sel = `Rs1;

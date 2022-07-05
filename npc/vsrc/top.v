@@ -9,9 +9,12 @@ module top(
 	output      [`XLEN-1:0]     DmemAddr,
 	output      [`XLEN-1:0] 	DmemDataI,
 	output 				        MemWr,
-	output      [2:0] 		    MemOp
+	output      [2:0] 		    MemOp,
+//for verilator memory(:p)
+    output      [6:0]           OPcode
 );
 
+assign  OPcode = instr[6:0];
 
 // bcu Outputs
 wire  PCAsrc;

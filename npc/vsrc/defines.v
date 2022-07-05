@@ -58,6 +58,19 @@
 `define     Bge                 3'b101
 `define     Bltu                3'b110
 `define     Bgeu                3'b111
+//save or load 
+`define     sb                  3'b000
+`define     sh                  3'b001
+`define     sw                  3'b010
+`define     sd                  3'b011
+`define     lb                  3'b000
+`define     lbu                 3'b100
+`define     lh                  3'b001
+`define     lhu                 3'b101
+`define     lw                  3'b010
+`define     lwu                 3'b110
+`define     ld                  3'b011
+
 
 //Register write control
 `define     AluOut              1'b0
