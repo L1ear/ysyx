@@ -9,6 +9,17 @@
 
 //==========
 
+extern "C" void set_gpr_ptr(const svOpenArrayHandle a);
+
+VL_INLINE_OPT void Vtop___024root____Vdpiimwrap_top__DOT__u_regfiles__DOT__set_gpr_ptr__Vdpioc2_TOP(const VlUnpacked<QData/*63:0*/, 32> &a) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root____Vdpiimwrap_top__DOT__u_regfiles__DOT__set_gpr_ptr__Vdpioc2_TOP\n"); );
+    // Body
+    static const int a__Vopenprops__ulims[2] = {0, 31};
+    static const VerilatedVarProps a__Vopenprops(VLVT_UINT64, VLVD_IN, VerilatedVarProps::Packed(), 63, 0, VerilatedVarProps::Unpacked(), 1, a__Vopenprops__ulims);
+    VerilatedDpiOpenVar a__Vopenarray (&a__Vopenprops, &a);
+    set_gpr_ptr(&a__Vopenarray);
+}
+
 extern "C" void ebreak();
 
 VL_INLINE_OPT void Vtop___024root____Vdpiimwrap_top__DOT__u_IDU__DOT__ebreak_TOP() {
@@ -72,10 +83,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
 extern const VlUnpacked<CData/*0:0*/, 32> Vtop__ConstPool__TABLE_b1951f9b_0;
 extern const VlUnpacked<CData/*0:0*/, 32> Vtop__ConstPool__TABLE_4f660885_0;
 
-VL_INLINE_OPT void Vtop___024root___combo__TOP__4(Vtop___024root* vlSelf) {
+VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__4\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__5\n"); );
     // Variables
     CData/*4:0*/ __Vtableidx1;
     VlWide<3>/*95:0*/ __Vtemp39;
@@ -697,7 +708,7 @@ void Vtop___024root___eval(Vtop___024root* vlSelf) {
         Vtop___024root___sequent__TOP__3(vlSelf);
         vlSelf->__Vm_traceActivity[2U] = 1U;
     }
-    Vtop___024root___combo__TOP__4(vlSelf);
+    Vtop___024root___combo__TOP__5(vlSelf);
     // Final
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
 }

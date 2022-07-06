@@ -3,13 +3,13 @@
 #include <cstdio>
 #include <verilated_vcd_c.h>
 #include </home/qw/ysyx-workbench/npc/csrc/mem.h>
-
+#include </home/qw/ysyx-workbench/npc/csrc/common.h>
 
 /* for vcd */
 #if nvboard == 0
 static VerilatedVcdC* fp;
 Vtop* top = new Vtop;
-int i=0;
+int sim_time=0;
 // #define top.    top->    
 
 /* for nvboard */
@@ -28,12 +28,6 @@ void nvboard_bind_all_pins(Vtop* top);
 */
 
 #define nvboard 0
-
-// extern  uint8_t imem;
-// extern  uint8_t* guest_to_host;
-//   uint32_t imemread(uint64_t pc);
-// extern  long load_img();
-
 
 
 // int t = 0;
@@ -115,9 +109,10 @@ int reset(int i,int n) {
 }
 
 //for DPI-C
-#include "svdpi.h"
-#include "Vtop__Dpi.h"
-
+uint64_t *cpu_gpr = NULL;
+extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
+  cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+}
 #define FMT_WORD "0x%016lx"
 int en = 1;
 void ebreak(){
@@ -140,13 +135,14 @@ int main(int argc, char *argv[])
     fp ->open("vlt.vcd");
     fp ->dump(0);
     load_img();
-    int i = 0;
-    i = reset(i,5);
+
+    sim_time = reset(sim_time,5);
+    sdb_mainloop();
     while(en)
     {
-      single_cycle(i);
+      single_cycle(sim_time);
         // nvboard_update();
-        i = i+2;
+        sim_time = sim_time+2;
         //if(i>=1000) en = 0;
     }
     // reset(i,10);

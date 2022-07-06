@@ -12,7 +12,7 @@ uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
 
 
 
-char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/add-riscv64-npc.bin";
+char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv64-npc.bin";
 
 static char *img_file = NULL;
 

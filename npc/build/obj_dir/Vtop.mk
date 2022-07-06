@@ -38,11 +38,13 @@ VM_USER_CFLAGS = \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
+	-lreadline \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	main \
 	mem \
+	sdb \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
@@ -61,6 +63,8 @@ VPATH += $(VM_USER_DIR)
 main.o: /home/qw/ysyx-workbench/npc/csrc/main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 mem.o: /home/qw/ysyx-workbench/npc/csrc/mem.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+sdb.o: /home/qw/ysyx-workbench/npc/csrc/sdb.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)

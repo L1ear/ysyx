@@ -18,7 +18,8 @@ VERILATOR_CFLAGS += -MMD --build -cc  --trace\
 				-O3 --x-assign fast --x-initial fast --noassert
 VERILATOR_FLAGS += -MMD --build -cc  --trace --exe  -y ./vsrc -top $(TOPNAME)\
 				-O3 --x-assign fast --x-initial fast --noassert --Mdir $(OBJ_DIR)\
-				-o $(abspath $(BIN)) $(addprefix -I, $(INC_PATH))
+				-o $(abspath $(BIN)) $(addprefix -I, $(INC_PATH))\
+				$(addprefix -LDFLAGS , $(LDFLAGS))
 
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
@@ -40,8 +41,8 @@ include $(NVBOARD_HOME)/scripts/nvboard.mk
 
 # rules for verilator
 INCFLAGS = $(addprefix -I, $(INC_PATH))
-CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\""
-LDFLAGS += -lSDL2 -lSDL2_image
+CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\"" 
+LDFLAGS += -lreadline
 
 
 
