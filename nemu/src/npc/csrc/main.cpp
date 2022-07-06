@@ -4,6 +4,7 @@
 #include <verilated_vcd_c.h>
 #include </home/qw/ysyx-workbench/npc/csrc/mem.h>
 
+
 /* for vcd */
 #if nvboard == 0
 static VerilatedVcdC* fp;
@@ -130,7 +131,6 @@ void ebreak(){
 
 int main(int argc, char *argv[])
 {
-
     // nvboard_bind_all_pins(&top);
     // nvboard_init();
     parse_args(argc, argv);

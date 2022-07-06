@@ -47,40 +47,25 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   //   printf("%02x",imem[i]);
   // }
   // printf("\n");
+  if(addr>0x88000000||addr<0x80000000){
+    printf("read out of boundary!\nPC: %08lx\n",instrAddr);
+    return 0;
+    }
+  else
     switch (len){
     case 1:
       if(addr==0) addr+= 0x80000000;
-      if(addr>0x88000000||addr<0x80000000){
-        printf("read out of boundary!\nPC: %08lx\n",instrAddr);
-        return 0;break;
-        }
-      else
-        return *(uint8_t  *)(imem + addr - 0x80000000);
+      return *(uint8_t  *)(imem + addr - 0x80000000);
       break;
     case 2:
-      if(addr>0x88000000||addr<0x80000000){
-        printf("read out of boundary!\nPC: %08lx\n",instrAddr);
-        return 0;break;
-      } 
-      else
-        return *(uint16_t  *)(imem + addr - 0x80000000);
+      return *(uint16_t  *)(imem + addr - 0x80000000);
       break;
     case 4:
-      if(addr>0x88000000||addr<0x80000000){
-        printf("read out of boundary!\nPC: %08lx\n",instrAddr);
-        return 0;break;
-      } 
-      else
-        return *(uint32_t  *)(imem + addr - 0x80000000);
+      return *(uint32_t  *)(imem + addr - 0x80000000);
       break;
     case 8:
-      if(addr>0x88000000||addr<0x80000000){
-        printf("read out of boundary!\nPC: %08lx\n",instrAddr);
-        return 0;break;
-      } 
-      else
-        return *(uint64_t  *)(imem + addr - 0x80000000);
-        break;
+      return *(uint64_t  *)(imem + addr - 0x80000000);
+      break;
     default:
     return 0;
       break;
@@ -89,38 +74,23 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
 
 
 void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
+  if(addr>0x88000000||addr<0x80000000){
+      printf("write out of boundary!\nPC: %08lx\n",instrAddr);
+      assert(0);
+      } 
+  else 
     switch (len) {
     case 1:
-      if(addr>0x88000000||addr<0x80000000){
-      printf("write out of boundary!\nPC: %08lx\n",instrAddr);
-      assert(0);
-      } 
-      else 
-        *(uint8_t  *)(imem + addr - 0x80000000) = data; 
+      *(uint8_t  *)(imem + addr - 0x80000000) = data; 
       return;
     case 2: 
-      if(addr>0x88000000||addr<0x80000000){
-      printf("write out of boundary!\nPC: %08lx\n",instrAddr);
-      assert(0);
-      } 
-      else
-        *(uint16_t *)(imem + addr - 0x80000000) = data; 
+      *(uint16_t *)(imem + addr - 0x80000000) = data; 
       return;
     case 4: 
-      if(addr>0x88000000||addr<0x80000000){
-        printf("write out of boundary!\nPC: %08lx\n",instrAddr);
-        assert(0);
-      } 
-      else
-        *(uint32_t *)(imem + addr - 0x80000000) = data; 
+      *(uint32_t *)(imem + addr - 0x80000000) = data; 
       return;
     case 8: 
-      if(addr>0x88000000||addr<0x80000000){
-        printf("write out of boundary!\nPC: %08lx\n",instrAddr);
-        assert(0);
-      } 
-      else
-        *(uint64_t *)(imem + addr - 0x80000000) = data; 
+      *(uint64_t *)(imem + addr - 0x80000000) = data; 
       return;
     default: break;
   }
@@ -133,12 +103,13 @@ int parse_args(int argc, char *argv[]) {
     {"diff"     , required_argument, NULL, 'd'},
     {"port"     , required_argument, NULL, 'p'},
     {"help"     , no_argument      , NULL, 'h'},
+    {"img"      , required_argument, NULL, 'i'},
     {0          , 0                , NULL,  0 },
   };
   int o;
-  while ( (o = getopt_long(argc, argv, "-bhl:d:p:", table, NULL)) != -1) {
+  while ( (o = getopt_long(argc, argv, "-bhl:d:p:i:", table, NULL)) != -1) {
     switch (o) {
-      case 1: printf("***************************************%s\n",optarg);img_file = optarg; return 0;
+      case 'i': printf("***************************************%s\n",optarg);img_file = optarg; break;
       default:
         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
         printf("\t-b,--batch              run with batch mode\n");

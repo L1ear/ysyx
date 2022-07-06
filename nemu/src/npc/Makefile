@@ -12,9 +12,13 @@ TOPNAME = top
 NXDC_FILES = 
 INC_PATH ?=
 
+IMG ?=
 VERILATOR = verilator
 VERILATOR_CFLAGS += -MMD --build -cc  --trace\
 				-O3 --x-assign fast --x-initial fast --noassert
+VERILATOR_FLAGS += -MMD --build -cc  --trace --exe  -y ./vsrc -top $(TOPNAME)\
+				-O3 --x-assign fast --x-initial fast --noassert --Mdir $(OBJ_DIR)\
+				-o $(abspath $(BIN)) $(addprefix -I, $(INC_PATH))
 
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
@@ -24,10 +28,6 @@ default: $(BIN)
 
 $(shell mkdir -p $(BUILD_DIR))
 
-# constraint file
-SRC_AUTO_BIND = $(abspath $(BUILD_DIR)/auto_bind.cpp)
-$(SRC_AUTO_BIND): $(NXDC_FILES)
-	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py $^ $@
 
 # project source
 VSRCS = $(shell find $(abspath ./vsrc) -name "*.v")
@@ -43,15 +43,23 @@ INCFLAGS = $(addprefix -I, $(INC_PATH))
 CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\""
 LDFLAGS += -lSDL2 -lSDL2_image
 
-$(BIN): $(VSRCS) $(CSRCS) $(NVBOARD_ARCHIVE)
-	@rm -rf $(OBJ_DIR)
-	$(VERILATOR) $(VERILATOR_CFLAGS) -y ./vsrc\
-		-top $(TOPNAME) $^ \
-		$(addprefix -CFLAGS , $(CFLAGS)) $(addprefix -LDFLAGS , $(LDFLAGS)) \
-		--Mdir $(OBJ_DIR) --exe -o $(abspath $(BIN)) 
 
-run: $(BIN)
-	@$^
+
+run: 
+	@echo
+	@echo "-- VERILATE ----------------"
+	$(VERILATOR) $(VERILATOR_FLAGS) $(VSRCS) $(CSRCS)
+	@echo
+	@echo "-- BUILD -------------------"
+	$(MAKE) -j -C build/obj_dir -f Vtop.mk
+
+	@echo
+	@echo "-- RUN ---------------------"
+	@rm -rf logs
+	@mkdir -p logs
+	build/top +trace -i $(IMG)
+
+
 
 clean:
 	rm -rf $(BUILD_DIR)
