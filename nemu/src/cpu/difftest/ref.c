@@ -25,6 +25,7 @@ void difftest_regcpy(void *dut, bool direction) {
       int i=0;
     for (; i < 32; i++) {
       cpu.gpr[i] = diff_regs->gpr[i];
+      printf("nemu's reg[%d]: %016lx\n",i,cpu.gpr[i]);
     }
     cpu.pc = diff_regs->pc;
     } 
