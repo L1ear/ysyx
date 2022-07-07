@@ -10,6 +10,8 @@
 uint8_t imem[0x8000000] __attribute((aligned(4096)));
 uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
 
+//for diff-test
+static char *diff_so_file = NULL;
 
 
 char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv64-npc.bin";
@@ -109,6 +111,7 @@ int parse_args(int argc, char *argv[]) {
   int o;
   while ( (o = getopt_long(argc, argv, "-bhl:d:p:i:", table, NULL)) != -1) {
     switch (o) {
+      case 'd': diff_so_file = optarg; break;
       case 'i': printf("***************************************%s\n",optarg);img_file = optarg; break;
       default:
         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
@@ -121,3 +124,5 @@ int parse_args(int argc, char *argv[]) {
   }
   return 0;
 }
+
+
