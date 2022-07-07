@@ -102,7 +102,7 @@ if(top->OPcode==3)
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
     }
-    // difftest_step(top->instrAddr);
+    difftest_step(top->instrAddr);
   }
 }
 

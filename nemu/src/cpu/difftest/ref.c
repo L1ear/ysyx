@@ -21,16 +21,20 @@ void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
 
 void difftest_regcpy(void *dut, bool direction) {
   if (direction == DIFFTEST_TO_REF) {
-      CPU_state *diff_regs = (CPU_state *)dut;
-      int i=0;
+    CPU_state *diff_regs = (CPU_state *)dut;
+    int i=0;
     for (; i < 32; i++) {
       cpu.gpr[i] = diff_regs->gpr[i];
-      printf("nemu's reg[%d]: %016lx\n",i,cpu.gpr[i]);
+      // printf("nemu's reg[%d]: %016lx\n",i,cpu.gpr[i]);
     }
     cpu.pc = diff_regs->pc;
     } 
   else {
-    // diff_get_regs(dut);
+    CPU_state *diff_regs = (CPU_state *)dut;
+    for (int i = 0; i < 32; i++) {
+      diff_regs->gpr[i] = cpu.gpr[i];
+    }
+    diff_regs->pc = cpu.pc;
   }
 }
 
