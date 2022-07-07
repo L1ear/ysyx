@@ -52,6 +52,7 @@ endif
 
 ifdef CONFIG_DIFFTEST
 DIFF_REF_SO = /home/qw/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so
+LDFLAGS +=-L /home/qw/ysyx-workbench/nemu/build/
 ARGS += -d $(DIFF_REF_SO)
 endif
 

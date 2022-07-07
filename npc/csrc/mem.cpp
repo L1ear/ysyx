@@ -111,8 +111,8 @@ int parse_args(int argc, char *argv[]) {
   int o;
   while ( (o = getopt_long(argc, argv, "-bhl:d:p:i:", table, NULL)) != -1) {
     switch (o) {
-      case 'd': diff_so_file = optarg; break;
-      case 'i': printf("***************************************%s\n",optarg);img_file = optarg; break;
+      case 'd': diff_so_file = optarg; printf("***************************************DIFF-TEST.SO:%s\n",optarg);break;
+      case 'i': printf("***************************************IMG:%s\n",optarg);img_file = optarg; break;
       default:
         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
         printf("\t-b,--batch              run with batch mode\n");
