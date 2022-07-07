@@ -8,9 +8,13 @@ void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
     uint8_t *mem = buf;
     int i;
     for(i = n;i>0;i--){
-      paddr_write(addr,1,mem[n-i]);
+      paddr_write(addr+(n-i),1,mem[n-i]);
     }
-  } else {
+    for(;i<n;i++){
+      paddr_read(addr + i*4,4);
+    }
+  } 
+  else {
     assert(0);
   }
 }
