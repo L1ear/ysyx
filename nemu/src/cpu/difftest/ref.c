@@ -4,8 +4,15 @@
 #include <memory/paddr.h>
 
 void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
-  
-  assert(0);
+  if (direction == DIFFTEST_TO_REF) {
+    uint8_t *mem = buf;
+    int i;
+    for(i = n;i>0;i--){
+      paddr_write(addr,1,mem[n-i]);
+    }
+  } else {
+    assert(0);
+  }
 }
 
 void difftest_regcpy(void *dut, bool direction) {
