@@ -12,7 +12,7 @@ uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
 
 //for diff-test
 static char *diff_so_file = NULL;
-
+static int difftest_port = 1234;
 
 char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv64-npc.bin";
 
@@ -125,4 +125,11 @@ int parse_args(int argc, char *argv[]) {
   return 0;
 }
 
+void init_monitor(int argc, char *argv[]) {
 
+  parse_args(argc, argv);
+
+  long img_size = load_img();
+
+  // init_difftest(diff_so_file, img_size, difftest_port);
+}

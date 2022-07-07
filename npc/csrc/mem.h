@@ -35,6 +35,7 @@ void paddr_write(paddr_t addr, int len, word_t data);
 int parse_args(int argc, char *argv[]);
 uint64_t memread(uint64_t pc,uint8_t len,uint64_t instrAddr);
 void memwrite(uint64_t addr, uint8_t len, uint64_t data,uint64_t instrAddr);
+void init_monitor(int argc, char *argv[]);
 
 long load_img();
 

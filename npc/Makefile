@@ -44,7 +44,8 @@ INCFLAGS = $(addprefix -I, $(INC_PATH))
 CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\"" 
 LDFLAGS += -lreadline
 
-
+# rules for diff-test
+DIFF_REF_SO = /home/qw/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so
 
 run: 
 	@echo

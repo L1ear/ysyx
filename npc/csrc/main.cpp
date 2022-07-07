@@ -128,13 +128,12 @@ int main(int argc, char *argv[])
 {
     // nvboard_bind_all_pins(&top);
     // nvboard_init();
-    parse_args(argc, argv);
     Verilated::traceEverOn(true);
     fp = new VerilatedVcdC;
     top->trace(fp, 99); 
     fp ->open("vlt.vcd");
     fp ->dump(0);
-    load_img();
+    init_monitor(argc, argv);
 
     sim_time = reset(sim_time,5);
     sdb_mainloop();
