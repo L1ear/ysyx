@@ -5,15 +5,14 @@
 
 void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
   if (direction == DIFFTEST_TO_REF) {
-    printf("%ld\n",n);
     uint8_t *mem = buf;
     int i;
     for(i = n;i>0;i--){
       paddr_write(addr+(n-i),1,mem[n-i]);
     }
-    for(;i<n;i++){
-      printf("%08lx\n",paddr_read(addr + i*4,4));
-    }
+    // for(;i<n;i++){
+    //   printf("%08lx\n",paddr_read(addr + i*4,4));
+    // }
   } 
   else {
     assert(0);
