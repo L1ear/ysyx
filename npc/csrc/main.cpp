@@ -5,6 +5,7 @@
 #include </home/qw/ysyx-workbench/npc/csrc/mem.h>
 #include </home/qw/ysyx-workbench/npc/csrc/common.h>
 
+extern CPU_state cpu;
 /* for vcd */
 #if nvboard == 0
 static VerilatedVcdC* fp;
@@ -95,6 +96,14 @@ if(top->OPcode==3)
   }
   top->eval();
   fp ->dump(i+1);
+  if(en == 1){  
+    cpu.pc = top->instrAddr;
+    int r;
+    for (r = 0; r < 32; r++) {
+      cpu.gpr[r] = cpu_gpr[r];
+    }
+    // difftest_step(top->instrAddr);
+  }
 }
 
 int reset(int i,int n) {
@@ -113,8 +122,8 @@ uint64_t *cpu_gpr = NULL;
 extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
 }
-#define FMT_WORD "0x%016lx"
-int en = 1;
+
+int en = 0;
 void ebreak(){
   en = 0;
   if(top->regA0 == 0)
@@ -133,15 +142,17 @@ int main(int argc, char *argv[])
     top->trace(fp, 99); 
     fp ->open("vlt.vcd");
     fp ->dump(0);
-    init_monitor(argc, argv);
+ 
 
     sim_time = reset(sim_time,5);
+    init_monitor(argc, argv);    
+    en = 1;
     sdb_mainloop();
     while(en)
     {
       single_cycle(sim_time);
         // nvboard_update();
-        sim_time = sim_time+2;
+      sim_time = sim_time+2;
         //if(i>=1000) en = 0;
     }
     // reset(i,10);

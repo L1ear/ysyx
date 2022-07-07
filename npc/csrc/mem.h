@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
-
+#include </home/qw/ysyx-workbench/npc/csrc/common.h>
 
 
 

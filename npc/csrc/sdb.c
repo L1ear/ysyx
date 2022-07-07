@@ -10,6 +10,8 @@
 extern int sim_time;
 extern int en;
 
+
+CPU_state cpu = {};
 uint64_t htoi(char s[])
 {
     int i;
@@ -48,10 +50,10 @@ void dump_gpr() {
   for (i = 0; i < 32; i++) {
     printf("%s is: 0x%08lx    ",reg_name(i,64), cpu_gpr[i]);
     if (i % 3 == 0)   printf("\n");
-    // printf("gpr[%d] = 0x%lx\n", i, cpu_gpr[i]);
   }
   printf("\n");
 }
+
 
 
 static char* rl_gets() {
@@ -80,7 +82,7 @@ static int cmd_c(char *args) {
     {
       single_cycle(sim_time);
         // nvboard_update();
-        sim_time = sim_time+2;
+      sim_time = sim_time+2;
         //if(i>=1000) en = 0;
     }
   return 0;

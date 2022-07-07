@@ -6,8 +6,17 @@
 #include "svdpi.h"
 #include "Vtop__Dpi.h"
 #include "/home/qw/ysyx-workbench/npc/csrc/mem.h"
+#include "/home/qw/ysyx-workbench/npc/csrc/diff_test.h"
+
+
 
 #define ARRLEN(arr) (int)(sizeof(arr) / sizeof(arr[0]))
+
+#define RESET_VECTOR 0x80000000
+
+#define paddr_t uint64_t
+//待修改
+#define word_t  uint64_t
 
 extern int sim_time;
 extern int en;
@@ -23,9 +32,12 @@ static inline const char* reg_name(int idx, int width) {
 }
 
 
+typedef struct {
+  word_t gpr[32];
+  uint64_t pc;
+} riscv64_CPU_state;
 
-
-
+typedef riscv64_CPU_state CPU_state;
 
 
 #define ASNI_FG_BLACK   "\33[1;30m"
@@ -45,6 +57,8 @@ static inline const char* reg_name(int idx, int width) {
 #define ASNI_BG_CYAN    "\33[1;46m"
 #define ASNI_BG_WHITE   "\33[1;47m"
 #define ASNI_NONE       "\33[0m"
+#define FMT_WORD        "0x%016lx"
+
 
 #define ASNI_FMT(str, fmt) fmt str ASNI_NONE
 

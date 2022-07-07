@@ -42,10 +42,18 @@ include $(NVBOARD_HOME)/scripts/nvboard.mk
 # rules for verilator
 INCFLAGS = $(addprefix -I, $(INC_PATH))
 CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\"" 
-LDFLAGS += -lreadline
+LDFLAGS += -lreadline -ldl
 
 # rules for diff-test
+CONFIG_DIFFTEST=y
+ifdef IMG
+ARGS += -i $(IMG)
+endif
+
+ifdef CONFIG_DIFFTEST
 DIFF_REF_SO = /home/qw/ysyx-workbench/nemu/build/riscv64-nemu-interpreter-so
+ARGS += -d $(DIFF_REF_SO)
+endif
 
 run: 
 	@echo
@@ -59,7 +67,7 @@ run:
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	build/top +trace -i $(IMG)
+	build/top +trace $(ARGS)
 
 
 
