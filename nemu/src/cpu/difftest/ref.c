@@ -11,7 +11,7 @@ void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
       paddr_write(addr+(n-i),1,mem[n-i]);
     }
     for(;i<n;i++){
-      paddr_read(addr + i*4,4);
+      printf("%08lx\n",paddr_read(addr + i*4,4));
     }
   } 
   else {
