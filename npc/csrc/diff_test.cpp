@@ -53,7 +53,7 @@ static inline bool difftest_check_reg(const char *name, uint64_t pc, word_t ref,
 void difftest_step(uint64_t pc) {
   CPU_state ref_r;
 
-  // ref_difftest_exec(1);
+  ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
 
 //   checkregs(&ref_r, pc);
