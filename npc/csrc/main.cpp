@@ -97,7 +97,6 @@ if(top->OPcode==3)
   top->eval();
   fp ->dump(i+1);
     cpu.pc = top->instrAddr;
-    printf("npc:%016lx\n",cpu.pc);
     int r;
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];

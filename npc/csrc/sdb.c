@@ -85,6 +85,7 @@ static int cmd_c(char *args) {
       sim_time = sim_time+2;
         //if(i>=1000) en = 0;
     }
+    Log("program has finished,please quit and restart\n");
   return 0;
 }
 

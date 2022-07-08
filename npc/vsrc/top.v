@@ -48,6 +48,9 @@ wire  Src1Sel;
 wire  RegWrSel;
 wire  [2:0]  branch;
 wire         dwsel;
+wire         DivEn;
+wire  [2:0]  DivSel;
+wire         Div32;
 
 // ALU Outputs
 wire  [`XLEN-1:0]  ALUout;
@@ -105,7 +108,10 @@ ALU  u_ALU (
 
     .ALUout                  ( ALUout   ),
     .less                    ( less     ),
-    .zero                    ( zero     )
+    .zero                    ( zero     ),
+    .DivEn                   ( DivEn    ),
+    .DivSel                  ( DivSel   ),
+    .Div32                   ( Div32    )
 );
 
 
@@ -145,7 +151,10 @@ IDU  u_IDU (
     .MemWr                   ( MemWr      ),
     .RegWrSel                ( RegWrSel   ),
     .branch                  ( branch     ),
-    .dwsel                   ( dwsel      )
+    .dwsel                   ( dwsel      ),
+    .DivEn                   ( DivEn      ),
+    .DivSel                  ( DivSel     ),
+    .Div32                   ( Div32      )
 );
     
 // instr_mem  u_instr_mem (

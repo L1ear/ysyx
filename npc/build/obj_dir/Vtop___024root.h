@@ -42,10 +42,14 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__RegWrSel;
     CData/*2:0*/ top__DOT__branch;
     CData/*0:0*/ top__DOT__dwsel;
+    CData/*0:0*/ top__DOT__DivEn;
+    CData/*2:0*/ top__DOT__DivSel;
+    CData/*0:0*/ top__DOT__Div32;
     CData/*0:0*/ top__DOT__less;
     CData/*0:0*/ top__DOT__zero;
     CData/*0:0*/ top__DOT__u_ALU__DOT__cin;
     CData/*0:0*/ top__DOT__u_ALU__DOT__overflow;
+    VlWide<4>/*127:0*/ top__DOT__u_ALU__DOT__divider__DOT__tmp;
     QData/*63:0*/ top__DOT__NextPc;
     QData/*63:0*/ top__DOT__CurPc;
     QData/*63:0*/ top__DOT__rs1_data;
@@ -57,6 +61,7 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__u_ALU__DOT__src2_cin;
     QData/*63:0*/ top__DOT__u_ALU__DOT__Adder_o;
     QData/*63:0*/ top__DOT__u_ALU__DOT__shift;
+    QData/*63:0*/ top__DOT__u_ALU__DOT__DivOut;
     QData/*63:0*/ top__DOT__u_ALU__DOT__shifter__DOT__temp;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__u_regfiles__DOT__regfiles;
 

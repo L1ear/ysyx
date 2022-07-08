@@ -25,6 +25,10 @@ module IDU(
     output  reg     [1:0]           Src2Sel,
     output  reg                     Src1Sel,
     output  reg                     dwsel,
+//To Div
+    output  reg                     DivEn,
+    output  reg     [2:0]           DivSel,
+    output  reg                     Div32,
 //To Data memory
     output  reg     [2:0]           MemOp,
     output  reg                     MemWr,
@@ -54,6 +58,9 @@ always @(*) begin
     Src2Sel = `Rs2;                        //默认Rs2
     MemOp = 3'b0;                          //默认lb
     dwsel = `out_64;                       //默认64位输出
+    DivEn = 1'b0;                          //默认不使能DIV
+    DivSel = `DivMul;
+    Div32 = 1'b0;                          //默认64位
 //TODO: 补全！！！！！！！！！！！！
     case(opcode)
         `OP_REG,`OP_REG_32: begin
@@ -64,9 +71,12 @@ always @(*) begin
             RegWrSel = `AluOut;   //选择Alu输出写入   
             branch = `NonBranch;
             dwsel = `out_64;
+            DivEn = fun_7[0];
+            DivSel = fun_3;
+            Div32 = opcode[1];
             case(fun_3)
                 `add_sub: begin   
-                    dwsel = opcode[3];                                        
+                    dwsel = opcode[1];                                        
                     if(fun_7[5]) begin      //Sub
                         ALUctr = `AluSub;
                     end
@@ -75,7 +85,7 @@ always @(*) begin
                     end
                 end
                 `sll: begin
-                    dwsel = opcode[3];
+                    dwsel = opcode[1];
                     ALUctr = `AluSll;
                 end    
                 `slt: begin
@@ -88,7 +98,7 @@ always @(*) begin
                     ALUctr = `AluXor;
                 end    
                 `sr_l_a: begin
-                    dwsel = opcode[3];
+                    dwsel = opcode[1];
                     if(fun_7[5]) begin      //SRA
                         ALUctr = `AluSra;
                     end
@@ -112,13 +122,15 @@ always @(*) begin
             branch = `NonBranch;
             RegWrSel = `AluOut;
             MemWr = 1'b0;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
             case(fun_3)
                 `addi: begin
-                    dwsel = opcode[3];
+                    dwsel = opcode[1];
                     ALUctr = `AluAdd;
                 end   
                 `slli: begin
-                    dwsel = opcode[3];
+                    dwsel = opcode[1];
                     ALUctr = `AluSll;
                 end   
                 `slti: begin
@@ -131,7 +143,7 @@ always @(*) begin
                     ALUctr = `AluXor;
                 end   
                 `sri_l_a: begin
-                    dwsel = opcode[3];
+                    dwsel = opcode[1];
                     if(fun_7[5]) begin      //SRA
                         ALUctr = `AluSra;
                     end
@@ -157,6 +169,8 @@ always @(*) begin
             Src1Sel = `Rs1;                       
             Src2Sel = `imm;                        
             MemOp = fun_3;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
         end  
         `store: begin
             branch = `NonBranch;
@@ -168,6 +182,8 @@ always @(*) begin
             Src1Sel = `Rs1;                       
             Src2Sel = `imm;                        
             MemOp = fun_3;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
         end
         `branch: begin
             Src1Sel = `Rs1;
@@ -175,6 +191,8 @@ always @(*) begin
             ExtOp = `immB;  
             RegWrEn = 1'b0;
             MemWr = 1'b0;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
             case(fun_3)
                 `Beq: begin
                     ALUctr = `AluSlt;
@@ -216,6 +234,8 @@ always @(*) begin
             RegWrSel = `AluOut;
             MemWr = 1'b0;        
             ALUctr = `AluAdd; 
+            DivEn = 1'b0;
+            DivSel = `DivMul;
         end   
         `jalr: begin
             Src1Sel = `PC;
@@ -226,6 +246,8 @@ always @(*) begin
             RegWrSel = `AluOut;
             MemWr = 1'b0;        
             ALUctr = `AluAdd; 
+            DivEn = 1'b0;
+            DivSel = `DivMul;
         end                                
         `lui: begin
             Src1Sel = `Rs1;
@@ -235,7 +257,9 @@ always @(*) begin
             branch = `NonBranch;
             RegWrSel = `AluOut;
             MemWr = 1'b0;        
-            ALUctr = `AluSrc2;    
+            ALUctr = `AluSrc2;  
+            DivEn = 1'b0;
+            DivSel = `DivMul;  
         end   
         `auipc: begin
             Src1Sel = `PC;
@@ -245,7 +269,9 @@ always @(*) begin
             branch = `NonBranch;
             RegWrSel = `AluOut;
             MemWr = 1'b0;        
-            ALUctr = `AluAdd;            
+            ALUctr = `AluAdd;
+            DivEn = 1'b0;
+            DivSel = `DivMul;            
         end
         //调用DPI-C函数
         `ebreak: begin

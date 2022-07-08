@@ -3,6 +3,9 @@ module ALU(
     input       [3:0]           ALUctr,
     input       [`XLEN-1:0]     src1,
     input       [`XLEN-1:0]     src2,
+    input                       DivEn,
+    input       [2:0]           DivSel,
+    input                       Div32,
 
     output  reg [`XLEN-1:0]     ALUout,
     output  reg                 less,
@@ -67,6 +70,15 @@ barrelshifter64 shifter(
     .shift(shift)  
 );
 
+wire    [`XLEN-1:0]     DivOut;
+DIVIDER  divider(
+    .src1(src1),
+    .src2(src2),
+    .DivSel(DivSel),
+    .Div32(Div32),
+    .DivOut(DivOut)
+);
+
 //Less
 // assign less = (u_s_mux)? carry^cin : ALUout[`XLEN-1]^overflow;
 always @(*) begin
@@ -80,29 +92,33 @@ end
 
 //out_mux
 always @(*) begin
-    case(out_mux)
-        3'h0: begin
-            ALUout = Adder_o;
-        end
-        3'h1,3'h5: begin
-            ALUout = shift;
-        end
-        3'h2: begin
-            ALUout = {63'b0,less};    //零扩展
-        end
-        3'h3: begin
-            ALUout = src2;
-        end
-        3'h4: begin
-            ALUout = XOR;
-        end
-        3'h6: begin
-            ALUout = OR;
-        end
-        3'h7: begin
-            ALUout = AND;
-        end
-    endcase
+    if (DivEn) begin
+        ALUout = DivOut;
+    end
+    else
+        case(out_mux)
+            3'h0: begin
+                ALUout = Adder_o;
+            end
+            3'h1,3'h5: begin
+                ALUout = shift;
+            end
+            3'h2: begin
+                ALUout = {63'b0,less};    //零扩展
+            end
+            3'h3: begin
+                ALUout = src2;
+            end
+            3'h4: begin
+                ALUout = XOR;
+            end
+            3'h6: begin
+                ALUout = OR;
+            end
+            3'h7: begin
+                ALUout = AND;
+            end
+        endcase
 end
 
 
@@ -199,5 +215,74 @@ always @(*) begin
         end
     end
 end
+
 endmodule
+
+
+//暂未作除零及溢出的处理
+module DIVIDER (
+    input       [`XLEN-1:0]     src1,src2,
+    input       [2:0]           DivSel,
+    input                       Div32,
+    output  reg [`XLEN-1:0]     DivOut
+);
+reg [127:0] tmp;
+always @(*) begin
+    tmp = 128'b0;
+    case (DivSel)
+        `DivMul: begin
+            if (Div32) begin
+                tmp[63:0] = src1[31:0] * src2[31:0];
+                DivOut = {{32{tmp[31]}},tmp[31:0]};
+            end
+            else
+                DivOut = (src1 * src2);
+        end
+        `DivMulh: begin
+            DivOut = $signed(src1) * $signed(src2);
+        end
+        `DivMulhsu: begin
+            DivOut = $signed(src1) * $unsigned(src2);
+        end
+        `DivMulhu: begin
+            DivOut = $unsigned(src1) * $unsigned(src2);
+        end
+        `DivDiv: begin
+            if(Div32) begin
+                tmp[31:0] = $signed(src1[31:0]) / $signed(src2[31:0]);
+                DivOut = {{32{tmp[31]}},tmp[31:0]};
+            end
+            else
+                DivOut = $signed(src1) / $signed(src2);
+        end
+        `DivRem: begin
+            if(Div32) begin
+                tmp[31:0] = $signed(src1[31:0]) % $signed(src2[31:0]);
+                DivOut = {{32{tmp[31]}},tmp[31:0]};
+            end
+            else
+                DivOut = $signed(src1) % $signed(src2);
+        end
+        `DivDivu: begin
+            if(Div32) begin
+                tmp[31:0] = $unsigned(src1[31:0]) / $unsigned(src2[31:0]);
+                DivOut = {{32{tmp[31]}},tmp[31:0]};
+            end
+            else
+                DivOut = $unsigned(src1) / $unsigned(src2);
+        end
+        `DivRemu: begin
+            if(Div32) begin
+                tmp[31:0] = $unsigned(src1[31:0]) % $unsigned(src2[31:0]);
+                DivOut = {{32{tmp[31]}},tmp[31:0]};
+            end
+            else
+            DivOut = $unsigned(src1) % $unsigned(src2);
+        end
+        default: begin
+            DivOut = `XLEN'b0;
+        end
+    endcase
+end
+endmodule //DIVIDER
 

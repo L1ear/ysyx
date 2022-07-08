@@ -100,6 +100,17 @@
 `define     AluSra              4'b1101
 `define     AluOr               4'b0110
 `define     AluAnd              4'b0111
+//DIVIDER controls
+`define     DivMul              3'b000
+`define     DivMulh             3'b001
+`define     DivMulhsu           3'b010
+`define     DivMulhu            3'b011
+`define     DivDiv              3'b100
+`define     DivDivu             3'b101
+`define     DivRem              3'b110
+`define     DivRemu             3'b111
+
+
 // `define                         5'
 // `define                         5'
 // `define                         5'
