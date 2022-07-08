@@ -9,7 +9,7 @@
 
 extern int sim_time;
 extern int en;
-
+extern int is_batch_mode;
 
 CPU_state cpu = {};
 uint64_t htoi(char s[])
@@ -192,15 +192,11 @@ static int cmd_help(char *args) {
   return 0;
 }
 
-static int is_batch_mode = false;
 
-void sdb_set_batch_mode() {
-  is_batch_mode = true;
-}
 
 void sdb_mainloop() {
   if (is_batch_mode) {
-    // cmd_c(NULL);
+    cmd_c(NULL);
     return;
   }
 

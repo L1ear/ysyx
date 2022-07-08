@@ -30,7 +30,7 @@ void nvboard_bind_all_pins(Vtop* top);
 
 #define nvboard 0
 
-
+int err = false;
 // int t = 0;
 
 void single_cycle(int i) {
@@ -162,5 +162,9 @@ int main(int argc, char *argv[])
     delete fp;
     delete top;
     // nvboard_quit();
-    return 0;
+    if(err){
+      return 1;
+    }
+    else
+      return 0;
 }

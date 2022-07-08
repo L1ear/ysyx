@@ -6,6 +6,7 @@ module ALU(
     input                       DivEn,
     input       [2:0]           DivSel,
     input                       Div32,
+    input                       sft32,
 
     output  reg [`XLEN-1:0]     ALUout,
     output  reg                 less,
@@ -67,7 +68,8 @@ barrelshifter64 shifter(
     .src2(src2[5:0]),    
     .sft_l_r(sft_l_r),
     .sft_a_l(sft_a_l), 
-    .shift(shift)  
+    .shift(shift),
+    .sft32(sft32)  
 );
 
 wire    [`XLEN-1:0]     DivOut;
@@ -184,6 +186,7 @@ module barrelshifter64(
     input [5:0]             src2,      
     input                   sft_l_r,
     input                   sft_a_l,  
+    input                   sft32,
     output reg [`XLEN-1:0]  shift  
 );
 reg [`XLEN-1:0]     temp;
@@ -198,24 +201,44 @@ always @(*) begin
     end
     else begin
         if(sft_a_l) begin
-            temp = src2[0] ? {{src1[63]}, src1[63:1]} : src1;
-            temp = src2[1] ? {{2{temp[63]}}, temp[63:2]} : temp;
-            temp = src2[2] ? {{4{temp[63]}}, temp[63:4]} : temp;
-            temp = src2[3] ? {{8{temp[63]}}, temp[63:8]} : temp;
-            temp = src2[4] ? {{16{temp[63]}}, temp[63:16]} : temp;
-            temp = src2[5] ? {{32{temp[63]}}, temp[63:32]} : temp;          
+            if(~sft32) begin
+                temp = src2[0] ? {{src1[63]}, src1[63:1]} : src1;
+                temp = src2[1] ? {{2{temp[63]}}, temp[63:2]} : temp;
+                temp = src2[2] ? {{4{temp[63]}}, temp[63:4]} : temp;
+                temp = src2[3] ? {{8{temp[63]}}, temp[63:8]} : temp;
+                temp = src2[4] ? {{16{temp[63]}}, temp[63:16]} : temp;
+                temp = src2[5] ? {{32{temp[63]}}, temp[63:32]} : temp;  
+            end        
+            else begin
+                temp[31:0] = src2[0] ? {{src1[31]}, src1[31:1]} : src1[31:0];
+                temp[31:0] = src2[1] ? {{2{temp[31]}}, temp[31:2]} : temp[31:0];
+                temp[31:0] = src2[2] ? {{4{temp[31]}}, temp[31:4]} : temp[31:0];
+                temp[31:0] = src2[3] ? {{8{temp[31]}}, temp[31:8]} : temp[31:0];
+                temp[31:0] = src2[4] ? {{16{temp[31]}}, temp[31:16]} : temp[31:0]; 
+                temp[63:32] = {32{temp[31]}};
+            end
         end
         else begin
-            temp = src2[0] ? {{1'b0}, src1[63:1]} : src1;
-            temp = src2[1] ? {{2{1'b0}}, temp[63:2]} : temp;
-            temp = src2[2] ? {{4{1'b0}}, temp[63:4]} : temp;
-            temp = src2[3] ? {{8{1'b0}}, temp[63:8]} : temp;
-            temp = src2[4] ? {{16{1'b0}}, temp[63:16]} : temp;
-            temp = src2[5] ? {{32{1'b0}}, temp[63:32]} : temp;    
+            if(~sft32) begin
+                temp = src2[0] ? {{1'b0}, src1[63:1]} : src1;
+                temp = src2[1] ? {{2{1'b0}}, temp[63:2]} : temp;
+                temp = src2[2] ? {{4{1'b0}}, temp[63:4]} : temp;
+                temp = src2[3] ? {{8{1'b0}}, temp[63:8]} : temp;
+                temp = src2[4] ? {{16{1'b0}}, temp[63:16]} : temp;
+                temp = src2[5] ? {{32{1'b0}}, temp[63:32]} : temp; 
+            end
+            else begin
+                temp[31:0] = src2[0] ? {{1'b0}, src1[31:1]} : src1[31:0];
+                temp[31:0] = src2[1] ? {{2{1'b0}}, temp[31:2]} : temp[31:0];
+                temp[31:0] = src2[2] ? {{4{1'b0}}, temp[31:4]} : temp[31:0];
+                temp[31:0] = src2[3] ? {{8{1'b0}}, temp[31:8]} : temp[31:0];
+                temp[31:0] = src2[4] ? {{16{1'b0}}, temp[31:16]} : temp[31:0];
+                temp[63:32] = {32{temp[31]}};
+            end   
         end
     end
 end
-
+assign shift = temp;
 endmodule
 
 

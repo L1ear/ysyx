@@ -56,6 +56,9 @@ LDFLAGS +=-L /home/qw/ysyx-workbench/nemu/build/
 ARGS += -d $(DIFF_REF_SO)
 endif
 
+#rules for batch mode
+ARGS += -b
+
 run: 
 	@echo
 	@echo "-- VERILATE ----------------"

@@ -98,6 +98,11 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
   }
 }
 
+int is_batch_mode = false;
+void sdb_set_batch_mode() {
+  is_batch_mode = true;
+}
+
 int parse_args(int argc, char *argv[]) {
   const struct option table[] = {
     {"batch"    , no_argument      , NULL, 'b'},
@@ -111,6 +116,7 @@ int parse_args(int argc, char *argv[]) {
   int o;
   while ( (o = getopt_long(argc, argv, "-bhl:d:p:i:", table, NULL)) != -1) {
     switch (o) {
+      case 'b': sdb_set_batch_mode(); break;
       case 'd': diff_so_file = optarg; printf("***************************************DIFF-TEST.SO:%s\n",optarg);break;
       case 'i': printf("***************************************IMG:%s\n",optarg);img_file = optarg; break;
       default:

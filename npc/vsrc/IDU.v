@@ -25,6 +25,7 @@ module IDU(
     output  reg     [1:0]           Src2Sel,
     output  reg                     Src1Sel,
     output  reg                     dwsel,
+    output  reg                     sft32,
 //To Div
     output  reg                     DivEn,
     output  reg     [2:0]           DivSel,
@@ -61,6 +62,7 @@ always @(*) begin
     DivEn = 1'b0;                          //默认不使能DIV
     DivSel = `DivMul;
     Div32 = 1'b0;                          //默认64位
+    sft32 = 1'b0;                          //默认64位
 //TODO: 补全！！！！！！！！！！！！
     case(opcode)
         `OP_REG,`OP_REG_32: begin
@@ -98,7 +100,7 @@ always @(*) begin
                     ALUctr = `AluXor;
                 end    
                 `sr_l_a: begin
-                    dwsel = opcode[1];
+                    sft32 = opcode[1];
                     if(fun_7[5]) begin      //SRA
                         ALUctr = `AluSra;
                     end
@@ -143,7 +145,7 @@ always @(*) begin
                     ALUctr = `AluXor;
                 end   
                 `sri_l_a: begin
-                    dwsel = opcode[1];
+                    sft32 = opcode[1];
                     if(fun_7[5]) begin      //SRA
                         ALUctr = `AluSra;
                     end
@@ -176,7 +178,7 @@ always @(*) begin
             branch = `NonBranch;
             RegWrSel = `DmemOut;
             MemWr = 1'b1;
-            RegWrEn = 1'b1;
+            RegWrEn = 1'b0;
             ExtOp = `immS;                          
             ALUctr = `AluAdd;                      
             Src1Sel = `Rs1;                       

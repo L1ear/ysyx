@@ -51,6 +51,7 @@ wire         dwsel;
 wire         DivEn;
 wire  [2:0]  DivSel;
 wire         Div32;
+wire         sft32;
 
 // ALU Outputs
 wire  [`XLEN-1:0]  ALUout;
@@ -111,7 +112,8 @@ ALU  u_ALU (
     .zero                    ( zero     ),
     .DivEn                   ( DivEn    ),
     .DivSel                  ( DivSel   ),
-    .Div32                   ( Div32    )
+    .Div32                   ( Div32    ),
+    .sft32                   ( sft32    )
 );
 
 
@@ -154,7 +156,8 @@ IDU  u_IDU (
     .dwsel                   ( dwsel      ),
     .DivEn                   ( DivEn      ),
     .DivSel                  ( DivSel     ),
-    .Div32                   ( Div32      )
+    .Div32                   ( Div32      ),
+    .sft32                   ( sft32      )
 );
     
 // instr_mem  u_instr_mem (
