@@ -18,11 +18,6 @@ static bool g_print_step = false;
 
 void device_update();
 
-// #ifdef CONFIG_ITRACE 
-//   void add_iringbuf(char *newlog);
-//   void print_iringbuf();
-// #endif
-
 extern WP *begin;
 static void trace_and_difftest(Decode *_this, vaddr_t dnpc) {
 #ifdef CONFIG_ITRACE_COND
@@ -60,7 +55,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   int ilen = s->snpc - s->pc;
   int i;
   uint8_t *inst = (uint8_t *)&s->isa.inst.val;
-  for (i = ilen-1; i >= 0; i --) {
+  for (i = 0; i < ilen; i ++) {
     p += snprintf(p, 4, " %02x", inst[i]);
   }
   int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
@@ -73,7 +68,6 @@ static void exec_once(Decode *s, vaddr_t pc) {
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p,
       MUXDEF(CONFIG_ISA_x86, s->snpc, s->pc), (uint8_t *)&s->isa.inst.val, ilen);
-  // add_iringbuf(s->logbuf);
 #endif
 }
 
@@ -128,11 +122,7 @@ void cpu_exec(uint64_t n) {
     break;
 
     case NEMU_END: printf("%d\n",nemu_state.state);
-   
     case NEMU_ABORT:
-// #ifdef CONFIG_ITRACE
-//   print_iringbuf();
-// #endif 
       Log("nemu: %s at pc = " FMT_WORD,
           (nemu_state.state == NEMU_ABORT ? ASNI_FMT("ABORT", ASNI_FG_RED) :
            (nemu_state.halt_ret == 0 ? ASNI_FMT("HIT GOOD TRAP", ASNI_FG_GREEN) :
