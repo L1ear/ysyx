@@ -129,7 +129,7 @@ void cpu_exec(uint64_t n) {
 
     case NEMU_END: printf("%d\n",nemu_state.state);
 #ifdef CONFIG_ITRACE
-  // print_iringbuf();
+  print_iringbuf();
 #endif    
     case NEMU_ABORT:
 

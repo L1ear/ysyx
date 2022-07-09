@@ -41,10 +41,10 @@ void add_iringbuf(char *newlog){
 
 void print_iringbuf(){
   //第一个for循环打印 [index , MAX_BUF]
-  for(int i=nr_i; i<10; i++){
-      printf("%s\n", iringbuf[i].logbuf);
-      free(iringbuf[i].logbuf);
-  }
+  // for(int i=nr_i; i<10; i++){
+  //     printf("%s\n", iringbuf[i].logbuf);
+  //     free(iringbuf[i].logbuf);
+  // }
   printf("\n");
   //第二个for循环打印 [0 , index-1]
   for(int i=0; i<nr_i; i++){ 
