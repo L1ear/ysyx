@@ -91,7 +91,7 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Set random seed. */
   init_rand();
-
+Log("???????????????");
   /* Open the log file. */
   init_log(log_file);
 
