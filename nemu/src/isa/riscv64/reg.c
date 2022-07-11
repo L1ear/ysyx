@@ -9,6 +9,7 @@ const char *regs[] = {
 };
 
 void isa_reg_display() {
+  Log("PC: %lx\n",cpu.pc);
 	int i;
 	for(i = 0; i<32; i++) {
     printf("%s is: %08lx    ",reg_name(i,64), gpr(i));
