@@ -103,7 +103,7 @@ if(top->OPcode==3)
     }
   if(en == 1){  
 
-    difftest_step(top->instrAddr);
+    //difftest_step(top->instrAddr);
   }
 }
 
