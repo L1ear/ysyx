@@ -34,7 +34,7 @@ word_t mmio_read(paddr_t addr, int len) {
 
 void mmio_write(paddr_t addr, int len, word_t data) {
   IOMap* map = fetch_mmio_map(addr);
-  char name[];
+  char name[128];
   map = map->name;
   // #ifdef CONFIG_DTRACE
     if(name != ("rtc" || "serial"))
