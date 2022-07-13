@@ -33,8 +33,8 @@ word_t mmio_read(paddr_t addr, int len) {
 
 void mmio_write(paddr_t addr, int len, word_t data) {
   IOMap* map = fetch_mmio_map(addr);
-  #ifdef CONFIG_DTRACE
+  // #ifdef CONFIG_DTRACE
     Log("write "FMT_WORD" to device: %s\n", data, map->name);
-  #endif
+  // #endif
   map_write(addr, len, data, map);
 }
