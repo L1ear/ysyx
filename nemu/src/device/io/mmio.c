@@ -27,7 +27,7 @@ word_t mmio_read(paddr_t addr, int len) {
   #ifdef CONFIG_DTRACE
   char name[32];
   sscanf(map->name,"%s",name);
-  // if(strcmp(name,"rtc")&&strcmp(name,"serial") == 1)
+  if(strcmp(name,"rtc")&&strcmp(name,"serial") == 1)
     Log("read device: %s\n",map->name);
   #endif
   
