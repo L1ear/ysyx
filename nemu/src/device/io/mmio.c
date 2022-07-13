@@ -37,7 +37,7 @@ void mmio_write(paddr_t addr, int len, word_t data) {
   char name[32];
   sscanf(map->name,"%s",name);
   // #ifdef CONFIG_DTRACE
-    if(name != ("rtc" || "serial"))
+    if(name != 'rtc')
     Log("write "FMT_WORD" to device: %s\n", data, map->name);
   // #endif
   map_write(addr, len, data, map);
