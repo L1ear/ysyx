@@ -24,10 +24,17 @@ void add_mmio_map(const char *name, paddr_t addr, void *space, uint32_t len, io_
 /* bus interface */
 word_t mmio_read(paddr_t addr, int len) {
   IOMap* map = fetch_mmio_map(addr);
-  Log("read device: %s\n",map->name);
+  #ifdef CONFIG_DTRACE
+    Log("read device: %s\n",map->name);
+  #endif
+  
   return map_read(addr, len, map);
 }
 
 void mmio_write(paddr_t addr, int len, word_t data) {
-  map_write(addr, len, data, fetch_mmio_map(addr));
+  IOMap* map = fetch_mmio_map(addr);
+  #ifdef CONFIG_DTRACE
+    Log("write "FMT_WORD" to device: %s\n", data, map->name);
+  #endif
+  map_write(addr, len, data, map);
 }
