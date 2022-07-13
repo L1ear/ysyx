@@ -45,7 +45,7 @@ void mmio_write(paddr_t addr, int len, word_t data) {
   if(strcmp(name,"rtc")&&strcmp(name,"serial") == 1)
     Log("write "FMT_WORD" to device: %s\n", data, map->name);
   else
-    log_write("write "FMT_WORD" to device: %s\n", data, map->name);
+    log_write("?????????????????????????????????????write "FMT_WORD" to device: %s\n", data, map->name);
   #endif
   map_write(addr, len, data, map);
 }
