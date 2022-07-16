@@ -41,6 +41,35 @@ static void decode_operand(Decode *s, word_t *dest, word_t *src1, word_t *src2, 
   }
 }
 
+static word_t csrrs(word_t csr, int rs1){
+  switch (csr)
+  {
+  case 0x305:         //mtvec
+    word_t tmp = cpu.mtvec;
+    cpu.mtvec = tmp | rs1;
+    return tmp;
+  case 0x341:         //mepc
+    word_t tmp = cpu.mepc;
+    cpu.mepc = tmp | rs1;
+    return tmp;
+    break;
+  case 0x342:         //mcause
+    word_t tmp = cpu.mcause;
+    cpu.mcause = tmp | rs1;
+    return tmp;
+    break;
+  case 0x300:         //mstatus
+    word_t tmp = cpu.mstatus;
+    cpu.mstatus = tmp | rs1;
+    return tmp;
+    break;
+  default:
+    Log("Unsupported csr!!!");
+    assert(0);
+    break;
+  }
+}
+
 static int decode_exec(Decode *s) {
   word_t dest = 0, src1 = 0, src2 = 0;
   s->dnpc = s->snpc;
@@ -125,7 +154,9 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000001 ????? ????? 111 ????? 01110 11", remuw , R, R(dest) = (uint32_t)BITS(src1,31,0) % (uint32_t)BITS(src2,31,0));
 
 
-  // INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , N, s->dnpc = isa_raise_intr()); // R(10) is $a0
+  INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs  , I, R(dest) = csrrs(src2,src1));
+
+  INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , N, s->dnpc = isa_raise_intr(R(17),s->pc)); // R(17) is $a7
   INSTPAT("0000000 00001 00000 000 00000 11100 11", ebreak , N, NEMUTRAP(s->pc, R(10))); // R(10) is $a0
   INSTPAT("??????? ????? ????? ??? ????? ????? ??", inv    , N, INV(s->pc));
   
@@ -135,6 +166,8 @@ static int decode_exec(Decode *s) {
 
   return 0;
 }
+
+
 
 int isa_exec_once(Decode *s) {
   s->isa.inst.val = inst_fetch(&s->snpc, 4);
