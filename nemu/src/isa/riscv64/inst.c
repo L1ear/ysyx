@@ -78,7 +78,7 @@ static word_t csrrw(word_t csr, word_t rs1){
   case 0x305:         //mtvec
     tmp = cpu.mtvec;
     cpu.mtvec = rs1;
-    Log("mtvec: %016x\n",cpu.mtvec);
+    printf("mtvec: %016x\n",cpu.mtvec);
     return tmp;
   case 0x341:         //mepc
     tmp = cpu.mepc;
