@@ -6,6 +6,7 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    */
   cpu.mepc = epc;
   cpu.mcause = NO;
+  Log("ecall has been called,mtvec: %016lx\n",cpu.mtvec);
   return cpu.mtvec;
 }
 
