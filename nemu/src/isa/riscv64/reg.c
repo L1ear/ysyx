@@ -28,7 +28,7 @@ word_t isa_reg_str2val(const char *s, bool *success) {
     }
   }
   if(i>=32) {
-    if(strcmp(s, "PC")==0){
+    if(strcmp(s, "pc")==0){
       printf("matched PC\n");
       return cpu.pc;
     }
