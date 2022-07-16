@@ -42,24 +42,25 @@ static void decode_operand(Decode *s, word_t *dest, word_t *src1, word_t *src2, 
 }
 
 static word_t csrrs(word_t csr, int rs1){
+  word_t tmp;
   switch (csr)
   {
   case 0x305:         //mtvec
-    word_t tmp = cpu.mtvec;
+    tmp = cpu.mtvec;
     cpu.mtvec = tmp | rs1;
     return tmp;
   case 0x341:         //mepc
-    word_t tmp = cpu.mepc;
+    tmp = cpu.mepc;
     cpu.mepc = tmp | rs1;
     return tmp;
     break;
   case 0x342:         //mcause
-    word_t tmp = cpu.mcause;
+    tmp = cpu.mcause;
     cpu.mcause = tmp | rs1;
     return tmp;
     break;
   case 0x300:         //mstatus
-    word_t tmp = cpu.mstatus;
+    tmp = cpu.mstatus;
     cpu.mstatus = tmp | rs1;
     return tmp;
     break;
