@@ -10,10 +10,10 @@ Context* __am_irq_handle(Context *c) {
     switch (c->mcause) {
       default: ev.event = EVENT_ERROR; break;
     }
-
     c = user_handler(ev, c);
     assert(c != NULL);
   }
+  // printf("cause: %016lx\nstatus: %016lx\nepc: %016lx\n",c->mcause,);
 
   return c;
 }
