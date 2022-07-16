@@ -71,35 +71,35 @@ static word_t csrrs(word_t csr, word_t rs1){
   }
 }
 
-static word_t csrrw(word_t csr, word_t rs1){
-  word_t tmp;
-  switch (csr)
-  {
-  case 0x305:         //mtvec
-    tmp = cpu.mtvec;
-    cpu.mtvec = rs1;
-    return tmp;
-  case 0x341:         //mepc
-    tmp = cpu.mepc;
-    cpu.mepc = rs1;
-    return tmp;
-    break;
-  case 0x342:         //mcause
-    tmp = cpu.mcause;
-    cpu.mcause = rs1;
-    return tmp;
-    break;
-  case 0x300:         //mstatus
-    tmp = cpu.mstatus;
-    cpu.mstatus = rs1;
-    return tmp;
-    break;
-  default:
-    Log("Unsupported csr!!!");
-    assert(0);
-    break;
-  }
-}
+// static word_t csrrw(word_t csr, word_t rs1){
+//   word_t tmp;
+//   switch (csr)
+//   {
+//   case 0x305:         //mtvec
+//     tmp = cpu.mtvec;
+//     cpu.mtvec = rs1;
+//     return tmp;
+//   case 0x341:         //mepc
+//     tmp = cpu.mepc;
+//     cpu.mepc = rs1;
+//     return tmp;
+//     break;
+//   case 0x342:         //mcause
+//     tmp = cpu.mcause;
+//     cpu.mcause = rs1;
+//     return tmp;
+//     break;
+//   case 0x300:         //mstatus
+//     tmp = cpu.mstatus;
+//     cpu.mstatus = rs1;
+//     return tmp;
+//     break;
+//   default:
+//     Log("Unsupported csr!!!");
+//     assert(0);
+//     break;
+//   }
+// }
 
 static int decode_exec(Decode *s) {
   word_t dest = 0, src1 = 0, src2 = 0;
