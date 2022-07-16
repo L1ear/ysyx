@@ -13,7 +13,7 @@ Context* __am_irq_handle(Context *c) {
     c = user_handler(ev, c);
     assert(c != NULL);
   }
-  // printf("cause: %016lx\nstatus: %016lx\nepc: %016lx\n",c->mcause,);
+  printf("cause: %016lx\nstatus: %016lx\nepc: %016lx\n",c->mcause, c->mstatus, c->mepc);
 
   return c;
 }
