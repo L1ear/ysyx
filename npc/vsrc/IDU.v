@@ -276,8 +276,24 @@ always @(*) begin
             DivSel = `DivMul;            
         end
         //调用DPI-C函数
-        `ebreak: begin
-            ebreak();
+        `syscall: begin
+
+            case(fun_3)
+                `env: begin
+                    if(instr_i[20]) begin                   //ebreak;
+                       ebreak();
+                    end
+                    else begin                              //ecall;
+                        //TODO
+                    end
+                end
+                `csrrw: begin
+                    //TODO
+                end
+                `csrrs: begin
+                    //TODO
+                end
+            endcase
         end
         default: begin
             //TODO

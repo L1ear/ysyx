@@ -12,7 +12,7 @@
 `define     immB                5'b10000
 
 //OpCode defines
-`define     ebreak              5'b11100
+`define     syscall             5'b11100
 `define     lui                 5'b01101
 `define     auipc               5'b00101
 `define     OP_IMM              5'b00100
@@ -72,6 +72,10 @@
 `define     lw                  3'b010
 `define     lwu                 3'b110
 `define     ld                  3'b011
+//syscall
+`define     env                 3'b000
+`define     csrrw               3'b001
+`define     csrrs               3'b010
 
 //ALU out sel
 `define     out_64              1'b0
