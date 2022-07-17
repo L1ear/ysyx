@@ -1,6 +1,6 @@
 #include <isa.h>
 
-#include <decode.h>
+#include <cpu/decode.h>
 
 void isa_raise_intr(word_t NO, vaddr_t epc, Decode *s) {
   /* TODO: Trigger an interrupt/exception with ``NO''.
