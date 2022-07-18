@@ -27,7 +27,7 @@ word_t mmio_read(paddr_t addr, int len) {
   #ifdef CONFIG_DTRACE
   char namer[32];
   sscanf(map->name,"%s",namer);
-  if(strcmp(namer,"rtc")<0||strcmp(namer,"serial")==0)      //如果是rtc或串口，就只写入log不输出，防止挤爆终端，下同
+  if(strcmp(namer,"rtc")==0||strcmp(namer,"serial")==0)      //如果是rtc或串口，就只写入log不输出，防止挤爆终端，下同
     Log("read device: %s\n",namer);
   else
     log_write("read device: %s\n",namer);
