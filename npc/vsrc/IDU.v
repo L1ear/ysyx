@@ -278,22 +278,22 @@ always @(*) begin
         //调用DPI-C函数
         `syscall: begin
 
-            case(fun_3)
-                `env: begin
-                    if(instr_i[20]) begin                   //ebreak;
+            // case(fun_3)
+            //     `env: begin
+            //         if(instr_i[20]) begin                   //ebreak;
                        ebreak();
-                    end
-                    else begin                              //ecall;
-                        //TODO
-                    end
-                end
-                `csrrw: begin
-                    //TODO
-                end
-                `csrrs: begin
-                    //TODO
-                end
-            endcase
+            //         end
+            //         else begin                              //ecall;
+            //             //TODO
+            //         end
+            //     end
+            //     `csrrw: begin
+            //         //TODO
+            //     end
+            //     `csrrs: begin
+            //         //TODO
+            //     end
+            // endcase
         end
         default: begin
             //TODO

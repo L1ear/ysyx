@@ -53,6 +53,9 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
     printf("read out of boundary!\nPC: %08lx\n",instrAddr);
     return 0;
     }
+  else if(){
+
+  }
   else
     switch (len){
     case 1:
