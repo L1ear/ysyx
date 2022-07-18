@@ -25,12 +25,12 @@ void add_mmio_map(const char *name, paddr_t addr, void *space, uint32_t len, io_
 word_t mmio_read(paddr_t addr, int len) {
   IOMap* map = fetch_mmio_map(addr);
   #ifdef CONFIG_DTRACE
-  char name[32];
-  sscanf(map->name,"%s",name);
-  if(strcmp(name,"vmem")&&strcmp(name,"serial") == 1)      //如果是rtc或串口，就只写入log不输出，防止挤爆终端，下同
-    Log("read device: %s\n",map->name);
+  char namer[32];
+  sscanf(map->name,"%s",namer);
+  if(strcmp(namer,"vmem")&&strcmp(namer,"serial") == 1)      //如果是rtc或串口，就只写入log不输出，防止挤爆终端，下同
+    Log("read device: %s\n",namer);
   else
-    log_write("read device: %s\n",map->name);
+    log_write("read device: %s\n",namer);
   #endif
   
   return map_read(addr, len, map);
