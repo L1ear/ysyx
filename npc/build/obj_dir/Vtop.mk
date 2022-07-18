@@ -40,8 +40,6 @@ VM_USER_CFLAGS = \
 VM_USER_LDLIBS = \
 	-lreadline \
 	-ldl \
-	-L \
-	/home/qw/ysyx-workbench/nemu/build/ \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
@@ -49,6 +47,7 @@ VM_USER_CLASSES = \
 	main \
 	mem \
 	sdb \
+	timer \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
@@ -71,6 +70,8 @@ main.o: /home/qw/ysyx-workbench/npc/csrc/main.cpp
 mem.o: /home/qw/ysyx-workbench/npc/csrc/mem.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 sdb.o: /home/qw/ysyx-workbench/npc/csrc/sdb.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+timer.o: /home/qw/ysyx-workbench/npc/csrc/timer.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)

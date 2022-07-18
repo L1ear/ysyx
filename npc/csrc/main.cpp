@@ -148,6 +148,8 @@ int main(int argc, char *argv[])
     sim_time = reset(sim_time,5);
     init_monitor(argc, argv);    
     en = 1;
+    
+
     sdb_mainloop();
     while(en)
     {

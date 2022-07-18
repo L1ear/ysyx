@@ -25,6 +25,7 @@ extern uint64_t *cpu_gpr;
 static int cmd_help(char *args);
 void sdb_mainloop();
 void single_cycle(int i);
+uint64_t get_time();
 
 static inline const char* reg_name(int idx, int width) {
   extern const char* regs[];

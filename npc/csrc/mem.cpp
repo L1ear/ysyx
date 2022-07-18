@@ -49,13 +49,13 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   //   printf("%02x",imem[i]);
   // }
   // printf("\n");
-  if(addr>0x88000000||addr<0x80000000){
+  if(addr == 0xa0000048){
+      return get_time();
+  }
+  else if(addr>0x88000000||addr<0x80000000){
     printf("read out of boundary!\nPC: %08lx\n",instrAddr);
     return 0;
     }
-  else if(){
-
-  }
   else
     switch (len){
     case 1:
@@ -79,6 +79,9 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
 
 
 void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
+  if(addr == 0xa00003f8){
+    printf("%s",data);
+  }
   if(addr>0x88000000||addr<0x80000000){
       printf("write out of boundary!\nPC: %08lx\n",instrAddr);
       assert(0);

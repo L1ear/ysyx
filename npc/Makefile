@@ -45,7 +45,7 @@ CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\""
 LDFLAGS += -lreadline -ldl
 
 # rules for diff-test
-CONFIG_DIFFTEST=y
+# CONFIG_DIFFTEST=y
 ifdef IMG
 ARGS += -i $(IMG)
 endif
