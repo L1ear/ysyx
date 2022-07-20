@@ -1,6 +1,8 @@
 `define		XLEN	            64
 `define     reg_addr_width      5
 
+`define     csrAddrWidth        12
+
 `define     inst_len            32
 
 `define     RegfileAddrWidth    5

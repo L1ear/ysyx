@@ -54,6 +54,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__Src1Sel = 0U;
     vlSelf->top__DOT__Src2Sel = 0U;
     vlSelf->MemOp = 0U;
+    vlSelf->top__DOT__u_IDU__DOT__csrWrEn = 0U;
     vlSelf->top__DOT__dwsel = 0U;
     vlSelf->top__DOT__DivEn = 0U;
     vlSelf->top__DOT__DivSel = 0U;
@@ -64,7 +65,24 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
             if ((0x10U & vlSelf->instr)) {
                 if ((1U & (~ (vlSelf->instr >> 3U)))) {
                     if ((1U & (~ (vlSelf->instr >> 2U)))) {
-                        Vtop___024root____Vdpiimwrap_top__DOT__u_IDU__DOT__ebreak_TOP();
+                        vlSelf->top__DOT__Src1Sel = 0U;
+                        vlSelf->top__DOT__Src2Sel = 2U;
+                        vlSelf->top__DOT__RegWrEn = 1U;
+                        vlSelf->top__DOT__branch = 0U;
+                        vlSelf->top__DOT__RegWrSel = 0U;
+                        vlSelf->top__DOT__u_IDU__DOT__csrWrEn = 1U;
+                        if ((0U == (7U & (vlSelf->instr 
+                                          >> 0xcU)))) {
+                            if ((0x100000U & vlSelf->instr)) {
+                                Vtop___024root____Vdpiimwrap_top__DOT__u_IDU__DOT__ebreak_TOP();
+                            }
+                        } else if ((1U == (7U & (vlSelf->instr 
+                                                 >> 0xcU)))) {
+                            vlSelf->top__DOT__ALUctr = 3U;
+                        } else if ((2U == (7U & (vlSelf->instr 
+                                                 >> 0xcU)))) {
+                            vlSelf->top__DOT__ALUctr = 6U;
+                        }
                     }
                 }
             } else if ((8U & vlSelf->instr)) {
@@ -1003,6 +1021,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->top__DOT__u_regfiles__DOT__regfiles[__Vi0] = 0;
     }
+    vlSelf->top__DOT__u_IDU__DOT__csrWrEn = 0;
     for (int __Vi0=0; __Vi0<3; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }

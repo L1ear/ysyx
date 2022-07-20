@@ -291,10 +291,10 @@ always @(*) begin
             csrWrEn = 1'b1;
             case(fun_3)
                 `env: begin
-                    if(instr_i[20]) begin                   //ebreak;
+                    if(instr_i[20]) begin       //ebreak            //ebreak;
                        ebreak();
                     end
-                    else begin                              //ecall;
+                    else begin                  //ecall              //ecall;
                         //TODO
                     end
                 end
@@ -305,6 +305,9 @@ always @(*) begin
                 `csrrs: begin
                     //TODO
                     ALUctr = `AluOr;
+                end
+                default: begin
+
                 end
             endcase
         end

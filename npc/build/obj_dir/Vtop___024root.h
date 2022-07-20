@@ -50,6 +50,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__zero;
     CData/*0:0*/ top__DOT__u_ALU__DOT__cin;
     CData/*0:0*/ top__DOT__u_ALU__DOT__overflow;
+    CData/*0:0*/ top__DOT__u_IDU__DOT__csrWrEn;
     VlWide<4>/*127:0*/ top__DOT__u_ALU__DOT__divider__DOT__tmp;
     QData/*63:0*/ top__DOT__NextPc;
     QData/*63:0*/ top__DOT__CurPc;
