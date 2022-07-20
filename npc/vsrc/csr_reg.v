@@ -51,7 +51,10 @@ wire wr_mstatus = sel_mstatus & csrWrEn;
 always @(posedge clk ) begin
     if(~rst_n) begin
         mstatus <= 64'ha000000000001800;
-        
+    end
+    else begin
+        mstatus <= exception? {mstatus[`XLEN-1:8],mstatus[3],mstatus[6:4],1'b0,mstatus[1:0]}:
+                   wr_mstatus?csrWrData:mstatus;
     end
 end
 
