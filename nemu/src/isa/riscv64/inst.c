@@ -50,6 +50,7 @@ static word_t csrrs(word_t csr, word_t rs1){
     cpu.mtvec = tmp | rs1;
     return tmp;
   case 0x341:         //mepc
+    printf("write mepc\n");
     tmp = cpu.mepc;
     cpu.mepc = tmp | rs1;
     return tmp;
