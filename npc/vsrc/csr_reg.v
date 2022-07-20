@@ -58,6 +58,11 @@ always @(posedge clk ) begin
     end
 end
 
+//0x342 R&W mcause
+reg     [`XLEN-1:0]     mcause;
+wire sel_mcause = (csrIdx == 12'h342);
+wire wr_mcause = sel_mcause & csrWrEn;
+
 
 
 assign  csrRdData = `XLEN'b0
