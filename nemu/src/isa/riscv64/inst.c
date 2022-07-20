@@ -52,7 +52,7 @@ static word_t csrrs(word_t csr, word_t rs1){
   case 0x341:         //mepc
     tmp = cpu.mepc;
     cpu.mepc = tmp | rs1;
-    printf("write mepc:%016lx\n",cpu.mepc);
+    printf("read mepc:%016lx\n",cpu.mepc);
     return tmp;
     break;
   case 0x342:         //mcause
@@ -84,6 +84,7 @@ static word_t csrrw(word_t csr, word_t rs1){
   case 0x341:         //mepc
     tmp = cpu.mepc;
     cpu.mepc = rs1;
+    printf("write mepc:%016lx\n",cpu.mepc);
     return tmp;
     break;
   case 0x342:         //mcause
