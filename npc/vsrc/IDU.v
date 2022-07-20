@@ -35,7 +35,10 @@ module IDU(
     output  reg                     MemWr,
     output  reg                     RegWrSel,  
 //To branch control
-    output  reg      [2:0]          branch
+    output  reg      [2:0]          branch,
+//To csr
+    output  reg                     csrWrEn,
+    output  reg      [11:0]         csrIdx
     );  
     
 wire    [4:0]   opcode = instr_i[6:2];
@@ -45,6 +48,7 @@ wire    [6:0]   fun_7 = instr_i[31:25];
 assign  Rd_o = instr_i[11:7];
 assign  Rs1_o = instr_i[19:15];
 assign  Rs2_o = instr_i[24:20];
+assign  csrIdx = instr_i[31:20];
 
 import "DPI-C" function void ebreak(); 
 
@@ -58,6 +62,8 @@ always @(*) begin
     Src1Sel = `Rs1;                        //默认Rs1    
     Src2Sel = `Rs2;                        //默认Rs2
     MemOp = 3'b0;                          //默认lb
+    csrWrEn = 1'b0;
+//64/32
     dwsel = `out_64;                       //默认64位输出
     DivEn = 1'b0;                          //默认不使能DIV
     DivSel = `DivMul;
@@ -277,23 +283,30 @@ always @(*) begin
         end
         //调用DPI-C函数
         `syscall: begin
-
-            // case(fun_3)
-            //     `env: begin
-            //         if(instr_i[20]) begin                   //ebreak;
+            Src1Sel = `Rs1;
+            Src2Sel = `csr;
+            RegWrEn = 1'b1;
+            branch = `NonBranch;
+            RegWrSel = `AluOut;
+            csrWrEn = 1'b1;
+            case(fun_3)
+                `env: begin
+                    if(instr_i[20]) begin                   //ebreak;
                        ebreak();
-            //         end
-            //         else begin                              //ecall;
-            //             //TODO
-            //         end
-            //     end
-            //     `csrrw: begin
-            //         //TODO
-            //     end
-            //     `csrrs: begin
-            //         //TODO
-            //     end
-            // endcase
+                    end
+                    else begin                              //ecall;
+                        //TODO
+                    end
+                end
+                `csrrw: begin
+                    //TODO
+                    ALUctr = `AluSrc2;
+                end
+                `csrrs: begin
+                    //TODO
+                    ALUctr = `AluOr;
+                end
+            endcase
         end
         default: begin
             //TODO

@@ -1,5 +1,5 @@
-#include </home/qw/ysyx-workbench/npc/csrc/common.h>
-
+#include "include/common.h"
+#include <sys/time.h>
 static uint64_t boot_time = 0;
 
 static uint64_t get_time_internal() {

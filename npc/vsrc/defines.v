@@ -33,6 +33,7 @@
 `define     Rs2                 2'b00
 `define     imm                 2'b01
 `define     src_4               2'b11
+`define     csr                 2'b10
 
 //fun3 defines
 //OP_REG

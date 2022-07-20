@@ -1,7 +1,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <stdlib.h>
-#include </home/qw/ysyx-workbench/npc/csrc/common.h>
+#include "include/common.h"
 
 #define CLOSE "\001\033[0m\002"                 // 关闭所有属性
 #define BLOD  "\001\033[1m\002"                 // 强调、加粗、高亮

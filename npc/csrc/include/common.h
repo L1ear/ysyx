@@ -1,12 +1,16 @@
 #ifndef __COMMON_H__
 #define __COMMON_H__
 
+#include <cstdio>
 #include <stdbool.h>
 #include "verilated_dpi.h"
 #include "svdpi.h"
 #include "Vtop__Dpi.h"
-#include "/home/qw/ysyx-workbench/npc/csrc/mem.h"
-#include "/home/qw/ysyx-workbench/npc/csrc/diff_test.h"
+#include "mem.h"
+#include "diff_test.h"
+#include "sdb.h"
+#include "vcd.h"
+#include "config.h"
 
 
 
@@ -31,7 +35,6 @@ static inline const char* reg_name(int idx, int width) {
   extern const char* regs[];
   return regs[idx];
 }
-
 
 typedef struct {
   word_t gpr[32];

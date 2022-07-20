@@ -1,6 +1,6 @@
 #include <dlfcn.h>
-#include </home/qw/ysyx-workbench/npc/csrc/common.h>
-#include </home/qw/ysyx-workbench/npc/csrc/diff_test.h>
+#include "include/common.h"
+
 
 extern uint8_t imem;
 extern CPU_state cpu;

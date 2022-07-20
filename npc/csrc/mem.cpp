@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include <assert.h>
-#include </home/qw/ysyx-workbench/npc/csrc/mem.h>
+#include "include/common.h"
 #include <getopt.h>
 
 uint8_t imem[0x8000000] __attribute((aligned(4096)));
@@ -50,10 +50,11 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   // }
   // printf("\n");
   if(addr == 0xa0000048){
-      return get_time();
+    // printf("%ld\n",get_time());
+    return get_time();
   }
   else if(addr>0x88000000||addr<0x80000000){
-    printf("read out of boundary!\nPC: %08lx\n",instrAddr);
+    printf("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
     return 0;
     }
   else
@@ -80,9 +81,9 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
 
 void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
   if(addr == 0xa00003f8){
-    printf("%s",data);
+    printf("%c",(uint8_t)data);
   }
-  if(addr>0x88000000||addr<0x80000000){
+  else if(addr>0x88000000||addr<0x80000000){
       printf("write out of boundary!\nPC: %08lx\n",instrAddr);
       assert(0);
       } 
@@ -142,6 +143,7 @@ void init_monitor(int argc, char *argv[]) {
   parse_args(argc, argv);
 
   long img_size = load_img();
-
-  //init_difftest(diff_so_file, img_size, difftest_port);
+#ifdef  difftest
+  init_difftest(diff_so_file, img_size, difftest_port);
+#endif
 }

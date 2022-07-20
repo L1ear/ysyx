@@ -1,11 +1,7 @@
-#include "verilated.h"
-#include "../obj_dir/Vtop.h"
-#include <cstdio>
-#include <verilated_vcd_c.h>
-#include </home/qw/ysyx-workbench/npc/csrc/mem.h>
-#include </home/qw/ysyx-workbench/npc/csrc/common.h>
+#include "include/common.h"
 
 extern CPU_state cpu;
+
 /* for vcd */
 #if nvboard == 0
 static VerilatedVcdC* fp;
@@ -28,10 +24,62 @@ void nvboard_bind_all_pins(Vtop* top);
 *4: 
 */
 
-#define nvboard 0
 
 int err = false;
-// int t = 0;
+
+
+
+int reset(int i,int n) {
+  top->rst_n = 0; top->eval();
+  while (n -- > 0) 
+  {
+      single_cycle(i);
+      i = i+2;
+  }
+  top->rst_n = 1; top->eval();
+  return i;
+}
+
+
+
+int main(int argc, char *argv[])
+{
+    // nvboard_bind_all_pins(&top);
+    // nvboard_init();
+#ifdef vcd
+    Verilated::traceEverOn(true);
+    fp = new VerilatedVcdC;
+    top->trace(fp, 99); 
+    fp ->open("vlt.vcd");
+    fp ->dump(0);
+#endif 
+
+    sim_time = reset(sim_time,5);
+    init_monitor(argc, argv);    
+    en = 1;
+    
+
+    sdb_mainloop();
+    while(en)
+    {
+      single_cycle(sim_time);
+        // nvboard_update();
+      sim_time = sim_time+2;
+        //if(i>=1000) en = 0;
+    }
+    // reset(i,10);
+
+#ifdef vcd
+    delete fp;
+#endif
+    delete top;
+    // nvboard_quit();
+    if(err){
+      return 1;
+    }
+    else
+      return 0;
+}
 
 void single_cycle(int i) {
   top->clk = 1; 
@@ -59,8 +107,9 @@ void single_cycle(int i) {
     }
   }
   top->eval();
+#ifdef vcd
   fp ->dump(i);
-
+#endif
   top->clk = 0;
 //读mem，无论是否写使能，都在下降沿输出数据
 if(top->OPcode==3)
@@ -95,27 +144,20 @@ if(top->OPcode==3)
     break;
   }
   top->eval();
+#ifdef vcd
   fp ->dump(i+1);
+#endif
+
+#ifdef  difftest
     cpu.pc = top->instrAddr;
     int r;
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
     }
-  if(en == 1){  
-
-    //difftest_step(top->instrAddr);
-  }
-}
-
-int reset(int i,int n) {
-  top->rst_n = 0; top->eval();
-  while (n -- > 0) 
-  {
-      single_cycle(i);
-      i = i+2;
-  }
-  top->rst_n = 1; top->eval();
-  return i;
+    if(en == 1){  
+    difftest_step(top->instrAddr);
+    }
+#endif
 }
 
 //for DPI-C
@@ -131,42 +173,4 @@ void ebreak(){
     printf("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08lx\n",top->instrAddr);
   else
     printf("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08lx\n",top->instrAddr);
-}
-
-
-int main(int argc, char *argv[])
-{
-    // nvboard_bind_all_pins(&top);
-    // nvboard_init();
-    Verilated::traceEverOn(true);
-    fp = new VerilatedVcdC;
-    top->trace(fp, 99); 
-    fp ->open("vlt.vcd");
-    fp ->dump(0);
- 
-
-    sim_time = reset(sim_time,5);
-    init_monitor(argc, argv);    
-    en = 1;
-    
-
-    sdb_mainloop();
-    while(en)
-    {
-      single_cycle(sim_time);
-        // nvboard_update();
-      sim_time = sim_time+2;
-        //if(i>=1000) en = 0;
-    }
-    // reset(i,10);
-
-
-    delete fp;
-    delete top;
-    // nvboard_quit();
-    if(err){
-      return 1;
-    }
-    else
-      return 0;
 }
