@@ -6,6 +6,9 @@
 `define     inst_len            32
 
 `define     RegfileAddrWidth    5
+
+`define     ecallArg            5'd17           //R(17)
+
 //immediate expension opcode(one-hot-code)
 `define     immI                5'b00001
 `define     immU                5'b00010

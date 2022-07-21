@@ -296,6 +296,7 @@ always @(*) begin
                     end
                     else begin                  //ecall              //ecall;
                         //TODO
+                        Src1Sel = `ecallArg;
                     end
                 end
                 `csrrw: begin
