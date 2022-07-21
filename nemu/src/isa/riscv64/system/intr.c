@@ -5,7 +5,10 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    * Then return the address of the interrupt/exception vector.
    */
   cpu.mepc = epc;
-  cpu.mcause = NO;
+  if(NO == -1)
+    cpu.mcause = 11;    //11定义为M模式下的环境调用
+  else
+    cpu.mcause = NO;
   Log("ecall has been called,mcause: %016lx\n",NO);
   return cpu.mtvec;
 }
