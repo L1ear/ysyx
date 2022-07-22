@@ -43,7 +43,7 @@ __am_asm_trap:
   # bne t3, t0, __not_yield
   # addi t2,t2,4
 
-__not_yield:
+# __not_yield:
   STORE t0, OFFSET_CAUSE(sp)
   STORE t1, OFFSET_STATUS(sp)
   STORE t2, OFFSET_EPC(sp)
