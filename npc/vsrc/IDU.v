@@ -38,7 +38,10 @@ module IDU(
     output  reg      [2:0]          branch,
 //To csr
     output  reg                     csrWrEn,
-    output  reg      [11:0]         csrIdx
+    output  reg      [11:0]         csrIdx,
+//To tcu
+    output  reg                     IntSync,
+    output  reg                     mret
     );  
     
 wire    [4:0]   opcode = instr_i[6:2];
@@ -63,6 +66,8 @@ always @(*) begin
     Src2Sel = `Rs2;                        //默认Rs2
     MemOp = 3'b0;                          //默认lb
     csrWrEn = 1'b0;
+    IntSync = 1'b0;
+    mret = 1'b0;
 //64/32
     dwsel = `out_64;                       //默认64位输出
     DivEn = 1'b0;                          //默认不使能DIV
@@ -291,12 +296,15 @@ always @(*) begin
             csrWrEn = 1'b1;
             case(fun_3)
                 `env: begin
-                    if(instr_i[20]) begin       //ebreak            //ebreak;
+                    if(instr_i[20]) begin                       //ebreak;
                        ebreak();
                     end
-                    else begin                  //ecall              //ecall;
+                    else if(~instr_i[21]) begin                 //ecall              //ecall;
                         //TODO
-                        Src1Sel = `ecallArg;
+                        IntSync = 1'b1;
+                    end
+                    else begin                                  //mret
+                        mret = 1'b1;
                     end
                 end
                 `csrrw: begin

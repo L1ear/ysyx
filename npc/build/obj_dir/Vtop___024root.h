@@ -46,11 +46,16 @@ VL_MODULE(Vtop___024root) {
     CData/*2:0*/ top__DOT__DivSel;
     CData/*0:0*/ top__DOT__Div32;
     CData/*0:0*/ top__DOT__sft32;
+    CData/*0:0*/ top__DOT__csrWrEn;
+    CData/*0:0*/ top__DOT__IntSync;
+    CData/*0:0*/ top__DOT__mret;
     CData/*0:0*/ top__DOT__less;
     CData/*0:0*/ top__DOT__zero;
+    CData/*0:0*/ top__DOT__csrUpdata;
+    CData/*0:0*/ top__DOT__mstatus_n;
+    CData/*1:0*/ top__DOT__iotrap;
     CData/*0:0*/ top__DOT__u_ALU__DOT__cin;
     CData/*0:0*/ top__DOT__u_ALU__DOT__overflow;
-    CData/*0:0*/ top__DOT__u_IDU__DOT__csrWrEn;
     VlWide<4>/*127:0*/ top__DOT__u_ALU__DOT__divider__DOT__tmp;
     QData/*63:0*/ top__DOT__NextPc;
     QData/*63:0*/ top__DOT__CurPc;
@@ -58,12 +63,18 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__rs2_data;
     QData/*63:0*/ top__DOT__imm;
     QData/*63:0*/ top__DOT__ALUout;
+    QData/*63:0*/ top__DOT__mepc_n;
     QData/*63:0*/ top__DOT__ALUsrc1;
     QData/*63:0*/ top__DOT__ALUsrc2;
+    QData/*63:0*/ top__DOT__RegWrData;
     QData/*63:0*/ top__DOT__u_ALU__DOT__src2_cin;
     QData/*63:0*/ top__DOT__u_ALU__DOT__Adder_o;
     QData/*63:0*/ top__DOT__u_ALU__DOT__DivOut;
     QData/*63:0*/ top__DOT__u_ALU__DOT__shifter__DOT__temp;
+    QData/*63:0*/ top__DOT__u_csr_reg__DOT__mepc;
+    QData/*63:0*/ top__DOT__u_csr_reg__DOT__mtvec;
+    QData/*63:0*/ top__DOT__u_csr_reg__DOT__mstatus;
+    QData/*63:0*/ top__DOT__u_csr_reg__DOT__mcause;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__u_regfiles__DOT__regfiles;
 
     // LOCAL VARIABLES

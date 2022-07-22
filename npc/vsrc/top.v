@@ -52,6 +52,10 @@ wire         DivEn;
 wire  [2:0]  DivSel;
 wire         Div32;
 wire         sft32;
+wire  [11:0] csrIdx;
+wire         csrWrEn;
+wire         IntSync;
+wire         mret;
 
 // ALU Outputs
 wire  [`XLEN-1:0]  ALUout;
@@ -59,6 +63,18 @@ wire  less;
 
 wire  zero;
 
+//csr_reg output
+wire                       gIntEn;
+wire    [`XLEN-1:0]        csr_mtvec; 
+wire    [`XLEN-1:0]        csr_mepc;  
+wire    [`XLEN-1:0]        csrRdData; 
+
+//tcu output
+wire                       csrUpdata;
+wire    [`XLEN-1:0]        mcause_n;
+wire    [`XLEN-1:0]        mepc_n;
+wire                       mstatus_n;
+wire    [1:0]              iotrap;
 
 
 
@@ -73,7 +89,8 @@ always @(*) begin
         NextPc = `XLEN'h80000000;
     end
     else begin
-        NextPc =((PCAsrc)?imm:`XLEN'd4) + ((PCBsrc)?rs1_data:CurPc);
+        NextPc = iotrap[1]?(iotrap[0]?csr_mepc:csr_mtvec):
+                 ((PCAsrc)?imm:`XLEN'd4) + ((PCBsrc)?rs1_data:CurPc);
     end
 end
 
@@ -100,7 +117,7 @@ bcu  u_bcu (
 wire [`XLEN-1:0]	ALUsrc1;
 wire [`XLEN-1:0]	ALUsrc2;
 assign ALUsrc1 = (Src1Sel)?CurPc:rs1_data;
-assign ALUsrc2 = (Src2Sel[1])?`XLEN'd4:
+assign ALUsrc2 = (Src2Sel[1])?(Src2Sel[0]?`XLEN'd4:csrRdData):
 				 (Src2Sel[0])?imm:rs2_data;
 ALU  u_ALU (
     .ALUctr                  ( ALUctr   ),
@@ -157,7 +174,11 @@ IDU  u_IDU (
     .DivEn                   ( DivEn      ),
     .DivSel                  ( DivSel     ),
     .Div32                   ( Div32      ),
-    .sft32                   ( sft32      )
+    .sft32                   ( sft32      ),
+    .csrWrEn                 (csrWrEn),
+    .csrIdx                  (csrIdx),
+    .IntSync                 (IntSync),
+    .mret                    (mret)
 );
     
 // instr_mem  u_instr_mem (
@@ -173,6 +194,37 @@ imm_exp  u_imm_exp (
     .exp_op_i                ( ExtOp        ),
 
     .imm_o                   ( imm          ) 
+);
+
+tcu u_tcu (
+    .IntSync                (IntSync),
+    .IntTime                (1'b0),
+    .IntSoft                (1'b0),
+    .mret                   (mret),
+    .currPC                 (CurPc),
+    .gIntEn                 (gIntEn),
+
+    .csrUpdata              (csrUpdata),
+    .mcause_n               (mcause_n),
+    .mepc_n                 (mcause_n),
+    .mstatus_n              (mstatus_n), 
+    .iotrap                 (iotrap)
+);
+
+csr_reg u_csr_reg (
+   .clk                         (clk),
+   .rst_n                       (rst_n),
+   .csrIdx                      (csrIdx),
+   .csrWrEn                     (csrWrEn),
+   .csrWrData                   (RegWrData),
+   .csrRdData                   (csrRdData),
+   .mcause_n                    (mcause_n),
+   .mepc_n                      (mepc_n),  
+   .mstatus_n                   (mstatus_n),
+   .csrUpdata                   (csrUpdata),
+   .csr_mtvec                   (csr_mtvec),
+   .csr_mepc                    (csr_mepc),
+   .gIntEn                      (gIntEn)
 );
 
 

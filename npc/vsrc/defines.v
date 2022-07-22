@@ -120,6 +120,8 @@
 `define     DivRem              3'b110
 `define     DivRemu             3'b111
 
+//mcause define
+`define     ecall_m             64'd11
 
 // `define                         5'
 // `define                         5'
