@@ -176,6 +176,7 @@ void infunc(uint64_t thisPC,uint64_t nxtPC){
             for(int j=0;j<calltime;j++) printf(" ");
             printf("call: %s @%08lx\n",strtab + sym->st_name,nxtPC);
             calltime++;
+            break;
           }
         }
       }
