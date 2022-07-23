@@ -20,7 +20,7 @@ size_t fs_lseek(int fd, size_t offset, int whence);
 int fs_close(int fd);
 
 static uintptr_t loader(PCB *pcb, const char *filename) {
-  TODO();
+  // TODO();
   Elf_Ehdr elfhdr;
   Elf_Phdr prohdr;
   //printf("%s\n",filename);
