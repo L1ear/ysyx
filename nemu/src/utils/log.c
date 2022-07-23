@@ -70,10 +70,10 @@ void init_ftrace(const char *elf_file) {
     elf_fp = fp;
   }
   rtval = fread(elf_head, sizeof(Elf64_Ehdr), 1, elf_fp);
-  // int nr_sc = elf_head->e_shnum;
+  int nr_sc = elf_head->e_shnum;
   // fseek(elf_fp,elf_head->e_shoff,SEEK_SET);
   // rtval = fread(shdr, sizeof(Elf64_Shdr),nr_sc, elf_fp);
-  printf("rtval:%d\n",rtval);
+  printf("rtval:%d\nnr_sc: %d\n",rtval,nr_sc);
   // for(int i = 0; i<nr_sc; ++i){
   //   printf("%d  %c\n",i,shdr[i].sh_name);
   // }
