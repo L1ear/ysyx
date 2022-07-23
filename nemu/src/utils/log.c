@@ -159,19 +159,13 @@ void init_ftrace(const char *elf_file) {
   // rtval = fread(symtable,sizeof(Elf64_Sym));
 }
 
-void infunc(uint64_t nxtPC){
+void infunc(uint64_t thisPC,uint64_t nxtPC){
+  printf("%08lx: ",thisPC);
   for (size_t i = 0; i < shnum; i++) {
-		ElfW(Shdr) *shdr = &shdrs[i];	
- 
+		ElfW(Shdr) *shdr = &shdrs[i];	 
 		if (shdr->sh_type == SHT_SYMTAB) {
-			// const char *shname = shstrtab + shdr->sh_name;
 			ElfW(Sym) *syms = (ElfW(Sym *))(file_mmbase + shdr->sh_offset); 
 			size_t entries = shdr->sh_size / shdr->sh_entsize;
-			// sh_info: One greater than the symbol table index of 
-			// 			the last local symbol (binding STB_LOCAL).
-			// printf("shdr->sh_info = %u\n", shdr->sh_info);
-			// sh_link: .strtab or .dynstr (The section header index of 
-			// 			the associated string table.)
 			const char *strtab = file_mmbase + shdrs[shdr->sh_link].sh_offset;
 			// print_syms(shdrs, shstrtab, shname, syms, entries, strtab);	
       for (size_t i = 0; i < entries; i++) {
@@ -180,7 +174,6 @@ void infunc(uint64_t nxtPC){
           if(nxtPC>=(uintmax_t)sym->st_value || nxtPC<=(uintmax_t)sym->st_value+(uintmax_t)sym->st_size){
             printf("***********call: %s @%08lx\n",strtab + sym->st_name,nxtPC);
           }
-          printf("********PC:%08lx\n",nxtPC);
           // printf(" %16.16jx", (uintmax_t)sym->st_value);
           // printf(" %5ju", (uintmax_t)sym->st_size);
           // printf(" %s\n", strtab + sym->st_name);
