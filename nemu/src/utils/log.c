@@ -64,14 +64,13 @@ void print_iringbuf(){
 void init_ftrace(const char *elf_file) {
   elf_fp = stdout;
   int rtval;
-  int nr_sc;
   if (elf_file != NULL) {
     FILE *fp = fopen(elf_file, "w");
     Assert(fp, "Can not open '%s'", elf_file);
     elf_fp = fp;
   }
   rtval = fread(&elf_head, sizeof(Elf64_Ehdr), 1, elf_fp);
-  nr_sc = elf_head.e_shnum;
+  int nr_sc = elf_head.e_shnum;
   fseek(elf_fp,elf_head.e_shoff,SEEK_SET);
   rtval = fread(shdr, sizeof(Elf64_Shdr),nr_sc, elf_fp);
   printf("rtval:%d\nnr_sc: %d\n",rtval,nr_sc);
