@@ -84,6 +84,6 @@ void init_ftrace(const char *elf_file) {
     if(strcmp(&shstrtable[shdr[i].sh_name],".strtab")==0) stroff = shdr[i].sh_offset;
     if(strcmp(&shstrtable[shdr[i].sh_name],".symtab")==0) symoff = shdr[i].sh_offset;
   }
-  printf("stroff:%ld\nsymoff:%ld\n",stroff, symoff);
+  printf("stroff:%lx\nsymoff:%lx\n",stroff, symoff);
 }
 #endif
