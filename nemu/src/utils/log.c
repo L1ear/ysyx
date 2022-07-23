@@ -133,8 +133,8 @@ void init_ftrace(const char *elf_file) {
       for (size_t i = 0; i < entries; i++) {
         ElfW(Sym) *sym = &syms[i];
         if(ELFW(ST_TYPE)(sym->st_info)==STT_FUNC){
-          printf(" %16.16jx", (uintmax_t)sym->st_value);
-          printf(" %5ju", (uintmax_t)sym->st_size);
+          printf(" %16.16jx", sym->st_value);
+          printf(" %5ju", sym->st_size);
           printf(" %s\n", strtab + sym->st_name);
 
         }
