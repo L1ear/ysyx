@@ -22,6 +22,7 @@ Elf64_Ehdr elf_head[1];
 Elf64_Shdr shdr[99];
 Elf64_Sym symtable[99];
 char shstrtable[999];
+int calltime=0;
 
 void init_log(const char *log_file) {
   log_fp = stdout;
@@ -172,12 +173,10 @@ void infunc(uint64_t thisPC,uint64_t nxtPC){
         ElfW(Sym) *sym = &syms[i];
         if(ELFW(ST_TYPE)(sym->st_info)==STT_FUNC){
           if(nxtPC==(uintmax_t)sym->st_value){
-            printf("***********call: %s @%08lx\n",strtab + sym->st_name,nxtPC);
+            for(int j=0;j<calltime;j++) printf(" ");
+            printf("call: %s @%08lx\n",strtab + sym->st_name,nxtPC);
+            calltime++;
           }
-          // printf(" %16.16jx", (uintmax_t)sym->st_value);
-          // printf(" %5ju", (uintmax_t)sym->st_size);
-          // printf(" %s\n", strtab + sym->st_name);
-
         }
       }
     }
