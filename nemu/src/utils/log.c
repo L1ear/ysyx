@@ -75,7 +75,7 @@ void init_ftrace(const char *elf_file) {
   fseek(elf_fp,elf_head.e_shoff,SEEK_SET);
   rtval = fread(shdr, sizeof(Elf64_Shdr),nr_sc, elf_fp);
   printf("rtval:%d\nnr_sc: %d\n",rtval,nr_sc);
-  for(int i = 0; i<nr_sc; ++i){
+  for(int i = 0; i<nr_sc; i++){
     printf("nr:%d  %c\n",i,shdr[i].sh_name);
   }
 }
