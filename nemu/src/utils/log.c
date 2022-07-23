@@ -1,7 +1,11 @@
 #include <common.h>
+#include <elf.h>
 
 extern uint64_t g_nr_guest_inst;
 FILE *log_fp = NULL;
+FILE *elf_fp = NULL;
+Elf64_Ehdr* elf_head;
+Elf64_Shdr shdr[99];
 
 void init_log(const char *log_file) {
   log_fp = stdout;
@@ -55,3 +59,23 @@ void print_iringbuf(){
     }
   }
 }
+
+#ifdef CONFIG_FTRACE
+void init_ftrace(const char *elf_file) {
+  elf_fp = stdout;
+  int rtval;
+  if (elf_file != NULL) {
+    FILE *fp = fopen(elf_file, "w");
+    Assert(fp, "Can not open '%s'", elf_file);
+    elf_fp = fp;
+  }
+  rtval = fread(elf_head, sizeof(Elf64_Ehdr), 1, elf_fp);
+  int nr_sc = elf_head->e_shnum;
+  fseek(elf_fp,elf_head->e_shoff,SEEK_SET);
+  rtval = fread(shdr, sizeof(Elf64_Shdr),nr_sc, elf_fp);
+  printf("rtval:%d\n",rtval);
+  for(int i = 0; i<nr_sc; ++i){
+    printf("%d  %c\n",i,shdr[i].sh_name);
+  }
+}
+#endif
