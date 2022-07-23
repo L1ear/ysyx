@@ -77,7 +77,7 @@ void init_ftrace(const char *elf_file) {
   fseek(elf_fp, shdr[elf_head->e_shstrndx].sh_offset,SEEK_SET);
   rtval = fread(shstrtable, 1, shdr[elf_head->e_shstrndx].sh_size,elf_fp);
   for(int i = 0; i<nr_sc; i++){
-    printf("nr:%d  %s\n",i,&shstrtable[shdr[i].sh_name]);
+    printf("nr:%d  %s   %d\n",i,&shstrtable[shdr[i].sh_name], strcmp(&shstrtable[shdr[i].sh_name],"strtab"));
   }
 }
 #endif
