@@ -199,7 +199,7 @@ void outfunc(uint64_t thisPC,uint64_t nxtPC){
       for (; i < entries; i++) {
         ElfW(Sym) *sym = &syms[i];
         if(ELFW(ST_TYPE)(sym->st_info)==STT_FUNC){
-          if(nxtPC>=sym->st_value && nxtPC<=sym->st_value + sym->st_size){
+          if(thisPC>=sym->st_value && thisPC<=sym->st_value + sym->st_size){
             for(int j=0;j<calltime;j++) printf(" ");
             printf("ret: %s to %08lx\n",strtab + sym->st_name,nxtPC);
             calltime--;
