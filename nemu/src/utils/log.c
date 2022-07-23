@@ -179,19 +179,29 @@ void iofunc(uint64_t thisPC,uint64_t nxtPC){
             calltime++;
             break;
           }
-          else if(thisPC>sym->st_value && thisPC<=sym->st_value + sym->st_size){
+        }
+      }
+      if(i==entries) {
+        for (i=0 ; i < entries; i++) {
+        ElfW(Sym) *sym = &syms[i];
+        if(thisPC>sym->st_value && thisPC<=sym->st_value + sym->st_size){
             calltime--;
             for(int j=0;j<calltime;j++) printf(" ");
             printf("ret: %s to %08lx\n",strtab + sym->st_name,nxtPC);
             break;
-          }
-        }
+        } 
       }
-      if(i==entries) Log("Unknown function");
+      }
     }
   }
 }
-
+          // else if(thisPC>sym->st_value && thisPC<=sym->st_value + sym->st_size){
+          //   calltime--;
+          //   for(int j=0;j<calltime;j++) printf(" ");
+          //   printf("ret: %s to %08lx\n",strtab + sym->st_name,nxtPC);
+          //   break;
+          // }   
+              //  Log("Unknown function");
 void outfunc(uint64_t thisPC,uint64_t nxtPC){
   printf("%08lx: ",thisPC);
   for (size_t i = 0; i < shnum; i++) {
