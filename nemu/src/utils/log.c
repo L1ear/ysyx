@@ -75,7 +75,6 @@ void init_ftrace(const char *elf_file) {
   printf("rtval:%d\nnr_sc: %d\n",rtval,nr_sc);
   for(int i = 0; i<nr_sc; i++){
     printf("nr:%d  %c\n",i,shdr[i].sh_name);
-    printf("?");
   }
 }
 #endif
