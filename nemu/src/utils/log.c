@@ -6,6 +6,7 @@ FILE *log_fp = NULL;
 FILE *elf_fp = NULL;
 Elf64_Ehdr elf_head[1];
 Elf64_Shdr shdr[99];
+char shstrtable[999];
 
 void init_log(const char *log_file) {
   log_fp = stdout;
@@ -73,8 +74,10 @@ void init_ftrace(const char *elf_file) {
   fseek(elf_fp,elf_head->e_shoff,SEEK_SET);
   rtval = fread(shdr, sizeof(Elf64_Shdr),nr_sc, elf_fp);
   printf("rtval:%d\nnr_sc: %d\n",rtval,nr_sc);
+  fseek(elf_fp, shdr[elf_head->e_shstrndx].sh_offset,SEEK_SET);
+  rtval = fread(shstrtable, 1, shdr[elf_head->e_shstrndx].sh_size,elf_fp);
   for(int i = 0; i<nr_sc; i++){
-    printf("nr:%d  %c\n",i,shdr[i].sh_name);
+    printf("nr:%d  %s\n",i,&shstrtable[shdr[i].sh_name]);
   }
 }
 #endif
