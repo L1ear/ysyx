@@ -62,8 +62,6 @@ void print_iringbuf(){
 
 #ifdef CONFIG_FTRACE
 void init_ftrace(const char *elf_file) {
-  printf("@*************************elf file:%s\n",elf_file);
-  elf_fp = stdout;
   int rtval;
   if (elf_file != NULL) {
     FILE *fp = fopen(elf_file, "w");
