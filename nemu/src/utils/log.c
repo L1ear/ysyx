@@ -64,7 +64,7 @@ void print_iringbuf(){
 void init_ftrace(const char *elf_file) {
   int rtval;
   if (elf_file != NULL) {
-    FILE *fp = fopen(elf_file, "w");
+    FILE *fp = fopen(elf_file, "rb");
     Assert(fp, "Can not open '%s'", elf_file);
     elf_fp = fp;
   }
