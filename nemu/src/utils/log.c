@@ -77,15 +77,18 @@ void print_iringbuf(){
 }
 
 #ifdef CONFIG_FTRACE
+ElfW(Shdr) *shdrs;
+size_t shnum;
+char *file_mmbase;
 void init_ftrace(const char *elf_file) {
   // int rtval;
   // uint64_t stroff=0;
   // uint64_t symoff=0;
   ElfW(Ehdr) *ehdr;
-	ElfW(Shdr) *shdrs;
-	size_t shnum; //shstrndx;
+	
+   //shstrndx;
 	// const char *shstrtab;
-  char *file_mmbase;
+  
   size_t fsize;
   int fd;
   struct stat file_status;
@@ -155,4 +158,37 @@ void init_ftrace(const char *elf_file) {
   // fseek(elf_fp,symoff,SEEK_SET);
   // rtval = fread(symtable,sizeof(Elf64_Sym));
 }
+
+void infunc(uint64_t nxtPC){
+  for (size_t i = 0; i < shnum; i++) {
+		ElfW(Shdr) *shdr = &shdrs[i];	
+ 
+		if (shdr->sh_type == SHT_SYMTAB) {
+			// const char *shname = shstrtab + shdr->sh_name;
+			ElfW(Sym) *syms = (ElfW(Sym *))(file_mmbase + shdr->sh_offset); 
+			size_t entries = shdr->sh_size / shdr->sh_entsize;
+			// sh_info: One greater than the symbol table index of 
+			// 			the last local symbol (binding STB_LOCAL).
+			// printf("shdr->sh_info = %u\n", shdr->sh_info);
+			// sh_link: .strtab or .dynstr (The section header index of 
+			// 			the associated string table.)
+			const char *strtab = file_mmbase + shdrs[shdr->sh_link].sh_offset;
+			// print_syms(shdrs, shstrtab, shname, syms, entries, strtab);	
+      for (size_t i = 0; i < entries; i++) {
+        ElfW(Sym) *sym = &syms[i];
+        if(ELFW(ST_TYPE)(sym->st_info)==STT_FUNC){
+          if(nxtPC>=(uintmax_t)sym->st_value || nxtPC<=(uintmax_t)sym->st_value+(uintmax_t)sym->st_size){
+            printf("call%s @%08lx",strtab + sym->st_name,nxtPC);
+          }
+          // printf(" %16.16jx", (uintmax_t)sym->st_value);
+          // printf(" %5ju", (uintmax_t)sym->st_size);
+          // printf(" %s\n", strtab + sym->st_name);
+
+        }
+      }
+    }
+  }
+
+}
+
 #endif
