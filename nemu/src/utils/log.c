@@ -160,7 +160,7 @@ void init_ftrace(const char *elf_file) {
   // rtval = fread(symtable,sizeof(Elf64_Sym));
 }
 
-void infunc(uint64_t thisPC,uint64_t nxtPC){
+void iofunc(uint64_t thisPC,uint64_t nxtPC){
   printf("%08lx: ",thisPC);
   for (size_t i = 0; i < shnum; i++) {
 		ElfW(Shdr) *shdr = &shdrs[i];	 
@@ -177,6 +177,12 @@ void infunc(uint64_t thisPC,uint64_t nxtPC){
             for(int j=0;j<calltime;j++) printf(" ");
             printf("call: %s @%08lx\n",strtab + sym->st_name,nxtPC);
             calltime++;
+            break;
+          }
+          else if(thisPC>=sym->st_value && thisPC<=sym->st_value + sym->st_size){
+            calltime--;
+            for(int j=0;j<calltime;j++) printf(" ");
+            printf("ret: %s to %08lx\n",strtab + sym->st_name,nxtPC);
             break;
           }
         }
