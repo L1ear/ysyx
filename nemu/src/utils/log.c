@@ -178,7 +178,7 @@ void infunc(uint64_t nxtPC){
         ElfW(Sym) *sym = &syms[i];
         if(ELFW(ST_TYPE)(sym->st_info)==STT_FUNC){
           if(nxtPC>=(uintmax_t)sym->st_value || nxtPC<=(uintmax_t)sym->st_value+(uintmax_t)sym->st_size){
-            printf("***********call%s @%08lx",strtab + sym->st_name,nxtPC);
+            printf("***********call: %s @%08lx",strtab + sym->st_name,nxtPC);
           }
           printf("********PC:%08lx\n",nxtPC);
           // printf(" %16.16jx", (uintmax_t)sym->st_value);
