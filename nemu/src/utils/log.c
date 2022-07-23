@@ -64,6 +64,8 @@ void print_iringbuf(){
 #ifdef CONFIG_FTRACE
 void init_ftrace(const char *elf_file) {
   int rtval;
+  uint64_t stroff=0;
+  uint64_t symoff=0;
   if (elf_file != NULL) {
     FILE *fp = fopen(elf_file, "rb");
     Assert(fp, "Can not open '%s'", elf_file);
@@ -76,8 +78,12 @@ void init_ftrace(const char *elf_file) {
   printf("rtval:%d\nnr_sc: %d\n",rtval,nr_sc);
   fseek(elf_fp, shdr[elf_head->e_shstrndx].sh_offset,SEEK_SET);
   rtval = fread(shstrtable, 1, shdr[elf_head->e_shstrndx].sh_size,elf_fp);
-  for(int i = 0; i<nr_sc; i++){
-    printf("nr:%d   %s   %d\n",i,&shstrtable[shdr[i].sh_name], strcmp(&shstrtable[shdr[i].sh_name],".strtab"));
+  int i = 0;
+  for(; i<nr_sc; i++){
+    printf("nr:%d   %s\n",i,&shstrtable[shdr[i].sh_name]);
+    if(strcmp(&shstrtable[shdr[i].sh_name],".strtab")==0) stroff = shdr[i].sh_offset;
+    if(strcmp(&shstrtable[shdr[i].sh_name],".symtab")==0) symoff = shdr[i].sh_offset;
   }
+  printf("stroff:%ld\nsymoff:%ld\n",stroff, symoff);
 }
 #endif
