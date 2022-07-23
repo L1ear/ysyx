@@ -130,7 +130,7 @@ void init_ftrace(const char *elf_file) {
       for (size_t i = 0; i < entries; i++) {
         ElfW(Sym) *sym = &syms[i];
         if(ELFW(ST_TYPE)(sym->st_info)==STT_FUNC){
-          printf(" %s", strtab + sym->st_name);
+          printf(" %s\n", strtab + sym->st_name);
         }
       }
 		}
