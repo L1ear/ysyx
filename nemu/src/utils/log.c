@@ -169,7 +169,8 @@ void infunc(uint64_t thisPC,uint64_t nxtPC){
 			size_t entries = shdr->sh_size / shdr->sh_entsize;
 			const char *strtab = file_mmbase + shdrs[shdr->sh_link].sh_offset;
 			// print_syms(shdrs, shstrtab, shname, syms, entries, strtab);	
-      for (size_t i = 0; i < entries; i++) {
+      size_t i = 0;
+      for (; i < entries; i++) {
         ElfW(Sym) *sym = &syms[i];
         if(ELFW(ST_TYPE)(sym->st_info)==STT_FUNC){
           if(nxtPC==(uintmax_t)sym->st_value){
@@ -180,9 +181,34 @@ void infunc(uint64_t thisPC,uint64_t nxtPC){
           }
         }
       }
+      if(i==entries) Log("Unknown function");
     }
   }
-
 }
 
+void outfunc(uint64_t thisPC,uint64_t nxtPC){
+  printf("%08lx: ",thisPC);
+  for (size_t i = 0; i < shnum; i++) {
+		ElfW(Shdr) *shdr = &shdrs[i];	 
+		if (shdr->sh_type == SHT_SYMTAB) {
+			ElfW(Sym) *syms = (ElfW(Sym *))(file_mmbase + shdr->sh_offset); 
+			size_t entries = shdr->sh_size / shdr->sh_entsize;
+			const char *strtab = file_mmbase + shdrs[shdr->sh_link].sh_offset;
+			// print_syms(shdrs, shstrtab, shname, syms, entries, strtab);	
+      size_t i = 0;
+      for (; i < entries; i++) {
+        ElfW(Sym) *sym = &syms[i];
+        if(ELFW(ST_TYPE)(sym->st_info)==STT_FUNC){
+          if(nxtPC>=sym->st_value && nxtPC<=sym->st_value + sym->st_size){
+            for(int j=0;j<calltime;j++) printf(" ");
+            printf("ret: %s to %08lx\n",strtab + sym->st_name,nxtPC);
+            calltime--;
+            break;
+          }
+        }
+      }
+      if(i==entries) Log("Unknown function");
+    }
+  }
+}
 #endif
