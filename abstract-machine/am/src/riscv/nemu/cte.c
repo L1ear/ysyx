@@ -13,6 +13,10 @@ Context* __am_irq_handle(Context *c) {
           ev.event = EVENT_YIELD; 
           break;
         }    
+        else if(c->GPR1 == 1){
+          ev.event = EVENT_SYSCALL; 
+          break;
+        }
       default: ev.event = EVENT_ERROR; break;
     }
     // for(int i=0;i<32;i++){
