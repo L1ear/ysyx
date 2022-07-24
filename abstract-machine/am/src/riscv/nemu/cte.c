@@ -13,7 +13,7 @@ Context* __am_irq_handle(Context *c) {
           ev.event = EVENT_YIELD; 
           break;
         }    
-        else if(c->GPR1 == 1){
+        else {
           ev.event = EVENT_SYSCALL; 
           break;
         }
