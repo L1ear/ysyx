@@ -18,7 +18,7 @@ ELF	?=
 # ifdef CONFIG_FTRACE
 ARGS += --e $(ELF)
 # endif
-NEMU_EXEC := $(BINARY) $(ARGS) $(IMG) 
+NEMU_EXEC := $(BINARY) --e $(ELF) $(ARGS) $(IMG) 
 
 run-env: $(BINARY) $(DIFF_REF_SO)
 
