@@ -9,9 +9,10 @@ Context* __am_irq_handle(Context *c) {
     Event ev = {0};
     switch (c->mcause) {
       case 11: 
-        if(c->GPR1 == -1)
+        if(c->GPR1 == -1){
           ev.event = EVENT_YIELD; 
-        break;
+          break;
+        }    
       default: ev.event = EVENT_ERROR; break;
     }
     // for(int i=0;i<32;i++){
