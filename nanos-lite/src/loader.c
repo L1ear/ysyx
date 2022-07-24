@@ -35,7 +35,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
       // fs_read(fd,(void *)prohdr.p_vaddr,prohdr.p_filesz);
       ramdisk_read((void *)prohdr.p_vaddr, prohdr.p_offset, prohdr.p_filesz);
       //printf("from %x %x size = %x \n",prohdr.p_vaddr,prohdr.p_offset,prohdr.p_filesz);
-      memset((void*)(prohdr.p_vaddr+prohdr.p_filesz),0,prohdr.p_memsz-prohdr.p_filesz);
+      // memset((void*)(prohdr.p_vaddr+prohdr.p_filesz),0,prohdr.p_memsz-prohdr.p_filesz);
     }
     
   }
