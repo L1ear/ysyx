@@ -1,7 +1,7 @@
 #include <common.h>
 #include "syscall.h"
 
-enum {
+enum {          //from lib/libos/syscall.h
   SYS_exit,
   SYS_yield,
   SYS_open,
