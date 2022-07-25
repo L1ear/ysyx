@@ -38,17 +38,18 @@ void do_syscall(Context *c) {
     case SYS_exit:  halt(a[1]);break;
 
     case SYS_write: 
-
-    if(fd == 1||fd == 2)
-      {
-        for(int i = 0; i < len;i ++) {
-          putch(((char*)buf)[i]);
+      if(fd == 1||fd == 2)
+        {
+          for(int i = 0; i < len;i ++) {
+            putch(((char*)buf)[i]);
+          }
+          //putch('\n');
+          c->GPRx = len;
         }
-        //putch('\n');
-        c->GPRx = len;
-      }
-    else if(fd == 0) c->GPRx = -1;
-    break;
+      else if(fd == 0) c->GPRx = -1;
+      break;
+    case SYS_brk:
+      c->GPRx = 0;
     default: panic("Unhandled syscall ID = %d", a[0]);
   }
 }
