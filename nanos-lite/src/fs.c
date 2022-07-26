@@ -106,6 +106,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     }
   }
   else{
+    assert(0);
     //printf("%d\n",len);
     int ret = f->read(buf,file_table[fd].seek_offset,len);
     f->seek_offset+=len;
