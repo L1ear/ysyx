@@ -170,7 +170,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
     return l;
   }
   else{
-    printf("**********write %d at %d\n",buf,file_table[fd].disk_offset+file_table[fd].seek_offset);
+    printf("**********write %d at %d,len:%d\n",buf,file_table[fd].disk_offset+file_table[fd].seek_offset,len);
     int ret = file_table[fd].size - file_table[fd].seek_offset <= len? file_table[fd].size - file_table[fd].seek_offset:len;
     ramdisk_write(buf,file_table[fd].disk_offset+file_table[fd].seek_offset,ret);
     file_table[fd].seek_offset +=ret;
