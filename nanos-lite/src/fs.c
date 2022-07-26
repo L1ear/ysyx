@@ -66,26 +66,54 @@ size_t fs_read(int fd, void *buf, size_t len){
 //   ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].seek_offset, len);
 //   file_table[fd].seek_offset += len; 
 // }
-  if(file_table[fd].read == NULL)
+//   if(file_table[fd].read == NULL)
+//   {
+//     if(file_table[fd].seek_offset >= file_table[fd].size)
+//     {
+//       assert(file_table[fd].seek_offset <= file_table[fd].size);
+//       return 0;
+//     }
+//     else {
+//       len = len <= file_table[fd].size - file_table[fd].seek_offset? len:file_table[fd].size - file_table[fd].seek_offset;
+//       ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].seek_offset,len);
+//       file_table[fd].seek_offset += len;
+//       assert(file_table[fd].seek_offset <= file_table[fd].size);
+//       return len;
+//     }
+//   }
+//   else{
+//     int ret = file_table[fd].read(buf,file_table[fd].seek_offset,len);
+//     file_table[fd].seek_offset += len;
+//     return ret;
+//   }
+// }
+  Finfo* f = &file_table[fd];
+  if(f->read == NULL)
   {
-    if(file_table[fd].seek_offset >= file_table[fd].size)
+    if(f->seek_offset >= f->size)
     {
-      assert(file_table[fd].seek_offset <= file_table[fd].size);
+      assert(f->seek_offset <= f->size);
+      //printf("%s seek_offset = %d size = %d FULL\n",f->name,f->seek_offset,f->size);
       return 0;
     }
     else {
-      len = len <= file_table[fd].size - file_table[fd].seek_offset? len:file_table[fd].size - file_table[fd].seek_offset;
-      ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].seek_offset,len);
-      file_table[fd].seek_offset += len;
+      size_t l = len <= file_table[fd].size - file_table[fd].seek_offset? len:file_table[fd].size - file_table[fd].seek_offset;
+      //printf("third %d %d %d\n",file_table[fd].seek_offset,file_table[fd].size,l);
+      ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].seek_offset,l);
+      file_table[fd].seek_offset = file_table[fd].seek_offset+l;
       assert(file_table[fd].seek_offset <= file_table[fd].size);
-      return len;
+      return l;
     }
   }
   else{
-    int ret = file_table[fd].read(buf,file_table[fd].seek_offset,len);
-    file_table[fd].seek_offset += len;
+    //printf("%d\n",len);
+    int ret = f->read(buf,file_table[fd].seek_offset,len);
+    f->seek_offset+=len;
+    //size_t l = len <= file_table[fd].size - file_table[fd].seek_offset? len:file_table[fd].size - file_table[fd].seek_offset;
+    //file_table[fd].seek_offset = file_table[fd].seek_offset+l;
     return ret;
-  }
+  }//以后可能出现问题
+  
 }
 
 int fs_close(int fd)
