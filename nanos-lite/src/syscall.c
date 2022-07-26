@@ -8,7 +8,7 @@ size_t fs_lseek(int fd, size_t offset, int whence);
 int fs_close(int fd);
 
 void do_syscall(Context *c) {
-  uintptr_t a[4];
+  uint64_t a[4];
   a[0] = c->GPR1;   //a7
   a[1] = c->GPR2;   //a0
   a[2] = c->GPR3;   //a1
