@@ -121,3 +121,14 @@ size_t fs_lseek(int fd, size_t offset, int whence)
   return ret;
 }
 
+size_t fs_write(int fd, const void *buf, size_t len){
+  Finfo* f = &file_table[fd];
+  if(f->write == NULL){
+    int rem = f->size - f->seek_offset<=len?f->size - f->seek_offset:len;
+    ramdisk_write(buf, f->disk_offset + f->seek_offset, rem);
+    f->seek_offset += rem;
+    assert(f->seek_offset <= f->size);
+    return rem;
+  }
+  return 0;
+}
