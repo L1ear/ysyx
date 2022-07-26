@@ -90,7 +90,7 @@ int _close(int fd) {
 
 off_t _lseek(int fd, off_t offset, int whence) {
   // _exit(SYS_lseek);
-  return _syscall_(SYS_lseek, fd, offset, whence);
+  return _syscall_(SYS_lseek, fd, -5, whence);
 }
 
 int _gettimeofday(struct timeval *tv, struct timezone *tz) {
