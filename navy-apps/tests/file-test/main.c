@@ -29,6 +29,7 @@ int main() {
   fseek(fp, 0, SEEK_SET);
   for (i = 0; i < 500; i ++) {
     fscanf(fp, "%d", &n);
+    printf("%4d\n", n);
     assert(n == i + 1 + 1000);
   }
 
