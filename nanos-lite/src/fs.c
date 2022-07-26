@@ -131,6 +131,7 @@ size_t fs_write(int fd, const void *buf, size_t len){
     return rem;
   }
   else{
+    assert(0);
     int rem = f->write(buf, f->seek_offset, len);
     f->seek_offset += rem;
     return rem;
