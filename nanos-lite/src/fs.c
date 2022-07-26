@@ -9,6 +9,8 @@ size_t fs_write(int fd, const void *buf, size_t len);
 size_t fs_lseek(int fd, size_t offset, int whence);
 int fs_close(int fd);
 
+size_t serial_write(const void *buf, size_t offset, size_t len);
+
 size_t ramdisk_read(void *buf, size_t offset, size_t len);
 size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t get_ramdisk_size();
@@ -37,8 +39,8 @@ size_t invalid_write(const void *buf, size_t offset, size_t len) {
 /* This is the information about all files in disk. */
 static Finfo file_table[] __attribute__((used)) = {
   [FD_STDIN]  = {"stdin", 0, 0, invalid_read, invalid_write},
-  [FD_STDOUT] = {"stdout", 0, 0, invalid_read, invalid_write},
-  [FD_STDERR] = {"stderr", 0, 0, invalid_read, invalid_write},
+  [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
+  [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
 #include "files.h"
 };
 
@@ -124,7 +126,6 @@ size_t fs_lseek(int fd, size_t offset, int whence)
 size_t fs_write(int fd, const void *buf, size_t len){
   Finfo* f = &file_table[fd];
   if(f->write == NULL){
-    assert(0);
     int rem = f->size - f->seek_offset<=len?f->size - f->seek_offset:len;
     ramdisk_write(buf, f->disk_offset + f->seek_offset, rem);
     f->seek_offset += rem;
