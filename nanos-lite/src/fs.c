@@ -124,7 +124,7 @@ int fs_close(int fd)
 
 size_t fs_lseek(int fd, size_t offset, int whence)
 {
-  printf("offset:%d",offset);
+  printf("offset:%d\n",offset);
   Finfo* f = &file_table[fd];
   size_t ret=-1;
   switch(whence){
