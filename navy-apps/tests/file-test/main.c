@@ -18,6 +18,7 @@ int main() {
   }
   printf("used fseek to set1\n");
   fseek(fp, 0, SEEK_SET);
+  printf("begin write\n");
   for (i = 0; i < 500; i ++) {
     fprintf(fp, "%4d\n", i + 1 + 1000);
   }
