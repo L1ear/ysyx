@@ -34,7 +34,7 @@ void do_syscall(Context *c) {
     case SYS_brk:  c->GPRx = 0; break;
     case SYS_open: c->GPRx = fs_open((void *)a[1], a[2], a[3]); break;
     case SYS_read: c->GPRx = fs_read(a[1], (void*)a[2], a[3]); break;
-    case SYS_lseek:c->GPRx = fs_lseek(a[1], (size_t)a[2], a[3]); break;
+    case SYS_lseek:printf("%llx\n",a[2]);c->GPRx = fs_lseek(a[1], (size_t)a[2], a[3]); break;
     case SYS_write:c->GPRx = fs_write(a[1], (void*)a[2], a[3]); break;
     case SYS_close:c->GPRx = fs_close(a[1]); break;
     default: panic("Unhandled syscall ID = %d", a[0]);
