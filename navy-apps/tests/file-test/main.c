@@ -21,7 +21,9 @@ int main() {
   printf("begin write\n");
   for (i = 0; i < 500; i ++) {
     fprintf(fp, "%4d\n", i + 1 + 1000);
-    printf("%4x\n",i + 1 + 1000);
+    fseek(fp, -5, SEEK_CUR);
+     fscanf(fp, "%d", &n);
+    printf("*******************************************%4x\n",n);
   }
 
   for (i = 500; i < 1000; i ++) {
