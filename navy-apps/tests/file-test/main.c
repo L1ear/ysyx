@@ -18,9 +18,9 @@ int main() {
 
   fseek(fp, 0, SEEK_SET);
   for (i = 0; i < 500; i ++) {
-    fprintf(fp, "%4d\n", i + 1 + 1000);
+    fprintf(fp, "%4x\n", i + 1 + 1000);
   }
-
+// assert(0);
   for (i = 500; i < 1000; i ++) {
     fscanf(fp, "%d", &n);
     assert(n == i + 1);
@@ -28,7 +28,7 @@ int main() {
 
   fseek(fp, 0, SEEK_SET);
   for (i = 0; i < 500; i ++) {
-    fscanf(fp, "%d", &n);
+    fscanf(fp, "%x", &n);
     assert(n == i + 1 + 1000);
   }
 
