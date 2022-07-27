@@ -56,13 +56,13 @@ void _exit(int status) {
 }
 
 int _open(const char *path, int flags, mode_t mode) {
-  _exit(SYS_open);
-  return 0;
+  // _exit(SYS_open);
+  return _syscall_(SYS_open, path, flags, mode);
 }
 
 int _write(int fd, void *buf, size_t count) {
-  _exit(SYS_write);
-  return 0;
+  // _exit(SYS_write);
+  return _syscall_(SYS_write,fd,(const void*)buf,count);
 }
 
 void *_sbrk(intptr_t increment) {
