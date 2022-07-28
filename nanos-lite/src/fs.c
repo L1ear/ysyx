@@ -55,6 +55,7 @@ int nr_files = sizeof(file_table)/sizeof(Finfo);
 
 int fs_open(const char *pathname, int flags, int mode){
   int i=0;
+  printf("%s\n", pathname);
   for(; i<nr_files; i++){
     if(strcmp(pathname, file_table[i].name)==0) {
       file_table[i].seek_offset = 0;
