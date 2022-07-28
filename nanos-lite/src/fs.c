@@ -130,15 +130,15 @@ int fs_close(int fd)
 
 size_t fs_lseek(int fd, size_t offset, int whence)
 {
-  printf("offset:%d\n",offset);
+  // printf("offset:%d\n",offset);
   Finfo* f = &file_table[fd];
   size_t ret=-1;
   switch(whence){
     case SEEK_SET:{
       if(0<=offset && offset<=f->size){
         f->seek_offset = offset;
-        printf("set: now point at  %d\n",file_table[fd].disk_offset+file_table[fd].seek_offset);
-        printf("diskoff:%d   seekoff:%d\n",file_table[fd].disk_offset,file_table[fd].seek_offset);
+        // printf("set: now point at  %d\n",file_table[fd].disk_offset+file_table[fd].seek_offset);
+        // printf("diskoff:%d   seekoff:%d\n",file_table[fd].disk_offset,file_table[fd].seek_offset);
         ret=f->seek_offset;
       }
       break;
