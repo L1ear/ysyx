@@ -9,6 +9,7 @@ int main(){
     int hsec=5;
     while(1)
     {
+        printf("????????????????");
         while(tv.tv_usec/100000 < hsec)
         {
             int t = gettimeofday(&tv,NULL);
