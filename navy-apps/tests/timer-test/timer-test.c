@@ -9,7 +9,7 @@ int main(){
     int hsec=5;
     while(1)
     {
-        while(tv.tv_usec/1000000 <= hsec)
+        while(tv.tv_usec/10000000 <= hsec)
         {
             int t = gettimeofday(&tv,NULL);
             assert(t==0);
