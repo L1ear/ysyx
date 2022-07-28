@@ -7,7 +7,7 @@ int main(){
     tv.tv_sec = 0;
     printf("0 time\n");
     // int hsec=2;
-    // int c=0;
+    int c=0;
     while(1)
     {
         // printf("????????????????");
@@ -19,9 +19,13 @@ int main(){
 
         // }
         if(tv.tv_usec/100000==5) 
-
-            printf("half sec passed\n");
- 
+        {
+            if(c==0){
+                printf("half sec passed\n");
+                c=1;
+            }
+        }
+        else    c=0;
 
     } 
 }
