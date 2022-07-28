@@ -6,7 +6,7 @@ int main(){
     struct timeval tv; 
     tv.tv_sec = 0;
     printf("0 time\n");
-    int hsec=1;
+    int hsec=2;
     int c=0;
     while(1)
     {
@@ -24,6 +24,6 @@ int main(){
             printf("half sec passed\n");
             c=0;
         }
-    if(hsec==10) hsec=1;
+    if(hsec==10) hsec=2;
     } 
 }
