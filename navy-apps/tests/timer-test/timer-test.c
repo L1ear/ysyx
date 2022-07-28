@@ -13,7 +13,7 @@ int main(){
         {
             int t = gettimeofday(&tv,NULL);
             assert(t==0);
-            printf("%lx\n",tv.tv_usec/100000);
+            // printf("%lx\n",tv.tv_usec/100000);
         }
         printf("half sec passed\n");
         hsec = (hsec==5)?9:5;
