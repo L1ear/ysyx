@@ -83,8 +83,20 @@ int NDL_Init(uint32_t flags) {
   if (getenv("NWM_APP")) {
     evtdev = 3;
   }
+  // fb = fopen("/dev/fb","w");
+  fb_event = fopen("/dev/events","r");
+  // fb_sync = fopen("/dev/sync","w");
+  // fb_dispinfo = fopen("/proc/dispinfo","r");
+  // assert(fb_sync != NULL);
+  now.tv_sec = now.tv_usec = 0;
   return 0;
 }
 
 void NDL_Quit() {
+  now.tv_sec = now.tv_usec = 0;
+  // free(canvas);
+  fclose(fb_event);
+  // fclose(fb);
+  // fclose(fb_sync);
+  // fclose(fb_dispinfo);
 }
