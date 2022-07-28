@@ -16,6 +16,9 @@ size_t ramdisk_write(const void *buf, size_t offset, size_t len);
 size_t get_ramdisk_size();
 
 size_t events_read(void *buf, size_t offset, size_t len);
+size_t dispinfo_read(void *buf, size_t offset, size_t len);
+size_t fb_write(const void *buf, size_t offset, size_t len);
+size_t fb_sync(const void *buf,size_t offset,size_t len);
 
 typedef struct {
   char *name;
@@ -26,7 +29,7 @@ typedef struct {
   size_t seek_offset;
 } Finfo;
 
-enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_EVENTS, FD_FB};
+enum {FD_STDIN, FD_STDOUT, FD_STDERR, FD_EVENTS, FD_FB, FD_DISPINFO, FD_SYNC};
 
 size_t invalid_read(void *buf, size_t offset, size_t len) {
   panic("should not reach here");
@@ -44,6 +47,9 @@ static Finfo file_table[] __attribute__((used)) = {
   [FD_STDOUT] = {"stdout", 0, 0, invalid_read, serial_write},
   [FD_STDERR] = {"stderr", 0, 0, invalid_read, serial_write},
   [FD_EVENTS] = {"/dev/events",0,0,events_read,invalid_write},
+  [FD_FB] = {"/dev/fb",0,0,invalid_read,fb_write},
+  [FD_DISPINFO] = {"/proc/dispinfo",64,0,dispinfo_read,invalid_write},
+  [FD_SYNC] = {"/dev/sync",0,0,invalid_read,fb_sync},
 #include "files.h"
 };
 
