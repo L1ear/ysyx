@@ -8,12 +8,37 @@ static int evtdev = -1;
 static int fbdev = -1;
 static int screen_w = 0, screen_h = 0;
 
+//new
+static int canvas_w = 0, canvas_h = 0;//记录打开的画布的大小
+static uint32_t* canvas =NULL;
+static struct timeval now;
+static int place_x = 0,place_y = 0;
+static FILE* fb = NULL, *fb_event = NULL,*fb_sync = NULL,*fb_dispinfo = NULL;
+
+//end
+
 uint32_t NDL_GetTicks() {
-  return 0;
+  gettimeofday(&now,NULL);
+  return now.tv_sec*1000+now.tv_usec/1000;
 }
 
 int NDL_PollEvent(char *buf, int len) {
-  return 0;
+  fseek(fb_event,0,SEEK_SET);
+  assert(fb_event != NULL);
+  memset(buf,0,len);
+  /* int ret = fread(buf ,1,3,fp);
+  fscanf(fp,"%s",buf+3); */
+  //printf("%d\n",len);
+  int ret = fread(buf,1,len,fb_event);
+  if(ret == 0) return 0;
+  for(int i = 0; i < len&&ret != 0;i++)
+  {
+    if(buf[i] == '\n') 
+    {
+      buf[i] = '\0';
+      return ret;
+    }
+  }
 }
 
 void NDL_OpenCanvas(int *w, int *h) {
