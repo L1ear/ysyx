@@ -18,7 +18,7 @@ int main(){
         //     // printf("%lx\n",tv.tv_usec/100000);
 
         // }
-        if(tv.tv_usec/100000==5) 
+        if(tv.tv_usec/100000==4||tv.tv_usec/100000==9) 
         {
             if(c==0){
                 printf("half sec passed\n");
