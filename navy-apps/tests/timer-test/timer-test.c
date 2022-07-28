@@ -16,6 +16,5 @@ int main(){
             printf("%lx\n",tv.tv_usec/100000);
         }
         printf("half sec passed\n");
-        hsec += 5;
     } 
 }
