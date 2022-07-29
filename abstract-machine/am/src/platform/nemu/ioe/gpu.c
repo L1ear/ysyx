@@ -17,11 +17,10 @@ void __am_gpu_init() {
 void __am_gpu_config(AM_GPU_CONFIG_T *cfg) {
   *cfg = (AM_GPU_CONFIG_T) {
     .present = true, .has_accel = false,
-    .width = W, .height = H,
-    .vmemsz = 32*W*H
+    .width = inw(VGACTL_ADDR+2), .height = inw(VGACTL_ADDR),
+    .vmemsz = 0
   };
 }
-
 void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
   uint32_t *fb = (uint32_t*)(uintptr_t)FB_ADDR;
   int x = ctl->x, y = ctl->y, w = ctl->w,h = ctl->h;
