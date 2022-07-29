@@ -83,7 +83,6 @@ int _read(int fd, void *buf, size_t count) {
   return _syscall_(SYS_read,fd, (intptr_t)buf, count);
 }
 
-
 int _close(int fd) {
   // _exit(SYS_close);
   return _syscall_(SYS_close, fd, 0, 0);
@@ -95,8 +94,8 @@ off_t _lseek(int fd, off_t offset, int whence) {
 }
 
 int _gettimeofday(struct timeval *tv, struct timezone *tz) {
-  // _exit(SYS_gettimeofday);
-  return _syscall_(SYS_gettimeofday, (intptr_t)tv, (intptr_t)tz, 0);
+  _exit(SYS_gettimeofday);
+  return 0;
 }
 
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
