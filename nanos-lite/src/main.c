@@ -33,6 +33,6 @@ int main() {
   // printf("*******************now in main\n");
   yield();
 #endif
-  return 0;
+  // return 0;
   panic("Should not reach here");
 }

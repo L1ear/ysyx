@@ -39,11 +39,11 @@ __am_asm_trap:
   csrr t2, mepc
 
   # # 判断是否由ecall(即yield中的-1,引起的中断，是的话mepc加4)(已修改)
-  # li t3, 11
-  # bne t3, t0, __not_yield
-  # addi t2,t2,4
+  li t3, 11
+  bne t3, t0, __not_yield
+  addi t2,t2,4
 
-# __not_yield:
+__not_yield:
   STORE t0, OFFSET_CAUSE(sp)
   STORE t1, OFFSET_STATUS(sp)
   STORE t2, OFFSET_EPC(sp)
