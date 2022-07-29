@@ -102,18 +102,18 @@ typedef	__uint128_t fixedptud;
 
 #define FIXEDPT_VCSID "$Id$"
 
-#define FIXEDPT_FBITS	(FIXEDPT_BITS - FIXEDPT_WBITS)
+#define FIXEDPT_FBITS	(FIXEDPT_BITS - FIXEDPT_WBITS)     //定点小数的小数的位数
 #define FIXEDPT_FMASK	(((fixedpt)1 << FIXEDPT_FBITS) - 1)
 
-#define fixedpt_rconst(R) ((fixedpt)((R) * FIXEDPT_ONE + ((R) >= 0 ? 0.5 : -0.5)))
-#define fixedpt_fromint(I) ((fixedptd)(I) << FIXEDPT_FBITS)
-#define fixedpt_toint(F) ((F) >> FIXEDPT_FBITS)
-#define fixedpt_add(A,B) ((A) + (B))
-#define fixedpt_sub(A,B) ((A) - (B))
-#define fixedpt_fracpart(A) ((fixedpt)(A) & FIXEDPT_FMASK)
+#define fixedpt_rconst(R) ((fixedpt)((R) * FIXEDPT_ONE + ((R) >= 0 ? 0.5 : -0.5))) //转化为定点小数
+#define fixedpt_fromint(I) ((fixedptd)(I) << FIXEDPT_FBITS)  //获得整数的定点小数
+#define fixedpt_toint(F) ((F) >> FIXEDPT_FBITS)             //整数部分转化为int的整数
+#define fixedpt_add(A,B) ((A) + (B))						//加法
+#define fixedpt_sub(A,B) ((A) - (B))                       //减法
+#define fixedpt_fracpart(A) ((fixedpt)(A) & FIXEDPT_FMASK) //小数部分
 
-#define FIXEDPT_ONE	((fixedpt)((fixedpt)1 << FIXEDPT_FBITS))
-#define FIXEDPT_ONE_HALF (FIXEDPT_ONE >> 1)
+#define FIXEDPT_ONE	((fixedpt)((fixedpt)1 << FIXEDPT_FBITS)) //1
+#define FIXEDPT_ONE_HALF (FIXEDPT_ONE >> 1)     //0.5
 #define FIXEDPT_TWO	(FIXEDPT_ONE + FIXEDPT_ONE)
 #define FIXEDPT_PI	fixedpt_rconst(3.14159265358979323846)
 #define FIXEDPT_TWO_PI	fixedpt_rconst(2 * 3.14159265358979323846)
@@ -127,35 +127,65 @@ typedef	__uint128_t fixedptud;
 
 /* Multiplies a fixedpt number with an integer, returns the result. */
 static inline fixedpt fixedpt_muli(fixedpt A, int B) {
-	return 0;
+	//return 0;
+	//printf("muli A = %d  B %d  res = %d\n",A,B,A*B);
+	return (fixedpt)(A*B);
 }
 
 /* Divides a fixedpt number with an integer, returns the result. */
 static inline fixedpt fixedpt_divi(fixedpt A, int B) {
-	return 0;
+	//printf("divi A = %d B = %d res = %d\n",A,B,A/B);
+	return (fixedpt)(A/B);
+	//return 0;
 }
 
 /* Multiplies two fixedpt numbers, returns the result. */
 static inline fixedpt fixedpt_mul(fixedpt A, fixedpt B) {
-	return 0;
+	//printf("mul A = %d B = %d   res = %d \n",A,B,(fixedpt)(((fixedptd)A*(fixedptd)B)/(fixedptd)256));
+	return (fixedpt)(((fixedptd)A*(fixedptd)B)/(fixedptd)256);
 }
 
 
 /* Divides two fixedpt numbers, returns the result. */
 static inline fixedpt fixedpt_div(fixedpt A, fixedpt B) {
-	return 0;
+	//printf("div\n");
+	fixedptd C = (fixedptd)A << 32;
+	fixedptd ret = C / B; 
+	//printf("C = %lld A = %d B = %d  res = %lld\n",C,A,B,(ret >> 24));
+	return (fixedpt)(ret >> 24);
 }
 
 static inline fixedpt fixedpt_abs(fixedpt A) {
-	return 0;
+	fixedpt res;
+	if(A < 0) res = (fixedpt)((-1)*A);
+	else res = A;
+	//printf("abs A = %d  res = %d\n",A,res);
+	return res;
 }
 
 static inline fixedpt fixedpt_floor(fixedpt A) {
-	return 0;
+	/* if(fixedpt_fracpart(A) == 0||A==INT32_MIN||A==0||A == INT32_MAX) return A;
+	else return fixedpt_toint(A); */
+	//printf("floor\n");
+	//return 0;
+	fixedpt f = fixedpt_fracpart(A);
+	if(f == 0) return A;
+	
+	fixedpt ret = fixedpt_toint(A) << 8;
+	return ret;
 }
 
 static inline fixedpt fixedpt_ceil(fixedpt A) {
-	return 0;
+	//return 0;
+	//printf("ceil\n");
+	fixedpt f = fixedpt_fracpart(A);
+	if(f == 0) return A;
+	fixedpt ret = fixedpt_toint(A) << 8;
+	return fixedpt_add(ret,FIXEDPT_ONE);
+	/* if(fixedpt_fracpart(A) == 0||A==INT32_MIN||A==0||A == INT32_MAX) return A;
+	else return fixedpt_add(ret,FIXEDPT_ONE); */
+	/* if(ret == A) return A;
+	else return fixedpt_add(ret ,FIXEDPT_ONE); */
 }
 
 /*
