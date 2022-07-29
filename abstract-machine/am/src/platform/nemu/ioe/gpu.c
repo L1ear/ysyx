@@ -1,6 +1,9 @@
 #include <am.h>
 #include <nemu.h>
 
+
+# define W 400
+# define H 300
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 
 void __am_gpu_init() {
