@@ -109,7 +109,7 @@ size_t fs_read(int fd, void *buf, size_t len){
     else {
       
       size_t l = len <= file_table[fd].size - file_table[fd].seek_offset? len:file_table[fd].size - file_table[fd].seek_offset;
-      //printf("third %d %d %d\n",file_table[fd].seek_offset,file_table[fd].size,l);
+      printf("third %d %d %d\n",file_table[fd].seek_offset,file_table[fd].size,l);
       ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].seek_offset,l);
       Log("read %x at%d\n", buf, file_table[fd].disk_offset+file_table[fd].seek_offset);
 
@@ -143,8 +143,8 @@ size_t fs_lseek(int fd, size_t offset, int whence)
     case SEEK_SET:{
       if(0<=offset && offset<=f->size){
         f->seek_offset = offset;
-        // printf("set: now point at  %d\n",file_table[fd].disk_offset+file_table[fd].seek_offset);
-        // printf("diskoff:%d   seekoff:%d\n",file_table[fd].disk_offset,file_table[fd].seek_offset);
+        printf("set: now point at  %d\n",file_table[fd].disk_offset+file_table[fd].seek_offset);
+        printf("diskoff:%d   seekoff:%d\n",file_table[fd].disk_offset,file_table[fd].seek_offset);
         ret=f->seek_offset;
       }
       break;
