@@ -70,7 +70,6 @@ int fs_open(const char *pathname, int flags, int mode){
   }
 
   if(i == nr_files) assert(0);
-  printf("nr:%d\n",i);
   return i;
 }
 
