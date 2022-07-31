@@ -55,6 +55,9 @@ static Finfo file_table[] __attribute__((used)) = {
 
 void init_fs() {
   // TODO: initialize the size of /dev/fb
+  int w = io_read(AM_GPU_CONFIG).width;
+  int h = io_read(AM_GPU_CONFIG).height;
+  file_table[FD_FB].size = w * h * 4;
 }
 
 int nr_files = sizeof(file_table)/sizeof(Finfo);
