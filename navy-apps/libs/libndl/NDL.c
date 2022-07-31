@@ -52,36 +52,36 @@ void NDL_OpenCanvas(int *w, int *h) {
     printf("w is %d h is %d\n",FB_W,FB_H);
     assert(FB_W >=0);
 
-  if (getenv("NWM_APP")) {
-    int fbctl = 4;
-    fbdev = 5;
-    if(*w == 0 || *h ==0){
-      *w = FB_W;
-      *h = FB_H;
-    }
-    screen_w = *w; screen_h = *h;
+  // if (getenv("NWM_APP")) {
+  //   int fbctl = 4;
+  //   fbdev = 5;
+  //   if(*w == 0 || *h ==0){
+  //     *w = FB_W;
+  //     *h = FB_H;
+  //   }
+  //   screen_w = *w; screen_h = *h;
     
     
-    char buf[64];
-    int len = sprintf(buf, "%d %d", screen_w, screen_h);
-    // let NWM resize the window and create the frame buffer
-    write(fbctl, buf, len);
-    while (1) {
-      // 3 = evtdev
-      int nread = read(3, buf, sizeof(buf) - 1);
-      if (nread <= 0) continue;
-      buf[nread] = '\0';
-      if (strcmp(buf, "mmap ok") == 0) break;
-    }
-    close(fbctl);
-  }
-  else{
+  //   char buf[64];
+  //   int len = sprintf(buf, "%d %d", screen_w, screen_h);
+  //   // let NWM resize the window and create the frame buffer
+  //   write(fbctl, buf, len);
+  //   while (1) {
+  //     // 3 = evtdev
+  //     int nread = read(3, buf, sizeof(buf) - 1);
+  //     if (nread <= 0) continue;
+  //     buf[nread] = '\0';
+  //     if (strcmp(buf, "mmap ok") == 0) break;
+  //   }
+  //   close(fbctl);
+  // }
+  // else{
     if(*w ==0 || *h ==0){
     *w = FB_W;
     *h = FB_H;
    // printf("hw == 0\n");
     }
-  }
+  // }
   close(fd);
 //  printf("opencarnan W is %d H is %d\n",*w,*h);
 }
