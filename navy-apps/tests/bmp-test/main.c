@@ -11,8 +11,11 @@ int main() {
   assert(bmp);
   NDL_OpenCanvas(&w, &h);
   NDL_DrawRect(bmp, 0, 0, w, h);
+  
   free(bmp);
+// assert(0);
   NDL_Quit();
+  
   printf("Test ends! Spinning...\n");
   while (1);
   return 0;
