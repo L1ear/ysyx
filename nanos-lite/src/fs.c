@@ -57,7 +57,7 @@ void init_fs() {
   // TODO: initialize the size of /dev/fb
   int w = io_read(AM_GPU_CONFIG).width;
   int h = io_read(AM_GPU_CONFIG).height;
-  file_table[FD_FB].size = w * h * 4;
+  file_table[FD_FB].size = w * h * sizeof(int);
 }
 
 int nr_files = sizeof(file_table)/sizeof(Finfo);
