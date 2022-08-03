@@ -98,7 +98,7 @@ void init_ftrace(const char *elf_file) {
   //   Assert(fp, "Can not open '%s'", elf_file);
   //   elf_fp = fp;
   // }
-  if ((fd = open("/home/qw/ysyx-workbench/navy-apps/tests/hello/build/hello-riscv64", O_RDONLY)) < 0) {
+  if ((fd = open("/home/qw/ysyx-workbench/navy-apps/apps/menu/build/menu-riscv64", O_RDONLY)) < 0) {
 		error(EXIT_FAILURE, errno, "open %s failed", elf_file);
 	}
  
