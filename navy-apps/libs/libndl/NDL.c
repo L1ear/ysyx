@@ -108,8 +108,8 @@ void get_screen() {
   read(fb_dispinfo,buf,sizeof(buf));
   sscanf(buf,"%*:%*[ ]%d\n%*:%*[ ]%d\n",&screen_w,&screen_h);
   printf("w: %d   h: %d\n", screen_w, screen_h);
-  screen_w = 400;
-  screen_h = 300;
+  // screen_w = 400;
+  // screen_h = 300;
   assert(screen_w >=0);
   return;
 }
