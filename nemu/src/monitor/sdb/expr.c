@@ -82,7 +82,7 @@ static bool make_token(char *e) {
         char *substr_start = e + position;
         int substr_len = pmatch.rm_eo;
 
-        Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
+        // Log("match rules[%d] = \"%s\" at position %d with len %d: %.*s",
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
@@ -136,7 +136,7 @@ static bool make_token(char *e) {
               tokens[nr_token].type = rules[i].token_type;
               sprintf(tokens[nr_token].str,"%ld",htoi(substr_start));
               //strncpy(tokens[nr_token].str, substr_start+2, substr_len);
-              Log("get number: %lu\n",(word_t)atoi(tokens[nr_token].str));
+              // Log("get number: %lu\n",(word_t)atoi(tokens[nr_token].str));
               
               nr_token ++;
               break;
@@ -149,7 +149,7 @@ static bool make_token(char *e) {
                 Log("wrong reg!\n");
                 break;
               }
-              Log("get number: %ld\n",temp_reg);
+              // Log("get number: %ld\n",temp_reg);
               sprintf(tokens[nr_token].str,"%ld",temp_reg);
               nr_token ++;
               break;
