@@ -106,7 +106,8 @@ void NDL_OpenCanvas(int *w, int *h) {
 void get_screen() {
   char buf[128]={0};
   read(fb_dispinfo,buf,sizeof(buf));
-  sscanf(buf,"%*%[^:]:%*[ ]%d\n%*:%*[ ]%d\n",&screen_w,&screen_h);
+  printf("%s",buf);
+  sscanf(buf,"%*[^:]:%*[ ]%d\n%*:%*[ ]%d\n",&screen_w,&screen_h);
   printf("w: %d   h: %d\n", screen_w, screen_h);
   // screen_w = 400;
   // screen_h = 300;
