@@ -13,7 +13,8 @@ static int canvas_w = 0, canvas_h = 0;//记录打开的画布的大小
 static uint32_t* canvas =NULL;
 static struct timeval now;
 static int place_x = 0,place_y = 0;
-static int fb_sync = 0, fb_dispinfo = NULL,fb = NULL,fb_event = NULL;
+static FILE* fb = NULL, *fb_event = NULL,*fb_sync = NULL,*fb_dispinfo = NULL;
+
 
 
 void get_screen();
@@ -26,13 +27,13 @@ uint32_t NDL_GetTicks() {
 
 
 int NDL_PollEvent(char *buf, int len) {
-  lseek(fb_event,0,SEEK_SET);
+  fseek(fb_event,0,SEEK_SET);
   assert(fb_event != NULL);
   memset(buf,0,len);
   /* int ret = fread(buf ,1,3,fp);
   fscanf(fp,"%s",buf+3); */
   //printf("%d\n",len);
-  int ret = read(fb_event,buf,len);
+  int ret = fread(buf,1,len,fb_event);
   if(ret == 0) return 0;
   for(int i = 0; i < len&&ret != 0;i++)
   {
@@ -102,12 +103,54 @@ void NDL_OpenCanvas(int *w, int *h) {
   }//pa3 ignore
 }
 
-//不能用fscanf，要改    //已改
 void get_screen() {
-  char buf[128]={0};
-  read(fb_dispinfo,buf,sizeof(buf));
-  sscanf(buf,"%*[^:]:%*[ ]%d\n%*[^:]:%*[ ]%d\n",&screen_w,&screen_h);
-  assert(screen_w >=0);
+  int w = 0,h = 0;
+  assert(fb_dispinfo != NULL);
+  char width[20]={0},height[20]={0},after[20]={0};
+  //printf("1 %p\n",fp);
+  fscanf(fb_dispinfo,"%s",width);
+  if(width[strlen(width)-1] == ':')
+  {
+    //printf("1\n");
+    fscanf(fb_dispinfo,"%d",w);//WIDTH:  W
+  }
+  else if(width[strlen(width)-1] == 'H')
+  {
+    //printf("2\n");
+    fscanf(fb_dispinfo,"%s",after);
+    //printf("%s%s\n",width,after);
+    strcat(width,after);
+    fscanf(fb_dispinfo,"%d",&w);
+  }//WIDTH   :   W
+  else {
+    w = 0;
+    //printf("%d\n",strlen(width));
+    for(int i = 0;i < strlen(width);i++)
+    {
+      if(width[i] > '9'||width[i] < '0') continue;
+      w = w * 10+ width[i] - '0';
+    }
+  }//WIDTH:W
+
+  fscanf(fb_dispinfo,"%s",height);
+  if(height[strlen(height)-1] == ':')
+    fscanf(fb_dispinfo,"%d",&h);//HEIGHT:   H
+  else if(height[strlen(height)-1] == 'T')
+  {
+    fscanf(fb_dispinfo,"%s",after);
+    strcat(height,after);
+    fscanf(fb_dispinfo,"%d",&h);
+  }//HEIGHT   :   H
+  else {
+    h = 0;
+    for(int i = 0;i < strlen(height);i++)
+    {
+      if(height[i] > '9'||height[i] < '0') continue;
+      h = h * 10+ height[i] - '0';
+    }
+  }//WIDTH:W
+  screen_h = h;
+  screen_w = w;
   return;
 }
 
@@ -126,18 +169,43 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
     {
       canvas[(y+i)*canvas_w+x+j] = pixels[i*w+j];
     }
-    
   for(int i = 0;i < canvas_h;i ++)
   {
     //printf("seek %d color = %d\n",4*((i+place_y)*screen_w+place_x),*(canvas+i*canvas_w+canvas_w/2));
-    lseek(fb,4*((i+place_y)*screen_w+place_x),SEEK_SET);
-    write(fb,(void*)(canvas+i*canvas_w),4*canvas_w);
+    fseek(fb,4*((i+place_y)*screen_w+place_x),SEEK_SET);
+    fwrite((void*)(canvas+i*canvas_w),1,4*canvas_w,fb);
   }
   //有可能有问题的部分  
   //画布应该是一个虚拟对象，而不是一个实体数组(不知道）
-  // fseek(fb_sync,0,SEEK_SET);
+  fseek(fb_sync,0,SEEK_SET);
+  fwrite("1",1,1,fb_sync);
   
-  write(fb_sync,"1",1);
+  /* for(int i = 0;i < h;i++)
+  {
+    fseek(fb,sizeof(uint32_t)*((i+place_y+y)*screen_w+place_x+x),SEEK_SET);
+    fwrite((void*)pixels,1,sizeof(uint32_t)*w,fb);
+  } */
+  
+
+  //printf("NDL %p %d\n",fb_sync,ftell(fb_sync));
+  
+  //printf("refresh %d\n",k++);
+  /* for(int i = 0;i < h;i++)
+  {
+    fseek(fp,4*((y+i)*screen_w+y),SEEK_SET);
+    fwrite((void*)pixels,sizeof(uint32_t),w,fp);
+    //printf("seek %d\n",4*((y+i)*wid+y));
+    for(int j = 0;j < 4*w;j++)
+    {
+      fwrite((void*)pixels,sizeof(uint32_t),h,fp);
+      fprintf(fp,"%c",((char*)pixels)[4*w*i+j]);
+      //printf("p = %d %d\n",w*i+j,pixels[i*w+j]);
+    } 
+  }*/
+  /* printf("%p %d\n",fb_sync,ftell(fb_sync));
+  fseek(fb_sync,0,SEEK_SET);
+  sprintf(fb_sync,"%c",'1'); */
+  //fwrite(buf,1,1,fb_sync);
 }
 
 void NDL_OpenAudio(int freq, int channels, int samples) {
@@ -158,10 +226,10 @@ int NDL_Init(uint32_t flags) {
   if (getenv("NWM_APP")) {
     evtdev = 3;
   }
-  fb = open("/dev/fb","w");
-  fb_event = open("/dev/events","r");
-  fb_sync = open("/dev/sync","w");
-  fb_dispinfo = open("/proc/dispinfo","r");
+  fb = fopen("/dev/fb","w");
+  fb_event = fopen("/dev/events","r");
+  fb_sync = fopen("/dev/sync","w");
+  fb_dispinfo = fopen("/proc/dispinfo","r");
   assert(fb_sync != NULL);
   now.tv_sec = now.tv_usec = 0;
   return 0;
@@ -170,10 +238,8 @@ int NDL_Init(uint32_t flags) {
 void NDL_Quit() {
   now.tv_sec = now.tv_usec = 0;
   free(canvas);
-  // assert(0);
-  close(fb_event);
- 
-  close(fb); 
-  close(fb_sync);
-  close(fb_dispinfo);
+  fclose(fb_event);
+  fclose(fb);
+  fclose(fb_sync);
+  fclose(fb_dispinfo);
 }
