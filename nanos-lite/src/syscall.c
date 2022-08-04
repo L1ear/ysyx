@@ -42,23 +42,23 @@ void do_syscall(Context *c) {
 int sys_execve(char* filename,char * const argc[],char* const envp[])
 {
   int ret = 0;
-   printf("????????%s\n",filename);
-  for(int cnt = 0;envp[cnt] != NULL;cnt+=1)
-  {
-    char* path = (char*)malloc(strlen(filename)+strlen(envp[cnt])+5);
-    strcpy(path,envp[cnt]);
-    memset(path+strlen(envp[cnt])/2+1,0,strlen(envp[cnt]));
-    path = strcat(path,"/");
-    path = strcat(path,filename);
+  //  printf("????????%s\n",filename);
+  // for(int cnt = 0;envp[cnt] != NULL;cnt+=1)
+  // {
+  //   char* path = (char*)malloc(strlen(filename)+strlen(envp[cnt])+5);
+  //   strcpy(path,envp[cnt]);
+  //   memset(path+strlen(envp[cnt])/2+1,0,strlen(envp[cnt]));
+  //   path = strcat(path,"/");
+  //   path = strcat(path,filename);
     
-    printf("????????%s\n",path);
-    if(fs_open(path,0,0)!= -1)
+    printf("????????%s\n",filename);
+    if(fs_open(filename,0,0)!= -1)
     {
-      printf("************%s\n",path);
-      naive_uload(NULL,path);
-      break;
+      printf("************%s\n",filename);
+      naive_uload(NULL,filename);
+      // break;
     }
-  }
+  // }
   // printf("*********%s\n", filename);
   ret = fs_open(filename,0,0);
   return ret;
