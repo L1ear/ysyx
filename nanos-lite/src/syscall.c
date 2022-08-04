@@ -42,6 +42,7 @@ void do_syscall(Context *c) {
 int sys_execve(char* filename,char * const argc[],char* const envp[])
 {
   int ret = 0;
+   printf("????????%s\n",filename);
   for(int cnt = 0;envp[cnt] != NULL;cnt+=1)
   {
     char* path = (char*)malloc(strlen(filename)+strlen(envp[cnt])+5);
