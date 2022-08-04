@@ -49,6 +49,7 @@ int sys_execve(char* filename,char * const argc[],char* const envp[])
     memset(path+strlen(envp[cnt])/2+1,0,strlen(envp[cnt]));
     path = strcat(path,"/");
     path = strcat(path,filename);
+    
     //printf("%s\n",path);
     if(fs_open(path,0,0)!= -1)
     {
@@ -57,6 +58,7 @@ int sys_execve(char* filename,char * const argc[],char* const envp[])
       break;
     }
   }
+  printf("%s\n", filename);
   ret = fs_open(filename,0,0);
   return ret;
 }
