@@ -129,7 +129,7 @@ size_t fb_sync(const void *buf,size_t offset,size_t len)
 {
   assert(((char*)buf)[0] == '1');
   //printf("refresh\n");
-  assert(offset == 0);
+  // assert(offset == 0);
   io_write(AM_GPU_FBDRAW, 0, 0, NULL, 0, 0, true);
   return 1;
 }

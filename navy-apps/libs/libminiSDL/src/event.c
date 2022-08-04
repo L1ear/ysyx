@@ -10,7 +10,7 @@ static const char *keyname[] = {
   _KEYS(keyname)
 };
 
-// extern uint8_t* keystate;
+
 static uint8_t keystate[83]={0};
 
 int SDL_PushEvent(SDL_Event *ev) {
