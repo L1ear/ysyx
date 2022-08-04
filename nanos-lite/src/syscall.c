@@ -58,7 +58,7 @@ int sys_execve(char* filename,char * const argc[],char* const envp[])
       break;
     }
   }
-  printf("%s\n", filename);
+  printf("*********%s\n", filename);
   ret = fs_open(filename,0,0);
   return ret;
 }
