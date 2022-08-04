@@ -53,7 +53,7 @@ int sys_execve(char* filename,char * const argc[],char* const envp[])
     //printf("%s\n",path);
     if(fs_open(path,0,0)!= -1)
     {
-      printf("%s\n",path);
+      printf("************%s\n",path);
       naive_uload(NULL,path);
       break;
     }
