@@ -67,7 +67,6 @@ static inline bool difftest_check_reg(const char *name, uint64_t pc, word_t ref,
 
 void difftest_step(uint64_t pc) {
   CPU_state ref_r;
-
   // if (skip_dut_nr_inst > 0) {
   //   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
   //   if (ref_r.pc == npc) {
@@ -83,6 +82,7 @@ void difftest_step(uint64_t pc) {
 
   if (is_skip_ref) {
     // to skip the checking of an instruction, just copy the reg state to reference design
+    // printf("??????????????????????????");
     ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
     is_skip_ref = false;
     return;
@@ -91,7 +91,8 @@ void difftest_step(uint64_t pc) {
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
 
-//   checkregs(&ref_r, pc);
+  printf("npc: %08x   nemu: %08x\n",pc,ref_r.pc);
+  // checkregs(&ref_r, pc);
     for(int i=0;i<32;i++){
 		if(!difftest_check_reg(regs[i],pc,ref_r.gpr[i],cpu.gpr[i])){
 			en = 0;

@@ -30,6 +30,7 @@ VL_MODULE(Vtop___024root) {
     VL_OUT64(DmemAddr,63,0);
     VL_OUT64(DmemDataI,63,0);
     VL_OUT64(regA0,63,0);
+    VL_OUT64(dnpc,63,0);
 
     // LOCAL SIGNALS
     CData/*0:0*/ top__DOT__PCAsrc;

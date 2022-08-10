@@ -1000,6 +1000,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                           ? vlSelf->top__DOT__rs1_data
                                           : vlSelf->top__DOT__CurPc)))
                                  : 0x80000000ULL);
+    vlSelf->dnpc = vlSelf->top__DOT__NextPc;
 }
 
 void Vtop___024root____Vdpiimwrap_top__DOT__u_regfiles__DOT__set_gpr_ptr__Vdpioc2_TOP(const VlUnpacked<QData/*63:0*/, 32> &a);
@@ -1054,6 +1055,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->MemOp = 0;
     vlSelf->OPcode = 0;
     vlSelf->regA0 = 0;
+    vlSelf->dnpc = 0;
     vlSelf->top__DOT__PCAsrc = 0;
     vlSelf->top__DOT__PCBsrc = 0;
     vlSelf->top__DOT__NextPc = 0;

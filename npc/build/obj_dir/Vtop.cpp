@@ -22,6 +22,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , MemOp{vlSymsp->TOP.MemOp}
     , OPcode{vlSymsp->TOP.OPcode}
     , regA0{vlSymsp->TOP.regA0}
+    , dnpc{vlSymsp->TOP.dnpc}
     , rootp{&(vlSymsp->TOP)}
 {
 }

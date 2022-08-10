@@ -1101,6 +1101,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
                                           ? vlSelf->top__DOT__rs1_data
                                           : vlSelf->top__DOT__CurPc)))
                                  : 0x80000000ULL);
+    vlSelf->dnpc = vlSelf->top__DOT__NextPc;
 }
 
 void Vtop___024root___eval(Vtop___024root* vlSelf) {

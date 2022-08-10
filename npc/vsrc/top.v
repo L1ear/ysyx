@@ -12,7 +12,8 @@ module top(
 	output      [2:0] 		    MemOp,
 //for verilator dbug(:p)
     output      [6:0]           OPcode,
-    output      [`XLEN-1:0]     regA0
+    output      [`XLEN-1:0]     regA0,
+    output      [`XLEN-1:0]     dnpc
 );
 
 assign  OPcode = instr[6:0];
@@ -26,7 +27,7 @@ reg   [`XLEN-1:0]  NextPc;
 always @(posedge clk) begin
     instrAddr <= NextPc;
 end
-
+assign dnpc = NextPc;
 
 // PC Outputs
 wire  [`XLEN-1:0]  CurPc;
