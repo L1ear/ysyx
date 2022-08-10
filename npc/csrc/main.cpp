@@ -149,7 +149,7 @@ if(top->OPcode==3)
 #endif
 
 #ifdef  difftest
-    cpu.pc = top->instrAddr;
+    cpu.pc = top->dnpc;
     int r;
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
