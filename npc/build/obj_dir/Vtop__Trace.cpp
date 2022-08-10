@@ -180,7 +180,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         tracep->chgQData(oldp+161,((((IData)(vlSelf->top__DOT__IntSync) 
                                      & (IData)((vlSelf->top__DOT__u_csr_reg__DOT__mstatus 
                                                 >> 3U)))
-                                     ? (4ULL + vlSelf->top__DOT__CurPc)
+                                     ? vlSelf->top__DOT__CurPc
                                      : 0ULL)),64);
         tracep->chgBit(oldp+163,(((IData)(vlSelf->top__DOT__IntSync) 
                                   & (IData)((vlSelf->top__DOT__u_csr_reg__DOT__mstatus 

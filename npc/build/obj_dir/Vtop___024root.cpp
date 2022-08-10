@@ -100,10 +100,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
              (((IData)(vlSelf->top__DOT__IntSync) & (IData)(
                                                             (vlSelf->top__DOT__u_csr_reg__DOT__mstatus 
                                                              >> 3U)))
-               ? (4ULL + vlSelf->top__DOT__CurPc) : 0ULL)
-              : (((0x342U == (vlSelf->instr >> 0x14U)) 
-                  & (IData)(vlSelf->top__DOT__csrWrEn))
-                  ? vlSelf->top__DOT__RegWrData : vlSelf->top__DOT__u_csr_reg__DOT__mcause));
+               ? vlSelf->top__DOT__CurPc : 0ULL) : 
+             (((0x342U == (vlSelf->instr >> 0x14U)) 
+               & (IData)(vlSelf->top__DOT__csrWrEn))
+               ? vlSelf->top__DOT__RegWrData : vlSelf->top__DOT__u_csr_reg__DOT__mcause));
     } else {
         vlSelf->top__DOT__u_csr_reg__DOT__mtvec = 0ULL;
         vlSelf->top__DOT__u_csr_reg__DOT__mepc = 0x80000000ULL;

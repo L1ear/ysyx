@@ -19,7 +19,7 @@ always @(*) begin
     if(IntSync & gIntEn) begin
         csrUpdata = 1'b1;
         mcause_n = `ecall_m;
-        mepc_n = currPC + `XLEN'd4;
+        mepc_n = currPC;
         mstatus_n = 1'b1;             //暂时预留给后面，现在基本无用//已修改作为进出中断的标志
         iotrap = 2'b10;             //intrap
     end
