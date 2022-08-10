@@ -106,7 +106,7 @@ void difftest_step(vaddr_t pc, vaddr_t npc) {
       panic("can not catch up with ref.pc = " FMT_WORD " at pc = " FMT_WORD, ref_r.pc, pc);
     return;
   }
-  printf("pc: %08x  npc: %08x\n",pc,npc);
+  printf("pc: %08lx  npc: %08lx\n",pc,npc);
   if (is_skip_ref) {
     // to skip the checking of an instruction, just copy the reg state to reference design
     ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
