@@ -91,7 +91,7 @@ void difftest_step(uint64_t pc) {
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
 
-  printf("npc: %08x   nemu: %08x\n",pc,ref_r.pc);
+  // printf("npc: %08x   nemu: %08x\n",pc,ref_r.pc);
   // checkregs(&ref_r, pc);
     for(int i=0;i<32;i++){
 		if(!difftest_check_reg(regs[i],pc,ref_r.gpr[i],cpu.gpr[i])){

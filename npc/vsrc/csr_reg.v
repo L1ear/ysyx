@@ -55,7 +55,7 @@ wire sel_mstatus = (csrIdx == 12'h300);
 wire wr_mstatus = sel_mstatus & csrWrEn;
 always @(posedge clk ) begin
     if(~rst_n) begin
-        mstatus <= 64'ha000000000001800;
+        mstatus <= 64'ha00001800;
     end
     else begin
         mstatus <= csrUpdata? (mstatus_n?{mstatus[`XLEN-1:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}:

@@ -107,7 +107,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     } else {
         vlSelf->top__DOT__u_csr_reg__DOT__mtvec = 0ULL;
         vlSelf->top__DOT__u_csr_reg__DOT__mepc = 0x80000000ULL;
-        __Vdly__top__DOT__u_csr_reg__DOT__mstatus = 0xa000000000001800ULL;
+        __Vdly__top__DOT__u_csr_reg__DOT__mstatus = 0xa00001800ULL;
         vlSelf->top__DOT__u_csr_reg__DOT__mcause = 0ULL;
     }
     __Vdlyvval__top__DOT__u_regfiles__DOT__regfiles__v0 

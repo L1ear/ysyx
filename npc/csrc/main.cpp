@@ -81,6 +81,8 @@ int main(int argc, char *argv[])
       return 0;
 }
 
+int start = 1;
+uint64_t pc = 0;
 void single_cycle(int i) {
   top->clk = 1; 
   top->eval();
@@ -109,6 +111,16 @@ void single_cycle(int i) {
   top->eval();
 #ifdef vcd
   fp ->dump(i);
+#endif
+#ifdef  difftest
+    cpu.pc = top->instrAddr;
+    int r;
+    for (r = 0; r < 32; r++) {
+      cpu.gpr[r] = cpu_gpr[r];
+    }
+    if(start == 0 && en == 1){  
+    difftest_step(pc);
+    }
 #endif
   top->clk = 0;
 //读mem，无论是否写使能，都在下降沿输出数据
@@ -149,14 +161,8 @@ if(top->OPcode==3)
 #endif
 
 #ifdef  difftest
-    cpu.pc = top->dnpc;
-    int r;
-    for (r = 0; r < 32; r++) {
-      cpu.gpr[r] = cpu_gpr[r];
-    }
-    if(en == 1){  
-    difftest_step(top->instrAddr);
-    }
+  pc = top->instrAddr;
+  start = 0;
 #endif
 }
 
