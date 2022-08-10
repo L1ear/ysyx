@@ -28,7 +28,7 @@ void difftest_regcpy(void *dut, bool direction) {
       // printf("nemu's reg[%d]: %016lx\n",i,cpu.gpr[i]);
     }
     cpu.pc = diff_regs->pc;
-    printf("%016lx\n",cpu.pc);
+    // printf("%016lx\n",cpu.pc);
     } 
   else {
     CPU_state *diff_regs = (CPU_state *)dut;
