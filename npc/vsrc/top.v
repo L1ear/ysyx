@@ -175,10 +175,10 @@ IDU  u_IDU (
     .DivSel                  ( DivSel     ),
     .Div32                   ( Div32      ),
     .sft32                   ( sft32      ),
-    .csrWrEn                 (csrWrEn),
-    .csrIdx                  (csrIdx),
-    .IntSync                 (IntSync),
-    .mret                    (mret)
+    .csrWrEn                 (csrWrEn     ),
+    .csrIdx                  (csrIdx      ),
+    .IntSync                 (IntSync     ),
+    .mret                    (mret        )
 );
     
 // instr_mem  u_instr_mem (

@@ -4,7 +4,7 @@ module tcu (
     input                       IntSoft,
     input                       mret,
     input   [`XLEN-1:0]         currPC,
-    input                       gIntEn,
+    input                       gIntEn,         //全局中断使能
 
     output  reg                 csrUpdata,
     output  reg [`XLEN-1:0]     mcause_n,
