@@ -16,14 +16,16 @@ module tcu (
 
 //暂且只支持ecall的同步中断
 always @(*) begin
-    if(IntSync & gIntEn) begin
+    // if(IntSync & gIntEn) begin
+    if(IntSync) begin    
         csrUpdata = 1'b1;
         mcause_n = `ecall_m;
         mepc_n = currPC;
         mstatus_n = 1'b1;             //暂时预留给后面，现在基本无用//已修改作为进出中断的标志
         iotrap = 2'b10;             //intrap
     end
-    else if (mret & ~gIntEn) begin
+    // else if (mret & ~gIntEn) begin
+    else if (mret) begin
         csrUpdata = 1'b1;
         mcause_n = 64'b0;
         mepc_n = 64'b0;
