@@ -82,8 +82,9 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
 
 void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
   if(addr == 0xa00003f8){
-    printf("%c",(uint8_t)data);
     difftest_skip_ref();
+
+    printf("%c",(uint8_t)data);
   }
   else if(addr>0x88000000||addr<0x80000000){
       printf("write out of boundary!\nPC: %08lx\n",instrAddr);
