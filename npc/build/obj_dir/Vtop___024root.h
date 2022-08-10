@@ -50,6 +50,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__csrWrEn;
     CData/*0:0*/ top__DOT__IntSync;
     CData/*0:0*/ top__DOT__mret;
+    CData/*1:0*/ top__DOT__csr_op;
     CData/*0:0*/ top__DOT__less;
     CData/*0:0*/ top__DOT__zero;
     CData/*0:0*/ top__DOT__csrUpdata;
@@ -64,14 +65,16 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__rs2_data;
     QData/*63:0*/ top__DOT__imm;
     QData/*63:0*/ top__DOT__ALUout;
+    QData/*63:0*/ top__DOT__csrRdData;
+    QData/*63:0*/ top__DOT__mcause_n;
     QData/*63:0*/ top__DOT__mepc_n;
     QData/*63:0*/ top__DOT__ALUsrc1;
     QData/*63:0*/ top__DOT__ALUsrc2;
-    QData/*63:0*/ top__DOT__RegWrData;
     QData/*63:0*/ top__DOT__u_ALU__DOT__src2_cin;
     QData/*63:0*/ top__DOT__u_ALU__DOT__Adder_o;
     QData/*63:0*/ top__DOT__u_ALU__DOT__DivOut;
     QData/*63:0*/ top__DOT__u_ALU__DOT__shifter__DOT__temp;
+    QData/*63:0*/ top__DOT__u_csr_reg__DOT__csrWrData;
     QData/*63:0*/ top__DOT__u_csr_reg__DOT__mepc;
     QData/*63:0*/ top__DOT__u_csr_reg__DOT__mtvec;
     QData/*63:0*/ top__DOT__u_csr_reg__DOT__mstatus;

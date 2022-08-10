@@ -57,6 +57,7 @@ wire  [11:0] csrIdx;
 wire         csrWrEn;
 wire         IntSync;
 wire         mret;
+wire  [1:0]  csr_op;
 
 // ALU Outputs
 wire  [`XLEN-1:0]  ALUout;
@@ -179,7 +180,8 @@ IDU  u_IDU (
     .csrWrEn                 (csrWrEn     ),
     .csrIdx                  (csrIdx      ),
     .IntSync                 (IntSync     ),
-    .mret                    (mret        )
+    .mret                    (mret        ),
+    .csr_op                  (csr_op      )
 );
     
 // instr_mem  u_instr_mem (
@@ -207,7 +209,7 @@ tcu u_tcu (
 
     .csrUpdata              (csrUpdata),
     .mcause_n               (mcause_n),
-    .mepc_n                 (mcause_n),
+    .mepc_n                 (mepc_n),
     .mstatus_n              (mstatus_n), 
     .iotrap                 (iotrap)
 );
@@ -217,7 +219,6 @@ csr_reg u_csr_reg (
    .rst_n                       (rst_n),
    .csrIdx                      (csrIdx),
    .csrWrEn                     (csrWrEn),
-   .csrWrData                   (RegWrData),
    .csrRdData                   (csrRdData),
    .mcause_n                    (mcause_n),
    .mepc_n                      (mepc_n),  
@@ -225,7 +226,9 @@ csr_reg u_csr_reg (
    .csrUpdata                   (csrUpdata),
    .csr_mtvec                   (csr_mtvec),
    .csr_mepc                    (csr_mepc),
-   .gIntEn                      (gIntEn)
+   .gIntEn                      (gIntEn),
+   .rs1                         (rs1_data),
+   .csr_op                      (csr_op)
 );
 
 

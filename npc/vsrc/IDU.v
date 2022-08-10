@@ -39,6 +39,7 @@ module IDU(
 //To csr
     output  reg                     csrWrEn,
     output  reg      [11:0]         csrIdx,
+    output  reg      [1:0]          csr_op,
 //To tcu
     output  reg                     IntSync,
     output  reg                     mret
@@ -66,6 +67,7 @@ always @(*) begin
     Src2Sel = `Rs2;                        //默认Rs2
     MemOp = 3'b0;                          //默认lb
     csrWrEn = 1'b0;
+    csr_op = 2'b0;              
     IntSync = 1'b0;
     mret = 1'b0;
 //64/32
@@ -310,10 +312,12 @@ always @(*) begin
                 `csrrw: begin
                     //TODO
                     ALUctr = `AluSrc2;
+                    csr_op = 2'b10;         //直接写
                 end
                 `csrrs: begin
                     //TODO
-                    ALUctr = `AluOr;
+                    ALUctr = `AluSrc2;
+                    csr_op = 2'b11;         //或后写
                 end
                 default: begin
 

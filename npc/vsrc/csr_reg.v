@@ -4,9 +4,11 @@ module csr_reg (
     input                           clk,rst_n,
     input   [`csrAddrWidth-1:0]     csrIdx,
     input                           csrWrEn,
-    input   [`XLEN-1:0]             csrWrData,
+    // input   [`XLEN-1:0]             csrWrData,
     output  [`XLEN-1:0]             csrRdData,
 
+    input   [`XLEN-1:0]             rs1,
+    input   [1:0]                   csr_op,
     input   [`XLEN-1:0]             mcause_n,
     input   [`XLEN-1:0]             mepc_n,  
     input                           mstatus_n,
@@ -16,6 +18,9 @@ module csr_reg (
     output  [`XLEN-1:0]             csr_mepc,
     output                          gIntEn
 );
+
+wire    [`XLEN-1:0]     csrWrData;
+assign csrWrData = csr_op[1]?csr_op[0]?csrRdData|rs1:rs1:64'b0;
 
 //mtvec,mcause,mstatus,mepc
 
