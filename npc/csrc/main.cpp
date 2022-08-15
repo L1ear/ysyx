@@ -36,7 +36,7 @@ int reset(int i,int n) {
       single_cycle(i);
       i = i+2;
   }
-  top->rst_n = 1; top->eval();
+  top->rst_n = 1; //top->eval();
   return i;
 }
 
@@ -54,8 +54,9 @@ int main(int argc, char *argv[])
     fp ->dump(0);
 #endif 
 
-    sim_time = reset(sim_time,5);
-    init_monitor(argc, argv);    
+    
+    init_monitor(argc, argv);
+    sim_time = reset(sim_time,5);    
     en = 1;
     
 
