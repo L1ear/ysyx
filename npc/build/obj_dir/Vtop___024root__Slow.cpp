@@ -395,6 +395,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__DivSel = 0U;
         }
     }
+    vlSelf->instrAddr = vlSelf->top__DOT__CurPc;
     vlSelf->regA0 = vlSelf->top__DOT__u_regfiles__DOT__regfiles
         [0xaU];
     vlSelf->top__DOT__rs1_data = ((0U == (0x1fU & (vlSelf->instr 

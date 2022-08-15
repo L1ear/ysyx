@@ -45,7 +45,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     QData/*63:0*/ __Vdlyvval__top__DOT__u_regfiles__DOT__regfiles__v0;
     QData/*63:0*/ __Vtemp35;
     // Body
-    vlSelf->instrAddr = vlSelf->top__DOT__NextPc;
     if (vlSelf->rst_n) {
         vlSelf->top__DOT__CurPc = vlSelf->top__DOT__NextPc;
         vlSelf->top__DOT__u_csr_reg__DOT__mcause = 
@@ -146,6 +145,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         = (0x1fU & (vlSelf->instr >> 7U));
     vlSelf->top__DOT__u_regfiles__DOT__regfiles[__Vdlyvdim0__top__DOT__u_regfiles__DOT__regfiles__v0] 
         = __Vdlyvval__top__DOT__u_regfiles__DOT__regfiles__v0;
+    vlSelf->instrAddr = vlSelf->top__DOT__CurPc;
     vlSelf->regA0 = vlSelf->top__DOT__u_regfiles__DOT__regfiles
         [0xaU];
 }

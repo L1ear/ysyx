@@ -24,13 +24,15 @@ wire  PCBsrc;
 
 // PC Inputs
 reg   [`XLEN-1:0]  NextPc;
-always @(posedge clk) begin
-    instrAddr <= NextPc;
+// PC Outputs
+wire  [`XLEN-1:0]  CurPc;
+
+always @(*) begin
+    instrAddr = CurPc;
 end
 assign dnpc = NextPc;
 
-// PC Outputs
-wire  [`XLEN-1:0]  CurPc;
+
 
 wire  [`XLEN-1:0]  rs1_data;
 wire  [`XLEN-1:0]  rs2_data;
