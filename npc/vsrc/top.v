@@ -26,7 +26,6 @@ wire  PCBsrc;
 reg   [`XLEN-1:0]  NextPc;
 // PC Outputs
 wire  [`XLEN-1:0]  CurPc;
-
 always @(*) begin
     instrAddr = CurPc;
 end
