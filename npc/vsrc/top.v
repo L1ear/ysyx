@@ -44,7 +44,7 @@ wire  [`RegfileAddrWidth-1:0]  Rs1Addr;
 wire  [`RegfileAddrWidth-1:0]  Rs2Addr;
 wire  RegWrEn;
 wire  [4:0]  ExtOp;
-wire  [3:0]  ALUctr;
+wire  [4:0]  ALUctr;
 wire  [1:0]  Src2Sel;
 wire  Src1Sel;
 wire  RegWrSel;
@@ -127,20 +127,17 @@ ALU  u_ALU (
     .src1                    ( ALUsrc1  ),
     .src2                    ( ALUsrc2  ),
 
-    .ALUout                  ( ALUout   ),
+    .ALUres                  ( ALUout   ),
     .less                    ( less     ),
     .zero                    ( zero     ),
     .DivEn                   ( DivEn    ),
-    .DivSel                  ( DivSel   ),
-    .Div32                   ( Div32    ),
-    .sft32                   ( sft32    )
+    .DivSel                  ( DivSel   )
 );
 
 
 wire 	[`XLEN-1:0]		RegWrData;
-wire    [`XLEN-1:0]     AluTmp;
-assign AluTmp = (dwsel)?{{32{ALUout[31]}},ALUout[31:0]}:ALUout;
-assign RegWrData = (RegWrSel)?DmemDataO:AluTmp;
+
+assign RegWrData = (RegWrSel)?DmemDataO:ALUout;
 regfiles  u_regfiles (
     .clk                     ( clk          ),
     .rs1_addr_i              ( Rs1Addr      ),
@@ -173,11 +170,8 @@ IDU  u_IDU (
     .MemWr                   ( MemWr      ),
     .RegWrSel                ( RegWrSel   ),
     .branch                  ( branch     ),
-    .dwsel                   ( dwsel      ),
     .DivEn                   ( DivEn      ),
     .DivSel                  ( DivSel     ),
-    .Div32                   ( Div32      ),
-    .sft32                   ( sft32      ),
     .csrWrEn                 (csrWrEn     ),
     .csrIdx                  (csrIdx      ),
     .IntSync                 (IntSync     ),
