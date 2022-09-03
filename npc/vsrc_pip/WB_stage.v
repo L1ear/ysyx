@@ -1,6 +1,7 @@
 `include "defines.v"    
 module WB_stage (
-    input           [`XLEN-1:0]     pc_i,instr_i,
+    input           [`XLEN-1:0]     pc_i,
+    input           [`inst_len-1:0] instr_i,
     input           [`XLEN-1:0]     alures_i,lsres_i,
 
     output          [4      :0]     rd_idx_o,
@@ -47,6 +48,10 @@ always @(*) begin
         `auipc: begin
             rd_wren_o = 1'b1;
             rd_data_o = alures_i;    
+        end
+        default: begin
+            rd_wren_o = 1'b0;
+            rd_data_o = `XLEN'b0;
         end
     endcase
 end

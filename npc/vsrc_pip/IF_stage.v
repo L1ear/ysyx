@@ -5,7 +5,7 @@ module IF_stage (
     input           [`XLEN-1:0]     pc_jump_i,
 
     output          [`XLEN-1:0]     pc_next_o,
-    output          [`XLEN-1:0]     instr_o
+    output          [`inst_len-1:0]     instr_o
 );
 
 reg [31:0]  instr_mem   [0:65535];

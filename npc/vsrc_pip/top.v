@@ -8,17 +8,20 @@ wire    [`XLEN-1:0]     pc_new;
 wire                    is_jump;
 wire    [`XLEN-1:0]     pc_jump;
 
-wire    [`XLEN-1:0]     instr_if_id_reg;
-wire    [`XLEN-1:0]     pc_id,instr_id;  
+wire    [`inst_len-1:0] instr_if_id_reg;
+wire    [`XLEN-1:0]     pc_id;
+wire    [`inst_len-1:0] instr_id;  
 wire    [`XLEN-1:0]     src1_id,src2_id,rs2_id;
 wire    [`XLEN-1:0]     src1_ex,src2_ex,rs2_ex;
 wire    [4      :0]     aluctr_id,aluctr_ex;
-wire    [`XLEN-1:0]     pc_ex,instr_ex;  
+wire    [`XLEN-1:0]     pc_ex;
+wire    [`inst_len-1:0] instr_ex;  
 wire    [`XLEN-1:0]     alures_ex;  
-wire    [`XLEN-1:0]     pc_ls,instr_ls,rs2_ls,alures_ls;  
+wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
+wire    [`inst_len-1:0] instr_ls;
 wire    [`XLEN-1:0]     lsres_ls;  
-wire    [`XLEN-1:0]     pc_wb,instr_wb,alures_wb,lsres_wb;  
-
+wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
+wire    [`inst_len-1:0] instr_wb;
 wire    [`XLEN-1:0]     wb_data;
 wire    [4      :0]     wb_rdid;
 wire                    wb_wren;

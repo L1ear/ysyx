@@ -22,7 +22,7 @@ module regfiles(
 
 //regfiles
 reg		[`XLEN-1:0]	regfiles[0:31];
-assign	regA0 = regfiles[10];
+// assign	regA0 = regfiles[10];
 //write
 always @(posedge clk) begin
 	if(wr_en) begin

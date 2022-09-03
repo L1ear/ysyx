@@ -1,7 +1,8 @@
 `include "defines.v"
 module ID_stage (
     input                           clk,rst_n,
-    input           [`XLEN-1:0]     pc_i,instr_i,
+    input           [`XLEN-1:0]     pc_i,
+    input           [`inst_len-1:0] instr_i,
     input           [`XLEN-1:0]     wb_data_i,
     input           [4      :0]     wb_rdid_i,
     input                           wb_wren_i,                
@@ -41,7 +42,7 @@ imm_ext imm_ext_u(
     .ext_op_i(ext_op),
     .imm_o(imm)
 );
-regfile regfile_u(
+regfiles regfile_u(
     .clk(clk),
     .rs1_addr_i(instr_i[19:15]),
     .rs1_data_o(rs1),
@@ -68,7 +69,8 @@ endmodule
 
 
 module decoder (
-    input           [`XLEN-1:0]     pc_i,instr_i,
+    input           [`XLEN-1:0]     pc_i,
+    input           [`inst_len-1:0] instr_i,
 
     output   reg    [4      :0]     ext_op_o,
     output   reg                    src1sel_o,
@@ -80,9 +82,9 @@ wire    [4:0]   opcode = instr_i[6:2];
 wire    [2:0]   fun_3 = instr_i[14:12];
 wire    [6:0]   fun_7 = instr_i[31:25];
 
-assign  Rd_o = instr_i[11:7];
-assign  Rs1_o = instr_i[19:15];
-assign  Rs2_o = instr_i[24:20];
+// assign  Rd_o = instr_i[11:7];
+// assign  Rs1_o = instr_i[19:15];
+// assign  Rs2_o = instr_i[24:20];
 // assign  csrIdx = instr_i[31:20];
 
 always @(*) begin

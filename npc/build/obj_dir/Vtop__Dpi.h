@@ -13,7 +13,7 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at /home/qw/ysyx-workbench/npc/vsrc/IDU.v:57:30
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc/IDU.v:54:30
     extern void ebreak();
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc/regfiles.v:19:30
     extern void set_gpr_ptr(const svOpenArrayHandle a);

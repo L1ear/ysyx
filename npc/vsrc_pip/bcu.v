@@ -48,6 +48,9 @@ always @(*) begin
         `Bgeu: begin
             branch = carry;
         end
+        default: begin
+            branch = 1'b0;
+        end
     endcase
 end
 

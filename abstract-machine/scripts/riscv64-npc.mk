@@ -23,3 +23,6 @@ image: $(IMAGE).elf
 
 run: image
 	$(MAKE) -C $(NPC_HOME) run IMG=$(IMAGE).bin
+
+run_pip: image
+	$(MAKE) -C $(NPC_HOME) run_pip IMG=$(IMAGE).bin

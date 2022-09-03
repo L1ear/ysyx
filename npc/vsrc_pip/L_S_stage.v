@@ -1,7 +1,8 @@
 `include "defines.v"
 module ls_stage (
     input                           clk,rst_n,
-    input           [`XLEN-1:0]     pc,instr_i,alures_i,rs2_i,
+    input           [`XLEN-1:0]     pc,alures_i,rs2_i,
+    input           [`inst_len-1:0] instr_i,
 
     output          [`XLEN-1:0]     ls_res_o
 );
@@ -40,7 +41,7 @@ module lsu (
 reg     [`XLEN-1:0]     d_mem   [0:255];
 
 wire    [`XLEN-1:0]     rd_data_base;
-assign  rd_data_base = d_mem[addr_i[`XLEN-1:3]];
+assign  rd_data_base = d_mem[addr_i[10:3]];
 // //save or load 
 // `define     sb                  3'b000
 // `define     sh                  3'b001
@@ -72,22 +73,22 @@ always @(*) begin
         3'b000: begin
             rd_data_b = rd_data_base[7      :0];
             rd_data_h = rd_data_base[15     :0];
-            rd_data_w = rd_data_base[32     :0];
+            rd_data_w = rd_data_base[31     :0];
         end
         3'b001: begin
             rd_data_b = rd_data_base[15     :8];
             rd_data_h = rd_data_base[15     :0];
-            rd_data_w = rd_data_base[32     :0];
+            rd_data_w = rd_data_base[31     :0];
         end
         3'b010: begin
-            rd_data_b = rd_data_base[23     :61];
+            rd_data_b = rd_data_base[23     :16];
             rd_data_h = rd_data_base[31     :16];
-            rd_data_w = rd_data_base[32     :0];
+            rd_data_w = rd_data_base[31     :0];
         end
         3'b011: begin
             rd_data_b = rd_data_base[31     :24];
             rd_data_h = rd_data_base[31     :16];
-            rd_data_w = rd_data_base[32     :0];
+            rd_data_w = rd_data_base[31     :0];
         end
         3'b100: begin
             rd_data_b = rd_data_base[39     :32];
@@ -179,13 +180,13 @@ assign  wr_data = `XLEN'b0
 
 always @(posedge clk) begin
     if(wren) begin
-        d_mem[addr_i[`XLEN-1:3]] <= wr_data;
+        d_mem[addr_i[10:3]] <= wr_data;
     end
 end         
 endmodule
 
 module ls_ctr (
-    input       [`XLEN-1:0]     instr_i,
+    input       [`inst_len-1:0] instr_i,
     output                      wren,rden,
     output      [2      :0]     memop
 );

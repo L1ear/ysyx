@@ -33,6 +33,8 @@ $(shell mkdir -p $(BUILD_DIR))
 # project source
 VSRCS = $(shell find $(abspath ./vsrc) -name "*.v")
 CSRCS = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
+VSRCS_PIP = $(shell find $(abspath ./vsrc_pip) -name "*.v")
+CSRCS_PIP = $(shell find $(abspath ./csrc_pip) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
 # CSRCS += $(shell find $(abspath ./csrc/include) -name "*.h")
 #CSRCS += $(SRC_AUTO_BIND)
 
@@ -45,7 +47,7 @@ INCFLAGS = $(addprefix -I, $(INC_PATH))
 CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\"" 
 LDFLAGS += -lreadline -ldl
 
-# rules for diff-test
+# rules for diff-test and img load
 CONFIG_DIFFTEST=y
 ifdef IMG
 ARGS += -i $(IMG)
@@ -74,6 +76,20 @@ run:
 	@mkdir -p logs
 	build/top +trace $(ARGS)
 
+
+run_pip: 
+	@echo
+	@echo "-- VERILATE ----------------"
+	$(VERILATOR) $(VERILATOR_FLAGS) $(VSRCS_PIP) $(CSRCS_PIP)
+	@echo
+	@echo "-- BUILD -------------------"
+	$(MAKE) -j -C build/obj_dir -f Vtop.mk
+
+	@echo
+	@echo "-- RUN ---------------------"
+	@rm -rf logs
+	@mkdir -p logs
+	build/top +trace
 
 
 clean:
