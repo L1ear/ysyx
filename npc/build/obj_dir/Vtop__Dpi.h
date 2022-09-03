@@ -13,10 +13,12 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at /home/qw/ysyx-workbench/npc/vsrc/IDU.v:54:30
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:3:30
     extern void ebreak();
-    // DPI import at /home/qw/ysyx-workbench/npc/vsrc/regfiles.v:19:30
-    extern void set_gpr_ptr(const svOpenArrayHandle a);
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:1:30
+    extern void vmemread(long long raddr, int len, long long* rdata, long long pc);
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:2:30
+    extern void vmemwrite(long long raddr, long long wdata, long long pc);
 
 #ifdef __cplusplus
 }

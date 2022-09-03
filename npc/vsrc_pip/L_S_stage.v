@@ -17,6 +17,7 @@ lsu lsu_u(
     .memop(memop),    
     .wr_data_i(rs2_i),
     .addr_i(alures_i),
+    .pc_ls_i(pc),
     .ls_res_o(ls_res_o)    
 );
 
@@ -34,14 +35,26 @@ module lsu (
     input           [2      :0]     memop,    
     input           [`XLEN-1:0]     wr_data_i,
     input           [`XLEN-1:0]     addr_i,
+    input           [`XLEN-1:0]     pc_ls_i,
 
     output          [`XLEN-1:0]     ls_res_o    
 );
 
-reg     [`XLEN-1:0]     d_mem   [0:255];
+// reg     [`XLEN-1:0]     d_mem   [0:255];
 
-wire    [`XLEN-1:0]     rd_data_base;
-assign  rd_data_base = d_mem[addr_i[10:3]];
+
+
+reg    [`XLEN-1:0]     rd_data_base;
+// assign  rd_data_base = d_mem[addr_i[10:3]];
+wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
+always @(*) begin
+    if(wren || rden)
+        vmemread(dpi_addr, 8, rd_data_base, pc_ls_i);
+    else
+        rd_data_base = `XLEN'b0;
+end
+
+
 // //save or load 
 // `define     sb                  3'b000
 // `define     sh                  3'b001
@@ -180,7 +193,7 @@ assign  wr_data = `XLEN'b0
 
 always @(posedge clk) begin
     if(wren) begin
-        d_mem[addr_i[10:3]] <= wr_data;
+        vmemwrite(dpi_addr, wr_data, pc_ls_i);
     end
 end         
 endmodule

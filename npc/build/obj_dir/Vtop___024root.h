@@ -11,12 +11,15 @@
 
 class Vtop__Syms;
 class Vtop_VerilatedVcd;
+class Vtop___024unit;
 
 
 //----------
 
 VL_MODULE(Vtop___024root) {
   public:
+    // CELLS
+    Vtop___024unit* __PVT____024unit;
 
     // PORTS
     VL_IN8(clk,0,0);
@@ -59,6 +62,7 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__alures_wb;
     QData/*63:0*/ top__DOT__lsres_wb;
     QData/*63:0*/ top__DOT__wb_data;
+    QData/*63:0*/ top__DOT__IF_u__DOT__rdata;
     QData/*63:0*/ top__DOT__ID_u__DOT__imm;
     QData/*63:0*/ top__DOT__ID_u__DOT__rs1;
     QData/*63:0*/ top__DOT__ID_u__DOT__rs2;
@@ -77,13 +81,13 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_b;
     QData/*63:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_w;
     QData/*63:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_data;
-    VlUnpacked<IData/*31:0*/, 65536> top__DOT__IF_u__DOT__instr_mem;
     VlUnpacked<QData/*63:0*/, 32> top__DOT__ID_u__DOT__regfile_u__DOT__regfiles;
-    VlUnpacked<QData/*63:0*/, 256> top__DOT__ls_u__DOT__lsu_u__DOT__d_mem;
 
     // LOCAL VARIABLES
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_n;
+    QData/*63:0*/ __Vtask_vmemread__1__rdata;
+    QData/*63:0*/ __Vtask_vmemread__3__rdata;
     VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
 
     // INTERNAL VARIABLES

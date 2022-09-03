@@ -1,3 +1,7 @@
+import "DPI-C" function void vmemread(input longint raddr, input int len, output longint rdata, input longint pc);
+import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input longint pc);
+import "DPI-C" function void ebreak(); 
+
 `define		XLEN	            64
 `define     reg_addr_width      5
 

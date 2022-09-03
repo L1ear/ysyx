@@ -87,6 +87,8 @@ wire    [6:0]   fun_7 = instr_i[31:25];
 // assign  Rs2_o = instr_i[24:20];
 // assign  csrIdx = instr_i[31:20];
 
+
+
 always @(*) begin
     ext_op_o = 5'b0;                          //默认拓展模块输出0
     aluctr_o = `AluAdd_64;                   //默认add
@@ -247,7 +249,7 @@ always @(*) begin
             // DivSel = `DivMul;            
         end
         // //调用DPI-C函数
-        // `syscall: begin
+        `syscall: begin
         //     Src1Sel = `Rs1;
         //     Src2Sel = `csr;
         //     RegWrEn = 1'b1;
@@ -257,7 +259,7 @@ always @(*) begin
         //     case(fun_3)
         //         `env: begin
         //             if(instr_i[20]) begin                       //ebreak;
-        //                ebreak();
+                       ebreak();
         //             end
         //             else if(~instr_i[21]) begin                 //ecall              //ecall;
         //                 //TODO
@@ -281,7 +283,7 @@ always @(*) begin
 
         //         end
         //     endcase
-        // end
+        end
         default: begin
             //TODO
         end
