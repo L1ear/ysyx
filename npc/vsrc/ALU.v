@@ -1,14 +1,12 @@
 `include "defines.v"
 module ALU(
-    input       [3:0]           ALUctr,
+    input       [4:0]           ALUctr,
     input       [`XLEN-1:0]     src1,
     input       [`XLEN-1:0]     src2,
     input                       DivEn,
     input       [2:0]           DivSel,
-    input                       Div32,
-    input                       sft32,
 
-    output  reg [`XLEN-1:0]     ALUout,
+    output      [`XLEN-1:0]     ALUres,
     output  reg                 less,
     output                      zero
 );
@@ -28,6 +26,7 @@ ALUctr[3]|[2:0]
        x | 111:   and
 */
 
+reg [`XLEN-1:0]     ALUout;
 wire                    cin;
 wire    [`XLEN-1:0]     src2_cin = src2 ^ {`XLEN{cin}};
 wire    [`XLEN-1:0]     Adder_o;
@@ -55,7 +54,7 @@ Adder   Adder_main(
 );
 
 control ALU_Control(
-    .ALUctr(ALUctr),
+    .ALUctr(ALUctr[3:0]),
     .out_mux(out_mux),
     .sft_a_l(sft_a_l),
     .sft_l_r(sft_l_r),
@@ -63,13 +62,13 @@ control ALU_Control(
     .u_s(u_s_mux)
 );
 
-barrelshifter64 shifter(
+shifter64 shifter(
+    .ALUctr(ALUctr[4]),
     .src1(src1),    
     .src2(src2[5:0]),    
     .sft_l_r(sft_l_r),
     .sft_a_l(sft_a_l), 
-    .shift(shift),
-    .sft32(sft32)  
+    .shift(shift)  
 );
 
 wire    [`XLEN-1:0]     DivOut;
@@ -77,7 +76,6 @@ DIVIDER  divider(
     .src1(src1),
     .src2(src2),
     .DivSel(DivSel),
-    .Div32(Div32),
     .DivOut(DivOut)
 );
 
@@ -122,7 +120,7 @@ always @(*) begin
             end
         endcase
 end
-
+assign ALUres = ALUctr[4] ? {{32{ALUout[31]}}, ALUout[31:0]} : ALUout;
 
 endmodule
 
@@ -181,64 +179,54 @@ assign sft_a_l = ALUctr[3];
 endmodule
 
 
-module barrelshifter64(
+module shifter64(
+    input                   ALUctr, //[4]
     input [`XLEN-1:0]       src1,     
     input [5:0]             src2,      
     input                   sft_l_r,
     input                   sft_a_l,  
-    input                   sft32,
-    output reg [`XLEN-1:0]  shift  
+    output     [`XLEN-1:0]  shift  
 );
-reg [`XLEN-1:0]     temp;
-always @(*) begin
-    if (~sft_l_r) begin
-        temp = src2[0] ? {{src1[62:0]}, 1'b0} : src1;
-        temp = src2[1] ? {{temp[61:0]}, 2'b0} : temp;
-        temp = src2[2] ? {{temp[59:0]}, 4'b0} : temp;
-        temp = src2[3] ? {{temp[55:0]}, 8'b0} : temp;
-        temp = src2[4] ? {{temp[47:0]}, 16'b0} : temp;
-        temp = src2[5] ? {{temp[31:0]}, 32'b0} : temp;
-    end
-    else begin
-        if(sft_a_l) begin
-            if(~sft32) begin
-                temp = src2[0] ? {{src1[63]}, src1[63:1]} : src1;
-                temp = src2[1] ? {{2{temp[63]}}, temp[63:2]} : temp;
-                temp = src2[2] ? {{4{temp[63]}}, temp[63:4]} : temp;
-                temp = src2[3] ? {{8{temp[63]}}, temp[63:8]} : temp;
-                temp = src2[4] ? {{16{temp[63]}}, temp[63:16]} : temp;
-                temp = src2[5] ? {{32{temp[63]}}, temp[63:32]} : temp;  
-            end        
-            else begin
-                temp[31:0] = src2[0] ? {{src1[31]}, src1[31:1]} : src1[31:0];
-                temp[31:0] = src2[1] ? {{2{temp[31]}}, temp[31:2]} : temp[31:0];
-                temp[31:0] = src2[2] ? {{4{temp[31]}}, temp[31:4]} : temp[31:0];
-                temp[31:0] = src2[3] ? {{8{temp[31]}}, temp[31:8]} : temp[31:0];
-                temp[31:0] = src2[4] ? {{16{temp[31]}}, temp[31:16]} : temp[31:0]; 
-                temp[63:32] = {32{temp[31]}};
-            end
-        end
-        else begin
-            if(~sft32) begin
-                temp = src2[0] ? {{1'b0}, src1[63:1]} : src1;
-                temp = src2[1] ? {{2{1'b0}}, temp[63:2]} : temp;
-                temp = src2[2] ? {{4{1'b0}}, temp[63:4]} : temp;
-                temp = src2[3] ? {{8{1'b0}}, temp[63:8]} : temp;
-                temp = src2[4] ? {{16{1'b0}}, temp[63:16]} : temp;
-                temp = src2[5] ? {{32{1'b0}}, temp[63:32]} : temp; 
-            end
-            else begin
-                temp[31:0] = src2[0] ? {{1'b0}, src1[31:1]} : src1[31:0];
-                temp[31:0] = src2[1] ? {{2{1'b0}}, temp[31:2]} : temp[31:0];
-                temp[31:0] = src2[2] ? {{4{1'b0}}, temp[31:4]} : temp[31:0];
-                temp[31:0] = src2[3] ? {{8{1'b0}}, temp[31:8]} : temp[31:0];
-                temp[31:0] = src2[4] ? {{16{1'b0}}, temp[31:16]} : temp[31:0];
-                temp[63:32] = {32{temp[31]}};
-            end   
-        end
-    end
-end
-assign shift = temp;
+
+wire    [`XLEN-1:0]         shft_src;
+wire    [`XLEN-1:0]         shft_res;
+wire    [`XLEN-1:0]         sr_mask;
+wire    [`XLEN-1:0]         sr_mask_n;
+wire    [`XLEN-1:0]         srl_res;
+wire    [`XLEN-1:0]         sra_res;
+wire    [`XLEN-1:0]         sll_res;
+
+assign shft_src = sft_l_r ? src1 :
+                            {
+                             src1[ 0], src1[ 1], src1[ 2], src1[ 3], src1[ 4], src1[ 5], src1[ 6], src1[ 7], 
+                             src1[ 8], src1[ 9], src1[10], src1[11], src1[12], src1[13], src1[14], src1[15],
+                             src1[16], src1[17], src1[18], src1[19], src1[20], src1[21], src1[22], src1[23],
+                             src1[24], src1[25], src1[26], src1[27], src1[28], src1[29], src1[30], src1[31],
+                             src1[32], src1[33], src1[34], src1[35], src1[36], src1[37], src1[38], src1[39],
+                             src1[40], src1[41], src1[42], src1[43], src1[44], src1[45], src1[46], src1[47],
+                             src1[48], src1[49], src1[50], src1[51], src1[52], src1[53], src1[54], src1[55],
+                             src1[56], src1[57], src1[58], src1[59], src1[60], src1[61], src1[62], src1[63]
+                            };
+assign shft_res  = shft_src >> src2;
+assign sr_mask   = (`XLEN'hffff_ffff_ffff_ffff >> src2[5:0]);
+assign sr_mask_n = ~sr_mask;
+assign srl_res   = ALUctr ? shft_res & {32'b0, sr_mask[63:32]} :                                                              //32位
+                          shft_res;                                                                                         //64位
+//                                    31位为高则置位                        否则清零（因为符号扩展嘛）                                    
+assign sra_res   = ALUctr ? src1[31] ? shft_res | {32'b1, sr_mask_n[63:32]} : shft_res & {32'b0, sr_mask[63:32]}        //32位操作
+                          : shft_res | {{64{src1[63]}} & sr_mask_n};                                                           //64位操作
+assign sll_res   = {
+                    shft_res[ 0], shft_res[ 1], shft_res[ 2], shft_res[ 3], shft_res[ 4], shft_res[ 5], shft_res[ 6], shft_res[ 7], 
+                    shft_res[ 8], shft_res[ 9], shft_res[10], shft_res[11], shft_res[12], shft_res[13], shft_res[14], shft_res[15],
+                    shft_res[16], shft_res[17], shft_res[18], shft_res[19], shft_res[20], shft_res[21], shft_res[22], shft_res[23],
+                    shft_res[24], shft_res[25], shft_res[26], shft_res[27], shft_res[28], shft_res[29], shft_res[30], shft_res[31],
+                    shft_res[32], shft_res[33], shft_res[34], shft_res[35], shft_res[36], shft_res[37], shft_res[38], shft_res[39],
+                    shft_res[40], shft_res[41], shft_res[42], shft_res[43], shft_res[44], shft_res[45], shft_res[46], shft_res[47],
+                    shft_res[48], shft_res[49], shft_res[50], shft_res[51], shft_res[52], shft_res[53], shft_res[54], shft_res[55],
+                    shft_res[56], shft_res[57], shft_res[58], shft_res[59], shft_res[60], shft_res[61], shft_res[62], shft_res[63]
+                   };
+assign shift = sft_l_r ?  sft_a_l ? sra_res : srl_res
+                        : sll_res;
 endmodule
 
 
@@ -246,19 +234,11 @@ endmodule
 module DIVIDER (
     input       [`XLEN-1:0]     src1,src2,
     input       [2:0]           DivSel,
-    input                       Div32,
     output  reg [`XLEN-1:0]     DivOut
 );
-reg [127:0] tmp;
 always @(*) begin
-    tmp = 128'b0;
     case (DivSel)
         `DivMul: begin
-            if (Div32) begin
-                tmp[63:0] = src1[31:0] * src2[31:0];
-                DivOut = {{32{tmp[31]}},tmp[31:0]};
-            end
-            else
                 DivOut = (src1 * src2);
         end
         `DivMulh: begin
@@ -271,35 +251,15 @@ always @(*) begin
             DivOut = $unsigned(src1) * $unsigned(src2);
         end
         `DivDiv: begin
-            if(Div32) begin
-                tmp[31:0] = $signed(src1[31:0]) / $signed(src2[31:0]);
-                DivOut = {{32{tmp[31]}},tmp[31:0]};
-            end
-            else
                 DivOut = $signed(src1) / $signed(src2);
         end
         `DivRem: begin
-            if(Div32) begin
-                tmp[31:0] = $signed(src1[31:0]) % $signed(src2[31:0]);
-                DivOut = {{32{tmp[31]}},tmp[31:0]};
-            end
-            else
                 DivOut = $signed(src1) % $signed(src2);
         end
         `DivDivu: begin
-            if(Div32) begin
-                tmp[31:0] = $unsigned(src1[31:0]) / $unsigned(src2[31:0]);
-                DivOut = {{32{tmp[31]}},tmp[31:0]};
-            end
-            else
                 DivOut = $unsigned(src1) / $unsigned(src2);
         end
         `DivRemu: begin
-            if(Div32) begin
-                tmp[31:0] = $unsigned(src1[31:0]) % $unsigned(src2[31:0]);
-                DivOut = {{32{tmp[31]}},tmp[31:0]};
-            end
-            else
             DivOut = $unsigned(src1) % $unsigned(src2);
         end
         default: begin

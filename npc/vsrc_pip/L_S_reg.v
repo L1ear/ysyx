@@ -3,13 +3,14 @@ module L_S_reg (
     input                           clk,rstn,
     input           [`XLEN-1:0]     PC_ls_reg_i,instr_ls_reg_i,rs2_ls_reg_i,
     input           [`XLEN-1:0]     alures_ls_reg_i,
-    input                           mem_wren_ls_reg_i,
-    input                           mem_lden_ls_reg_i,
-    input           [2      :0]     mem_op_ls_reg_i,
-    output   reg                    mem_wren_ls_reg_o,
-    output   reg                    mem_lden_ls_reg_o,
-    output   reg    [2      :0]     mem_op_ls_reg_o,
+    // input                           mem_wren_ls_reg_i,
+    // input                           mem_lden_ls_reg_i,
+    // input           [2      :0]     mem_op_ls_reg_i,
+    // output   reg                    mem_wren_ls_reg_o,
+    // output   reg                    mem_lden_ls_reg_o,
+    // output   reg    [2      :0]     mem_op_ls_reg_o,
     output   reg    [`XLEN-1:0]     PC_ls_reg_o,instr_ls_reg_o,rs2_ls_reg_o
+    output   reg    [`XLEN-1:0]     alures_ls_reg_o
 );
     
 always @(posedge clk or negedge rstn) begin
@@ -41,29 +42,38 @@ end
 
 always @(posedge clk or negedge rstn) begin
     if(~rstn) begin
-        mem_wren_ls_reg_o <= `XLEN'b0;
+        alures_ls_reg_o <= `XLEN'b0;
     end
     else begin
-        mem_wren_ls_reg_o <= mem_wren_ls_reg_i;
+        alures_ls_reg_o <= alures_ls_reg_i;
     end
 end
 
-always @(posedge clk or negedge rstn) begin
-    if(~rstn) begin
-        mem_lden_ls_reg_o <= `XLEN'b0;
-    end
-    else begin
-        mem_lden_ls_reg_o <= mem_lden_ls_reg_i;
-    end
-end
+// always @(posedge clk or negedge rstn) begin
+//     if(~rstn) begin
+//         mem_wren_ls_reg_o <= `XLEN'b0;
+//     end
+//     else begin
+//         mem_wren_ls_reg_o <= mem_wren_ls_reg_i;
+//     end
+// end
 
-always @(posedge clk or negedge rstn) begin
-    if(~rstn) begin
-        mem_op_ls_reg_o <= `XLEN'b0;
-    end
-    else begin
-        mem_op_ls_reg_o <= mem_op_ls_reg_i;
-    end
-end
+// always @(posedge clk or negedge rstn) begin
+//     if(~rstn) begin
+//         mem_lden_ls_reg_o <= `XLEN'b0;
+//     end
+//     else begin
+//         mem_lden_ls_reg_o <= mem_lden_ls_reg_i;
+//     end
+// end
+
+// always @(posedge clk or negedge rstn) begin
+//     if(~rstn) begin
+//         mem_op_ls_reg_o <= `XLEN'b0;
+//     end
+//     else begin
+//         mem_op_ls_reg_o <= mem_op_ls_reg_i;
+//     end
+// end
 
 endmodule

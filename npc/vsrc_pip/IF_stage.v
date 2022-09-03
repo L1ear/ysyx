@@ -10,6 +10,11 @@ module IF_stage (
 
 reg [31:0]  instr_mem   [0:65535];
 
+initial begin
+    $readmemh("./instr",instr_mem);
+end
+
+
 assign pc_next_o = is_jump_i ? pc_jump_i : (pc_i+`XLEN'd4);
 assign instr_o = instr_mem[pc_i[17:2]];
 endmodule //IF_stage

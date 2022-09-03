@@ -21,15 +21,12 @@ module IDU(
 //To ImmExt
     output  reg     [4:0]           ExtOp,
 //To Alu
-    output  reg     [3:0]           ALUctr,
+    output  reg     [4:0]           ALUctr,
     output  reg     [1:0]           Src2Sel,
     output  reg                     Src1Sel,
-    output  reg                     dwsel,
-    output  reg                     sft32,
 //To Div
     output  reg                     DivEn,
     output  reg     [2:0]           DivSel,
-    output  reg                     Div32,
 //To Data memory
     output  reg     [2:0]           MemOp,
     output  reg                     MemWr,
@@ -62,7 +59,7 @@ always @(*) begin
     MemWr = 1'b0;
     RegWrEn = 1'b0;
     ExtOp = 5'b0;                          //默认拓展模块输出0
-    ALUctr = `AluAdd;                      //默认add
+    ALUctr = `AluAdd_64;                   //默认add
     Src1Sel = `Rs1;                        //默认Rs1    
     Src2Sel = `Rs2;                        //默认Rs2
     MemOp = 3'b0;                          //默认lb
@@ -71,11 +68,9 @@ always @(*) begin
     IntSync = 1'b0;
     mret = 1'b0;
 //64/32
-    dwsel = `out_64;                       //默认64位输出
+
     DivEn = 1'b0;                          //默认不使能DIV
     DivSel = `DivMul;
-    Div32 = 1'b0;                          //默认64位
-    sft32 = 1'b0;                          //默认64位
 //TODO: 补全！！！！！！！！！！！！
     case(opcode)
         `OP_REG,`OP_REG_32: begin
@@ -85,23 +80,19 @@ always @(*) begin
             RegWrEn = 1'b1;
             RegWrSel = `AluOut;   //选择Alu输出写入   
             branch = `NonBranch;
-            dwsel = `out_64;
             DivEn = fun_7[0];
             DivSel = fun_3;
-            Div32 = opcode[1];
             case(fun_3)
-                `add_sub: begin   
-                    dwsel = opcode[1];                                        
+                `add_sub: begin                                          
                     if(fun_7[5]) begin      //Sub
-                        ALUctr = `AluSub;
+                        ALUctr = opcode[1] ? `AluSub_32 : `AluSub_64;
                     end
                     else begin
-                        ALUctr = `AluAdd;
+                        ALUctr = opcode[1] ? `AluAdd_32 : `AluAdd_64;
                     end
                 end
                 `sll: begin
-                    dwsel = opcode[1];
-                    ALUctr = `AluSll;
+                    ALUctr = opcode[1] ? `AluSll_32 : `AluSll_64;
                 end    
                 `slt: begin
                     ALUctr = `AluSlt;
@@ -113,12 +104,11 @@ always @(*) begin
                     ALUctr = `AluXor;
                 end    
                 `sr_l_a: begin
-                    sft32 = opcode[1];
                     if(fun_7[5]) begin      //SRA
-                        ALUctr = `AluSra;
+                        ALUctr = opcode[1] ? `AluSra_32 : `AluSra_64;
                     end
                     else begin
-                        ALUctr = `AluSrl;
+                        ALUctr = opcode[1] ? `AluSrl_32 : `AluSrl_64;
                     end
                 end 
                 `Or: begin
@@ -141,12 +131,10 @@ always @(*) begin
             DivSel = `DivMul;
             case(fun_3)
                 `addi: begin
-                    dwsel = opcode[1];
-                    ALUctr = `AluAdd;
+                    ALUctr = opcode[1] ? `AluAdd_32 : `AluAdd_64;
                 end   
                 `slli: begin
-                    dwsel = opcode[1];
-                    ALUctr = `AluSll;
+                    ALUctr = opcode[1] ? `AluSll_32 : `AluSll_64;
                 end   
                 `slti: begin
                     ALUctr = `AluSlt;
@@ -158,12 +146,11 @@ always @(*) begin
                     ALUctr = `AluXor;
                 end   
                 `sri_l_a: begin
-                    sft32 = opcode[1];
                     if(fun_7[5]) begin      //SRA
-                        ALUctr = `AluSra;
+                        ALUctr =  opcode[1] ? `AluSra_32 : `AluSra_64;
                     end
                     else begin
-                        ALUctr = `AluSrl;
+                        ALUctr = opcode[1] ? `AluSrl_32 : `AluSrl_64;
                     end
                 end
                 `Ori: begin
@@ -180,7 +167,7 @@ always @(*) begin
             MemWr = 1'b0;
             RegWrEn = 1'b1;
             ExtOp = `immI;                          
-            ALUctr = `AluAdd;                      
+            ALUctr = `AluAdd_64;                      
             Src1Sel = `Rs1;                       
             Src2Sel = `imm;                        
             MemOp = fun_3;
@@ -193,7 +180,7 @@ always @(*) begin
             MemWr = 1'b1;
             RegWrEn = 1'b0;
             ExtOp = `immS;                          
-            ALUctr = `AluAdd;                      
+            ALUctr = `AluAdd_64;                      
             Src1Sel = `Rs1;                       
             Src2Sel = `imm;                        
             MemOp = fun_3;
@@ -248,7 +235,7 @@ always @(*) begin
             branch = `JalCon;
             RegWrSel = `AluOut;
             MemWr = 1'b0;        
-            ALUctr = `AluAdd; 
+            ALUctr = `AluAdd_64; 
             DivEn = 1'b0;
             DivSel = `DivMul;
         end   
@@ -260,7 +247,7 @@ always @(*) begin
             branch = `JalrCon;
             RegWrSel = `AluOut;
             MemWr = 1'b0;        
-            ALUctr = `AluAdd; 
+            ALUctr = `AluAdd_64; 
             DivEn = 1'b0;
             DivSel = `DivMul;
         end                                
@@ -284,7 +271,7 @@ always @(*) begin
             branch = `NonBranch;
             RegWrSel = `AluOut;
             MemWr = 1'b0;        
-            ALUctr = `AluAdd;
+            ALUctr = `AluAdd_64;
             DivEn = 1'b0;
             DivSel = `DivMul;            
         end

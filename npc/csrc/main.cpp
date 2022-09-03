@@ -55,11 +55,11 @@ int main(int argc, char *argv[])
 #endif 
 
     
-    init_monitor(argc, argv);
-    sim_time = reset(sim_time,5);    
-    en = 1;
     
+    sim_time = reset(sim_time,5);  
+    init_monitor(argc, argv);
 
+    en = 1;
     sdb_mainloop();
     while(en)
     {
@@ -92,7 +92,7 @@ void single_cycle(int i) {
   if(top->MemWr==1){
     switch (top->MemOp)
     {
-    case 0:
+    case 0:    
       memwrite(top->DmemAddr, 1, top->DmemDataI,top->instrAddr);
       break;
     case 1:
@@ -102,6 +102,7 @@ void single_cycle(int i) {
       memwrite(top->DmemAddr, 4, top->DmemDataI,top->instrAddr);
       break;
     case 3:
+      // if(top->DmemAddr % 8 != 0)  {printf("%016llx\n",top->DmemAddr);assert(0);}
       memwrite(top->DmemAddr, 8, top->DmemDataI,top->instrAddr);
       // printf("test:have writen %016llx to %08x, read out:%016llx,PC:%08lx\n",top->DmemDataI,top->DmemAddr,memread(top->DmemAddr,8,top->instrAddr),top->instrAddr);
       break;
@@ -119,8 +120,9 @@ void single_cycle(int i) {
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
     }
-    if(start == 0 && en == 1){  
-    difftest_step(pc);
+    if(start == 0 && en == 1){ 
+      // assert(0); 
+      difftest_step(pc);
     }
 #endif
   top->clk = 0;
@@ -163,7 +165,10 @@ if(top->OPcode==3)
 
 #ifdef  difftest
   pc = top->instrAddr;
-  start = 0;
+  if(en == 1){
+        start = 0;
+
+  }
 #endif
 }
 

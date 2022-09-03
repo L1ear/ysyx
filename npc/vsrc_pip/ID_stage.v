@@ -2,6 +2,9 @@
 module ID_stage (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,instr_i,
+    input           [`XLEN-1:0]     wb_data_i,
+    input           [4      :0]     wb_rdid_i,
+    input                           wb_wren_i,                
 
     output          [`XLEN-1:0]     rs2_o,
     output          [`XLEN-1:0]     src1_o,src2_o,
@@ -44,9 +47,9 @@ regfile regfile_u(
     .rs1_data_o(rs1),
     .rs2_addr_i(instr_i[24:20]),
     .rs2_data_o(rs2),
-    .wr_addr_i(),
-    .wr_data_i(),
-    .wr_en()
+    .wr_addr_i(wb_rdid_i),
+    .wr_data_i(wb_data_i),
+    .wr_en(wb_wren_i)
 );
 bcu bcu_u(
     .rs1_i(rs1),
@@ -70,7 +73,7 @@ module decoder (
     output   reg    [4      :0]     ext_op_o,
     output   reg                    src1sel_o,
     output   reg    [1      :0]     src2sel_o,
-    output   reg    [3      :0]     aluctr_o,
+    output   reg    [4      :0]     aluctr_o,
     output   reg                    is_jalr_o,is_jal_o,is_brc_o
 );
 wire    [4:0]   opcode = instr_i[6:2];

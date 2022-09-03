@@ -115,9 +115,9 @@ end
 assign  ls_res_o = `XLEN'b0
                    |({`XLEN{lb}} & {{56{rd_data_b[7]}},rd_data_b})
                    |({`XLEN{lbu}} & {56'b0,rd_data_b})
-                   |({`XLEN{lh}} & {{48{rd_data_h[7]}},rd_data_h})
+                   |({`XLEN{lh}} & {{48{rd_data_h[15]}},rd_data_h})
                    |({`XLEN{lhu}} & {48'b0,rd_data_h})
-                   |({`XLEN{lw}} & {{32{rd_data_w[7]}},rd_data_w})
+                   |({`XLEN{lw}} & {{32{rd_data_w[31]}},rd_data_w})
                    |({`XLEN{lwu}} & {32'b0,rd_data_w})
                    |({`XLEN{ld}} & rd_data_base);
 
