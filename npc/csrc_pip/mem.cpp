@@ -16,11 +16,37 @@ static int difftest_port = 1234;
 
 // char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv64-npc.bin";
 static const uint32_t img [] = {
-  0x00000297,  // auipc t0,0
-  0x0002b823,  // sd  zero,16(t0)
-  0x0102b503,  // ld  a0,16(t0)
-  0x00100073,  // ebreak (used as nemu_trap)
-  0xdeadbeef,  // some data
+0x07000093,//addi x1,x0,0x00000070        1    addi x1,x0,0x70
+0x07100113,//addi x2,x0,0x00000071        2    addi x2,x0,0x71
+0x0f000193,//addi x3,x0,0x000000f0        3    addi x3,x0,0xf0
+0x0f100213,//addi x4,x0,0x000000f1        4    addi x4,x0,0xf1
+0x00100023,//sb x1,0(x0)                  5    sb x1,0(x0)
+0x01809093,//slli x1,x1,24                6    slli x1,x1,24
+0x002000a3,//sb x2,1(x0)                  7    sb x2,1(x0)
+0x00300123,//sb x3,2(x0)                  8    sb x3,2(x0)
+0x004001a3,//sb x4,3(x0)                  9    sb x4,3(x0)
+0x004082b3,//add x5,x1,x4                 10   add x5,x1,x4
+0x00000303,//lb x6,0(x0)                  11   lb x6,0(x0)
+0x00100383,//lb x7,1(x0)                  12   lb x7,1(x0)
+0x00200403,//lb x8,2(x0)                  13   lb x8,2(x0)
+0x00300483,//lb x9,3(x0)                  14   lb x9,3(x0)
+0x00502223,//sw x5,4(x0)                  15   sw x5,4(x0)
+0x00501423,//sh x5,8(x0)                  16   sh x5,8(x0)
+0x00004583,//lbu x11,0(x0)                17   lbu x11,0(x0)
+0x00104603,//lbu x12,1(x0)                18   lbu x12,1(x0)
+0x00204683,//lbu x13,2(x0)                19   lbu x13,2(x0)
+0x00304703,//lbu x14,3(x0)                20   lbu x14,3(x0)
+0x00001803,//lh x16,0(x0)                 21   lh x16,0(x0)
+0x00101883,//lh x17,1(x0)                 22   lh x17,1(x0)
+0x00201903,//lh x18,2(x0)                 23   lh x18,2(x0)
+0x00301983,//lh x19,3(x0)                 24   lh x19,3(x0)
+0x00801a03,//lh x20,8(x0)                 25   lh x20,8(x0)
+0x00005a83,//lhu x21,0(x0)                26   lhu x21,0(x0)
+0x00105b03,//lhu x22,1(x0)                27   lhu x22,1(x0)
+0x00205b83,//lhu x23,2(x0)                28   lhu x23,2(x0)
+0x00305c03,//lhu x24,3(x0)                29   lhu x24,3(x0)
+0x00402c83,//lw x25,4(x0)                 30   lw x25,4(x0)
+0x00100073,  // ebreak (used as nemu_trap)
 };
 
 static char *img_file = NULL;
