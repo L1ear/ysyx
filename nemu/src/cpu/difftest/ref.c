@@ -10,9 +10,11 @@ void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
     for(i = n;i>0;i--){
       paddr_write(addr+(n-i),1,mem[n-i]);
     }
+    cpu_exec(1);
     for(;i<n;i++){
       printf("%08lx\n",paddr_read(addr + i*4,4));
     }
+    
   } 
   else {
     assert(0);
