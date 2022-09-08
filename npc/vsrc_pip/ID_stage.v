@@ -7,25 +7,30 @@ module ID_stage (
     input           [4      :0]     wb_rdid_i,
     input                           wb_wren_i,                
 
-    output          [`XLEN-1:0]     rs2_o,
-    output          [`XLEN-1:0]     src1_o,src2_o,
+    output          [`XLEN-1:0]     rs1_o,rs2_o,imm_o,
+    // output          [`XLEN-1:0]     src1_o,src2_o,
+    output                          src1sel,
+    output          [1      :0]     src2sel,
     output          [4      :0]     aluctr_o,
-    output          [`XLEN-1:0]     pc_next_o,
-    output                          is_jump_o
+    output                          is_jalr_id_o,is_jal_id_o,is_brc_id_o
+    // output          [`XLEN-1:0]     pc_next_o,
+    // output                          is_jump_o
 );
 
 wire    [4      :0]     ext_op;
 wire                    is_jalr,is_jal,is_brc;
 wire    [`XLEN-1:0]     imm;
 wire    [`XLEN-1:0]     rs1,rs2;
-wire                    src1sel;
-wire    [1      :0]     src2sel;
+// wire                    src1sel;
+// wire    [1      :0]     src2sel;
 
 assign rs2_o = rs2;
+assign rs1_o = rs1;
+assign imm_o = imm;
 
-assign src1_o = src1sel ? pc_i : rs1;
-assign src2_o = src2sel[1] ? `XLEN'd4 :
-                            src2sel[0] ? imm : rs2;
+// assign src1_o = src1sel ? pc_i : rs1;
+// assign src2_o = src2sel[1] ? `XLEN'd4 :
+//                             src2sel[0] ? imm : rs2;
 decoder decoder_u(
     .pc_i(pc_i),
     .instr_i(instr_i),
@@ -52,18 +57,18 @@ regfiles regfile_u(
     .wr_data_i(wb_data_i),
     .wr_en(wb_wren_i)
 );
-bcu bcu_u(
-    .rs1_i(rs1),
-    .rs2_i(rs2),
-    .is_jalr_i(is_jalr),
-    .is_jal_i(is_jal),
-    .is_brc_i(is_brc),
-    .fun_3(instr_i[14:12]),
-    .imm_i(imm),
-    .pc_i(pc_i),
-    .brc_pc_o(pc_next_o),
-    .is_jump_o(is_jump_o)
-);
+// bcu bcu_u(
+//     .rs1_i(rs1),
+//     .rs2_i(rs2),
+//     .is_jalr_i(is_jalr),
+//     .is_jal_i(is_jal),
+//     .is_brc_i(is_brc),
+//     .fun_3(instr_i[14:12]),
+//     .imm_i(imm),
+//     .pc_i(pc_i),
+//     .brc_pc_o(pc_next_o),
+//     .is_jump_o(is_jump_o)
+// );
 
 endmodule
 

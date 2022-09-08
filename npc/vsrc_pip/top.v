@@ -11,8 +11,10 @@ wire    [`XLEN-1:0]     pc_jump;
 wire    [`inst_len-1:0] instr_if_id_reg;
 wire    [`XLEN-1:0]     pc_id;
 wire    [`inst_len-1:0] instr_id;  
-wire    [`XLEN-1:0]     src1_id,src2_id,rs2_id;
-wire    [`XLEN-1:0]     src1_ex,src2_ex,rs2_ex;
+wire    [`XLEN-1:0]     rs2_id,rs1_id,imm_id;
+wire                    src1sel_id,src1sel_ex;
+wire    [1      :0]     src2sel_id,src2sel_ex;
+wire    [`XLEN-1:0]     rs2_ex,rs1_ex,imm_ex;
 wire    [4      :0]     aluctr_id,aluctr_ex;
 wire    [`XLEN-1:0]     pc_ex;
 wire    [`inst_len-1:0] instr_ex;  
@@ -25,6 +27,8 @@ wire    [`inst_len-1:0] instr_wb;
 wire    [`XLEN-1:0]     wb_data;
 wire    [4      :0]     wb_rdid;
 wire                    wb_wren;
+wire                    is_brc_id,is_jal_id,is_jalr_id;
+wire                    is_brc_ex,is_jal_ex,is_jalr_ex;
 
 
 PC_reg PC_reg_u(
@@ -63,12 +67,15 @@ ID_stage ID_u(
     .wb_rdid_i      (wb_rdid),
     .wb_wren_i      (wb_wren), 
 
+    .rs1_o          (rs1_id),
     .rs2_o          (rs2_id),
-    .src1_o         (src1_id),
-    .src2_o         (src2_id),    
+    .imm_o          (imm_id),
+    .src1sel        (src1sel_id),
+    .src2sel        (src2sel_id),    
     .aluctr_o       (aluctr_id),
-    .pc_next_o      (pc_jump),
-    .is_jump_o      (is_jump)
+    .is_brc_id_o    (is_brc_id),
+    .is_jal_id_o    (is_jal_id),
+    .is_jalr_id_o   (is_jalr_id)
 );
 
 EX_reg EX_reg_u(
@@ -76,17 +83,32 @@ EX_reg EX_reg_u(
     .rst_n          (rst_n),
     .pc_ex_reg_i    (pc_id),
     .instr_ex_reg_i (instr_id),
-    .src1_ex_reg_i  (src1_id),
-    .src2_ex_reg_i  (src2_id),
+    // .src1_ex_reg_i  (src1sel_id),
+    // .src2_ex_reg_i  (src2sel_id),
     .rs2_ex_reg_i   (rs2_id),
+    .rs1_ex_reg_i   (rs1_id),
+    .imm_ex_reg_i   (imm_id),
     .aluctr_ex_reg_i(aluctr_id),
+    .is_brc_ex_reg_i(is_brc_id),
+    .is_jal_ex_reg_i(is_jal_id),
+    .is_jalr_ex_reg_i(is_jalr_id),
+    .src1sel_ex_reg_i(src1sel_id),
+    .src2sel_ex_reg_i(src2sel_id),
+
 
     .pc_ex_reg_o    (pc_ex),
     .instr_ex_reg_o (instr_ex),
-    .src1_ex_reg_o  (src1_ex),
-    .src2_ex_reg_o  (src2_ex),
+    // .src1_ex_reg_o  (src1_ex),
+    // .src2_ex_reg_o  (src2_ex),
     .rs2_ex_reg_o   (rs2_ex),
-    .aluctr_ex_reg_o(aluctr_ex)
+    .rs1_ex_reg_o   (rs1_ex),
+    .imm_ex_reg_o   (imm_ex),
+    .aluctr_ex_reg_o(aluctr_ex),
+    .is_brc_ex_reg_o(is_brc_ex),
+    .is_jal_ex_reg_o(is_jal_ex),
+    .is_jalr_ex_reg_o(is_jalr_ex),
+    .src1sel_ex_reg_o(src1sel_ex),
+    .src2sel_ex_reg_o(src2sel_ex)  
 );
 
 ex_stage ex_stage_u(
@@ -97,13 +119,25 @@ ex_stage ex_stage_u(
     // .mem_lden_ex_i,
     // .mem_op_ex_i,
     .aluctr         (aluctr_ex),
-    .src1           (src1_ex),
-    .src2           (src2_ex),
+    // .src1           (src1_ex),
+    // .src2           (src2_ex),
+    .rs1_ex_i       (rs1_ex),
+    .rs2_ex_i       (rs2_ex),
+    .imm_ex_i       (imm_ex),
+    .pc_ex_i        (pc_ex),
+    .instr_ex_i     (instr_ex),
+    .is_jalr_ex_i   (is_jalr_ex),
+    .is_jal_ex_i    (is_jal_ex),
+    .is_brc_ex_i    (is_brc_ex),
+    .src1sel_ex_i   (src1sel_ex),
+    .src2sel_ex_i   (src2sel_ex),
 
     // .PC_ex_o,
     // .instr_ex_o,
     // .rs2_ex_o,
-    .alures_o       (alures_ex)
+    .alures_o       (alures_ex),
+    .pc_next_o      (pc_jump),
+    .is_jump_o      (is_jump)
     // .mem_wren_ex_o,
     // .mem_lden_ex_o,
     // .mem_op_ex_o

@@ -35,17 +35,17 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___settle__TOP__3\n"); );
     // Variables
-    VlWide<3>/*95:0*/ __Vtemp2;
-    VlWide<3>/*95:0*/ __Vtemp3;
-    VlWide<3>/*95:0*/ __Vtemp4;
-    VlWide<3>/*95:0*/ __Vtemp5;
-    VlWide<3>/*95:0*/ __Vtemp6;
-    VlWide<3>/*95:0*/ __Vtemp8;
+    VlWide<3>/*95:0*/ __Vtemp9;
     VlWide<3>/*95:0*/ __Vtemp10;
     VlWide<3>/*95:0*/ __Vtemp11;
     VlWide<3>/*95:0*/ __Vtemp12;
     VlWide<3>/*95:0*/ __Vtemp13;
-    VlWide<3>/*95:0*/ __Vtemp14;
+    VlWide<3>/*95:0*/ __Vtemp15;
+    VlWide<3>/*95:0*/ __Vtemp17;
+    VlWide<3>/*95:0*/ __Vtemp18;
+    VlWide<3>/*95:0*/ __Vtemp19;
+    VlWide<3>/*95:0*/ __Vtemp20;
+    VlWide<3>/*95:0*/ __Vtemp21;
     // Body
     if ((0x40U & vlSelf->top__DOT__instr_wb)) {
         vlSelf->top__DOT__wb_wren = (1U & (IData)((
@@ -119,6 +119,25 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                   ? 0ULL
                                                   : vlSelf->top__DOT__lsres_wb))));
     }
+    __Vtemp9[0U] = 1U;
+    __Vtemp9[1U] = 0U;
+    __Vtemp9[2U] = 0U;
+    VL_EXTEND_WQ(65,64, __Vtemp10, vlSelf->top__DOT__rs1_ex);
+    VL_EXTEND_WQ(65,64, __Vtemp11, (~ vlSelf->top__DOT__rs2_ex));
+    VL_ADD_W(3, __Vtemp12, __Vtemp10, __Vtemp11);
+    VL_ADD_W(3, __Vtemp13, __Vtemp9, __Vtemp12);
+    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry 
+        = (1U & __Vtemp13[2U]);
+    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
+        = (1ULL + (vlSelf->top__DOT__rs1_ex + (~ vlSelf->top__DOT__rs2_ex)));
+    vlSelf->top__DOT__ex_stage_u__DOT__src2 = ((2U 
+                                                & (IData)(vlSelf->top__DOT__src2sel_ex))
+                                                ? 4ULL
+                                                : (
+                                                   (1U 
+                                                    & (IData)(vlSelf->top__DOT__src2sel_ex))
+                                                    ? vlSelf->top__DOT__imm_ex
+                                                    : vlSelf->top__DOT__rs2_ex));
     if (((8U == (0x1fU & (vlSelf->top__DOT__instr_ls 
                           >> 2U))) | (0U == (0x1fU 
                                              & (vlSelf->top__DOT__instr_ls 
@@ -131,333 +150,17 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     } else {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base = 0ULL;
     }
-    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src 
-        = ((4U & (IData)(vlSelf->top__DOT__aluctr_ex))
-            ? vlSelf->top__DOT__src1_ex : (((QData)((IData)(
-                                                            (((IData)(vlSelf->top__DOT__src1_ex) 
-                                                              << 0x1fU) 
-                                                             | ((0x40000000U 
-                                                                 & ((IData)(
-                                                                            (vlSelf->top__DOT__src1_ex 
-                                                                             >> 1U)) 
-                                                                    << 0x1eU)) 
-                                                                | ((0x20000000U 
-                                                                    & ((IData)(
-                                                                               (vlSelf->top__DOT__src1_ex 
-                                                                                >> 2U)) 
-                                                                       << 0x1dU)) 
-                                                                   | ((0x10000000U 
-                                                                       & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 3U)) 
-                                                                          << 0x1cU)) 
-                                                                      | ((0x8000000U 
-                                                                          & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 4U)) 
-                                                                             << 0x1bU)) 
-                                                                         | ((0x4000000U 
-                                                                             & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 5U)) 
-                                                                                << 0x1aU)) 
-                                                                            | ((0x2000000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 6U)) 
-                                                                                << 0x19U)) 
-                                                                               | ((0x1000000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 7U)) 
-                                                                                << 0x18U)) 
-                                                                                | ((0x800000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 8U)) 
-                                                                                << 0x17U)) 
-                                                                                | ((0x400000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 9U)) 
-                                                                                << 0x16U)) 
-                                                                                | ((0x200000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0xaU)) 
-                                                                                << 0x15U)) 
-                                                                                | ((0x100000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0xbU)) 
-                                                                                << 0x14U)) 
-                                                                                | ((0x80000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0xcU)) 
-                                                                                << 0x13U)) 
-                                                                                | ((0x40000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0xdU)) 
-                                                                                << 0x12U)) 
-                                                                                | ((0x20000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0xeU)) 
-                                                                                << 0x11U)) 
-                                                                                | ((0x10000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0xfU)) 
-                                                                                << 0x10U)) 
-                                                                                | ((0x8000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x10U)) 
-                                                                                << 0xfU)) 
-                                                                                | ((0x4000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x11U)) 
-                                                                                << 0xeU)) 
-                                                                                | ((0x2000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x12U)) 
-                                                                                << 0xdU)) 
-                                                                                | ((0x1000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x13U)) 
-                                                                                << 0xcU)) 
-                                                                                | ((0x800U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x14U)) 
-                                                                                << 0xbU)) 
-                                                                                | ((0x400U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x15U)) 
-                                                                                << 0xaU)) 
-                                                                                | ((0x200U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x16U)) 
-                                                                                << 9U)) 
-                                                                                | ((0x100U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x17U)) 
-                                                                                << 8U)) 
-                                                                                | ((0x80U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x18U)) 
-                                                                                << 7U)) 
-                                                                                | ((0x40U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x19U)) 
-                                                                                << 6U)) 
-                                                                                | ((0x20U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x1aU)) 
-                                                                                << 5U)) 
-                                                                                | ((0x10U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x1bU)) 
-                                                                                << 4U)) 
-                                                                                | ((8U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x1cU)) 
-                                                                                << 3U)) 
-                                                                                | ((4U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x1dU)) 
-                                                                                << 2U)) 
-                                                                                | ((2U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x1eU)) 
-                                                                                << 1U)) 
-                                                                                | (1U 
-                                                                                & (IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x1fU)))))))))))))))))))))))))))))))))))) 
-                                            << 0x20U) 
-                                           | (QData)((IData)(
-                                                             (((IData)(
-                                                                       (vlSelf->top__DOT__src1_ex 
-                                                                        >> 0x20U)) 
-                                                               << 0x1fU) 
-                                                              | ((0x40000000U 
-                                                                  & ((IData)(
-                                                                             (vlSelf->top__DOT__src1_ex 
-                                                                              >> 0x21U)) 
-                                                                     << 0x1eU)) 
-                                                                 | ((0x20000000U 
-                                                                     & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x22U)) 
-                                                                        << 0x1dU)) 
-                                                                    | ((0x10000000U 
-                                                                        & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x23U)) 
-                                                                           << 0x1cU)) 
-                                                                       | ((0x8000000U 
-                                                                           & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x24U)) 
-                                                                              << 0x1bU)) 
-                                                                          | ((0x4000000U 
-                                                                              & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x25U)) 
-                                                                                << 0x1aU)) 
-                                                                             | ((0x2000000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x26U)) 
-                                                                                << 0x19U)) 
-                                                                                | ((0x1000000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x27U)) 
-                                                                                << 0x18U)) 
-                                                                                | ((0x800000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x28U)) 
-                                                                                << 0x17U)) 
-                                                                                | ((0x400000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x29U)) 
-                                                                                << 0x16U)) 
-                                                                                | ((0x200000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x2aU)) 
-                                                                                << 0x15U)) 
-                                                                                | ((0x100000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x2bU)) 
-                                                                                << 0x14U)) 
-                                                                                | ((0x80000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x2cU)) 
-                                                                                << 0x13U)) 
-                                                                                | ((0x40000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x2dU)) 
-                                                                                << 0x12U)) 
-                                                                                | ((0x20000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x2eU)) 
-                                                                                << 0x11U)) 
-                                                                                | ((0x10000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x2fU)) 
-                                                                                << 0x10U)) 
-                                                                                | ((0x8000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x30U)) 
-                                                                                << 0xfU)) 
-                                                                                | ((0x4000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x31U)) 
-                                                                                << 0xeU)) 
-                                                                                | ((0x2000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x32U)) 
-                                                                                << 0xdU)) 
-                                                                                | ((0x1000U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x33U)) 
-                                                                                << 0xcU)) 
-                                                                                | ((0x800U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x34U)) 
-                                                                                << 0xbU)) 
-                                                                                | ((0x400U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x35U)) 
-                                                                                << 0xaU)) 
-                                                                                | ((0x200U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x36U)) 
-                                                                                << 9U)) 
-                                                                                | ((0x100U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x37U)) 
-                                                                                << 8U)) 
-                                                                                | ((0x80U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x38U)) 
-                                                                                << 7U)) 
-                                                                                | ((0x40U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x39U)) 
-                                                                                << 6U)) 
-                                                                                | ((0x20U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x3aU)) 
-                                                                                << 5U)) 
-                                                                                | ((0x10U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x3bU)) 
-                                                                                << 4U)) 
-                                                                                | ((8U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x3cU)) 
-                                                                                << 3U)) 
-                                                                                | ((4U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x3dU)) 
-                                                                                << 2U)) 
-                                                                                | ((2U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x3eU)) 
-                                                                                << 1U)) 
-                                                                                | (1U 
-                                                                                & (IData)(
-                                                                                (vlSelf->top__DOT__src1_ex 
-                                                                                >> 0x3fU))))))))))))))))))))))))))))))))))))));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin 
         = (IData)((0U != (0xaU & (IData)(vlSelf->top__DOT__aluctr_ex))));
+    vlSelf->top__DOT__ex_stage_u__DOT__src1 = ((IData)(vlSelf->top__DOT__src1sel_ex)
+                                                ? vlSelf->top__DOT__pc_ex
+                                                : vlSelf->top__DOT__rs1_ex);
     Vtop___024unit____Vdpiimwrap_vmemread_TOP____024unit(vlSelf->top__DOT__pc_new, 4U, vlSelf->__Vtask_vmemread__1__rdata, vlSelf->top__DOT__pc_new);
     vlSelf->top__DOT__IF_u__DOT__rdata = vlSelf->__Vtask_vmemread__1__rdata;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0U;
     vlSelf->top__DOT__aluctr_id = 0U;
-    vlSelf->top__DOT__ID_u__DOT__src1sel = 0U;
-    vlSelf->top__DOT__ID_u__DOT__src2sel = 0U;
+    vlSelf->top__DOT__src1sel_id = 0U;
+    vlSelf->top__DOT__src2sel_id = 0U;
     vlSelf->top__DOT__ID_u__DOT__is_jalr = 0U;
     vlSelf->top__DOT__ID_u__DOT__is_jal = 0U;
     vlSelf->top__DOT__ID_u__DOT__is_brc = 0U;
@@ -473,22 +176,22 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                 }
             } else if ((8U & vlSelf->top__DOT__instr_id)) {
                 if ((4U & vlSelf->top__DOT__instr_id)) {
-                    vlSelf->top__DOT__ID_u__DOT__src1sel = 1U;
-                    vlSelf->top__DOT__ID_u__DOT__src2sel = 3U;
+                    vlSelf->top__DOT__src1sel_id = 1U;
+                    vlSelf->top__DOT__src2sel_id = 3U;
                     vlSelf->top__DOT__ID_u__DOT__ext_op = 8U;
                     vlSelf->top__DOT__ID_u__DOT__is_jal = 1U;
                     vlSelf->top__DOT__aluctr_id = 0U;
                 }
             } else if ((4U & vlSelf->top__DOT__instr_id)) {
-                vlSelf->top__DOT__ID_u__DOT__src1sel = 1U;
-                vlSelf->top__DOT__ID_u__DOT__src2sel = 3U;
+                vlSelf->top__DOT__src1sel_id = 1U;
+                vlSelf->top__DOT__src2sel_id = 3U;
                 vlSelf->top__DOT__ID_u__DOT__ext_op = 1U;
                 vlSelf->top__DOT__ID_u__DOT__is_jalr = 1U;
                 vlSelf->top__DOT__aluctr_id = 0U;
             } else {
                 vlSelf->top__DOT__ID_u__DOT__is_brc = 1U;
-                vlSelf->top__DOT__ID_u__DOT__src1sel = 0U;
-                vlSelf->top__DOT__ID_u__DOT__src2sel = 0U;
+                vlSelf->top__DOT__src1sel_id = 0U;
+                vlSelf->top__DOT__src2sel_id = 0U;
                 vlSelf->top__DOT__ID_u__DOT__ext_op = 0x10U;
             }
         }
@@ -497,8 +200,8 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             if ((8U & vlSelf->top__DOT__instr_id)) {
                 if ((1U & (~ (vlSelf->top__DOT__instr_id 
                               >> 2U)))) {
-                    vlSelf->top__DOT__ID_u__DOT__src1sel = 0U;
-                    vlSelf->top__DOT__ID_u__DOT__src2sel = 0U;
+                    vlSelf->top__DOT__src1sel_id = 0U;
+                    vlSelf->top__DOT__src2sel_id = 0U;
                     vlSelf->top__DOT__aluctr_id = (
                                                    (0x4000U 
                                                     & vlSelf->top__DOT__instr_id)
@@ -558,13 +261,13 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                         : 0U)))));
                 }
             } else if ((4U & vlSelf->top__DOT__instr_id)) {
-                vlSelf->top__DOT__ID_u__DOT__src1sel = 0U;
-                vlSelf->top__DOT__ID_u__DOT__src2sel = 1U;
+                vlSelf->top__DOT__src1sel_id = 0U;
+                vlSelf->top__DOT__src2sel_id = 1U;
                 vlSelf->top__DOT__ID_u__DOT__ext_op = 2U;
                 vlSelf->top__DOT__aluctr_id = 3U;
             } else {
-                vlSelf->top__DOT__ID_u__DOT__src1sel = 0U;
-                vlSelf->top__DOT__ID_u__DOT__src2sel = 0U;
+                vlSelf->top__DOT__src1sel_id = 0U;
+                vlSelf->top__DOT__src2sel_id = 0U;
                 vlSelf->top__DOT__aluctr_id = ((0x4000U 
                                                 & vlSelf->top__DOT__instr_id)
                                                 ? (
@@ -628,16 +331,16 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                           >> 2U)))) {
                 vlSelf->top__DOT__ID_u__DOT__ext_op = 4U;
                 vlSelf->top__DOT__aluctr_id = 0U;
-                vlSelf->top__DOT__ID_u__DOT__src1sel = 0U;
-                vlSelf->top__DOT__ID_u__DOT__src2sel = 1U;
+                vlSelf->top__DOT__src1sel_id = 0U;
+                vlSelf->top__DOT__src2sel_id = 1U;
             }
         }
     } else if ((0x10U & vlSelf->top__DOT__instr_id)) {
         if ((8U & vlSelf->top__DOT__instr_id)) {
             if ((1U & (~ (vlSelf->top__DOT__instr_id 
                           >> 2U)))) {
-                vlSelf->top__DOT__ID_u__DOT__src1sel = 0U;
-                vlSelf->top__DOT__ID_u__DOT__src2sel = 1U;
+                vlSelf->top__DOT__src1sel_id = 0U;
+                vlSelf->top__DOT__src2sel_id = 1U;
                 vlSelf->top__DOT__ID_u__DOT__ext_op = 1U;
                 vlSelf->top__DOT__aluctr_id = ((0x4000U 
                                                 & vlSelf->top__DOT__instr_id)
@@ -689,13 +392,13 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                       : 0U))));
             }
         } else if ((4U & vlSelf->top__DOT__instr_id)) {
-            vlSelf->top__DOT__ID_u__DOT__src1sel = 1U;
-            vlSelf->top__DOT__ID_u__DOT__src2sel = 1U;
+            vlSelf->top__DOT__src1sel_id = 1U;
+            vlSelf->top__DOT__src2sel_id = 1U;
             vlSelf->top__DOT__ID_u__DOT__ext_op = 2U;
             vlSelf->top__DOT__aluctr_id = 0U;
         } else {
-            vlSelf->top__DOT__ID_u__DOT__src1sel = 0U;
-            vlSelf->top__DOT__ID_u__DOT__src2sel = 1U;
+            vlSelf->top__DOT__src1sel_id = 0U;
+            vlSelf->top__DOT__src2sel_id = 1U;
             vlSelf->top__DOT__ID_u__DOT__ext_op = 1U;
             vlSelf->top__DOT__aluctr_id = ((0x4000U 
                                             & vlSelf->top__DOT__instr_id)
@@ -749,22 +452,19 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
         if ((1U & (~ (vlSelf->top__DOT__instr_id >> 2U)))) {
             vlSelf->top__DOT__ID_u__DOT__ext_op = 1U;
             vlSelf->top__DOT__aluctr_id = 0U;
-            vlSelf->top__DOT__ID_u__DOT__src1sel = 0U;
-            vlSelf->top__DOT__ID_u__DOT__src2sel = 1U;
+            vlSelf->top__DOT__src1sel_id = 0U;
+            vlSelf->top__DOT__src2sel_id = 1U;
         }
     }
-    vlSelf->top__DOT__ID_u__DOT__rs1 = ((0U == (0x1fU 
-                                                & (vlSelf->top__DOT__instr_id 
-                                                   >> 0xfU)))
-                                         ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
-                                        [(0x1fU & (vlSelf->top__DOT__instr_id 
-                                                   >> 0xfU))]);
-    vlSelf->top__DOT__ID_u__DOT__rs2 = ((0U == (0x1fU 
-                                                & (vlSelf->top__DOT__instr_id 
-                                                   >> 0x14U)))
-                                         ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
-                                        [(0x1fU & (vlSelf->top__DOT__instr_id 
-                                                   >> 0x14U))]);
+    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow 
+        = (((1U & (IData)((vlSelf->top__DOT__rs1_ex 
+                           >> 0x3fU))) == (1U & (~ (IData)(
+                                                           (vlSelf->top__DOT__rs2_ex 
+                                                            >> 0x3fU))))) 
+           & ((1U & (IData)((vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
+                             >> 0x3fU))) != (1U & (IData)(
+                                                          (vlSelf->top__DOT__rs1_ex 
+                                                           >> 0x3fU)))));
     if ((1U & (IData)((vlSelf->top__DOT__alures_ls 
                        >> 2U)))) {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b 
@@ -923,11 +623,325 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                  >> 0x20U))) << 0x20U) 
                | (QData)((IData)(vlSelf->top__DOT__rs2_ls)));
     }
-    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
-        = (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src 
-           >> (0x3fU & (IData)(vlSelf->top__DOT__src2_ex)));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin 
-        = (vlSelf->top__DOT__src2_ex ^ (- (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin))));
+        = (vlSelf->top__DOT__ex_stage_u__DOT__src2 
+           ^ (- (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin))));
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src 
+        = ((4U & (IData)(vlSelf->top__DOT__aluctr_ex))
+            ? vlSelf->top__DOT__ex_stage_u__DOT__src1
+            : (((QData)((IData)((((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1) 
+                                  << 0x1fU) | ((0x40000000U 
+                                                & ((IData)(
+                                                           (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                            >> 1U)) 
+                                                   << 0x1eU)) 
+                                               | ((0x20000000U 
+                                                   & ((IData)(
+                                                              (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                               >> 2U)) 
+                                                      << 0x1dU)) 
+                                                  | ((0x10000000U 
+                                                      & ((IData)(
+                                                                 (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                  >> 3U)) 
+                                                         << 0x1cU)) 
+                                                     | ((0x8000000U 
+                                                         & ((IData)(
+                                                                    (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                     >> 4U)) 
+                                                            << 0x1bU)) 
+                                                        | ((0x4000000U 
+                                                            & ((IData)(
+                                                                       (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                        >> 5U)) 
+                                                               << 0x1aU)) 
+                                                           | ((0x2000000U 
+                                                               & ((IData)(
+                                                                          (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                           >> 6U)) 
+                                                                  << 0x19U)) 
+                                                              | ((0x1000000U 
+                                                                  & ((IData)(
+                                                                             (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                              >> 7U)) 
+                                                                     << 0x18U)) 
+                                                                 | ((0x800000U 
+                                                                     & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 8U)) 
+                                                                        << 0x17U)) 
+                                                                    | ((0x400000U 
+                                                                        & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 9U)) 
+                                                                           << 0x16U)) 
+                                                                       | ((0x200000U 
+                                                                           & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0xaU)) 
+                                                                              << 0x15U)) 
+                                                                          | ((0x100000U 
+                                                                              & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0xbU)) 
+                                                                                << 0x14U)) 
+                                                                             | ((0x80000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0xcU)) 
+                                                                                << 0x13U)) 
+                                                                                | ((0x40000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0xdU)) 
+                                                                                << 0x12U)) 
+                                                                                | ((0x20000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0xeU)) 
+                                                                                << 0x11U)) 
+                                                                                | ((0x10000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0xfU)) 
+                                                                                << 0x10U)) 
+                                                                                | ((0x8000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x10U)) 
+                                                                                << 0xfU)) 
+                                                                                | ((0x4000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x11U)) 
+                                                                                << 0xeU)) 
+                                                                                | ((0x2000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x12U)) 
+                                                                                << 0xdU)) 
+                                                                                | ((0x1000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x13U)) 
+                                                                                << 0xcU)) 
+                                                                                | ((0x800U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x14U)) 
+                                                                                << 0xbU)) 
+                                                                                | ((0x400U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x15U)) 
+                                                                                << 0xaU)) 
+                                                                                | ((0x200U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x16U)) 
+                                                                                << 9U)) 
+                                                                                | ((0x100U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x17U)) 
+                                                                                << 8U)) 
+                                                                                | ((0x80U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x18U)) 
+                                                                                << 7U)) 
+                                                                                | ((0x40U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x19U)) 
+                                                                                << 6U)) 
+                                                                                | ((0x20U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x1aU)) 
+                                                                                << 5U)) 
+                                                                                | ((0x10U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x1bU)) 
+                                                                                << 4U)) 
+                                                                                | ((8U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x1cU)) 
+                                                                                << 3U)) 
+                                                                                | ((4U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x1dU)) 
+                                                                                << 2U)) 
+                                                                                | ((2U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x1eU)) 
+                                                                                << 1U)) 
+                                                                                | (1U 
+                                                                                & (IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x1fU)))))))))))))))))))))))))))))))))))) 
+                << 0x20U) | (QData)((IData)((((IData)(
+                                                      (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                       >> 0x20U)) 
+                                              << 0x1fU) 
+                                             | ((0x40000000U 
+                                                 & ((IData)(
+                                                            (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                             >> 0x21U)) 
+                                                    << 0x1eU)) 
+                                                | ((0x20000000U 
+                                                    & ((IData)(
+                                                               (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                >> 0x22U)) 
+                                                       << 0x1dU)) 
+                                                   | ((0x10000000U 
+                                                       & ((IData)(
+                                                                  (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                   >> 0x23U)) 
+                                                          << 0x1cU)) 
+                                                      | ((0x8000000U 
+                                                          & ((IData)(
+                                                                     (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                      >> 0x24U)) 
+                                                             << 0x1bU)) 
+                                                         | ((0x4000000U 
+                                                             & ((IData)(
+                                                                        (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                         >> 0x25U)) 
+                                                                << 0x1aU)) 
+                                                            | ((0x2000000U 
+                                                                & ((IData)(
+                                                                           (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                            >> 0x26U)) 
+                                                                   << 0x19U)) 
+                                                               | ((0x1000000U 
+                                                                   & ((IData)(
+                                                                              (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                               >> 0x27U)) 
+                                                                      << 0x18U)) 
+                                                                  | ((0x800000U 
+                                                                      & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x28U)) 
+                                                                         << 0x17U)) 
+                                                                     | ((0x400000U 
+                                                                         & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x29U)) 
+                                                                            << 0x16U)) 
+                                                                        | ((0x200000U 
+                                                                            & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x2aU)) 
+                                                                               << 0x15U)) 
+                                                                           | ((0x100000U 
+                                                                               & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x2bU)) 
+                                                                                << 0x14U)) 
+                                                                              | ((0x80000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x2cU)) 
+                                                                                << 0x13U)) 
+                                                                                | ((0x40000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x2dU)) 
+                                                                                << 0x12U)) 
+                                                                                | ((0x20000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x2eU)) 
+                                                                                << 0x11U)) 
+                                                                                | ((0x10000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x2fU)) 
+                                                                                << 0x10U)) 
+                                                                                | ((0x8000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x30U)) 
+                                                                                << 0xfU)) 
+                                                                                | ((0x4000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x31U)) 
+                                                                                << 0xeU)) 
+                                                                                | ((0x2000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x32U)) 
+                                                                                << 0xdU)) 
+                                                                                | ((0x1000U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x33U)) 
+                                                                                << 0xcU)) 
+                                                                                | ((0x800U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x34U)) 
+                                                                                << 0xbU)) 
+                                                                                | ((0x400U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x35U)) 
+                                                                                << 0xaU)) 
+                                                                                | ((0x200U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x36U)) 
+                                                                                << 9U)) 
+                                                                                | ((0x100U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x37U)) 
+                                                                                << 8U)) 
+                                                                                | ((0x80U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x38U)) 
+                                                                                << 7U)) 
+                                                                                | ((0x40U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x39U)) 
+                                                                                << 6U)) 
+                                                                                | ((0x20U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x3aU)) 
+                                                                                << 5U)) 
+                                                                                | ((0x10U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x3bU)) 
+                                                                                << 4U)) 
+                                                                                | ((8U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x3cU)) 
+                                                                                << 3U)) 
+                                                                                | ((4U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x3dU)) 
+                                                                                << 2U)) 
+                                                                                | ((2U 
+                                                                                & ((IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x3eU)) 
+                                                                                << 1U)) 
+                                                                                | (1U 
+                                                                                & (IData)(
+                                                                                (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                                                >> 0x3fU))))))))))))))))))))))))))))))))))))));
     vlSelf->top__DOT__ID_u__DOT__imm = ((0x10U & (IData)(vlSelf->top__DOT__ID_u__DOT__ext_op))
                                          ? ((8U & (IData)(vlSelf->top__DOT__ID_u__DOT__ext_op))
                                              ? 0ULL
@@ -1033,18 +1047,43 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                      (vlSelf->top__DOT__instr_id 
                                                                       >> 0x14U))))
                                                    : 0ULL)))));
-    __Vtemp2[0U] = 1U;
-    __Vtemp2[1U] = 0U;
-    __Vtemp2[2U] = 0U;
-    VL_EXTEND_WQ(65,64, __Vtemp3, vlSelf->top__DOT__ID_u__DOT__rs1);
-    VL_EXTEND_WQ(65,64, __Vtemp4, (~ vlSelf->top__DOT__ID_u__DOT__rs2));
-    VL_ADD_W(3, __Vtemp5, __Vtemp3, __Vtemp4);
-    VL_ADD_W(3, __Vtemp6, __Vtemp2, __Vtemp5);
-    vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__carry 
-        = (1U & __Vtemp6[2U]);
-    vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__subres 
-        = (1ULL + (vlSelf->top__DOT__ID_u__DOT__rs1 
-                   + (~ vlSelf->top__DOT__ID_u__DOT__rs2)));
+    vlSelf->top__DOT__pc_next = ((((IData)(vlSelf->top__DOT__is_jal_ex) 
+                                   | (IData)(vlSelf->top__DOT__is_jalr_ex)) 
+                                  | ((IData)(vlSelf->top__DOT__is_brc_ex) 
+                                     & ((0x4000U & vlSelf->top__DOT__instr_ex)
+                                         ? ((0x2000U 
+                                             & vlSelf->top__DOT__instr_ex)
+                                             ? ((0x1000U 
+                                                 & vlSelf->top__DOT__instr_ex)
+                                                 ? (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry)
+                                                 : 
+                                                (~ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry)))
+                                             : ((0x1000U 
+                                                 & vlSelf->top__DOT__instr_ex)
+                                                 ? 
+                                                (~ 
+                                                 ((IData)(
+                                                          (vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
+                                                           >> 0x3fU)) 
+                                                  ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow)))
+                                                 : 
+                                                ((IData)(
+                                                         (vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
+                                                          >> 0x3fU)) 
+                                                 ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow))))
+                                         : ((~ (vlSelf->top__DOT__instr_ex 
+                                                >> 0xdU)) 
+                                            & ((0x1000U 
+                                                & vlSelf->top__DOT__instr_ex)
+                                                ? (0U 
+                                                   != vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres)
+                                                : (~ (IData)(
+                                                             (0U 
+                                                              != vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres))))))))
+                                  ? ((IData)(vlSelf->top__DOT__is_jalr_ex)
+                                      ? vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res
+                                      : vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res)
+                                  : (4ULL + vlSelf->top__DOT__pc_new));
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data 
         = (((((- (QData)((IData)((0x20U == (0x707cU 
                                             & vlSelf->top__DOT__instr_ls))))) 
@@ -1089,6 +1128,26 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
            | ((- (QData)((IData)((0x3020U == (0x707cU 
                                               & vlSelf->top__DOT__instr_ls))))) 
               & vlSelf->top__DOT__rs2_ls));
+    VL_EXTEND_WI(65,1, __Vtemp15, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
+        = ((vlSelf->top__DOT__ex_stage_u__DOT__src1 
+            + vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin) 
+           + (((QData)((IData)(__Vtemp15[1U])) << 0x20U) 
+              | (QData)((IData)(__Vtemp15[0U]))));
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow 
+        = (((1U & (IData)((vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                           >> 0x3fU))) == (1U & (IData)(
+                                                        (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin 
+                                                         >> 0x3fU)))) 
+           & ((1U & (IData)((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
+                             >> 0x3fU))) != (1U & (IData)(
+                                                          (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                                                           >> 0x3fU)))));
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero 
+        = (1U & (~ (IData)((0U != vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o))));
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
+        = (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src 
+           >> (0x3fU & (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res 
         = (((QData)((IData)((((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res) 
                               << 0x1fU) | ((0x40000000U 
@@ -1402,36 +1461,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
                                                                                 >> 0x3fU)))))))))))))))))))))))))))))))))))));
-    VL_EXTEND_WI(65,1, __Vtemp8, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
-    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
-        = ((vlSelf->top__DOT__src1_ex + vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin) 
-           + (((QData)((IData)(__Vtemp8[1U])) << 0x20U) 
-              | (QData)((IData)(__Vtemp8[0U]))));
-    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow 
-        = (((1U & (IData)((vlSelf->top__DOT__src1_ex 
-                           >> 0x3fU))) == (1U & (IData)(
-                                                        (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin 
-                                                         >> 0x3fU)))) 
-           & ((1U & (IData)((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
-                             >> 0x3fU))) != (1U & (IData)(
-                                                          (vlSelf->top__DOT__src1_ex 
-                                                           >> 0x3fU)))));
-    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero 
-        = (1U & (~ (IData)((0U != vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o))));
-    vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__overflow 
-        = (((1U & (IData)((vlSelf->top__DOT__ID_u__DOT__rs1 
-                           >> 0x3fU))) == (1U & (~ (IData)(
-                                                           (vlSelf->top__DOT__ID_u__DOT__rs2 
-                                                            >> 0x3fU))))) 
-           & ((1U & (IData)((vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__subres 
-                             >> 0x3fU))) != (1U & (IData)(
-                                                          (vlSelf->top__DOT__ID_u__DOT__rs1 
-                                                           >> 0x3fU)))));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift 
         = ((4U & (IData)(vlSelf->top__DOT__aluctr_ex))
             ? ((8U & (IData)(vlSelf->top__DOT__aluctr_ex))
                 ? ((0x10U & (IData)(vlSelf->top__DOT__aluctr_ex))
-                    ? ((1U & (IData)((vlSelf->top__DOT__src1_ex 
+                    ? ((1U & (IData)((vlSelf->top__DOT__ex_stage_u__DOT__src1 
                                       >> 0x1fU))) ? 
                        (0x100000000ULL | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
                                           | (QData)((IData)(
@@ -1439,93 +1473,55 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                        ((0xffffffffffffffffULL 
                                                                          >> 
                                                                          (0x3fU 
-                                                                          & (IData)(vlSelf->top__DOT__src2_ex))) 
+                                                                          & (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2))) 
                                                                         >> 0x20U)))))))
                         : (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
                            & (QData)((IData)(((0xffffffffffffffffULL 
                                                >> (0x3fU 
-                                                   & (IData)(vlSelf->top__DOT__src2_ex))) 
+                                                   & (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2))) 
                                               >> 0x20U)))))
                     : (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
                        | ((- (QData)((IData)((1U & (IData)(
-                                                           (vlSelf->top__DOT__src1_ex 
+                                                           (vlSelf->top__DOT__ex_stage_u__DOT__src1 
                                                             >> 0x3fU)))))) 
                           & (~ (0xffffffffffffffffULL 
-                                >> (0x3fU & (IData)(vlSelf->top__DOT__src2_ex)))))))
+                                >> (0x3fU & (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)))))))
                 : ((0x10U & (IData)(vlSelf->top__DOT__aluctr_ex))
                     ? (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
                        & (QData)((IData)(((0xffffffffffffffffULL 
                                            >> (0x3fU 
-                                               & (IData)(vlSelf->top__DOT__src2_ex))) 
+                                               & (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2))) 
                                           >> 0x20U))))
                     : vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res))
             : vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res);
-    vlSelf->top__DOT__pc_next = ((((IData)(vlSelf->top__DOT__ID_u__DOT__is_jal) 
-                                   | (IData)(vlSelf->top__DOT__ID_u__DOT__is_jalr)) 
-                                  | ((IData)(vlSelf->top__DOT__ID_u__DOT__is_brc) 
-                                     & ((0x4000U & vlSelf->top__DOT__instr_id)
-                                         ? ((0x2000U 
-                                             & vlSelf->top__DOT__instr_id)
-                                             ? ((0x1000U 
-                                                 & vlSelf->top__DOT__instr_id)
-                                                 ? (IData)(vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__carry)
-                                                 : 
-                                                (~ (IData)(vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__carry)))
-                                             : ((0x1000U 
-                                                 & vlSelf->top__DOT__instr_id)
-                                                 ? 
-                                                (~ 
-                                                 ((IData)(
-                                                          (vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__subres 
-                                                           >> 0x3fU)) 
-                                                  ^ (IData)(vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__overflow)))
-                                                 : 
-                                                ((IData)(
-                                                         (vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__subres 
-                                                          >> 0x3fU)) 
-                                                 ^ (IData)(vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__overflow))))
-                                         : ((~ (vlSelf->top__DOT__instr_id 
-                                                >> 0xdU)) 
-                                            & ((0x1000U 
-                                                & vlSelf->top__DOT__instr_id)
-                                                ? (0U 
-                                                   != vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__subres)
-                                                : (~ (IData)(
-                                                             (0U 
-                                                              != vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__subres))))))))
-                                  ? ((IData)(vlSelf->top__DOT__ID_u__DOT__is_jalr)
-                                      ? vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__rs1_imm_res
-                                      : vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__pc_imm_res)
-                                  : (4ULL + vlSelf->top__DOT__pc_new));
-    VL_EXTEND_WQ(65,64, __Vtemp10, vlSelf->top__DOT__src1_ex);
-    VL_EXTEND_WQ(65,64, __Vtemp11, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin);
-    VL_ADD_W(3, __Vtemp12, __Vtemp10, __Vtemp11);
-    VL_EXTEND_WI(65,1, __Vtemp13, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
-    VL_ADD_W(3, __Vtemp14, __Vtemp12, __Vtemp13);
+    VL_EXTEND_WQ(65,64, __Vtemp17, vlSelf->top__DOT__ex_stage_u__DOT__src1);
+    VL_EXTEND_WQ(65,64, __Vtemp18, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin);
+    VL_ADD_W(3, __Vtemp19, __Vtemp17, __Vtemp18);
+    VL_EXTEND_WI(65,1, __Vtemp20, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
+    VL_ADD_W(3, __Vtemp21, __Vtemp19, __Vtemp20);
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout 
         = ((4U & (IData)(vlSelf->top__DOT__aluctr_ex))
             ? ((2U & (IData)(vlSelf->top__DOT__aluctr_ex))
                 ? ((1U & (IData)(vlSelf->top__DOT__aluctr_ex))
-                    ? (vlSelf->top__DOT__src1_ex & vlSelf->top__DOT__src2_ex)
-                    : (vlSelf->top__DOT__src1_ex | vlSelf->top__DOT__src2_ex))
+                    ? (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                       & vlSelf->top__DOT__ex_stage_u__DOT__src2)
+                    : (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                       | vlSelf->top__DOT__ex_stage_u__DOT__src2))
                 : ((1U & (IData)(vlSelf->top__DOT__aluctr_ex))
                     ? vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift
-                    : (vlSelf->top__DOT__src1_ex ^ vlSelf->top__DOT__src2_ex)))
+                    : (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                       ^ vlSelf->top__DOT__ex_stage_u__DOT__src2)))
             : ((2U & (IData)(vlSelf->top__DOT__aluctr_ex))
                 ? ((1U & (IData)(vlSelf->top__DOT__aluctr_ex))
-                    ? vlSelf->top__DOT__src2_ex : (QData)((IData)(
-                                                                  (1U 
-                                                                   & ((8U 
-                                                                       & (IData)(vlSelf->top__DOT__aluctr_ex))
-                                                                       ? 
-                                                                      ((1U 
-                                                                        & __Vtemp14[2U]) 
-                                                                       ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin))
-                                                                       : 
-                                                                      ((IData)(
-                                                                               (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
-                                                                                >> 0x3fU)) 
-                                                                       ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow)))))))
+                    ? vlSelf->top__DOT__ex_stage_u__DOT__src2
+                    : (QData)((IData)((1U & ((8U & (IData)(vlSelf->top__DOT__aluctr_ex))
+                                              ? ((1U 
+                                                  & __Vtemp21[2U]) 
+                                                 ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin))
+                                              : ((IData)(
+                                                         (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
+                                                          >> 0x3fU)) 
+                                                 ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow)))))))
                 : ((1U & (IData)(vlSelf->top__DOT__aluctr_ex))
                     ? vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift
                     : vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o)));
@@ -1585,9 +1581,13 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__pc_new = 0;
     vlSelf->top__DOT__pc_id = 0;
     vlSelf->top__DOT__instr_id = 0;
-    vlSelf->top__DOT__src1_ex = 0;
-    vlSelf->top__DOT__src2_ex = 0;
+    vlSelf->top__DOT__src1sel_id = 0;
+    vlSelf->top__DOT__src1sel_ex = 0;
+    vlSelf->top__DOT__src2sel_id = 0;
+    vlSelf->top__DOT__src2sel_ex = 0;
     vlSelf->top__DOT__rs2_ex = 0;
+    vlSelf->top__DOT__rs1_ex = 0;
+    vlSelf->top__DOT__imm_ex = 0;
     vlSelf->top__DOT__aluctr_id = 0;
     vlSelf->top__DOT__aluctr_ex = 0;
     vlSelf->top__DOT__pc_ex = 0;
@@ -1602,25 +1602,23 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__instr_wb = 0;
     vlSelf->top__DOT__wb_data = 0;
     vlSelf->top__DOT__wb_wren = 0;
+    vlSelf->top__DOT__is_brc_id = 0;
+    vlSelf->top__DOT__is_jal_id = 0;
+    vlSelf->top__DOT__is_jalr_id = 0;
+    vlSelf->top__DOT__is_brc_ex = 0;
+    vlSelf->top__DOT__is_jal_ex = 0;
+    vlSelf->top__DOT__is_jalr_ex = 0;
     vlSelf->top__DOT__IF_u__DOT__rdata = 0;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0;
     vlSelf->top__DOT__ID_u__DOT__is_jalr = 0;
     vlSelf->top__DOT__ID_u__DOT__is_jal = 0;
     vlSelf->top__DOT__ID_u__DOT__is_brc = 0;
     vlSelf->top__DOT__ID_u__DOT__imm = 0;
-    vlSelf->top__DOT__ID_u__DOT__rs1 = 0;
-    vlSelf->top__DOT__ID_u__DOT__rs2 = 0;
-    vlSelf->top__DOT__ID_u__DOT__src1sel = 0;
-    vlSelf->top__DOT__ID_u__DOT__src2sel = 0;
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles[__Vi0] = 0;
     }
-    vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__pc_imm_res = 0;
-    vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__rs1_imm_res = 0;
-    vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__less = 0;
-    vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__carry = 0;
-    vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__overflow = 0;
-    vlSelf->top__DOT__ID_u__DOT__bcu_u__DOT__subres = 0;
+    vlSelf->top__DOT__ex_stage_u__DOT__src1 = 0;
+    vlSelf->top__DOT__ex_stage_u__DOT__src2 = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin = 0;
@@ -1631,6 +1629,12 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res = 0;
+    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res = 0;
+    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res = 0;
+    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__less = 0;
+    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry = 0;
+    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow = 0;
+    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h = 0;

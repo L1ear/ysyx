@@ -1,19 +1,31 @@
 `include "defines.v"
 module ex_stage (
-    // input           [`XLEN-1:0]     PC_ex_i,instr_ex_i,rs2_ex_i,
     // input                           mem_wren_ex_i,
     // input                           mem_lden_ex_i,
     // input           [2      :0]     mem_op_ex_i,
     input           [4      :0]     aluctr,
-    input           [`XLEN-1:0]     src1,
-    input           [`XLEN-1:0]     src2,
-    
+    // input           [`XLEN-1:0]     src1,
+    // input           [`XLEN-1:0]     src2,
+    input           [`XLEN-1:0]     rs1_ex_i,rs2_ex_i,imm_ex_i,
+    input           [`XLEN-1:0]     pc_ex_i,
+    input           [`inst_len-1:0] instr_ex_i,
+    input                           is_jalr_ex_i,is_jal_ex_i,is_brc_ex_i,
+    input                           src1sel_ex_i,
+    input           [1      :0]     src2sel_ex_i,
+
     // output          [`XLEN-1:0]     PC_ex_o,instr_ex_o,rs2_ex_o,
-    output          [`XLEN-1:0]     alures_o
+    output          [`XLEN-1:0]     alures_o,
+    output          [`XLEN-1:0]     pc_next_o,
+    output                          is_jump_o
     // output                          mem_wren_ex_o,
     // output                          mem_lden_ex_o,
     // output          [2      :0]     mem_op_ex_o
 );
+
+wire    [`XLEN-1:0]     src1,src2;
+assign src1 = src1sel_ex_i ? pc_ex_i : rs1_ex_i;
+assign src2 = src2sel_ex_i[1] ? `XLEN'd4 :
+                                src2sel_ex_i[0] ? imm_ex_i : rs2_ex_i;
 
 
 ALU  u_ALU (
@@ -26,6 +38,19 @@ ALU  u_ALU (
     .ALUres                  ( alures_o ),
     .less                    (          ),
     .zero                    (          )
+);
+
+bcu bcu_u(
+    .rs1_i(rs1_ex_i),
+    .rs2_i(rs2_ex_i),
+    .is_jalr_i(is_jalr_ex_i),
+    .is_jal_i(is_jal_ex_i),
+    .is_brc_i(is_brc_ex_i),
+    .fun_3(instr_ex_i[14:12]),
+    .imm_i(imm_ex_i),
+    .pc_i(pc_ex_i),
+    .brc_pc_o(pc_next_o),
+    .is_jump_o(is_jump_o)
 );
 
 // assign PC_ex_o = PC_ex_i;
