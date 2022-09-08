@@ -13,6 +13,8 @@ extern "C" {
 
 
     // DPI IMPORTS
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:4:30
+    extern void difftest_step(long long pc);
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:3:30
     extern void ebreak();
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:1:30

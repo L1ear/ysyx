@@ -2,6 +2,7 @@
 module ID_stage (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
+    input           [`XLEN-1:0]     pc_wb_i,                    //for diff-test
     input           [`inst_len-1:0] instr_i,
     input           [`XLEN-1:0]     wb_data_i,
     input           [4      :0]     wb_rdid_i,
@@ -55,7 +56,8 @@ regfiles regfile_u(
     .rs2_data_o(rs2),
     .wr_addr_i(wb_rdid_i),
     .wr_data_i(wb_data_i),
-    .wr_en(wb_wren_i)
+    .wr_en(wb_wren_i),
+    .pc_wb(pc_wb_i)
 );
 // bcu bcu_u(
 //     .rs1_i(rs1),

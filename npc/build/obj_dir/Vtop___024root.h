@@ -27,18 +27,18 @@ VL_MODULE(Vtop___024root) {
 
     // LOCAL SIGNALS
     CData/*0:0*/ top__DOT__src1sel_id;
-    CData/*0:0*/ top__DOT__src1sel_ex;
     CData/*1:0*/ top__DOT__src2sel_id;
-    CData/*1:0*/ top__DOT__src2sel_ex;
     CData/*4:0*/ top__DOT__aluctr_id;
-    CData/*4:0*/ top__DOT__aluctr_ex;
-    CData/*0:0*/ top__DOT__wb_wren;
     CData/*0:0*/ top__DOT__is_brc_id;
     CData/*0:0*/ top__DOT__is_jal_id;
     CData/*0:0*/ top__DOT__is_jalr_id;
+    CData/*0:0*/ top__DOT__src1sel_ex;
+    CData/*1:0*/ top__DOT__src2sel_ex;
+    CData/*4:0*/ top__DOT__aluctr_ex;
     CData/*0:0*/ top__DOT__is_brc_ex;
     CData/*0:0*/ top__DOT__is_jal_ex;
     CData/*0:0*/ top__DOT__is_jalr_ex;
+    CData/*0:0*/ top__DOT__wb_wren;
     CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
     CData/*0:0*/ top__DOT__ID_u__DOT__is_jalr;
     CData/*0:0*/ top__DOT__ID_u__DOT__is_jal;
@@ -59,10 +59,10 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__pc_next;
     QData/*63:0*/ top__DOT__pc_new;
     QData/*63:0*/ top__DOT__pc_id;
+    QData/*63:0*/ top__DOT__pc_ex;
     QData/*63:0*/ top__DOT__rs2_ex;
     QData/*63:0*/ top__DOT__rs1_ex;
     QData/*63:0*/ top__DOT__imm_ex;
-    QData/*63:0*/ top__DOT__pc_ex;
     QData/*63:0*/ top__DOT__pc_ls;
     QData/*63:0*/ top__DOT__rs2_ls;
     QData/*63:0*/ top__DOT__alures_ls;
@@ -95,7 +95,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_n;
     QData/*63:0*/ __Vtask_vmemread__1__rdata;
-    QData/*63:0*/ __Vtask_vmemread__3__rdata;
+    QData/*63:0*/ __Vtask_vmemread__4__rdata;
     VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
 
     // INTERNAL VARIABLES

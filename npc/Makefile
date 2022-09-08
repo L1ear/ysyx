@@ -89,7 +89,7 @@ run_pip:
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	build/top +trace
+	build/top +trace -d $(DIFF_REF_SO)
 
 
 clean:

@@ -8,27 +8,37 @@ wire    [`XLEN-1:0]     pc_new;
 wire                    is_jump;
 wire    [`XLEN-1:0]     pc_jump;
 
+//id signal-----------------------------------------------------
 wire    [`inst_len-1:0] instr_if_id_reg;
 wire    [`XLEN-1:0]     pc_id;
 wire    [`inst_len-1:0] instr_id;  
 wire    [`XLEN-1:0]     rs2_id,rs1_id,imm_id;
-wire                    src1sel_id,src1sel_ex;
-wire    [1      :0]     src2sel_id,src2sel_ex;
-wire    [`XLEN-1:0]     rs2_ex,rs1_ex,imm_ex;
-wire    [4      :0]     aluctr_id,aluctr_ex;
+wire                    src1sel_id;
+wire    [1      :0]     src2sel_id;
+wire    [4      :0]     aluctr_id;
+wire                    is_brc_id,is_jal_id,is_jalr_id;
+
+//ex signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ex;
 wire    [`inst_len-1:0] instr_ex;  
 wire    [`XLEN-1:0]     alures_ex;  
+wire                    src1sel_ex;
+wire    [1      :0]     src2sel_ex;
+wire    [`XLEN-1:0]     rs2_ex,rs1_ex,imm_ex;
+wire    [4      :0]     aluctr_ex;
+wire                    is_brc_ex,is_jal_ex,is_jalr_ex;
+
+//ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
 wire    [`inst_len-1:0] instr_ls;
 wire    [`XLEN-1:0]     lsres_ls;  
+
+//wb signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
 wire    [`inst_len-1:0] instr_wb;
 wire    [`XLEN-1:0]     wb_data;
 wire    [4      :0]     wb_rdid;
 wire                    wb_wren;
-wire                    is_brc_id,is_jal_id,is_jalr_id;
-wire                    is_brc_ex,is_jal_ex,is_jalr_ex;
 
 
 PC_reg PC_reg_u(
@@ -75,7 +85,8 @@ ID_stage ID_u(
     .aluctr_o       (aluctr_id),
     .is_brc_id_o    (is_brc_id),
     .is_jal_id_o    (is_jal_id),
-    .is_jalr_id_o   (is_jalr_id)
+    .is_jalr_id_o   (is_jalr_id),
+    .pc_wb_i        (pc_wb)
 );
 
 EX_reg EX_reg_u(

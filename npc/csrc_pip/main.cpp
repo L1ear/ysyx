@@ -104,15 +104,15 @@ void single_cycle(int i) {
   fp ->dump(i);
 #endif
 #ifdef  difftest
-    cpu.pc = top->instrAddr;
-    int r;
-    for (r = 0; r < 32; r++) {
-      cpu.gpr[r] = cpu_gpr[r];
-    }
-    if(start == 0 && en == 1){ 
-      // assert(0); 
-      difftest_step(pc);
-    }
+    // cpu.pc = top->instrAddr;
+    // int r;
+    // for (r = 0; r < 32; r++) {
+    //   cpu.gpr[r] = cpu_gpr[r];
+    // }
+    // if(start == 0 && en == 1){ 
+    //   // assert(0); 
+    //   difftest_step(pc);
+    // }
 #endif
   top->clk = 0;
   top->eval();
@@ -121,11 +121,11 @@ void single_cycle(int i) {
 #endif
 
 #ifdef  difftest
-  pc = top->instrAddr;
-  if(en == 1){
-        start = 0;
+  // pc = top->instrAddr;
+  // if(en == 1){
+  //       start = 0;
 
-  }
+  // }
 #endif
 }
 

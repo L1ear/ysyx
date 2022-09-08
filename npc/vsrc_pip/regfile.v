@@ -1,6 +1,7 @@
 `include "defines.v"
 module regfiles(
 	input							clk,
+	input	[`XLEN-1:0]				pc_wb,					//for diff-test
 				
 	input	[`reg_addr_width-1:0]	rs1_addr_i,
 	output	[`XLEN-1:0]				rs1_data_o,
@@ -36,6 +37,12 @@ end
 //read
 assign	rs1_data_o = (rs1_addr_i == 5'b0)?`XLEN'b0 : regfiles[rs1_addr_i];
 assign	rs2_data_o = (rs2_addr_i == 5'b0)?`XLEN'b0 : regfiles[rs2_addr_i];
+
+always @(posedge clk) begin
+	if(pc_wb != `XLEN'b0) begin
+		difftest_step(pc_wb);
+	end
+end
 
 
 endmodule

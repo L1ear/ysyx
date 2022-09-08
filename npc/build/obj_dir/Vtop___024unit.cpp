@@ -46,3 +46,13 @@ VL_INLINE_OPT void Vtop___024unit____Vdpiimwrap_ebreak_TOP____024unit() {
     // Body
     ebreak();
 }
+
+extern "C" void difftest_step(long long pc);
+
+VL_INLINE_OPT void Vtop___024unit____Vdpiimwrap_difftest_step_TOP____024unit(QData/*63:0*/ pc) {
+    VL_DEBUG_IF(VL_DBG_MSGF("+        Vtop___024unit____Vdpiimwrap_difftest_step_TOP____024unit\n"); );
+    // Body
+    long long pc__Vcvt;
+    for (size_t pc__Vidx = 0; pc__Vidx < 1; ++pc__Vidx) pc__Vcvt = pc;
+    difftest_step(pc__Vcvt);
+}

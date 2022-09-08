@@ -52,6 +52,7 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 
     ref_difftest_init(port);
     ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
+    Log("img passed to ref!");
     ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
 }
 
@@ -65,7 +66,7 @@ static inline bool difftest_check_reg(const char *name, uint64_t pc, word_t ref,
   return true;
 }
 
-void difftest_step(uint64_t pc) {
+void difftest_step(long long pc) {
   CPU_state ref_r;
   // if (skip_dut_nr_inst > 0) {
   //   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);

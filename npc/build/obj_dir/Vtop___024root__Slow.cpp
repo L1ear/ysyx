@@ -144,9 +144,9 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                 >> 2U))))) {
         Vtop___024unit____Vdpiimwrap_vmemread_TOP____024unit(
                                                              (0xfffffffffffffff8ULL 
-                                                              & vlSelf->top__DOT__alures_ls), 8U, vlSelf->__Vtask_vmemread__3__rdata, vlSelf->top__DOT__pc_ls);
+                                                              & vlSelf->top__DOT__alures_ls), 8U, vlSelf->__Vtask_vmemread__4__rdata, vlSelf->top__DOT__pc_ls);
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base 
-            = vlSelf->__Vtask_vmemread__3__rdata;
+            = vlSelf->__Vtask_vmemread__4__rdata;
     } else {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base = 0ULL;
     }
@@ -155,8 +155,6 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ex_stage_u__DOT__src1 = ((IData)(vlSelf->top__DOT__src1sel_ex)
                                                 ? vlSelf->top__DOT__pc_ex
                                                 : vlSelf->top__DOT__rs1_ex);
-    Vtop___024unit____Vdpiimwrap_vmemread_TOP____024unit(vlSelf->top__DOT__pc_new, 4U, vlSelf->__Vtask_vmemread__1__rdata, vlSelf->top__DOT__pc_new);
-    vlSelf->top__DOT__IF_u__DOT__rdata = vlSelf->__Vtask_vmemread__1__rdata;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0U;
     vlSelf->top__DOT__aluctr_id = 0U;
     vlSelf->top__DOT__src1sel_id = 0U;
@@ -456,6 +454,8 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__src2sel_id = 1U;
         }
     }
+    Vtop___024unit____Vdpiimwrap_vmemread_TOP____024unit(vlSelf->top__DOT__pc_new, 4U, vlSelf->__Vtask_vmemread__1__rdata, vlSelf->top__DOT__pc_new);
+    vlSelf->top__DOT__IF_u__DOT__rdata = vlSelf->__Vtask_vmemread__1__rdata;
     vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow 
         = (((1U & (IData)((vlSelf->top__DOT__rs1_ex 
                            >> 0x3fU))) == (1U & (~ (IData)(
@@ -1582,16 +1582,22 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__pc_id = 0;
     vlSelf->top__DOT__instr_id = 0;
     vlSelf->top__DOT__src1sel_id = 0;
-    vlSelf->top__DOT__src1sel_ex = 0;
     vlSelf->top__DOT__src2sel_id = 0;
+    vlSelf->top__DOT__aluctr_id = 0;
+    vlSelf->top__DOT__is_brc_id = 0;
+    vlSelf->top__DOT__is_jal_id = 0;
+    vlSelf->top__DOT__is_jalr_id = 0;
+    vlSelf->top__DOT__pc_ex = 0;
+    vlSelf->top__DOT__instr_ex = 0;
+    vlSelf->top__DOT__src1sel_ex = 0;
     vlSelf->top__DOT__src2sel_ex = 0;
     vlSelf->top__DOT__rs2_ex = 0;
     vlSelf->top__DOT__rs1_ex = 0;
     vlSelf->top__DOT__imm_ex = 0;
-    vlSelf->top__DOT__aluctr_id = 0;
     vlSelf->top__DOT__aluctr_ex = 0;
-    vlSelf->top__DOT__pc_ex = 0;
-    vlSelf->top__DOT__instr_ex = 0;
+    vlSelf->top__DOT__is_brc_ex = 0;
+    vlSelf->top__DOT__is_jal_ex = 0;
+    vlSelf->top__DOT__is_jalr_ex = 0;
     vlSelf->top__DOT__pc_ls = 0;
     vlSelf->top__DOT__rs2_ls = 0;
     vlSelf->top__DOT__alures_ls = 0;
@@ -1602,12 +1608,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__instr_wb = 0;
     vlSelf->top__DOT__wb_data = 0;
     vlSelf->top__DOT__wb_wren = 0;
-    vlSelf->top__DOT__is_brc_id = 0;
-    vlSelf->top__DOT__is_jal_id = 0;
-    vlSelf->top__DOT__is_jalr_id = 0;
-    vlSelf->top__DOT__is_brc_ex = 0;
-    vlSelf->top__DOT__is_jal_ex = 0;
-    vlSelf->top__DOT__is_jalr_ex = 0;
     vlSelf->top__DOT__IF_u__DOT__rdata = 0;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0;
     vlSelf->top__DOT__ID_u__DOT__is_jalr = 0;
@@ -1644,7 +1644,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_w = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data = 0;
     vlSelf->__Vtask_vmemread__1__rdata = 0;
-    vlSelf->__Vtask_vmemread__3__rdata = 0;
+    vlSelf->__Vtask_vmemread__4__rdata = 0;
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }
