@@ -45,14 +45,14 @@ const char *regs[] = {
   "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
 };
 // 一个输出RTL中通用寄存器的值的示例
-// void dump_gpr() {
-//   int i;
-//   for (i = 0; i < 32; i++) {
-//     printf("%s is: 0x%08lx    ",reg_name(i,64), cpu_gpr[i]);
-//     if (i % 3 == 0)   printf("\n");
-//   }
-//   printf("\n");
-// }
+void dump_gpr() {
+  int i;
+  for (i = 0; i < 32; i++) {
+    printf("%s is: 0x%08lx    ",reg_name(i,64), cpu_gpr[i]);
+    if (i % 3 == 0)   printf("\n");
+  }
+  printf("\n");
+}
 
 
 
@@ -94,8 +94,8 @@ static int cmd_si(char *args) {
         if (args == NULL) { 
             single_cycle(sim_time);
             sim_time = sim_time+2;
-    // Log("PC: %lx\n",cpu.pc);
-            // dump_gpr();
+    Log("PC: %lx\n",cpu.pc);
+            dump_gpr();
         }
         else
             for(int i = atoi(args);i>0;i++){
@@ -110,8 +110,8 @@ static int cmd_si(char *args) {
 }
 
 static int cmd_info(char *args) {
-  // if(*args == 'r')  dump_gpr();
-//   if(*args == 'w')  print_wp();
+  if(*args == 'r')  dump_gpr();
+  // if(*args == 'w')  print_wp();
   return 0;
 }
 
