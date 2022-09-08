@@ -96,7 +96,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_n;
     QData/*63:0*/ __Vtask_vmemread__1__rdata;
-    QData/*63:0*/ __Vtask_vmemread__5__rdata;
+    QData/*63:0*/ __Vtask_vmemread__4__rdata;
     VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
 
     // INTERNAL VARIABLES

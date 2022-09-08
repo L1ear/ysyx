@@ -17,32 +17,32 @@ static int difftest_port = 1234;
 // char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv64-npc.bin";
 static const uint32_t img [] = {
 0x00007f97,//auipc x31,7                  1    auipc x31,0x7
-// 0x07000093,//addi x1,x0,0x00000070        2    addi x1,x0,0x70
-// 0x07100113,//addi x2,x0,0x00000071        3    addi x2,x0,0x71
-// 0x0f000193,//addi x3,x0,0x000000f0        4    addi x3,x0,0xf0
-// 0x0f100213,//addi x4,x0,0x000000f1        5    addi x4,x0,0xf1
-// 0x001f8023,//sb x1,0(x31)                 6    sb x1,0(x31)
-// 0x01809093,//slli x1,x1,24                7    slli x1,x1,24
-// 0x002f80a3,//sb x2,1(x31)                 8    sb x2,1(x31)
-// 0x003f8123,//sb x3,2(x31)                 9    sb x3,2(x31)
-// 0x004f81a3,//sb x4,3(x31)                 10   sb x4,3(x31)
-// 0x004082b3,//add x5,x1,x4                 11   add x5,x1,x4
-// 0x000f8303,//lb x6,0(x31)                 12   lb x6,0(x31)
-// 0x001f8383,//lb x7,1(x31)                 13   lb x7,1(x31)
-// 0x002f8403,//lb x8,2(x31)                 14   lb x8,2(x31)
-// 0x003f8483,//lb x9,3(x31)                 15   lb x9,3(x31)
-// 0x005fa223,//sw x5,4(x31)                 16   sw x5,4(x31)
-// 0x005f9423,//sh x5,8(x31)                 17   sh x5,8(x31)
-// 0x000fc583,//lbu x11,0(x31)               18   lbu x11,0(x31)
-// 0x001fc603,//lbu x12,1(x31)               19   lbu x12,1(x31)
-// 0x002fc683,//lbu x13,2(x31)               20   lbu x13,2(x31)
-// 0x003fc703,//lbu x14,3(x31)               21   lbu x14,3(x31)
-// 0x000f9803,//lh x16,0(x31)                22   lh x16,0(x31)
-// 0x002f9903,//lh x18,2(x31)                24   lh x18,2(x31)
-// 0x008f9a03,//lh x20,8(x31)                26   lh x20,8(x31)
-// 0x000fda83,//lhu x21,0(x31)               27   lhu x21,0(x31)
-// 0x002fdb83,//lhu x23,2(x31)               29   lhu x23,2(x31)
-// 0x004fac83,//lw x25,4(x31)                31   lw x25,4(x31)
+0x07000093,//addi x1,x0,0x00000070        2    addi x1,x0,0x70
+0x07100113,//addi x2,x0,0x00000071        3    addi x2,x0,0x71
+0x0f000193,//addi x3,x0,0x000000f0        4    addi x3,x0,0xf0
+0x0f100213,//addi x4,x0,0x000000f1        5    addi x4,x0,0xf1
+0x001f8023,//sb x1,0(x31)                 6    sb x1,0(x31)
+0x01809093,//slli x1,x1,24                7    slli x1,x1,24
+0x002f80a3,//sb x2,1(x31)                 8    sb x2,1(x31)
+0x003f8123,//sb x3,2(x31)                 9    sb x3,2(x31)
+0x004f81a3,//sb x4,3(x31)                 10   sb x4,3(x31)
+0x004082b3,//add x5,x1,x4                 11   add x5,x1,x4
+0x000f8303,//lb x6,0(x31)                 12   lb x6,0(x31)
+0x001f8383,//lb x7,1(x31)                 13   lb x7,1(x31)
+0x002f8403,//lb x8,2(x31)                 14   lb x8,2(x31)
+0x003f8483,//lb x9,3(x31)                 15   lb x9,3(x31)
+0x005fa223,//sw x5,4(x31)                 16   sw x5,4(x31)
+0x005f9423,//sh x5,8(x31)                 17   sh x5,8(x31)
+0x000fc583,//lbu x11,0(x31)               18   lbu x11,0(x31)
+0x001fc603,//lbu x12,1(x31)               19   lbu x12,1(x31)
+0x002fc683,//lbu x13,2(x31)               20   lbu x13,2(x31)
+0x003fc703,//lbu x14,3(x31)               21   lbu x14,3(x31)
+0x000f9803,//lh x16,0(x31)                22   lh x16,0(x31)
+0x002f9903,//lh x18,2(x31)                24   lh x18,2(x31)
+0x008f9a03,//lh x20,8(x31)                26   lh x20,8(x31)
+0x000fda83,//lhu x21,0(x31)               27   lhu x21,0(x31)
+0x002fdb83,//lhu x23,2(x31)               29   lhu x23,2(x31)
+0x004fac83,//lw x25,4(x31)                31   lw x25,4(x31)
 0x00000013,//addi x0,x0,0                 32   nop
 0x00000013,//addi x0,x0,0                 32   nop
 0x00000013,//addi x0,x0,0                 32   nop

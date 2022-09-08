@@ -39,11 +39,11 @@ end
 assign	rs1_data_o = (rs1_addr_i == 5'b0)?`XLEN'b0 : regfiles[rs1_addr_i];
 assign	rs2_data_o = (rs2_addr_i == 5'b0)?`XLEN'b0 : regfiles[rs2_addr_i];
 
-always @(posedge clk) begin
-	if(pc_wb != `XLEN'b0) begin
-		difftest_step(pc_wb);
-	end
-end
+// always @(posedge clk) begin
+// 	if(pc_wb != `XLEN'b0) begin
+// 		difftest_step(pc_wb);
+// 	end
+// end
 
 
 endmodule
