@@ -1,6 +1,8 @@
 `include "defines.v"
 module top (
-    input                       clk,rst_n
+    input                           clk,rst_n,
+
+    output          [`XLEN-1:0]     pc_diff
 );
 
 wire    [`XLEN-1:0]     pc_next;
@@ -40,6 +42,7 @@ wire    [`XLEN-1:0]     wb_data;
 wire    [4      :0]     wb_rdid;
 wire                    wb_wren;
 
+assign  pc_diff = pc_ls;
 
 PC_reg PC_reg_u(
     .clk            (clk),

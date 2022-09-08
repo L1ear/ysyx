@@ -287,13 +287,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                   ? 0ULL
                                                   : vlSelf->top__DOT__lsres_wb))));
     }
-    if (vlSelf->rst_n) {
-        vlSelf->top__DOT__instr_ls = vlSelf->top__DOT__instr_ex;
-        vlSelf->top__DOT__pc_ex = vlSelf->top__DOT__pc_id;
-    } else {
-        vlSelf->top__DOT__instr_ls = 0U;
-        vlSelf->top__DOT__pc_ex = 0ULL;
-    }
+    vlSelf->top__DOT__instr_ls = ((IData)(vlSelf->rst_n)
+                                   ? vlSelf->top__DOT__instr_ex
+                                   : 0U);
+    vlSelf->pc_diff = vlSelf->top__DOT__pc_ls;
+    vlSelf->top__DOT__pc_ex = ((IData)(vlSelf->rst_n)
+                                ? vlSelf->top__DOT__pc_id
+                                : 0ULL);
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin 
         = (IData)((0U != (0xaU & (IData)(vlSelf->top__DOT__aluctr_ex))));
     if (((8U == (0x1fU & (vlSelf->top__DOT__instr_ls 
@@ -302,9 +302,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                 >> 2U))))) {
         Vtop___024unit____Vdpiimwrap_vmemread_TOP____024unit(
                                                              (0xfffffffffffffff8ULL 
-                                                              & vlSelf->top__DOT__alures_ls), 8U, vlSelf->__Vtask_vmemread__4__rdata, vlSelf->top__DOT__pc_ls);
+                                                              & vlSelf->top__DOT__alures_ls), 8U, vlSelf->__Vtask_vmemread__5__rdata, vlSelf->top__DOT__pc_ls);
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base 
-            = vlSelf->__Vtask_vmemread__4__rdata;
+            = vlSelf->__Vtask_vmemread__5__rdata;
     } else {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base = 0ULL;
     }

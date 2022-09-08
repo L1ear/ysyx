@@ -24,6 +24,7 @@ VL_MODULE(Vtop___024root) {
     // PORTS
     VL_IN8(clk,0,0);
     VL_IN8(rst_n,0,0);
+    VL_OUT64(pc_diff,63,0);
 
     // LOCAL SIGNALS
     CData/*0:0*/ top__DOT__src1sel_id;
@@ -95,7 +96,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_n;
     QData/*63:0*/ __Vtask_vmemread__1__rdata;
-    QData/*63:0*/ __Vtask_vmemread__4__rdata;
+    QData/*63:0*/ __Vtask_vmemread__5__rdata;
     VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
 
     // INTERNAL VARIABLES

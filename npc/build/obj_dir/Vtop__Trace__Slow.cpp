@@ -24,8 +24,10 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
     {
         tracep->declBit(c+213,"clk", false,-1);
         tracep->declBit(c+214,"rst_n", false,-1);
+        tracep->declQuad(c+215,"pc_diff", false,-1, 63,0);
         tracep->declBit(c+213,"top clk", false,-1);
         tracep->declBit(c+214,"top rst_n", false,-1);
+        tracep->declQuad(c+215,"top pc_diff", false,-1, 63,0);
         tracep->declQuad(c+34,"top pc_next", false,-1, 63,0);
         tracep->declQuad(c+116,"top pc_new", false,-1, 63,0);
         tracep->declBit(c+36,"top is_jump", false,-1);
@@ -33,15 +35,15 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+118,"top instr_if_id_reg", false,-1, 31,0);
         tracep->declQuad(c+119,"top pc_id", false,-1, 63,0);
         tracep->declBus(c+121,"top instr_id", false,-1, 31,0);
-        tracep->declQuad(c+215,"top rs2_id", false,-1, 63,0);
-        tracep->declQuad(c+217,"top rs1_id", false,-1, 63,0);
+        tracep->declQuad(c+217,"top rs2_id", false,-1, 63,0);
+        tracep->declQuad(c+219,"top rs1_id", false,-1, 63,0);
         tracep->declQuad(c+122,"top imm_id", false,-1, 63,0);
         tracep->declBit(c+124,"top src1sel_id", false,-1);
         tracep->declBus(c+125,"top src2sel_id", false,-1, 1,0);
         tracep->declBus(c+126,"top aluctr_id", false,-1, 4,0);
-        tracep->declBit(c+219,"top is_brc_id", false,-1);
-        tracep->declBit(c+220,"top is_jal_id", false,-1);
-        tracep->declBit(c+221,"top is_jalr_id", false,-1);
+        tracep->declBit(c+221,"top is_brc_id", false,-1);
+        tracep->declBit(c+222,"top is_jal_id", false,-1);
+        tracep->declBit(c+223,"top is_jalr_id", false,-1);
         tracep->declQuad(c+127,"top pc_ex", false,-1, 63,0);
         tracep->declBus(c+129,"top instr_ex", false,-1, 31,0);
         tracep->declQuad(c+130,"top alures_ex", false,-1, 63,0);
@@ -90,22 +92,22 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+143,"top ID_u wb_data_i", false,-1, 63,0);
         tracep->declBus(c+145,"top ID_u wb_rdid_i", false,-1, 4,0);
         tracep->declBit(c+146,"top ID_u wb_wren_i", false,-1);
-        tracep->declQuad(c+217,"top ID_u rs1_o", false,-1, 63,0);
-        tracep->declQuad(c+215,"top ID_u rs2_o", false,-1, 63,0);
+        tracep->declQuad(c+219,"top ID_u rs1_o", false,-1, 63,0);
+        tracep->declQuad(c+217,"top ID_u rs2_o", false,-1, 63,0);
         tracep->declQuad(c+122,"top ID_u imm_o", false,-1, 63,0);
         tracep->declBit(c+124,"top ID_u src1sel", false,-1);
         tracep->declBus(c+125,"top ID_u src2sel", false,-1, 1,0);
         tracep->declBus(c+126,"top ID_u aluctr_o", false,-1, 4,0);
-        tracep->declBit(c+221,"top ID_u is_jalr_id_o", false,-1);
-        tracep->declBit(c+220,"top ID_u is_jal_id_o", false,-1);
-        tracep->declBit(c+219,"top ID_u is_brc_id_o", false,-1);
+        tracep->declBit(c+223,"top ID_u is_jalr_id_o", false,-1);
+        tracep->declBit(c+222,"top ID_u is_jal_id_o", false,-1);
+        tracep->declBit(c+221,"top ID_u is_brc_id_o", false,-1);
         tracep->declBus(c+149,"top ID_u ext_op", false,-1, 4,0);
         tracep->declBit(c+150,"top ID_u is_jalr", false,-1);
         tracep->declBit(c+151,"top ID_u is_jal", false,-1);
         tracep->declBit(c+152,"top ID_u is_brc", false,-1);
         tracep->declQuad(c+122,"top ID_u imm", false,-1, 63,0);
-        tracep->declQuad(c+217,"top ID_u rs1", false,-1, 63,0);
-        tracep->declQuad(c+215,"top ID_u rs2", false,-1, 63,0);
+        tracep->declQuad(c+219,"top ID_u rs1", false,-1, 63,0);
+        tracep->declQuad(c+217,"top ID_u rs2", false,-1, 63,0);
         tracep->declQuad(c+119,"top ID_u decoder_u pc_i", false,-1, 63,0);
         tracep->declBus(c+121,"top ID_u decoder_u instr_i", false,-1, 31,0);
         tracep->declBus(c+149,"top ID_u decoder_u ext_op_o", false,-1, 4,0);
@@ -124,9 +126,9 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+213,"top ID_u regfile_u clk", false,-1);
         tracep->declQuad(c+140,"top ID_u regfile_u pc_wb", false,-1, 63,0);
         tracep->declBus(c+157,"top ID_u regfile_u rs1_addr_i", false,-1, 4,0);
-        tracep->declQuad(c+217,"top ID_u regfile_u rs1_data_o", false,-1, 63,0);
+        tracep->declQuad(c+219,"top ID_u regfile_u rs1_data_o", false,-1, 63,0);
         tracep->declBus(c+158,"top ID_u regfile_u rs2_addr_i", false,-1, 4,0);
-        tracep->declQuad(c+215,"top ID_u regfile_u rs2_data_o", false,-1, 63,0);
+        tracep->declQuad(c+217,"top ID_u regfile_u rs2_data_o", false,-1, 63,0);
         tracep->declBus(c+145,"top ID_u regfile_u wr_addr_i", false,-1, 4,0);
         tracep->declQuad(c+143,"top ID_u regfile_u wr_data_i", false,-1, 63,0);
         tracep->declBit(c+146,"top ID_u regfile_u wr_en", false,-1);
@@ -137,12 +139,12 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+119,"top EX_reg_u pc_ex_reg_i", false,-1, 63,0);
         tracep->declBus(c+121,"top EX_reg_u instr_ex_reg_i", false,-1, 31,0);
         tracep->declQuad(c+122,"top EX_reg_u imm_ex_reg_i", false,-1, 63,0);
-        tracep->declQuad(c+215,"top EX_reg_u rs2_ex_reg_i", false,-1, 63,0);
-        tracep->declQuad(c+217,"top EX_reg_u rs1_ex_reg_i", false,-1, 63,0);
+        tracep->declQuad(c+217,"top EX_reg_u rs2_ex_reg_i", false,-1, 63,0);
+        tracep->declQuad(c+219,"top EX_reg_u rs1_ex_reg_i", false,-1, 63,0);
         tracep->declBus(c+126,"top EX_reg_u aluctr_ex_reg_i", false,-1, 4,0);
-        tracep->declBit(c+221,"top EX_reg_u is_jalr_ex_reg_i", false,-1);
-        tracep->declBit(c+220,"top EX_reg_u is_jal_ex_reg_i", false,-1);
-        tracep->declBit(c+219,"top EX_reg_u is_brc_ex_reg_i", false,-1);
+        tracep->declBit(c+223,"top EX_reg_u is_jalr_ex_reg_i", false,-1);
+        tracep->declBit(c+222,"top EX_reg_u is_jal_ex_reg_i", false,-1);
+        tracep->declBit(c+221,"top EX_reg_u is_brc_ex_reg_i", false,-1);
         tracep->declBit(c+124,"top EX_reg_u src1sel_ex_reg_i", false,-1);
         tracep->declBus(c+125,"top EX_reg_u src2sel_ex_reg_i", false,-1, 1,0);
         tracep->declQuad(c+127,"top EX_reg_u pc_ex_reg_o", false,-1, 63,0);
@@ -175,8 +177,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+132,"top ex_stage_u u_ALU ALUctr", false,-1, 4,0);
         tracep->declQuad(c+159,"top ex_stage_u u_ALU src1", false,-1, 63,0);
         tracep->declQuad(c+20,"top ex_stage_u u_ALU src2", false,-1, 63,0);
-        tracep->declBit(c+222,"top ex_stage_u u_ALU DivEn", false,-1);
-        tracep->declBus(c+223,"top ex_stage_u u_ALU DivSel", false,-1, 2,0);
+        tracep->declBit(c+224,"top ex_stage_u u_ALU DivEn", false,-1);
+        tracep->declBus(c+225,"top ex_stage_u u_ALU DivSel", false,-1, 2,0);
         tracep->declQuad(c+130,"top ex_stage_u u_ALU ALUres", false,-1, 63,0);
         tracep->declBit(c+161,"top ex_stage_u u_ALU less", false,-1);
         tracep->declBit(c+162,"top ex_stage_u u_ALU zero", false,-1);
@@ -223,7 +225,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+183,"top ex_stage_u u_ALU shifter sll_res", false,-1, 63,0);
         tracep->declQuad(c+159,"top ex_stage_u u_ALU divider src1", false,-1, 63,0);
         tracep->declQuad(c+20,"top ex_stage_u u_ALU divider src2", false,-1, 63,0);
-        tracep->declBus(c+223,"top ex_stage_u u_ALU divider DivSel", false,-1, 2,0);
+        tracep->declBus(c+225,"top ex_stage_u u_ALU divider DivSel", false,-1, 2,0);
         tracep->declQuad(c+43,"top ex_stage_u u_ALU divider DivOut", false,-1, 63,0);
         tracep->declQuad(c+7,"top ex_stage_u bcu_u rs1_i", false,-1, 63,0);
         tracep->declQuad(c+5,"top ex_stage_u bcu_u rs2_i", false,-1, 63,0);
@@ -235,9 +237,9 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+127,"top ex_stage_u bcu_u pc_i", false,-1, 63,0);
         tracep->declQuad(c+1,"top ex_stage_u bcu_u brc_pc_o", false,-1, 63,0);
         tracep->declBit(c+36,"top ex_stage_u bcu_u is_jump_o", false,-1);
-        tracep->declQuad(c+224,"top ex_stage_u bcu_u pc_imm_res", false,-1, 63,0);
-        tracep->declQuad(c+226,"top ex_stage_u bcu_u rs1_imm_res", false,-1, 63,0);
-        tracep->declBit(c+228,"top ex_stage_u bcu_u less", false,-1);
+        tracep->declQuad(c+226,"top ex_stage_u bcu_u pc_imm_res", false,-1, 63,0);
+        tracep->declQuad(c+228,"top ex_stage_u bcu_u rs1_imm_res", false,-1, 63,0);
+        tracep->declBit(c+230,"top ex_stage_u bcu_u less", false,-1);
         tracep->declBit(c+27,"top ex_stage_u bcu_u zero", false,-1);
         tracep->declBit(c+28,"top ex_stage_u bcu_u carry", false,-1);
         tracep->declBit(c+29,"top ex_stage_u bcu_u overflow", false,-1);
@@ -285,7 +287,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+200,"top ls_u lsu_u rd_data_b", false,-1, 7,0);
         tracep->declBus(c+201,"top ls_u lsu_u rd_data_h", false,-1, 15,0);
         tracep->declBus(c+202,"top ls_u lsu_u rd_data_w", false,-1, 31,0);
-        tracep->declQuad(c+229,"top ls_u lsu_u wr_mask", false,-1, 63,0);
+        tracep->declQuad(c+231,"top ls_u lsu_u wr_mask", false,-1, 63,0);
         tracep->declBit(c+203,"top ls_u lsu_u sb", false,-1);
         tracep->declBit(c+204,"top ls_u lsu_u sh", false,-1);
         tracep->declBit(c+205,"top ls_u lsu_u sw", false,-1);
@@ -801,26 +803,27 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+211,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data),64);
         tracep->fullBit(oldp+213,(vlSelf->clk));
         tracep->fullBit(oldp+214,(vlSelf->rst_n));
-        tracep->fullQData(oldp+215,(((0U == (0x1fU 
+        tracep->fullQData(oldp+215,(vlSelf->pc_diff),64);
+        tracep->fullQData(oldp+217,(((0U == (0x1fU 
                                              & (vlSelf->top__DOT__instr_id 
                                                 >> 0x14U)))
                                       ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                      [(0x1fU & (vlSelf->top__DOT__instr_id 
                                                 >> 0x14U))])),64);
-        tracep->fullQData(oldp+217,(((0U == (0x1fU 
+        tracep->fullQData(oldp+219,(((0U == (0x1fU 
                                              & (vlSelf->top__DOT__instr_id 
                                                 >> 0xfU)))
                                       ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                      [(0x1fU & (vlSelf->top__DOT__instr_id 
                                                 >> 0xfU))])),64);
-        tracep->fullBit(oldp+219,(vlSelf->top__DOT__is_brc_id));
-        tracep->fullBit(oldp+220,(vlSelf->top__DOT__is_jal_id));
-        tracep->fullBit(oldp+221,(vlSelf->top__DOT__is_jalr_id));
-        tracep->fullBit(oldp+222,(0U));
-        tracep->fullCData(oldp+223,(0U),3);
-        tracep->fullQData(oldp+224,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res),64);
-        tracep->fullQData(oldp+226,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res),64);
-        tracep->fullBit(oldp+228,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__less));
-        tracep->fullQData(oldp+229,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask),64);
+        tracep->fullBit(oldp+221,(vlSelf->top__DOT__is_brc_id));
+        tracep->fullBit(oldp+222,(vlSelf->top__DOT__is_jal_id));
+        tracep->fullBit(oldp+223,(vlSelf->top__DOT__is_jalr_id));
+        tracep->fullBit(oldp+224,(0U));
+        tracep->fullCData(oldp+225,(0U),3);
+        tracep->fullQData(oldp+226,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res),64);
+        tracep->fullQData(oldp+228,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res),64);
+        tracep->fullBit(oldp+230,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__less));
+        tracep->fullQData(oldp+231,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask),64);
     }
 }

@@ -17,6 +17,8 @@ extern "C" {
     extern void difftest_step(long long pc);
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:3:30
     extern void ebreak();
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:5:30
+    extern void set_gpr_ptr(const svOpenArrayHandle a);
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:1:30
     extern void vmemread(long long raddr, int len, long long* rdata, long long pc);
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/defines.v:2:30

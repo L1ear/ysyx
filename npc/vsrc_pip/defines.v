@@ -2,6 +2,8 @@ import "DPI-C" function void vmemread(input longint raddr, input int len, output
 import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input longint pc);
 import "DPI-C" function void ebreak();
 import "DPI-C" function void difftest_step(input longint pc);
+import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
+
 
 `define		XLEN	            64
 `define     reg_addr_width      5

@@ -52,7 +52,8 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 
     ref_difftest_init(port);
     ref_difftest_memcpy(RESET_VECTOR, guest_to_host(RESET_VECTOR), img_size, DIFFTEST_TO_REF);
-    Log("img passed to ref!");
+    
+    cpu.pc = 0x80000004;
     ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
 }
 
@@ -68,7 +69,7 @@ static inline bool difftest_check_reg(const char *name, uint64_t pc, word_t ref,
 
 void difftest_step(long long pc) {
 
-  Log("diff step!!!");
+  // Log("diff step!!!PC: %08lx",cpu.pc);
   CPU_state ref_r;
   // if (skip_dut_nr_inst > 0) {
   //   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
@@ -83,13 +84,13 @@ void difftest_step(long long pc) {
   //   return;
   // }
 
-  if (is_skip_ref) {
-    // to skip the checking of an instruction, just copy the reg state to reference design
-    // printf("??????????????????????????");
-    ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
-    is_skip_ref = false;
-    return;
-  }
+  // if (is_skip_ref) {
+  //   // to skip the checking of an instruction, just copy the reg state to reference design
+  //   // printf("??????????????????????????");
+  //   ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
+  //   is_skip_ref = false;
+  //   return;
+  // }
 
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);

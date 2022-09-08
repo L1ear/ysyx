@@ -104,15 +104,15 @@ void single_cycle(int i) {
   fp ->dump(i);
 #endif
 #ifdef  difftest
-    // cpu.pc = top->instrAddr;
-    // int r;
-    // for (r = 0; r < 32; r++) {
-    //   cpu.gpr[r] = cpu_gpr[r];
-    // }
-    // if(start == 0 && en == 1){ 
-    //   // assert(0); 
-    //   difftest_step(pc);
-    // }
+    cpu.pc = top->pc_diff;
+    int r;
+    for (r = 0; r < 32; r++) {
+      cpu.gpr[r] = cpu_gpr[r];
+    }
+    if(start == 0 && en == 1){ 
+      // assert(0); 
+      difftest_step(pc);
+    }
 #endif
   top->clk = 0;
   top->eval();
@@ -130,10 +130,10 @@ void single_cycle(int i) {
 }
 
 //for DPI-C
-// uint64_t *cpu_gpr = NULL;
-// extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
-//   cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
-// }
+uint64_t *cpu_gpr = NULL;
+extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
+  cpu_gpr = (uint64_t *)(((VerilatedDpiOpenVar*)r)->datap());
+}
 
 int en = 0;
 void ebreak(){
