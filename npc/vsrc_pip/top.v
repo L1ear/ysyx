@@ -2,7 +2,7 @@
 module top (
     input                           clk,rst_n,
 
-    output          [`XLEN-1:0]     pc_diff
+    output          [`XLEN-1:0]     pc_diff,pc_decoding
 );
 
 wire    [`XLEN-1:0]     pc_next;
@@ -43,6 +43,7 @@ wire    [4      :0]     wb_rdid;
 wire                    wb_wren;
 
 assign  pc_diff = pc_wb;
+assign  pc_decoding = pc_id;
 
 PC_reg PC_reg_u(
     .clk            (clk),

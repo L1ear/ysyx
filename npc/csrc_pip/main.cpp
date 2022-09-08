@@ -123,7 +123,7 @@ void single_cycle(int i) {
 #endif
 
 #ifdef  difftest
-  // pc = top->instrAddr;
+  pc = top->pc_decoding;
   // if(en == 1){
   //       start = 0;
 
@@ -141,9 +141,9 @@ int en = 0;
 void ebreak(){
   en = 0;
   if(0 == 0)
-    printf("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",0);
+    printf("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",pc);
   else
-    printf("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",0);
+    printf("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",pc);
 }
 
 void vmemread(long long raddr,int len, long long *rdata, long long pc){
@@ -158,7 +158,7 @@ void vmemread(long long raddr,int len, long long *rdata, long long pc){
 void vmemwrite(long long waddr, long long wdata, long long pc){
   //printf("waddr = 0x%lx,wdata = 0x%lx,wmask = 0x%x\n",waddr,wdata,wmask);
   //waddr = waddr & ~0x7ull;  //clear low 3bit for 8byte align.
-    printf("write: %llx\n",waddr);
+    // printf("write: %llx\n",waddr);
     memwrite(waddr, 8, wdata, pc);
 }
 

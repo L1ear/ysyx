@@ -156,6 +156,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ex_stage_u__DOT__src1 = ((IData)(vlSelf->top__DOT__src1sel_ex)
                                                 ? vlSelf->top__DOT__pc_ex
                                                 : vlSelf->top__DOT__rs1_ex);
+    vlSelf->pc_decoding = vlSelf->top__DOT__pc_id;
     Vtop___024unit____Vdpiimwrap_vmemread_TOP____024unit(vlSelf->top__DOT__pc_new, 4U, vlSelf->__Vtask_vmemread__1__rdata, vlSelf->top__DOT__pc_new);
     vlSelf->top__DOT__IF_u__DOT__rdata = vlSelf->__Vtask_vmemread__1__rdata;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0U;
@@ -1582,6 +1583,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->clk = 0;
     vlSelf->rst_n = 0;
     vlSelf->pc_diff = 0;
+    vlSelf->pc_decoding = 0;
     vlSelf->top__DOT__pc_next = 0;
     vlSelf->top__DOT__pc_new = 0;
     vlSelf->top__DOT__pc_id = 0;

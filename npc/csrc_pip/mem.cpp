@@ -85,7 +85,7 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   //   printf("%02x",imem[i]);
   // }
   // printf("\n");
-  printf("*****************************memread: %llx\n",addr);
+  // printf("*****************************memread: %llx\n",addr);
   // if(addr == 0xa0000048){
   //   printf("%ld\n",get_time());
   //   difftest_skip_ref();
@@ -106,7 +106,7 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
       return *(uint16_t  *)(imem + addr - 0x80000000);
       break;
     case 4:
-      printf("instr read!!!! %lx\n",*(uint32_t  *)(imem + addr - 0x80000000));
+      // printf("instr read!!!! %lx\n",*(uint32_t  *)(imem + addr - 0x80000000));
       return *(uint32_t  *)(imem + addr - 0x80000000);
       break;
     case 8:
@@ -141,9 +141,9 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
       *(uint32_t *)(imem + addr - 0x80000000) = data; 
       return;
     case 8: 
-      printf("sw:%016llx\n",data);
+      // printf("sw:%016llx\n",data);
       *(uint64_t *)(imem + addr - 0x80000000) = data; 
-      printf("after:%016llx\n",*(uint64_t *)(imem + addr - 0x80000000));
+      // printf("after:%016llx\n",*(uint64_t *)(imem + addr - 0x80000000));
       return;
     default: break;
   }

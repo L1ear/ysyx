@@ -25,6 +25,7 @@ VL_MODULE(Vtop___024root) {
     VL_IN8(clk,0,0);
     VL_IN8(rst_n,0,0);
     VL_OUT64(pc_diff,63,0);
+    VL_OUT64(pc_decoding,63,0);
 
     // LOCAL SIGNALS
     CData/*0:0*/ top__DOT__src1sel_id;

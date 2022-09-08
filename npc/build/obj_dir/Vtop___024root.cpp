@@ -806,6 +806,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                            >> 0x3fU)))));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero 
         = (1U & (~ (IData)((0U != vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o))));
+    vlSelf->pc_decoding = vlSelf->top__DOT__pc_id;
     vlSelf->top__DOT__pc_new = ((IData)(vlSelf->rst_n)
                                  ? vlSelf->top__DOT__pc_next
                                  : 0x80000000ULL);
