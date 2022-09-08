@@ -4,7 +4,7 @@
 #include <memory/paddr.h>
 
 void difftest_exec(uint64_t n) {
-  Log("exec: %08lx",cpu.pc);
+  // Log("exec: %08lx",cpu.pc);
   cpu_exec(1);
   // isa_reg_display();
 }
