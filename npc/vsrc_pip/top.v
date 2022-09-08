@@ -42,7 +42,7 @@ wire    [`XLEN-1:0]     wb_data;
 wire    [4      :0]     wb_rdid;
 wire                    wb_wren;
 
-assign  pc_diff = pc_ls;
+assign  pc_diff = pc_wb;
 
 PC_reg PC_reg_u(
     .clk            (clk),

@@ -22,7 +22,7 @@ always @(*) begin
             rd_data_o = alures_i;
         end
         `load: begin
-            rd_wren_o = 1'b1;
+            rd_wren_o = 1'b1 & instr_i[0];
             rd_data_o = lsres_i;
         end
         `store: begin

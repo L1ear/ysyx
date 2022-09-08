@@ -27,11 +27,12 @@ reg		[`XLEN-1:0]	regfiles[0:31];
 //write
 always @(posedge clk) begin
 	if(wr_en) begin
-		regfiles[wr_addr_i] <= (wr_addr_i == `reg_addr_width'b0)?`XLEN'b0 : wr_data_i;
+		regfiles[wr_addr_i] <= (wr_addr_i == `reg_addr_width'b0)?`XLEN'b0 : wr_data_i;	
 	end
 	else begin
 		regfiles[wr_addr_i] <= regfiles[wr_addr_i];
 	end
+	
 end
 
 //read
