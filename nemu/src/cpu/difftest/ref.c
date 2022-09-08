@@ -4,6 +4,7 @@
 #include <memory/paddr.h>
 
 void difftest_exec(uint64_t n) {
+  Log("exec");
   cpu_exec(1);
 }
 void difftest_memcpy(paddr_t addr, void *buf, size_t n, bool direction) {
