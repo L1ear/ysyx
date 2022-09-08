@@ -59,7 +59,7 @@ void init_difftest(char *ref_so_file, long img_size, int port) {
 
 static inline bool difftest_check_reg(const char *name, uint64_t pc, word_t ref, word_t dut) {
   if (ref != dut) {
-    Log("%s is different after executing instruction at pc = " FMT_WORD
+    Log("\33[1;31m%s is different after executing instruction at pc = " FMT_WORD
         ", right = " FMT_WORD ", wrong = " FMT_WORD ", diff = " FMT_WORD,
         name, pc, ref, dut, ref ^ dut);
     return false;
