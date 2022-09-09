@@ -102,7 +102,7 @@ wire    [6:0]   fun_7 = instr_i[31:25];
 // assign  Rs2_o = instr_i[24:20];
 // assign  csrIdx = instr_i[31:20];
 
-
+import "DPI-C" function void ebreak();
 
 always @(*) begin
     ext_op_o = 5'b0;                          //默认拓展模块输出0
