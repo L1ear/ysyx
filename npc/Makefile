@@ -94,6 +94,8 @@ run_pip:
 	@mkdir -p logs
 	build/top +trace -d $(DIFF_REF_SO)
 
+wave:
+	gtkwave ./vlt.vcd
 
 clean:
 	rm -rf $(BUILD_DIR)
