@@ -1,11 +1,11 @@
 # all:
 # 	@echo "Write this Makefile by your self."
 
-sim:
-	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-	@echo "Write this Makefile by your self."
+# sim:
+# 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
+# 	@echo "Write this Makefile by your self."
 
-# include ../Makefile
+include ../Makefile
 
 
 TOPNAME = top
@@ -92,7 +92,7 @@ run_pip:
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	$(call git_commit, "sim RTL")
+	$(call git_commit, "sim RTL") 
 	build/top +trace -d $(DIFF_REF_SO)
 
 
