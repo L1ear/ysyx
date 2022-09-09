@@ -38,7 +38,7 @@ always @(*) begin
             rs1 = rs1_ex_i;
         end
         `ex: begin
-            rs1 = alures_fw_i;
+            rs1 = 64'b0;
         end
         `ls: begin
             rs1 = lsres_fw_i;
