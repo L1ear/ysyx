@@ -113,7 +113,7 @@ void single_cycle(int i) {
       // assert(0); 
       if(start == 0)
         difftest_step(top->pc_diff);
-      start = (start == 0)? 0: start--;
+      start = 0;
     }
 #endif
   top->clk = 0;
