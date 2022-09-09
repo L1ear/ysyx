@@ -1688,6 +1688,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__wben_ex = 0;
     vlSelf->top__DOT__rs1_sel = 0;
     vlSelf->top__DOT__rs1_idx_ex = 0;
+    vlSelf->top__DOT__rs2_idx_ex = 0;
     vlSelf->top__DOT__pc_ls = 0;
     vlSelf->top__DOT__rs2_ls = 0;
     vlSelf->top__DOT__alures_ls = 0;

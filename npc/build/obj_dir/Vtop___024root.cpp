@@ -76,6 +76,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__is_jalr_ex = ((IData)(vlSelf->rst_n) 
                                     & (IData)(vlSelf->top__DOT__is_jalr_id));
     if (vlSelf->rst_n) {
+        vlSelf->top__DOT__rs2_idx_ex = vlSelf->top__DOT__rs2_idx_id;
         vlSelf->top__DOT__imm_ex = vlSelf->top__DOT__ID_u__DOT__imm;
         vlSelf->top__DOT__src2sel_ex = vlSelf->top__DOT__src2sel_id;
         vlSelf->top__DOT__rs2_ls = vlSelf->top__DOT__rs2_ex;
@@ -145,6 +146,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                                                               & vlSelf->top__DOT__instr_ls))))) 
                                          & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base));
     } else {
+        vlSelf->top__DOT__rs2_idx_ex = 0U;
         vlSelf->top__DOT__imm_ex = 0ULL;
         vlSelf->top__DOT__src2sel_ex = 0U;
         vlSelf->top__DOT__rs2_ls = 0ULL;

@@ -168,6 +168,7 @@ ex_stage ex_stage_u(
     .lsres_fw_i     (wb_data),
     .wbres_fw_i     (wbres_fw),
     .rs1_sel_i      (rs1_sel),
+    .rs2_sel_i      (rs2_sel),
 
     // .PC_ex_o,
     // .instr_ex_o,
@@ -184,7 +185,7 @@ forwarding  forwarding_u(
     .clk            (clk),
     .rst_n          (rst_n),
     .rs1_ido_idx    (rs1_idx_ex),
-    .rs2_ido_idx    (),
+    .rs2_ido_idx    (rs2_idx_ex),
     .rd_exo_idx     (instr_ls[11:7]),
     .rd_lso_idx     (instr_wb[11:7]),
     .wben_ls        (wben_ls),
