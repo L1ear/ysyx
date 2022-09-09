@@ -104,7 +104,7 @@ void single_cycle(int i) {
   fp ->dump(i);
 #endif
 #ifdef  difftest
-    // cpu.pc = top->pc_diff;
+    cpu.pc = top->pc_diff;
     int r;
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
