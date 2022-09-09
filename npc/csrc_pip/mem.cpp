@@ -17,7 +17,7 @@ static int difftest_port = 1234;
 // char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv64-npc.bin";
 static const uint32_t img [] = {
 0x00007117,
-0x40308133,//sub x2,x1,x3                 1    sub x2,x1,x3
+// 0x40308133,//sub x2,x1,x3                 1    sub x2,x1,x3
 0x00517633,//and x12,x2,x5                2    and x12,x2,x5
 0x002366b3,//or x13,x6,x2                 3    or x13,x6,x2
 0x00210733,//add x14,x2,x2                4    add x14,x2,x2
