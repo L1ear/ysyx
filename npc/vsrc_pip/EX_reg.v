@@ -9,6 +9,7 @@ module EX_reg (
     input                           is_jalr_ex_reg_i,is_jal_ex_reg_i,is_brc_ex_reg_i,
     input                           src1sel_ex_reg_i,
     input           [1      :0]     src2sel_ex_reg_i,
+    input                           wben_ex_reg_i,
 
     output   reg    [`XLEN-1:0]     pc_ex_reg_o,
     output   reg    [`inst_len-1:0]     instr_ex_reg_o,
@@ -17,7 +18,8 @@ module EX_reg (
     output   reg    [4      :0]     aluctr_ex_reg_o,
     output   reg                    is_jalr_ex_reg_o,is_jal_ex_reg_o,is_brc_ex_reg_o,
     output   reg                    src1sel_ex_reg_o,
-    output   reg     [1      :0]    src2sel_ex_reg_o
+    output   reg     [1      :0]    src2sel_ex_reg_o,
+    output   reg                    wben_ex_reg_o
 );
 
 always @(posedge clk or negedge rst_n) begin
@@ -134,6 +136,15 @@ always @(posedge clk or negedge rst_n) begin
     end
     else begin
         src2sel_ex_reg_o <= src2sel_ex_reg_i;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        wben_ex_reg_o <= 1'b0;
+    end
+    else begin
+        wben_ex_reg_o <= wben_ex_reg_i;
     end
 end
 

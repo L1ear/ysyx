@@ -24,14 +24,14 @@ initial set_gpr_ptr(regfiles);  // rf为通用寄存器的二维数组变量
 //regfiles
 reg		[`XLEN-1:0]	regfiles[0:31];
 // assign	regA0 = regfiles[10];
-//write
+//write		引入cg的写法
 always @(posedge clk) begin
 	if(wr_en) begin
 		regfiles[wr_addr_i] <= (wr_addr_i == `reg_addr_width'b0)?`XLEN'b0 : wr_data_i;	
 	end
-	else begin
-		regfiles[wr_addr_i] <= regfiles[wr_addr_i];
-	end
+	// else begin
+	// 	regfiles[wr_addr_i] <= regfiles[wr_addr_i];
+	// end
 	
 end
 

@@ -6,8 +6,8 @@
 typedef struct {
   word_t gpr[32];
   vaddr_t pc;
-  word_t mepc,mcause,mtvec;
-  word_t mstatus;
+  word_t mepc,mcause,mtvec,mstatus;
+  // word_t ;
 } riscv64_CPU_state;
 
 // decode

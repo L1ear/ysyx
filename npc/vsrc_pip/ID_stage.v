@@ -13,7 +13,8 @@ module ID_stage (
     output                          src1sel,
     output          [1      :0]     src2sel,
     output          [4      :0]     aluctr_o,
-    output                          is_jalr_id_o,is_jal_id_o,is_brc_id_o
+    output                          is_jalr_id_o,is_jal_id_o,is_brc_id_o,
+    output                          wben_id_o
     // output          [`XLEN-1:0]     pc_next_o,
     // output                          is_jump_o
 );
@@ -41,7 +42,8 @@ decoder decoder_u(
     .aluctr_o(aluctr_o),
     .is_jalr_o(is_jalr),
     .is_jal_o(is_jal),
-    .is_brc_o(is_brc)
+    .is_brc_o(is_brc),
+    .wb_en_o(wben_id_o)
 );
 imm_ext imm_ext_u(
     .instr_imm_i(instr_i[31:7]),
@@ -83,7 +85,8 @@ module decoder (
     output   reg                    src1sel_o,
     output   reg    [1      :0]     src2sel_o,
     output   reg    [4      :0]     aluctr_o,
-    output   reg                    is_jalr_o,is_jal_o,is_brc_o
+    output   reg                    is_jalr_o,is_jal_o,is_brc_o,
+    output   reg                    wb_en_o
 );
 wire    [4:0]   opcode = instr_i[6:2];
 wire    [2:0]   fun_3 = instr_i[14:12];
@@ -104,6 +107,7 @@ always @(*) begin
     is_jalr_o = 1'b0;
     is_jal_o = 1'b0;
     is_brc_o = 1'b0;
+    wb_en_o = 1'b0;
     // csrWrEn = 1'b0;
     // csr_op = 2'b0;              
     // IntSync = 1'b0;
@@ -116,6 +120,7 @@ always @(*) begin
         `OP_REG,`OP_REG_32: begin
             src1sel_o = `Rs1;
             src2sel_o = `Rs2;  
+            wb_en_o = 1'b1;
             // DivEn = fun_7[0];
             // DivSel = fun_3;
             case(fun_3)
@@ -158,7 +163,8 @@ always @(*) begin
         `OP_IMM,`OP_IMM_32: begin
             src1sel_o = `Rs1;
             src2sel_o = `imm;  
-            ext_op_o = `immI;  
+            ext_op_o = `immI;
+            wb_en_o = 1'b1;  
             // DivEn = 1'b0;
             // DivSel = `DivMul;
             case(fun_3)
@@ -197,7 +203,8 @@ always @(*) begin
             ext_op_o = `immI;                          
             aluctr_o = `AluAdd_64;                      
             src1sel_o = `Rs1;                       
-            src2sel_o = `imm;                        
+            src2sel_o = `imm; 
+            wb_en_o = 1'b1;                       
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end  
@@ -205,7 +212,8 @@ always @(*) begin
             ext_op_o = `immS;                          
             aluctr_o = `AluAdd_64;                      
             src1sel_o = `Rs1;                       
-            src2sel_o = `imm;                        
+            src2sel_o = `imm;  
+            wb_en_o = 1'b0;                      
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end
@@ -213,7 +221,8 @@ always @(*) begin
             is_brc_o = 1'b1;
             src1sel_o = `Rs1;
             src2sel_o = `Rs2;  
-            ext_op_o = `immB;  
+            ext_op_o = `immB;
+            wb_en_o = 1'b0;   
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end
@@ -224,6 +233,7 @@ always @(*) begin
             is_jal_o = 1'b1;
             // branch = `JalCon;
             aluctr_o = `AluAdd_64; 
+            wb_en_o = 1'b1; 
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end   
@@ -234,6 +244,7 @@ always @(*) begin
             is_jalr_o = 1'b1;
             // branch = `JalrCon;     
             aluctr_o = `AluAdd_64; 
+            wb_en_o = 1'b1; 
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end                                
@@ -243,6 +254,7 @@ always @(*) begin
             ext_op_o = `immU;  
             // branch = `NonBranch;   
             aluctr_o = `AluSrc2;  
+            wb_en_o = 1'b1; 
             // DivEn = 1'b0;
             // DivSel = `DivMul;  
         end   
@@ -252,6 +264,7 @@ always @(*) begin
             ext_op_o = `immU;  
             // branch = `NonBranch;   
             aluctr_o = `AluAdd_64;
+            wb_en_o = 1'b1; 
             // DivEn = 1'b0;
             // DivSel = `DivMul;            
         end

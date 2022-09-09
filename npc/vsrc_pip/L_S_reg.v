@@ -4,6 +4,8 @@ module L_S_reg (
     input           [`XLEN-1:0]     PC_ls_reg_i,rs2_ls_reg_i,
     input           [`inst_len-1:0] instr_ls_reg_i,
     input           [`XLEN-1:0]     alures_ls_reg_i,
+    input                           wben_ls_reg_i,
+
     // input                           mem_wren_ls_reg_i,
     // input                           mem_lden_ls_reg_i,
     // input           [2      :0]     mem_op_ls_reg_i,
@@ -12,7 +14,8 @@ module L_S_reg (
     // output   reg    [2      :0]     mem_op_ls_reg_o,
     output   reg    [`XLEN-1:0]     PC_ls_reg_o,rs2_ls_reg_o,
     output   reg    [`inst_len-1:0] instr_ls_reg_o,
-    output   reg    [`XLEN-1:0]     alures_ls_reg_o
+    output   reg    [`XLEN-1:0]     alures_ls_reg_o,
+    output   reg                    wben_ls_reg_o
 );
     
 always @(posedge clk or negedge rstn) begin
@@ -48,6 +51,15 @@ always @(posedge clk or negedge rstn) begin
     end
     else begin
         alures_ls_reg_o <= alures_ls_reg_i;
+    end
+end
+
+always @(posedge clk or negedge rstn) begin
+    if(~rstn) begin
+        wben_ls_reg_o <= 1'b0;
+    end
+    else begin
+        wben_ls_reg_o <= wben_ls_reg_i;
     end
 end
 
