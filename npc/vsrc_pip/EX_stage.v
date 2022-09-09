@@ -1,9 +1,9 @@
 `include "defines.v"
 // //fw_src_sel
-`define     rf          2'b0
-`define     ex          2'd1
-`define     ls          2'd2
-`define     wb          2'd3
+// `define     rf          2'b0
+// `define     ex          2'd1
+// `define     ls          2'd2
+// `define     wb          2'd3
 module ex_stage (
     // input                           mem_wren_ex_i,
     // input                           mem_lden_ex_i,

@@ -16,11 +16,11 @@ import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
 
 `define     ecallArg            5'd17           //R(17)
 
-// //fw_src_sel
-// `define     rf                  2'b00
-// `define     ex                  2'b01
-// `define     ls                  2'b10
-// `define     wb                  2'b11
+//fw_src_sel
+`define     rf                  2'b00
+`define     ex                  2'b01
+`define     ls                  2'b10
+`define     wb                  2'b11
 
 //immediate expension opcode(one-hot-code)
 `define     immI                5'b00001

@@ -16,7 +16,7 @@ IMG ?=
 VERILATOR = verilator
 VERILATOR_CFLAGS += -MMD --build -cc  --trace\
 				-O3 --x-assign fast --x-initial fast --noassert
-VERILATOR_FLAGS += -MMD --build -cc  --trace --exe  -y ./vsrc -top $(TOPNAME)\
+VERILATOR_FLAGS += -MMD --build -cc  --trace --exe  -y ./vsrc_pip -top $(TOPNAME)\
 				-O3 --x-assign fast --x-initial fast --noassert --Mdir $(OBJ_DIR)\
 				-o $(abspath $(BIN)) $(addprefix -I, $(INC_PATH))\
 				$(addprefix -LDFLAGS , $(LDFLAGS))
@@ -80,7 +80,7 @@ run:
 
 
 run_pip: 
-	
+	$(call git_commit, "sim RTL") 
 	@echo
 	@echo "-- VERILATE ----------------"
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VSRCS_PIP) $(CSRCS_PIP)
@@ -92,7 +92,6 @@ run_pip:
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	$(call git_commit, "sim RTL") 
 	build/top +trace -d $(DIFF_REF_SO)
 
 
