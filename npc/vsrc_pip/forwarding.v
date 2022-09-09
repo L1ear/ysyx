@@ -41,6 +41,17 @@ assign rs1_sel = rs1_ex_fw ? `ex :                                              
                             rs1_ls_fw ? `ls : 
                                         rs1_wb_fw ? `wb : `rf;
 
+wire    rs2_ex_fw;
+assign  rs2_ex_fw = wben_ls & (rd_exo_idx == rs2_ido_idx) & (|rd_exo_idx);      //alu结果的前递
+wire    rs2_ls_fw;                                                              //ls结果的前递
+assign  rs2_ls_fw = wben_wb & (rd_lso_idx == rs2_ido_idx) & (|rd_exo_idx); 
+wire    rs2_wb_fw;
+assign  rs2_wb_fw = reg_wben & (reg_wb_idx == rs2_ido_idx) & (|reg_wb_idx);     //wb结果前递
+
+assign rs2_sel = rs2_ex_fw ? `ex :                                              //保证优先级
+                            rs2_ls_fw ? `ls : 
+                                        rs2_wb_fw ? `wb : `rf;
+
 
 
 

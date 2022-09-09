@@ -20,7 +20,7 @@ wire    [1      :0]     src2sel_id;
 wire    [4      :0]     aluctr_id;
 wire                    is_brc_id,is_jal_id,is_jalr_id;
 wire                    wben_id;
-wire    [4      :0]     rs1_idx_id;
+wire    [4      :0]     rs1_idx_id,rs2_idx_id;
 
 //ex signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ex;
@@ -102,7 +102,7 @@ ID_stage ID_u(
     .pc_wb_i        (pc_wb),
     .wben_id_o      (wben_id),
     .rs1_idx        (rs1_idx_id),
-    .rs2_idx        ()
+    .rs2_idx        (rs2_idx_id)
 );
 
 EX_reg EX_reg_u(
