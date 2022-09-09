@@ -1,7 +1,7 @@
 
 // import "DPI-C" function void ebreak();
 // import "DPI-C" function void difftest_step(input longint pc);
-// import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
+
 
 
 `define		XLEN	            64
