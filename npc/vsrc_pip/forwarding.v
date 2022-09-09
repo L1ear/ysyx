@@ -1,7 +1,4 @@
 `include "defines.v"
-
-
-
 module forwarding (
     input                                     clk,rst_n,
     input           [`reg_addr_width-1:0]     rs1_ido_idx,rs2_ido_idx,
@@ -11,7 +8,7 @@ module forwarding (
     input                                     wben_ls,wben_wb,
     input           [`XLEN-1          :0]     wb_data_i,
 
-    output          [1                :0]     rs1_sel,rs2_sel
+    output          [1                :0]     rs1_sel,rs2_sel,
     output          [`XLEN-1          :0]     wb_data_o
 
 );
@@ -40,9 +37,9 @@ assign  rs1_ls_fw = wben_wb & (rd_lso_idx == rs1_ido_idx) & (|rd_exo_idx);
 wire    rs1_wb_fw;
 assign  rs1_wb_fw = reg_wben & (reg_wb_idx == rs1_ido_idx) & (|reg_wb_idx);     //wb结果前递
 
-assign rs1_sel = ex_fw_rs1 ? `ex :                                              //保证优先级
+assign rs1_sel = rs1_ex_fw ? `ex :                                              //保证优先级
                             rs1_ls_fw ? `ls : 
-                                        rs1_wb_fw ? `wb : 2'b0;
+                                        rs1_wb_fw ? `wb : `rf;
 
 
 

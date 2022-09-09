@@ -1,9 +1,9 @@
 # all:
 # 	@echo "Write this Makefile by your self."
 
-# sim:
-# 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
-# 	@echo "Write this Makefile by your self."
+sim:
+	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
+	@echo "Write this Makefile by your self."
 
 # include ../Makefile
 
@@ -63,6 +63,7 @@ endif
 ARGS += -b
 
 run: 
+	$(call git_commit, "sim RTL")
 	@echo
 	@echo "-- VERILATE ----------------"
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VSRCS) $(CSRCS)
@@ -74,10 +75,12 @@ run:
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
+	
 	build/top +trace $(ARGS)
 
 
 run_pip: 
+	$(call git_commit, "sim RTL")
 	@echo
 	@echo "-- VERILATE ----------------"
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VSRCS_PIP) $(CSRCS_PIP)

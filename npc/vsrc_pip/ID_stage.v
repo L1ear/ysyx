@@ -14,7 +14,8 @@ module ID_stage (
     output          [1      :0]     src2sel,
     output          [4      :0]     aluctr_o,
     output                          is_jalr_id_o,is_jal_id_o,is_brc_id_o,
-    output                          wben_id_o
+    output                          wben_id_o,
+    output          [4      :0]     rs1_idx,rs2_idx
     // output          [`XLEN-1:0]     pc_next_o,
     // output                          is_jump_o
 );
@@ -23,6 +24,7 @@ wire    [4      :0]     ext_op;
 wire                    is_jalr,is_jal,is_brc;
 wire    [`XLEN-1:0]     imm;
 wire    [`XLEN-1:0]     rs1,rs2;
+// wire    [`4     :0]     rs1_idx,rs2_idx;
 // wire                    src1sel;
 // wire    [1      :0]     src2sel;
 
@@ -43,7 +45,9 @@ decoder decoder_u(
     .is_jalr_o(is_jalr),
     .is_jal_o(is_jal),
     .is_brc_o(is_brc),
-    .wb_en_o(wben_id_o)
+    .wb_en_o(wben_id_o),
+    .rs1_idx_o(rs1_idx),
+    .rs2_idx_o(rs2_idx)
 );
 imm_ext imm_ext_u(
     .instr_imm_i(instr_i[31:7]),
@@ -52,9 +56,9 @@ imm_ext imm_ext_u(
 );
 regfiles regfile_u(
     .clk(clk),
-    .rs1_addr_i(instr_i[19:15]),
+    .rs1_addr_i(rs1_idx),
     .rs1_data_o(rs1),
-    .rs2_addr_i(instr_i[24:20]),
+    .rs2_addr_i(rs2_idx),
     .rs2_data_o(rs2),
     .wr_addr_i(wb_rdid_i),
     .wr_data_i(wb_data_i),
@@ -81,6 +85,7 @@ module decoder (
     input           [`XLEN-1:0]     pc_i,
     input           [`inst_len-1:0] instr_i,
 
+    output   reg    [4      :0]     rs1_idx_o,rs2_idx_o,
     output   reg    [4      :0]     ext_op_o,
     output   reg                    src1sel_o,
     output   reg    [1      :0]     src2sel_o,
@@ -108,6 +113,8 @@ always @(*) begin
     is_jal_o = 1'b0;
     is_brc_o = 1'b0;
     wb_en_o = 1'b0;
+    rs1_idx_o = 5'b0;
+    rs2_idx_o = 5'b0;
     // csrWrEn = 1'b0;
     // csr_op = 2'b0;              
     // IntSync = 1'b0;
@@ -119,7 +126,9 @@ always @(*) begin
     case(opcode)
         `OP_REG,`OP_REG_32: begin
             src1sel_o = `Rs1;
-            src2sel_o = `Rs2;  
+            src2sel_o = `Rs2;
+            rs1_idx_o = instr_i[19:15];
+            rs2_idx_o = instr_i[24:20];  
             wb_en_o = 1'b1;
             // DivEn = fun_7[0];
             // DivSel = fun_3;
@@ -165,6 +174,8 @@ always @(*) begin
             src2sel_o = `imm;  
             ext_op_o = `immI;
             wb_en_o = 1'b1;  
+            rs1_idx_o = instr_i[19:15];
+            rs2_idx_o = 5'b0;
             // DivEn = 1'b0;
             // DivSel = `DivMul;
             case(fun_3)
@@ -204,7 +215,9 @@ always @(*) begin
             aluctr_o = `AluAdd_64;                      
             src1sel_o = `Rs1;                       
             src2sel_o = `imm; 
-            wb_en_o = 1'b1;                       
+            wb_en_o = 1'b1; 
+            rs1_idx_o = instr_i[19:15];
+            rs2_idx_o = 5'b0;                      
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end  
@@ -213,7 +226,9 @@ always @(*) begin
             aluctr_o = `AluAdd_64;                      
             src1sel_o = `Rs1;                       
             src2sel_o = `imm;  
-            wb_en_o = 1'b0;                      
+            wb_en_o = 1'b0; 
+            rs1_idx_o = instr_i[19:15];
+            rs2_idx_o = instr_i[24:20];                     
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end
@@ -222,7 +237,9 @@ always @(*) begin
             src1sel_o = `Rs1;
             src2sel_o = `Rs2;  
             ext_op_o = `immB;
-            wb_en_o = 1'b0;   
+            wb_en_o = 1'b0; 
+            rs1_idx_o = instr_i[19:15];
+            rs2_idx_o = instr_i[24:20];  
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end
@@ -234,6 +251,8 @@ always @(*) begin
             // branch = `JalCon;
             aluctr_o = `AluAdd_64; 
             wb_en_o = 1'b1; 
+            rs1_idx_o = 5'b0;
+            rs2_idx_o = 5'b0;
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end   
@@ -245,6 +264,8 @@ always @(*) begin
             // branch = `JalrCon;     
             aluctr_o = `AluAdd_64; 
             wb_en_o = 1'b1; 
+            rs1_idx_o = instr_i[19:15];
+            rs2_idx_o = 5'b0;
             // DivEn = 1'b0;
             // DivSel = `DivMul;
         end                                
@@ -254,7 +275,9 @@ always @(*) begin
             ext_op_o = `immU;  
             // branch = `NonBranch;   
             aluctr_o = `AluSrc2;  
-            wb_en_o = 1'b1; 
+            wb_en_o = 1'b1;
+            rs1_idx_o = 5'b0;
+            rs2_idx_o = 5'b0; 
             // DivEn = 1'b0;
             // DivSel = `DivMul;  
         end   
@@ -265,6 +288,8 @@ always @(*) begin
             // branch = `NonBranch;   
             aluctr_o = `AluAdd_64;
             wb_en_o = 1'b1; 
+            rs1_idx_o = 5'b0;
+            rs2_idx_o = 5'b0;
             // DivEn = 1'b0;
             // DivSel = `DivMul;            
         end

@@ -20,6 +20,7 @@ wire    [1      :0]     src2sel_id;
 wire    [4      :0]     aluctr_id;
 wire                    is_brc_id,is_jal_id,is_jalr_id;
 wire                    wben_id;
+wire    [4      :0]     rs1_idx_id;
 
 //ex signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ex;
@@ -31,6 +32,10 @@ wire    [`XLEN-1:0]     rs2_ex,rs1_ex,imm_ex;
 wire    [4      :0]     aluctr_ex;
 wire                    is_brc_ex,is_jal_ex,is_jalr_ex;
 wire                    wben_ex;
+
+wire    [`XLEN-1:0]     wbres_fw;
+wire    [1      :0]     rs1_sel;
+wire    [4      :0]     rs1_idx_ex;
 
 //ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
@@ -95,7 +100,9 @@ ID_stage ID_u(
     .is_jal_id_o    (is_jal_id),
     .is_jalr_id_o   (is_jalr_id),
     .pc_wb_i        (pc_wb),
-    .wben_id_o      (wben_id)
+    .wben_id_o      (wben_id),
+    .rs1_idx        (rs1_idx_id),
+    .rs2_idx        ()
 );
 
 EX_reg EX_reg_u(
@@ -115,6 +122,7 @@ EX_reg EX_reg_u(
     .src1sel_ex_reg_i(src1sel_id),
     .src2sel_ex_reg_i(src2sel_id),
     .wben_ex_reg_i(wben_id),
+    .rs1_idx_ex_reg_i(rs1_idx_id),
 
 
     .pc_ex_reg_o    (pc_ex),
@@ -130,7 +138,8 @@ EX_reg EX_reg_u(
     .is_jalr_ex_reg_o(is_jalr_ex),
     .src1sel_ex_reg_o(src1sel_ex),
     .src2sel_ex_reg_o(src2sel_ex),
-    .wben_ex_reg_o(wben_ex) 
+    .wben_ex_reg_o(wben_ex),
+    .rs1_idx_ex_reg_o(rs1_idx_ex) 
 );
 
 ex_stage ex_stage_u(
@@ -153,9 +162,10 @@ ex_stage ex_stage_u(
     .is_brc_ex_i    (is_brc_ex),
     .src1sel_ex_i   (src1sel_ex),
     .src2sel_ex_i   (src2sel_ex),
-    .alures_fw_i    (),
-    .lsres_fw_i     (),
-    .wbres_fw_i     (),
+    .alures_fw_i    (alures_ls),
+    .lsres_fw_i     (wb_data),
+    .wbres_fw_i     (wbres_fw),
+    .rs1_sel_i      (rs1_sel),
 
     // .PC_ex_o,
     // .instr_ex_o,
@@ -171,17 +181,17 @@ ex_stage ex_stage_u(
 forwarding  forwarding_u(
     .clk            (clk),
     .rst_n          (rst_n),
-    .rs1_ido_idx    ,
-    .rs2_ido_idx    ,
+    .rs1_ido_idx    (rs1_idx_ex),
+    .rs2_ido_idx    (),
     .rd_exo_idx     (instr_ls[11:7]),
     .rd_lso_idx     (instr_wb[11:7]),
     .wben_ls        (wben_ls),
     .wben_wb        (wben_wb),
     .wb_data_i      (wb_data),
 
-    .rs1_sel        (),
+    .rs1_sel        (rs1_sel),
     .rs2_sel        (),
-    .wb_data_o      ()
+    .wb_data_o      (wbres_fw)
 );
 
 L_S_reg L_S_reg_u(
