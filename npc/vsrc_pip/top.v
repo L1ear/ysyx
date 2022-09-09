@@ -34,8 +34,8 @@ wire                    is_brc_ex,is_jal_ex,is_jalr_ex;
 wire                    wben_ex;
 
 wire    [`XLEN-1:0]     wbres_fw;
-wire    [1      :0]     rs1_sel;
-wire    [4      :0]     rs1_idx_ex;
+wire    [1      :0]     rs1_sel,rs2_sel;
+wire    [4      :0]     rs1_idx_ex,rs2_idx_ex;
 
 //ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
@@ -123,6 +123,7 @@ EX_reg EX_reg_u(
     .src2sel_ex_reg_i(src2sel_id),
     .wben_ex_reg_i(wben_id),
     .rs1_idx_ex_reg_i(rs1_idx_id),
+    .rs2_idx_ex_reg_i(rs2_idx_id),
 
 
     .pc_ex_reg_o    (pc_ex),
@@ -139,7 +140,8 @@ EX_reg EX_reg_u(
     .src1sel_ex_reg_o(src1sel_ex),
     .src2sel_ex_reg_o(src2sel_ex),
     .wben_ex_reg_o(wben_ex),
-    .rs1_idx_ex_reg_o(rs1_idx_ex) 
+    .rs1_idx_ex_reg_o(rs1_idx_ex),
+    .rs2_idx_ex_reg_o(rs2_idx_ex) 
 );
 
 ex_stage ex_stage_u(
@@ -190,7 +192,7 @@ forwarding  forwarding_u(
     .wb_data_i      (wb_data),
 
     .rs1_sel        (rs1_sel),
-    .rs2_sel        (),
+    .rs2_sel        (rs2_sel),
     .wb_data_o      (wbres_fw)
 );
 
