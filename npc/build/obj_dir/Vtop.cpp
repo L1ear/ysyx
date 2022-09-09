@@ -13,16 +13,8 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vtop__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst_n{vlSymsp->TOP.rst_n}
-    , DmemDataO{vlSymsp->TOP.DmemDataO}
-    , instr{vlSymsp->TOP.instr}
-    , instrAddr{vlSymsp->TOP.instrAddr}
-    , DmemAddr{vlSymsp->TOP.DmemAddr}
-    , DmemDataI{vlSymsp->TOP.DmemDataI}
-    , MemWr{vlSymsp->TOP.MemWr}
-    , MemOp{vlSymsp->TOP.MemOp}
-    , OPcode{vlSymsp->TOP.OPcode}
-    , regA0{vlSymsp->TOP.regA0}
-    , dnpc{vlSymsp->TOP.dnpc}
+    , pc_diff{vlSymsp->TOP.pc_diff}
+    , pc_decoding{vlSymsp->TOP.pc_decoding}
     , rootp{&(vlSymsp->TOP)}
 {
 }
@@ -69,7 +61,7 @@ static void _eval_initial_loop(Vtop__Syms* __restrict vlSymsp) {
             Verilated::debug(1);
             __Vchange = Vtop___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/home/qw/ysyx-workbench/npc/vsrc/top.v", 2, "",
+            VL_FATAL_MT("/home/qw/ysyx-workbench/npc/vsrc_pip/top.v", 2, "",
                 "Verilated model didn't DC converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {
@@ -100,7 +92,7 @@ void Vtop::eval_step() {
             Verilated::debug(1);
             __Vchange = Vtop___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/home/qw/ysyx-workbench/npc/vsrc/top.v", 2, "",
+            VL_FATAL_MT("/home/qw/ysyx-workbench/npc/vsrc_pip/top.v", 2, "",
                 "Verilated model didn't converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {
