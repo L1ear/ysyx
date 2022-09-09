@@ -42,7 +42,8 @@ module lsu (
 
 // reg     [`XLEN-1:0]     d_mem   [0:255];
 
-
+import "DPI-C" function void vmemread(input longint raddr, input int len, output longint rdata, input longint pc);
+import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input longint pc);
 
 reg    [`XLEN-1:0]     rd_data_base;
 // assign  rd_data_base = d_mem[addr_i[10:3]];
