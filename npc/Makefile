@@ -80,7 +80,7 @@ run:
 
 
 run_pip: 
-	$(call git_commit, "sim RTL")
+	
 	@echo
 	@echo "-- VERILATE ----------------"
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VSRCS_PIP) $(CSRCS_PIP)
@@ -92,6 +92,7 @@ run_pip:
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
+	$(call git_commit, "sim RTL")
 	build/top +trace -d $(DIFF_REF_SO)
 
 
