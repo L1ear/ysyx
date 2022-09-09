@@ -19,7 +19,6 @@ static const uint32_t img [] = {
 0x00300193,//addi x3,x0,3                 1    addi x3,x0,3
 0x00400213,//addi x4,x0,4                 2    addi x4,x0,4
 0x00500293,//addi x5,x0,5                 3    addi x5,x0,5
-0x00318333,//add x6,x3,x3                 4    add x6,x3,x3
 0x004183b3,//add x7,x3,x4                 5    add x7,x3,x4
 0x00518433,//add x8,x3,x5                 6    add x8,x3,x5
 0x00000013,//addi x0,x0,0                 32   nop

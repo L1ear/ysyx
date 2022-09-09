@@ -703,7 +703,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                     : 
                                                    ((1U 
                                                      & (IData)(vlSelf->top__DOT__rs1_sel))
-                                                     ? vlSelf->top__DOT__alures_ls
+                                                     ? 0ULL
                                                      : vlSelf->top__DOT__rs1_ex)));
     vlSelf->top__DOT__ID_u__DOT__imm = ((0x10U & (IData)(vlSelf->top__DOT__ID_u__DOT__ext_op))
                                          ? ((8U & (IData)(vlSelf->top__DOT__ID_u__DOT__ext_op))
