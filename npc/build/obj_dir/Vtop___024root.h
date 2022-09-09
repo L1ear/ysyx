@@ -44,6 +44,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__is_jalr_ex;
         CData/*0:0*/ top__DOT__wben_ex;
         CData/*1:0*/ top__DOT__rs1_sel;
+        CData/*1:0*/ top__DOT__rs2_sel;
         CData/*4:0*/ top__DOT__rs1_idx_ex;
         CData/*4:0*/ top__DOT__rs2_idx_ex;
         CData/*0:0*/ top__DOT__wben_ls;
@@ -58,7 +59,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__less;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow;
-        CData/*4:0*/ top__DOT__forwarding_u__DOT__rs2_ido_idx;
         CData/*0:0*/ top__DOT__forwarding_u__DOT__reg_wben;
         CData/*4:0*/ top__DOT__forwarding_u__DOT__reg_wb_idx;
         CData/*7:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b;
