@@ -13,10 +13,12 @@ module IF_stage (
 // initial begin
 //     $readmemh("./instr",instr_mem);
 // end
-// import "DPI-C" function void vmemread(input longint raddr, output longint rdata, input longint pc);
+import "DPI-C" function void vmemread(input longint raddr, input int len, output longint rdata, input longint pc);
+import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input longint pc);
 
 assign pc_next_o = is_jump_i ? pc_jump_i : (pc_i+`XLEN'd4);
 // assign instr_o = instr_mem[pc_i[17:2]];
+
 
 initial
     vmemread(pc_i, 4, rdata, pc_i);
