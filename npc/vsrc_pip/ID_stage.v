@@ -375,7 +375,7 @@ module hazard_detect (
 
 wire    hazard;
 assign  hazard = (instr_ex_i[6:2] == `load) & 
-                 (instr_id_i[6:2] == (`jalr || `branch || OP_IMM || OP_IMM_32 || OP_REG || OP_REG_32)) &
+                 (instr_id_i[6:2] == (`jalr || `branch || `OP_IMM || `OP_IMM_32 || `OP_REG || `OP_REG_32)) &
                  (instr_ex_i[11:7] == (instr_id_i[19:15] || instr_id_i[24:20]));
 assign stalln_pc = ~hazard;
 assign stalln_id = ~hazard;
