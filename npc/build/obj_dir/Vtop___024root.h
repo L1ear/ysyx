@@ -28,7 +28,6 @@ VL_MODULE(Vtop___024root) {
     // LOCAL SIGNALS
     // Anonymous structures to workaround compiler member-count bugs
     struct {
-        CData/*0:0*/ top__DOT__pc_stall_n;
         CData/*0:0*/ top__DOT__src1sel_id;
         CData/*1:0*/ top__DOT__src2sel_id;
         CData/*4:0*/ top__DOT__aluctr_id;
@@ -55,6 +54,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ID_u__DOT__is_jalr;
         CData/*0:0*/ top__DOT__ID_u__DOT__is_jal;
         CData/*0:0*/ top__DOT__ID_u__DOT__is_brc;
+        CData/*0:0*/ top__DOT__hazard_detect_u__DOT__hazard;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow;
