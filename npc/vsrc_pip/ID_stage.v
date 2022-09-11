@@ -374,7 +374,7 @@ module hazard_detect (
 );
 
 wire    hazard;
-assign  hazard = (instr_ex_i[6:2] == `load) & 
+assign  hazard = (instr_ex_i[6:0] == {`load,2'b11}) & 
                  (instr_id_i[6:2] == `jalr || 
                  instr_id_i[6:2] == `branch || 
                  instr_id_i[6:2] == `OP_IMM || 
