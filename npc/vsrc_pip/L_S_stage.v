@@ -39,7 +39,7 @@ ls_ctr  ls_ctr_u(
     .wren(wren),
     .rden(rden),
     .memop(memop),
-    .wr_data(wr_data),
+    .wr_data(wr_data)
     
 );
 endmodule
