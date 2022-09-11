@@ -87,7 +87,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+244,"top PC_reg_u clk", false,-1);
         tracep->declBit(c+245,"top PC_reg_u rst_n", false,-1);
         tracep->declQuad(c+37,"top PC_reg_u pc_i", false,-1, 63,0);
-        tracep->declBit(c+255,"top PC_reg_u stall_n", false,-1);
+        tracep->declBit(c+259,"top PC_reg_u stall_n", false,-1);
         tracep->declQuad(c+114,"top PC_reg_u pc_new_o", false,-1, 63,0);
         tracep->declQuad(c+114,"top IF_u pc_i", false,-1, 63,0);
         tracep->declBit(c+39,"top IF_u is_jump_i", false,-1);
@@ -964,7 +964,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+256,(vlSelf->top__DOT__is_brc_id));
         tracep->fullBit(oldp+257,(vlSelf->top__DOT__is_jal_id));
         tracep->fullBit(oldp+258,(vlSelf->top__DOT__is_jalr_id));
-        tracep->fullBit(oldp+259,(vlSelf->top__DOT__ID_reg_u__DOT__stall_n));
+        tracep->fullBit(oldp+259,(1U));
         tracep->fullBit(oldp+260,(0U));
         tracep->fullCData(oldp+261,(0U),3);
         tracep->fullQData(oldp+262,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res),64);
