@@ -109,7 +109,7 @@ void single_cycle(int i) {
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
     }
-    if(top->pc_diff != 0){ 
+    if((top->pc_diff != 0) && (top->instr_wb != 0)){ 
       // assert(0); 
       if(start == 0)
         difftest_step(cpu.pc);

@@ -32,6 +32,7 @@ endmodule //IF_stage
 module PC_reg(
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
+    input                           stall_n,
 
     output   reg    [`XLEN-1:0]     pc_new_o
 );
@@ -40,7 +41,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         pc_new_o <= `XLEN'h8000_0000;
     end
-    else begin
+    else if(stall_n) begin
         pc_new_o <= pc_i;
     end
 end

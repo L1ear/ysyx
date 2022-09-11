@@ -2,13 +2,15 @@
 module top (
     input                           clk,rst_n,
 
-    output          [`XLEN-1:0]     pc_diff,pc_decoding
+    output          [`XLEN-1:0]     pc_diff,pc_decoding,
+    output          [`inst_len-1:0] instr_wb
 );
 
 wire    [`XLEN-1:0]     pc_next;
 wire    [`XLEN-1:0]     pc_new;
 wire                    is_jump;
 wire    [`XLEN-1:0]     pc_jump;
+wire                    pc_stall_n;
 
 //id signal-----------------------------------------------------
 wire    [`inst_len-1:0] instr_if_id_reg;
@@ -54,11 +56,13 @@ wire                    wben_wb;
 //for verilator
 assign  pc_diff = pc_wb;
 assign  pc_decoding = pc_id;
+assign  instr_wb = instr_wb;
 
 PC_reg PC_reg_u(
     .clk            (clk),
     .rst_n          (rst_n),
     .pc_i           (pc_next),
+    .stall_n        (pc_stall_n),
 
     .pc_new_o       (pc_new)    
 );
