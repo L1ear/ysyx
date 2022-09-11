@@ -2,8 +2,7 @@
 module top (
     input                           clk,rst_n,
 
-    output   reg    [`XLEN-1:0]     pc_diff,
-    output          [`XLEN-1:0]     pc_decoding
+    output          [`XLEN-1:0]     pc_diff,pc_decoding
 );
 
 wire    [`XLEN-1:0]     pc_next;
@@ -52,12 +51,8 @@ wire    [4      :0]     wb_rdid;
 // wire                    wb_wren;
 wire                    wben_wb;
 
-//for verilator
-
+assign  pc_diff = pc_wb;
 assign  pc_decoding = pc_id;
-always @(posedge clk) begin
-    pc_diff <= pc_wb;
-end
 
 PC_reg PC_reg_u(
     .clk            (clk),
