@@ -13,8 +13,8 @@ module ls_stage (
 wire            wren,rden;
 wire    [2:0]   memop;
 
-wire            wren_last,
-assign wren_last = (instr_last_i[6:2] == `store)
+wire            wren_last;
+assign wren_last = (instr_last_i[6:2] == `store);
 lsu lsu_u(
     .clk(clk),
     .rstn(rst_n),
