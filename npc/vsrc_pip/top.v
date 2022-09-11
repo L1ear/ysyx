@@ -28,7 +28,7 @@ wire    [`inst_len-1:0] instr_ex;
 wire    [`XLEN-1:0]     alures_ex;  
 wire                    src1sel_ex;
 wire    [1      :0]     src2sel_ex;
-wire    [`XLEN-1:0]     rs2_ex,rs1_ex,imm_ex;
+wire    [`XLEN-1:0]     rs2_ex,rs1_ex,imm_ex,rs2_ex_u_o;
 wire    [4      :0]     aluctr_ex;
 wire                    is_brc_ex,is_jal_ex,is_jalr_ex;
 wire                    wben_ex;
@@ -173,6 +173,7 @@ ex_stage ex_stage_u(
     // .PC_ex_o,
     // .instr_ex_o,
     // .rs2_ex_o,
+    .rs2_o          (rs2_ex_u_o),
     .alures_o       (alures_ex),
     .pc_next_o      (pc_jump),
     .is_jump_o      (is_jump)
@@ -202,7 +203,7 @@ L_S_reg L_S_reg_u(
     .rstn           (rst_n),
     .PC_ls_reg_i    (pc_ex),
     .instr_ls_reg_i (instr_ex),
-    .rs2_ls_reg_i   (rs2_ex),
+    .rs2_ls_reg_i   (rs2_ex_u_o),
     .alures_ls_reg_i(alures_ex),
     .wben_ls_reg_i  (wben_ex),
 

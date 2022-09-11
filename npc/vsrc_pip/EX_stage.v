@@ -23,6 +23,7 @@ module ex_stage (
     // output          [`XLEN-1:0]     PC_ex_o,instr_ex_o,rs2_ex_o,
     output          [`XLEN-1:0]     alures_o,
     output          [`XLEN-1:0]     pc_next_o,
+    output          [`XLEN-1:0]     rs2_o,
     output                          is_jump_o
     // output                          mem_wren_ex_o,
     // output                          mem_lden_ex_o,
@@ -65,6 +66,7 @@ always @(*) begin
         end
     endcase
 end
+assign rs2_o = rs2;
 
 assign src1 = src1sel_ex_i ? pc_ex_i : rs1;
 assign src2 = src2sel_ex_i[1] ? `XLEN'd4 :
