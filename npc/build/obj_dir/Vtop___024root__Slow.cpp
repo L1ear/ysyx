@@ -61,7 +61,6 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp20;
     VlWide<3>/*95:0*/ __Vtemp21;
     // Body
-    vlSelf->pc_diff = vlSelf->top__DOT__pc_wb;
     __Vtemp9[0U] = 1U;
     __Vtemp9[1U] = 0U;
     __Vtemp9[2U] = 0U;
@@ -189,8 +188,6 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                     ? 3U
                                                     : 0U)));
     vlSelf->pc_decoding = vlSelf->top__DOT__pc_id;
-    Vtop___024root____Vdpiimwrap_top__DOT__IF_u__DOT__vmemread_TOP(vlSelf->top__DOT__pc_new, 4U, vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata, vlSelf->top__DOT__pc_new);
-    vlSelf->top__DOT__IF_u__DOT__rdata = vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0U;
     vlSelf->top__DOT__aluctr_id = 0U;
     vlSelf->top__DOT__src1sel_id = 0U;
@@ -550,6 +547,8 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__rs2_idx_id = 0U;
         }
     }
+    Vtop___024root____Vdpiimwrap_top__DOT__IF_u__DOT__vmemread_TOP(vlSelf->top__DOT__pc_new, 4U, vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata, vlSelf->top__DOT__pc_new);
+    vlSelf->top__DOT__IF_u__DOT__rdata = vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata;
     vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow 
         = (((1U & (IData)((vlSelf->top__DOT__rs1_ex 
                            >> 0x3fU))) == (1U & (~ (IData)(
