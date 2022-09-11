@@ -370,7 +370,7 @@ endmodule //imm_exp
 module hazard_detect (
     input           [`inst_len-1:0] instr_id_i,instr_ex_i,
     
-    output                          stalln_pc,stalln_id,stalln_ex,
+    output                          stalln_pc,stalln_id,stalln_ex
 );
 
 wire    hazard;
