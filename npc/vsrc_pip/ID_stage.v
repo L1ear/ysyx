@@ -374,7 +374,7 @@ module hazard_detect (
 );
 
 wire    hazard;
-assign  hazard = (instr_ex_i[6:0] == {`load,2'b11}) & 
+assign  hazard = (instr_ex_i[6:0] == {`load,2'b11}) &   //此处不加两比特1就会卡在开头，麻
                  (instr_id_i[6:2] == `jalr || 
                  instr_id_i[6:2] == `branch || 
                  instr_id_i[6:2] == `OP_IMM || 

@@ -204,32 +204,25 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                     : 0U)));
     vlSelf->pc_decoding = vlSelf->top__DOT__pc_id;
     vlSelf->top__DOT__hazard_detect_u__DOT__hazard 
-        = (((0U == (0x1fU & (vlSelf->top__DOT__instr_ex 
-                             >> 2U))) & ((((((0x19U 
-                                              == (0x1fU 
-                                                  & (vlSelf->top__DOT__instr_id 
-                                                     >> 2U))) 
-                                             | (0x18U 
-                                                == 
-                                                (0x1fU 
-                                                 & (vlSelf->top__DOT__instr_id 
-                                                    >> 2U)))) 
-                                            | (4U == 
-                                               (0x1fU 
-                                                & (vlSelf->top__DOT__instr_id 
-                                                   >> 2U)))) 
-                                           | (6U == 
-                                              (0x1fU 
-                                               & (vlSelf->top__DOT__instr_id 
-                                                  >> 2U)))) 
-                                          | (0xcU == 
-                                             (0x1fU 
-                                              & (vlSelf->top__DOT__instr_id 
-                                                 >> 2U)))) 
-                                         | (0xeU == 
-                                            (0x1fU 
-                                             & (vlSelf->top__DOT__instr_id 
-                                                >> 2U))))) 
+        = (((3U == (0x7fU & vlSelf->top__DOT__instr_ex)) 
+            & ((((((0x19U == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                       >> 2U))) | (0x18U 
+                                                   == 
+                                                   (0x1fU 
+                                                    & (vlSelf->top__DOT__instr_id 
+                                                       >> 2U)))) 
+                  | (4U == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                     >> 2U)))) | (6U 
+                                                  == 
+                                                  (0x1fU 
+                                                   & (vlSelf->top__DOT__instr_id 
+                                                      >> 2U)))) 
+                | (0xcU == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                     >> 2U)))) | (0xeU 
+                                                  == 
+                                                  (0x1fU 
+                                                   & (vlSelf->top__DOT__instr_id 
+                                                      >> 2U))))) 
            & (((0x1fU & (vlSelf->top__DOT__instr_ex 
                          >> 7U)) == (0x1fU & (vlSelf->top__DOT__instr_id 
                                               >> 0xfU))) 
