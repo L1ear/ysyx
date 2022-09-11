@@ -236,7 +236,7 @@ module ls_ctr (
     
 assign  memop = instr_i[14      :12];
 assign  wren  = (instr_i[6      :2] == `store);
-assign  rden  = (instr_i[6      :0] == {`load,2'b11});
+assign  rden  = (instr_i[6      :0] == {`load,2'b11});      //同理
 
 wire    ld_st_en;
 assign ld_st_en = (instr_last_i[6:2] == `load) & (instr_i[24:20] == instr_last_i[11:7]);
