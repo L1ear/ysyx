@@ -33,7 +33,7 @@ assign  wb_data_o = rd_wb;
 wire    rs1_ex_fw;
 assign  rs1_ex_fw = wben_ls & (rd_exo_idx == rs1_ido_idx) & (|rd_exo_idx);      //alu结果的前递
 wire    rs1_ls_fw;                                                              //ls结果的前递
-assign  rs1_ls_fw = wben_wb & (rd_lso_idx == rs1_ido_idx) & (|rd_exo_idx); 
+assign  rs1_ls_fw = wben_wb & (rd_lso_idx == rs1_ido_idx) & (|rd_lso_idx); 
 wire    rs1_wb_fw;
 assign  rs1_wb_fw = reg_wben & (reg_wb_idx == rs1_ido_idx) & (|reg_wb_idx);     //wb结果前递
 
@@ -44,7 +44,7 @@ assign rs1_sel = rs1_ex_fw ? `ex :                                              
 wire    rs2_ex_fw;
 assign  rs2_ex_fw = wben_ls & (rd_exo_idx == rs2_ido_idx) & (|rd_exo_idx);      //alu结果的前递
 wire    rs2_ls_fw;                                                              //ls结果的前递
-assign  rs2_ls_fw = wben_wb & (rd_lso_idx == rs2_ido_idx) & (|rd_exo_idx); 
+assign  rs2_ls_fw = wben_wb & (rd_lso_idx == rs2_ido_idx) & (|rd_lso_idx); 
 wire    rs2_wb_fw;
 assign  rs2_wb_fw = reg_wben & (reg_wb_idx == rs2_ido_idx) & (|reg_wb_idx);     //wb结果前递
 
