@@ -16,14 +16,13 @@ static int difftest_port = 1234;
 
 // char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv64-npc.bin";
 static const uint32_t img [] = {
-0x00100093,//addi x1,x0,1                 1    addi x1,x0,1
-0x00108113,//addi x2,x1,1                 2    addi x2,x1,1
-0x00110193,//addi x3,x2,1                 3    addi x3,x2,1
-0x00118213,//addi x4,x3,1                 4    addi x4,x3,1
-0x003102b3,//add x5,x2,x3                 5    add x5,x2,x3
-0x00410333,//add x6,x2,x4                 6    add x6,x2,x4
-0x005103b3,//add x7,x2,x5                 7    add x7,x2,x5
-0x007306b3,//add x13,x6,x7                8    add x13,x6,x7      
+0x00700193,//addi x3,x0,7                 1    addi x3,x0,7
+0x00300093,//addi x1,x0,3                 2    addi x1,x0,3
+0x00007297,//auipc x5,7                   3    auipc x5,7
+0x0012a023,//sw x1,0(x5)                  4    sw x1,0(x5)
+0x0002a103,//lw x2,0(x5)                  5    lw x2,0(x5)
+0x0022a223,//sw x2,4(x5)                  6    sw x2,4(x5)
+0x0042a183,//lw x3,4(x5)                  7    lw x3,4(x5)     
 0x00000013,//addi x0,x0,0                 32   nop
 0x00000013,//addi x0,x0,0                 32   nop
 0x00000013,//addi x0,x0,0                 32   nop
