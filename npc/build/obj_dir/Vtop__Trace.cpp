@@ -267,54 +267,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         }
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[3U])) {
             tracep->chgQData(oldp+113,(vlSelf->top__DOT__pc_new),64);
-            tracep->chgBit(oldp+115,((1U & (~ (((3U 
-                                                 == 
-                                                 (0x7fU 
-                                                  & vlSelf->top__DOT__instr_ex)) 
-                                                & ((((((0x19U 
-                                                        == 
-                                                        (0x1fU 
-                                                         & (vlSelf->top__DOT__instr_id 
-                                                            >> 2U))) 
-                                                       | (0x18U 
-                                                          == 
-                                                          (0x1fU 
-                                                           & (vlSelf->top__DOT__instr_id 
-                                                              >> 2U)))) 
-                                                      | (4U 
-                                                         == 
-                                                         (0x1fU 
-                                                          & (vlSelf->top__DOT__instr_id 
-                                                             >> 2U)))) 
-                                                     | (6U 
-                                                        == 
-                                                        (0x1fU 
-                                                         & (vlSelf->top__DOT__instr_id 
-                                                            >> 2U)))) 
-                                                    | (0xcU 
-                                                       == 
-                                                       (0x1fU 
-                                                        & (vlSelf->top__DOT__instr_id 
-                                                           >> 2U)))) 
-                                                   | (0xeU 
-                                                      == 
-                                                      (0x1fU 
-                                                       & (vlSelf->top__DOT__instr_id 
-                                                          >> 2U))))) 
-                                               & (((0x1fU 
-                                                    & (vlSelf->top__DOT__instr_ex 
-                                                       >> 7U)) 
-                                                   == 
-                                                   (0x1fU 
-                                                    & (vlSelf->top__DOT__instr_id 
-                                                       >> 0xfU))) 
-                                                  | ((0x1fU 
-                                                      & (vlSelf->top__DOT__instr_ex 
-                                                         >> 7U)) 
-                                                     == 
-                                                     (0x1fU 
-                                                      & (vlSelf->top__DOT__instr_id 
-                                                         >> 0x14U)))))))));
+            tracep->chgBit(oldp+115,((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))));
             tracep->chgIData(oldp+116,((IData)(vlSelf->top__DOT__IF_u__DOT__rdata)),32);
             tracep->chgQData(oldp+117,(vlSelf->top__DOT__pc_id),64);
             tracep->chgIData(oldp+119,(vlSelf->top__DOT__instr_id),32);
@@ -421,46 +374,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                         >> 0x19U)),7);
             tracep->chgIData(oldp+161,((vlSelf->top__DOT__instr_id 
                                         >> 7U)),25);
-            tracep->chgBit(oldp+162,((((3U == (0x7fU 
-                                               & vlSelf->top__DOT__instr_ex)) 
-                                       & ((((((0x19U 
-                                               == (0x1fU 
-                                                   & (vlSelf->top__DOT__instr_id 
-                                                      >> 2U))) 
-                                              | (0x18U 
-                                                 == 
-                                                 (0x1fU 
-                                                  & (vlSelf->top__DOT__instr_id 
-                                                     >> 2U)))) 
-                                             | (4U 
-                                                == 
-                                                (0x1fU 
-                                                 & (vlSelf->top__DOT__instr_id 
-                                                    >> 2U)))) 
-                                            | (6U == 
-                                               (0x1fU 
-                                                & (vlSelf->top__DOT__instr_id 
-                                                   >> 2U)))) 
-                                           | (0xcU 
-                                              == (0x1fU 
-                                                  & (vlSelf->top__DOT__instr_id 
-                                                     >> 2U)))) 
-                                          | (0xeU == 
-                                             (0x1fU 
-                                              & (vlSelf->top__DOT__instr_id 
-                                                 >> 2U))))) 
-                                      & (((0x1fU & 
-                                           (vlSelf->top__DOT__instr_ex 
-                                            >> 7U)) 
-                                          == (0x1fU 
-                                              & (vlSelf->top__DOT__instr_id 
-                                                 >> 0xfU))) 
-                                         | ((0x1fU 
-                                             & (vlSelf->top__DOT__instr_ex 
-                                                >> 7U)) 
-                                            == (0x1fU 
-                                                & (vlSelf->top__DOT__instr_id 
-                                                   >> 0x14U)))))));
+            tracep->chgBit(oldp+162,(vlSelf->top__DOT__hazard_detect_u__DOT__hazard));
             tracep->chgQData(oldp+163,(vlSelf->top__DOT__ex_stage_u__DOT__src1),64);
             tracep->chgQData(oldp+165,(vlSelf->top__DOT__ex_stage_u__DOT__src2),64);
             VL_EXTEND_WQ(65,64, __Vtemp46, vlSelf->top__DOT__ex_stage_u__DOT__src1);
