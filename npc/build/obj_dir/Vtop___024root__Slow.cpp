@@ -141,9 +141,8 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                              ? vlSelf->top__DOT__lsres_wb
                                              : vlSelf->top__DOT__rs2_ls);
     if (((8U == (0x1fU & (vlSelf->top__DOT__instr_ls 
-                          >> 2U))) | (0U == (0x1fU 
-                                             & (vlSelf->top__DOT__instr_ls 
-                                                >> 2U))))) {
+                          >> 2U))) | (3U == (0x7fU 
+                                             & vlSelf->top__DOT__instr_ls)))) {
         Vtop___024root____Vdpiimwrap_top__DOT__IF_u__DOT__vmemread_TOP(
                                                                        (0xfffffffffffffff8ULL 
                                                                         & vlSelf->top__DOT__alures_ls), 8U, vlSelf->__Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__4__rdata, vlSelf->top__DOT__pc_ls);
