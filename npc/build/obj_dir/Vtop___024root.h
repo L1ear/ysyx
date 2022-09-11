@@ -100,6 +100,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres;
         QData/*63:0*/ top__DOT__forwarding_u__DOT__rd_wb;
+        QData/*63:0*/ top__DOT__ls_u__DOT__wr_data;
         QData/*63:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base;
         QData/*63:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf;
         QData/*63:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask;
@@ -107,6 +108,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_w;
         QData/*63:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_data;
         QData/*63:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_buf;
+        QData/*63:0*/ top__DOT__ls_u__DOT__ls_ctr_u__DOT__wb_data_i;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__ID_u__DOT__regfile_u__DOT__regfiles;
     };
 

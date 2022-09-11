@@ -224,6 +224,7 @@ ls_stage ls_u(
     .rs2_i          (rs2_ls),
     .alures_last_i  (alures_wb),
     .instr_last_i   (instr_wb),
+    .wb_data_i      (lsres_wb),
 
     .ls_res_o       (lsres_ls)
 );

@@ -5,6 +5,7 @@ module ls_stage (
     input           [`inst_len-1:0] instr_i,
     input           [`XLEN-1:0]     alures_last_i,
     input           [`inst_len-1:0] instr_last_i,
+    input           [`XLEN-1:0]     wb_data_i,
 
 
     output          [`XLEN-1:0]     ls_res_o
@@ -34,7 +35,7 @@ ls_ctr  ls_ctr_u(
     .instr_i(instr_i),
     .instr_last_i(instr_last_i),
     .rs2_i(rs2_i),
-    .wb_data_i(),
+    .wb_data_i(wb_data_i),
 
     .wren(wren),
     .rden(rden),
