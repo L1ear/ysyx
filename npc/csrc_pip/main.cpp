@@ -144,7 +144,7 @@ void ebreak(){
   if(0 == 0)
     Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",pc);
   else
-    printf("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",pc);
+    Log("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",pc);
 }
 
 void vmemread(long long raddr,int len, long long *rdata, long long pc){
