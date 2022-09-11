@@ -95,7 +95,7 @@ int main(int argc, char *argv[])
       return 0;
 }
 
-int start = 0;
+int start = 1;
 uint64_t pc = 0;
 void single_cycle(int i) {
   top->clk = 1; 
