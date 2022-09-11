@@ -1046,15 +1046,38 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                       : vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res)
                                   : (4ULL + vlSelf->top__DOT__pc_new));
     vlSelf->top__DOT__hazard_detect_u__DOT__hazard 
-        = ((IData)(((0U == (0x7cU & vlSelf->top__DOT__instr_ex)) 
-                    & (4U == (0x7cU & vlSelf->top__DOT__instr_id)))) 
-           & ((0x1fU & (vlSelf->top__DOT__instr_ex 
-                        >> 7U)) == ((0U != (0x1fU & 
-                                            (vlSelf->top__DOT__instr_id 
-                                             >> 0xfU))) 
-                                    | (0U != (0x1fU 
+        = (((0U == (0x1fU & (vlSelf->top__DOT__instr_ex 
+                             >> 2U))) & ((((((0x19U 
+                                              == (0x1fU 
+                                                  & (vlSelf->top__DOT__instr_id 
+                                                     >> 2U))) 
+                                             | (0x18U 
+                                                == 
+                                                (0x1fU 
+                                                 & (vlSelf->top__DOT__instr_id 
+                                                    >> 2U)))) 
+                                            | (4U == 
+                                               (0x1fU 
+                                                & (vlSelf->top__DOT__instr_id 
+                                                   >> 2U)))) 
+                                           | (6U == 
+                                              (0x1fU 
+                                               & (vlSelf->top__DOT__instr_id 
+                                                  >> 2U)))) 
+                                          | (0xcU == 
+                                             (0x1fU 
                                               & (vlSelf->top__DOT__instr_id 
-                                                 >> 0x14U))))));
+                                                 >> 2U)))) 
+                                         | (0xeU == 
+                                            (0x1fU 
+                                             & (vlSelf->top__DOT__instr_id 
+                                                >> 2U))))) 
+           & (((0x1fU & (vlSelf->top__DOT__instr_ex 
+                         >> 7U)) == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                              >> 0xfU))) 
+              | ((0x1fU & (vlSelf->top__DOT__instr_ex 
+                           >> 7U)) == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                                >> 0x14U)))));
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0U;
     vlSelf->top__DOT__aluctr_id = 0U;
     vlSelf->top__DOT__src1sel_id = 0U;

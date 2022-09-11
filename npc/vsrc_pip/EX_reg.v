@@ -45,7 +45,7 @@ always @(posedge clk or negedge rst_n) begin
         instr_ex_reg_o <= instr_ex_reg_i;
     end
     else begin
-        instr_ex_reg_o <= `XLEN'b0;
+        instr_ex_reg_o <= `inst_len'b0;
     end
 end
 
