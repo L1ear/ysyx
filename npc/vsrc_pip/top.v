@@ -220,6 +220,8 @@ ls_stage ls_u(
     .instr_i        (instr_ls),
     .alures_i       (alures_ls),
     .rs2_i          (rs2_ls),
+    .alures_last_i  (alures_wb),
+    .instr_last_i   (instr_wb),
 
     .ls_res_o       (lsres_ls)
 );
