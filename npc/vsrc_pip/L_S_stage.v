@@ -55,7 +55,8 @@ module lsu (
 import "DPI-C" function void vmemread(input longint raddr, input int len, output longint rdata, input longint pc);
 import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input longint pc);
 
-wire    [`XLEN-1:0]     rd_data_base,rd_data_base_buf;
+wire    [`XLEN-1:0]     rd_data_base;
+wire    [`XLEN-1:0]     rd_data_base_buf;
 // assign  rd_data_base = d_mem[addr_i[10:3]];
 wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
 always @(*) begin
