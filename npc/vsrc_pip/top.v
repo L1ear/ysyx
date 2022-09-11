@@ -64,7 +64,7 @@ PC_reg PC_reg_u(
     .clk            (clk),
     .rst_n          (rst_n),
     .pc_i           (pc_next),
-    .stall_n        (1),
+    .stall_n        (pc_stall_n),
 
     .pc_new_o       (pc_new)    
 );
@@ -83,7 +83,7 @@ ID_reg ID_reg_u(
     .rst_n          (rst_n),
     .pc_id_reg_i    (pc_new),   
     .instr_id_reg_i (instr_if_id_reg),
-    .stall_n        (1),
+    .stall_n        (id_stall_n),
 
     .pc_id_reg_o    (pc_id),
     .instr_id_reg_o (instr_id)
@@ -140,7 +140,7 @@ EX_reg EX_reg_u(
     .wben_ex_reg_i(wben_id),
     .rs1_idx_ex_reg_i(rs1_idx_id),
     .rs2_idx_ex_reg_i(rs2_idx_id),
-    .stall_n(1),
+    .stall_n(ex_stall_n),
 
 
     .pc_ex_reg_o    (pc_ex),

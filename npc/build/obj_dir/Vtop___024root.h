@@ -54,7 +54,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ID_u__DOT__is_jalr;
         CData/*0:0*/ top__DOT__ID_u__DOT__is_jal;
         CData/*0:0*/ top__DOT__ID_u__DOT__is_brc;
-        CData/*0:0*/ top__DOT__hazard_detect_u__DOT__hazard;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow;
@@ -92,9 +91,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o;
+        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
     };
     struct {
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res;
