@@ -19,7 +19,7 @@ extern "C" {
     extern void set_gpr_ptr(const svOpenArrayHandle a);
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/IF_stage.v:16:30
     extern void vmemread(long long raddr, int len, long long* rdata, long long pc);
-    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/L_S_stage.v:63:30
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/L_S_stage.v:64:30
     extern void vmemwrite(long long raddr, long long wdata, long long pc);
 
 #ifdef __cplusplus

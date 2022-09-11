@@ -360,7 +360,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                 (0x1fU 
                                                  & (vlSelf->top__DOT__instr_wb 
                                                     >> 7U))))
-                                             ? vlSelf->top__DOT__ls_u__DOT__ls_ctr_u__DOT__wb_data_i
+                                             ? vlSelf->top__DOT__lsres_wb
                                              : vlSelf->top__DOT__rs2_ls);
     if (((8U == (0x1fU & (vlSelf->top__DOT__instr_ls 
                           >> 2U))) | (0U == (0x1fU 

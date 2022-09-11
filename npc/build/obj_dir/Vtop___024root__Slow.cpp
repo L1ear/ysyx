@@ -137,7 +137,7 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                 (0x1fU 
                                                  & (vlSelf->top__DOT__instr_wb 
                                                     >> 7U))))
-                                             ? vlSelf->top__DOT__ls_u__DOT__ls_ctr_u__DOT__wb_data_i
+                                             ? vlSelf->top__DOT__lsres_wb
                                              : vlSelf->top__DOT__rs2_ls);
     if (((8U == (0x1fU & (vlSelf->top__DOT__instr_ls 
                           >> 2U))) | (0U == (0x1fU 
@@ -1795,7 +1795,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_w = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_buf = 0;
-    vlSelf->top__DOT__ls_u__DOT__ls_ctr_u__DOT__wb_data_i = 0;
     vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata = 0;
     vlSelf->__Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__4__rdata = 0;
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {
