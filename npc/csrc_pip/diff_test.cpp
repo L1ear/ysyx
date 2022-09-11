@@ -98,7 +98,7 @@ void difftest_step(long long pc) {
   // printf("npc: %08x   nemu: %08x\n",pc,ref_r.pc);
   // checkregs(&ref_r, pc);
     for(int i=0;i<32;i++){
-		if(!difftest_check_reg(regs[i],ref_r.pc,ref_r.gpr[i],cpu.gpr[i])){
+		if(!difftest_check_reg(regs[i],pc,ref_r.gpr[i],cpu.gpr[i])){
       dump_gpr();
 			en = 0;
       err = true;
