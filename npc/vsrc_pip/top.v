@@ -116,9 +116,9 @@ ID_stage ID_u(
 hazard_detect hazard_detect_u(
     .instr_id_i(instr_id),
     .instr_ex_i(instr_ex),
-    .stalln_pc(),
-    .stalln_id,
-    .stalln_ex
+    .stalln_pc(pc_stall_n),
+    .stalln_id(id_stall_n),
+    .stalln_ex(ex_stall_n)
 );
 
 EX_reg EX_reg_u(
