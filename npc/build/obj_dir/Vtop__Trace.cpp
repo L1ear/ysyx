@@ -215,7 +215,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                    >> 7U)) 
                                          == (IData)(vlSelf->top__DOT__rs1_idx_ex))) 
                                      & (0U != (0x1fU 
-                                               & (vlSelf->top__DOT__instr_ls 
+                                               & (vlSelf->top__DOT__instr_wb 
                                                   >> 7U))))));
             tracep->chgBit(oldp+46,((((IData)(vlSelf->top__DOT__wben_ls) 
                                       & ((0x1fU & (vlSelf->top__DOT__instr_ls 
@@ -229,7 +229,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                    >> 7U)) 
                                          == (IData)(vlSelf->top__DOT__rs2_idx_ex))) 
                                      & (0U != (0x1fU 
-                                               & (vlSelf->top__DOT__instr_ls 
+                                               & (vlSelf->top__DOT__instr_wb 
                                                   >> 7U))))));
             tracep->chgBit(oldp+48,(((8U == (0x1fU 
                                              & (vlSelf->top__DOT__instr_wb 

@@ -140,7 +140,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                == (IData)(vlSelf->top__DOT__rs2_idx_ex))) 
                                            & (0U != 
                                               (0x1fU 
-                                               & (vlSelf->top__DOT__instr_ls 
+                                               & (vlSelf->top__DOT__instr_wb 
                                                   >> 7U))))
                                            ? 2U : (
                                                    (((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wben) 
@@ -164,7 +164,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                == (IData)(vlSelf->top__DOT__rs1_idx_ex))) 
                                            & (0U != 
                                               (0x1fU 
-                                               & (vlSelf->top__DOT__instr_ls 
+                                               & (vlSelf->top__DOT__instr_wb 
                                                   >> 7U))))
                                            ? 2U : (
                                                    (((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wben) 
