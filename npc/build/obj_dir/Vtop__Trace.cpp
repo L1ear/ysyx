@@ -576,10 +576,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         tracep->chgBit(oldp+244,(vlSelf->rst_n));
         tracep->chgQData(oldp+245,(vlSelf->pc_diff),64);
         tracep->chgQData(oldp+247,(vlSelf->pc_decoding),64);
-        tracep->chgQData(oldp+249,(((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
+        tracep->chgIData(oldp+249,(vlSelf->instr_diff),32);
+        tracep->chgQData(oldp+250,(((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
                                      ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                     [vlSelf->top__DOT__rs2_idx_id])),64);
-        tracep->chgQData(oldp+251,(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
+        tracep->chgQData(oldp+252,(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
                                      ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                     [vlSelf->top__DOT__rs1_idx_id])),64);
     }

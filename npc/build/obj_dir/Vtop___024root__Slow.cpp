@@ -73,6 +73,7 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
         = (1U & __Vtemp13[2U]);
     vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
         = (1ULL + (vlSelf->top__DOT__rs1_ex + (~ vlSelf->top__DOT__rs2_ex)));
+    vlSelf->instr_diff = vlSelf->top__DOT__instr_wb;
     vlSelf->top__DOT__wb_data = ((0x40U & vlSelf->top__DOT__instr_wb)
                                   ? ((0x20U & vlSelf->top__DOT__instr_wb)
                                       ? ((0x10U & vlSelf->top__DOT__instr_wb)
@@ -1713,8 +1714,10 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->rst_n = 0;
     vlSelf->pc_diff = 0;
     vlSelf->pc_decoding = 0;
+    vlSelf->instr_diff = 0;
     vlSelf->top__DOT__pc_next = 0;
     vlSelf->top__DOT__pc_new = 0;
+    vlSelf->top__DOT__pc_stall_n = 0;
     vlSelf->top__DOT__pc_id = 0;
     vlSelf->top__DOT__instr_id = 0;
     vlSelf->top__DOT__src1sel_id = 0;
@@ -1754,6 +1757,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__wb_data = 0;
     vlSelf->top__DOT__wben_wb = 0;
     vlSelf->top__DOT__IF_u__DOT__rdata = 0;
+    vlSelf->top__DOT__ID_reg_u__DOT__stall_n = 0;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0;
     vlSelf->top__DOT__ID_u__DOT__is_jalr = 0;
     vlSelf->top__DOT__ID_u__DOT__is_jal = 0;

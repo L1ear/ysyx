@@ -21,12 +21,14 @@ VL_MODULE(Vtop___024root) {
     // PORTS
     VL_IN8(clk,0,0);
     VL_IN8(rst_n,0,0);
+    VL_OUT(instr_diff,31,0);
     VL_OUT64(pc_diff,63,0);
     VL_OUT64(pc_decoding,63,0);
 
     // LOCAL SIGNALS
     // Anonymous structures to workaround compiler member-count bugs
     struct {
+        CData/*0:0*/ top__DOT__pc_stall_n;
         CData/*0:0*/ top__DOT__src1sel_id;
         CData/*1:0*/ top__DOT__src2sel_id;
         CData/*4:0*/ top__DOT__aluctr_id;
@@ -49,6 +51,7 @@ VL_MODULE(Vtop___024root) {
         CData/*4:0*/ top__DOT__rs2_idx_ex;
         CData/*0:0*/ top__DOT__wben_ls;
         CData/*0:0*/ top__DOT__wben_wb;
+        CData/*0:0*/ top__DOT__ID_reg_u__DOT__stall_n;
         CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
         CData/*0:0*/ top__DOT__ID_u__DOT__is_jalr;
         CData/*0:0*/ top__DOT__ID_u__DOT__is_jal;
@@ -89,10 +92,10 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__rs2;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin;
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o;
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
     };
     struct {
+        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o;
+        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res;
