@@ -18,7 +18,7 @@ static int difftest_port = 1234;
 static const uint32_t img [] = {
 0x00007117,//auipc x2,7                   1    auipc x2,7
 0x00213023,//sd x2,0(x2)                  2    sd x2,0(x2)
-0x00013183,//ld x3,0(x2)                  3    ld x3,0(x2)
+0xff813183,//ld x3,-8(x2)                  3    ld x3,0(x2)
 0x00318233,//add x4,x3,x3                 4    add x4,x3,x3
 0x00000013,//addi x0,x0,0                 32   nop
 0x00000013,//addi x0,x0,0                 32   nop
