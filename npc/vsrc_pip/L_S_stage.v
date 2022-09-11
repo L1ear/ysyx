@@ -10,9 +10,10 @@ module ls_stage (
     output          [`XLEN-1:0]     ls_res_o
 );
 
-wire            wren,rden;
-wire    [2:0]   memop;
-
+wire                wren,rden;
+wire    [2:0]       memop;
+wire    [`XLEN-1:0] wr_data;
+ 
 wire            wren_last;
 assign wren_last = (instr_last_i[6:2] == `store);
 lsu lsu_u(
@@ -21,7 +22,7 @@ lsu lsu_u(
     .wren(wren),
     .rden(rden),
     .memop(memop),    
-    .wr_data_i(rs2_i),
+    .wr_data_i(wr_data),
     .addr_i(alures_i),
     .pc_ls_i(pc),               //for sim
     .addr_last_i(alures_last_i),
@@ -31,9 +32,15 @@ lsu lsu_u(
 
 ls_ctr  ls_ctr_u(
     .instr_i(instr_i),
+    .instr_last_i(instr_last_i),
+    .rs2_i(rs2_i),
+    .wb_data_i(),
+
     .wren(wren),
     .rden(rden),
-    .memop(memop)
+    .memop(memop),
+    .wr_data(wr_data),
+    
 );
 endmodule
 
@@ -217,12 +224,21 @@ end
 endmodule
 
 module ls_ctr (
-    input       [`inst_len-1:0] instr_i,
+    input       [`inst_len-1:0] instr_i,instr_last_i,
+    input       [`XLEN-1:0]     rs2_i,
+    input       [`XLEN-1:0]     wb_data_i,                
     output                      wren,rden,
-    output      [2      :0]     memop
+    output      [2      :0]     memop,
+    output      [`XLEN-1:0]     wr_data
+
 );
     
 assign  memop = instr_i[14      :12];
 assign  wren  = (instr_i[6      :2] == `store);
 assign  rden  = (instr_i[6      :2] == `load);
+
+wire    ld_st_en;
+assign ld_st_en = (instr_last_i[6:2] == `load) & (instr_i[24:20] == instr_last_i[11:7]);
+assign wr_data = ld_st_en ? wb_data_i : rs2_i;
+
 endmodule
