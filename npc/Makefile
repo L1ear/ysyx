@@ -92,7 +92,7 @@ run_pip:
 	@echo "-- RUN ---------------------"
 	@rm -rf logs
 	@mkdir -p logs
-	build/top +trace -d $(DIFF_REF_SO) -b
+	build/top +trace $(ARGS)
 
 wave:
 	gtkwave ./vlt.vcd
