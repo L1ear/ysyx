@@ -100,6 +100,7 @@ uint64_t pc = 0;
 void single_cycle(int i) {
   top->clk = 1; 
   top->eval();
+  pc = top->pc_decoding;
 #ifdef vcd
   fp ->dump(i);
 #endif
@@ -122,7 +123,7 @@ void single_cycle(int i) {
 #ifdef vcd
   fp ->dump(i+1);
 #endif
-  pc = top->pc_decoding;
+  
 #ifdef  difftest
   
   // if(en == 1){
