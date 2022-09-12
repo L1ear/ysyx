@@ -114,9 +114,7 @@ void single_cycle(int i) {
       // assert(0); 
       if(en == 1 )
         {
-          printf("````%08lx\n",instr_last);
           difftest_step(cpu.pc);
-          printf("````%08lx\n",instr_last);
         }
       start = 0;
     }
@@ -146,7 +144,6 @@ extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
 
 int en = 0;
 void ebreak(){
-  assert(0);
   en = 0;
   if(top->regA0 == 0)
     Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",top->pc_decoding);
