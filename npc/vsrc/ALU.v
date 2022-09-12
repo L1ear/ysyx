@@ -238,30 +238,30 @@ module DIVIDER (
 );
 always @(*) begin
     case (DivSel)
-        // `DivMul: begin
-        //         DivOut = (src1 * src2);
-        // end
-        // `DivMulh: begin
-        //     DivOut = $signed(src1) * $signed(src2);
-        // end
-        // `DivMulhsu: begin
-        //     DivOut = $signed(src1) * $unsigned(src2);
-        // end
-        // `DivMulhu: begin
-        //     DivOut = $unsigned(src1) * $unsigned(src2);
-        // end
-        // `DivDiv: begin
-        //         DivOut = $signed(src1) / $signed(src2);
-        // end
-        // `DivRem: begin
-        //         DivOut = $signed(src1) % $signed(src2);
-        // end
-        // `DivDivu: begin
-        //         DivOut = $unsigned(src1) / $unsigned(src2);
-        // end
-        // `DivRemu: begin
-        //     DivOut = $unsigned(src1) % $unsigned(src2);
-        // end
+        `DivMul: begin
+                DivOut = (src1 * src2);
+        end
+        `DivMulh: begin
+            DivOut = $signed(src1) * $signed(src2);
+        end
+        `DivMulhsu: begin
+            DivOut = $signed(src1) * $unsigned(src2);
+        end
+        `DivMulhu: begin
+            DivOut = $unsigned(src1) * $unsigned(src2);
+        end
+        `DivDiv: begin
+                DivOut = $signed(src1) / $signed(src2);
+        end
+        `DivRem: begin
+                DivOut = $signed(src1) % $signed(src2);
+        end
+        `DivDivu: begin
+                DivOut = $unsigned(src1) / $unsigned(src2);
+        end
+        `DivRemu: begin
+            DivOut = $unsigned(src1) % $unsigned(src2);
+        end
         default: begin
             DivOut = `XLEN'b0;
         end
