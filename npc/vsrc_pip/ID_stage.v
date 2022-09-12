@@ -65,7 +65,7 @@ regfiles regfile_u(
     .wr_data_i(wb_data_i),
     .wr_en(wb_wren_i),
     .pc_wb(pc_wb_i),
-    .regA0(regA0),
+    .regA0(regA0)
 );
 // bcu bcu_u(
 //     .rs1_i(rs1),
