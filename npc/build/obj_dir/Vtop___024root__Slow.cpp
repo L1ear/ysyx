@@ -733,43 +733,36 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                                      (vlSelf->top__DOT__instr_id 
                                                                       >> 0x14U))))
                                                    : 0ULL)))));
-    vlSelf->top__DOT__pc_next = ((((IData)(vlSelf->top__DOT__is_jal_ex) 
-                                   | (IData)(vlSelf->top__DOT__is_jalr_ex)) 
-                                  | ((IData)(vlSelf->top__DOT__is_brc_ex) 
-                                     & ((0x4000U & vlSelf->top__DOT__instr_ex)
-                                         ? ((0x2000U 
-                                             & vlSelf->top__DOT__instr_ex)
-                                             ? ((0x1000U 
-                                                 & vlSelf->top__DOT__instr_ex)
-                                                 ? (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry)
-                                                 : 
-                                                (~ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry)))
-                                             : ((0x1000U 
-                                                 & vlSelf->top__DOT__instr_ex)
-                                                 ? 
-                                                (~ 
-                                                 ((IData)(
-                                                          (vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
-                                                           >> 0x3fU)) 
-                                                  ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow)))
-                                                 : 
-                                                ((IData)(
-                                                         (vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
-                                                          >> 0x3fU)) 
-                                                 ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow))))
-                                         : ((~ (vlSelf->top__DOT__instr_ex 
-                                                >> 0xdU)) 
-                                            & ((0x1000U 
+    vlSelf->top__DOT__is_jump = (((IData)(vlSelf->top__DOT__is_jal_ex) 
+                                  | (IData)(vlSelf->top__DOT__is_jalr_ex)) 
+                                 | ((IData)(vlSelf->top__DOT__is_brc_ex) 
+                                    & ((0x4000U & vlSelf->top__DOT__instr_ex)
+                                        ? ((0x2000U 
+                                            & vlSelf->top__DOT__instr_ex)
+                                            ? ((0x1000U 
                                                 & vlSelf->top__DOT__instr_ex)
-                                                ? (0U 
-                                                   != vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres)
-                                                : (~ (IData)(
-                                                             (0U 
-                                                              != vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres))))))))
-                                  ? ((IData)(vlSelf->top__DOT__is_jalr_ex)
-                                      ? vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res
-                                      : vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res)
-                                  : (4ULL + vlSelf->top__DOT__pc_new));
+                                                ? (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry)
+                                                : (~ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry)))
+                                            : ((0x1000U 
+                                                & vlSelf->top__DOT__instr_ex)
+                                                ? (~ 
+                                                   ((IData)(
+                                                            (vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
+                                                             >> 0x3fU)) 
+                                                    ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow)))
+                                                : ((IData)(
+                                                           (vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
+                                                            >> 0x3fU)) 
+                                                   ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow))))
+                                        : ((~ (vlSelf->top__DOT__instr_ex 
+                                               >> 0xdU)) 
+                                           & ((0x1000U 
+                                               & vlSelf->top__DOT__instr_ex)
+                                               ? (0U 
+                                                  != vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres)
+                                               : (~ (IData)(
+                                                            (0U 
+                                                             != vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres))))))));
     if ((1U & (IData)((vlSelf->top__DOT__alures_ls 
                        >> 2U)))) {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b 
@@ -1252,6 +1245,11 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                     & (IData)(vlSelf->top__DOT__src2sel_ex))
                                                     ? vlSelf->top__DOT__imm_ex
                                                     : vlSelf->top__DOT__ex_stage_u__DOT__rs2));
+    vlSelf->top__DOT__pc_next = ((IData)(vlSelf->top__DOT__is_jump)
+                                  ? ((IData)(vlSelf->top__DOT__is_jalr_ex)
+                                      ? vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res
+                                      : vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res)
+                                  : (4ULL + vlSelf->top__DOT__pc_new));
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data 
         = (((((- (QData)((IData)((0x20U == (0x707cU 
                                             & vlSelf->top__DOT__instr_ls))))) 
@@ -1742,6 +1740,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->instr_diff = 0;
     vlSelf->top__DOT__pc_next = 0;
     vlSelf->top__DOT__pc_new = 0;
+    vlSelf->top__DOT__is_jump = 0;
     vlSelf->top__DOT__pc_id = 0;
     vlSelf->top__DOT__instr_id = 0;
     vlSelf->top__DOT__src1sel_id = 0;
