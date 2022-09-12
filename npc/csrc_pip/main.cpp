@@ -113,6 +113,7 @@ void single_cycle(int i) {
     if((cpu.pc != 0) && (instr_last != 0)&& (instr_last != 0x100073)){ 
       // assert(0); 
       if(en == 1 )
+        printf("````%08lx\n",instr_last);
         difftest_step(cpu.pc);
       start = 0;
     }
