@@ -53,6 +53,11 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp12;
     VlWide<3>/*95:0*/ __Vtemp13;
     VlWide<3>/*95:0*/ __Vtemp15;
+    VlWide<3>/*95:0*/ __Vtemp17;
+    VlWide<3>/*95:0*/ __Vtemp18;
+    VlWide<3>/*95:0*/ __Vtemp19;
+    VlWide<3>/*95:0*/ __Vtemp20;
+    VlWide<3>/*95:0*/ __Vtemp21;
     // Body
     vlSelf->pc_diff = vlSelf->top__DOT__pc_wb;
     vlSelf->regA0 = vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
@@ -66,10 +71,10 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     VL_ADD_W(3, __Vtemp13, __Vtemp9, __Vtemp12);
     vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry 
         = (1U & __Vtemp13[2U]);
-    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin 
-        = (IData)((0U != (0xaU & (IData)(vlSelf->top__DOT__aluctr_ex))));
     vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
         = (1ULL + (vlSelf->top__DOT__rs1_ex + (~ vlSelf->top__DOT__rs2_ex)));
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin 
+        = (IData)((0U != (0xaU & (IData)(vlSelf->top__DOT__aluctr_ex))));
     vlSelf->instr_diff = vlSelf->top__DOT__instr_wb;
     vlSelf->top__DOT__wb_data = ((0x40U & vlSelf->top__DOT__instr_wb)
                                   ? ((0x20U & vlSelf->top__DOT__instr_wb)
@@ -1923,6 +1928,37 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                           >> 0x20U))))
                     : vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res))
             : vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res);
+    VL_EXTEND_WQ(65,64, __Vtemp17, vlSelf->top__DOT__ex_stage_u__DOT__src1);
+    VL_EXTEND_WQ(65,64, __Vtemp18, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin);
+    VL_ADD_W(3, __Vtemp19, __Vtemp17, __Vtemp18);
+    VL_EXTEND_WI(65,1, __Vtemp20, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
+    VL_ADD_W(3, __Vtemp21, __Vtemp19, __Vtemp20);
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout 
+        = ((4U & (IData)(vlSelf->top__DOT__aluctr_ex))
+            ? ((2U & (IData)(vlSelf->top__DOT__aluctr_ex))
+                ? ((1U & (IData)(vlSelf->top__DOT__aluctr_ex))
+                    ? (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                       & vlSelf->top__DOT__ex_stage_u__DOT__src2)
+                    : (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                       | vlSelf->top__DOT__ex_stage_u__DOT__src2))
+                : ((1U & (IData)(vlSelf->top__DOT__aluctr_ex))
+                    ? vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift
+                    : (vlSelf->top__DOT__ex_stage_u__DOT__src1 
+                       ^ vlSelf->top__DOT__ex_stage_u__DOT__src2)))
+            : ((2U & (IData)(vlSelf->top__DOT__aluctr_ex))
+                ? ((1U & (IData)(vlSelf->top__DOT__aluctr_ex))
+                    ? vlSelf->top__DOT__ex_stage_u__DOT__src2
+                    : (QData)((IData)((1U & ((8U & (IData)(vlSelf->top__DOT__aluctr_ex))
+                                              ? ((1U 
+                                                  & __Vtemp21[2U]) 
+                                                 ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin))
+                                              : ((IData)(
+                                                         (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
+                                                          >> 0x3fU)) 
+                                                 ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow)))))))
+                : ((1U & (IData)(vlSelf->top__DOT__aluctr_ex))
+                    ? vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift
+                    : vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o)));
 }
 
 void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
@@ -2020,6 +2056,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ex_stage_u__DOT__src2 = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__rs2 = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero = 0;
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o = 0;

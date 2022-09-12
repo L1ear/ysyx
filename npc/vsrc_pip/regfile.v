@@ -38,7 +38,7 @@ always @(posedge clk) begin
 end
 
 always @(posedge clk) begin
-	if(instr_wb_i) begin
+	if(instr_wb_i == 64'b1110011) begin
 		ebreak();	
 	end
 end
