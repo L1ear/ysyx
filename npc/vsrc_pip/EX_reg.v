@@ -12,6 +12,8 @@ module EX_reg (
     input                           wben_ex_reg_i,
     input           [4      :0]     rs1_idx_ex_reg_i,rs2_idx_ex_reg_i,
     input                           stall_n,flush,
+    input                           DivEn_ex_reg_i,
+    input           [2      :0]     DivSel_ex_reg_i,
 
     output   reg    [`XLEN-1:0]     pc_ex_reg_o,
     output   reg    [`inst_len-1:0]     instr_ex_reg_o,
@@ -22,7 +24,9 @@ module EX_reg (
     output   reg                    src1sel_ex_reg_o,
     output   reg     [1      :0]    src2sel_ex_reg_o,
     output   reg                    wben_ex_reg_o,
-    output   reg    [4      :0]     rs1_idx_ex_reg_o,rs2_idx_ex_reg_o
+    output   reg    [4      :0]     rs1_idx_ex_reg_o,rs2_idx_ex_reg_o,
+    output                          DivEn_ex_reg_o,
+    output          [2      :0]     DivSel_ex_reg_o
 );
 
 always @(posedge clk or negedge rst_n) begin
@@ -184,6 +188,24 @@ always @(posedge clk or negedge rst_n) begin
     end
     else begin
         rs2_idx_ex_reg_o <= rs2_idx_ex_reg_i;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        DivEn_ex_reg_o <= 1'b0;
+    end
+    else begin
+        DivEn_ex_reg_o <= DivEn_ex_reg_i;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        DivSel_ex_reg_o <= 3'b0;
+    end
+    else begin
+        DivSel_ex_reg_o <= DivSel_ex_reg_i;
     end
 end
 

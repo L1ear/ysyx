@@ -19,6 +19,8 @@ module ex_stage (
     input           [1      :0]     src2sel_ex_i,
     input           [1      :0]     rs1_sel_i,rs2_sel_i,
     input           [`XLEN-1:0]     alures_fw_i,lsres_fw_i,wbres_fw_i,
+    input                           DivEn_i,
+    input       [2:0]               DivSel_i,
 
     // output          [`XLEN-1:0]     PC_ex_o,instr_ex_o,rs2_ex_o,
     output          [`XLEN-1:0]     alures_o,
@@ -77,8 +79,8 @@ ALU  u_ALU (
     .ALUctr                  ( aluctr   ),
     .src1                    ( src1     ),
     .src2                    ( src2     ),
-    .DivEn                   ( 1'b0     ),
-    .DivSel                  ( 3'b0     ),
+    .DivEn                   ( DivEn_   ),
+    .DivSel                  ( DivSel_i ),
 
     .ALUres                  ( alures_o ),
     .less                    (          ),

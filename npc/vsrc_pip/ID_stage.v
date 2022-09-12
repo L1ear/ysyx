@@ -17,7 +17,9 @@ module ID_stage (
     output                          is_jalr_id_o,is_jal_id_o,is_brc_id_o,
     output                          wben_id_o,
     output          [4      :0]     rs1_idx,rs2_idx,
-    output	[`XLEN-1:0]				regA0
+    output	[`XLEN-1:0]				regA0,
+    output                          DivEn,
+    output          [2:0]           DivSel,    
     // output          [`XLEN-1:0]     pc_next_o,
     // output                          is_jump_o
 );
@@ -49,7 +51,9 @@ decoder decoder_u(
     .is_brc_o(is_brc_id_o),
     .wb_en_o(wben_id_o),
     .rs1_idx_o(rs1_idx),
-    .rs2_idx_o(rs2_idx)
+    .rs2_idx_o(rs2_idx),
+    .DivEn(DivEn),
+    .DivSel(DivSel)
 );
 imm_ext imm_ext_u(
     .instr_imm_i(instr_i[31:7]),
@@ -136,8 +140,8 @@ always @(*) begin
             rs1_idx_o = instr_i[19:15];
             rs2_idx_o = instr_i[24:20];  
             wb_en_o = 1'b1;
-            // DivEn = fun_7[0];
-            // DivSel = fun_3;
+            DivEn = fun_7[0];
+            DivSel = fun_3;
             case(fun_3)
                 `add_sub: begin                                          
                     if(fun_7[5]) begin      //Sub
@@ -182,8 +186,8 @@ always @(*) begin
             wb_en_o = 1'b1;  
             rs1_idx_o = instr_i[19:15];
             rs2_idx_o = 5'b0;
-            // DivEn = 1'b0;
-            // DivSel = `DivMul;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
             case(fun_3)
                 `addi: begin
                     aluctr_o = opcode[1] ? `AluAdd_32 : `AluAdd_64;
@@ -224,8 +228,8 @@ always @(*) begin
             wb_en_o = 1'b1; 
             rs1_idx_o = instr_i[19:15];
             rs2_idx_o = 5'b0;                      
-            // DivEn = 1'b0;
-            // DivSel = `DivMul;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
         end  
         `store: begin
             ext_op_o = `immS;                          
@@ -235,8 +239,8 @@ always @(*) begin
             wb_en_o = 1'b0; 
             rs1_idx_o = instr_i[19:15];
             rs2_idx_o = instr_i[24:20];                     
-            // DivEn = 1'b0;
-            // DivSel = `DivMul;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
         end
         `branch: begin
             is_brc_o = 1'b1;
@@ -246,8 +250,8 @@ always @(*) begin
             wb_en_o = 1'b0; 
             rs1_idx_o = instr_i[19:15];
             rs2_idx_o = instr_i[24:20];  
-            // DivEn = 1'b0;
-            // DivSel = `DivMul;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
         end
         `jal: begin
             src1sel_o = `PC;
@@ -259,8 +263,8 @@ always @(*) begin
             wb_en_o = 1'b1; 
             rs1_idx_o = 5'b0;
             rs2_idx_o = 5'b0;
-            // DivEn = 1'b0;
-            // DivSel = `DivMul;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
         end   
         `jalr: begin
             src1sel_o = `PC;
@@ -272,8 +276,8 @@ always @(*) begin
             wb_en_o = 1'b1; 
             rs1_idx_o = instr_i[19:15];
             rs2_idx_o = 5'b0;
-            // DivEn = 1'b0;
-            // DivSel = `DivMul;
+            DivEn = 1'b0;
+            DivSel = `DivMul;
         end                                
         `lui: begin
             src1sel_o = `Rs1;
@@ -284,8 +288,8 @@ always @(*) begin
             wb_en_o = 1'b1;
             rs1_idx_o = 5'b0;
             rs2_idx_o = 5'b0; 
-            // DivEn = 1'b0;
-            // DivSel = `DivMul;  
+            DivEn = 1'b0;
+            DivSel = `DivMul;  
         end   
         `auipc: begin
             src1sel_o = `PC;
@@ -296,8 +300,8 @@ always @(*) begin
             wb_en_o = 1'b1; 
             rs1_idx_o = 5'b0;
             rs2_idx_o = 5'b0;
-            // DivEn = 1'b0;
-            // DivSel = `DivMul;            
+            DivEn = 1'b0;
+            DivSel = `DivMul;            
         end
         // //调用DPI-C函数
         `syscall: begin

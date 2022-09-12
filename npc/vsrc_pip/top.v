@@ -25,6 +25,8 @@ wire                    is_brc_id,is_jal_id,is_jalr_id;
 wire                    wben_id;
 wire    [4      :0]     rs1_idx_id,rs2_idx_id;
 wire                    id_stall_n;
+wire                    DivEn_id;
+wire    [2      :0]     DivSel_id;
 
 //ex signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ex;
@@ -36,6 +38,8 @@ wire    [`XLEN-1:0]     rs2_ex,rs1_ex,imm_ex,rs2_ex_u_o;
 wire    [4      :0]     aluctr_ex;
 wire                    is_brc_ex,is_jal_ex,is_jalr_ex;
 wire                    wben_ex;
+wire                    DivEn_ex;
+wire    [2      :0]     DivSel_ex;
 
 wire    [`XLEN-1:0]     wbres_fw;
 wire    [1      :0]     rs1_sel,rs2_sel;
@@ -101,6 +105,8 @@ ID_stage ID_u(
     .wb_wren_i      (wben_wb), 
     .pc_wb_i        (pc_wb),
     .instr_wb_i     (instr_wb),
+    .DivEn          (DivEn_id),
+    .DivSel         (DivSel_id),  
 
     .rs1_o          (rs1_id),
     .rs2_o          (rs2_id),
@@ -146,6 +152,8 @@ EX_reg EX_reg_u(
     .rs2_idx_ex_reg_i(rs2_idx_id),
     .stall_n(ex_stall_n),
     .flush(is_jump),
+    .DivEn_ex_reg_i (DivEn_id),
+    .DivSel_ex_reg_i(DivSel_id),
 
 
     .pc_ex_reg_o    (pc_ex),
@@ -163,7 +171,9 @@ EX_reg EX_reg_u(
     .src2sel_ex_reg_o(src2sel_ex),
     .wben_ex_reg_o(wben_ex),
     .rs1_idx_ex_reg_o(rs1_idx_ex),
-    .rs2_idx_ex_reg_o(rs2_idx_ex) 
+    .rs2_idx_ex_reg_o(rs2_idx_ex) ,
+    .DivEn_ex_reg_o (DivEn_ex),
+    .DivSel_ex_reg_o(DivSel_ex)
 );
 
 ex_stage ex_stage_u(
@@ -191,6 +201,9 @@ ex_stage ex_stage_u(
     .wbres_fw_i     (wbres_fw),
     .rs1_sel_i      (rs1_sel),
     .rs2_sel_i      (rs2_sel),
+    .DivEn_i        (DivEn_ex),
+    .DivSel_i       (DivSel_ex),
+
 
     // .PC_ex_o,
     // .instr_ex_o,
