@@ -88,8 +88,8 @@ ALU  u_ALU (
 );
 
 bcu bcu_u(
-    .rs1_i(rs1_ex_i),
-    .rs2_i(rs2_ex_i),
+    .rs1_i(rs1),
+    .rs2_i(rs2),
     .is_jalr_i(is_jalr_ex_i),
     .is_jal_i(is_jal_ex_i),
     .is_brc_i(is_brc_ex_i),
