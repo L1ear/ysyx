@@ -107,7 +107,10 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         is_jalr_ex_reg_o <= 1'b0;
     end
-    else begin
+    else if(~stall_n || flush) begin
+        is_jalr_ex_reg_o <= 1'b0;
+    end    
+    else if(stall_n) begin
         is_jalr_ex_reg_o <= is_jalr_ex_reg_i;
     end
 end
@@ -116,7 +119,10 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         is_jal_ex_reg_o <= 1'b0;
     end
-    else begin
+    else if(~stall_n || flush) begin
+        is_jal_ex_reg_o <= 1'b0;
+    end
+    else if(stall_n) begin
         is_jal_ex_reg_o <= is_jal_ex_reg_i;
     end
 end
@@ -125,7 +131,10 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         is_brc_ex_reg_o <= 1'b0;
     end
-    else begin
+    else if(~stall_n || flush) begin
+        is_brc_ex_reg_o <= 1'b0;
+    end
+    else if(stall_n) begin
         is_brc_ex_reg_o <= is_brc_ex_reg_i;
     end
 end
