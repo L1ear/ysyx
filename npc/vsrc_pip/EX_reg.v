@@ -29,11 +29,11 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         pc_ex_reg_o <= `XLEN'b0;
     end
-    else if(stall_n) begin
-        pc_ex_reg_o <= pc_ex_reg_i;
-    end
     else if(~stall_n || flush) begin
         pc_ex_reg_o <= `XLEN'b0;
+    end
+    else if(stall_n) begin
+        pc_ex_reg_o <= pc_ex_reg_i;
     end
 end
 
@@ -41,11 +41,11 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         instr_ex_reg_o <= `inst_len'b0;
     end
-    else if(stall_n) begin
-        instr_ex_reg_o <= instr_ex_reg_i;
-    end
     else if(~stall_n || flush) begin
         instr_ex_reg_o <= `inst_len'b0;
+    end
+    else if(stall_n) begin
+        instr_ex_reg_o <= instr_ex_reg_i;
     end
 end
 
@@ -152,11 +152,11 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         wben_ex_reg_o <= 1'b0;
     end
-    else if(stall_n) begin
-        wben_ex_reg_o <= wben_ex_reg_i;
-    end
     else if(~stall_n || flush) begin
         wben_ex_reg_o <= 1'b0;
+    end
+    else if(stall_n) begin
+        wben_ex_reg_o <= wben_ex_reg_i;
     end
 end
 
