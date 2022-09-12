@@ -80,11 +80,11 @@ ALU  u_ALU (
     .DivEn                   ( 1'b0     ),
     .DivSel                  ( 3'b0     ),
 
-    .ALUres                  (  ),
+    .ALUres                  ( alures_o ),
     .less                    (          ),
     .zero                    (          )
 );
-assign alures_o = 0;
+
 bcu bcu_u(
     .rs1_i(rs1_ex_i),
     .rs2_i(rs2_ex_i),
