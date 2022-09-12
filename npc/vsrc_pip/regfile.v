@@ -11,7 +11,7 @@ module regfiles(
 	
 	input	[`reg_addr_width-1:0]	wr_addr_i,
 	input	[`XLEN-1:0]				wr_data_i,
-	input							wr_en
+	input							wr_en,
 
 //for varilator dbug
 	output	[`XLEN-1:0]				regA0
