@@ -83,7 +83,9 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   //   printf("**************************%08x\n",instrAddr);
   //   return get_time();
   // }
-   if(addr>0x88000000||addr<0x80000000){
+  if(addr == 0xa00003f8){
+  }
+  else if(addr>0x88000000||addr<0x80000000){
     printf("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
     return 0;
     }
