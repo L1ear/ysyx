@@ -3,6 +3,8 @@ module regfiles(
 	input							clk,
 	input	[`XLEN-1:0]				pc_wb,					//for diff-test
 				
+	input	[`inst_len-1:0]			instr_wb_i,
+
 	input	[`reg_addr_width-1:0]	rs1_addr_i,
 	output	[`XLEN-1:0]				rs1_data_o,
 	
@@ -17,6 +19,7 @@ module regfiles(
 	output	[`XLEN-1:0]				regA0
 );
 
+import "DPI-C" function void ebreak();
 import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
 initial set_gpr_ptr(regfiles);  // rf为通用寄存器的二维数组变量
 
@@ -32,7 +35,12 @@ always @(posedge clk) begin
 	// else begin
 	// 	regfiles[wr_addr_i] <= regfiles[wr_addr_i];
 	// end
-	
+end
+
+always @(posedge clk) begin
+	if(instr_wb_i) begin
+		ebreak();	
+	end
 end
 
 //read

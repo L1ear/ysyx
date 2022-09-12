@@ -99,6 +99,8 @@ ID_stage ID_u(
     .wb_data_i      (wb_data),
     .wb_rdid_i      (wb_rdid),
     .wb_wren_i      (wben_wb), 
+    .pc_wb_i        (pc_wb),
+    .instr_wb_i     (instr_wb),
 
     .rs1_o          (rs1_id),
     .rs2_o          (rs2_id),
@@ -109,7 +111,6 @@ ID_stage ID_u(
     .is_brc_id_o    (is_brc_id),
     .is_jal_id_o    (is_jal_id),
     .is_jalr_id_o   (is_jalr_id),
-    .pc_wb_i        (pc_wb),
     .wben_id_o      (wben_id),
     .rs1_idx        (rs1_idx_id),
     .rs2_idx        (rs2_idx_id),

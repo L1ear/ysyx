@@ -3,6 +3,7 @@ module ID_stage (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
     input           [`XLEN-1:0]     pc_wb_i,                    //for diff-test
+    input           [`inst_len-1:0] instr_wb_i,                 //for ebreak
     input           [`inst_len-1:0] instr_i,
     input           [`XLEN-1:0]     wb_data_i,
     input           [4      :0]     wb_rdid_i,
@@ -65,7 +66,8 @@ regfiles regfile_u(
     .wr_data_i(wb_data_i),
     .wr_en(wb_wren_i),
     .pc_wb(pc_wb_i),
-    .regA0(regA0)
+    .regA0(regA0),
+    .instr_wb_i(instr_wb_i)
 );
 // bcu bcu_u(
 //     .rs1_i(rs1),
@@ -104,7 +106,7 @@ wire    [6:0]   fun_7 = instr_i[31:25];
 // assign  Rs2_o = instr_i[24:20];
 // assign  csrIdx = instr_i[31:20];
 
-import "DPI-C" function void ebreak();
+
 
 always @(*) begin
     ext_op_o = 5'b0;                          //默认拓展模块输出0
@@ -306,7 +308,7 @@ always @(*) begin
         //     case(fun_3)
         //         `env: begin
         //             if(instr_i[20]) begin                       //ebreak;
-                       ebreak();
+                    //    ebreak();
         //             end
         //             else if(~instr_i[21]) begin                 //ecall              //ecall;
         //                 //TODO
