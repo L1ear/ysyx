@@ -110,10 +110,9 @@ void single_cycle(int i) {
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
     }
-    if((cpu.pc != 0) && (instr_last != 0)){ 
+    if((cpu.pc != 0) && (instr_last != 0x100073)){ 
       // assert(0); 
       if(en == 1 && instr_last != 115)
-        printf("```````````%ld\n", top->instr_diff);
         difftest_step(cpu.pc);
       start = 0;
     }
