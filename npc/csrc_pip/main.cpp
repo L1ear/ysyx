@@ -136,6 +136,7 @@ void single_cycle(int i) {
 
   // }
 #endif
+printf("end\n");
 }
 
 //for DPI-C
