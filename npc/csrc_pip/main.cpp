@@ -105,7 +105,16 @@ void single_cycle(int i) {
   fp ->dump(i);
 #endif
 #ifdef  difftest
-    
+
+#endif
+  top->clk = 0;
+  top->eval();
+#ifdef vcd
+  fp ->dump(i+1);
+#endif
+  pc = top->pc_decoding;
+#ifdef  difftest
+      
     int r;
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
@@ -118,19 +127,6 @@ void single_cycle(int i) {
     }
     cpu.pc = top->pc_diff;
     instr_last = top->instr_diff;
-#endif
-  top->clk = 0;
-  top->eval();
-#ifdef vcd
-  fp ->dump(i+1);
-#endif
-  pc = top->pc_decoding;
-#ifdef  difftest
-  
-  // if(en == 1){
-  //       start = 0;
-
-  // }
 #endif
 }
 

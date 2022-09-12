@@ -73,8 +73,6 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
         = (1U & __Vtemp13[2U]);
     vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres 
         = (1ULL + (vlSelf->top__DOT__rs1_ex + (~ vlSelf->top__DOT__rs2_ex)));
-    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin 
-        = (IData)((0U != (0xaU & (IData)(vlSelf->top__DOT__aluctr_ex))));
     vlSelf->instr_diff = vlSelf->top__DOT__instr_wb;
     vlSelf->top__DOT__wb_data = ((0x40U & vlSelf->top__DOT__instr_wb)
                                   ? ((0x20U & vlSelf->top__DOT__instr_wb)
@@ -147,12 +145,14 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                              & vlSelf->top__DOT__instr_ls)))) {
         Vtop___024root____Vdpiimwrap_top__DOT__IF_u__DOT__vmemread_TOP(
                                                                        (0xfffffffffffffff8ULL 
-                                                                        & vlSelf->top__DOT__alures_ls), 8U, vlSelf->__Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__3__rdata, vlSelf->top__DOT__pc_ls);
+                                                                        & vlSelf->top__DOT__alures_ls), 8U, vlSelf->__Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__4__rdata, vlSelf->top__DOT__pc_ls);
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf 
-            = vlSelf->__Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__3__rdata;
+            = vlSelf->__Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__4__rdata;
     } else {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf = 0ULL;
     }
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin 
+        = (IData)((0U != (0xaU & (IData)(vlSelf->top__DOT__aluctr_ex))));
     vlSelf->top__DOT__rs1_sel = ((((IData)(vlSelf->top__DOT__wben_ls) 
                                    & ((0x1fU & (vlSelf->top__DOT__instr_ls 
                                                 >> 7U)) 
@@ -2084,7 +2084,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_buf = 0;
     vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata = 0;
-    vlSelf->__Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__3__rdata = 0;
+    vlSelf->__Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__4__rdata = 0;
     for (int __Vi0=0; __Vi0<4; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }
