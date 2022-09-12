@@ -15,7 +15,8 @@ module ID_stage (
     output          [4      :0]     aluctr_o,
     output                          is_jalr_id_o,is_jal_id_o,is_brc_id_o,
     output                          wben_id_o,
-    output          [4      :0]     rs1_idx,rs2_idx
+    output          [4      :0]     rs1_idx,rs2_idx,
+    output	[`XLEN-1:0]				regA0
     // output          [`XLEN-1:0]     pc_next_o,
     // output                          is_jump_o
 );
@@ -63,7 +64,8 @@ regfiles regfile_u(
     .wr_addr_i(wb_rdid_i),
     .wr_data_i(wb_data_i),
     .wr_en(wb_wren_i),
-    .pc_wb(pc_wb_i)
+    .pc_wb(pc_wb_i),
+    .regA0(regA0),
 );
 // bcu bcu_u(
 //     .rs1_i(rs1),

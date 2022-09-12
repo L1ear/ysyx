@@ -14,7 +14,7 @@ module regfiles(
 	input							wr_en
 
 //for varilator dbug
-	// output	[`XLEN-1:0]				regA0
+	output	[`XLEN-1:0]				regA0
 );
 
 import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
@@ -23,7 +23,7 @@ initial set_gpr_ptr(regfiles);  // rf为通用寄存器的二维数组变量
 
 //regfiles
 reg		[`XLEN-1:0]	regfiles[0:31];
-// assign	regA0 = regfiles[10];
+assign	regA0 = regfiles[10];
 //write		引入cg的写法
 always @(posedge clk) begin
 	if(wr_en) begin

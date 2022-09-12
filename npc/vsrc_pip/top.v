@@ -3,7 +3,8 @@ module top (
     input                           clk,rst_n,
 
     output          [`XLEN-1:0]     pc_diff,pc_decoding,
-    output          [`inst_len-1:0] instr_diff
+    output          [`inst_len-1:0] instr_diff,
+	output	        [`XLEN-1:0]		regA0
 );
 
 wire    [`XLEN-1:0]     pc_next;
@@ -111,7 +112,8 @@ ID_stage ID_u(
     .pc_wb_i        (pc_wb),
     .wben_id_o      (wben_id),
     .rs1_idx        (rs1_idx_id),
-    .rs2_idx        (rs2_idx_id)
+    .rs2_idx        (rs2_idx_id),
+    .regA0          (regA0)
 );
 
 hazard_detect hazard_detect_u(
