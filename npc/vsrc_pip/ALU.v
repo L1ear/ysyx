@@ -120,7 +120,7 @@ always @(*) begin
             end
         endcase
 end
-assign ALUres = ALUctr[4] ? 0 : ALUout;
+assign ALUres = ALUctr[4] ? {{32{ALUout[31]}}, ALUout[31:0]} : ALUout;
 
 endmodule
 

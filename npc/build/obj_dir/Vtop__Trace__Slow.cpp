@@ -113,6 +113,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+254,"top ID_u rst_n", false,-1);
         tracep->declQuad(c+139,"top ID_u pc_i", false,-1, 63,0);
         tracep->declQuad(c+19,"top ID_u pc_wb_i", false,-1, 63,0);
+        tracep->declBus(c+169,"top ID_u instr_wb_i", false,-1, 31,0);
         tracep->declBus(c+141,"top ID_u instr_i", false,-1, 31,0);
         tracep->declQuad(c+170,"top ID_u wb_data_i", false,-1, 63,0);
         tracep->declBus(c+172,"top ID_u wb_rdid_i", false,-1, 4,0);
@@ -154,6 +155,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+142,"top ID_u imm_ext_u imm_o", false,-1, 63,0);
         tracep->declBit(c+253,"top ID_u regfile_u clk", false,-1);
         tracep->declQuad(c+19,"top ID_u regfile_u pc_wb", false,-1, 63,0);
+        tracep->declBus(c+169,"top ID_u regfile_u instr_wb_i", false,-1, 31,0);
         tracep->declBus(c+151,"top ID_u regfile_u rs1_addr_i", false,-1, 4,0);
         tracep->declQuad(c+264,"top ID_u regfile_u rs1_data_o", false,-1, 63,0);
         tracep->declBus(c+152,"top ID_u regfile_u rs2_addr_i", false,-1, 4,0);
