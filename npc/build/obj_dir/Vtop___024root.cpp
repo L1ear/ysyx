@@ -240,6 +240,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles[__Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0] 
             = __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     }
+    vlSelf->regA0 = vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
+        [0xaU];
 }
 
 VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {

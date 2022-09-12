@@ -62,6 +62,8 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp21;
     // Body
     vlSelf->pc_diff = vlSelf->top__DOT__pc_wb;
+    vlSelf->regA0 = vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
+        [0xaU];
     __Vtemp9[0U] = 1U;
     __Vtemp9[1U] = 0U;
     __Vtemp9[2U] = 0U;
@@ -1740,6 +1742,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->pc_diff = 0;
     vlSelf->pc_decoding = 0;
     vlSelf->instr_diff = 0;
+    vlSelf->regA0 = 0;
     vlSelf->top__DOT__pc_next = 0;
     vlSelf->top__DOT__pc_new = 0;
     vlSelf->top__DOT__is_jump = 0;

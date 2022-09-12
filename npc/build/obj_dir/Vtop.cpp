@@ -16,6 +16,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , pc_diff{vlSymsp->TOP.pc_diff}
     , pc_decoding{vlSymsp->TOP.pc_decoding}
     , instr_diff{vlSymsp->TOP.instr_diff}
+    , regA0{vlSymsp->TOP.regA0}
     , rootp{&(vlSymsp->TOP)}
 {
 }

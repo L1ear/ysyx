@@ -33,6 +33,7 @@ class Vtop VL_NOT_FINAL {
     VL_OUT64(&pc_diff,63,0);
     VL_OUT64(&pc_decoding,63,0);
     VL_OUT(&instr_diff,31,0);
+    VL_OUT64(&regA0,63,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.

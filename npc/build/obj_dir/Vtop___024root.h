@@ -24,6 +24,7 @@ VL_MODULE(Vtop___024root) {
     VL_OUT(instr_diff,31,0);
     VL_OUT64(pc_diff,63,0);
     VL_OUT64(pc_decoding,63,0);
+    VL_OUT64(regA0,63,0);
 
     // LOCAL SIGNALS
     // Anonymous structures to workaround compiler member-count bugs
