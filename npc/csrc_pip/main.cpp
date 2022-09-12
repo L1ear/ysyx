@@ -100,7 +100,6 @@ uint64_t pc = 0;
 void single_cycle(int i) {
   top->clk = 1; 
   top->eval();
-  pc = top->pc_decoding;
 #ifdef vcd
   fp ->dump(i);
 #endif
@@ -123,7 +122,7 @@ void single_cycle(int i) {
 #ifdef vcd
   fp ->dump(i+1);
 #endif
-  
+  pc = top->pc_decoding;
 #ifdef  difftest
   
   // if(en == 1){
@@ -143,9 +142,9 @@ int en = 0;
 void ebreak(){
   en = 0;
   if(top->regA0 == 0)
-    Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",pc);
+    Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",top->pc_decoding);
   else
-    Log("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",pc);
+    Log("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",top->pc_decoding);
 }
 
 void vmemread(long long raddr,int len, long long *rdata, long long pc){
