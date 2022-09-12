@@ -97,6 +97,7 @@ int main(int argc, char *argv[])
 
 int start = 1;
 uint64_t pc = 0;
+uint64_t instr_last;
 void single_cycle(int i) {
   top->clk = 1; 
   top->eval();
@@ -109,13 +110,14 @@ void single_cycle(int i) {
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
     }
-    if((cpu.pc != 0) && (top->instr_diff != 0)){ 
+    if((cpu.pc != 0) && (instr_last != 0)){ 
       // assert(0); 
       if(en == 1)
         difftest_step(cpu.pc);
       start = 0;
     }
     cpu.pc = top->pc_diff;
+    instr_last = top->instr_diff;
 #endif
   top->clk = 0;
   top->eval();
