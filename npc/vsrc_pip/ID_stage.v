@@ -19,7 +19,7 @@ module ID_stage (
     output          [4      :0]     rs1_idx,rs2_idx,
     output	[`XLEN-1:0]				regA0,
     output                          DivEn,
-    output          [2:0]           DivSel,    
+    output          [2:0]           DivSel    
     // output          [`XLEN-1:0]     pc_next_o,
     // output                          is_jump_o
 );
