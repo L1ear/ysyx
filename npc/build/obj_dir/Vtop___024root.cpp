@@ -69,12 +69,36 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp5;
     VlWide<3>/*95:0*/ __Vtemp6;
     // Body
-    vlSelf->top__DOT__is_brc_ex = ((IData)(vlSelf->rst_n) 
-                                   & (IData)(vlSelf->top__DOT__is_brc_id));
-    vlSelf->top__DOT__is_jal_ex = ((IData)(vlSelf->rst_n) 
-                                   & (IData)(vlSelf->top__DOT__is_jal_id));
-    vlSelf->top__DOT__is_jalr_ex = ((IData)(vlSelf->rst_n) 
-                                    & (IData)(vlSelf->top__DOT__is_jalr_id));
+    if (vlSelf->rst_n) {
+        if (((IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard) 
+             | (IData)(vlSelf->top__DOT__is_jump))) {
+            vlSelf->top__DOT__is_brc_ex = 0U;
+        } else if ((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))) {
+            vlSelf->top__DOT__is_brc_ex = vlSelf->top__DOT__is_brc_id;
+        }
+    } else {
+        vlSelf->top__DOT__is_brc_ex = 0U;
+    }
+    if (vlSelf->rst_n) {
+        if (((IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard) 
+             | (IData)(vlSelf->top__DOT__is_jump))) {
+            vlSelf->top__DOT__is_jal_ex = 0U;
+        } else if ((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))) {
+            vlSelf->top__DOT__is_jal_ex = vlSelf->top__DOT__is_jal_id;
+        }
+    } else {
+        vlSelf->top__DOT__is_jal_ex = 0U;
+    }
+    if (vlSelf->rst_n) {
+        if (((IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard) 
+             | (IData)(vlSelf->top__DOT__is_jump))) {
+            vlSelf->top__DOT__is_jalr_ex = 0U;
+        } else if ((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))) {
+            vlSelf->top__DOT__is_jalr_ex = vlSelf->top__DOT__is_jalr_id;
+        }
+    } else {
+        vlSelf->top__DOT__is_jalr_ex = 0U;
+    }
     if (vlSelf->rst_n) {
         vlSelf->top__DOT__rs2_ls = vlSelf->top__DOT__ex_stage_u__DOT__rs2;
         vlSelf->top__DOT__imm_ex = vlSelf->top__DOT__ID_u__DOT__imm;
