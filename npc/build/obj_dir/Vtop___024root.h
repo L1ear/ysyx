@@ -96,8 +96,6 @@ VL_MODULE(Vtop___024root) {
     struct {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res;
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res;
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres;
         QData/*63:0*/ top__DOT__forwarding_u__DOT__rd_wb;
         QData/*63:0*/ top__DOT__ls_u__DOT__wr_data;

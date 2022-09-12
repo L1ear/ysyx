@@ -1065,13 +1065,15 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
         = (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src 
            >> (0x3fU & (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)));
-    vlSelf->top__DOT__pc_next = ((IData)(vlSelf->top__DOT__is_jump)
-                                  ? ((IData)(vlSelf->top__DOT__is_jalr_ex)
-                                      ? vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res
-                                      : vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res)
-                                  : (4ULL + vlSelf->top__DOT__pc_new));
     Vtop___024root____Vdpiimwrap_top__DOT__IF_u__DOT__vmemread_TOP(vlSelf->top__DOT__pc_new, 4U, vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata, vlSelf->top__DOT__pc_new);
     vlSelf->top__DOT__IF_u__DOT__rdata = vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata;
+    vlSelf->top__DOT__pc_next = ((IData)(vlSelf->top__DOT__is_jump)
+                                  ? ((IData)(vlSelf->top__DOT__is_jalr_ex)
+                                      ? (vlSelf->top__DOT__rs1_ex 
+                                         + vlSelf->top__DOT__imm_ex)
+                                      : (vlSelf->top__DOT__pc_ex 
+                                         + vlSelf->top__DOT__imm_ex))
+                                  : (4ULL + vlSelf->top__DOT__pc_new));
     vlSelf->top__DOT__hazard_detect_u__DOT__hazard 
         = (((3U == (0x7fU & vlSelf->top__DOT__instr_ex)) 
             & ((((((0x19U == (0x1fU & (vlSelf->top__DOT__instr_id 

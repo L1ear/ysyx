@@ -1247,8 +1247,10 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                     : vlSelf->top__DOT__ex_stage_u__DOT__rs2));
     vlSelf->top__DOT__pc_next = ((IData)(vlSelf->top__DOT__is_jump)
                                   ? ((IData)(vlSelf->top__DOT__is_jalr_ex)
-                                      ? vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res
-                                      : vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res)
+                                      ? (vlSelf->top__DOT__rs1_ex 
+                                         + vlSelf->top__DOT__imm_ex)
+                                      : (vlSelf->top__DOT__pc_ex 
+                                         + vlSelf->top__DOT__imm_ex))
                                   : (4ULL + vlSelf->top__DOT__pc_new));
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data 
         = (((((- (QData)((IData)((0x20U == (0x707cU 
@@ -1799,8 +1801,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res = 0;
-    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__pc_imm_res = 0;
-    vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__rs1_imm_res = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__less = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow = 0;

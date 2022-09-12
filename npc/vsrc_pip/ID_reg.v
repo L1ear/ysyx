@@ -29,7 +29,7 @@ always @(posedge clk or negedge rst_n) begin
         instr_id_reg_o <= `inst_len'b0;
     end
     else if(stall_n) begin
-        instr_id_reg_o <= instr_id_reg_i;
+        instr_id_reg_o <= instr_id_reg;
     end
 end
 
