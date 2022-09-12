@@ -21,7 +21,7 @@ module ID_stage (
 );
 
 wire    [4      :0]     ext_op;
-wire                    is_jalr,is_jal,is_brc;
+// wire                    is_jalr,is_jal,is_brc;
 wire    [`XLEN-1:0]     imm;
 wire    [`XLEN-1:0]     rs1,rs2;
 // wire    [`4     :0]     rs1_idx,rs2_idx;
@@ -42,9 +42,9 @@ decoder decoder_u(
     .src1sel_o(src1sel),
     .src2sel_o(src2sel),
     .aluctr_o(aluctr_o),
-    .is_jalr_o(is_jalr),
-    .is_jal_o(is_jal),
-    .is_brc_o(is_brc),
+    .is_jalr_o(is_jalr_id_o),
+    .is_jal_o(is_jal_id_o),
+    .is_brc_o(is_brc_id_o),
     .wb_en_o(wben_id_o),
     .rs1_idx_o(rs1_idx),
     .rs2_idx_o(rs2_idx)
