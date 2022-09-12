@@ -79,7 +79,7 @@ ALU  u_ALU (
     .ALUctr                  ( aluctr   ),
     .src1                    ( src1     ),
     .src2                    ( src2     ),
-    .DivEn                   ( DivEn_   ),
+    .DivEn                   ( DivEn_i   ),
     .DivSel                  ( DivSel_i ),
 
     .ALUres                  ( alures_o ),
