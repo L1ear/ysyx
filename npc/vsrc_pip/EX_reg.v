@@ -11,7 +11,7 @@ module EX_reg (
     input           [1      :0]     src2sel_ex_reg_i,
     input                           wben_ex_reg_i,
     input           [4      :0]     rs1_idx_ex_reg_i,rs2_idx_ex_reg_i,
-    input                           stall_n,
+    input                           stall_n,flush,
 
     output   reg    [`XLEN-1:0]     pc_ex_reg_o,
     output   reg    [`inst_len-1:0]     instr_ex_reg_o,
@@ -32,7 +32,7 @@ always @(posedge clk or negedge rst_n) begin
     else if(stall_n) begin
         pc_ex_reg_o <= pc_ex_reg_i;
     end
-    else begin
+    else if(~stall_n || flush) begin
         pc_ex_reg_o <= `XLEN'b0;
     end
 end
@@ -44,7 +44,7 @@ always @(posedge clk or negedge rst_n) begin
     else if(stall_n) begin
         instr_ex_reg_o <= instr_ex_reg_i;
     end
-    else begin
+    else if(~stall_n || flush) begin
         instr_ex_reg_o <= `inst_len'b0;
     end
 end
@@ -155,7 +155,7 @@ always @(posedge clk or negedge rst_n) begin
     else if(stall_n) begin
         wben_ex_reg_o <= wben_ex_reg_i;
     end
-    else begin
+    else if(~stall_n || flush) begin
         wben_ex_reg_o <= 1'b0;
     end
 end

@@ -84,6 +84,7 @@ ID_reg ID_reg_u(
     .pc_id_reg_i    (pc_new),   
     .instr_id_reg_i (instr_if_id_reg),
     .stall_n        (id_stall_n),
+    .flush          (is_jump),
 
     .pc_id_reg_o    (pc_id),
     .instr_id_reg_o (instr_id)
@@ -141,6 +142,7 @@ EX_reg EX_reg_u(
     .rs1_idx_ex_reg_i(rs1_idx_id),
     .rs2_idx_ex_reg_i(rs2_idx_id),
     .stall_n(ex_stall_n),
+    .flush(is_jump),
 
 
     .pc_ex_reg_o    (pc_ex),
