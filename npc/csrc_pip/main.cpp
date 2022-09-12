@@ -122,9 +122,9 @@ void single_cycle(int i) {
 #ifdef vcd
   fp ->dump(i+1);
 #endif
-
-#ifdef  difftest
   pc = top->pc_decoding;
+#ifdef  difftest
+  
   // if(en == 1){
   //       start = 0;
 
