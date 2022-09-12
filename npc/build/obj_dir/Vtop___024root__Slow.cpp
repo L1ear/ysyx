@@ -1350,7 +1350,45 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__PCBsrc = Vtop__ConstPool__TABLE_4f660885_0
         [__Vtableidx1];
     vlSelf->top__DOT__u_ALU__DOT__ALUout = ((IData)(vlSelf->top__DOT__DivEn)
-                                             ? 0ULL
+                                             ? ((4U 
+                                                 & (IData)(vlSelf->top__DOT__DivSel))
+                                                 ? 
+                                                ((2U 
+                                                  & (IData)(vlSelf->top__DOT__DivSel))
+                                                  ? 
+                                                 ((1U 
+                                                   & (IData)(vlSelf->top__DOT__DivSel))
+                                                   ? 
+                                                  VL_MODDIV_QQQ(64, vlSelf->top__DOT__ALUsrc1, vlSelf->top__DOT__ALUsrc2)
+                                                   : 
+                                                  VL_MODDIVS_QQQ(64, vlSelf->top__DOT__ALUsrc1, vlSelf->top__DOT__ALUsrc2))
+                                                  : 
+                                                 ((1U 
+                                                   & (IData)(vlSelf->top__DOT__DivSel))
+                                                   ? 
+                                                  VL_DIV_QQQ(64, vlSelf->top__DOT__ALUsrc1, vlSelf->top__DOT__ALUsrc2)
+                                                   : 
+                                                  VL_DIVS_QQQ(64, vlSelf->top__DOT__ALUsrc1, vlSelf->top__DOT__ALUsrc2)))
+                                                 : 
+                                                ((2U 
+                                                  & (IData)(vlSelf->top__DOT__DivSel))
+                                                  ? 
+                                                 ((1U 
+                                                   & (IData)(vlSelf->top__DOT__DivSel))
+                                                   ? 
+                                                  (vlSelf->top__DOT__ALUsrc1 
+                                                   * vlSelf->top__DOT__ALUsrc2)
+                                                   : 
+                                                  (vlSelf->top__DOT__ALUsrc1 
+                                                   * vlSelf->top__DOT__ALUsrc2))
+                                                  : 
+                                                 ((1U 
+                                                   & (IData)(vlSelf->top__DOT__DivSel))
+                                                   ? 
+                                                  VL_MULS_QQQ(64,64,64, vlSelf->top__DOT__ALUsrc1, vlSelf->top__DOT__ALUsrc2)
+                                                   : 
+                                                  (vlSelf->top__DOT__ALUsrc1 
+                                                   * vlSelf->top__DOT__ALUsrc2))))
                                              : ((4U 
                                                  & (IData)(vlSelf->top__DOT__ALUctr))
                                                  ? 

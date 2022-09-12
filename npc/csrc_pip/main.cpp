@@ -146,7 +146,10 @@ void ebreak(){
   if(top->regA0 == 0)
     Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",top->pc_decoding);
   else
+  {
     Log("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",top->pc_decoding);
+    err = 1;
+  }
 }
 
 void vmemread(long long raddr,int len, long long *rdata, long long pc){
