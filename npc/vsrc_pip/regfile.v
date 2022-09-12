@@ -37,11 +37,11 @@ always @(posedge clk) begin
 	// end
 end
 
-always @(posedge clk) begin
-	if(instr_wb_i == 32'b1110011) begin
-		ebreak();	
-	end
-end
+// always @(posedge clk) begin
+// 	if(instr_wb_i == 32'b1110011) begin
+// 		ebreak();	
+// 	end
+// end
 
 //read
 assign	rs1_data_o = (rs1_addr_i == 5'b0)?`XLEN'b0 : regfiles[rs1_addr_i];
