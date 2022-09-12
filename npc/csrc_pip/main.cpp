@@ -111,7 +111,7 @@ void single_cycle(int i) {
     }
     if((top->pc_diff != 0) && (top->instr_diff != 0)){ 
       // assert(0); 
-      if(start == 0)
+      if(start == 0 && en == 1)
         difftest_step(cpu.pc);
       start = 0;
     }

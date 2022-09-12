@@ -276,12 +276,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__instr_wb = 0U;
     }
     if (vlSelf->rst_n) {
-        if (vlSelf->top__DOT__hazard_detect_u__DOT__hazard) {
-            if (((IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard) 
-                 | (IData)(vlSelf->top__DOT__is_jump))) {
-                vlSelf->top__DOT__pc_ex = 0ULL;
-            }
-        } else {
+        if (((IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard) 
+             | (IData)(vlSelf->top__DOT__is_jump))) {
+            vlSelf->top__DOT__pc_ex = 0ULL;
+        } else if ((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))) {
             vlSelf->top__DOT__pc_ex = vlSelf->top__DOT__pc_id;
         }
     } else {
@@ -363,24 +361,20 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin 
         = (IData)((0U != (0xaU & (IData)(vlSelf->top__DOT__aluctr_ex))));
     if (vlSelf->rst_n) {
-        if (vlSelf->top__DOT__hazard_detect_u__DOT__hazard) {
-            if (((IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard) 
-                 | (IData)(vlSelf->top__DOT__is_jump))) {
-                vlSelf->top__DOT__wben_ex = 0U;
-            }
-        } else {
+        if (((IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard) 
+             | (IData)(vlSelf->top__DOT__is_jump))) {
+            vlSelf->top__DOT__wben_ex = 0U;
+        } else if ((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))) {
             vlSelf->top__DOT__wben_ex = vlSelf->top__DOT__wben_id;
         }
     } else {
         vlSelf->top__DOT__wben_ex = 0U;
     }
     if (vlSelf->rst_n) {
-        if (vlSelf->top__DOT__hazard_detect_u__DOT__hazard) {
-            if (((IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard) 
-                 | (IData)(vlSelf->top__DOT__is_jump))) {
-                vlSelf->top__DOT__instr_ex = 0U;
-            }
-        } else {
+        if (((IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard) 
+             | (IData)(vlSelf->top__DOT__is_jump))) {
+            vlSelf->top__DOT__instr_ex = 0U;
+        } else if ((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))) {
             vlSelf->top__DOT__instr_ex = vlSelf->top__DOT__instr_id;
         }
     } else {
