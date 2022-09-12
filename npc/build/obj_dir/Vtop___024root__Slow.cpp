@@ -234,9 +234,9 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__aluctr_id = 0U;
     vlSelf->top__DOT__src1sel_id = 0U;
     vlSelf->top__DOT__src2sel_id = 0U;
-    vlSelf->top__DOT__ID_u__DOT__is_jalr = 0U;
-    vlSelf->top__DOT__ID_u__DOT__is_jal = 0U;
-    vlSelf->top__DOT__ID_u__DOT__is_brc = 0U;
+    vlSelf->top__DOT__is_jalr_id = 0U;
+    vlSelf->top__DOT__is_jal_id = 0U;
+    vlSelf->top__DOT__is_brc_id = 0U;
     vlSelf->top__DOT__wben_id = 0U;
     vlSelf->top__DOT__rs1_idx_id = 0U;
     vlSelf->top__DOT__rs2_idx_id = 0U;
@@ -255,7 +255,7 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                     vlSelf->top__DOT__src1sel_id = 1U;
                     vlSelf->top__DOT__src2sel_id = 3U;
                     vlSelf->top__DOT__ID_u__DOT__ext_op = 8U;
-                    vlSelf->top__DOT__ID_u__DOT__is_jal = 1U;
+                    vlSelf->top__DOT__is_jal_id = 1U;
                     vlSelf->top__DOT__aluctr_id = 0U;
                     vlSelf->top__DOT__wben_id = 1U;
                     vlSelf->top__DOT__rs1_idx_id = 0U;
@@ -265,7 +265,7 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                 vlSelf->top__DOT__src1sel_id = 1U;
                 vlSelf->top__DOT__src2sel_id = 3U;
                 vlSelf->top__DOT__ID_u__DOT__ext_op = 1U;
-                vlSelf->top__DOT__ID_u__DOT__is_jalr = 1U;
+                vlSelf->top__DOT__is_jalr_id = 1U;
                 vlSelf->top__DOT__aluctr_id = 0U;
                 vlSelf->top__DOT__wben_id = 1U;
                 vlSelf->top__DOT__rs1_idx_id = (0x1fU 
@@ -273,7 +273,7 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                    >> 0xfU));
                 vlSelf->top__DOT__rs2_idx_id = 0U;
             } else {
-                vlSelf->top__DOT__ID_u__DOT__is_brc = 1U;
+                vlSelf->top__DOT__is_brc_id = 1U;
                 vlSelf->top__DOT__src1sel_id = 0U;
                 vlSelf->top__DOT__src2sel_id = 0U;
                 vlSelf->top__DOT__ID_u__DOT__ext_op = 0x10U;
@@ -1781,9 +1781,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__wben_wb = 0;
     vlSelf->top__DOT__IF_u__DOT__rdata = 0;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0;
-    vlSelf->top__DOT__ID_u__DOT__is_jalr = 0;
-    vlSelf->top__DOT__ID_u__DOT__is_jal = 0;
-    vlSelf->top__DOT__ID_u__DOT__is_brc = 0;
     vlSelf->top__DOT__ID_u__DOT__imm = 0;
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles[__Vi0] = 0;

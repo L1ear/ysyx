@@ -1102,9 +1102,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__aluctr_id = 0U;
     vlSelf->top__DOT__src1sel_id = 0U;
     vlSelf->top__DOT__src2sel_id = 0U;
-    vlSelf->top__DOT__ID_u__DOT__is_jalr = 0U;
-    vlSelf->top__DOT__ID_u__DOT__is_jal = 0U;
-    vlSelf->top__DOT__ID_u__DOT__is_brc = 0U;
+    vlSelf->top__DOT__is_jalr_id = 0U;
+    vlSelf->top__DOT__is_jal_id = 0U;
+    vlSelf->top__DOT__is_brc_id = 0U;
     vlSelf->top__DOT__wben_id = 0U;
     vlSelf->top__DOT__rs1_idx_id = 0U;
     vlSelf->top__DOT__rs2_idx_id = 0U;
@@ -1123,7 +1123,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                     vlSelf->top__DOT__src1sel_id = 1U;
                     vlSelf->top__DOT__src2sel_id = 3U;
                     vlSelf->top__DOT__ID_u__DOT__ext_op = 8U;
-                    vlSelf->top__DOT__ID_u__DOT__is_jal = 1U;
+                    vlSelf->top__DOT__is_jal_id = 1U;
                     vlSelf->top__DOT__aluctr_id = 0U;
                     vlSelf->top__DOT__wben_id = 1U;
                     vlSelf->top__DOT__rs1_idx_id = 0U;
@@ -1133,7 +1133,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                 vlSelf->top__DOT__src1sel_id = 1U;
                 vlSelf->top__DOT__src2sel_id = 3U;
                 vlSelf->top__DOT__ID_u__DOT__ext_op = 1U;
-                vlSelf->top__DOT__ID_u__DOT__is_jalr = 1U;
+                vlSelf->top__DOT__is_jalr_id = 1U;
                 vlSelf->top__DOT__aluctr_id = 0U;
                 vlSelf->top__DOT__wben_id = 1U;
                 vlSelf->top__DOT__rs1_idx_id = (0x1fU 
@@ -1141,7 +1141,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                    >> 0xfU));
                 vlSelf->top__DOT__rs2_idx_id = 0U;
             } else {
-                vlSelf->top__DOT__ID_u__DOT__is_brc = 1U;
+                vlSelf->top__DOT__is_brc_id = 1U;
                 vlSelf->top__DOT__src1sel_id = 0U;
                 vlSelf->top__DOT__src2sel_id = 0U;
                 vlSelf->top__DOT__ID_u__DOT__ext_op = 0x10U;
