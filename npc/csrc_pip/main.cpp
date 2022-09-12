@@ -116,6 +116,7 @@ void single_cycle(int i) {
         {
           printf("````%08lx\n",instr_last);
           difftest_step(cpu.pc);
+          printf("````%08lx\n",instr_last);
         }
       start = 0;
     }
