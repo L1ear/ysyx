@@ -95,7 +95,9 @@ module decoder (
     output   reg    [1      :0]     src2sel_o,
     output   reg    [4      :0]     aluctr_o,
     output   reg                    is_jalr_o,is_jal_o,is_brc_o,
-    output   reg                    wb_en_o
+    output   reg                    wb_en_o,
+    output   reg                    DivEn,
+    output   reg    [2      :0]     DivSel
 );
 wire    [4:0]   opcode = instr_i[6:2];
 wire    [2:0]   fun_3 = instr_i[14:12];
@@ -124,8 +126,8 @@ always @(*) begin
     // IntSync = 1'b0;
     // mret = 1'b0;
 //64/32
-    // DivEn = 1'b0;                          //默认不使能DIV
-    // DivSel = `DivMul;
+    DivEn = 1'b0;                          //默认不使能DIV
+    DivSel = `DivMul;
 //TODO: 补全！！！！！！！！！！！！
     case(opcode)
         `OP_REG,`OP_REG_32: begin
