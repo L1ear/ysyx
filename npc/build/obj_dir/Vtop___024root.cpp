@@ -247,7 +247,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     QData/*63:0*/ __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     // Body
     __Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0U;
-    if ((0U != vlSelf->top__DOT__instr_wb)) {
+    if ((0x73U == vlSelf->top__DOT__instr_wb)) {
         Vtop___024root____Vdpiimwrap_top__DOT__ID_u__DOT__regfile_u__DOT__ebreak_TOP();
     }
     if ((8U == (0x1fU & (vlSelf->top__DOT__instr_ls 
