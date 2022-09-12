@@ -184,5 +184,8 @@ void ebreak(){
   if(top->regA0 == 0)
     printf("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08lx\n",top->instrAddr);
   else
+  {
     printf("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08lx\n",top->instrAddr);
+    err = 1;
+  }
 }
