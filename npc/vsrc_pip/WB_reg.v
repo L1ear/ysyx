@@ -62,7 +62,7 @@ end
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-        csrdata_wb_reg_o <= 1'b0;
+        csrdata_wb_reg_o <= `XLEN'b0;
     end
     else begin
         csrdata_wb_reg_o <= csrdata_wb_reg_i;

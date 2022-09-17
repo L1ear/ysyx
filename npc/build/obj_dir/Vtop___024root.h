@@ -74,7 +74,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause;
         SData/*11:0*/ top__DOT__ID_u__DOT__decoder_u__DOT__csr_idx_o;
         SData/*15:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h;
-        SData/*11:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__csr_idx;
         IData/*31:0*/ top__DOT__instr_id;
         IData/*31:0*/ top__DOT__instr_ex;
         IData/*31:0*/ top__DOT__instr_ls;
@@ -93,9 +92,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__pc_wb;
         QData/*63:0*/ top__DOT__alures_wb;
+        QData/*63:0*/ top__DOT__lsres_wb;
     };
     struct {
-        QData/*63:0*/ top__DOT__lsres_wb;
         QData/*63:0*/ top__DOT__wb_data;
         QData/*63:0*/ top__DOT__csrdata_wb;
         QData/*63:0*/ top__DOT__IF_u__DOT__rdata;
