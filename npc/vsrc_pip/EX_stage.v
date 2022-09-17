@@ -71,7 +71,7 @@ end
 assign rs2_o = rs2;
 
 assign src1 = src1sel_ex_i ? pc_ex_i : rs1;
-assign src2 = src2sel_ex_i[1] ? `XLEN'd4 :
+assign src2 = src2sel_ex_i[1] ? (src2sel_ex_i[0] ? `XLEN'd4 : `XLEN'b0) :
                                 src2sel_ex_i[0] ? imm_ex_i : rs2;
 
 

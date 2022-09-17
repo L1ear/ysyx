@@ -8,7 +8,8 @@ module ls_stage (
     input           [`XLEN-1:0]     wb_data_i,
 
 
-    output          [`XLEN-1:0]     ls_res_o
+    output          [`XLEN-1:0]     ls_res_o,
+    output          [`XLEN-1:0]     csr_data_o
 );
 
 wire                wren,rden;
@@ -42,6 +43,16 @@ ls_ctr  ls_ctr_u(
     .memop(memop),
     .wr_data(wr_data)
     
+);
+
+CSR CSR_u(
+    .clk(clk),
+    .rst_n(rst_n),
+    .pc_i(pc),
+    .instr_i(instr_i),
+    .csr_wr_data(alures_i),
+    .trap(0),
+    .csr_data_o(csr_data_o)
 );
 endmodule
 

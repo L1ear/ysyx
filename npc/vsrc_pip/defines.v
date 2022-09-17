@@ -50,7 +50,7 @@
 `define     Rs2                 2'b00
 `define     imm                 2'b01
 `define     src_4               2'b11
-`define     csr                 2'b10
+`define     src_0               2'b10
 
 //fun3 defines
 //OP_REG
@@ -139,6 +139,12 @@
 
 //mcause define
 `define     ecall_m             64'd11
+
+//CSR defines
+`define     mepc                12'h341
+`define     mtvec               12'h305
+`define     mstatus             12'h300
+`define     mcause              12'h342
 
 
 `define AXI_BURST_TYPE_FIXED                                2'b00               //突发类型  FIFO

@@ -51,6 +51,7 @@ wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;
 wire    [`inst_len-1:0] instr_ls;
 wire    [`XLEN-1:0]     lsres_ls;  
 wire                    wben_ls;
+wire    [`XLEN-1:0]     csrdata_ls;
 
 //wb signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
@@ -59,6 +60,7 @@ wire    [`XLEN-1:0]     wb_data;
 wire    [4      :0]     wb_rdid;
 // wire                    wb_wren;
 wire                    wben_wb;
+wire    [`XLEN-1:0]     csrdata_wb;
 
 //for verilator
 assign  pc_diff = pc_wb;
@@ -260,7 +262,8 @@ ls_stage ls_u(
     .instr_last_i   (instr_wb),
     .wb_data_i      (lsres_wb),
 
-    .ls_res_o       (lsres_ls)
+    .ls_res_o       (lsres_ls),
+    .csr_data_o     (csrdata_ls)
 );
 
 WB_reg wb_reg_u(
@@ -271,12 +274,14 @@ WB_reg wb_reg_u(
     .alures_wb_reg_i(alures_ls),
     .lsres_wb_reg_i (lsres_ls),
     .wben_wb_reg_i  (wben_ls),
+    .csrdata_wb_reg_i(csrdata_ls),
 
     .pc_wb_reg_o    (pc_wb),
     .instr_wb_reg_o (instr_wb),
     .alures_wb_reg_o(alures_wb),
     .lsres_wb_reg_o (lsres_wb),
-    .wben_wb_reg_o  (wben_wb)
+    .wben_wb_reg_o  (wben_wb),
+    .csrdata_wb_reg_o(csrdata_wb)
 );
 
 WB_stage wb_stage_u(
@@ -284,6 +289,7 @@ WB_stage wb_stage_u(
     .instr_i        (instr_wb),
     .alures_i       (alures_wb),
     .lsres_i        (lsres_wb),
+    .csrdata_i      (csrdata_wb),
 
     .rd_idx_o       (wb_rdid),
     // .rd_wren_o      (wb_wren),

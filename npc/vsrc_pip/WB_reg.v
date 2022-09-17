@@ -6,11 +6,13 @@ module WB_reg (
     input           [`XLEN-1:0]     alures_wb_reg_i,
     input           [`XLEN-1:0]     lsres_wb_reg_i,
     input                           wben_wb_reg_i,
+    input           [`XLEN-1:0]     csrdata_wb_reg_i,
 
     output   reg    [`XLEN-1:0]     pc_wb_reg_o,
     output   reg    [`inst_len-1:0] instr_wb_reg_o,
     output   reg    [`XLEN-1:0]     alures_wb_reg_o,lsres_wb_reg_o,
-    output   reg                    wben_wb_reg_o
+    output   reg                    wben_wb_reg_o,
+    output   reg    [`XLEN-1:0]     csrdata_wb_reg_o
 );
 
 always @(posedge clk or negedge rst_n) begin
@@ -55,6 +57,15 @@ always @(posedge clk or negedge rst_n) begin
     end
     else begin
         wben_wb_reg_o <= wben_wb_reg_i;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        csrdata_wb_reg_o <= 1'b0;
+    end
+    else begin
+        csrdata_wb_reg_o <= csrdata_wb_reg_i;
     end
 end
 

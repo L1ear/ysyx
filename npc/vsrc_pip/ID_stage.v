@@ -101,7 +101,9 @@ module decoder (
     output   reg                    is_jalr_o,is_jal_o,is_brc_o,
     output   reg                    wb_en_o,
     output   reg                    DivEn,
-    output   reg    [2      :0]     DivSel
+    output   reg    [2      :0]     DivSel,
+    // output   reg                    csrWrEn,
+    output   reg    [11     :0]     csr_idx_o
 );
 wire    [4:0]   opcode = instr_i[6:2];
 wire    [2:0]   fun_3 = instr_i[14:12];
@@ -305,39 +307,40 @@ always @(*) begin
         end
         // //调用DPI-C函数
         `syscall: begin
-        //     Src1Sel = `Rs1;
-        //     Src2Sel = `csr;
-        //     RegWrEn = 1'b1;
-        //     branch = `NonBranch;
-        //     RegWrSel = `AluOut;
-        //     csrWrEn = 1'b1;
-        //     case(fun_3)
-        //         `env: begin
-        //             if(instr_i[20]) begin                       //ebreak;
+            Src1Sel = `Rs1;
+            Src2Sel = `src_0;
+            // csrWrEn = 1'b1;
+            aluctr_o = `AluAdd_64;
+            case(fun_3)
+                `env: begin
+                    wb_en_o = 1'b0;
+                    if(instr_i[20]) begin                       //ebreak;
                     //    ebreak();
-        //             end
-        //             else if(~instr_i[21]) begin                 //ecall              //ecall;
-        //                 //TODO
+                    end
+                    else if(~instr_i[21]) begin                 //ecall              //ecall;
+                        //TODO
         //                 IntSync = 1'b1;
-        //             end
-        //             else begin                                  //mret
-        //                 mret = 1'b1;
-        //             end
-        //         end
-        //         `csrrw: begin
+                    end
+                    else begin                                  //mret
+                        // mret = 1'b1;
+                    end
+                end
+                `csrrw: begin
         //             //TODO
-        //             ALUctr = `AluSrc2;
-        //             csr_op = 2'b10;         //直接写
-        //         end
-        //         `csrrs: begin
-        //             //TODO
-        //             ALUctr = `AluSrc2;
-        //             csr_op = 2'b11;         //或后写
-        //         end
-        //         default: begin
+                    wb_en_o = 1'b1;
+                    // ALUctr = `AluSrc2;
+                    // csr_op = 2'b10;         //直接写
+                end
+                `csrrs: begin
+                    //TODO
+                    wb_en_o = 1'b1;
+                    // ALUctr = `AluSrc2;
+                    // csr_op = 2'b11;         //或后写
+                end
+                default: begin
 
-        //         end
-        //     endcase
+                end
+            endcase
         end
         default: begin
             //TODO
