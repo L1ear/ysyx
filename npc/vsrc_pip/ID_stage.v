@@ -307,8 +307,8 @@ always @(*) begin
         end
         // //调用DPI-C函数
         `syscall: begin
-            Src1Sel = `Rs1;
-            Src2Sel = `src_0;
+            src1sel_o = `Rs1;
+            src2sel_o = `src_0;
             // csrWrEn = 1'b1;
             aluctr_o = `AluAdd_64;
             case(fun_3)
