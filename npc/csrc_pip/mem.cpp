@@ -16,24 +16,12 @@ static int difftest_port = 1234;
 
 // char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv64-npc.bin";
 static const uint32_t img [] = {
-0x00100093,//addi x1,x0,1                 1    addi x1,x0,1
-0x00100113,//addi x2,x0,1                 2    addi x2,x0,1
-0x00208663,//beq x1,x2,0x0000000c         3    beq x1,x2,label0
-0x00300193,//addi x3,x0,3                 4    addi x3,x0,3
-0x00400213,//addi x4,x0,4                 5    addi x4,x0,4
-0x00500293,//addi x5,x0,5                 7    addi x5,x0,5
-0x00509663,//bne x1,x5,0x0000000c         8    bne x1,x5,label1
-0x00600313,//addi x6,x0,6                 9    addi x6,x0,6
-0x00700393,//addi x7,x0,7                 10   addi x7,x0,7
-0x00800413,//addi x8,x0,8                 12   addi x8,x0,8
-0x00c00fef,//jal x31,0x0000000c           13   jal x31,label2
-0x00900493,//addi x9,x0,9                 14   addi x9,x0,9
-0x00a00513,//addi x10,x0,10               15   addi x10,x0,10
-0x00b00593,//addi x11,x0,11               17   addi x11,x0,11
-0x00308663,//beq x1,x3,0x0000000c         18   beq x1,x3,label3
-0x00c00613,//addi x12,x0,12               19   addi x12,x0,12
-0x00d00693,//addi x13,x0,13               20   addi x13,x0,13
-0x00e00713,//addi x14,x0,14               22   addi x14,x0,14
+30571073,//csrw	mtvec,a4
+342022f3,//csrr	t0,mcause
+30002373,//csrr	t1,mstatus
+341023f3,//csrr	t2,mepc
+30031073,//csrw	mstatus,t1
+34139073,//csrw	mepc,t2
 0x00000013,//addi x0,x0,0                 32   nop
 0x00000013,//addi x0,x0,0                 32   nop
 0x00000013,//addi x0,x0,0                 32   nop
