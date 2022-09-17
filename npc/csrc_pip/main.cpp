@@ -118,9 +118,10 @@ void single_cycle(int i) {
         }
       start = 0;
     }
+
+#endif
     cpu.pc = top->pc_diff;
     instr_last = top->instr_diff;
-#endif
   top->clk = 0;
   top->eval();
 #ifdef vcd
