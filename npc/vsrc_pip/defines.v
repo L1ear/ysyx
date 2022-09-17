@@ -146,6 +146,9 @@
 `define     mstatus             12'h300
 `define     mcause              12'h342
 
+`define     csrrw               3'b001
+`define     csrrs               3'b010
+`define     csrrc               3'b011
 
 `define AXI_BURST_TYPE_FIXED                                2'b00               //突发类型  FIFO
 `define AXI_BURST_TYPE_INCR                                 2'b01               //ram  
