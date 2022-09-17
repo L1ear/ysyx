@@ -103,7 +103,7 @@ module decoder (
     output   reg                    DivEn,
     output   reg    [2      :0]     DivSel,
     // output   reg                    csrWrEn,
-    output   reg    [11     :0]     csr_idx_o
+    // output   reg    [11     :0]     csr_idx_o
 );
 wire    [4:0]   opcode = instr_i[6:2];
 wire    [2:0]   fun_3 = instr_i[14:12];
