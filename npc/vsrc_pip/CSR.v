@@ -80,7 +80,7 @@ end
 reg     [`XLEN-1:0]     mcause;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-        mcause <= `XLEN'ha00001800;
+        mcause <= `XLEN'h0;
     end
     else if(sel_mcause | trap) begin
         mcause <= trap ? mcause:      //此处暂未正确实现
