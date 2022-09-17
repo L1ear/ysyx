@@ -101,7 +101,7 @@ module decoder (
     output   reg                    is_jalr_o,is_jal_o,is_brc_o,
     output   reg                    wb_en_o,
     output   reg                    DivEn,
-    output   reg    [2      :0]     DivSel,
+    output   reg    [2      :0]     DivSel
     // output   reg                    csrWrEn,
     // output   reg    [11     :0]     csr_idx_o
 );

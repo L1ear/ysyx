@@ -2279,7 +2279,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IF_u__DOT__rdata = 0;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0;
     vlSelf->top__DOT__ID_u__DOT__imm = 0;
-    vlSelf->top__DOT__ID_u__DOT__decoder_u__DOT__csr_idx_o = 0;
     for (int __Vi0=0; __Vi0<32; ++__Vi0) {
         vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles[__Vi0] = 0;
     }
