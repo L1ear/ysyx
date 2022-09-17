@@ -3,7 +3,7 @@ module CSR (
     input           [`XLEN-1:0]     pc_i,
     input           [`inst_len-1:0] instr_i,
     // input                           csr_wr_en,
-    input           [11     :0]     csr_idx,   
+    // input           [11     :0]     csr_idx,   
     input           [`XLEN-1:0]     csr_wr_data,
     input                           trap,
 
