@@ -77,7 +77,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
                 = vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__wr_data;
         }
     } else {
-        vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause = 0xa00001800ULL;
+        vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause = 0ULL;
     }
     if (vlSelf->rst_n) {
         if (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus) {

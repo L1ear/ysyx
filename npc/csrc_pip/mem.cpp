@@ -22,11 +22,11 @@ static const uint32_t img [] = {
 0x341023f3,//csrr	t2,mepc
 0x30031073,//csrw	mstatus,t1
 0x34139073,//csrw	mepc,t2
-0x00000013,//addi x0,x0,0                 32   nop
-0x00000013,//addi x0,x0,0                 32   nop
-0x00000013,//addi x0,x0,0                 32   nop
-0x00000013,//addi x0,x0,0                 32   nop
-0x00000013,//addi x0,x0,0                 32   nop
+// 0x00000013,//addi x0,x0,0                 32   nop
+// 0x00000013,//addi x0,x0,0                 32   nop
+// 0x00000013,//addi x0,x0,0                 32   nop
+// 0x00000013,//addi x0,x0,0                 32   nop
+// 0x00000013,//addi x0,x0,0                 32   nop
 0x00100073,// ebreak (used as npctrap)
 };
 
