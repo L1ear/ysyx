@@ -48,7 +48,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 }
 
 void yield() {
-  asm volatile("li a7, -1; csrr s11,mstatus;ecall");
+  asm volatile("li a7, -1; csrr s11,mstatus;ecall;csrr s11,mstatus;");
 }
 
 bool ienabled() {
