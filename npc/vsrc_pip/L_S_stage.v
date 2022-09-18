@@ -9,7 +9,8 @@ module ls_stage (
 
 
     output          [`XLEN-1:0]     ls_res_o,
-    output          [`XLEN-1:0]     csr_data_o
+    output          [`XLEN-1:0]     csr_data_o,
+    output          [`XLEN-1:0]     mtvec_o
 );
 
 wire                wren,rden;
@@ -52,7 +53,8 @@ CSR CSR_u(
     .instr_i(instr_i),
     .csr_wr_data(alures_i),
     .trap(0),
-    .csr_data_o(csr_data_o)
+    .csr_data_o(csr_data_o),
+    .mtvec_o(mtvec_o)
 );
 endmodule
 

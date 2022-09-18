@@ -7,8 +7,11 @@ module CSR (
     input           [`XLEN-1:0]     csr_wr_data,
     input                           trap,
 
-    output          [`XLEN-1:0]     csr_data_o
+    output          [`XLEN-1:0]     csr_data_o,
+    output          [`XLEN-1:0]     mtvec_o
 );
+
+assign  mtvec_o = mtvec;
 
 wire    csrrw = (instr_i[14:12] == `csrrw);
 wire    csrrs = (instr_i[14:12] == `csrrs);

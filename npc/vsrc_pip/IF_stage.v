@@ -3,6 +3,7 @@ module IF_stage (
     input           [`XLEN-1:0]     pc_i,
     input                           is_jump_i,
     input           [`XLEN-1:0]     pc_jump_i,
+    input           [`XLEN-1:0]     csr_mtvec,csr_mepc,
 
     output          [`XLEN-1:0]     pc_next_o,
     output          [`inst_len-1:0] instr_o

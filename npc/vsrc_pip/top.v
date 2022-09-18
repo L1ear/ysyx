@@ -52,6 +52,7 @@ wire    [`inst_len-1:0] instr_ls;
 wire    [`XLEN-1:0]     lsres_ls;  
 wire                    wben_ls;
 wire    [`XLEN-1:0]     csrdata_ls;
+wire    [`XLEN-1:0]     csr_mtvec;
 
 //wb signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
@@ -80,6 +81,8 @@ IF_stage IF_u(
     .pc_i           (pc_new),
     .is_jump_i      (is_jump),
     .pc_jump_i      (pc_jump),
+    .csr_mtvec      (csr_mtvec),
+    .csr_mepc       (),
 
     .pc_next_o      (pc_next),
     .instr_o        (instr_if_id_reg)
@@ -263,7 +266,8 @@ ls_stage ls_u(
     .wb_data_i      (lsres_wb),
 
     .ls_res_o       (lsres_ls),
-    .csr_data_o     (csrdata_ls)
+    .csr_data_o     (csrdata_ls),
+    .mtvec_o        (csr_mtvec)
 );
 
 WB_reg wb_reg_u(
