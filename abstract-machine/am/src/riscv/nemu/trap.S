@@ -31,6 +31,7 @@ f(30) f(31)
 .globl __am_asm_trap
 __am_asm_trap:
   csrr s11,mstatus
+  ecall
   addi sp, sp, -CONTEXT_SIZE
 
   MAP(REGS, PUSH)
