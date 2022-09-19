@@ -76,8 +76,8 @@ always @(posedge clk or negedge rst_n) begin
         mstatus <= `XLEN'ha00001800;
     end
     else if(sel_mstatus | trap) begin
-        mstatus <= trap ? (system & instr_i[21] & (instr_i[14:12]==3'b0)) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
-                                                                          : {mstatus[`XLEN-1:8],1'b1,      mstatus[6:4],mstatus[7],mstatus[2:0]} :      //此处暂未正确实现
+        mstatus <= trap ? (system & ~instr_i[21] & (instr_i[14:12]==3'b0)) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
+                                                                          : {mstatus[`XLEN-1:8]                     ,1'b1,      mstatus[6:4],mstatus[7],mstatus[2:0]} :      //此处暂未正确实现
                                                                             wr_data;
     end
 end

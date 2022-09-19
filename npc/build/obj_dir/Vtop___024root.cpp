@@ -636,7 +636,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     }
     if (vlSelf->rst_n) {
         if ((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))) {
-            vlSelf->top__DOT__instr_id = ((IData)(vlSelf->top__DOT__is_jump)
+            vlSelf->top__DOT__instr_id = ((((IData)(vlSelf->top__DOT__is_jump) 
+                                            | (IData)(vlSelf->top__DOT__in_trap_id)) 
+                                           | (IData)(vlSelf->top__DOT__out_trap_id))
                                            ? 0U : (IData)(vlSelf->top__DOT__IF_u__DOT__rdata));
         }
     } else {

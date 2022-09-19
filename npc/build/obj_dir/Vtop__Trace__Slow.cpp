@@ -777,7 +777,9 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                        | (IData)(vlSelf->top__DOT__in_trap_id)) 
                                       | (IData)(vlSelf->top__DOT__out_trap_id))
                                       ? 0ULL : vlSelf->top__DOT__pc_new)),64);
-        tracep->fullIData(oldp+177,(((IData)(vlSelf->top__DOT__is_jump)
+        tracep->fullIData(oldp+177,(((((IData)(vlSelf->top__DOT__is_jump) 
+                                       | (IData)(vlSelf->top__DOT__in_trap_id)) 
+                                      | (IData)(vlSelf->top__DOT__out_trap_id))
                                       ? 0U : (IData)(vlSelf->top__DOT__IF_u__DOT__rdata))),32);
         tracep->fullCData(oldp+178,(vlSelf->top__DOT__ID_u__DOT__ext_op),5);
         tracep->fullCData(oldp+179,((0x1fU & (vlSelf->top__DOT__instr_id 
