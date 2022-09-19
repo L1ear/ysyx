@@ -41,6 +41,9 @@ VL_MODULE(Vtop___024root) {
         CData/*4:0*/ top__DOT__rs2_idx_id;
         CData/*0:0*/ top__DOT__DivEn_id;
         CData/*2:0*/ top__DOT__DivSel_id;
+        CData/*0:0*/ top__DOT__in_trap_id;
+        CData/*0:0*/ top__DOT__out_trap_id;
+        CData/*0:0*/ top__DOT__trap_id;
         CData/*0:0*/ top__DOT__src1sel_ex;
         CData/*1:0*/ top__DOT__src2sel_ex;
         CData/*4:0*/ top__DOT__aluctr_ex;
@@ -50,11 +53,13 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__wben_ex;
         CData/*0:0*/ top__DOT__DivEn_ex;
         CData/*2:0*/ top__DOT__DivSel_ex;
+        CData/*0:0*/ top__DOT__trap_ex;
         CData/*1:0*/ top__DOT__rs1_sel;
         CData/*1:0*/ top__DOT__rs2_sel;
         CData/*4:0*/ top__DOT__rs1_idx_ex;
         CData/*4:0*/ top__DOT__rs2_idx_ex;
         CData/*0:0*/ top__DOT__wben_ls;
+        CData/*0:0*/ top__DOT__trap_ls;
         CData/*0:0*/ top__DOT__wben_wb;
         CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
         CData/*0:0*/ top__DOT__hazard_detect_u__DOT__hazard;
@@ -88,15 +93,14 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__pc_ls;
         QData/*63:0*/ top__DOT__rs2_ls;
         QData/*63:0*/ top__DOT__alures_ls;
+    };
+    struct {
         QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__pc_wb;
         QData/*63:0*/ top__DOT__alures_wb;
         QData/*63:0*/ top__DOT__lsres_wb;
         QData/*63:0*/ top__DOT__wb_data;
-    };
-    struct {
         QData/*63:0*/ top__DOT__csrdata_wb;
-        QData/*63:0*/ top__DOT__IF_u__DOT__csr_mepc;
         QData/*63:0*/ top__DOT__IF_u__DOT__rdata;
         QData/*63:0*/ top__DOT__ID_u__DOT__imm;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__src1;

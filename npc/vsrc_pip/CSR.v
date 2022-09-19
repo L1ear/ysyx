@@ -82,7 +82,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 //mcause更新策略
-wire    mcause_n;
+wire [`XLEN-1:0]    mcause_n;
 assign  mcause_n = system ? `XLEN'd11 : `XLEN'b0;   //支持ecall，暂时
 
 
