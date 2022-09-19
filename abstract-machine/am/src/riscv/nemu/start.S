@@ -7,4 +7,5 @@ _start:
   la sp, _stack_pointer
   li s11,1
   csrrs s11,mstatus,s11
+  csrr s11,mstatus
   jal _trm_init
