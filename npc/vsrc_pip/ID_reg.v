@@ -22,7 +22,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 wire  [`inst_len-1:0]       instr_id_reg;
-assign instr_id_reg = flush ? `inst_len'b0 : instr_id_reg_i;        //为了仿真方便，就替换成0,而不是nop
+assign instr_id_reg = (flush || in_trap_id || out_trap_id) ? `inst_len'b0 : instr_id_reg_i;        //为了仿真方便，就替换成0,而不是nop
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
