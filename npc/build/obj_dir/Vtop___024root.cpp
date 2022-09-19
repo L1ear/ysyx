@@ -174,27 +174,26 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
             __Vtemp1 = ((IData)(vlSelf->top__DOT__trap_ls)
                          ? ((IData)((0x200070U == (0x20707cU 
                                                    & vlSelf->top__DOT__instr_ls)))
-                             ? ((0x7ffffffffffff000ULL 
-                                 & (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
-                                    >> 1U)) | (QData)((IData)(
-                                                              (0xc00U 
-                                                               | ((0x300U 
-                                                                   & ((IData)(
-                                                                              (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
-                                                                               >> 9U)) 
-                                                                      << 8U)) 
-                                                                  | ((0x80U 
-                                                                      & ((IData)(
-                                                                                (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
-                                                                                >> 3U)) 
-                                                                         << 7U)) 
-                                                                     | ((0x70U 
-                                                                         & ((IData)(
-                                                                                (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
-                                                                                >> 4U)) 
-                                                                            << 4U)) 
-                                                                        | (7U 
-                                                                           & (IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus)))))))))
+                             ? ((0xffffffffffffe000ULL 
+                                 & vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus) 
+                                | (QData)((IData)((0x1800U 
+                                                   | ((0x700U 
+                                                       & ((IData)(
+                                                                  (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
+                                                                   >> 8U)) 
+                                                          << 8U)) 
+                                                      | ((0x80U 
+                                                          & ((IData)(
+                                                                     (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
+                                                                      >> 3U)) 
+                                                             << 7U)) 
+                                                         | ((0x70U 
+                                                             & ((IData)(
+                                                                        (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
+                                                                         >> 4U)) 
+                                                                << 4U)) 
+                                                            | (7U 
+                                                               & (IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus)))))))))
                              : ((0xffffffffffffff00ULL 
                                  & vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus) 
                                 | (QData)((IData)((0x80U 
