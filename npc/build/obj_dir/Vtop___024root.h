@@ -96,6 +96,7 @@ VL_MODULE(Vtop___024root) {
     };
     struct {
         QData/*63:0*/ top__DOT__csrdata_wb;
+        QData/*63:0*/ top__DOT__IF_u__DOT__csr_mepc;
         QData/*63:0*/ top__DOT__IF_u__DOT__rdata;
         QData/*63:0*/ top__DOT__ID_u__DOT__imm;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__src1;

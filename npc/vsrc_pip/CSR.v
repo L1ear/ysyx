@@ -17,7 +17,7 @@ wire    csrrw = (instr_i[14:12] == `csrrw);
 wire    csrrs = (instr_i[14:12] == `csrrs);
 wire    csrrc = (instr_i[14:12] == `csrrc);
 
-wire    system = (instr_i[14:12] == `system);
+wire    system = (instr_i[6:2] == `system);
 
 wire    csr_wr_en;
 assign  csr_wr_en = (csrrw | csrrs | csrrc);    
