@@ -114,7 +114,7 @@ void single_cycle(int i) {
       // assert(0); 
       if(en == 1 )
         {
-          if(instr_last == 0x3ea78c23)  difftest_skip_ref();
+          if(instr_last == 0x3ea78c23 ||instr_last == 0x0487b783)  difftest_skip_ref();
           difftest_step(cpu.pc);
         }
       start = 0;
