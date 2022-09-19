@@ -50,7 +50,7 @@ always @(*) begin
             // rd_wren_o = 1'b1;
             rd_data_o = alures_i;    
         end
-        `syscall: begin
+        `system: begin
             rd_data_o = csrdata_i;
         end
         default: begin

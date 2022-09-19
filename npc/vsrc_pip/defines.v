@@ -29,7 +29,7 @@
 `define     immB                5'b10000
 
 //OpCode defines
-`define     syscall             5'b11100
+`define     system              5'b11100
 `define     lui                 5'b01101
 `define     auipc               5'b00101
 `define     OP_IMM              5'b00100

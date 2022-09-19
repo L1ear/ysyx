@@ -306,7 +306,7 @@ always @(*) begin
             DivSel = `DivMul;            
         end
         // //调用DPI-C函数
-        `syscall: begin
+        `system: begin
             src1sel_o = `Rs1;
             src2sel_o = `src_0;
             // csrWrEn = 1'b1;
