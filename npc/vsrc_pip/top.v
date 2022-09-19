@@ -27,6 +27,9 @@ wire    [4      :0]     rs1_idx_id,rs2_idx_id;
 wire                    id_stall_n;
 wire                    DivEn_id;
 wire    [2      :0]     DivSel_id;
+wire                    in_trap_id;
+wire                    out_trap_id;
+wire                    trap_id;
 
 //ex signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ex;
@@ -40,6 +43,7 @@ wire                    is_brc_ex,is_jal_ex,is_jalr_ex;
 wire                    wben_ex;
 wire                    DivEn_ex;
 wire    [2      :0]     DivSel_ex;
+wire                    trap_ex;
 
 wire    [`XLEN-1:0]     wbres_fw;
 wire    [1      :0]     rs1_sel,rs2_sel;
@@ -52,7 +56,8 @@ wire    [`inst_len-1:0] instr_ls;
 wire    [`XLEN-1:0]     lsres_ls;  
 wire                    wben_ls;
 wire    [`XLEN-1:0]     csrdata_ls;
-wire    [`XLEN-1:0]     csr_mtvec;
+wire    [`XLEN-1:0]     csr_mtvec,csr_mepc;
+wire                    trap_ls;
 
 //wb signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
@@ -82,7 +87,9 @@ IF_stage IF_u(
     .is_jump_i      (is_jump),
     .pc_jump_i      (pc_jump),
     .csr_mtvec      (csr_mtvec),
-    .csr_mepc       (),
+    .csr_mepc       (csr_mepc),
+    .in_trap_id     (in_trap_id),
+    .out_trap_id    (out_trap_id),
 
     .pc_next_o      (pc_next),
     .instr_o        (instr_if_id_reg)
@@ -125,7 +132,10 @@ ID_stage ID_u(
     .wben_id_o      (wben_id),
     .rs1_idx        (rs1_idx_id),
     .rs2_idx        (rs2_idx_id),
-    .regA0          (regA0)
+    .regA0          (regA0),
+    .trap_id_o      (trap_id),
+    .in_trap_id     (in_trap_id),
+    .out_trap_id    (out_trap_id)
 );
 
 hazard_detect hazard_detect_u(
@@ -159,6 +169,7 @@ EX_reg EX_reg_u(
     .flush(is_jump),
     .DivEn_ex_reg_i (DivEn_id),
     .DivSel_ex_reg_i(DivSel_id),
+    .trap_ex_reg_i  (trap_id),
 
 
     .pc_ex_reg_o    (pc_ex),
@@ -178,7 +189,8 @@ EX_reg EX_reg_u(
     .rs1_idx_ex_reg_o(rs1_idx_ex),
     .rs2_idx_ex_reg_o(rs2_idx_ex) ,
     .DivEn_ex_reg_o (DivEn_ex),
-    .DivSel_ex_reg_o(DivSel_ex)
+    .DivSel_ex_reg_o(DivSel_ex),
+    .trap_ex_reg_o  (trap_ex)
 );
 
 ex_stage ex_stage_u(
@@ -246,12 +258,14 @@ L_S_reg L_S_reg_u(
     .rs2_ls_reg_i   (rs2_ex_u_o),
     .alures_ls_reg_i(alures_ex),
     .wben_ls_reg_i  (wben_ex),
+    .trap_ls_reg_i  (trap_ex),
 
     .PC_ls_reg_o    (pc_ls),
     .instr_ls_reg_o (instr_ls),
     .rs2_ls_reg_o   (rs2_ls),
     .alures_ls_reg_o(alures_ls),
-    .wben_ls_reg_o  (wben_ls)
+    .wben_ls_reg_o  (wben_ls),
+    .trap_ls_reg_o  (trap_ls)
 );
 
 ls_stage ls_u(
@@ -264,10 +278,12 @@ ls_stage ls_u(
     .alures_last_i  (alures_wb),
     .instr_last_i   (instr_wb),
     .wb_data_i      (lsres_wb),
+    .trap_ls_i      (trap_ls),
 
     .ls_res_o       (lsres_ls),
     .csr_data_o     (csrdata_ls),
-    .mtvec_o        (csr_mtvec)
+    .mtvec_o        (csr_mtvec),
+    .mepc_o         (csr_mepc)
 );
 
 WB_reg wb_reg_u(

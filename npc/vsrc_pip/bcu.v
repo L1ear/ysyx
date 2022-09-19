@@ -8,7 +8,6 @@ module bcu (
     // input                           is_jump_i,
     input           [`XLEN-1:0]     imm_i,
     input           [`XLEN-1:0]     pc_i,
-    input                           trap_branch_i,
 
     output          [`XLEN-1:0]     brc_pc_o,
     output                          is_jump_o

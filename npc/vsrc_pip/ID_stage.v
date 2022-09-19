@@ -20,7 +20,7 @@ module ID_stage (
     output	[`XLEN-1:0]				regA0,
     output                          DivEn,
     output          [2:0]           DivSel    ,
-    output                          trap_id_o,trap_id_branch
+    output                          trap_id_o,in_trap_id,out_trap_id
     // output          [`XLEN-1:0]     pc_next_o,
     // output                          is_jump_o
 );
@@ -56,7 +56,8 @@ decoder decoder_u(
     .DivEn(DivEn),
     .DivSel(DivSel),
     .trap_id_o(trap_id_o),
-    .trap_id_branch(trap_id_branch),
+    .in_trap_id(in_trap_id),
+    .out_trap_id(out_trap_id)
 );
 imm_ext imm_ext_u(
     .instr_imm_i(instr_i[31:7]),
@@ -105,7 +106,7 @@ module decoder (
     output   reg                    wb_en_o,
     output   reg                    DivEn,
     output   reg    [2      :0]     DivSel,
-    output   reg                    trap_id_o,trap_id_branch
+    output   reg                    trap_id_o,in_trap_id,out_trap_id
     // output   reg                    csrWrEn,
     // output   reg    [11     :0]     csr_idx_o
 );
@@ -132,7 +133,8 @@ always @(*) begin
     rs1_idx_o = 5'b0;
     rs2_idx_o = 5'b0;
     trap_id_o = 1'b0;
-    trap_id_branch = 1'b0;
+    in_trap_id = 1'b0;
+    out_trap_id = 1'b0;
     // csrWrEn = 1'b0;
     // csr_op = 2'b0;              
     // IntSync = 1'b0;
@@ -320,17 +322,20 @@ always @(*) begin
             case(fun_3)
                 `env: begin
                     trap_id_o = 1'b1;
-                    trap_id_branch = 1'b1;
+                    
 
                     wb_en_o = 1'b0;
                     if(instr_i[20]) begin                       //ebreak;
                     //    ebreak();
+                        in_trap_id = 1'b1;
                     end
                     else if(~instr_i[21]) begin                 //ecall              //ecall;
                         //TODO
+                        in_trap_id = 1'b1;
         //                 IntSync = 1'b1;
                     end
-                    else begin                                  //mret
+                    else begin     
+                        out_trap_id = 1'b1;                             //mret
                         // mret = 1'b1;
                     end
                 end

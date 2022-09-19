@@ -6,11 +6,12 @@ module ls_stage (
     input           [`XLEN-1:0]     alures_last_i,
     input           [`inst_len-1:0] instr_last_i,
     input           [`XLEN-1:0]     wb_data_i,
+    input                           trap_ls_i,
 
 
     output          [`XLEN-1:0]     ls_res_o,
     output          [`XLEN-1:0]     csr_data_o,
-    output          [`XLEN-1:0]     mtvec_o
+    output          [`XLEN-1:0]     mtvec_o,mepc_o
 );
 
 wire                wren,rden;
@@ -52,9 +53,10 @@ CSR CSR_u(
     .pc_i(pc),
     .instr_i(instr_i),
     .csr_wr_data(alures_i),
-    .trap(0),
+    .trap(trap_ls_i),
     .csr_data_o(csr_data_o),
-    .mtvec_o(mtvec_o)
+    .mtvec_o(mtvec_o),
+    .mepc_o(mepc_o)
 );
 endmodule
 
