@@ -1803,19 +1803,30 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__rs1_idx_id = 0U;
     if ((0x40U & vlSelf->top__DOT__instr_id)) {
         if ((0x20U & vlSelf->top__DOT__instr_id)) {
-            if ((1U & (~ (vlSelf->top__DOT__instr_id 
-                          >> 4U)))) {
-                if ((8U & vlSelf->top__DOT__instr_id)) {
-                    if ((4U & vlSelf->top__DOT__instr_id)) {
-                        vlSelf->top__DOT__rs1_idx_id = 0U;
+            if ((0x10U & vlSelf->top__DOT__instr_id)) {
+                if ((1U & (~ (vlSelf->top__DOT__instr_id 
+                              >> 3U)))) {
+                    if ((1U & (~ (vlSelf->top__DOT__instr_id 
+                                  >> 2U)))) {
+                        vlSelf->top__DOT__rs1_idx_id 
+                            = (0x1fU & (vlSelf->top__DOT__instr_id 
+                                        >> 0xfU));
                     }
-                } else {
-                    vlSelf->top__DOT__rs1_idx_id = 
-                        (0x1fU & ((4U & vlSelf->top__DOT__instr_id)
-                                   ? (vlSelf->top__DOT__instr_id 
-                                      >> 0xfU) : (vlSelf->top__DOT__instr_id 
-                                                  >> 0xfU)));
                 }
+            } else if ((8U & vlSelf->top__DOT__instr_id)) {
+                if ((4U & vlSelf->top__DOT__instr_id)) {
+                    vlSelf->top__DOT__rs1_idx_id = 0U;
+                }
+            } else {
+                vlSelf->top__DOT__rs1_idx_id = (0x1fU 
+                                                & ((4U 
+                                                    & vlSelf->top__DOT__instr_id)
+                                                    ? 
+                                                   (vlSelf->top__DOT__instr_id 
+                                                    >> 0xfU)
+                                                    : 
+                                                   (vlSelf->top__DOT__instr_id 
+                                                    >> 0xfU)));
             }
         }
     } else if ((0x20U & vlSelf->top__DOT__instr_id)) {
@@ -1871,18 +1882,26 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__rs2_idx_id = 0U;
     if ((0x40U & vlSelf->top__DOT__instr_id)) {
         if ((0x20U & vlSelf->top__DOT__instr_id)) {
-            if ((1U & (~ (vlSelf->top__DOT__instr_id 
-                          >> 4U)))) {
-                if ((8U & vlSelf->top__DOT__instr_id)) {
-                    if ((4U & vlSelf->top__DOT__instr_id)) {
+            if ((0x10U & vlSelf->top__DOT__instr_id)) {
+                if ((1U & (~ (vlSelf->top__DOT__instr_id 
+                              >> 3U)))) {
+                    if ((1U & (~ (vlSelf->top__DOT__instr_id 
+                                  >> 2U)))) {
                         vlSelf->top__DOT__rs2_idx_id = 0U;
                     }
-                } else {
-                    vlSelf->top__DOT__rs2_idx_id = 
-                        ((4U & vlSelf->top__DOT__instr_id)
-                          ? 0U : (0x1fU & (vlSelf->top__DOT__instr_id 
-                                           >> 0x14U)));
                 }
+            } else if ((8U & vlSelf->top__DOT__instr_id)) {
+                if ((4U & vlSelf->top__DOT__instr_id)) {
+                    vlSelf->top__DOT__rs2_idx_id = 0U;
+                }
+            } else {
+                vlSelf->top__DOT__rs2_idx_id = ((4U 
+                                                 & vlSelf->top__DOT__instr_id)
+                                                 ? 0U
+                                                 : 
+                                                (0x1fU 
+                                                 & (vlSelf->top__DOT__instr_id 
+                                                    >> 0x14U)));
             }
         }
     } else if ((0x20U & vlSelf->top__DOT__instr_id)) {
