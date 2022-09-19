@@ -122,6 +122,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+127,"top ID_reg_u instr_id_reg_i", false,-1, 31,0);
         tracep->declBit(c+126,"top ID_reg_u stall_n", false,-1);
         tracep->declBit(c+125,"top ID_reg_u flush", false,-1);
+        tracep->declBit(c+304,"top ID_reg_u in_trap_id", false,-1);
+        tracep->declBit(c+305,"top ID_reg_u out_trap_id", false,-1);
         tracep->declQuad(c+128,"top ID_reg_u pc_id_reg_o", false,-1, 63,0);
         tracep->declBus(c+130,"top ID_reg_u instr_id_reg_o", false,-1, 31,0);
         tracep->declQuad(c+175,"top ID_reg_u pc_id_reg", false,-1, 63,0);
@@ -328,7 +330,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+125,"top ex_stage_u bcu_u is_jump_o", false,-1);
         tracep->declQuad(c+48,"top ex_stage_u bcu_u pc_imm_res", false,-1, 63,0);
         tracep->declQuad(c+50,"top ex_stage_u bcu_u rs1_imm_res", false,-1, 63,0);
-        tracep->declBit(c+304,"top ex_stage_u bcu_u less", false,-1);
+        tracep->declBit(c+306,"top ex_stage_u bcu_u less", false,-1);
         tracep->declBit(c+230,"top ex_stage_u bcu_u zero", false,-1);
         tracep->declBit(c+231,"top ex_stage_u bcu_u carry", false,-1);
         tracep->declBit(c+232,"top ex_stage_u bcu_u overflow", false,-1);
@@ -414,7 +416,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+258,"top ls_u lsu_u rd_data_b", false,-1, 7,0);
         tracep->declBus(c+259,"top ls_u lsu_u rd_data_h", false,-1, 15,0);
         tracep->declBus(c+260,"top ls_u lsu_u rd_data_w", false,-1, 31,0);
-        tracep->declQuad(c+305,"top ls_u lsu_u wr_mask", false,-1, 63,0);
+        tracep->declQuad(c+307,"top ls_u lsu_u wr_mask", false,-1, 63,0);
         tracep->declBit(c+261,"top ls_u lsu_u sb", false,-1);
         tracep->declBit(c+262,"top ls_u lsu_u sh", false,-1);
         tracep->declBit(c+263,"top ls_u lsu_u sw", false,-1);
@@ -1048,7 +1050,9 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+302,(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
                                       ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                      [vlSelf->top__DOT__rs1_idx_id])),64);
-        tracep->fullBit(oldp+304,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__less));
-        tracep->fullQData(oldp+305,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask),64);
+        tracep->fullBit(oldp+304,(vlSelf->top__DOT__ID_reg_u__DOT__in_trap_id));
+        tracep->fullBit(oldp+305,(vlSelf->top__DOT__ID_reg_u__DOT__out_trap_id));
+        tracep->fullBit(oldp+306,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__less));
+        tracep->fullQData(oldp+307,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask),64);
     }
 }

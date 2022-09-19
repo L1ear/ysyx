@@ -10,13 +10,13 @@ module ID_reg (
 );
 
 wire  [`XLEN-1:0]       pc_id_reg;
-assign pc_id_reg = flush ? `XLEN'b0 : pc_id_reg_i;
+assign pc_id_reg = (flush || in_trap_id || out_trap_id) ? `XLEN'b0 : pc_id_reg_i;
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         pc_id_reg_o <= `XLEN'b0;
     end
-    else if(stall_n && ~in_trap_id && ~out_trap_id) begin
+    else if(stall_n) begin
         pc_id_reg_o <= pc_id_reg;
     end
 end
@@ -28,7 +28,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         instr_id_reg_o <= `inst_len'b0;
     end
-    else if(stall_n && ~in_trap_id && ~out_trap_id) begin
+    else if(stall_n) begin
         instr_id_reg_o <= instr_id_reg;
     end
 end

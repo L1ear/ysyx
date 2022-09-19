@@ -102,6 +102,8 @@ ID_reg ID_reg_u(
     .instr_id_reg_i (instr_if_id_reg),
     .stall_n        (id_stall_n),
     .flush          (is_jump),
+    .in_trap_id     (in_trap_id),
+    .out_trap_id    (out_trap_id),
 
     .pc_id_reg_o    (pc_id),
     .instr_id_reg_o (instr_id)

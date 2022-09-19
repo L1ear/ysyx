@@ -477,7 +477,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                    ? vlSelf->top__DOT__instr_ex
                                    : 0U);
     if (vlSelf->rst_n) {
-        if ((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))) {
+        if ((1U & (((~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)) 
+                    & (~ (IData)(vlSelf->top__DOT__ID_reg_u__DOT__in_trap_id))) 
+                   & (~ (IData)(vlSelf->top__DOT__ID_reg_u__DOT__out_trap_id))))) {
             vlSelf->top__DOT__pc_id = ((IData)(vlSelf->top__DOT__is_jump)
                                         ? 0ULL : vlSelf->top__DOT__pc_new);
         }
@@ -633,7 +635,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__pc_new = 0x80000000ULL;
     }
     if (vlSelf->rst_n) {
-        if ((1U & (~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)))) {
+        if ((1U & (((~ (IData)(vlSelf->top__DOT__hazard_detect_u__DOT__hazard)) 
+                    & (~ (IData)(vlSelf->top__DOT__ID_reg_u__DOT__in_trap_id))) 
+                   & (~ (IData)(vlSelf->top__DOT__ID_reg_u__DOT__out_trap_id))))) {
             vlSelf->top__DOT__instr_id = ((IData)(vlSelf->top__DOT__is_jump)
                                            ? 0U : (IData)(vlSelf->top__DOT__IF_u__DOT__rdata));
         }
