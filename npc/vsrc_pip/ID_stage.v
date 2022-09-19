@@ -19,7 +19,8 @@ module ID_stage (
     output          [4      :0]     rs1_idx,rs2_idx,
     output	[`XLEN-1:0]				regA0,
     output                          DivEn,
-    output          [2:0]           DivSel    
+    output          [2:0]           DivSel    ,
+    output                          trap_id_o
     // output          [`XLEN-1:0]     pc_next_o,
     // output                          is_jump_o
 );
@@ -53,7 +54,8 @@ decoder decoder_u(
     .rs1_idx_o(rs1_idx),
     .rs2_idx_o(rs2_idx),
     .DivEn(DivEn),
-    .DivSel(DivSel)
+    .DivSel(DivSel),
+    .trap_id_o(trap_id_o)
 );
 imm_ext imm_ext_u(
     .instr_imm_i(instr_i[31:7]),
@@ -101,7 +103,8 @@ module decoder (
     output   reg                    is_jalr_o,is_jal_o,is_brc_o,
     output   reg                    wb_en_o,
     output   reg                    DivEn,
-    output   reg    [2      :0]     DivSel
+    output   reg    [2      :0]     DivSel,
+    output   reg                    trap_id_o
     // output   reg                    csrWrEn,
     // output   reg    [11     :0]     csr_idx_o
 );
@@ -127,6 +130,7 @@ always @(*) begin
     wb_en_o = 1'b0;
     rs1_idx_o = 5'b0;
     rs2_idx_o = 5'b0;
+    trap_id_o = 1'b0;
     // csrWrEn = 1'b0;
     // csr_op = 2'b0;              
     // IntSync = 1'b0;
@@ -313,6 +317,7 @@ always @(*) begin
             aluctr_o = `AluAdd_64;
             case(fun_3)
                 `env: begin
+                    trap_id_o = 1'b1;
                     wb_en_o = 1'b0;
                     if(instr_i[20]) begin                       //ebreak;
                     //    ebreak();
@@ -344,6 +349,7 @@ always @(*) begin
         end
         default: begin
             //TODO
+            //trap_id_o = 1'b1;
         end
     endcase
 end
