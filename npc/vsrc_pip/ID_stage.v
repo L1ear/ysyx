@@ -317,6 +317,8 @@ always @(*) begin
         `system: begin
             src1sel_o = `Rs1;
             src2sel_o = `src_0;
+            rs1_idx_o = instr_i[19:15];
+            rs2_idx_o = 5'b0;
             // csrWrEn = 1'b1;
             aluctr_o = `AluAdd_64;
             case(fun_3)
