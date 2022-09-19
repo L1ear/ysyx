@@ -563,25 +563,21 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+284,(((~ vlSelf->top__DOT__alures_ls) 
                                         & vlSelf->top__DOT__csrdata_ls)),64);
             tracep->chgQData(oldp+286,(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__wr_data),64);
-            tracep->chgBit(oldp+288,((1U & (IData)(
-                                                   ((0x1cU 
-                                                     == 
-                                                     (0x1fU 
-                                                      & (vlSelf->top__DOT__instr_ls 
-                                                         >> 2U)))
-                                                     ? 0xbULL
-                                                     : 0ULL)))));
+            tracep->chgQData(oldp+288,(((0x1cU == (0x1fU 
+                                                   & (vlSelf->top__DOT__instr_ls 
+                                                      >> 2U)))
+                                         ? 0xbULL : 0ULL)),64);
         }
-        tracep->chgBit(oldp+289,(vlSelf->clk));
-        tracep->chgBit(oldp+290,(vlSelf->rst_n));
-        tracep->chgQData(oldp+291,(vlSelf->pc_diff),64);
-        tracep->chgQData(oldp+293,(vlSelf->pc_decoding),64);
-        tracep->chgIData(oldp+295,(vlSelf->instr_diff),32);
-        tracep->chgQData(oldp+296,(vlSelf->regA0),64);
-        tracep->chgQData(oldp+298,(((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
+        tracep->chgBit(oldp+290,(vlSelf->clk));
+        tracep->chgBit(oldp+291,(vlSelf->rst_n));
+        tracep->chgQData(oldp+292,(vlSelf->pc_diff),64);
+        tracep->chgQData(oldp+294,(vlSelf->pc_decoding),64);
+        tracep->chgIData(oldp+296,(vlSelf->instr_diff),32);
+        tracep->chgQData(oldp+297,(vlSelf->regA0),64);
+        tracep->chgQData(oldp+299,(((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
                                      ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                     [vlSelf->top__DOT__rs2_idx_id])),64);
-        tracep->chgQData(oldp+300,(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
+        tracep->chgQData(oldp+301,(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
                                      ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                     [vlSelf->top__DOT__rs1_idx_id])),64);
     }

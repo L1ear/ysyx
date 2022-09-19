@@ -161,15 +161,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
              | (IData)(vlSelf->top__DOT__trap_ls))) {
             vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause 
                 = ((IData)(vlSelf->top__DOT__trap_ls)
-                    ? (QData)((IData)((1U & (IData)(
-                                                    ((0x1cU 
-                                                      == 
-                                                      (0x1fU 
-                                                       & (vlSelf->top__DOT__instr_ls 
-                                                          >> 2U)))
-                                                      ? 0xbULL
-                                                      : 0ULL)))))
-                    : vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__wr_data);
+                    ? ((0x1cU == (0x1fU & (vlSelf->top__DOT__instr_ls 
+                                           >> 2U)))
+                        ? 0xbULL : 0ULL) : vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__wr_data);
         }
     } else {
         vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause = 0ULL;
