@@ -84,13 +84,13 @@ void difftest_step(long long pc) {
   //   return;
   // }
 
-  // if (is_skip_ref) {
-  //   // to skip the checking of an instruction, just copy the reg state to reference design
-  //   // printf("??????????????????????????");
-  //   ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
-  //   is_skip_ref = false;
-  //   return;
-  // }
+  if (is_skip_ref) {
+    // to skip the checking of an instruction, just copy the reg state to reference design
+    // printf("??????????????????????????");
+    ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
+    is_skip_ref = false;
+    return;
+  }
 
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
