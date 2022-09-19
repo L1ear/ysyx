@@ -20,7 +20,7 @@ wire    csrrc = (instr_i[14:12] == `csrrc);
 wire    system = (instr_i[6:2] == `system);
 
 wire    csr_wr_en;
-assign  csr_wr_en = (csrrw | csrrs | csrrc);    
+assign  csr_wr_en = (csrrw | csrrs | csrrc) & system;    
 
 //有例外发生时，在这里添加使能条件
 
