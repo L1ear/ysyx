@@ -172,8 +172,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__1(Vtop___024root* vlSelf) {
         if (((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus) 
              | (IData)(vlSelf->top__DOT__trap_ls))) {
             __Vtemp1 = ((IData)(vlSelf->top__DOT__trap_ls)
-                         ? ((IData)((0x200070U == (0x20707cU 
-                                                   & vlSelf->top__DOT__instr_ls)))
+                         ? ((IData)((0x70U == (0x20707cU 
+                                               & vlSelf->top__DOT__instr_ls)))
                              ? ((0xffffffffffffe000ULL 
                                  & vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus) 
                                 | (QData)((IData)((0x1800U 

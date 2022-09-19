@@ -70,7 +70,7 @@ static inline bool difftest_check_reg(const char *name, uint64_t pc, word_t ref,
 
 void difftest_step(long long pc) {
 
-  Log("diff step!!!PC: %08lx",pc);
+  // Log("diff step!!!PC: %08lx",pc);
   CPU_state ref_r;
   // if (skip_dut_nr_inst > 0) {
   //   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
