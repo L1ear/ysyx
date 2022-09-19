@@ -463,12 +463,15 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf = 0ULL;
     }
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en 
-        = (((1U == (7U & (vlSelf->top__DOT__instr_ls 
-                          >> 0xcU))) | (2U == (7U & 
-                                               (vlSelf->top__DOT__instr_ls 
-                                                >> 0xcU)))) 
-           | (3U == (7U & (vlSelf->top__DOT__instr_ls 
-                           >> 0xcU))));
+        = ((((1U == (7U & (vlSelf->top__DOT__instr_ls 
+                           >> 0xcU))) | (2U == (7U 
+                                                & (vlSelf->top__DOT__instr_ls 
+                                                   >> 0xcU)))) 
+            | (3U == (7U & (vlSelf->top__DOT__instr_ls 
+                            >> 0xcU)))) & (0x1cU == 
+                                           (0x1fU & 
+                                            (vlSelf->top__DOT__instr_ls 
+                                             >> 2U))));
     vlSelf->top__DOT__rs2_sel = ((((IData)(vlSelf->top__DOT__wben_ls) 
                                    & ((0x1fU & (vlSelf->top__DOT__instr_ls 
                                                 >> 7U)) 
