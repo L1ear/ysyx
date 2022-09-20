@@ -52,11 +52,11 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   if(addr == 0xa0000048){
     printf("%ld\n",get_time());
     difftest_skip_ref();
-    printf("**************************%08x\n",instrAddr);
+    Log("**************************%08x\n",instrAddr);
     return get_time();
   }
   else if(addr>0x88000000||addr<0x80000000){
-    printf("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
+    Log("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
     return 0;
     }
   else
