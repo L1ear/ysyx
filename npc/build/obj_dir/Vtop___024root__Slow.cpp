@@ -973,14 +973,17 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                | ((0x1fU & (vlSelf->top__DOT__instr_ex 
                             >> 7U)) == (0x1fU & (vlSelf->top__DOT__instr_id 
                                                  >> 0x14U))))) 
-           | (((3U == (0x7fU & vlSelf->top__DOT__instr_id)) 
-               | (8U == (0x1fU & (vlSelf->top__DOT__instr_id 
-                                  >> 2U)))) & ((0x1fU 
-                                                & (vlSelf->top__DOT__instr_ex 
-                                                   >> 7U)) 
-                                               == (0x1fU 
-                                                   & (vlSelf->top__DOT__instr_id 
-                                                      >> 0xfU)))));
+           | (((3U == (0x7fU & vlSelf->top__DOT__instr_ex)) 
+               & ((3U == (0x7fU & vlSelf->top__DOT__instr_id)) 
+                  | (8U == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                     >> 2U))))) & (
+                                                   (0x1fU 
+                                                    & (vlSelf->top__DOT__instr_ex 
+                                                       >> 7U)) 
+                                                   == 
+                                                   (0x1fU 
+                                                    & (vlSelf->top__DOT__instr_id 
+                                                       >> 0xfU)))));
     Vtop___024root____Vdpiimwrap_top__DOT__IF_u__DOT__vmemread_TOP(vlSelf->top__DOT__pc_new, 4U, vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata, vlSelf->top__DOT__pc_new);
     vlSelf->top__DOT__IF_u__DOT__rdata = vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0U;

@@ -1991,14 +1991,17 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                | ((0x1fU & (vlSelf->top__DOT__instr_ex 
                             >> 7U)) == (0x1fU & (vlSelf->top__DOT__instr_id 
                                                  >> 0x14U))))) 
-           | (((3U == (0x7fU & vlSelf->top__DOT__instr_id)) 
-               | (8U == (0x1fU & (vlSelf->top__DOT__instr_id 
-                                  >> 2U)))) & ((0x1fU 
-                                                & (vlSelf->top__DOT__instr_ex 
-                                                   >> 7U)) 
-                                               == (0x1fU 
-                                                   & (vlSelf->top__DOT__instr_id 
-                                                      >> 0xfU)))));
+           | (((3U == (0x7fU & vlSelf->top__DOT__instr_ex)) 
+               & ((3U == (0x7fU & vlSelf->top__DOT__instr_id)) 
+                  | (8U == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                     >> 2U))))) & (
+                                                   (0x1fU 
+                                                    & (vlSelf->top__DOT__instr_ex 
+                                                       >> 7U)) 
+                                                   == 
+                                                   (0x1fU 
+                                                    & (vlSelf->top__DOT__instr_id 
+                                                       >> 0xfU)))));
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0U;
     if ((0x40U & vlSelf->top__DOT__instr_id)) {
         if ((0x20U & vlSelf->top__DOT__instr_id)) {
