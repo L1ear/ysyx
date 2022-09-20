@@ -50,7 +50,7 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   // }
   // printf("\n");
   if(addr == 0xa0000048){
-    printf("%ld\n",get_time());
+    Log("%ld\n",get_time());
     difftest_skip_ref();
     Log("**************************%08x\n",instrAddr);
     return get_time();
