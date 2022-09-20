@@ -65,12 +65,12 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   // }
   // printf("\n");
   // printf("*****************************memread: %llx\n",addr);
-  // if(addr == 0xa0000048){
-  //   printf("%ld\n",get_time());
-  //   difftest_skip_ref();
-  //   printf("**************************%08x\n",instrAddr);
-  //   return get_time();
-  // }
+  if(addr == 0xa0000048){
+    // Log("%ld\n",get_time());
+    // difftest_skip_ref();
+    Log("get time: %08x\n",instrAddr);
+    return get_time();
+  }
   if(addr == 0xa00003f8){
     // difftest_skip_ref();
     return 0;
