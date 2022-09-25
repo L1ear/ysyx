@@ -416,14 +416,14 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+256,"top ls_u lsu_u rd_data_b", false,-1, 7,0);
         tracep->declBus(c+257,"top ls_u lsu_u rd_data_h", false,-1, 15,0);
         tracep->declBus(c+258,"top ls_u lsu_u rd_data_w", false,-1, 31,0);
-        tracep->declBus(c+259,"top ls_u lsu_u wr_mask", false,-1, 7,0);
-        tracep->declBus(c+260,"top ls_u lsu_u wr_mask_b", false,-1, 7,0);
-        tracep->declBus(c+261,"top ls_u lsu_u wr_mask_h", false,-1, 7,0);
-        tracep->declBus(c+262,"top ls_u lsu_u wr_mask_w", false,-1, 7,0);
-        tracep->declBit(c+263,"top ls_u lsu_u sb", false,-1);
-        tracep->declBit(c+264,"top ls_u lsu_u sh", false,-1);
-        tracep->declBit(c+265,"top ls_u lsu_u sw", false,-1);
-        tracep->declBit(c+266,"top ls_u lsu_u sd", false,-1);
+        tracep->declBus(c+259,"top ls_u lsu_u wr_mask_b", false,-1, 7,0);
+        tracep->declBus(c+260,"top ls_u lsu_u wr_mask_h", false,-1, 7,0);
+        tracep->declBus(c+261,"top ls_u lsu_u wr_mask_w", false,-1, 7,0);
+        tracep->declBit(c+262,"top ls_u lsu_u sb", false,-1);
+        tracep->declBit(c+263,"top ls_u lsu_u sh", false,-1);
+        tracep->declBit(c+264,"top ls_u lsu_u sw", false,-1);
+        tracep->declBit(c+265,"top ls_u lsu_u sd", false,-1);
+        tracep->declBus(c+266,"top ls_u lsu_u wr_mask", false,-1, 7,0);
         tracep->declQuad(c+299,"top ls_u lsu_u wr_data_buf", false,-1, 63,0);
         tracep->declBus(c+158,"top ls_u ls_ctr_u instr_i", false,-1, 31,0);
         tracep->declBus(c+166,"top ls_u ls_ctr_u instr_last_i", false,-1, 31,0);
@@ -966,8 +966,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+256,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b),8);
         tracep->fullSData(oldp+257,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h),16);
         tracep->fullIData(oldp+258,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w),32);
-        tracep->fullCData(oldp+259,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask),8);
-        tracep->fullCData(oldp+260,(((1U & (IData)(
+        tracep->fullCData(oldp+259,(((1U & (IData)(
                                                    (vlSelf->top__DOT__alures_ls 
                                                     >> 2U)))
                                       ? ((1U & (IData)(
@@ -986,7 +985,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                               ? 8U : 4U)
                                           : ((1U & (IData)(vlSelf->top__DOT__alures_ls))
                                               ? 2U : 1U)))),8);
-        tracep->fullCData(oldp+261,(((1U & (IData)(
+        tracep->fullCData(oldp+260,(((1U & (IData)(
                                                    (vlSelf->top__DOT__alures_ls 
                                                     >> 2U)))
                                       ? ((1U & (IData)(
@@ -997,19 +996,20 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                        (vlSelf->top__DOT__alures_ls 
                                                         >> 1U)))
                                           ? 0xcU : 3U))),8);
-        tracep->fullCData(oldp+262,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask_w),8);
-        tracep->fullBit(oldp+263,((IData)((0x20U == 
+        tracep->fullCData(oldp+261,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask_w),8);
+        tracep->fullBit(oldp+262,((IData)((0x20U == 
                                            (0x707cU 
                                             & vlSelf->top__DOT__instr_ls)))));
-        tracep->fullBit(oldp+264,((IData)((0x1020U 
+        tracep->fullBit(oldp+263,((IData)((0x1020U 
                                            == (0x707cU 
                                                & vlSelf->top__DOT__instr_ls)))));
-        tracep->fullBit(oldp+265,((IData)((0x2020U 
+        tracep->fullBit(oldp+264,((IData)((0x2020U 
                                            == (0x707cU 
                                                & vlSelf->top__DOT__instr_ls)))));
-        tracep->fullBit(oldp+266,((IData)((0x3020U 
+        tracep->fullBit(oldp+265,((IData)((0x3020U 
                                            == (0x707cU 
                                                & vlSelf->top__DOT__instr_ls)))));
+        tracep->fullCData(oldp+266,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask),8);
         tracep->fullBit(oldp+267,(((0U == (0x1fU & 
                                            (vlSelf->top__DOT__instr_wb 
                                             >> 2U))) 

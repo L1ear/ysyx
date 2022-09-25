@@ -2321,8 +2321,8 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w = 0;
-    vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask_w = 0;
+    vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_buf = 0;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en = 0;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc = 0;
