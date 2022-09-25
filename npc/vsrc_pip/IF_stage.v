@@ -18,9 +18,7 @@ module IF_stage (
 import "DPI-C" function void vmemread(input longint raddr, input int len, output longint rdata, input longint pc);
 
 
-assign pc_next_o = is_jump_i ? pc_jump_i : 
-                                in_trap_id? csr_mtvec : 
-                                            out_trap_id? csr_mepc : (pc_i+`XLEN'd4);     //对于ex阶段前的trap，有jump先jump
+assign pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id? csr_mepc : (pc_i+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
 // assign instr_o = instr_mem[pc_i[17:2]];
 
 
