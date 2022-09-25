@@ -195,6 +195,8 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
       break;
     }
     case 0xff:{
+      Log("data:%016lx, pc: %08lx\n", wdata, pc);
+      assert(0);
       memwrite(waddr, 8, wdata, pc);
       break;
     }
