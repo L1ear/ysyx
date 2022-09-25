@@ -224,11 +224,11 @@ always@(*)begin
 end
 
 // wire    [`XLEN-1:0] wr_data;
-assign  wr_mask = `8'b0
-                  |({`8{sb}} & (wr_mask_b))
-                  |({`8{sh}} & (wr_mask_h))
-                  |({`8{sw}} & (wr_mask_w))
-                  |({`8{sd}} & (8'b1111_1111));
+assign  wr_mask = 8'b0
+                  |({8{sb}} & (wr_mask_b))
+                  |({8{sh}} & (wr_mask_h))
+                  |({8{sw}} & (wr_mask_w))
+                  |({8{sd}} & (8'b1111_1111));
 
 
 reg     [`XLEN-1:0] wr_data_buf;
