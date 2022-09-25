@@ -171,6 +171,12 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
     // printf("write: %llx\n",waddr);
     switch (wr_mask)
     {
+      case 0xff:{
+      Log("data:%016lx, pc: %08lx\n", wdata, pc);
+      assert(0);
+      memwrite(waddr, 8, wdata, pc);
+      break;
+    }
     case 1:
     case 2:
     case 4:
@@ -194,12 +200,7 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
       memwrite(waddr, 4, BITS(wdata,32,0), pc);
       break;
     }
-    case 0xff:{
-      Log("data:%016lx, pc: %08lx\n", wdata, pc);
-      assert(0);
-      memwrite(waddr, 8, wdata, pc);
-      break;
-    }
+    
 
     
     default:
