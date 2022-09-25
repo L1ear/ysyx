@@ -177,7 +177,7 @@ assign  ls_res_o = `XLEN'b0
 //写mem-------------------------------------------------------------------
 
 
-wire    [7:0]           wr_mask;  
+reg     [7:0]           wr_mask;  
 // wire                    sb,sh,sw,sd;  
 // //save or load 
 // `define     sb                  3'b000
