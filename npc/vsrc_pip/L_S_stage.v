@@ -177,7 +177,7 @@ assign  ls_res_o = `XLEN'b0
 //写mem-------------------------------------------------------------------
 
 
-reg     [7:0]           wr_mask,wr_mask_b, wr_mask_h, wr_mask_w;  
+reg     [7:0]           wr_mask_b, wr_mask_h, wr_mask_w;  
 wire                    sb,sh,sw,sd;  
 // //save or load 
 // `define     sb                  3'b000
@@ -222,7 +222,7 @@ always@(*)begin
 			1'b1:wr_mask_w = 8'b1111_0000;
         endcase
 end
-
+wire    [7:0]   wr_mask;
 // wire    [`XLEN-1:0] wr_data;
 assign  wr_mask = 8'b0
                   |({8{sb}} & (wr_mask_b))
