@@ -206,6 +206,8 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
 
     
     default:
+      printf("%d\n", wr_mask);
+      assert(0);
       break;
     }
     
