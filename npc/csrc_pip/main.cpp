@@ -170,7 +170,7 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
   //waddr = waddr & ~0x7ull;  //clear low 3bit for 8byte align.
     // printf("write: %llx\n",waddr);
     
-    switch (wr_mask)
+    switch ((int)wr_mask)
     {
       case 0xff:{
       Log("data:%016lx, pc: %08lx\n", wdata, pc);
@@ -206,7 +206,6 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
 
     
     default:
-    assert(0);
       break;
     }
     
