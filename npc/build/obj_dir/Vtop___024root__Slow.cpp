@@ -1075,10 +1075,9 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
         }
     }
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask 
-        = (0xffU & (((((IData)((- (QData)((IData)((0x20U 
-                                                   == 
-                                                   (0x707cU 
-                                                    & vlSelf->top__DOT__instr_ls)))))) 
+        = (0xffU & (((((- (IData)((IData)((0x20U == 
+                                           (0x707cU 
+                                            & vlSelf->top__DOT__instr_ls))))) 
                        & ((1U & (IData)((vlSelf->top__DOT__alures_ls 
                                          >> 2U))) ? 
                           ((1U & (IData)((vlSelf->top__DOT__alures_ls 
@@ -1095,11 +1094,9 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                   & (IData)(vlSelf->top__DOT__alures_ls))
                                                   ? 2U
                                                   : 1U)))) 
-                      | ((IData)((- (QData)((IData)(
-                                                    (0x1020U 
-                                                     == 
-                                                     (0x707cU 
-                                                      & vlSelf->top__DOT__instr_ls)))))) 
+                      | ((- (IData)((IData)((0x1020U 
+                                             == (0x707cU 
+                                                 & vlSelf->top__DOT__instr_ls))))) 
                          & ((1U & (IData)((vlSelf->top__DOT__alures_ls 
                                            >> 2U)))
                              ? ((1U & (IData)((vlSelf->top__DOT__alures_ls 
@@ -1107,17 +1104,15 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                  ? 0xc1U : 0x30U) : 
                             ((1U & (IData)((vlSelf->top__DOT__alures_ls 
                                             >> 1U)))
-                              ? 0xcU : 3U)))) | ((IData)(
-                                                         (- (QData)((IData)(
-                                                                            (0x2020U 
-                                                                             == 
-                                                                             (0x707cU 
-                                                                              & vlSelf->top__DOT__instr_ls)))))) 
+                              ? 0xcU : 3U)))) | ((- (IData)((IData)(
+                                                                    (0x2020U 
+                                                                     == 
+                                                                     (0x707cU 
+                                                                      & vlSelf->top__DOT__instr_ls))))) 
                                                  & (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask_w))) 
-                    | (IData)((- (QData)((IData)((0x3020U 
-                                                  == 
-                                                  (0x707cU 
-                                                   & vlSelf->top__DOT__instr_ls))))))));
+                    | (- (IData)((IData)((0x3020U == 
+                                          (0x707cU 
+                                           & vlSelf->top__DOT__instr_ls)))))));
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base 
         = (((8U == (0x1fU & (vlSelf->top__DOT__instr_wb 
                              >> 2U))) & (vlSelf->top__DOT__alures_wb 
