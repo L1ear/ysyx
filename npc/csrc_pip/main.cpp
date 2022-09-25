@@ -206,6 +206,7 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
 
     
     default:
+    assert(0);
       break;
     }
     
