@@ -187,6 +187,7 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
     case 64:
     case 128:{
       memwrite(waddr, 1, BITS(wdata,7,0), pc);
+      assert(0);
       break;
     }
     case 3:
