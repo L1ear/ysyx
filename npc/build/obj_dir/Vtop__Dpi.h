@@ -20,7 +20,7 @@ extern "C" {
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/IF_stage.v:18:30
     extern void vmemread(long long raddr, int len, long long* rdata, long long pc);
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/L_S_stage.v:79:30
-    extern void vmemwrite(long long raddr, long long wdata, char wr_mask, long long pc);
+    extern void vmemwrite(long long raddr, long long wdata, long long pc);
 
 #ifdef __cplusplus
 }
