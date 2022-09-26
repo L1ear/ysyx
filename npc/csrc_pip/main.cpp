@@ -182,23 +182,23 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
           
     // Log("%d\n",(uint8_t)wr_mask);
     // assert(0);
-    switch ((uint8_t)wr_mask)
-    {
-    case 1:
-      memwrite(waddr, 1, wdata, pc);
-      break;
-    case 3:
-      memwrite(waddr, 2, wdata, pc);
-      break;
-    case 15:
-      memwrite(waddr, 4, wdata, pc);
-      break;
-    case 0xff:
-      memwrite(waddr, 8, wdata, pc);
-      break;
-    default:
-      break;
-    }
-    // memwrite(waddr, 8, wdata, pc);
+    // switch ((uint8_t)wr_mask)
+    // {
+    // case 1:
+    //   memwrite(waddr, 1, wdata, pc);
+    //   break;
+    // case 3:
+    //   memwrite(waddr, 2, wdata, pc);
+    //   break;
+    // case 15:
+    //   memwrite(waddr, 4, wdata, pc);
+    //   break;
+    // case 0xff:
+    //   memwrite(waddr, 8, wdata, pc);
+    //   break;
+    // default:
+    //   break;
+    // }
+    memwrite(waddr, (uint8_t)wr_mask, wdata, pc);
 }
 

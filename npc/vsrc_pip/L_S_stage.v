@@ -85,8 +85,6 @@ wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
 always @(negedge clk) begin                     //这里使用了下降沿，是为了避免verilator的时序问题，在加入cache后应修改
     if(rden)
         vmemread(dpi_addr, 8, rd_data_base, pc_ls_i);
-    else
-        rd_data_base = `XLEN'b0;
 end
 
 // wire   use_last =  wren_last_i & (addr_last_i == addr_i);
@@ -187,16 +185,16 @@ assign  sd = wren & (memop == `sd);
 always @(*) begin
     case({sb,sh,sw,sd})
         4'b1000: begin
-            wr_mask = 8'b0000_0001;
+            wr_mask = 8'd1;//8'b0000_0001;
         end
         4'b0100: begin
-            wr_mask = 8'b0000_0011;
+            wr_mask = 8'd2;//8'b0000_0011;
         end
         4'b0010: begin
-            wr_mask = 8'b0000_1111;
+            wr_mask = 8'd4;//8'b0000_1111;
         end
         4'b0001: begin
-            wr_mask = 8'b1111_1111;
+            wr_mask = 8'd8;//8'b1111_1111;
         end
         default: begin
             wr_mask = 8'b0000_0000;
