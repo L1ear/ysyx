@@ -76,13 +76,13 @@ module lsu (
 // reg     [`XLEN-1:0]     d_mem   [0:255];
 
 import "DPI-C" function void vmemread(input longint raddr, input int len, output longint rdata, input longint pc);
-import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input longint pc);
+import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input byte wr_mask, input longint pc);
 
 reg     [`XLEN-1:0]     rd_data_base;
 // reg     [`XLEN-1:0]     rd_data_base_buf;
 // assign  rd_data_base = d_mem[addr_i[10:3]];
 wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
-always @(negedge clk) begin                     //
+always @(negedge clk) begin                     //这里使用了下降沿，是为了避免verilator的时序问题，在加入cache后应修改
     if(wren || rden)
         vmemread(dpi_addr, 8, rd_data_base, pc_ls_i);
     else
@@ -176,64 +176,40 @@ assign  ls_res_o = `XLEN'b0
 //写mem-------------------------------------------------------------------
 
 
-wire    [`XLEN-1:0]     wr_mask;  
+reg     [`XLEN-1:0]     wr_mask;  
 wire                    sb,sh,sw,sd;  
-// //save or load 
-// `define     sb                  3'b000
-// `define     sh                  3'b001
-// `define     sw                  3'b010
-// `define     sd                  3'b011
-// `define     lb                  3'b000
-// `define     lbu                 3'b100
-// `define     lh                  3'b001
-// `define     lhu                 3'b101
-// `define     lw                  3'b010
-// `define     lwu                 3'b110
-// `define     ld                  3'b011
+
 assign  sb = wren & (memop == `sb);
 assign  sh = wren & (memop == `sh);
 assign  sw = wren & (memop == `sw);
 assign  sd = wren & (memop == `sd);
 
+always @(*) begin
+    case({sb,sh,sw,sd})
+        4'b1000: begin
+            wr_mask = 4'b0000_0001;
+        end
+        4'b0100: begin
+            wr_mask = 4'b0000_0011;
+        end
+        4'b0010: begin
+            wr_mask = 4'b0000_1111;
+        end
+        4'b0001: begin
+            wr_mask = 4'b1111_1111;
+        end
+        default: begin
+            wr_mask = 4'b0000_0000;
+        end
+    endcase 
+end 
 
-reg     [`XLEN-1:0]     wr_data_b;
-reg     [`XLEN-1:0]     wr_data_h;
-reg     [`XLEN-1:0]     wr_data_w;
-always@(*)begin
-		case(addr_i[2:0])
-			3'b000:wr_data_b={rd_data_base[63:8],wr_data_i[7:0]};
-			3'b001:wr_data_b={rd_data_base[63:16],wr_data_i[7:0],rd_data_base[7:0]};
-			3'b010:wr_data_b={rd_data_base[63:24],wr_data_i[7:0],rd_data_base[15:0]};
-			3'b011:wr_data_b={rd_data_base[63:32],wr_data_i[7:0],rd_data_base[23:0]};
-            3'b100:wr_data_b={rd_data_base[63:40],wr_data_i[7:0],rd_data_base[31:0]};
-			3'b101:wr_data_b={rd_data_base[63:48],wr_data_i[7:0],rd_data_base[39:0]};
-			3'b110:wr_data_b={rd_data_base[63:56],wr_data_i[7:0],rd_data_base[47:0]};
-			3'b111:wr_data_b={wr_data_i[7:0],rd_data_base[55:0]};
-		endcase
-        case(addr_i[2:1])
-            2'b00:wr_data_h={rd_data_base[63:16],wr_data_i[15:0]};
-			2'b01:wr_data_h={rd_data_base[63:32],wr_data_i[15:0],rd_data_base[15:0]};
-			2'b10:wr_data_h={rd_data_base[63:48],wr_data_i[15:0],rd_data_base[31:0]};
-			2'b11:wr_data_h={wr_data_i[15:0],rd_data_base[47:0]};
-        endcase
-        case(addr_i[2])
-            1'b0:wr_data_w={rd_data_base[63:32],wr_data_i[31:0]};
-			1'b1:wr_data_w={wr_data_i[31:0],rd_data_base[31:0]};
-        endcase
-end
-
-wire    [`XLEN-1:0] wr_data;
-assign  wr_data = `XLEN'b0
-                  |({`XLEN{sb}} & (wr_data_b))
-                  |({`XLEN{sh}} & (wr_data_h))
-                  |({`XLEN{sw}} & (wr_data_w))
-                  |({`XLEN{sd}} & (wr_data_i));
 
 
 // reg     [`XLEN-1:0] wr_data_buf;
 always @(posedge clk) begin
     if(wren) begin
-        vmemwrite(dpi_addr, wr_data, pc_ls_i);
+        vmemwrite(addr_i, wr_data_i, wr_mask, pc_ls_i);
         // wr_data_buf <= wr_data;
     end
 end         
