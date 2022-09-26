@@ -187,19 +187,19 @@ assign  sd = wren & (memop == `sd);
 always @(*) begin
     case({sb,sh,sw,sd})
         4'b1000: begin
-            wr_mask = 4'b0000_0001;
+            wr_mask = 8'b0000_0001;
         end
         4'b0100: begin
-            wr_mask = 4'b0000_0011;
+            wr_mask = 8'b0000_0011;
         end
         4'b0010: begin
-            wr_mask = 4'b0000_1111;
+            wr_mask = 8'b0000_1111;
         end
         4'b0001: begin
-            wr_mask = 4'b1111_1111;
+            wr_mask = 8'b1111_1111;
         end
         default: begin
-            wr_mask = 4'b0000_0000;
+            wr_mask = 8'b0000_0000;
         end
     endcase 
 end 
