@@ -234,7 +234,7 @@ reg     [`XLEN-1:0] wr_data_buf;
 always @(posedge clk) begin
     if(wren) begin
         vmemwrite(dpi_addr, wr_data, pc_ls_i);
-        wr_data_buf <= wr_data;
+        // wr_data_buf <= wr_data;
     end
 end         
 endmodule
