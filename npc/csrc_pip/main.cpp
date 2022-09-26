@@ -192,6 +192,7 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
       break;
     case 0xff:
       memwrite(waddr, 8, wdata, pc);
+      assert(0);
       break;
     default:
       break;
