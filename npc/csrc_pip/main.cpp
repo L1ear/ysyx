@@ -2,7 +2,7 @@
 
 extern CPU_state cpu;
 
-// int nr_instr = 0;
+int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
 static VerilatedVcdC* fp;

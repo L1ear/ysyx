@@ -6,6 +6,7 @@ extern uint8_t imem;
 extern CPU_state cpu;
 extern const char* regs[];
 extern int err;
+extern int nr_instr;
 
 void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n, bool direction) = NULL;
 void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
