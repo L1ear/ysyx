@@ -266,9 +266,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     // Variables
     QData/*63:0*/ __Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__4__rdata;
     // Body
-    if (((8U == (0x1fU & (vlSelf->top__DOT__instr_ls 
-                          >> 2U))) | (3U == (0x7fU 
-                                             & vlSelf->top__DOT__instr_ls)))) {
+    if ((3U == (0x7fU & vlSelf->top__DOT__instr_ls))) {
         Vtop___024root____Vdpiimwrap_top__DOT__IF_u__DOT__vmemread_TOP(
                                                                        (0xfffffffffffffff8ULL 
                                                                         & vlSelf->top__DOT__alures_ls), 8U, __Vtask_top__DOT__ls_u__DOT__lsu_u__DOT__vmemread__4__rdata, vlSelf->top__DOT__pc_ls);
