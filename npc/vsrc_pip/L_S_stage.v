@@ -83,7 +83,7 @@ reg     [`XLEN-1:0]     rd_data_base;
 // assign  rd_data_base = d_mem[addr_i[10:3]];
 wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
 always @(negedge clk) begin                     //这里使用了下降沿，是为了避免verilator的时序问题，在加入cache后应修改
-    if(wren || rden)
+    if(rden)
         vmemread(dpi_addr, 8, rd_data_base, pc_ls_i);
     else
         rd_data_base = `XLEN'b0;
