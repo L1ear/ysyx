@@ -175,10 +175,27 @@ void vmemread(long long raddr,int len, long long *rdata, long long pc){
 }
 
 
-void vmemwrite(long long waddr, long long wdata, long long pc){
+void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
   //printf("waddr = 0x%lx,wdata = 0x%lx,wmask = 0x%x\n",waddr,wdata,wmask);
   //waddr = waddr & ~0x7ull;  //clear low 3bit for 8byte align.
     // printf("write: %llx\n",waddr);
-    memwrite(waddr, 8, wdata, pc);
+    switch (wr_mask)
+    {
+    case 1:
+      memwrite(waddr, 1, wdata, pc);
+      break;
+    case 3:
+      memwrite(waddr, 2, wdata, pc);
+      break;
+    case 15:
+      memwrite(waddr, 4, wdata, pc);
+      break;
+    case 0xff:
+      memwrite(waddr, 8, wdata, pc);
+      break;
+    default:
+      break;
+    }
+    // memwrite(waddr, 8, wdata, pc);
 }
 

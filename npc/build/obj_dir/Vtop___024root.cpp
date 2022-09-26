@@ -308,9 +308,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (vlSelf->top__DOT__instr_wb 
                                                                                 >> 7U))))
                                                                                  ? vlSelf->top__DOT__lsres_wb
-                                                                                 : vlSelf->top__DOT__rs2_ls), 
-                                                                                (0xffU 
-                                                                                & (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask)), vlSelf->top__DOT__pc_ls);
+                                                                                 : vlSelf->top__DOT__rs2_ls), (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask), vlSelf->top__DOT__pc_ls);
     }
     if (vlSelf->top__DOT__wben_wb) {
         __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 
@@ -329,7 +327,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         [0xaU];
 }
 
-extern const VlUnpacked<QData/*63:0*/, 16> Vtop__ConstPool__TABLE_b631f19e_0;
+extern const VlUnpacked<CData/*7:0*/, 16> Vtop__ConstPool__TABLE_b95eb736_0;
 
 VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -557,7 +555,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                                              (0x707cU 
                                                               & vlSelf->top__DOT__instr_ls))))));
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask 
-        = Vtop__ConstPool__TABLE_b631f19e_0[__Vtableidx1];
+        = Vtop__ConstPool__TABLE_b95eb736_0[__Vtableidx1];
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en 
         = ((((1U == (7U & (vlSelf->top__DOT__instr_ls 
                            >> 0xcU))) | (2U == (7U 

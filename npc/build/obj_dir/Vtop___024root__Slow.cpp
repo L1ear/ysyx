@@ -42,7 +42,7 @@ void Vtop___024root___initial__TOP__4(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__IF_u__DOT__rdata = __Vtask_top__DOT__IF_u__DOT__vmemread__0__rdata;
 }
 
-extern const VlUnpacked<QData/*63:0*/, 16> Vtop__ConstPool__TABLE_b631f19e_0;
+extern const VlUnpacked<CData/*7:0*/, 16> Vtop__ConstPool__TABLE_b95eb736_0;
 
 void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -219,7 +219,7 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
                                                              (0x707cU 
                                                               & vlSelf->top__DOT__instr_ls))))));
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask 
-        = Vtop__ConstPool__TABLE_b631f19e_0[__Vtableidx1];
+        = Vtop__ConstPool__TABLE_b95eb736_0[__Vtableidx1];
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en 
         = ((((1U == (7U & (vlSelf->top__DOT__instr_ls 
                            >> 0xcU))) | (2U == (7U 
