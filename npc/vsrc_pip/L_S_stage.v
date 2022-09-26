@@ -82,7 +82,7 @@ wire    [`XLEN-1:0]     rd_data_base;
 reg     [`XLEN-1:0]     rd_data_base_buf;
 // assign  rd_data_base = d_mem[addr_i[10:3]];
 wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
-always @(negedge clk) begin                     //
+always @(*) begin                     //
     if(wren || rden)
         vmemread(dpi_addr, 8, rd_data_base_buf, pc_ls_i);
     else
