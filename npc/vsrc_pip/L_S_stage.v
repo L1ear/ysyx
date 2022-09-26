@@ -79,17 +79,17 @@ import "DPI-C" function void vmemread(input longint raddr, input int len, output
 import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input longint pc);
 
 wire    [`XLEN-1:0]     rd_data_base;
-reg     [`XLEN-1:0]     rd_data_base_buf;
+// reg     [`XLEN-1:0]     rd_data_base_buf;
 // assign  rd_data_base = d_mem[addr_i[10:3]];
 wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
 always @(negedge clk) begin                     //
     if(wren || rden)
-        vmemread(dpi_addr, 8, rd_data_base_buf, pc_ls_i);
+        vmemread(dpi_addr, 8, rd_data_base, pc_ls_i);
     else
-        rd_data_base_buf = `XLEN'b0;
+        rd_data_base = `XLEN'b0;
 end
 
-wire   use_last =  wren_last_i & (addr_last_i == addr_i);
+// wire   use_last =  wren_last_i & (addr_last_i == addr_i);
 assign rd_data_base = rd_data_base_buf;
 
 
@@ -230,7 +230,7 @@ assign  wr_data = `XLEN'b0
                   |({`XLEN{sd}} & (wr_data_i));
 
 
-reg     [`XLEN-1:0] wr_data_buf;
+// reg     [`XLEN-1:0] wr_data_buf;
 always @(posedge clk) begin
     if(wren) begin
         vmemwrite(dpi_addr, wr_data, pc_ls_i);
