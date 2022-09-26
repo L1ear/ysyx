@@ -180,7 +180,7 @@ void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
   //waddr = waddr & ~0x7ull;  //clear low 3bit for 8byte align.
     // printf("write: %llx\n",waddr);
           
-    Log("%d\n",wr_mask);
+    Log("%d\n",(unsigned)wr_mask);
     assert(0);
     switch (wr_mask)
     {
