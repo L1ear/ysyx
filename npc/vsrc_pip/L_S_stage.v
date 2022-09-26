@@ -90,7 +90,7 @@ always @(negedge clk) begin                     //
 end
 
 wire   use_last =  wren_last_i & (addr_last_i == addr_i);
-assign rd_data_base = use_last ? wr_data_buf : rd_data_base_buf;
+assign rd_data_base = rd_data_base_buf;
 
 
 // //save or load 
