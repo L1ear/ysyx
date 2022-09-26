@@ -469,27 +469,26 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                          ? 0xbULL : 0ULL)),64);
         }
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[4U])) {
-            tracep->chgQData(oldp+271,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base),64);
-            tracep->chgCData(oldp+273,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b),8);
-            tracep->chgSData(oldp+274,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h),16);
-            tracep->chgIData(oldp+275,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w),32);
-            tracep->chgQData(oldp+276,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_b),64);
-            tracep->chgQData(oldp+278,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_w),64);
-            tracep->chgQData(oldp+280,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data),64);
+            tracep->chgCData(oldp+271,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b),8);
+            tracep->chgSData(oldp+272,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h),16);
+            tracep->chgIData(oldp+273,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w),32);
+            tracep->chgQData(oldp+274,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_b),64);
+            tracep->chgQData(oldp+276,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data_w),64);
+            tracep->chgQData(oldp+278,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_data),64);
         }
-        tracep->chgBit(oldp+282,(vlSelf->clk));
-        tracep->chgBit(oldp+283,(vlSelf->rst_n));
-        tracep->chgQData(oldp+284,(vlSelf->pc_diff),64);
-        tracep->chgQData(oldp+286,(vlSelf->pc_decoding),64);
-        tracep->chgIData(oldp+288,(vlSelf->instr_diff),32);
-        tracep->chgQData(oldp+289,(vlSelf->regA0),64);
-        tracep->chgQData(oldp+291,(((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
+        tracep->chgBit(oldp+280,(vlSelf->clk));
+        tracep->chgBit(oldp+281,(vlSelf->rst_n));
+        tracep->chgQData(oldp+282,(vlSelf->pc_diff),64);
+        tracep->chgQData(oldp+284,(vlSelf->pc_decoding),64);
+        tracep->chgIData(oldp+286,(vlSelf->instr_diff),32);
+        tracep->chgQData(oldp+287,(vlSelf->regA0),64);
+        tracep->chgQData(oldp+289,(((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
                                      ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                     [vlSelf->top__DOT__rs2_idx_id])),64);
-        tracep->chgQData(oldp+293,(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
+        tracep->chgQData(oldp+291,(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
                                      ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                     [vlSelf->top__DOT__rs1_idx_id])),64);
-        tracep->chgQData(oldp+295,(((((((((- (QData)((IData)(
+        tracep->chgQData(oldp+293,(((((((((- (QData)((IData)(
                                                              (3U 
                                                               == 
                                                               (0x707fU 
@@ -545,9 +544,9 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                            == 
                                                            (0x707fU 
                                                             & vlSelf->top__DOT__instr_ls))))) 
-                                       & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base))),64);
-        tracep->chgQData(oldp+297,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf),64);
-        tracep->chgQData(oldp+299,(((1U & (IData)((vlSelf->top__DOT__alures_ls 
+                                       & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf))),64);
+        tracep->chgQData(oldp+295,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf),64);
+        tracep->chgQData(oldp+297,(((1U & (IData)((vlSelf->top__DOT__alures_ls 
                                                    >> 2U)))
                                      ? ((1U & (IData)(
                                                       (vlSelf->top__DOT__alures_ls 
@@ -557,30 +556,30 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                               & (IData)(vlSelf->top__DOT__ls_u__DOT__wr_data)))) 
                                              << 0x30U) 
                                             | (0xffffffffffffULL 
-                                               & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base))
+                                               & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf))
                                          : (((QData)((IData)(
                                                              (((IData)(
-                                                                       (vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base 
+                                                                       (vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf 
                                                                         >> 0x30U)) 
                                                                << 0x10U) 
                                                               | (0xffffU 
                                                                  & (IData)(vlSelf->top__DOT__ls_u__DOT__wr_data))))) 
                                              << 0x20U) 
-                                            | (QData)((IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base))))
+                                            | (QData)((IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf))))
                                      : ((1U & (IData)(
                                                       (vlSelf->top__DOT__alures_ls 
                                                        >> 1U)))
                                          ? (((QData)((IData)(
-                                                             (vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base 
+                                                             (vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf 
                                                               >> 0x20U))) 
                                              << 0x20U) 
                                             | (QData)((IData)(
                                                               (((IData)(vlSelf->top__DOT__ls_u__DOT__wr_data) 
                                                                 << 0x10U) 
                                                                | (0xffffU 
-                                                                  & (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base))))))
+                                                                  & (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf))))))
                                          : ((0xffffffffffff0000ULL 
-                                             & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base) 
+                                             & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base_buf) 
                                             | (QData)((IData)(
                                                               (0xffffU 
                                                                & (IData)(vlSelf->top__DOT__ls_u__DOT__wr_data)))))))),64);
