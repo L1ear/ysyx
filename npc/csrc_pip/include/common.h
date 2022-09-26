@@ -45,6 +45,7 @@ typedef struct {
 
 typedef riscv64_CPU_state CPU_state;
 
+int nr_instr;
 
 #define ASNI_FG_BLACK   "\33[1;30m"
 #define ASNI_FG_RED     "\33[1;31m"

@@ -2,6 +2,7 @@
 
 extern CPU_state cpu;
 
+int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
 static VerilatedVcdC* fp;
@@ -104,7 +105,7 @@ void single_cycle(int i) {
 #ifdef vcd
   fp ->dump(i);
 #endif
-#ifdef  difftest
+
     
     int r;
     for (r = 0; r < 32; r++) {
@@ -114,13 +115,18 @@ void single_cycle(int i) {
       // assert(0); 
       if(en == 1 )
         {
-          if(instr_last == 0x3ea78c23 ||instr_last == 0x0487b783)  difftest_skip_ref();
+          #ifdef  difftest
+          if(instr_last == 0x3ea78c23 ||instr_last == 0x0487b783){
+            difftest_skip_ref();
+          }
           difftest_step(cpu.pc);
+          
+          #endif
+          nr_instr++;
         }
       start = 0;
     }
 
-#endif
     cpu.pc = top->pc_diff;
     instr_last = top->instr_diff;
   top->clk = 0;
@@ -147,11 +153,15 @@ extern "C" void set_gpr_ptr(const svOpenArrayHandle r) {
 int en = 0;
 void ebreak(){
   en = 0;
-  if(top->regA0 == 0)
+  if(top->regA0 == 0){
     Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",cpu.pc);
+    Log("after %d instructions", nr_instr);
+  }
+    
   else
   {
     Log("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",cpu.pc);
+    Log("after %d instructions", nr_instr);
     err = 1;
   }
 }
