@@ -1019,31 +1019,40 @@ void Vtop___024root___settle__TOP__5(Vtop___024root* vlSelf) {
         }
     }
     vlSelf->top__DOT__hazard_detect_u__DOT__hazard 
-        = (((3U == (0x7fU & vlSelf->top__DOT__instr_ex)) 
-            & ((((((0x19U == (0x1fU & (vlSelf->top__DOT__instr_id 
-                                       >> 2U))) | (0x18U 
+        = ((((3U == (0x7fU & vlSelf->top__DOT__instr_ex)) 
+             & ((((((0x19U == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                        >> 2U))) | 
+                    (0x18U == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                        >> 2U)))) | 
+                   (4U == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                    >> 2U)))) | (6U 
+                                                 == 
+                                                 (0x1fU 
+                                                  & (vlSelf->top__DOT__instr_id 
+                                                     >> 2U)))) 
+                 | (0xcU == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                      >> 2U)))) | (0xeU 
                                                    == 
                                                    (0x1fU 
                                                     & (vlSelf->top__DOT__instr_id 
-                                                       >> 2U)))) 
-                  | (4U == (0x1fU & (vlSelf->top__DOT__instr_id 
-                                     >> 2U)))) | (6U 
-                                                  == 
-                                                  (0x1fU 
-                                                   & (vlSelf->top__DOT__instr_id 
-                                                      >> 2U)))) 
-                | (0xcU == (0x1fU & (vlSelf->top__DOT__instr_id 
-                                     >> 2U)))) | (0xeU 
-                                                  == 
-                                                  (0x1fU 
-                                                   & (vlSelf->top__DOT__instr_id 
-                                                      >> 2U))))) 
-           & (((0x1fU & (vlSelf->top__DOT__instr_ex 
-                         >> 7U)) == (0x1fU & (vlSelf->top__DOT__instr_id 
-                                              >> 0xfU))) 
-              | ((0x1fU & (vlSelf->top__DOT__instr_ex 
-                           >> 7U)) == (0x1fU & (vlSelf->top__DOT__instr_id 
-                                                >> 0x14U)))));
+                                                       >> 2U))))) 
+            & (((0x1fU & (vlSelf->top__DOT__instr_ex 
+                          >> 7U)) == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                               >> 0xfU))) 
+               | ((0x1fU & (vlSelf->top__DOT__instr_ex 
+                            >> 7U)) == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                                 >> 0x14U))))) 
+           | (((3U == (0x7fU & vlSelf->top__DOT__instr_ex)) 
+               & ((3U == (0x7fU & vlSelf->top__DOT__instr_id)) 
+                  | (8U == (0x1fU & (vlSelf->top__DOT__instr_id 
+                                     >> 2U))))) & (
+                                                   (0x1fU 
+                                                    & (vlSelf->top__DOT__instr_ex 
+                                                       >> 7U)) 
+                                                   == 
+                                                   (0x1fU 
+                                                    & (vlSelf->top__DOT__instr_id 
+                                                       >> 0xfU)))));
     Vtop___024root____Vdpiimwrap_top__DOT__IF_u__DOT__vmemread_TOP(vlSelf->top__DOT__pc_new, 4U, vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata, vlSelf->top__DOT__pc_new);
     vlSelf->top__DOT__IF_u__DOT__rdata = vlSelf->__Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata;
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0U;
