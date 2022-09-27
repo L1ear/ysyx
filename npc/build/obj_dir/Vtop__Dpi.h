@@ -13,9 +13,9 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/regfile.v:22:30
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/ID/regfile.v:22:30
     extern void ebreak();
-    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/regfile.v:23:30
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/ID/regfile.v:23:30
     extern void set_gpr_ptr(const svOpenArrayHandle a);
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/IF_stage.v:18:30
     extern void vmemread(long long raddr, int len, long long* rdata, long long pc);
