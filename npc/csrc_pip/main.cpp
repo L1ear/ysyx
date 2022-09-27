@@ -126,10 +126,11 @@ void single_cycle(int i) {
         }
       start = 0;
     }
-
-    cpu.pc = top->pc_diff;
     instr_last = top->instr_diff;
-#endif    
+#endif
+    cpu.pc = top->pc_diff;
+    
+    
   top->clk = 0;
   top->eval();
 #ifdef vcd
@@ -155,13 +156,13 @@ int en = 0;
 void ebreak(){
   en = 0;
   if(top->regA0 == 0){
-    Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",top->pc_diff);
+    Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",cpu.pc);
     Log("after %d instructions", nr_instr);
   }
     
   else
   {
-    Log("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",top->pc_diff);
+    Log("npc: \33[1;31mHIT BAD TRAP\33[0m at pc = %08x\n",cpu.pc);
     Log("after %d instructions", nr_instr);
     err = 1;
   }
