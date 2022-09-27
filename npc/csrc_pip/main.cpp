@@ -122,7 +122,7 @@ void single_cycle(int i) {
           difftest_step(cpu.pc);
           
           #endif
-          nr_instr++;
+          // nr_instr++;
         }
       start = 0;
     }
