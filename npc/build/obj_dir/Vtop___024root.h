@@ -113,7 +113,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_n;
     VlWide<3>/*95:0*/ top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout;
-    VlWide<10>/*318:0*/ top__DOT__EX_reg_u__DOT____Vcellout__id_reg__o_dout;
+    VlWide<10>/*314:0*/ top__DOT__EX_reg_u__DOT____Vcellout__id_reg__o_dout;
     QData/*63:0*/ __Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata;
     QData/*63:0*/ __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     VlUnpacked<CData/*0:0*/, 5> __Vm_traceActivity;

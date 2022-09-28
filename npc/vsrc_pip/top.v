@@ -48,7 +48,7 @@ wire                    trap_ex;
 wire    [`XLEN-1:0]     wbres_fw;
 wire    [1      :0]     rs1_sel,rs2_sel;
 wire    [4      :0]     rs1_idx_ex,rs2_idx_ex;
-wire                    ex_stall_n;
+wire                    flush_ex;
 
 //ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
@@ -145,7 +145,7 @@ hazard_detect hazard_detect_u(
     .instr_ex_i(instr_ex),
     .stalln_pc(pc_stall_n),
     .stalln_id(id_stall_n),
-    .stalln_ex(ex_stall_n)
+    .flush_ex(flush_ex)
 );
 
 EX_reg EX_reg_u(
@@ -167,8 +167,8 @@ EX_reg EX_reg_u(
     .wben_ex_reg_i(wben_id),
     .rs1_idx_ex_reg_i(rs1_idx_id),
     .rs2_idx_ex_reg_i(rs2_idx_id),
-    .stall_n(ex_stall_n),
-    .flush(is_jump),
+    .stall_n(1'b1),
+    .flush(is_jump | flush_ex),
     .DivEn_ex_reg_i (DivEn_id),
     .DivSel_ex_reg_i(DivSel_id),
     .trap_ex_reg_i  (trap_id),

@@ -1,6 +1,7 @@
 `include "defines.v"
 module EX_reg (
-    input                           clk,rst_n,
+    input                           clk,rst_n, 
+    input                           stall_n,flush,
     input           [`XLEN-1:0]     pc_ex_reg_i,
     input           [`inst_len-1:0]     instr_ex_reg_i,
     input           [`XLEN-1:0]     imm_ex_reg_i,
@@ -11,7 +12,6 @@ module EX_reg (
     input           [1      :0]     src2sel_ex_reg_i,
     input                           wben_ex_reg_i,
     input           [4      :0]     rs1_idx_ex_reg_i,rs2_idx_ex_reg_i,
-    input                           stall_n,flush,
     input                           DivEn_ex_reg_i,
     input           [2      :0]     DivSel_ex_reg_i,
     input                           trap_ex_reg_i,
