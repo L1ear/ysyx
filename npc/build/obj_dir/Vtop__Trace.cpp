@@ -242,7 +242,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                       & (IData)(vlSelf->top__DOT__wben_id))));
             tracep->chgBit(oldp+113,(((~ (IData)(vlSelf->top__DOT__is_jump)) 
                                       & (IData)(vlSelf->top__DOT__trap_id))));
-            tracep->chgWData(oldp+114,(vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__id_reg__o_dout),317);
+            tracep->chgWData(oldp+114,(vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__id_reg__o_dout),319);
             tracep->chgQData(oldp+124,(vlSelf->top__DOT__ex_stage_u__DOT__src1),64);
             tracep->chgQData(oldp+126,(vlSelf->top__DOT__ex_stage_u__DOT__src2),64);
             tracep->chgQData(oldp+128,(vlSelf->top__DOT__ex_stage_u__DOT__rs1),64);
@@ -695,8 +695,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                   | (QData)((IData)(
                                                                     vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[1U])))) 
                                       >> 0x20U)) >> 5U);
-            VL_EXTEND_WW(317,315, __Vtemp80, __Vtemp79);
-            tracep->chgWData(oldp+231,(__Vtemp80),317);
+            VL_EXTEND_WW(319,315, __Vtemp80, __Vtemp79);
+            tracep->chgWData(oldp+231,(__Vtemp80),319);
         }
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[3U])) {
             tracep->chgCData(oldp+241,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b),8);

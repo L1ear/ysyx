@@ -560,7 +560,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                                   | (QData)((IData)(
                                                                     vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[1U])))) 
                                       >> 0x20U)) >> 5U);
-            VL_EXTEND_WW(317,315, __Vtemp22, __Vtemp21);
+            VL_EXTEND_WW(319,315, __Vtemp22, __Vtemp21);
             vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                 = __Vtemp22[0U];
             vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__id_reg__o_dout[1U] 

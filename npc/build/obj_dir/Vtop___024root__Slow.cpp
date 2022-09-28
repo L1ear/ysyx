@@ -2324,7 +2324,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles[__Vi0] = 0;
     }
     vlSelf->top__DOT__hazard_detect_u__DOT__hazard = 0;
-    VL_ZERO_RESET_W(317, vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__id_reg__o_dout);
+    VL_ZERO_RESET_W(319, vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__id_reg__o_dout);
     vlSelf->top__DOT__ex_stage_u__DOT__src1 = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__src2 = 0;
     vlSelf->top__DOT__ex_stage_u__DOT__rs1 = 0;
