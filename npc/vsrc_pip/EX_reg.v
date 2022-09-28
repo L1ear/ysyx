@@ -34,201 +34,33 @@ module EX_reg (
 //只对关键控制信号清零
 wire    [`XLEN-1:0]         pc_ex_reg;
 wire    [`inst_len-1:0]     instr_ex_reg;
+wire                        is_jalr_ex_reg;
+wire                        is_jal_ex_reg;
+wire                        is_brc_ex_reg;
+wire                        wben_ex_reg;
+wire                        trap_ex_reg;
 
 assign  pc_ex_reg       = flush ? `XLEN'b0  : pc_ex_reg_i;
 assign  instr_ex_reg    = flush ? `inst_len : instr_ex_reg_i;
-
-
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        instr_ex_reg_o <= `inst_len'b0;
-    end
-    else if(~stall_n || flush) begin
-        instr_ex_reg_o <= `inst_len'b0;
-    end
-    else if(stall_n) begin
-        instr_ex_reg_o <= instr_ex_reg_i;
-    end
-end
-
-// always @(posedge clk or negedge rst_n) begin
-//     if(~rst_n) begin
-//         src1_ex_reg_o <= `XLEN'b0;
-//     end
-//     else begin
-//         src1_ex_reg_o <= src1_ex_reg_i;
-//     end
-// end
-
-// always @(posedge clk or negedge rst_n) begin
-//     if(~rst_n) begin
-//         src2_ex_reg_o <= `XLEN'b0;
-//     end
-//     else begin
-//         src2_ex_reg_o <= src2_ex_reg_i;
-//     end
-// end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        rs2_ex_reg_o <= `XLEN'b0;
-    end
-    else begin
-        rs2_ex_reg_o <= rs2_ex_reg_i;
-    end 
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        rs1_ex_reg_o <= `XLEN'b0;
-    end
-    else begin
-        rs1_ex_reg_o <= rs1_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        imm_ex_reg_o <= `XLEN'b0;
-    end
-    else begin
-        imm_ex_reg_o <= imm_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        aluctr_ex_reg_o <= 5'b0;
-    end
-    else begin
-        aluctr_ex_reg_o <= aluctr_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        is_jalr_ex_reg_o <= 1'b0;
-    end
-    else if(~stall_n || flush) begin
-        is_jalr_ex_reg_o <= 1'b0;
-    end    
-    else if(stall_n) begin
-        is_jalr_ex_reg_o <= is_jalr_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        is_jal_ex_reg_o <= 1'b0;
-    end
-    else if(~stall_n || flush) begin
-        is_jal_ex_reg_o <= 1'b0;
-    end
-    else if(stall_n) begin
-        is_jal_ex_reg_o <= is_jal_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        is_brc_ex_reg_o <= 1'b0;
-    end
-    else if(~stall_n || flush) begin
-        is_brc_ex_reg_o <= 1'b0;
-    end
-    else if(stall_n) begin
-        is_brc_ex_reg_o <= is_brc_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        src1sel_ex_reg_o <= 1'b0;
-    end
-    else begin
-        src1sel_ex_reg_o <= src1sel_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        src2sel_ex_reg_o <= 2'b0;
-    end
-    else begin
-        src2sel_ex_reg_o <= src2sel_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        wben_ex_reg_o <= 1'b0;
-    end
-    else if(~stall_n || flush) begin
-        wben_ex_reg_o <= 1'b0;
-    end
-    else if(stall_n) begin
-        wben_ex_reg_o <= wben_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        rs1_idx_ex_reg_o <= 5'b0;
-    end
-    else begin
-        rs1_idx_ex_reg_o <= rs1_idx_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        rs2_idx_ex_reg_o <= 5'b0;
-    end
-    else begin
-        rs2_idx_ex_reg_o <= rs2_idx_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        DivEn_ex_reg_o <= 1'b0;
-    end
-    else begin
-        DivEn_ex_reg_o <= DivEn_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        DivSel_ex_reg_o <= 3'b0;
-    end
-    else begin
-        DivSel_ex_reg_o <= DivSel_ex_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        trap_ex_reg_o <= 1'b0;
-    end
-    else if(~stall_n || flush) begin
-        trap_ex_reg_o <= 1'b0;
-    end
-    else if(stall_n) begin
-        trap_ex_reg_o <= trap_ex_reg_i;
-    end
-end
+assign  is_jalr_ex_reg  = flush ? 1'b0      : is_jalr_ex_reg_i;
+assign  is_jal_ex_reg   = flush ? 1'b0      : is_jal_ex_reg_i;
+assign  is_brc_ex_reg   = flush ? 1'b0      : is_brc_ex_reg_i;
+assign  wben_ex_reg     = flush ? 1'b0      : wben_ex_reg_i;
+assign  trap_ex_reg     = flush ? 1'b0      : trap_ex_reg_i;
 
 stl_reg #(
-  .WIDTH     (),
+  .WIDTH     (4*`XLEN + `inst_len + 29),
   .RESET_VAL (0)
 )id_reg(
   .i_clk   (clk),
   .i_rst_n (rst_n),
   .i_wen   (stall_n),
-  .i_din   ({pc_ex_reg, instr_ex_reg}),
-  .o_dout  ({pc_ex_reg_o, instr_ex_reg_o})
+  .i_din   ({pc_ex_reg, instr_ex_reg, rs2_ex_reg_i, rs1_ex_reg_i, imm_ex_reg_i, aluctr_ex_reg_i, is_jalr_ex_reg, is_jal_ex_reg,
+             is_brc_ex_reg, src1sel_ex_reg_i, src2sel_ex_reg_i, wben_ex_reg, rs1_idx_ex_reg_i, rs2_idx_ex_reg_i, DivEn_ex_reg_i,
+             DivSel_ex_reg_i, trap_ex_reg}),
+  .o_dout  ({pc_ex_reg_o, instr_ex_reg_o, rs2_ex_reg_o, rs1_ex_reg_o, imm_ex_reg_o, aluctr_ex_reg_o, is_jalr_ex_reg_o, is_jal_ex_reg_o,
+             is_brc_ex_reg_o, src1sel_ex_reg_o, src2sel_ex_reg_o, wben_ex_reg_o, rs1_idx_ex_reg_o, rs2_idx_ex_reg_o, DivEn_ex_reg_o,
+             DivSel_ex_reg_o, trap_ex_reg_o})
 );
 
 endmodule
