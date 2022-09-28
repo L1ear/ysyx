@@ -49,7 +49,7 @@ assign  wben_ex_reg     = flush ? 1'b0      : wben_ex_reg_i;
 assign  trap_ex_reg     = flush ? 1'b0      : trap_ex_reg_i;
 
 stl_reg #(
-  .WIDTH     (4*`XLEN + `inst_len + 31),
+  .WIDTH     (4*`XLEN + `inst_len + 27),
   .RESET_VAL (0)
 )id_reg(
   .i_clk   (clk),
