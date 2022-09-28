@@ -108,6 +108,7 @@ VL_MODULE(Vtop___024root) {
     };
 
     // LOCAL VARIABLES
+    CData/*0:0*/ top__DOT____Vcellinp__EX_reg_u__flush;
     CData/*4:0*/ __Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vclklast__TOP__clk;

@@ -40,13 +40,13 @@ wire                        is_brc_ex_reg;
 wire                        wben_ex_reg;
 wire                        trap_ex_reg;
 
-assign  pc_ex_reg       = flush ? `XLEN'b0  : pc_ex_reg_i;
-assign  instr_ex_reg    = flush ? `inst_len : instr_ex_reg_i;
-assign  is_jalr_ex_reg  = flush ? 1'b0      : is_jalr_ex_reg_i;
-assign  is_jal_ex_reg   = flush ? 1'b0      : is_jal_ex_reg_i;
-assign  is_brc_ex_reg   = flush ? 1'b0      : is_brc_ex_reg_i;
-assign  wben_ex_reg     = flush ? 1'b0      : wben_ex_reg_i;
-assign  trap_ex_reg     = flush ? 1'b0      : trap_ex_reg_i;
+assign  pc_ex_reg       = flush ? `XLEN'b0      : pc_ex_reg_i;
+assign  instr_ex_reg    = flush ? `inst_len'b0  : instr_ex_reg_i;
+assign  is_jalr_ex_reg  = flush ? 1'b0          : is_jalr_ex_reg_i;
+assign  is_jal_ex_reg   = flush ? 1'b0          : is_jal_ex_reg_i;
+assign  is_brc_ex_reg   = flush ? 1'b0          : is_brc_ex_reg_i;
+assign  wben_ex_reg     = flush ? 1'b0          : wben_ex_reg_i;
+assign  trap_ex_reg     = flush ? 1'b0          : trap_ex_reg_i;
 
 stl_reg #(
   .WIDTH     (4*`XLEN + `inst_len + 27),
