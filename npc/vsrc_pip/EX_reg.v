@@ -31,17 +31,14 @@ module EX_reg (
     output   reg                    trap_ex_reg_o
 );
 
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        pc_ex_reg_o <= `XLEN'b0;
-    end
-    else if(~stall_n || flush) begin
-        pc_ex_reg_o <= `XLEN'b0;
-    end
-    else if(stall_n) begin
-        pc_ex_reg_o <= pc_ex_reg_i;
-    end
-end
+//只对关键控制信号清零
+wire    [`XLEN-1:0]         pc_ex_reg;
+wire    [`inst_len-1:0]     instr_ex_reg;
+
+assign  pc_ex_reg       = flush ? `XLEN'b0  : pc_ex_reg_i;
+assign  instr_ex_reg    = flush ? `inst_len : instr_ex_reg_i;
+
+
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -222,5 +219,16 @@ always @(posedge clk or negedge rst_n) begin
         trap_ex_reg_o <= trap_ex_reg_i;
     end
 end
+
+stl_reg #(
+  .WIDTH     (),
+  .RESET_VAL (0)
+)id_reg(
+  .i_clk   (clk),
+  .i_rst_n (rst_n),
+  .i_wen   (stall_n),
+  .i_din   ({pc_ex_reg, instr_ex_reg}),
+  .o_dout  ({pc_ex_reg_o, instr_ex_reg_o})
+);
 
 endmodule
