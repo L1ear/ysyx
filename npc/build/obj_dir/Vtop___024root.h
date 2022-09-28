@@ -44,20 +44,8 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__in_trap_id;
         CData/*0:0*/ top__DOT__out_trap_id;
         CData/*0:0*/ top__DOT__trap_id;
-        CData/*0:0*/ top__DOT__src1sel_ex;
-        CData/*1:0*/ top__DOT__src2sel_ex;
-        CData/*4:0*/ top__DOT__aluctr_ex;
-        CData/*0:0*/ top__DOT__is_brc_ex;
-        CData/*0:0*/ top__DOT__is_jal_ex;
-        CData/*0:0*/ top__DOT__is_jalr_ex;
-        CData/*0:0*/ top__DOT__wben_ex;
-        CData/*0:0*/ top__DOT__DivEn_ex;
-        CData/*2:0*/ top__DOT__DivSel_ex;
-        CData/*0:0*/ top__DOT__trap_ex;
         CData/*1:0*/ top__DOT__rs1_sel;
         CData/*1:0*/ top__DOT__rs2_sel;
-        CData/*4:0*/ top__DOT__rs1_idx_ex;
-        CData/*4:0*/ top__DOT__rs2_idx_ex;
         CData/*0:0*/ top__DOT__wben_ls;
         CData/*0:0*/ top__DOT__trap_ls;
         CData/*0:0*/ top__DOT__wben_wb;
@@ -79,22 +67,15 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus;
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause;
         SData/*15:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h;
-        IData/*31:0*/ top__DOT__instr_ex;
         IData/*31:0*/ top__DOT__instr_ls;
         IData/*31:0*/ top__DOT__instr_wb;
         IData/*31:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w;
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
-        QData/*63:0*/ top__DOT__pc_ex;
-        QData/*63:0*/ top__DOT__rs2_ex;
-        QData/*63:0*/ top__DOT__rs1_ex;
-        QData/*63:0*/ top__DOT__imm_ex;
         QData/*63:0*/ top__DOT__pc_ls;
         QData/*63:0*/ top__DOT__rs2_ls;
         QData/*63:0*/ top__DOT__alures_ls;
         QData/*63:0*/ top__DOT__csrdata_ls;
-    };
-    struct {
         QData/*63:0*/ top__DOT__pc_wb;
         QData/*63:0*/ top__DOT__alures_wb;
         QData/*63:0*/ top__DOT__lsres_wb;
@@ -112,6 +93,8 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res;
+    };
+    struct {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres;
         QData/*63:0*/ top__DOT__forwarding_u__DOT__rd_wb;
@@ -125,10 +108,14 @@ VL_MODULE(Vtop___024root) {
     };
 
     // LOCAL VARIABLES
+    CData/*4:0*/ __Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
+    CData/*0:0*/ __Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_n;
     VlWide<3>/*95:0*/ top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout;
+    VlWide<10>/*316:0*/ top__DOT__EX_reg_u__DOT____Vcellout__id_reg__o_dout;
     QData/*63:0*/ __Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata;
+    QData/*63:0*/ __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     VlUnpacked<CData/*0:0*/, 5> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
