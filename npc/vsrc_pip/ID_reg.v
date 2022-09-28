@@ -17,7 +17,7 @@ assign instr_id_reg = (flush || in_trap_id || out_trap_id) ? `inst_len'b0 : inst
 
 
 stl_reg #(
-  WIDTH     (XLEN + inst_len),
+  WIDTH     (`XLEN + `inst_len),
   RESET_VAL (0)
 )id_reg(
   .i_clk   (clk),
