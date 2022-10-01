@@ -967,7 +967,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__pc_new = vlSelf->top__DOT__pc_next;
         }
     } else {
-        vlSelf->top__DOT__pc_new = 0x80000000ULL;
+        vlSelf->top__DOT__pc_new = 0x7ffffffcULL;
     }
     vlSelf->pc_decoding = (((QData)((IData)(vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[2U])) 
                             << 0x20U) | (QData)((IData)(
