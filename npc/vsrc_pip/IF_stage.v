@@ -32,6 +32,8 @@ end
 assign  instr_o = rdata[31:0];
 endmodule //IF_stage
 
+
+
 module PC_reg(
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
@@ -42,7 +44,7 @@ module PC_reg(
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-        pc_new_o <= `XLEN'h8000_0000;
+        pc_new_o <= `XLEN'h8000_0000 - 4;
     end
     else if(stall_n) begin
         pc_new_o <= pc_i;
