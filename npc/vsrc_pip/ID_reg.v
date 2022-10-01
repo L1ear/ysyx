@@ -3,7 +3,7 @@ module ID_reg (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_id_reg_i,
     input           [`inst_len-1:0] instr_id_reg_i,
-    input                           stall_n,flush,in_trap_id,out_trap_id,
+    input                           stall_n,flush,
 
     output  reg     [`XLEN-1:0]     pc_id_reg_o,
     output  reg     [`inst_len-1:0] instr_id_reg_o
@@ -12,8 +12,8 @@ module ID_reg (
 wire  [`XLEN-1:0]       pc_id_reg;
 wire  [`inst_len-1:0]       instr_id_reg;
 
-assign pc_id_reg = (flush || in_trap_id || out_trap_id) ? `XLEN'b0 : pc_id_reg_i;
-assign instr_id_reg = (flush || in_trap_id || out_trap_id) ? `inst_len'b0 : instr_id_reg_i;        //为了仿真方便，就替换成0,而不是nop
+assign pc_id_reg = flush ? `XLEN'b0 : pc_id_reg_i;
+assign instr_id_reg = flush ? `inst_len'b0 : instr_id_reg_i;        //为了仿真方便，就替换成0,而不是nop
 
 
 stl_reg #(

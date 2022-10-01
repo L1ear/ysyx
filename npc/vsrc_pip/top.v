@@ -30,6 +30,8 @@ wire    [2      :0]     DivSel_id;
 wire                    in_trap_id;
 wire                    out_trap_id;
 wire                    trap_id;
+wire                    ld_use_hazard;
+wire                    id_flush;
 
 //ex signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ex;
@@ -44,11 +46,12 @@ wire                    wben_ex;
 wire                    DivEn_ex;
 wire    [2      :0]     DivSel_ex;
 wire                    trap_ex;
+wire                    ex_stall_n;
 
 wire    [`XLEN-1:0]     wbres_fw;
 wire    [1      :0]     rs1_sel,rs2_sel;
 wire    [4      :0]     rs1_idx_ex,rs2_idx_ex;
-wire                    flush_ex;
+wire                    ex_flush;
 
 //ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
@@ -101,9 +104,7 @@ ID_reg ID_reg_u(
     .pc_id_reg_i    (pc_new),   
     .instr_id_reg_i (instr_if_id_reg),
     .stall_n        (id_stall_n),
-    .flush          (is_jump),
-    .in_trap_id     (in_trap_id),
-    .out_trap_id    (out_trap_id),
+    .flush          (id_flush),
 
     .pc_id_reg_o    (pc_id),
     .instr_id_reg_o (instr_id)
@@ -141,11 +142,9 @@ ID_stage ID_u(
 );
 
 hazard_detect hazard_detect_u(
-    .instr_id_i(instr_id),
-    .instr_ex_i(instr_ex),
-    .stalln_pc(pc_stall_n),
-    .stalln_id(id_stall_n),
-    .flush_ex(flush_ex)
+    .instr_id_i     (instr_id),
+    .instr_ex_i     (instr_ex),
+    .hazard         (ld_use_hazard)
 );
 
 EX_reg EX_reg_u(
@@ -167,8 +166,8 @@ EX_reg EX_reg_u(
     .wben_ex_reg_i(wben_id),
     .rs1_idx_ex_reg_i(rs1_idx_id),
     .rs2_idx_ex_reg_i(rs2_idx_id),
-    .stall_n(1'b1),
-    .flush(is_jump | flush_ex),
+    .stall_n(ex_stall_n),
+    .flush(ex_flush),
     .DivEn_ex_reg_i (DivEn_id),
     .DivSel_ex_reg_i(DivSel_id),
     .trap_ex_reg_i  (trap_id),
@@ -318,6 +317,19 @@ WB_stage wb_stage_u(
     .rd_data_o      (wb_data)
 );
 
-
+pipline_ctrl pipline_ctrl_u(
+    .ld_use_hazard      (ld_use_hazard),
+    .is_jump            (is_jump),
+    .in_trap_id         (in_trap_id),
+    .out_trap_id        (out_trap_id),
+    
+    .pc_stall_n         (pc_stall_n),
+    .id_stall_n         (id_stall_n),
+    .ex_stall_n         (ex_stall_n),
+    .ls_stall_n         (),
+    .wb_stall_n         (),
+    .id_flush           (id_flush),
+    .ex_flush           (ex_flush)
+);
 
 endmodule //top

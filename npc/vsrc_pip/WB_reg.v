@@ -15,58 +15,16 @@ module WB_reg (
     output   reg    [`XLEN-1:0]     csrdata_wb_reg_o
 );
 
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        pc_wb_reg_o <= `XLEN'b0;
-    end
-    else begin
-        pc_wb_reg_o <= pc_wb_reg_i;
-    end
-end
 
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        instr_wb_reg_o <= `inst_len'b0;
-    end
-    else begin
-        instr_wb_reg_o <= instr_wb_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        alures_wb_reg_o <= `XLEN'b0;
-    end
-    else begin
-        alures_wb_reg_o <= alures_wb_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        lsres_wb_reg_o <= `XLEN'b0;
-    end
-    else begin
-        lsres_wb_reg_o <= lsres_wb_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        wben_wb_reg_o <= 1'b0;
-    end
-    else begin
-        wben_wb_reg_o <= wben_wb_reg_i;
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        csrdata_wb_reg_o <= `XLEN'b0;
-    end
-    else begin
-        csrdata_wb_reg_o <= csrdata_wb_reg_i;
-    end
-end
+stl_reg #(
+  .WIDTH     (4*`XLEN + `inst_len + 1),
+  .RESET_VAL (0)
+)id_reg(
+  .i_clk   (clk),
+  .i_rst_n (rst_n),
+  .i_wen   (1'b1),
+  .i_din   ({pc_wb_reg_i, instr_wb_reg_i, alures_wb_reg_i, lsres_wb_reg_i, wben_wb_reg_i, csrdata_wb_reg_i}),
+  .o_dout  ({pc_wb_reg_o, instr_wb_reg_o, alures_wb_reg_o, lsres_wb_reg_o, wben_wb_reg_o, csrdata_wb_reg_o})
+);
 
 endmodule //WB_reg
