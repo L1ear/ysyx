@@ -17,6 +17,10 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , pc_decoding{vlSymsp->TOP.pc_decoding}
     , instr_diff{vlSymsp->TOP.instr_diff}
     , regA0{vlSymsp->TOP.regA0}
+    , sram_rdata{vlSymsp->TOP.sram_rdata}
+    , sram_data_valid{vlSymsp->TOP.sram_data_valid}
+    , sram_addr{vlSymsp->TOP.sram_addr}
+    , sram_ren{vlSymsp->TOP.sram_ren}
     , rootp{&(vlSymsp->TOP)}
 {
 }

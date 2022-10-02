@@ -21,10 +21,14 @@ VL_MODULE(Vtop___024root) {
     // PORTS
     VL_IN8(clk,0,0);
     VL_IN8(rst_n,0,0);
+    VL_IN8(sram_data_valid,0,0);
+    VL_OUT8(sram_ren,0,0);
     VL_OUT(instr_diff,31,0);
     VL_OUT64(pc_diff,63,0);
     VL_OUT64(pc_decoding,63,0);
     VL_OUT64(regA0,63,0);
+    VL_IN64(sram_rdata,63,0);
+    VL_OUT64(sram_addr,63,0);
 
     // LOCAL SIGNALS
     CData/*0:0*/ top__DOT__is_jump;
@@ -69,7 +73,6 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__pc_new;
     QData/*63:0*/ top__DOT__csrdata_ls;
     QData/*63:0*/ top__DOT__wb_data;
-    QData/*63:0*/ top__DOT__IF_u__DOT__rdata;
     QData/*63:0*/ top__DOT__ID_u__DOT__imm;
     QData/*63:0*/ top__DOT__ex_stage_u__DOT__src1;
     QData/*63:0*/ top__DOT__ex_stage_u__DOT__src2;
@@ -102,7 +105,6 @@ VL_MODULE(Vtop___024root) {
     VlWide<8>/*225:0*/ top__DOT__L_S_reg_u__DOT____Vcellout__id_reg__o_dout;
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellout__id_reg__o_dout;
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellinp__id_reg__i_din;
-    QData/*63:0*/ __Vtask_top__DOT__IF_u__DOT__vmemread__1__rdata;
     QData/*63:0*/ __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     VlUnpacked<CData/*0:0*/, 5> __Vm_traceActivity;
 

@@ -34,6 +34,10 @@ class Vtop VL_NOT_FINAL {
     VL_OUT64(&pc_decoding,63,0);
     VL_OUT(&instr_diff,31,0);
     VL_OUT64(&regA0,63,0);
+    VL_IN64(&sram_rdata,63,0);
+    VL_IN8(&sram_data_valid,0,0);
+    VL_OUT64(&sram_addr,63,0);
+    VL_OUT8(&sram_ren,0,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
