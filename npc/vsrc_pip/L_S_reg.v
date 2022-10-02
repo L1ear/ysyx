@@ -6,6 +6,7 @@ module L_S_reg (
     input           [`XLEN-1:0]     alures_ls_reg_i,
     input                           wben_ls_reg_i,
     input                           trap_ls_reg_i,
+    input                           stall_n,
 
     // input                           mem_wren_ls_reg_i,
     // input                           mem_lden_ls_reg_i,
@@ -28,7 +29,7 @@ stl_reg #(
 )ls_reg(
   .i_clk   (clk),
   .i_rst_n (rstn),
-  .i_wen   (1'b1),
+  .i_wen   (stall_n),
   .i_din   ({PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i}),
   .o_dout  ({PC_ls_reg_o, instr_ls_reg_o, rs2_ls_reg_o, alures_ls_reg_o, wben_ls_reg_o, trap_ls_reg_o})
 );

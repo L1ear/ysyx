@@ -70,6 +70,7 @@ wire                    wben_ls;
 wire    [`XLEN-1:0]     csrdata_ls;
 wire    [`XLEN-1:0]     csr_mtvec,csr_mepc;
 wire                    trap_ls;
+wire                    ls_stall_n;
 
 //wb signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
@@ -79,6 +80,7 @@ wire    [4      :0]     wb_rdid;
 // wire                    wb_wren;
 wire                    wben_wb;
 wire    [`XLEN-1:0]     csrdata_wb;
+wire                    wb_stall_n;
 
 //for verilator
 assign  pc_diff = pc_wb;
@@ -297,6 +299,7 @@ ls_stage ls_u(
     .instr_last_i   (instr_wb),
     .wb_data_i      (lsres_wb),
     .trap_ls_i      (trap_ls),
+    .stall_n        (ls_stall_n),
 
     .ls_res_o       (lsres_ls),
     .csr_data_o     (csrdata_ls),
@@ -313,6 +316,7 @@ WB_reg wb_reg_u(
     .lsres_wb_reg_i (lsres_ls),
     .wben_wb_reg_i  (wben_ls),
     .csrdata_wb_reg_i(csrdata_ls),
+    .stall_n        (wb_stall_n),
 
     .pc_wb_reg_o    (pc_wb),
     .instr_wb_reg_o (instr_wb),
@@ -346,8 +350,8 @@ pipline_ctrl pipline_ctrl_u(
     .pc_stall_n         (id_stall_n),
     .id_stall_n         (pc_stall_n),
     .ex_stall_n         (ex_stall_n),
-    .ls_stall_n         (),
-    .wb_stall_n         (),
+    .ls_stall_n         (ls_stall_n),
+    .wb_stall_n         (wb_stall_n),
     .id_flush           (id_flush),
     .ex_flush           (ex_flush)
 );
