@@ -3236,9 +3236,8 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__9(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__9\n"); );
     // Body
-    vlSelf->top__DOT__pipline_ctrl_u__DOT__test = (1U 
-                                                   & ((IData)(vlSelf->top__DOT__ld_use_hazard) 
-                                                      | (~ (IData)(vlSelf->sram_data_valid))));
+    vlSelf->top__DOT__pipline_ctrl_u__DOT__test = ((IData)(vlSelf->top__DOT__ld_use_hazard) 
+                                                   | (IData)(vlSelf->sram_data_valid));
 }
 
 void Vtop___024root___eval(Vtop___024root* vlSelf) {
