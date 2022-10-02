@@ -6,6 +6,7 @@ module IF_stage (
     input           [`XLEN-1:0]     pc_jump_i,
     input           [`XLEN-1:0]     csr_mtvec,csr_mepc,
     input                           in_trap_id,out_trap_id,
+    input                           stall_n,
 
     output          [`XLEN-1:0]     pc_next_o,
     output   reg    [`inst_len-1:0] instr_o,
@@ -34,7 +35,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         instr_o <= 'b0;
     end
-    else if(sram_data_valid) begin
+    else if(sram_data_valid && stall_n) begin
         instr_o <= sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
     end
 end 

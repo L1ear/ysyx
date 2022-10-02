@@ -104,6 +104,7 @@ IF_stage IF_u(
     .csr_mepc       (csr_mepc),
     .in_trap_id     (in_trap_id),
     .out_trap_id    (out_trap_id),
+    .stall_n        (pc_stall_n),
 
     .pc_next_o      (pc_next),
     .instr_o        (instr_if_id_reg),
