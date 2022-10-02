@@ -970,7 +970,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         tracep->chgBit(oldp+357,(vlSelf->sram_data_valid));
         tracep->chgQData(oldp+358,(vlSelf->sram_addr),64);
         tracep->chgBit(oldp+360,(vlSelf->sram_ren));
-        tracep->chgBit(oldp+361,((1U & (~ (IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__test)))));
+        tracep->chgBit(oldp+361,(vlSelf->top__DOT__pc_stall_n));
         tracep->chgBit(oldp+362,((1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
                                            | (~ (IData)(vlSelf->sram_data_valid)))))));
         tracep->chgQData(oldp+363,(((((((((- (QData)((IData)(
@@ -1085,8 +1085,6 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                    >> 5U)))) 
                                   & (0U != (IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx)))));
         tracep->chgQData(oldp+367,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base),64);
-        tracep->chgBit(oldp+369,((1U & (~ (IData)(vlSelf->sram_data_valid)))));
-        tracep->chgBit(oldp+370,(vlSelf->top__DOT__pipline_ctrl_u__DOT__test));
     }
 }
 
