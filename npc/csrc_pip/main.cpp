@@ -122,7 +122,7 @@ void single_cycle(int i) {
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
     }
-    if((cpu.pc != 0) && (instr_last != 0)&& (instr_last != 0x100073)){ 
+    if((cpu.pc != 0x7ffffffc) && (cpu.pc != 0) && (instr_last != 0)&& (instr_last != 0x100073)){ 
       // assert(0); 
       if(en == 1 )
         {
@@ -130,6 +130,7 @@ void single_cycle(int i) {
           if(instr_last == 0x3ea78c23 ||instr_last == 0x0487b783){
             difftest_skip_ref();
           }
+          Log("%lx\n",instr_last);
           difftest_step(cpu.pc);
           
           
