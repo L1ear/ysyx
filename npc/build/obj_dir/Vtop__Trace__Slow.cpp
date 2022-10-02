@@ -145,8 +145,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+24,"top ID_reg_u instr_id_reg_o", false,-1, 31,0);
         tracep->declQuad(c+95,"top ID_reg_u pc_id_reg", false,-1, 63,0);
         tracep->declBus(c+97,"top ID_reg_u instr_id_reg", false,-1, 31,0);
-        tracep->declBus(c+371,"top ID_reg_u id_reg WIDTH", false,-1, 31,0);
-        tracep->declBus(c+372,"top ID_reg_u id_reg RESET_VAL", false,-1, 31,0);
+        tracep->declBus(c+372,"top ID_reg_u id_reg WIDTH", false,-1, 31,0);
+        tracep->declBus(c+373,"top ID_reg_u id_reg RESET_VAL", false,-1, 31,0);
         tracep->declBit(c+347,"top ID_reg_u id_reg i_clk", false,-1);
         tracep->declBit(c+348,"top ID_reg_u id_reg i_rst_n", false,-1);
         tracep->declBit(c+363,"top ID_reg_u id_reg i_wen", false,-1);
@@ -267,8 +267,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+114,"top EX_reg_u is_brc_ex_reg", false,-1);
         tracep->declBit(c+115,"top EX_reg_u wben_ex_reg", false,-1);
         tracep->declBit(c+116,"top EX_reg_u trap_ex_reg", false,-1);
-        tracep->declBus(c+373,"top EX_reg_u ex_reg WIDTH", false,-1, 31,0);
-        tracep->declBus(c+372,"top EX_reg_u ex_reg RESET_VAL", false,-1, 31,0);
+        tracep->declBus(c+374,"top EX_reg_u ex_reg WIDTH", false,-1, 31,0);
+        tracep->declBus(c+373,"top EX_reg_u ex_reg RESET_VAL", false,-1, 31,0);
         tracep->declBit(c+347,"top EX_reg_u ex_reg i_clk", false,-1);
         tracep->declBit(c+348,"top EX_reg_u ex_reg i_rst_n", false,-1);
         tracep->declBit(c+358,"top EX_reg_u ex_reg i_wen", false,-1);
@@ -365,7 +365,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+18,"top ex_stage_u bcu_u is_jump_o", false,-1);
         tracep->declQuad(c+175,"top ex_stage_u bcu_u pc_imm_res", false,-1, 63,0);
         tracep->declQuad(c+177,"top ex_stage_u bcu_u rs1_imm_res", false,-1, 63,0);
-        tracep->declBit(c+374,"top ex_stage_u bcu_u less", false,-1);
+        tracep->declBit(c+375,"top ex_stage_u bcu_u less", false,-1);
         tracep->declBit(c+179,"top ex_stage_u bcu_u zero", false,-1);
         tracep->declBit(c+180,"top ex_stage_u bcu_u carry", false,-1);
         tracep->declBit(c+181,"top ex_stage_u bcu_u overflow", false,-1);
@@ -407,11 +407,11 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+75,"top L_S_reg_u alures_ls_reg_o", false,-1, 63,0);
         tracep->declBit(c+78,"top L_S_reg_u wben_ls_reg_o", false,-1);
         tracep->declBit(c+81,"top L_S_reg_u trap_ls_reg_o", false,-1);
-        tracep->declBus(c+375,"top L_S_reg_u ls_reg WIDTH", false,-1, 31,0);
-        tracep->declBus(c+372,"top L_S_reg_u ls_reg RESET_VAL", false,-1, 31,0);
+        tracep->declBus(c+376,"top L_S_reg_u ls_reg WIDTH", false,-1, 31,0);
+        tracep->declBus(c+373,"top L_S_reg_u ls_reg RESET_VAL", false,-1, 31,0);
         tracep->declBit(c+347,"top L_S_reg_u ls_reg i_clk", false,-1);
         tracep->declBit(c+348,"top L_S_reg_u ls_reg i_rst_n", false,-1);
-        tracep->declBit(c+376,"top L_S_reg_u ls_reg i_wen", false,-1);
+        tracep->declBit(c+377,"top L_S_reg_u ls_reg i_wen", false,-1);
         tracep->declArray(c+192,"top L_S_reg_u ls_reg i_din", false,-1, 225,0);
         tracep->declArray(c+200,"top L_S_reg_u ls_reg o_dout", false,-1, 225,0);
         tracep->declBit(c+347,"top ls_u clk", false,-1);
@@ -511,11 +511,11 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+86,"top wb_reg_u lsres_wb_reg_o", false,-1, 63,0);
         tracep->declBit(c+92,"top wb_reg_u wben_wb_reg_o", false,-1);
         tracep->declQuad(c+93,"top wb_reg_u csrdata_wb_reg_o", false,-1, 63,0);
-        tracep->declBus(c+377,"top wb_reg_u wb_reg WIDTH", false,-1, 31,0);
-        tracep->declBus(c+372,"top wb_reg_u wb_reg RESET_VAL", false,-1, 31,0);
+        tracep->declBus(c+378,"top wb_reg_u wb_reg WIDTH", false,-1, 31,0);
+        tracep->declBus(c+373,"top wb_reg_u wb_reg RESET_VAL", false,-1, 31,0);
         tracep->declBit(c+347,"top wb_reg_u wb_reg i_clk", false,-1);
         tracep->declBit(c+348,"top wb_reg_u wb_reg i_rst_n", false,-1);
-        tracep->declBit(c+376,"top wb_reg_u wb_reg i_wen", false,-1);
+        tracep->declBit(c+377,"top wb_reg_u wb_reg i_wen", false,-1);
         tracep->declArray(c+273,"top wb_reg_u wb_reg i_din", false,-1, 288,0);
         tracep->declArray(c+246,"top wb_reg_u wb_reg o_dout", false,-1, 288,0);
         tracep->declQuad(c+82,"top wb_stage_u pc_i", false,-1, 63,0);
@@ -540,7 +540,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+42,"top pipline_ctrl_u id_flush", false,-1);
         tracep->declBit(c+70,"top pipline_ctrl_u ex_flush", false,-1);
         tracep->declBit(c+13,"top pipline_ctrl_u if_valid", false,-1);
-        tracep->declBit(c+370,"top pipline_ctrl_u test", false,-1);
+        tracep->declBit(c+370,"top pipline_ctrl_u if_instr_valid_n", false,-1);
+        tracep->declBit(c+371,"top pipline_ctrl_u test", false,-1);
     }
 }
 
@@ -1565,13 +1566,14 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                             >> 5U)))) 
                                    & (0U != (IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx)))));
         tracep->fullQData(oldp+368,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base),64);
-        tracep->fullBit(oldp+370,(vlSelf->top__DOT__pipline_ctrl_u__DOT__test));
-        tracep->fullIData(oldp+371,(0x60U),32);
-        tracep->fullIData(oldp+372,(0U),32);
-        tracep->fullIData(oldp+373,(0x13bU),32);
-        tracep->fullBit(oldp+374,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__less));
-        tracep->fullIData(oldp+375,(0xe2U),32);
-        tracep->fullBit(oldp+376,(1U));
-        tracep->fullIData(oldp+377,(0x121U),32);
+        tracep->fullBit(oldp+370,((1U & (~ (IData)(vlSelf->sram_data_valid)))));
+        tracep->fullBit(oldp+371,(vlSelf->top__DOT__pipline_ctrl_u__DOT__test));
+        tracep->fullIData(oldp+372,(0x60U),32);
+        tracep->fullIData(oldp+373,(0U),32);
+        tracep->fullIData(oldp+374,(0x13bU),32);
+        tracep->fullBit(oldp+375,(vlSelf->top__DOT__ex_stage_u__DOT__bcu_u__DOT__less));
+        tracep->fullIData(oldp+376,(0xe2U),32);
+        tracep->fullBit(oldp+377,(1U));
+        tracep->fullIData(oldp+378,(0x121U),32);
     }
 }
