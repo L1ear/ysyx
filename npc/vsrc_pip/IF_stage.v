@@ -31,25 +31,15 @@ end
 // assign  instr_o = sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 assign  if_instr_valid = sram_data_valid;
 
-// always @(posedge clk or negedge rst_n) begin
-//     if(~rst_n) begin
-//         instr_o <= 'b0;
-//     end
-//     else if(stall_n) begin
-//         instr_o <= sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
-//     end
-// end 
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        instr_o <= 'b0;
+    end
+    else if(stall_n) begin
+        instr_o <= sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
+    end
+end 
 
-stl_reg #(
-  .WIDTH     (`inst_len),
-  .RESET_VAL (0)
-)wb_reg(
-  .i_clk   (clk),
-  .i_rst_n (rst_n),
-  .i_wen   (stall_n),
-  .i_din   (sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0]),
-  .o_dout  (instr_o)
-);
 
 endmodule //IF_stage
 
