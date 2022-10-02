@@ -34,7 +34,6 @@ VL_MODULE(Vtop___024root) {
     // Anonymous structures to workaround compiler member-count bugs
     struct {
         CData/*0:0*/ top__DOT__is_jump;
-        CData/*0:0*/ top__DOT__pc_stall_n;
         CData/*0:0*/ top__DOT__src1sel_id;
         CData/*1:0*/ top__DOT__src2sel_id;
         CData/*4:0*/ top__DOT__aluctr_id;
@@ -71,6 +70,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus;
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause;
         CData/*0:0*/ top__DOT__pipline_ctrl_u__DOT__if_valid;
+        CData/*0:0*/ top__DOT__pipline_ctrl_u__DOT__test;
         SData/*15:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h;
         IData/*31:0*/ top__DOT__instr_if_id_reg;
         IData/*31:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w;

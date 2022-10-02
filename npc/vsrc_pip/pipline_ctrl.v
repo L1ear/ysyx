@@ -23,8 +23,9 @@ always @(posedge clk or negedge rst_n) begin
         if_valid <= if_instr_valid;
 end    
 wire    if_instr_valid_n = !if_instr_valid;
-wire    test = ld_use_hazard || if_instr_valid_n;
-assign  pc_stall_n = test ? 1'b0 : 1'b1;
+wire    testabc ;
+assign  testabc = ld_use_hazard || if_instr_valid_n;
+assign  pc_stall_n = testabc ? 1'b0 : 1'b1;
 assign  id_stall_n = (ld_use_hazard || ~if_instr_valid) ? 1'b0 : 1'b1;
 assign  ex_stall_n = (!if_instr_valid) ? 1'b0 : 1'b1;
 assign  ls_stall_n = (!if_instr_valid) ? 1'b0 : 1'b1;
