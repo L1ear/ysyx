@@ -961,7 +961,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__7(Vtop___024root* vlSelf) {
                                                                          vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[2U])) 
                                                          >> 0x1bU)))));
     if (vlSelf->rst_n) {
-        if (((IData)(vlSelf->sram_data_valid) & (IData)(vlSelf->top__DOT__pc_stall_n))) {
+        if (vlSelf->top__DOT__pc_stall_n) {
             vlSelf->top__DOT__instr_if_id_reg = ((1U 
                                                   & (IData)(
                                                             (vlSelf->sram_addr 

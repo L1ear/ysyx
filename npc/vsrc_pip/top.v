@@ -348,7 +348,7 @@ pipline_ctrl pipline_ctrl_u(
     .is_jump            (is_jump),
     .in_trap_id         (in_trap_id),
     .out_trap_id        (out_trap_id),
-    .if_instr_valid     (if_instr_valid),
+    .if_instr_valid     (sram_data_valid),
     
     .pc_stall_n         (pc_stall_n),
     .id_stall_n         (id_stall_n),
