@@ -532,8 +532,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+37,"top pipline_ctrl_u in_trap_id", false,-1);
         tracep->declBit(c+38,"top pipline_ctrl_u out_trap_id", false,-1);
         tracep->declBit(c+357,"top pipline_ctrl_u if_instr_valid", false,-1);
-        tracep->declBit(c+361,"top pipline_ctrl_u pc_stall_n", false,-1);
-        tracep->declBit(c+362,"top pipline_ctrl_u id_stall_n", false,-1);
+        tracep->declBit(c+362,"top pipline_ctrl_u pc_stall_n", false,-1);
+        tracep->declBit(c+361,"top pipline_ctrl_u id_stall_n", false,-1);
         tracep->declBit(c+357,"top pipline_ctrl_u ex_stall_n", false,-1);
         tracep->declBit(c+357,"top pipline_ctrl_u ls_stall_n", false,-1);
         tracep->declBit(c+357,"top pipline_ctrl_u wb_stall_n", false,-1);
