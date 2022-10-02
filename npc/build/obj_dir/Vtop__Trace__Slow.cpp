@@ -139,7 +139,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+358,"top IF_u sram_data_valid", false,-1);
         tracep->declQuad(c+359,"top IF_u sram_addr", false,-1, 63,0);
         tracep->declBit(c+361,"top IF_u sram_ren", false,-1);
-        tracep->declBit(c+366,"top IF_u instr", false,-1);
+        tracep->declBus(c+366,"top IF_u instr", false,-1, 31,0);
         tracep->declBit(c+346,"top ID_reg_u clk", false,-1);
         tracep->declBit(c+347,"top ID_reg_u rst_n", false,-1);
         tracep->declQuad(c+15,"top ID_reg_u pc_id_reg_i", false,-1, 63,0);
@@ -1559,13 +1559,12 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                 & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                                                                    >> 0xeU))))))) 
                                         & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base))),64);
-        tracep->fullBit(oldp+366,((1U & ((1U & (IData)(
-                                                       (vlSelf->sram_addr 
-                                                        >> 2U)))
-                                          ? (IData)(
-                                                    (vlSelf->sram_rdata 
-                                                     >> 0x20U))
-                                          : (IData)(vlSelf->sram_rdata)))));
+        tracep->fullIData(oldp+366,(((1U & (IData)(
+                                                   (vlSelf->sram_addr 
+                                                    >> 2U)))
+                                      ? (IData)((vlSelf->sram_rdata 
+                                                 >> 0x20U))
+                                      : (IData)(vlSelf->sram_rdata))),32);
         tracep->fullBit(oldp+367,((((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wben) 
                                     & ((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx) 
                                        == (0x1fU & 

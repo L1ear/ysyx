@@ -962,15 +962,14 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__7(Vtop___024root* vlSelf) {
                                                          >> 0x1bU)))));
     if (vlSelf->rst_n) {
         if (vlSelf->top__DOT__pc_stall_n) {
-            vlSelf->top__DOT__instr_if_id_reg = (1U 
-                                                 & ((1U 
-                                                     & (IData)(
-                                                               (vlSelf->sram_addr 
-                                                                >> 2U)))
-                                                     ? (IData)(
-                                                               (vlSelf->sram_rdata 
-                                                                >> 0x20U))
-                                                     : (IData)(vlSelf->sram_rdata)));
+            vlSelf->top__DOT__instr_if_id_reg = ((1U 
+                                                  & (IData)(
+                                                            (vlSelf->sram_addr 
+                                                             >> 2U)))
+                                                  ? (IData)(
+                                                            (vlSelf->sram_rdata 
+                                                             >> 0x20U))
+                                                  : (IData)(vlSelf->sram_rdata));
         }
     } else {
         vlSelf->top__DOT__instr_if_id_reg = 0U;

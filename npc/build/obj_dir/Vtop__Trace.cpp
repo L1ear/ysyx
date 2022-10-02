@@ -1062,13 +1062,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                                                                   >> 0xeU))))))) 
                                        & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base))),64);
-        tracep->chgBit(oldp+365,((1U & ((1U & (IData)(
-                                                      (vlSelf->sram_addr 
-                                                       >> 2U)))
-                                         ? (IData)(
-                                                   (vlSelf->sram_rdata 
-                                                    >> 0x20U))
-                                         : (IData)(vlSelf->sram_rdata)))));
+        tracep->chgIData(oldp+365,(((1U & (IData)((vlSelf->sram_addr 
+                                                   >> 2U)))
+                                     ? (IData)((vlSelf->sram_rdata 
+                                                >> 0x20U))
+                                     : (IData)(vlSelf->sram_rdata))),32);
         tracep->chgBit(oldp+366,((((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wben) 
                                    & ((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx) 
                                       == (0x1fU & (
