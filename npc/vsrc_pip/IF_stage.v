@@ -13,8 +13,8 @@ module IF_stage (
 //sram interface
     input           [`XLEN-1:0]     sram_rdata,
     input                           sram_data_valid,
-    output          [`XLEN-1:0]     sram_addr,
-    output                          sram_ren
+    output  reg     [`XLEN-1:0]     sram_addr,
+    output  reg                     sram_ren
 );
 
 
