@@ -266,6 +266,7 @@ forwarding  forwarding_u(
     .wben_ls        (wben_ls),
     .wben_wb        (wben_wb),
     .wb_data_i      (wb_data),
+    .wb_stall_n     (wb_stall_n),
 
     .rs1_sel        (rs1_sel),
     .rs2_sel        (rs2_sel),

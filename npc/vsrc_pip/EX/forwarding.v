@@ -7,6 +7,7 @@ module forwarding (
     // input           [`reg_addr_width-1:0]     rd_wbo_idx,
     input                                     wben_ls,wben_wb,
     input           [`XLEN-1          :0]     wb_data_i,
+    input                                     wb_stall_n,
 
     output          [1                :0]     rs1_sel,rs2_sel,
     output          [`XLEN-1          :0]     wb_data_o
@@ -22,7 +23,7 @@ always @(posedge clk or negedge rst_n) begin
         reg_wben <= 1'b0;
         reg_wb_idx <= `reg_addr_width'b0;
     end
-    else if(wben_wb) begin
+    else if(wben_wb && wb_stall_n) begin
         rd_wb <= wb_data_i;
         reg_wben <= wben_wb;
         reg_wb_idx <= rd_lso_idx;
