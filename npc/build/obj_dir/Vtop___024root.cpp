@@ -636,7 +636,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                             (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__id_reg__o_dout[4U] 
                                              >> 4U))));
     if (vlSelf->rst_n) {
-        if (vlSelf->sram_data_valid) {
+        if (vlSelf->top__DOT__pipline_ctrl_u__DOT__if_valid) {
             __Vtemp32[0U] = (((IData)(vlSelf->top__DOT__ID_u__DOT__imm) 
                               << 0x1bU) | (((IData)(vlSelf->top__DOT__aluctr_id) 
                                             << 0x16U) 
@@ -795,7 +795,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                        & vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause));
     if (vlSelf->rst_n) {
         if ((1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
-                      | (~ (IData)(vlSelf->sram_data_valid)))))) {
+                      | (~ (IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__if_valid)))))) {
             vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                 = ((IData)(vlSelf->top__DOT__id_flush)
                     ? 0U : ((1U & (IData)((vlSelf->sram_addr 
@@ -964,7 +964,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                                          >> 0x1bU)))));
     if (vlSelf->rst_n) {
         if ((1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
-                      | (~ (IData)(vlSelf->sram_data_valid)))))) {
+                      | (~ (IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__if_valid)))))) {
             vlSelf->top__DOT__pc_new = vlSelf->top__DOT__pc_next;
         }
     } else {
@@ -2368,6 +2368,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__ex_stage_u__DOT__src1 
                                                                                 >> 0x3fU))))))))))))))))))))))))))))))))))))));
+    vlSelf->top__DOT__pipline_ctrl_u__DOT__if_valid 
+        = ((IData)(vlSelf->rst_n) & (IData)(vlSelf->sram_data_valid));
     VL_EXTEND_WI(65,1, __Vtemp41, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
         = ((vlSelf->top__DOT__ex_stage_u__DOT__src1 
