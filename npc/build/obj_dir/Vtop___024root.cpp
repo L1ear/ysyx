@@ -798,7 +798,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                       | (~ (IData)(vlSelf->sram_data_valid)))))) {
             vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                 = ((IData)(vlSelf->top__DOT__id_flush)
-                    ? 0U : (IData)(vlSelf->sram_rdata));
+                    ? 0U : ((1U & (IData)((vlSelf->sram_addr 
+                                           >> 2U)))
+                             ? (IData)((vlSelf->sram_rdata 
+                                        >> 0x20U)) : (IData)(vlSelf->sram_rdata)));
             vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[1U] 
                 = (IData)(((IData)(vlSelf->top__DOT__id_flush)
                             ? 0ULL : vlSelf->top__DOT__pc_new));

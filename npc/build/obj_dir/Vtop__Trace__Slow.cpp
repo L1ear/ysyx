@@ -1433,7 +1433,12 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+355,(vlSelf->sram_ren));
         tracep->fullBit(oldp+356,((1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
                                             | (~ (IData)(vlSelf->sram_data_valid)))))));
-        tracep->fullIData(oldp+357,((IData)(vlSelf->sram_rdata)),32);
+        tracep->fullIData(oldp+357,(((1U & (IData)(
+                                                   (vlSelf->sram_addr 
+                                                    >> 2U)))
+                                      ? (IData)((vlSelf->sram_rdata 
+                                                 >> 0x20U))
+                                      : (IData)(vlSelf->sram_rdata))),32);
         tracep->fullQData(oldp+358,(((((((((- (QData)((IData)(
                                                               ((3U 
                                                                 == 
@@ -1534,9 +1539,19 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                    >> 0xeU))))))) 
                                         & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base))),64);
         tracep->fullIData(oldp+360,(((IData)(vlSelf->top__DOT__id_flush)
-                                      ? 0U : (IData)(vlSelf->sram_rdata))),32);
+                                      ? 0U : ((1U & (IData)(
+                                                            (vlSelf->sram_addr 
+                                                             >> 2U)))
+                                               ? (IData)(
+                                                         (vlSelf->sram_rdata 
+                                                          >> 0x20U))
+                                               : (IData)(vlSelf->sram_rdata)))),32);
         __Vtemp77[0U] = ((IData)(vlSelf->top__DOT__id_flush)
-                          ? 0U : (IData)(vlSelf->sram_rdata));
+                          ? 0U : ((1U & (IData)((vlSelf->sram_addr 
+                                                 >> 2U)))
+                                   ? (IData)((vlSelf->sram_rdata 
+                                              >> 0x20U))
+                                   : (IData)(vlSelf->sram_rdata)));
         __Vtemp77[1U] = (IData)(((IData)(vlSelf->top__DOT__id_flush)
                                   ? 0ULL : vlSelf->top__DOT__pc_new));
         __Vtemp77[2U] = (IData)((((IData)(vlSelf->top__DOT__id_flush)

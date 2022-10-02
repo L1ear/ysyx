@@ -960,7 +960,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         tracep->chgBit(oldp+354,(vlSelf->sram_ren));
         tracep->chgBit(oldp+355,((1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
                                            | (~ (IData)(vlSelf->sram_data_valid)))))));
-        tracep->chgIData(oldp+356,((IData)(vlSelf->sram_rdata)),32);
+        tracep->chgIData(oldp+356,(((1U & (IData)((vlSelf->sram_addr 
+                                                   >> 2U)))
+                                     ? (IData)((vlSelf->sram_rdata 
+                                                >> 0x20U))
+                                     : (IData)(vlSelf->sram_rdata))),32);
         tracep->chgQData(oldp+357,(((((((((- (QData)((IData)(
                                                              ((3U 
                                                                == 
@@ -1061,9 +1065,19 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                   >> 0xeU))))))) 
                                        & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base))),64);
         tracep->chgIData(oldp+359,(((IData)(vlSelf->top__DOT__id_flush)
-                                     ? 0U : (IData)(vlSelf->sram_rdata))),32);
+                                     ? 0U : ((1U & (IData)(
+                                                           (vlSelf->sram_addr 
+                                                            >> 2U)))
+                                              ? (IData)(
+                                                        (vlSelf->sram_rdata 
+                                                         >> 0x20U))
+                                              : (IData)(vlSelf->sram_rdata)))),32);
         __Vtemp101[0U] = ((IData)(vlSelf->top__DOT__id_flush)
-                           ? 0U : (IData)(vlSelf->sram_rdata));
+                           ? 0U : ((1U & (IData)((vlSelf->sram_addr 
+                                                  >> 2U)))
+                                    ? (IData)((vlSelf->sram_rdata 
+                                               >> 0x20U))
+                                    : (IData)(vlSelf->sram_rdata)));
         __Vtemp101[1U] = (IData)(((IData)(vlSelf->top__DOT__id_flush)
                                    ? 0ULL : vlSelf->top__DOT__pc_new));
         __Vtemp101[2U] = (IData)((((IData)(vlSelf->top__DOT__id_flush)
