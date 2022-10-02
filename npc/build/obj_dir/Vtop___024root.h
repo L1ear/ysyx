@@ -70,7 +70,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus;
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause;
         CData/*0:0*/ top__DOT__pipline_ctrl_u__DOT__if_valid;
-        CData/*0:0*/ top__DOT__pipline_ctrl_u__DOT__test;
+        CData/*0:0*/ top__DOT__pipline_ctrl_u__DOT__testabc;
         SData/*15:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h;
         IData/*31:0*/ top__DOT__instr_if_id_reg;
         IData/*31:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w;

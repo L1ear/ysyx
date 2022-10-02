@@ -541,7 +541,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+70,"top pipline_ctrl_u ex_flush", false,-1);
         tracep->declBit(c+13,"top pipline_ctrl_u if_valid", false,-1);
         tracep->declBit(c+370,"top pipline_ctrl_u if_instr_valid_n", false,-1);
-        tracep->declBit(c+371,"top pipline_ctrl_u test", false,-1);
+        tracep->declBit(c+371,"top pipline_ctrl_u testabc", false,-1);
     }
 }
 
@@ -1451,7 +1451,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+358,(vlSelf->sram_data_valid));
         tracep->fullQData(oldp+359,(vlSelf->sram_addr),64);
         tracep->fullBit(oldp+361,(vlSelf->sram_ren));
-        tracep->fullBit(oldp+362,((1U & (~ (IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__test)))));
+        tracep->fullBit(oldp+362,((1U & (~ (IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__testabc)))));
         tracep->fullBit(oldp+363,((1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
                                             | (~ (IData)(vlSelf->sram_data_valid)))))));
         tracep->fullQData(oldp+364,(((((((((- (QData)((IData)(
@@ -1567,7 +1567,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                    & (0U != (IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx)))));
         tracep->fullQData(oldp+368,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base),64);
         tracep->fullBit(oldp+370,((1U & (~ (IData)(vlSelf->sram_data_valid)))));
-        tracep->fullBit(oldp+371,(vlSelf->top__DOT__pipline_ctrl_u__DOT__test));
+        tracep->fullBit(oldp+371,(vlSelf->top__DOT__pipline_ctrl_u__DOT__testabc));
         tracep->fullIData(oldp+372,(0x60U),32);
         tracep->fullIData(oldp+373,(0U),32);
         tracep->fullIData(oldp+374,(0x13bU),32);
