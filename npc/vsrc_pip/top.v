@@ -279,6 +279,7 @@ L_S_reg L_S_reg_u(
     .alures_ls_reg_i(alures_ex),
     .wben_ls_reg_i  (wben_ex),
     .trap_ls_reg_i  (trap_ex),
+    .stall_n        (ls_stall_n),
 
     .PC_ls_reg_o    (pc_ls),
     .instr_ls_reg_o (instr_ls),
@@ -299,7 +300,6 @@ ls_stage ls_u(
     .instr_last_i   (instr_wb),
     .wb_data_i      (lsres_wb),
     .trap_ls_i      (trap_ls),
-    .stall_n        (ls_stall_n),
 
     .ls_res_o       (lsres_ls),
     .csr_data_o     (csrdata_ls),
