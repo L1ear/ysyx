@@ -969,8 +969,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         tracep->chgBit(oldp+356,(vlSelf->sram_data_valid));
         tracep->chgQData(oldp+357,(vlSelf->sram_addr),64);
         tracep->chgBit(oldp+359,(vlSelf->sram_ren));
-        tracep->chgBit(oldp+360,((1U & (~ (IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__teslll)))));
-        tracep->chgQData(oldp+361,(((((((((- (QData)((IData)(
+        tracep->chgBit(oldp+360,(vlSelf->top__DOT__pc_stall_n));
+        tracep->chgBit(oldp+361,((1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
+                                           | (~ (IData)(vlSelf->sram_data_valid)))))));
+        tracep->chgQData(oldp+362,(((((((((- (QData)((IData)(
                                                              ((3U 
                                                                == 
                                                                (0x7fU 
@@ -1069,20 +1071,21 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                                                                   >> 0xeU))))))) 
                                        & vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base))),64);
-        tracep->chgBit(oldp+363,((((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wben) 
+        tracep->chgBit(oldp+364,((((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wben) 
                                    & ((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx) 
                                       == (0x1fU & (
                                                    vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
                                                    >> 0xaU)))) 
                                   & (0U != (IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx)))));
-        tracep->chgBit(oldp+364,((((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wben) 
+        tracep->chgBit(oldp+365,((((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wben) 
                                    & ((IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx) 
                                       == (0x1fU & (
                                                    vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
                                                    >> 5U)))) 
                                   & (0U != (IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx)))));
-        tracep->chgQData(oldp+365,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base),64);
-        tracep->chgBit(oldp+367,(vlSelf->top__DOT__pipline_ctrl_u__DOT__teslll));
+        tracep->chgQData(oldp+366,(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_base),64);
+        tracep->chgBit(oldp+368,((1U & ((IData)(vlSelf->top__DOT__ld_use_hazard) 
+                                        | (~ (IData)(vlSelf->sram_data_valid))))));
     }
 }
 
