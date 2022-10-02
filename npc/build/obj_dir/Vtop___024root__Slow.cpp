@@ -1213,7 +1213,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                         if ((0U == (7U & (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                                           >> 0xcU)))) {
                             if ((0x100000U & vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U])) {
-                                vlSelf->top__DOT__in_trap_id = 1U;
+                                vlSelf->top__DOT__in_trap_id = 0U;
                             } else if ((1U & (~ (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                                                  >> 0x15U)))) {
                                 vlSelf->top__DOT__in_trap_id = 1U;
