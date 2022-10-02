@@ -1,5 +1,6 @@
 `include "defines.v"   
 module IF_stage (
+    input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
     input                           is_jump_i,
     input           [`XLEN-1:0]     pc_jump_i,
