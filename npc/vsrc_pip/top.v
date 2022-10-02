@@ -4,7 +4,7 @@ module top (
 
     output          [`XLEN-1:0]     pc_diff,pc_decoding,
     output          [`inst_len-1:0] instr_diff,
-	output	        [`XLEN-1:0]		regA0
+	output	        [`XLEN-1:0]		regA0,
 
 //sram  interface
     input           [`XLEN-1:0]     sram_rdata,
