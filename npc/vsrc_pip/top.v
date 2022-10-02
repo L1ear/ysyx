@@ -332,6 +332,8 @@ WB_stage wb_stage_u(
 );
 
 pipline_ctrl pipline_ctrl_u(
+    .clk                (clk),
+    .rst_n              (rst_n),
     .ld_use_hazard      (ld_use_hazard),
     .is_jump            (is_jump),
     .in_trap_id         (in_trap_id),
