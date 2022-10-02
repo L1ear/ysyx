@@ -106,7 +106,9 @@ void single_cycle(int i) {
   if(top->sram_ren){
     if(top->sram_addr!=0){
       top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
-      top->sram_data_valid = 1;
+      int x = (rand()%10);
+      printf("%d\n",x);
+      top->sram_data_valid = x;
     }
     else {
       top->sram_rdata = 0;
