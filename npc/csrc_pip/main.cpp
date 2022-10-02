@@ -100,8 +100,12 @@ int start = 1;
 uint64_t pc = 0;
 uint64_t instr_last;
 void single_cycle(int i) {
+//上升沿
   top->clk = 1; 
   top->eval();
+  if(top->){
+
+  }
 #ifdef vcd
   fp ->dump(i);
 #endif

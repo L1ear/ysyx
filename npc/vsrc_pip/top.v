@@ -5,13 +5,22 @@ module top (
     output          [`XLEN-1:0]     pc_diff,pc_decoding,
     output          [`inst_len-1:0] instr_diff,
 	output	        [`XLEN-1:0]		regA0
+
+//sram  interface
+    input           [`XLEN-1:0]     sram_rdata,
+    input                           sram_data_valid,
+    output          [`XLEN-1:0]     sram_addr,
+    output                          sram_ren
+
 );
 
+//if signal
 wire    [`XLEN-1:0]     pc_next;
 wire    [`XLEN-1:0]     pc_new;
 wire                    is_jump;
 wire    [`XLEN-1:0]     pc_jump;
 wire                    pc_stall_n;
+wire                    if_instr_valid;
 
 //id signal-----------------------------------------------------
 wire    [`inst_len-1:0] instr_if_id_reg;
@@ -95,7 +104,12 @@ IF_stage IF_u(
     .out_trap_id    (out_trap_id),
 
     .pc_next_o      (pc_next),
-    .instr_o        (instr_if_id_reg)
+    .instr_o        (instr_if_id_reg),
+    .if_instr_valid (if_instr_valid),
+    .sram_rdata     (sram_rdata),
+    .sram_data_valid(sram_data_valid),
+    .sram_addr      (sram_addr),
+    .sram_ren       (sram_ren)
 );
 
 ID_reg ID_reg_u(
@@ -322,6 +336,7 @@ pipline_ctrl pipline_ctrl_u(
     .is_jump            (is_jump),
     .in_trap_id         (in_trap_id),
     .out_trap_id        (out_trap_id),
+    .if_instr_valid     (if_instr_valid),
     
     .pc_stall_n         (pc_stall_n),
     .id_stall_n         (id_stall_n),
