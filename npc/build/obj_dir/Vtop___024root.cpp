@@ -85,7 +85,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mtvec = 0ULL;
     }
     if (vlSelf->rst_n) {
-        if ((1U & vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U])) {
+        if ((vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U] 
+             & (IData)(vlSelf->sram_data_valid))) {
             vlSelf->top__DOT__forwarding_u__DOT__rd_wb 
                 = vlSelf->top__DOT__wb_data;
         }
@@ -93,21 +94,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__forwarding_u__DOT__rd_wb = 0ULL;
     }
     if (vlSelf->rst_n) {
-        if ((1U & vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U])) {
+        if ((vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U] 
+             & (IData)(vlSelf->sram_data_valid))) {
+            vlSelf->top__DOT__forwarding_u__DOT__reg_wben 
+                = (1U & vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U]);
+        }
+    } else {
+        vlSelf->top__DOT__forwarding_u__DOT__reg_wben = 0U;
+    }
+    if (vlSelf->rst_n) {
+        if ((vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U] 
+             & (IData)(vlSelf->sram_data_valid))) {
             vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx 
                 = (0x1fU & (vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[6U] 
                             >> 8U));
         }
     } else {
         vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx = 0U;
-    }
-    if (vlSelf->rst_n) {
-        if ((1U & vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U])) {
-            vlSelf->top__DOT__forwarding_u__DOT__reg_wben 
-                = (1U & vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U]);
-        }
-    } else {
-        vlSelf->top__DOT__forwarding_u__DOT__reg_wben = 0U;
     }
     if (vlSelf->rst_n) {
         if ((1U & ((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause) 

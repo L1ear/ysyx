@@ -385,6 +385,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+77,"top forwarding_u wben_ls", false,-1);
         tracep->declBit(c+91,"top forwarding_u wben_wb", false,-1);
         tracep->declQuad(c+88,"top forwarding_u wb_data_i", false,-1, 63,0);
+        tracep->declBit(c+358,"top forwarding_u wb_stall_n", false,-1);
         tracep->declBus(c+65,"top forwarding_u rs1_sel", false,-1, 1,0);
         tracep->declBus(c+66,"top forwarding_u rs2_sel", false,-1, 1,0);
         tracep->declQuad(c+1,"top forwarding_u wb_data_o", false,-1, 63,0);
