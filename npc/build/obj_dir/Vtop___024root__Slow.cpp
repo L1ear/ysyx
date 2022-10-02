@@ -1468,8 +1468,9 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                                      (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                                                                       >> 0x14U))))
                                                    : 0ULL)))));
-    vlSelf->top__DOT__pipline_ctrl_u__DOT__test = ((IData)(vlSelf->top__DOT__ld_use_hazard) 
-                                                   | (IData)(vlSelf->sram_data_valid));
+    vlSelf->top__DOT__pipline_ctrl_u__DOT__test = (1U 
+                                                   & ((IData)(vlSelf->top__DOT__ld_use_hazard) 
+                                                      | (~ (IData)(vlSelf->sram_data_valid))));
     vlSelf->top__DOT__csrdata_ls = (((((- (QData)((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc))) 
                                        & vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc) 
                                       | ((- (QData)((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mtvec))) 
