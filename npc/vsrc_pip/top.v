@@ -350,8 +350,8 @@ pipline_ctrl pipline_ctrl_u(
     .out_trap_id        (out_trap_id),
     .if_instr_valid     (if_instr_valid),
     
-    .pc_stall_n         (id_stall_n),
-    .id_stall_n         (pc_stall_n),
+    .pc_stall_n         (pc_stall_n),
+    .id_stall_n         (id_stall_n),
     .ex_stall_n         (ex_stall_n),
     .ls_stall_n         (ls_stall_n),
     .wb_stall_n         (wb_stall_n),
