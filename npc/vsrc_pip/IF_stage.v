@@ -31,7 +31,7 @@ end
 // assign  instr_o = sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 assign  if_instr_valid = sram_data_valid;
 
-wire    instr = sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0]
+wire    instr = sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         instr_o <= 'b0;
