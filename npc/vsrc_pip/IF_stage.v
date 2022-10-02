@@ -23,8 +23,8 @@ assign pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id
 
 
 always @(*) begin
-        sram_ren <= 1'b1;
-        sram_addr <= pc_next_o;
+        sram_ren = 1'b1;
+        sram_addr = pc_next_o;
 end
 
 // assign  instr_o = sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
