@@ -962,7 +962,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                                                          vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[2U])) 
                                                          >> 0x1bU)))));
     if (vlSelf->rst_n) {
-        if (((IData)(vlSelf->sram_data_valid) & (~ (IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__testabc)))) {
+        if (((IData)(vlSelf->sram_data_valid) & (IData)(vlSelf->top__DOT__pc_stall_n))) {
             vlSelf->top__DOT__instr_if_id_reg = ((1U 
                                                   & (IData)(
                                                             (vlSelf->sram_addr 
@@ -976,7 +976,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__instr_if_id_reg = 0U;
     }
     if (vlSelf->rst_n) {
-        if ((1U & (~ (IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__testabc)))) {
+        if (vlSelf->top__DOT__pc_stall_n) {
             vlSelf->top__DOT__pc_new = vlSelf->top__DOT__pc_next;
         }
     } else {
@@ -3236,9 +3236,8 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__9(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__9\n"); );
     // Body
-    vlSelf->top__DOT__pipline_ctrl_u__DOT__testabc 
-        = (1U & ((IData)(vlSelf->top__DOT__ld_use_hazard) 
-                 | (~ (IData)(vlSelf->sram_data_valid))));
+    vlSelf->top__DOT__pc_stall_n = (1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
+                                             | (~ (IData)(vlSelf->sram_data_valid)))));
 }
 
 void Vtop___024root___eval(Vtop___024root* vlSelf) {

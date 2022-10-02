@@ -5,14 +5,14 @@ module pipline_ctrl (
     input               in_trap_id,out_trap_id,
     input               if_instr_valid,
 
-    output  reg         pc_stall_n,
-    output  reg         id_stall_n,
-    output  reg         ex_stall_n,
-    output  reg         ls_stall_n,
-    output  reg         wb_stall_n,
+    output              pc_stall_n,
+    output              id_stall_n,
+    output              ex_stall_n,
+    output              ls_stall_n,
+    output              wb_stall_n,
 
-    output  reg         id_flush,
-    output  reg         ex_flush
+    output              id_flush,
+    output              ex_flush
 );
     
 reg     if_valid;
