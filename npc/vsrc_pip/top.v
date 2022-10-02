@@ -5,6 +5,7 @@ module top (
     output          [`XLEN-1:0]     pc_diff,pc_decoding,
     output          [`inst_len-1:0] instr_diff,
 	output	        [`XLEN-1:0]		regA0,
+    output                          stall_n_diff,
 
 //sram  interface
     input           [`XLEN-1:0]     sram_rdata,
@@ -86,6 +87,7 @@ wire                    wb_stall_n;
 assign  pc_diff = pc_wb;
 assign  pc_decoding = pc_id;
 assign  instr_diff = instr_wb;
+assign  stall_n_diff = wb_stall_n;
 
 PC_reg PC_reg_u(
     .clk            (clk),
