@@ -41,7 +41,7 @@ always @(posedge clk or negedge rst_n) begin
         instr_o <= 'b0;
     end
     else if(sram_data_valid) begin
-        instr_o = sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
+        instr_o <= sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
     end
 end 
 
