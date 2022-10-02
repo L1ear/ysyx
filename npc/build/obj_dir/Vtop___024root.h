@@ -21,6 +21,7 @@ VL_MODULE(Vtop___024root) {
     // PORTS
     VL_IN8(clk,0,0);
     VL_IN8(rst_n,0,0);
+    VL_OUT8(stall_n_diff,0,0);
     VL_IN8(sram_data_valid,0,0);
     VL_OUT8(sram_ren,0,0);
     VL_OUT(instr_diff,31,0);
