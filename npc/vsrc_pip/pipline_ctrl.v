@@ -16,7 +16,7 @@ module pipline_ctrl (
 );
     
 wire    teslll = (ld_use_hazard || (~if_instr_valid));
-assign  pc_stall_n = teslll ? 1'b0 : 1'b1;
+assign  pc_stall_n = (ld_use_hazard || (~if_instr_valid)) ? 1'b0 : 1'b1;
 assign  id_stall_n = teslll ? 1'b0 : 1'b1;
 assign  ex_stall_n = (~if_instr_valid) ? 1'b0 : 1'b1;
 assign  ls_stall_n = (~if_instr_valid) ? 1'b0 : 1'b1;
