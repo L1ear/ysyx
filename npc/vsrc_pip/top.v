@@ -95,6 +95,8 @@ PC_reg PC_reg_u(
 );
 
 IF_stage IF_u(
+    .clk            (clk),
+    .rst_n          (rst_n),
     .pc_i           (pc_new),
     .is_jump_i      (is_jump),
     .pc_jump_i      (pc_jump),
