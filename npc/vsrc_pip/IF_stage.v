@@ -26,7 +26,7 @@ always @(*) begin
     sram_addr = pc_next_o;
 end
 
-assign  instr_o = sram_rdata;
+assign  instr_o = sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 assign  if_instr_valid = sram_data_valid;
 
 endmodule //IF_stage
