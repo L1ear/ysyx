@@ -235,16 +235,14 @@ always @(*) begin
                     wb_en_o = 1'b0;
                     if(instr_i[20]) begin                       //ebreak;
                     //    ebreak();
-                        in_trap_id = 1'b1;
+                        in_trap_id = 1'b0;
                     end
                     else if(~instr_i[21]) begin                 //ecall              //ecall;
                         //TODO
                         in_trap_id = 1'b1;
-        //                 IntSync = 1'b1;
                     end
                     else begin     
                         out_trap_id = 1'b1;                             //mret
-                        // mret = 1'b1;
                     end
                 end
                 `csrrw: begin
