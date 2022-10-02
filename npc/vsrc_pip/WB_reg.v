@@ -19,7 +19,7 @@ module WB_reg (
 stl_reg #(
   .WIDTH     (4*`XLEN + `inst_len + 1),
   .RESET_VAL (0)
-)id_reg(
+)wb_reg(
   .i_clk   (clk),
   .i_rst_n (rst_n),
   .i_wen   (1'b1),

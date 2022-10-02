@@ -51,7 +51,7 @@ assign  trap_ex_reg     = flush ? 1'b0          : trap_ex_reg_i;
 stl_reg #(
   .WIDTH     (4*`XLEN + `inst_len + 27),
   .RESET_VAL (0)
-)id_reg(
+)ex_reg(
   .i_clk   (clk),
   .i_rst_n (rst_n),
   .i_wen   (stall_n),

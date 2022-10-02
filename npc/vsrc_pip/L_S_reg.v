@@ -25,7 +25,7 @@ module L_S_reg (
 stl_reg #(
   .WIDTH     (3*`XLEN + `inst_len + 2),
   .RESET_VAL (0)
-)id_reg(
+)ls_reg(
   .i_clk   (clk),
   .i_rst_n (rstn),
   .i_wen   (1'b1),

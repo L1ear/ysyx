@@ -22,11 +22,11 @@ always @(posedge clk or negedge rst_n) begin
     else
         if_valid <= if_instr_valid;
 end    
-assign  pc_stall_n = (ld_use_hazard || ~if_valid) ? 1'b0 : 1'b1;
-assign  id_stall_n = (ld_use_hazard || ~if_valid) ? 1'b0 : 1'b1;
-assign  ex_stall_n = (~if_valid) ? 1'b0 : 1'b1;
-assign  ls_stall_n = (~if_valid) ? 1'b0 : 1'b1;
-assign  wb_stall_n = (~if_valid) ? 1'b0 : 1'b1;
+assign  pc_stall_n = (ld_use_hazard || ~if_instr_valid) ? 1'b0 : 1'b1;
+assign  id_stall_n = (ld_use_hazard || ~if_instr_valid) ? 1'b0 : 1'b1;
+assign  ex_stall_n = (~if_instr_valid) ? 1'b0 : 1'b1;
+assign  ls_stall_n = (~if_instr_valid) ? 1'b0 : 1'b1;
+assign  wb_stall_n = (~if_instr_valid) ? 1'b0 : 1'b1;
 
 assign  ex_flush   = (ld_use_hazard || is_jump) ? 1'b1 : 1'b0;
 assign  id_flush   = (is_jump || in_trap_id || out_trap_id) ? 1'b1 : 1'b0;
