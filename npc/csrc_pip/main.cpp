@@ -39,11 +39,10 @@ int reset(int i) {
       fp ->dump(i);
       #endif
       top->clk = 0;
+      top->rst_n = 1; top->eval();
       top->eval();
-      fp ->dump(i+1);
-      top->rst_n = 1;
       #ifdef vcd
-      
+      fp ->dump(i+1);
       #endif  
   return i+2;
 }
