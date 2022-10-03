@@ -11,6 +11,7 @@ module IF_stage (
     output          [`XLEN-1:0]     pc_next_o,
     output   reg    [`inst_len-1:0] instr_o,
     output                          if_instr_valid,
+    output   reg    [`XLEN-1:0]     pc_new_o,
 
 //sram interface
     input           [`XLEN-1:0]     sram_rdata,
@@ -20,7 +21,7 @@ module IF_stage (
 );
 
 
-assign pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id? csr_mepc : (pc_i+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
+assign pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
 
 
 always @(*) begin               //要用组合逻辑
@@ -40,25 +41,35 @@ always @(posedge clk) begin
 end 
 
 
-endmodule //IF_stage
-
-
-
-module PC_reg(
-    input                           clk,rst_n,
-    input           [`XLEN-1:0]     pc_i,
-    input                           stall_n,
-
-    output   reg    [`XLEN-1:0]     pc_new_o
-);
-
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         pc_new_o <= `XLEN'h8000_0000 - 4;
     end
     else if(stall_n) begin
-        pc_new_o <= pc_i;
+        pc_new_o <= pc_next_o;
     end
 end
 
+
 endmodule //IF_stage
+
+
+
+// module PC_reg(
+//     input                           clk,rst_n,
+//     input           [`XLEN-1:0]     pc_i,
+//     input                           stall_n,
+
+//     output   reg    [`XLEN-1:0]     pc_new_o
+// );
+
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n) begin
+//         pc_new_o <= `XLEN'h8000_0000 - 4;
+//     end
+//     else if(stall_n) begin
+//         pc_new_o <= pc_i;
+//     end
+// end
+
+// endmodule //IF_stage
