@@ -40,9 +40,10 @@ int reset(int i) {
       #endif
       top->clk = 0;
       top->eval();
+      fp ->dump(i+1);
       top->rst_n = 1;
       #ifdef vcd
-      fp ->dump(i+1);
+      
       #endif  
   return i+2;
 }
