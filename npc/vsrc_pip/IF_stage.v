@@ -23,12 +23,11 @@ module IF_stage (
 assign pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id? csr_mepc : (pc_i+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
 
 
-always @(*) begin
+always @(*) begin               //要用组合逻辑
         sram_ren = 1'b1;
         sram_addr = pc_next_o;
 end
 
-// assign  instr_o = sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 assign  if_instr_valid = sram_data_valid;
 
 always @(posedge clk or negedge rst_n) begin
