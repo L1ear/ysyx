@@ -89,14 +89,14 @@ assign  pc_decoding = pc_id;
 assign  instr_diff = instr_wb;
 assign  stall_n_diff = wb_stall_n;
 
-// PC_reg PC_reg_u(
-//     .clk            (clk),
-//     .rst_n          (rst_n),
-//     .pc_i           (pc_next),
-//     .stall_n        (pc_stall_n),
+PC_reg PC_reg_u(
+    .clk            (clk),
+    .rst_n          (rst_n),
+    .pc_i           (pc_next),
+    .stall_n        (pc_stall_n),
 
-//     .pc_new_o       (pc_new)    
-// );
+    .pc_new_o       (pc_new)    
+);
 
 IF_stage IF_u(
     .clk            (clk),
@@ -116,9 +116,7 @@ IF_stage IF_u(
     .sram_rdata     (sram_rdata),
     .sram_data_valid(sram_data_valid),
     .sram_addr      (sram_addr),
-    .sram_ren       (sram_ren),
-
-    .pc_new_o       (pc_new)
+    .sram_ren       (sram_ren)
 );
 
 ID_reg ID_reg_u(
