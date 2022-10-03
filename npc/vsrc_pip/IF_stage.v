@@ -30,7 +30,7 @@ end
 
 assign  if_instr_valid = sram_data_valid;
 
-always @(posedge clk or negedge rst_n) begin
+always @(posedge clk) begin
     if(~rst_n) begin
         instr_o <= `inst_len'b0;
     end
