@@ -112,7 +112,7 @@ IF_stage IF_u(
 
     .pc_next_o      (pc_next),
     .instr_o        (instr_if_id_reg),
-    .if_instr_valid (if_instr_valid),
+    // .if_instr_valid (if_instr_valid),
     .sram_rdata     (sram_rdata),
     .sram_data_valid(sram_data_valid),
     .sram_addr      (sram_addr),
@@ -348,7 +348,7 @@ pipline_ctrl pipline_ctrl_u(
     .is_jump            (is_jump),
     .in_trap_id         (in_trap_id),
     .out_trap_id        (out_trap_id),
-    .if_instr_valid     (if_instr_valid),
+    .if_instr_valid     (sram_data_valid),
     
     .pc_stall_n         (pc_stall_n),
     .id_stall_n         (id_stall_n),
