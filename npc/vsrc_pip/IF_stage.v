@@ -9,7 +9,7 @@ module IF_stage (
     input                           stall_n,
 
     output          [`XLEN-1:0]     pc_next_o,
-    output   reg    [`inst_len-1:0] instr_o,
+    output       [`inst_len-1:0] instr_o,
     // output                          if_instr_valid,
 
 //sram interface
@@ -29,15 +29,15 @@ always @(*) begin               //要用组合逻辑
 end
 
 // assign  if_instr_valid = sram_data_valid;
-wire    stall = ~stall_n;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        instr_o <= `inst_len'b0;
-    end
-    else if(~stall) begin
-        instr_o <= sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
-    end
-end 
+// wire    stall = ~stall_n;
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n) begin
+//         instr_o <= `inst_len'b0;
+//     end
+//     else if(~stall) begin
+assign instr_o = sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
+//     end
+// end 
 
 
 endmodule //IF_stage
