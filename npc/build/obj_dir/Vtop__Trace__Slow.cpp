@@ -117,6 +117,11 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+91,"top wben_wb", false,-1);
         tracep->declQuad(c+92,"top csrdata_wb", false,-1, 63,0);
         tracep->declBit(c+358,"top wb_stall_n", false,-1);
+        tracep->declBit(c+346,"top PC_reg_u clk", false,-1);
+        tracep->declBit(c+347,"top PC_reg_u rst_n", false,-1);
+        tracep->declQuad(c+13,"top PC_reg_u pc_i", false,-1, 63,0);
+        tracep->declBit(c+362,"top PC_reg_u stall_n", false,-1);
+        tracep->declQuad(c+15,"top PC_reg_u pc_new_o", false,-1, 63,0);
         tracep->declBit(c+346,"top IF_u clk", false,-1);
         tracep->declBit(c+347,"top IF_u rst_n", false,-1);
         tracep->declQuad(c+15,"top IF_u pc_i", false,-1, 63,0);
@@ -130,7 +135,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+13,"top IF_u pc_next_o", false,-1, 63,0);
         tracep->declBus(c+20,"top IF_u instr_o", false,-1, 31,0);
         tracep->declBit(c+358,"top IF_u if_instr_valid", false,-1);
-        tracep->declQuad(c+15,"top IF_u pc_new_o", false,-1, 63,0);
         tracep->declQuad(c+356,"top IF_u sram_rdata", false,-1, 63,0);
         tracep->declBit(c+358,"top IF_u sram_data_valid", false,-1);
         tracep->declQuad(c+359,"top IF_u sram_addr", false,-1, 63,0);
