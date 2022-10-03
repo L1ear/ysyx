@@ -2696,6 +2696,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__pc_next = 0;
     vlSelf->top__DOT__pc_new = 0;
     vlSelf->top__DOT__is_jump = 0;
+    vlSelf->top__DOT__if_instr_valid = 0;
     vlSelf->top__DOT__instr_if_id_reg = 0;
     vlSelf->top__DOT__src1sel_id = 0;
     vlSelf->top__DOT__src2sel_id = 0;
