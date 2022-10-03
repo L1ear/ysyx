@@ -34,21 +34,23 @@ assign  if_instr_valid = sram_data_valid;
 always @(posedge clk) begin
     if(~rst_n) begin
         instr_o <= `inst_len'b0;
+        pc_new_o <= `XLEN'h8000_0000 - 4;
     end
     else if(stall_n) begin
         instr_o <= sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
+        pc_new_o <= pc_next_o;
     end
 end 
 
 
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        pc_new_o <= `XLEN'h8000_0000 - 4;
-    end
-    else if(stall_n) begin
-        pc_new_o <= pc_next_o;
-    end
-end
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n) begin
+//         pc_new_o <= `XLEN'h8000_0000 - 4;
+//     end
+//     else if(stall_n) begin
+//         pc_new_o <= pc_next_o;
+//     end
+// end
 
 
 endmodule //IF_stage
