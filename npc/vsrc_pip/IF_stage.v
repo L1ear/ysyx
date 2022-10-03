@@ -9,7 +9,7 @@ module IF_stage (
     input                           stall_n,
 
     output          [`XLEN-1:0]     pc_next_o,
-    output       [`inst_len-1:0] instr_o,
+    output  reg     [`inst_len-1:0] instr_o,
     // output                          if_instr_valid,
 
 //sram interface
