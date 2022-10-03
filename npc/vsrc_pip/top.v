@@ -116,7 +116,9 @@ IF_stage IF_u(
     .sram_rdata     (sram_rdata),
     .sram_data_valid(sram_data_valid),
     .sram_addr      (sram_addr),
-    .sram_ren       (sram_ren)
+    .sram_ren       (sram_ren),
+
+    .pc_new_o       (pc_new)
 );
 
 ID_reg ID_reg_u(
