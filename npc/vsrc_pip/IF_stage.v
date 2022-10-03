@@ -31,14 +31,14 @@ end
 
 assign  if_instr_valid = sram_data_valid;
 
-always @(posedge clk) begin
-    if(~rst_n) begin
-        instr_o <= `inst_len'b0;
-    end
-    else if(stall_n) begin
-        instr_o <= sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
-    end
-end 
+// always @(posedge clk) begin
+//     if(~rst_n) begin
+//         instr_o <= `inst_len'b0;
+//     end
+//     else if(stall_n) begin
+//         instr_o <= sram_addr[2] ? sram_rdata[63:32] : sram_rdata[31:0];
+//     end
+// end 
 
 
 always @(posedge clk or negedge rst_n) begin
