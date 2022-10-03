@@ -9,8 +9,8 @@ module IF_stage (
     input                           stall_n,
 
     output          [`XLEN-1:0]     pc_next_o,
-    output  reg     [`inst_len-1:0] instr_o,
-    // output                          if_instr_valid,
+    output   reg    [`inst_len-1:0] instr_o,
+    output                          if_instr_valid,
 
 //sram interface
     input           [`XLEN-1:0]     sram_rdata,
@@ -23,19 +23,13 @@ module IF_stage (
 assign pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id? csr_mepc : (pc_i+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
 
 
-always @(posedge clk) begin   
-    if(~rst_n) begin
-        sram_ren = 1'b0;
-        sram_addr = 'b0;
-    end
-    else begin
+always @(*) begin               //要用组合逻辑
         sram_ren = 1'b1;
         sram_addr = pc_next_o;
-    end
 end
 
-// assign  if_instr_valid = sram_data_valid;
-// wire    stall = ~stall_n;
+assign  if_instr_valid = sram_data_valid;
+
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         instr_o <= `inst_len'b0;
