@@ -5,6 +5,7 @@ module pipline_ctrl (
     input               in_trap_id,out_trap_id,
     input               if_instr_valid,
 
+    output              if_stall_n,
     output              pc_stall_n,
     output              id_stall_n,
     output              ex_stall_n,
@@ -17,6 +18,7 @@ module pipline_ctrl (
     
 wire    teslll = (ld_use_hazard || (~if_instr_valid));
 assign  pc_stall_n = (ld_use_hazard || (~if_instr_valid)) ? 1'b0 : 1'b1;
+assign  if_stall_n = (ld_use_hazard || (~if_instr_valid)) ? 1'b0 : 1'b1;
 assign  id_stall_n = (ld_use_hazard || (~if_instr_valid)) ? 1'b0 : 1'b1;
 assign  ex_stall_n = (~if_instr_valid) ? 1'b0 : 1'b1;
 assign  ls_stall_n = (~if_instr_valid) ? 1'b0 : 1'b1;

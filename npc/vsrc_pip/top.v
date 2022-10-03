@@ -21,6 +21,7 @@ wire    [`XLEN-1:0]     pc_new;
 wire                    is_jump;
 wire    [`XLEN-1:0]     pc_jump;
 wire                    pc_stall_n;
+wire                    if_stall_n;
 wire                    if_instr_valid;
 
 //id signal-----------------------------------------------------
@@ -108,7 +109,7 @@ IF_stage IF_u(
     .csr_mepc       (csr_mepc),
     .in_trap_id     (in_trap_id),
     .out_trap_id    (out_trap_id),
-    .stall_n        (pc_stall_n),
+    .stall_n        (if_stall_n),
 
     .pc_next_o      (pc_next),
     .instr_o        (instr_if_id_reg),
@@ -351,6 +352,7 @@ pipline_ctrl pipline_ctrl_u(
     .if_instr_valid     (if_instr_valid),
     
     .pc_stall_n         (pc_stall_n),
+    .if_stall_n         (if_stall_n),
     .id_stall_n         (id_stall_n),
     .ex_stall_n         (ex_stall_n),
     .ls_stall_n         (ls_stall_n),
