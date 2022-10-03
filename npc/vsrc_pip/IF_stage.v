@@ -31,7 +31,7 @@ end
 // assign  if_instr_valid = sram_data_valid;
 
 always @(posedge clk or negedge rst_n) begin
-    if(!rst_n) begin
+    if(~rst_n) begin
         instr_o <= `inst_len'b0;
     end
     else if(stall_n) begin
@@ -53,7 +53,7 @@ module PC_reg(
 );
 
 always @(posedge clk or negedge rst_n) begin
-    if(!rst_n) begin
+    if(~rst_n) begin
         pc_new_o <= `XLEN'h8000_0000 - 4;
     end
     else if(stall_n) begin
