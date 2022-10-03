@@ -134,6 +134,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+362,"top IF_u stall_n", false,-1);
         tracep->declQuad(c+13,"top IF_u pc_next_o", false,-1, 63,0);
         tracep->declBus(c+20,"top IF_u instr_o", false,-1, 31,0);
+        tracep->declBit(c+358,"top IF_u if_instr_valid", false,-1);
         tracep->declQuad(c+356,"top IF_u sram_rdata", false,-1, 63,0);
         tracep->declBit(c+358,"top IF_u sram_data_valid", false,-1);
         tracep->declQuad(c+359,"top IF_u sram_addr", false,-1, 63,0);
