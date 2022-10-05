@@ -60,10 +60,10 @@ VL_INLINE_OPT void Vtop___024root____Vdpiimwrap_top__DOT__ls_u__DOT__lsu_u__DOT_
     vmemwrite(raddr__Vcvt, wdata__Vcvt, wr_mask__Vcvt, pc__Vcvt);
 }
 
-VL_INLINE_OPT void Vtop___024root___combo__TOP__2(Vtop___024root* vlSelf) {
+VL_INLINE_OPT void Vtop___024root___combo__TOP__1(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__2\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__1\n"); );
     // Body
     vlSelf->stall_n_diff = vlSelf->sram_data_valid;
 }
@@ -961,8 +961,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__7(Vtop___024root* vlSelf) {
                                                                          vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[2U])) 
                                                          >> 0x1bU)))));
     if (vlSelf->rst_n) {
-        if ((1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
-                      | (~ (IData)(vlSelf->sram_data_valid)))))) {
+        if (vlSelf->top__DOT__if_stall_n) {
             vlSelf->top__DOT__instr_if_id_reg = ((1U 
                                                   & (IData)(
                                                             (vlSelf->sram_addr 
@@ -3232,12 +3231,22 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__9(Vtop___024root* vlSelf) {
         [0xaU];
 }
 
+VL_INLINE_OPT void Vtop___024root___combo__TOP__10(Vtop___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__10\n"); );
+    // Body
+    vlSelf->top__DOT__if_stall_n = (1U & (~ ((IData)(vlSelf->top__DOT__ld_use_hazard) 
+                                             | (~ (IData)(vlSelf->sram_data_valid)))));
+    vlSelf->sram_ren = vlSelf->top__DOT__if_stall_n;
+}
+
 void Vtop___024root___eval(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval\n"); );
     // Body
-    Vtop___024root___combo__TOP__2(vlSelf);
+    Vtop___024root___combo__TOP__1(vlSelf);
     if ((((IData)(vlSelf->clk) & (~ (IData)(vlSelf->__Vclklast__TOP__clk))) 
          | ((~ (IData)(vlSelf->rst_n)) & (IData)(vlSelf->__Vclklast__TOP__rst_n)))) {
         Vtop___024root___sequent__TOP__3(vlSelf);
@@ -3263,6 +3272,7 @@ void Vtop___024root___eval(Vtop___024root* vlSelf) {
         Vtop___024root___sequent__TOP__9(vlSelf);
         vlSelf->__Vm_traceActivity[4U] = 1U;
     }
+    Vtop___024root___combo__TOP__10(vlSelf);
     // Final
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
     vlSelf->__Vclklast__TOP__rst_n = vlSelf->rst_n;
