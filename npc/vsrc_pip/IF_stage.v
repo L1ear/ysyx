@@ -24,7 +24,7 @@ assign pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id
 
 
 always @(*) begin               //要用组合逻辑
-        sram_ren = 1'b1;
+        sram_ren = stall_n;
         sram_addr = pc_next_o;
 end
 

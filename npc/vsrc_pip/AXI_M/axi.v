@@ -73,12 +73,29 @@ module axi_rw # (
 );
     
     // ------------------State Machine------------------TODO
-    
+// parameter       r_idle = 
     // 写通道状态切换
     
 
     // 读通道状态切换
     
+    // ------------------Read Transaction------------------
+
+    // Read address channel signals
+    assign axi_ar_valid_o   = r_state_addr;
+    assign axi_ar_addr_o    = rw_addr_i;
+    assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
+    assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
+    assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
+    assign axi_ar_len_o     = axi_len;                                                                          
+    assign axi_ar_size_o    = axi_size;
+    assign axi_ar_burst_o   = `AXI_BURST_TYPE_INCR;
+    assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
+    assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可
+    assign axi_ar_qos_o     = 4'h0;                                                                             //初始化信号即可
+
+    // Read data channel signals
+    assign axi_r_ready_o    = r_state_read;
 
     // ------------------Write Transaction------------------
     parameter AXI_SIZE      = $clog2(AXI_DATA_WIDTH / 8);
@@ -110,22 +127,6 @@ module axi_rw # (
     // 写应答通道
     assign axi_b_ready_o    = w_state_resp;
 
-    // ------------------Read Transaction------------------
 
-    // Read address channel signals
-    assign axi_ar_valid_o   = r_state_addr;
-    assign axi_ar_addr_o    = rw_addr_i;
-    assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
-    assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
-    assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
-    assign axi_ar_len_o     = axi_len;                                                                          
-    assign axi_ar_size_o    = axi_size;
-    assign axi_ar_burst_o   = `AXI_BURST_TYPE_INCR;
-    assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
-    assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可
-    assign axi_ar_qos_o     = 4'h0;                                                                             //初始化信号即可
-
-    // Read data channel signals
-    assign axi_r_ready_o    = r_state_read;
 
 endmodule
