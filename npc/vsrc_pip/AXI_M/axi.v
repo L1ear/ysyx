@@ -134,7 +134,7 @@ always@(posedge clock) begin
     end
 end
     assign rw_ready_o = instr_valid;
-    
+
     // ------------------Read Transaction------------------
 
     // Read address channel signals
@@ -174,7 +174,7 @@ end
     assign axi_aw_region_o  = 4'h0;                                                                             //初始化信号即可
 
     // 写数据通道
-    assign axi_w_valid_o    = w_state_write;
+    assign axi_w_valid_o    = w__write;
     assign axi_w_data_o     = rw_w_data_i ;
     assign axi_w_strb_o     = rw_size_i;
     assign axi_w_last_o     = 1'b0;
