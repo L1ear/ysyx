@@ -134,7 +134,7 @@ always@(posedge clock) begin
     end
 end
     assign rw_ready_o = instr_valid;
-    assign
+    
     // ------------------Read Transaction------------------
 
     // Read address channel signals
