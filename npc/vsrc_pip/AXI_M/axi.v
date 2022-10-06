@@ -133,7 +133,7 @@ always@(posedge clock) begin
         data_read_o <= axi_r_data_i;
     end
 end
-    assign rw_ready_o <= instr_valid;
+    assign rw_ready_o = instr_valid;
     assign
     // ------------------Read Transaction------------------
 
