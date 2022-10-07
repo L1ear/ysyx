@@ -104,17 +104,17 @@ void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
   top->eval();
-  if(top->sram_ren){
-    if(top->sram_addr!=0){
-      top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
-      int x = rand();
-      top->sram_data_valid = x & 1;
-    }
-    else {
-      top->sram_rdata = 0;
-      top->sram_data_valid = 0;
-    }
-  }
+  // if(top->sram_ren){
+  //   if(top->sram_addr!=0){
+  //     top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
+  //     int x = rand();
+  //     top->sram_data_valid = x & 1;
+  //   }
+  //   else {
+  //     top->sram_rdata = 0;
+  //     top->sram_data_valid = 0;
+  //   }
+  // }
 #ifdef vcd
   fp ->dump(i);
 #endif
