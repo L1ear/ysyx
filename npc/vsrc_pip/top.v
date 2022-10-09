@@ -11,7 +11,8 @@ module top (
     input           [`XLEN-1:0]     sram_rdata,
     input                           sram_data_valid,
     output          [`XLEN-1:0]     sram_addr,
-    output                          sram_ren
+    output                          sram_ren,
+    output                          sram_addr_valid
 
 );
 
@@ -90,19 +91,10 @@ assign  pc_decoding = pc_id;
 assign  instr_diff = instr_wb;
 assign  stall_n_diff = wb_stall_n;
 
-PC_reg PC_reg_u(
-    .clk            (clk),
-    .rst_n          (rst_n),
-    .pc_i           (pc_next),
-    .stall_n        (pc_stall_n),
-
-    .pc_new_o       (pc_new)    
-);
 
 IF_stage IF_u(
     .clk            (clk),
     .rst_n          (rst_n),
-    .pc_i           (pc_new),
     .is_jump_i      (is_jump),
     .pc_jump_i      (pc_jump),
     .csr_mtvec      (csr_mtvec),
@@ -117,7 +109,8 @@ IF_stage IF_u(
     .sram_rdata     (sram_rdata),
     .sram_data_valid(sram_data_valid),
     .sram_addr      (sram_addr),
-    .sram_ren       (sram_ren)
+    .sram_ren       (sram_ren),
+    .sram_addr_valid(sram_addr_valid)
 );
 
 ID_reg ID_reg_u(
