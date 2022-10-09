@@ -60,7 +60,6 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp19;
     // Body
     vlSelf->stall_n_diff = vlSelf->sram_data_valid;
-    vlSelf->sram_addr_valid = (1U & (~ (IData)(vlSelf->sram_data_valid)));
     vlSelf->pc_diff = (((QData)((IData)(vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[9U])) 
                         << 0x3fU) | (((QData)((IData)(
                                                       vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[8U])) 
@@ -1302,6 +1301,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                  & (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                                                     >> 0xfU)))));
     vlSelf->sram_addr = vlSelf->top__DOT__pc_new;
+    vlSelf->sram_addr_valid = (0ULL != vlSelf->top__DOT__pc_new);
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc 
         = ((0x341U == (0xfffU & ((vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[5U] 
                                   << 0xaU) | (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
