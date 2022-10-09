@@ -22,6 +22,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , sram_data_valid{vlSymsp->TOP.sram_data_valid}
     , sram_addr{vlSymsp->TOP.sram_addr}
     , sram_ren{vlSymsp->TOP.sram_ren}
+    , sram_addr_valid{vlSymsp->TOP.sram_addr_valid}
     , rootp{&(vlSymsp->TOP)}
 {
 }

@@ -39,6 +39,7 @@ class Vtop VL_NOT_FINAL {
     VL_IN8(&sram_data_valid,0,0);
     VL_OUT64(&sram_addr,63,0);
     VL_OUT8(&sram_ren,0,0);
+    VL_OUT8(&sram_addr_valid,0,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
