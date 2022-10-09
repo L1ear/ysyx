@@ -11,7 +11,19 @@ module ls_stage (
 
     output          [`XLEN-1:0]     ls_res_o,
     output          [`XLEN-1:0]     csr_data_o,
-    output          [`XLEN-1:0]     mtvec_o,mepc_o
+    output          [`XLEN-1:0]     mtvec_o,mepc_o,
+    output                          ls_not_ok,    
+
+
+//sram interface
+    output          [`XLEN-1:0]     ls_sram_addr,
+    output                          ls_sram_rd_en,              
+    output                          ls_sram_wr_en,
+    output          [`XLEN-1:0]     ls_sram_wr_data,
+    output          [7      :0]     ls_sram_wr_mask,
+    input                           ls_sram_rd_data_valid,
+    input                           ls_sram_wr_data_ok,
+    input           [`XLEN-1:0]     ls_sram_rd_data
 );
 
 wire                wren,rden;
@@ -31,7 +43,16 @@ lsu lsu_u(
     .pc_ls_i(pc),               //for sim
     .addr_last_i(alures_last_i),
     .wren_last_i(wren_last),
-    .ls_res_o(ls_res_o)    
+    .ls_res_o(ls_res_o)    ,
+    .ls_not_ok      (ls_not_ok),
+    .ls_sram_addr           (ls_sram_addr           ),
+    .ls_sram_rd_en          (ls_sram_rd_en          ),          
+    .ls_sram_wr_en          (ls_sram_wr_en          ),
+    .ls_sram_wr_data        (ls_sram_wr_data        ),
+    .ls_sram_wr_mask        (ls_sram_wr_mask        ),
+    .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
+    .ls_sram_wr_data_ok     (ls_sram_wr_data_ok     ),
+    .ls_sram_rd_data        (ls_sram_rd_data        )
 );
 
 ls_ctr  ls_ctr_u(
