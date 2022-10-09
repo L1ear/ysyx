@@ -7,12 +7,22 @@ module top (
 	output	        [`XLEN-1:0]		regA0,
     output                          stall_n_diff,
 
-//sram  interface
+//instr sram  interface
     input           [`XLEN-1:0]     sram_rdata,
     input                           sram_data_valid,
     output          [`XLEN-1:0]     sram_addr,
     output                          sram_ren,
-    output                          sram_addr_valid
+    output                          sram_addr_valid,
+
+//ls sram interface
+    output          [`XLEN-1:0]     ls_sram_addr,
+    output                          ls_sram_rd_en,          
+    output                          ls_sram_wr_en,
+    output          [`XLEN-1:0]     ls_sram_wr_data,
+    output          [7      :0]     ls_sram_wr_mask,
+    input                           ls_sram_rd_data_valid,
+    input                           ls_sram_wr_data_ok,
+    input           [`XLEN-1:0]     ls_sram_rd_data
 
 );
 
@@ -74,6 +84,7 @@ wire    [`XLEN-1:0]     csrdata_ls;
 wire    [`XLEN-1:0]     csr_mtvec,csr_mepc;
 wire                    trap_ls;
 wire                    ls_stall_n;
+wire                    ls_not_ok;
 
 //wb signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
@@ -297,11 +308,21 @@ ls_stage ls_u(
     .instr_last_i   (instr_wb),
     .wb_data_i      (lsres_wb),
     .trap_ls_i      (trap_ls),
+    .ls_not_ok      (ls_not_ok),
 
     .ls_res_o       (lsres_ls),
     .csr_data_o     (csrdata_ls),
     .mtvec_o        (csr_mtvec),
-    .mepc_o         (csr_mepc)
+    .mepc_o         (csr_mepc),
+
+    .ls_sram_addr           (ls_sram_addr           ),
+    .ls_sram_rd_en          (ls_sram_rd_en          ),          
+    .ls_sram_wr_en          (ls_sram_wr_en          ),
+    .ls_sram_wr_data        (ls_sram_wr_data        ),
+    .ls_sram_wr_mask        (ls_sram_wr_mask        ),
+    .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
+    .ls_sram_wr_data_ok     (ls_sram_wr_data_ok     ),
+    .ls_sram_rd_data        (ls_sram_rd_data        )
 );
 
 WB_reg wb_reg_u(
@@ -343,6 +364,7 @@ pipline_ctrl pipline_ctrl_u(
     .in_trap_id         (in_trap_id),
     .out_trap_id        (out_trap_id),
     .if_instr_valid     (if_instr_valid),
+    .ls_not_ok          (ls_not_ok),
     
     .pc_stall_n         (pc_stall_n),
     .if_stall_n         (if_stall_n),

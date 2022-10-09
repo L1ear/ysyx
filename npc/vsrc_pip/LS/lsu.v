@@ -9,35 +9,39 @@ module lsu (
     input           [`XLEN-1:0]     addr_last_i,
     input                           wren_last_i,
 
-    output          [`XLEN-1:0]     ls_res_o    
+    output          [`XLEN-1:0]     ls_res_o,
+    output                          ls_not_ok,    
+
+//sram interface
+    output          [`XLEN-1:0]     ls_sram_addr,
+    output                          ls_sram_rd_en,              //这里不再需要addr_valid信号了，而是有两个en信号代替，一个时钟周期内要么读要么写，不会有歧义
+    output                          ls_sram_wr_en,
+    output          [`XLEN-1:0]     ls_sram_wr_data,
+    output          [7      :0]     ls_sram_wr_mask,
+    input                           ls_sram_rd_data_valid,
+    input                           ls_sram_wr_data_ok,
+    input           [`XLEN-1:0]     ls_sram_rd_data
 );
 
-// reg     [`XLEN-1:0]     d_mem   [0:255];
-
-import "DPI-C" function void vmemread(input longint raddr, input int len, output longint rdata, input longint pc);
-import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input byte wr_mask, input longint pc);
-
-reg     [`XLEN-1:0]     rd_data_base;
-wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
-always @(negedge clk) begin                     //这里使用了下降沿，是为了避免verilator的时序问题，在加入cache后应修改
-    if(rden)
-        vmemread(addr_i, 8, rd_data_base, pc_ls_i);
-end
 
 
+wire    [`XLEN-1:0]     rd_data_base;
+// wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
+// always @(negedge clk) begin                     //这里使用了下降沿，是为了避免verilator的时序问题，在加入cache后应修改
+//     if(rden)
+//         vmemread(addr_i, 8, rd_data_base, pc_ls_i);
+// end
 
-// //save or load 
-// `define     sb                  3'b000
-// `define     sh                  3'b001
-// `define     sw                  3'b010
-// `define     sd                  3'b011
-// `define     lb                  3'b000
-// `define     lbu                 3'b100
-// `define     lh                  3'b001
-// `define     lhu                 3'b101
-// `define     lw                  3'b010
-// `define     lwu                 3'b110
-// `define     ld                  3'b011
+assign  ls_sram_addr = addr_i;
+assign  ls_sram_rd_en = rden;
+assign  ls_sram_wr_en = wren;
+assign  ls_sram_wr_mask = ls_sram_wr_mask;
+assign  ls_sram_wr_data = wr_data_i;
+assign  rd_data_base = ls_sram_rd_data;
+assign  ls_not_ok = (rden & ~ls_sram_rd_data_valid) || (wren & ~ls_sram_wr_data_ok);
+
+
+
 //读mem------------------------------------------------------------------
 wire                    lb,lbu,lh,lhu,lw,lwu,ld;
 assign  lb  = rden & (memop == `lb);
@@ -48,54 +52,8 @@ assign  lw  = rden & (memop == `lw);
 assign  lwu = rden & (memop == `lwu);
 assign  ld  = rden & (memop == `ld);
 
-// reg     [7      :0]     rd_data_b;
-// reg     [15     :0]     rd_data_h;
-// reg     [31     :0]     rd_data_w;
+
 // //仅支持对齐的访问，否则出错
-// always @(*) begin
-//     case(addr_i[2:0])
-//         3'b000: begin
-//             rd_data_b = rd_data_base[7      :0];
-//             rd_data_h = rd_data_base[15     :0];
-//             rd_data_w = rd_data_base[31     :0];
-//         end
-//         3'b001: begin
-//             rd_data_b = rd_data_base[15     :8];
-//             rd_data_h = rd_data_base[15     :0];
-//             rd_data_w = rd_data_base[31     :0];
-//         end
-//         3'b010: begin
-//             rd_data_b = rd_data_base[23     :16];
-//             rd_data_h = rd_data_base[31     :16];
-//             rd_data_w = rd_data_base[31     :0];
-//         end
-//         3'b011: begin
-//             rd_data_b = rd_data_base[31     :24];
-//             rd_data_h = rd_data_base[31     :16];
-//             rd_data_w = rd_data_base[31     :0];
-//         end
-//         3'b100: begin
-//             rd_data_b = rd_data_base[39     :32];
-//             rd_data_h = rd_data_base[47     :32];
-//             rd_data_w = rd_data_base[63     :32];
-//         end
-//         3'b101: begin
-//             rd_data_b = rd_data_base[47     :40];
-//             rd_data_h = rd_data_base[47     :32];
-//             rd_data_w = rd_data_base[63     :32];
-//         end
-//         3'b110: begin
-//             rd_data_b = rd_data_base[55     :48];
-//             rd_data_h = rd_data_base[63     :48];
-//             rd_data_w = rd_data_base[63     :32];
-//         end
-//         3'b111: begin
-//             rd_data_b = rd_data_base[63     :56];
-//             rd_data_h = rd_data_base[63     :48];
-//             rd_data_w = rd_data_base[63     :32];
-//         end               
-//     endcase
-// end
 
 assign  ls_res_o = `XLEN'b0
                    |({`XLEN{lb}} & {{56{rd_data_base[7]}},rd_data_base[7:0]})
