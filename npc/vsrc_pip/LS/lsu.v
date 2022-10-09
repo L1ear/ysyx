@@ -35,7 +35,7 @@ wire    [`XLEN-1:0]     rd_data_base;
 assign  ls_sram_addr = addr_i;
 assign  ls_sram_rd_en = rden;
 assign  ls_sram_wr_en = wren;
-assign  ls_sram_wr_mask = ls_sram_wr_mask;
+assign  ls_sram_wr_mask = wr_mask;
 assign  ls_sram_wr_data = wr_data_i;
 assign  rd_data_base = ls_sram_rd_data;
 assign  ls_not_ok = (rden & ~ls_sram_rd_data_valid) || (wren & ~ls_sram_wr_data_ok);
