@@ -126,6 +126,7 @@ void single_cycle(int i) {
     memwrite(top->ls_sram_addr, (uint8_t)top->ls_sram_wr_mask, top->ls_sram_wr_data, pc);
     top->ls_sram_wr_data_ok = rand() & 1;
   }
+  top->eval();
 #ifdef vcd
   fp ->dump(i);
 #endif
