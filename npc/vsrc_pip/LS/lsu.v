@@ -147,15 +147,7 @@ always @(*) begin
     endcase 
 end 
 
-
-
-// reg     [`XLEN-1:0] wr_data_buf;
-always @(posedge clk) begin
-    if(wren) begin
-        vmemwrite(addr_i, wr_data_i, wr_mask, pc_ls_i);
-        // wr_data_buf <= wr_data;
-    end
-end         
+       
 endmodule
 
 module ls_ctr (
