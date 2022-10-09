@@ -62,15 +62,12 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow;
     CData/*0:0*/ top__DOT__forwarding_u__DOT__reg_wben;
     CData/*4:0*/ top__DOT__forwarding_u__DOT__reg_wb_idx;
-    CData/*7:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b;
     CData/*7:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask;
     CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en;
     CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc;
     CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mtvec;
     CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus;
     CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause;
-    SData/*15:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h;
-    IData/*31:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w;
     QData/*63:0*/ top__DOT__pc_next;
     QData/*63:0*/ top__DOT__pc_new;
     QData/*63:0*/ top__DOT__csrdata_ls;
