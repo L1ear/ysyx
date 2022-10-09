@@ -103,7 +103,7 @@ IF_stage IF_u(
     .out_trap_id    (out_trap_id),
     .stall_n        (if_stall_n),
 
-    .pc_next_o      (pc_next),
+    .pc_new_o       (pc_new),
     .instr_o        (instr_if_id_reg),
     .if_instr_valid (if_instr_valid),
     .sram_rdata     (sram_rdata),
