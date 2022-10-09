@@ -53,7 +53,6 @@ VL_MODULE(Vtop___024root) {
     CData/*1:0*/ top__DOT__rs1_sel;
     CData/*1:0*/ top__DOT__rs2_sel;
     CData/*0:0*/ top__DOT__ex_flush;
-    CData/*0:0*/ top__DOT__IF_u__DOT__pc_next_o;
     CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
     CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero;
     CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin;
@@ -76,6 +75,7 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__pc_new;
     QData/*63:0*/ top__DOT__csrdata_ls;
     QData/*63:0*/ top__DOT__wb_data;
+    QData/*63:0*/ top__DOT__IF_u__DOT__pc_next_o;
     QData/*63:0*/ top__DOT__ID_u__DOT__imm;
     QData/*63:0*/ top__DOT__ex_stage_u__DOT__src1;
     QData/*63:0*/ top__DOT__ex_stage_u__DOT__src2;
