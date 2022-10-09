@@ -18,16 +18,12 @@ import "DPI-C" function void vmemread(input longint raddr, input int len, output
 import "DPI-C" function void vmemwrite(input longint raddr, input longint wdata, input byte wr_mask, input longint pc);
 
 reg     [`XLEN-1:0]     rd_data_base;
-// reg     [`XLEN-1:0]     rd_data_base_buf;
-// assign  rd_data_base = d_mem[addr_i[10:3]];
 wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
 always @(negedge clk) begin                     //这里使用了下降沿，是为了避免verilator的时序问题，在加入cache后应修改
     if(rden)
-        vmemread(dpi_addr, 8, rd_data_base, pc_ls_i);
+        vmemread(addr_i, 8, rd_data_base, pc_ls_i);
 end
 
-// wire   use_last =  wren_last_i & (addr_last_i == addr_i);
-// assign rd_data_base = rd_data_base_buf;
 
 
 // //save or load 
@@ -52,62 +48,62 @@ assign  lw  = rden & (memop == `lw);
 assign  lwu = rden & (memop == `lwu);
 assign  ld  = rden & (memop == `ld);
 
-reg     [7      :0]     rd_data_b;
-reg     [15     :0]     rd_data_h;
-reg     [31     :0]     rd_data_w;
-//仅支持对齐的访问，否则出错
-always @(*) begin
-    case(addr_i[2:0])
-        3'b000: begin
-            rd_data_b = rd_data_base[7      :0];
-            rd_data_h = rd_data_base[15     :0];
-            rd_data_w = rd_data_base[31     :0];
-        end
-        3'b001: begin
-            rd_data_b = rd_data_base[15     :8];
-            rd_data_h = rd_data_base[15     :0];
-            rd_data_w = rd_data_base[31     :0];
-        end
-        3'b010: begin
-            rd_data_b = rd_data_base[23     :16];
-            rd_data_h = rd_data_base[31     :16];
-            rd_data_w = rd_data_base[31     :0];
-        end
-        3'b011: begin
-            rd_data_b = rd_data_base[31     :24];
-            rd_data_h = rd_data_base[31     :16];
-            rd_data_w = rd_data_base[31     :0];
-        end
-        3'b100: begin
-            rd_data_b = rd_data_base[39     :32];
-            rd_data_h = rd_data_base[47     :32];
-            rd_data_w = rd_data_base[63     :32];
-        end
-        3'b101: begin
-            rd_data_b = rd_data_base[47     :40];
-            rd_data_h = rd_data_base[47     :32];
-            rd_data_w = rd_data_base[63     :32];
-        end
-        3'b110: begin
-            rd_data_b = rd_data_base[55     :48];
-            rd_data_h = rd_data_base[63     :48];
-            rd_data_w = rd_data_base[63     :32];
-        end
-        3'b111: begin
-            rd_data_b = rd_data_base[63     :56];
-            rd_data_h = rd_data_base[63     :48];
-            rd_data_w = rd_data_base[63     :32];
-        end               
-    endcase
-end
+// reg     [7      :0]     rd_data_b;
+// reg     [15     :0]     rd_data_h;
+// reg     [31     :0]     rd_data_w;
+// //仅支持对齐的访问，否则出错
+// always @(*) begin
+//     case(addr_i[2:0])
+//         3'b000: begin
+//             rd_data_b = rd_data_base[7      :0];
+//             rd_data_h = rd_data_base[15     :0];
+//             rd_data_w = rd_data_base[31     :0];
+//         end
+//         3'b001: begin
+//             rd_data_b = rd_data_base[15     :8];
+//             rd_data_h = rd_data_base[15     :0];
+//             rd_data_w = rd_data_base[31     :0];
+//         end
+//         3'b010: begin
+//             rd_data_b = rd_data_base[23     :16];
+//             rd_data_h = rd_data_base[31     :16];
+//             rd_data_w = rd_data_base[31     :0];
+//         end
+//         3'b011: begin
+//             rd_data_b = rd_data_base[31     :24];
+//             rd_data_h = rd_data_base[31     :16];
+//             rd_data_w = rd_data_base[31     :0];
+//         end
+//         3'b100: begin
+//             rd_data_b = rd_data_base[39     :32];
+//             rd_data_h = rd_data_base[47     :32];
+//             rd_data_w = rd_data_base[63     :32];
+//         end
+//         3'b101: begin
+//             rd_data_b = rd_data_base[47     :40];
+//             rd_data_h = rd_data_base[47     :32];
+//             rd_data_w = rd_data_base[63     :32];
+//         end
+//         3'b110: begin
+//             rd_data_b = rd_data_base[55     :48];
+//             rd_data_h = rd_data_base[63     :48];
+//             rd_data_w = rd_data_base[63     :32];
+//         end
+//         3'b111: begin
+//             rd_data_b = rd_data_base[63     :56];
+//             rd_data_h = rd_data_base[63     :48];
+//             rd_data_w = rd_data_base[63     :32];
+//         end               
+//     endcase
+// end
 
 assign  ls_res_o = `XLEN'b0
-                   |({`XLEN{lb}} & {{56{rd_data_b[7]}},rd_data_b})
-                   |({`XLEN{lbu}} & {56'b0,rd_data_b})
-                   |({`XLEN{lh}} & {{48{rd_data_h[15]}},rd_data_h})
-                   |({`XLEN{lhu}} & {48'b0,rd_data_h})
-                   |({`XLEN{lw}} & {{32{rd_data_w[31]}},rd_data_w})
-                   |({`XLEN{lwu}} & {32'b0,rd_data_w})
+                   |({`XLEN{lb}} & {{56{rd_data_base[7]}},rd_data_base[7:0]})
+                   |({`XLEN{lbu}} & {56'b0,rd_data_base[7:0]})
+                   |({`XLEN{lh}} & {{48{rd_data_base[15]}},rd_data_base[15:0]})
+                   |({`XLEN{lhu}} & {48'b0,rd_data_base[15:0]})
+                   |({`XLEN{lw}} & {{32{rd_data_base[31]}},rd_data_base[31:0]})
+                   |({`XLEN{lwu}} & {32'b0,rd_data_base[31:0]})
                    |({`XLEN{ld}} & rd_data_base);
 
 //写mem-------------------------------------------------------------------
@@ -218,7 +214,7 @@ assign  memop = instr_i[14      :12];
 assign  wren  = (instr_i[6      :2] == `store);
 assign  rden  = (instr_i[6      :0] == {`load,2'b11});      //同理
 
-wire    ld_st_en;
+wire    ld_st_en;                                           //load-store前递
 assign ld_st_en = (instr_last_i[6:2] == `load) & (instr_i[24:20] == instr_last_i[11:7]);
 assign wr_data = ld_st_en ? wb_data_i : rs2_i;
 
