@@ -7,7 +7,7 @@ module IF_stage (
     input                           in_trap_id,out_trap_id,
     input                           stall_n,
 
-    output          [`XLEN-1:0]     pc_next_o,
+    output   reg    [`XLEN-1:0]     pc_new_o,
     output          [`inst_len-1:0] instr_o,
     output                          if_instr_valid,
 
