@@ -104,6 +104,7 @@ void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
   top->eval();
+  //读指令
   if(top->sram_ren){
     if(top->sram_addr!=0 && top->sram_addr_valid){
       top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
@@ -114,6 +115,16 @@ void single_cycle(int i) {
       top->sram_rdata = 0;
       top->sram_data_valid = 0;
     }
+  }
+  //读数据
+  if(top->ls_sram_rd_en){
+    top->ls_sram_rd_data = memread(top->ls_sram_addr, 8, pc);
+    top->ls_sram_rd_data_valid = rand() & 1;
+  }
+  //写数据
+  if(top->ls_sram_wr_en){
+    memwrite(top->ls_sram_addr, (uint8_t)top->ls_sram_wr_mask, top->ls_sram_wr_data, pc);
+    top->ls_sram_wr_data_ok = rand() & 1;
   }
 #ifdef vcd
   fp ->dump(i);

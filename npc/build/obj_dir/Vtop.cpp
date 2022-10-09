@@ -23,6 +23,14 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , sram_addr{vlSymsp->TOP.sram_addr}
     , sram_ren{vlSymsp->TOP.sram_ren}
     , sram_addr_valid{vlSymsp->TOP.sram_addr_valid}
+    , ls_sram_addr{vlSymsp->TOP.ls_sram_addr}
+    , ls_sram_rd_en{vlSymsp->TOP.ls_sram_rd_en}
+    , ls_sram_wr_en{vlSymsp->TOP.ls_sram_wr_en}
+    , ls_sram_wr_data{vlSymsp->TOP.ls_sram_wr_data}
+    , ls_sram_wr_mask{vlSymsp->TOP.ls_sram_wr_mask}
+    , ls_sram_rd_data_valid{vlSymsp->TOP.ls_sram_rd_data_valid}
+    , ls_sram_wr_data_ok{vlSymsp->TOP.ls_sram_wr_data_ok}
+    , ls_sram_rd_data{vlSymsp->TOP.ls_sram_rd_data}
     , rootp{&(vlSymsp->TOP)}
 {
 }
