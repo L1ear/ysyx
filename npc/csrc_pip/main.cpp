@@ -109,7 +109,7 @@ void single_cycle(int i) {
     if(top->sram_addr!=0 && top->sram_addr_valid){
       top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
       int x = rand();
-      top->sram_data_valid = x & 1;
+      top->sram_data_valid = 1;
     }
     else {
       top->sram_rdata = 0;
@@ -119,12 +119,12 @@ void single_cycle(int i) {
   //读数据
   if(top->ls_sram_rd_en){
     top->ls_sram_rd_data = memread(top->ls_sram_addr, 8, pc);
-    top->ls_sram_rd_data_valid = rand() & 1;
+    top->ls_sram_rd_data_valid = 1;
   }
   //写数据
   if(top->ls_sram_wr_en){
     memwrite(top->ls_sram_addr, (uint8_t)top->ls_sram_wr_mask, top->ls_sram_wr_data, pc);
-    top->ls_sram_wr_data_ok = rand() & 1;
+    top->ls_sram_wr_data_ok = 1;
   }
   top->eval();
 #ifdef vcd
