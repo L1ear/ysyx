@@ -143,7 +143,7 @@ char  stall;
 void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
- 
+ assert(&(mem_ref.awid));
   mem_sigs.update_input(mem_ref);
   
   top->eval();
