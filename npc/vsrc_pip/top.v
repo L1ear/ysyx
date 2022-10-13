@@ -159,7 +159,7 @@ axi_if axi_if_u(
     .reset          (rst_n),
 
 	.rw_valid_i     (sram_addr_valid),         //IF&MEM输入信号
-	.rw_ready_o     (sram_data_valid),         //IF&MEM输入信号
+	.rw_ready_o     (),         //IF&MEM输入信号
     .data_read_o    (),        //IF&MEM输入信号
     .rw_addr_i      (sram_addr),          //IF&MEM输入信号
 
