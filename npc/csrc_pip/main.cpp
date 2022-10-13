@@ -107,10 +107,10 @@ void single_cycle(int i) {
   //读指令
   if(top->sram_ren){
     if(top->sram_addr!=0 && top->sram_addr_valid){
-      // uint32_t buf;
-      // mem.read(top->sram_addr, 4, (uint8_t *)(&buf));
-      // top->sram_rdata = buf;
-      top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
+      uint32_t buf;
+      mem.read(top->sram_addr & ~0x7ull, 8, (uint8_t *)(&buf));
+      top->sram_rdata = buf;
+      // top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
       int x = rand();
       top->sram_data_valid = 1;
     }
