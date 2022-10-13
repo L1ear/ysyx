@@ -1,7 +1,8 @@
 #include "include/common.h"
 
 extern CPU_state cpu;
-extern axi4_mem<64,64,8> mem;
+extern axi4_mem<64,64,4> mem;
+extern axi4_ptr<64,64,4> mem_ptr;
 int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
@@ -47,8 +48,9 @@ int reset(int i) {
   return i+2;
 }
 
-
-
+    axi4<64,64,4> mem_sigs;
+    axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
+    axi4_ref<64,64,4> mem_ref(mem_ptr);
 int main(int argc, char *argv[])
 {
     // nvboard_bind_all_pins(&top);
@@ -63,6 +65,26 @@ int main(int argc, char *argv[])
 
     
     init_monitor(argc, argv);
+
+    mem_ptr.arid    = &(top->axi_ar_id_o); 
+    mem_ptr.araddr  = &(top->axi_ar_addr_o);  
+    mem_ptr.arlen   = &(top->axi_ar_len_o);  
+    mem_ptr.arsize  = &(top->axi_ar_size_o);  
+    mem_ptr.arburst = &(top->axi_ar_burst_o);  
+    mem_ptr.arvalid = &(top->axi_ar_valid_o);  
+    mem_ptr.arready = &(top->axi_ar_ready_i);  
+    mem_ptr.rid     = &(top->axi_r_id_i);  
+    mem_ptr.rdata   = &(top->axi_r_data_i);  
+    mem_ptr.rresp   = &(top->axi_r_resp_i);  
+    mem_ptr.rlast   = &(top->axi_r_last_i);  
+    mem_ptr.rvalid  = &(top->axi_r_valid_i);  
+    mem_ptr.rready  = &(top->axi_r_ready_o); 
+    
+    assert(mem_ptr.check());
+    
+    Log("axi check complete!");
+
+    
     sim_time = reset(sim_time);
   
     
@@ -103,7 +125,11 @@ char  stall;
 void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
+  mem_sigs.update_input(mem_ref);
   top->eval();
+
+  mem.beat(mem_sigs_ref);
+  mem_sigs.update_output(mem_ref);
   //读指令
   if(top->sram_ren){
     if(top->sram_addr!=0 && top->sram_addr_valid){

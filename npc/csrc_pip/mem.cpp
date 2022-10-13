@@ -7,7 +7,8 @@
 #include "include/common.h"
 #include <getopt.h>
 
-axi4_mem<64,64,8> mem(4096l*1024*1024);
+axi4_mem<64,64,4> mem(4096l*1024*1024);
+axi4_ptr<64,64,4> mem_ptr;
 
 uint8_t imem[0x8000000] __attribute((aligned(4096)));
 uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
@@ -174,6 +175,7 @@ void init_monitor(int argc, char *argv[]) {
   parse_args(argc, argv);
 
   long img_size = load_img();
+
 #ifdef  difftest
   init_difftest(diff_so_file, img_size, difftest_port);
 #endif
