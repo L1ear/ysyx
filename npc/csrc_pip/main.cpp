@@ -1,8 +1,7 @@
 #include "include/common.h"
 
 extern CPU_state cpu;
-extern axi4_mem<64,64,4> mem;
-extern axi4_ptr<64,64,4> mem_ptr;
+
 int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
@@ -113,7 +112,7 @@ int main(int argc, char *argv[])
     
 
     en = 1;
-    sdb_mainloop();
+    sdb_mainloop(mem_ref);
     // while(en)
     // {
     //   single_cycle(sim_time);
@@ -140,7 +139,6 @@ uint64_t pc = 0;
 uint64_t instr_last;
 char  stall;
 void single_cycle(int i) {
-  extern axi4_ref<64,64,4> mem_ref;
 //上升沿
   top->clk = 1; 
  
