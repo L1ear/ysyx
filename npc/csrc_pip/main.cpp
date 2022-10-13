@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
     Log("axi check complete!");
 
     axi4_ref<64,64,4> mem_ref(mem_ptr);
-    assert(&(mem_ref.arid));
+    assert(&(mem_ref.awid));
     sim_time = reset(sim_time);
   
     
