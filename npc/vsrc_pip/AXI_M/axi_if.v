@@ -2,7 +2,7 @@
 
 module axi_if # (
     parameter RW_DATA_WIDTH     = 64,
-    parameter RW_ADDR_WIDTH     = 32,
+    parameter RW_ADDR_WIDTH     = 64,
     parameter AXI_DATA_WIDTH    = 64,
     parameter AXI_ADDR_WIDTH    = 64,
     parameter AXI_ID_WIDTH      = 4,
