@@ -19,6 +19,7 @@
 
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
+extern Vtop* top;
 
 #define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
 #define BITMASK(bits) ((1ull << (bits)) - 1)
