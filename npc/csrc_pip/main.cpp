@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
     
 
     en = 1;
-    sdb_mainloop();  Log("after reset");
+    sdb_mainloop();
     // while(en)
     // {
     //   single_cycle(sim_time);
@@ -143,9 +143,10 @@ void single_cycle(int i) {
   top->clk = 1; 
   mem_sigs.update_input(mem_ref);
   top->eval();
-
+  Log("before");
   mem.beat(mem_sigs_ref);
   mem_sigs.update_output(mem_ref);
+  Log("after");
   //读指令
   if(top->sram_ren){
     if(top->sram_addr!=0 && top->sram_addr_valid){
