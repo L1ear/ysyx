@@ -17,10 +17,7 @@
 #include "../axi/mmio_mem.hpp"
 #include "../axi/uart8250.hpp"
 
-    axi4_ref<64,64,4> mem_ref(mem_ptr);
-    axi4<64,64,4> mem_sigs;
-    axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
-    
+
 #define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
 #define BITMASK(bits) ((1ull << (bits)) - 1)
 
