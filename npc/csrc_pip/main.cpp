@@ -50,8 +50,8 @@ int reset(int i) {
     
     axi4<64,64,4> mem_sigs;
     axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
-    // axi4_ref<64,64,4> memref(mem_ptr);
-    axi4_ref<64,64,4> mem_ref(mem_ptr);
+    axi4_ref<64,64,4> * memref;
+    // axi4_ref<64,64,4> mem_ref(mem_ptr);
 int main(int argc, char *argv[])
 {
     // nvboard_bind_all_pins(&top);
@@ -101,8 +101,10 @@ int main(int argc, char *argv[])
     
     Log("axi check complete!");
 
-    // axi4_ref<64,64,4> mem_ref(mem_ptr);
-    assert(&(mem_ref.awid));
+    axi4_ref<64,64,4> mem_ref(mem_ptr);
+    memref = &mem_ref;
+
+    assert(&(memref.awid));
     sim_time = reset(sim_time);
   
     
