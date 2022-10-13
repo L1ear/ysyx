@@ -105,16 +105,16 @@ int start = 1;
 uint64_t pc = 0;
 uint64_t instr_last;
 char  stall;
-void single_cycle(int i) {
+void single_cycle(int i, axi4_ref <64,64,4> &ref, axi4_ref <64,64,4> &ref2, axi4 <64,64,4> &ref3) {
 //上升沿
   top->clk = 1; 
  
-  // mem_sigs.update_input(mem_ref);
+  ref3.update_input(ref);
   
   top->eval();
   
-  mem.beat(mem_sigs_ref);
-  // mem_sigs.update_output(mem_ref);
+  mem.beat(ref2);
+  ref3.update_output(ref);
   
   //读指令
   if(top->sram_ren){

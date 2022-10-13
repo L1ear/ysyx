@@ -77,10 +77,10 @@ static int cmd_q(char *args) {
   return -1;
 }
 
-static int cmd_c(char *args) {
+static int cmd_c(axi4_ref <A_WIDTH,D_WIDTH,ID_WIDTH> &ref, axi4_ref <A_WIDTH,D_WIDTH,ID_WIDTH> &ref2, axi4<64,64,4> &ref3) {
     while(en)
     {
-      single_cycle(sim_time);
+      single_cycle(sim_time, ref, ref2, ref3);
         // nvboard_update();
       sim_time = sim_time+2;
         //if(i>=1000) en = 0;
@@ -235,7 +235,7 @@ void sdb_mainloop() {
     axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
     
   if (is_batch_mode) {
-    cmd_c(NULL);
+    cmd_c(mem_ref, mem_sigs_ref, mem_sigs);
     return;
   }
 
