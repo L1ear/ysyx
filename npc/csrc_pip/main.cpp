@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     axi4_ref<64,64,4> mem_ref(mem_ptr);
     memref = &mem_ref;
 
-    assert(&(memref.awid));
+    // assert(&(memref.awid));
     sim_time = reset(sim_time);
   
     
