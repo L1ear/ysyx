@@ -40,6 +40,7 @@ void Vtop___024root___initial__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->axi_ar_lock_o = 0U;
     vlSelf->axi_ar_cache_o = 2U;
     vlSelf->axi_ar_qos_o = 0U;
+    vlSelf->axi_aw_id_o = 0U;
     vlSelf->axi_ar_id_o = 0U;
     vlSelf->axi_ar_user_o = 0U;
     vlSelf->axi_ar_len_o = 0U;
