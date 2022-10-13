@@ -38,7 +38,7 @@ long load_img() {
   if (img_file == NULL) {
     printf("No image is given. Use the default build-in image.\n");
     memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
-    mem.load_binary(img, 0x80000000);
+    mem.write(0x80000000, sizeof(img), guest_to_host(RESET_VECTOR));
     // img_file = img;
     return sizeof(img); // built-in image size
   }
