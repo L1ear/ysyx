@@ -107,7 +107,10 @@ void single_cycle(int i) {
   //读指令
   if(top->sram_ren){
     if(top->sram_addr!=0 && top->sram_addr_valid){
-      top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
+      uint32_t buf;
+      mem.read(top->sram_addr, 4, (uint8_t *)(&buf));
+      top->sram_rdata = buf;
+      // top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
       int x = rand();
       top->sram_data_valid = 1;
     }
@@ -118,14 +121,18 @@ void single_cycle(int i) {
   }
   //读数据
   if(top->ls_sram_rd_en){
-    top->ls_sram_rd_data = memread(top->ls_sram_addr, 8, pc);
+    uint64_t buf;
+    mem.read(top->sram_addr, 8, (uint8_t *)(&buf));
+    top->ls_sram_rd_data = buf;
+    // top->ls_sram_rd_data = memread(top->ls_sram_addr, 8, pc);
     top->ls_sram_rd_data_valid = 1;
   }
   //写数据
   if(top->ls_sram_wr_en){
      uint64_t buf;
     buf = top->ls_sram_wr_data;
-    memwrite(top->ls_sram_addr, (uint8_t)top->ls_sram_wr_mask, buf, pc);
+    mem.write(top->ls_sram_addr, (uint8_t)top->ls_sram_wr_mask, (uint8_t *)(&buf));
+    // memwrite(top->ls_sram_addr, (uint8_t)top->ls_sram_wr_mask, buf, pc);
     top->ls_sram_wr_data_ok = 1;
   }
   top->eval();
