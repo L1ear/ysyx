@@ -1,7 +1,7 @@
 #include "include/common.h"
 
 extern CPU_state cpu;
-extern axi4_mem<64,64,4> mem;
+extern axi4_mem<64,64,8> mem;
 int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
@@ -108,7 +108,7 @@ void single_cycle(int i) {
   if(top->sram_ren){
     if(top->sram_addr!=0 && top->sram_addr_valid){
       uint32_t buf;
-      mem.read(top->sram_addr & ~0x7ull, 4, (uint8_t *)(&buf));
+      mem.read(top->sram_addr & ~0x7ull, 8, (uint8_t *)(&buf));
       top->sram_rdata = buf;
       // top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
       int x = rand();
