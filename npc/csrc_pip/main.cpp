@@ -141,8 +141,8 @@ char  stall;
 void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
-  
-  // mem_sigs.update_input(mem_ref);
+  assert(mem_ref);
+  mem_sigs.update_input(mem_ref);
   
   top->eval();
   
