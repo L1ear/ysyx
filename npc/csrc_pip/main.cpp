@@ -144,12 +144,12 @@ void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
  
-  // mem_sigs.update_input(mem_ref);
+  mem_sigs.update_input(mem_ref);
   
   top->eval();
   
   mem.beat(mem_sigs_ref);
-  // mem_sigs.update_output(mem_ref);
+  mem_sigs.update_output(mem_ref);
   
   //读指令
   if(top->sram_ren){
