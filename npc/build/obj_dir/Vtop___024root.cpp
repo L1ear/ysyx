@@ -1544,7 +1544,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                     >> 0xfU)))));
     vlSelf->sram_addr = vlSelf->top__DOT__pc_new;
     vlSelf->sram_addr_valid = (0ULL != vlSelf->top__DOT__pc_new);
-    vlSelf->axi_ar_addr_o = (QData)((IData)(vlSelf->sram_addr));
+    vlSelf->axi_ar_addr_o = vlSelf->sram_addr;
 }
 
 VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {

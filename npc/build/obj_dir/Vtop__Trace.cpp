@@ -1151,8 +1151,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                                                                   >> 0xeU))))))) 
                                        & vlSelf->ls_sram_rd_data))),64);
-        tracep->chgIData(oldp+401,((IData)(vlSelf->sram_addr)),32);
-        tracep->chgIData(oldp+402,(((IData)(vlSelf->top__DOT__id_flush)
+        tracep->chgIData(oldp+401,(((IData)(vlSelf->top__DOT__id_flush)
                                      ? 0U : ((1U & (IData)(
                                                            (vlSelf->sram_addr 
                                                             >> 2U)))
@@ -1171,7 +1170,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         __Vtemp99[2U] = (IData)((((IData)(vlSelf->top__DOT__id_flush)
                                    ? 0ULL : vlSelf->top__DOT__pc_new) 
                                  >> 0x20U));
-        tracep->chgWData(oldp+403,(__Vtemp99),96);
+        tracep->chgWData(oldp+402,(__Vtemp99),96);
     }
 }
 

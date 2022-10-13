@@ -1485,7 +1485,7 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                    : 0ULL)))));
     vlSelf->top__DOT__wb_stall_n = (1U & (~ ((~ (IData)(vlSelf->sram_data_valid)) 
                                              | (IData)(vlSelf->top__DOT__ls_not_ok))));
-    vlSelf->axi_ar_addr_o = (QData)((IData)(vlSelf->sram_addr));
+    vlSelf->axi_ar_addr_o = vlSelf->sram_addr;
     __Vtableidx1 = (((IData)(vlSelf->axi_r_valid_i) 
                      << 4U) | (((IData)(vlSelf->axi_ar_ready_i) 
                                 << 3U) | (((IData)(vlSelf->sram_addr_valid) 
