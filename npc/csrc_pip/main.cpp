@@ -47,9 +47,7 @@ int reset(int i) {
       #endif  
   return i+2;
 }
-    axi4_ref<64,64,4> mem_ref(mem_ptr);
-    axi4<64,64,4> mem_sigs;
-    axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
+
     
 int main(int argc, char *argv[])
 {
