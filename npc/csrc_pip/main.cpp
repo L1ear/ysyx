@@ -1,7 +1,7 @@
 #include "include/common.h"
 
 extern CPU_state cpu;
-
+extern axi4_mem<64,64,4> mem(4096l*1024*1024);
 int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
