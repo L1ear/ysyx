@@ -196,7 +196,44 @@ static int cmd_help(char *args) {
 
 void sdb_mainloop() {
 
-  
+
+    mem_ptr.arid    = &(top->axi_ar_id_o); 
+    mem_ptr.araddr  = &(top->axi_ar_addr_o);  
+    mem_ptr.arlen   = &(top->axi_ar_len_o);  
+    mem_ptr.arsize  = &(top->axi_ar_size_o);  
+    mem_ptr.arburst = &(top->axi_ar_burst_o);  
+    mem_ptr.arvalid = &(top->axi_ar_valid_o);  
+    mem_ptr.arready = &(top->axi_ar_ready_i);  
+    mem_ptr.rid     = &(top->axi_r_id_i);  
+    mem_ptr.rdata   = &(top->axi_r_data_i);  
+    mem_ptr.rresp   = &(top->axi_r_resp_i);  
+    mem_ptr.rlast   = &(top->axi_r_last_i);  
+    mem_ptr.rvalid  = &(top->axi_r_valid_i);  
+    mem_ptr.rready  = &(top->axi_r_ready_o); 
+    mem_ptr.awid    = &(top->axi_aw_id_o);
+    mem_ptr.awaddr  = &(top->axi_aw_addr_o);
+    mem_ptr.awlen   = &(top->axi_aw_len_o);
+    mem_ptr.awsize  = &(top->axi_aw_size_o);
+    mem_ptr.awburst = &(top->axi_aw_burst_o);
+    mem_ptr.awvalid = &(top->axi_aw_valid_o);
+    mem_ptr.awready = &(top->axi_aw_ready_i);
+    mem_ptr.wdata   = &(top->axi_w_data_o);
+    mem_ptr.wstrb   = &(top->axi_w_strb_o);
+    mem_ptr.wlast   = &(top->axi_w_last_o);
+    mem_ptr.wvalid  = &(top->axi_w_valid_o);
+    mem_ptr.wready  = &(top->axi_w_ready_i);
+    mem_ptr.bid     = &(top->axi_b_id_i);
+    mem_ptr.bresp   = &(top->axi_b_resp_i);
+    mem_ptr.bvalid  = &(top->axi_b_valid_i);
+    mem_ptr.bready  = &(top->axi_b_ready_o);
+    
+    assert(mem_ptr.check());
+    axi4_ref<64,64,4> mem_ref(mem_ptr);
+    assert(&(mem_ref.arid));
+
+    axi4<64,64,4> mem_sigs;
+    axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
+    
   if (is_batch_mode) {
     cmd_c(NULL);
     return;
