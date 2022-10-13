@@ -143,11 +143,12 @@ void single_cycle(int i) {
   top->clk = 1; 
   Log("before");
   mem_sigs.update_input(mem_ref);
+  Log("after");
   top->eval();
   
   mem.beat(mem_sigs_ref);
   mem_sigs.update_output(mem_ref);
-  Log("after");
+  
   //读指令
   if(top->sram_ren){
     if(top->sram_addr!=0 && top->sram_addr_valid){
