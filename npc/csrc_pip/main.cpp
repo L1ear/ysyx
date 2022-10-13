@@ -127,9 +127,10 @@ void single_cycle(int i) {
   }
   //写数据
   if(top->ls_sram_wr_en){
-    uint64_t buf =  top->ls_sram_wr_data;
-    mem.write(top->ls_sram_addr,(uint8_t)top->ls_sram_wr_mask,(uint8_t *)(&buf));
-    // memwrite(top->ls_sram_addr, (uint8_t)top->ls_sram_wr_mask, top->ls_sram_wr_data, pc);
+    uint32_t buf;
+    buf = top->ls_sram_wr_data;
+    mem.write(top->ls_sram_addr, (uint8_t)top->ls_sram_wr_mask, );
+    memwrite(top->ls_sram_addr, (uint8_t)top->ls_sram_wr_mask, top->ls_sram_wr_data, pc);
     top->ls_sram_wr_data_ok = 1;
   }
   top->eval();
