@@ -79,6 +79,22 @@ int main(int argc, char *argv[])
     mem_ptr.rlast   = &(top->axi_r_last_i);  
     mem_ptr.rvalid  = &(top->axi_r_valid_i);  
     mem_ptr.rready  = &(top->axi_r_ready_o); 
+    mem_ptr.awid    = &(top->axi_aw_id_o);
+    mem_ptr.awaddr  = &(top->axi_aw_addr_o);
+    mem_ptr.awlen   = &(top->axi_aw_len_o);
+    mem_ptr.awsize  = &(top->axi_aw_size_o);
+    mem_ptr.awburst = &(top->axi_aw_burst_o);
+    mem_ptr.awvalid = &(top->axi_aw_valid_o);
+    mem_ptr.awready = &(top->axi_w_ready_i);
+    mem_ptr.wdata   = &(top->axi_w_data_o);
+    mem_ptr.wstrb   = &(top->axi_w_strb_o);
+    mem_ptr.wlast   = &(top->axi_w_last_o);
+    mem_ptr.wvalid  = &(top->axi_w_valid_o);
+    mem_ptr.wready  = &(top->axi_w_ready_i);
+    mem_ptr.bid     = &(top->axi_b_id_i);
+    mem_ptr.bresp   = &(top->axi_b_resp_i);
+    mem_ptr.bvalid  = &(top->axi_b_valid_i);
+    mem_ptr.bready  = &(top->axi_b_ready_o);
     
     assert(mem_ptr.check());
     
