@@ -85,7 +85,7 @@ int main(int argc, char *argv[])
     mem_ptr.awsize  = &(top->axi_aw_size_o);
     mem_ptr.awburst = &(top->axi_aw_burst_o);
     mem_ptr.awvalid = &(top->axi_aw_valid_o);
-    mem_ptr.awready = &(top->axi_w_ready_i);
+    mem_ptr.awready = &(top->axi_aw_ready_i);
     mem_ptr.wdata   = &(top->axi_w_data_o);
     mem_ptr.wstrb   = &(top->axi_w_strb_o);
     mem_ptr.wlast   = &(top->axi_w_last_o);
