@@ -204,39 +204,4 @@ void ebreak(){
   }
 }
 
-void vmemread(long long raddr,int len, long long *rdata, long long pc){
-  //printf("ren = %d, raddr = 0x%08lx,rdata = 0x%016lx\n",ren,raddr,*rdata);
-  //raddr = raddr & ~0x7ull;  //clear low 3bit for 8byte align.
-  // printf("%llx\n",raddr);
-  if(raddr!=0)
-    *rdata = memread(raddr, len, pc);
-}
-
-
-void vmemwrite(long long waddr, long long wdata, char wr_mask, long long pc){
-  //printf("waddr = 0x%lx,wdata = 0x%lx,wmask = 0x%x\n",waddr,wdata,wmask);
-  //waddr = waddr & ~0x7ull;  //clear low 3bit for 8byte align.
-    // printf("write: %llx\n",waddr);
-          
-    // Log("%d\n",(uint8_t)wr_mask);
-    // assert(0);
-    // switch ((uint8_t)wr_mask)
-    // {
-    // case 1:
-    //   memwrite(waddr, 1, wdata, pc);
-    //   break;
-    // case 3:
-    //   memwrite(waddr, 2, wdata, pc);
-    //   break;
-    // case 15:
-    //   memwrite(waddr, 4, wdata, pc);
-    //   break;
-    // case 0xff:
-    //   memwrite(waddr, 8, wdata, pc);
-    //   break;
-    // default:
-    //   break;
-    // }
-    memwrite(waddr, (uint8_t)wr_mask, wdata, pc);
-}
 
