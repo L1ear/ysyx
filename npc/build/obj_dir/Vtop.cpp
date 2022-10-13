@@ -23,6 +23,26 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , sram_addr{vlSymsp->TOP.sram_addr}
     , sram_ren{vlSymsp->TOP.sram_ren}
     , sram_addr_valid{vlSymsp->TOP.sram_addr_valid}
+    , axi_ar_ready_i{vlSymsp->TOP.axi_ar_ready_i}
+    , axi_ar_valid_o{vlSymsp->TOP.axi_ar_valid_o}
+    , axi_ar_addr_o{vlSymsp->TOP.axi_ar_addr_o}
+    , axi_ar_prot_o{vlSymsp->TOP.axi_ar_prot_o}
+    , axi_ar_id_o{vlSymsp->TOP.axi_ar_id_o}
+    , axi_ar_user_o{vlSymsp->TOP.axi_ar_user_o}
+    , axi_ar_len_o{vlSymsp->TOP.axi_ar_len_o}
+    , axi_ar_size_o{vlSymsp->TOP.axi_ar_size_o}
+    , axi_ar_burst_o{vlSymsp->TOP.axi_ar_burst_o}
+    , axi_ar_lock_o{vlSymsp->TOP.axi_ar_lock_o}
+    , axi_ar_cache_o{vlSymsp->TOP.axi_ar_cache_o}
+    , axi_ar_qos_o{vlSymsp->TOP.axi_ar_qos_o}
+    , axi_ar_region_o{vlSymsp->TOP.axi_ar_region_o}
+    , axi_r_ready_o{vlSymsp->TOP.axi_r_ready_o}
+    , axi_r_valid_i{vlSymsp->TOP.axi_r_valid_i}
+    , axi_r_resp_i{vlSymsp->TOP.axi_r_resp_i}
+    , axi_r_data_i{vlSymsp->TOP.axi_r_data_i}
+    , axi_r_last_i{vlSymsp->TOP.axi_r_last_i}
+    , axi_r_id_i{vlSymsp->TOP.axi_r_id_i}
+    , axi_r_user_i{vlSymsp->TOP.axi_r_user_i}
     , ls_sram_addr{vlSymsp->TOP.ls_sram_addr}
     , ls_sram_rd_en{vlSymsp->TOP.ls_sram_rd_en}
     , ls_sram_wr_en{vlSymsp->TOP.ls_sram_wr_en}

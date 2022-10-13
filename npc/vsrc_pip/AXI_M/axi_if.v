@@ -106,6 +106,9 @@ module axi_if # (
               if(axi_r_valid_i)     r_state_next <= r_state_idle;
               else                  r_state_next <= r_state_r_wait;
           end
+          default: begin
+
+          end
       endcase
   end
   //此处假设在握手期间，addr等信息不会改变，后面记得注意这一条件，可能要改
@@ -122,6 +125,9 @@ always @(*) begin
         r_state_r_wait: begin
             ar_valid <= 1'b0;
             r_ready <= 1'b1;
+        end
+        default: begin
+
         end
     endcase
 
