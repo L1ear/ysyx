@@ -77,7 +77,7 @@ static int cmd_q(char *args) {
   return -1;
 }
 
-static int cmd_c(axi4_ref <A_WIDTH,D_WIDTH,ID_WIDTH> *ref, axi4_ref <A_WIDTH,D_WIDTH,ID_WIDTH> *ref2, axi4<64,64,4> *ref3) {
+static int cmd_c(axi4_ref <64,64,4> &ref, axi4_ref <64,64,4> &ref2, axi4<64,64,4> &ref3) {
     while(en)
     {
       single_cycle(sim_time, ref, ref2, ref3);
