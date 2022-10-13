@@ -47,7 +47,7 @@ int reset(int i) {
       #endif  
   return i+2;
 }
-    axi4_ref<64,64,4> mem_ref(mem_ptr);
+    
     axi4<64,64,4> mem_sigs;
     axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
     
@@ -100,7 +100,8 @@ int main(int argc, char *argv[])
     
     Log("axi check complete!");
 
-    
+    axi4_ref<64,64,4> mem_ref(mem_ptr);
+     assert(&(mem_ref.arid));
     sim_time = reset(sim_time);
   
     
@@ -142,12 +143,12 @@ void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
  
-  mem_sigs.update_input(mem_ref);
+  // mem_sigs.update_input(mem_ref);
   
   top->eval();
   
   mem.beat(mem_sigs_ref);
-  mem_sigs.update_output(mem_ref);
+  // mem_sigs.update_output(mem_ref);
   
   //读指令
   if(top->sram_ren){
