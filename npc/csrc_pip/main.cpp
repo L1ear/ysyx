@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 
     
     sim_time = reset(sim_time);
-  
+    Log("after reset");
     
     // int ff=40;
     // while(ff-->0){
