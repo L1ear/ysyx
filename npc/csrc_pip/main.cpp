@@ -1,7 +1,8 @@
 #include "include/common.h"
 
 extern CPU_state cpu;
-
+extern axi4_mem<64,64,4> mem;
+extern axi4_ptr<64,64,4> mem_ptr;
 int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
@@ -47,7 +48,8 @@ int reset(int i) {
   return i+2;
 }
     
-    
+    axi4<64,64,4> mem_sigs;
+    axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
     
 int main(int argc, char *argv[])
 {
@@ -64,10 +66,42 @@ int main(int argc, char *argv[])
     
     init_monitor(argc, argv);
 
+    mem_ptr.arid    = &(top->axi_ar_id_o); 
+    mem_ptr.araddr  = &(top->axi_ar_addr_o);  
+    mem_ptr.arlen   = &(top->axi_ar_len_o);  
+    mem_ptr.arsize  = &(top->axi_ar_size_o);  
+    mem_ptr.arburst = &(top->axi_ar_burst_o);  
+    mem_ptr.arvalid = &(top->axi_ar_valid_o);  
+    mem_ptr.arready = &(top->axi_ar_ready_i);  
+    mem_ptr.rid     = &(top->axi_r_id_i);  
+    mem_ptr.rdata   = &(top->axi_r_data_i);  
+    mem_ptr.rresp   = &(top->axi_r_resp_i);  
+    mem_ptr.rlast   = &(top->axi_r_last_i);  
+    mem_ptr.rvalid  = &(top->axi_r_valid_i);  
+    mem_ptr.rready  = &(top->axi_r_ready_o); 
+    mem_ptr.awid    = &(top->axi_aw_id_o);
+    mem_ptr.awaddr  = &(top->axi_aw_addr_o);
+    mem_ptr.awlen   = &(top->axi_aw_len_o);
+    mem_ptr.awsize  = &(top->axi_aw_size_o);
+    mem_ptr.awburst = &(top->axi_aw_burst_o);
+    mem_ptr.awvalid = &(top->axi_aw_valid_o);
+    mem_ptr.awready = &(top->axi_aw_ready_i);
+    mem_ptr.wdata   = &(top->axi_w_data_o);
+    mem_ptr.wstrb   = &(top->axi_w_strb_o);
+    mem_ptr.wlast   = &(top->axi_w_last_o);
+    mem_ptr.wvalid  = &(top->axi_w_valid_o);
+    mem_ptr.wready  = &(top->axi_w_ready_i);
+    mem_ptr.bid     = &(top->axi_b_id_i);
+    mem_ptr.bresp   = &(top->axi_b_resp_i);
+    mem_ptr.bvalid  = &(top->axi_b_valid_i);
+    mem_ptr.bready  = &(top->axi_b_ready_o);
+    
+    assert(mem_ptr.check());
     
     Log("axi check complete!");
 
-
+    axi4_ref<64,64,4> mem_ref(mem_ptr);
+    assert(&(mem_ref.arid));
     sim_time = reset(sim_time);
   
     
@@ -105,16 +139,16 @@ int start = 1;
 uint64_t pc = 0;
 uint64_t instr_last;
 char  stall;
-void single_cycle(int i, axi4_ref <64,64,4> &ref, axi4_ref <64,64,4> &ref2, axi4 <64,64,4> &ref3) {
+void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
  
-  ref3.update_input(ref);
+  // mem_sigs.update_input(mem_ref);
   
   top->eval();
   
-  mem.beat(ref2);
-  ref3.update_output(ref);
+  mem.beat(mem_sigs_ref);
+  // mem_sigs.update_output(mem_ref);
   
   //读指令
   if(top->sram_ren){
