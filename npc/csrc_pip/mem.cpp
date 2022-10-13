@@ -38,6 +38,7 @@ long load_img() {
   if (img_file == NULL) {
     printf("No image is given. Use the default build-in image.\n");
     memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
+    mem.load_binary(img, 0x80000000);
     // img_file = img;
     return sizeof(img); // built-in image size
   }
@@ -52,6 +53,7 @@ long load_img() {
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(0x80000000), size, 1, fp);
+  mem.load_binary(img_file, 0x80000000);
   assert(ret == 1);
 
   fclose(fp);
