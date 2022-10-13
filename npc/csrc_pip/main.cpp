@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
     axi4_ref<64,64,4> mem_ref(mem_ptr);
     memref = &mem_ref;
 
-    // assert(&(memref.awid));
+    assert(&((*memref).awid));
     sim_time = reset(sim_time);
   
     
@@ -145,12 +145,12 @@ char  stall;
 void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
-  mem_sigs.update_input(mem_ref);
+  mem_sigs.update_input(*memref);
   
   top->eval();
   
   mem.beat(mem_sigs_ref);
-  mem_sigs.update_output(mem_ref);
+  mem_sigs.update_output(*memref);
   
   //读指令
   if(top->sram_ren){
