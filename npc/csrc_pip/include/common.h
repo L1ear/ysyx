@@ -11,6 +11,12 @@
 #include "sdb.h"
 #include "vcd.h"
 #include "config.h"
+#include "axi4.hpp"
+#include "axi4_mem.hpp"
+#include "axi4_xbar.hpp"
+#include "mmio_mem.hpp"
+#include "uart8250.hpp"
+
 
 
 #define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
