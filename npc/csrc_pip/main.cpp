@@ -102,7 +102,7 @@ int main(int argc, char *argv[])
 
     
     sim_time = reset(sim_time);
-    Log("after reset");
+  
     
     // int ff=40;
     // while(ff-->0){
@@ -112,7 +112,7 @@ int main(int argc, char *argv[])
     
 
     en = 1;
-    sdb_mainloop();
+    sdb_mainloop();  Log("after reset");
     // while(en)
     // {
     //   single_cycle(sim_time);
