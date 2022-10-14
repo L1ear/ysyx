@@ -1562,14 +1562,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                      >> 1U)))) {
         Vtop___024root____Vdpiimwrap_top__DOT__ID_u__DOT__regfile_u__DOT__ebreak_TOP();
     }
-    if (((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
-         & (IData)(vlSelf->axi_r_valid_i))) {
-        vlSelf->top__DOT__sram_rdata = vlSelf->axi_r_data_i;
-    }
-    if (((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
-         & (IData)(vlSelf->axi_r_valid_i))) {
-        vlSelf->top__DOT__axi_if_u__DOT__instr_valid = 1U;
-    }
+    vlSelf->top__DOT__sram_rdata = (((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
+                                     & (IData)(vlSelf->axi_r_valid_i))
+                                     ? vlSelf->axi_r_data_i
+                                     : 0ULL);
+    vlSelf->top__DOT__axi_if_u__DOT__instr_valid = 
+        ((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
+         & (IData)(vlSelf->axi_r_valid_i));
     if ((1U & vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U])) {
         __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 
             = ((0U == (0x1fU & (vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[6U] 
