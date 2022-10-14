@@ -138,6 +138,10 @@ always@(posedge clock) begin
         instr_valid <= 1'b1;
         data_read_o <= axi_r_data_i;
     end
+    else begin
+        instr_valid <= 1'b0;
+        data_read_o <= `XLEN'b0;;
+    end
 end
     assign rw_ready_o = instr_valid;
     
