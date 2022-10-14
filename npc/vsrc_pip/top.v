@@ -16,8 +16,8 @@ module top # (
     output                          stall_n_diff,
 
 //instr sram  interface
-    input           [`XLEN-1:0]     sram_rdata,
-    input                           sram_data_valid,
+    // input           [`XLEN-1:0]     sram_rdata,
+    // input                           sram_data_valid,
     output          [`XLEN-1:0]     sram_addr,
     output                          sram_ren,
     output                          sram_addr_valid,
@@ -90,6 +90,8 @@ wire    [`XLEN-1:0]     pc_jump;
 wire                    pc_stall_n;
 wire                    if_stall_n;
 wire                    if_instr_valid;
+wire                    sram_data_valid;
+wire    [`XLEN-1:0]     sram_rdata;
 
 //id signal-----------------------------------------------------
 wire    [`inst_len-1:0] instr_if_id_reg;
@@ -185,8 +187,8 @@ axi_if axi_if_u(
     .reset          (rst_n),
 
 	.rw_valid_i     (sram_addr_valid),         //IF&MEM输入信号
-	.rw_ready_o     (),         //IF&MEM输入信号
-    .data_read_o    (),        //IF&MEM输入信号
+	.rw_ready_o     (sram_data_valid),         //IF&MEM输入信号
+    .data_read_o    (sram_rdata),        //IF&MEM输入信号
     .rw_addr_i      (sram_addr),          //IF&MEM输入信号
 
     .axi_aw_ready_i (axi_aw_ready_i ),     //lite         
