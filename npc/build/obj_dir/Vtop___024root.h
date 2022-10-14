@@ -22,7 +22,6 @@ VL_MODULE(Vtop___024root) {
     VL_IN8(clk,0,0);
     VL_IN8(rst_n,0,0);
     VL_OUT8(stall_n_diff,0,0);
-    VL_IN8(sram_data_valid,0,0);
     VL_OUT8(sram_ren,0,0);
     VL_OUT8(sram_addr_valid,0,0);
     VL_IN8(axi_ar_ready_i,0,0);
@@ -74,7 +73,6 @@ VL_MODULE(Vtop___024root) {
     VL_OUT64(pc_diff,63,0);
     VL_OUT64(pc_decoding,63,0);
     VL_OUT64(regA0,63,0);
-    VL_IN64(sram_rdata,63,0);
     VL_OUT64(sram_addr,63,0);
     VL_OUT64(axi_ar_addr_o,63,0);
     VL_IN64(axi_r_data_i,63,0);
@@ -131,10 +129,10 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause;
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
+        QData/*63:0*/ top__DOT__sram_rdata;
         QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__wb_data;
         QData/*63:0*/ top__DOT__IF_u__DOT__pc_next_o;
-        QData/*63:0*/ top__DOT__axi_if_u__DOT__data_read_o;
         QData/*63:0*/ top__DOT__ID_u__DOT__imm;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__src1;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__src2;
