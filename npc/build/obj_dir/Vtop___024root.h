@@ -121,7 +121,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow;
         CData/*0:0*/ top__DOT__forwarding_u__DOT__reg_wben;
         CData/*4:0*/ top__DOT__forwarding_u__DOT__reg_wb_idx;
-        CData/*0:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__ls_ok;
         CData/*7:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask;
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en;
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc;
@@ -149,9 +148,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres;
         QData/*63:0*/ top__DOT__forwarding_u__DOT__rd_wb;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__wr_data;
+        QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mepc;
     };
     struct {
-        QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mepc;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mtvec;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mstatus;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mcause;
