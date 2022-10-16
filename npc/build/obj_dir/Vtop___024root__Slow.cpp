@@ -88,10 +88,12 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                           | ((QData)((IData)(
                                                              vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])) 
                                              >> 2U)));
-    vlSelf->ls_sram_rd_en = (3U == (0x7fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                             >> 2U)));
-    vlSelf->ls_sram_wr_en = (8U == (0x1fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                             >> 4U)));
+    vlSelf->ls_sram_rd_en = ((3U == (0x7fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
+                                              >> 2U))) 
+                             & (~ (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__ls_ok)));
+    vlSelf->ls_sram_wr_en = ((8U == (0x1fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
+                                              >> 4U))) 
+                             & (~ (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__ls_ok)));
     vlSelf->ls_sram_wr_data = (((0U == (0x1fU & (vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[6U] 
                                                  >> 3U))) 
                                 & ((0x1fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
@@ -2854,6 +2856,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__forwarding_u__DOT__reg_wben = 0;
     vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx = 0;
     VL_ZERO_RESET_W(226, vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout);
+    vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__ls_ok = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask = 0;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en = 0;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc = 0;
