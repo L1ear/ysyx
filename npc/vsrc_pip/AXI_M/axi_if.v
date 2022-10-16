@@ -121,14 +121,14 @@ reg     [`XLEN-1:0]     addr_reg;
           r_state_trans_ok: begin
               if(rw_valid_i) begin
                   if(rw_addr_i != addr_reg) begin
-                      r_state_next <= r_state_ar_wait;
+                      r_state_next = r_state_ar_wait;
                   end
                   else begin
-                      r_state_next <= r_state_trans_ok;
+                      r_state_next = r_state_trans_ok;
                   end
               end
               else begin
-                  r_state_next <= r_state_idle;
+                  r_state_next = r_state_idle;
               end
           end
           default: begin
