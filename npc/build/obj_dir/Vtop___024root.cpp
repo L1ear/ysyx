@@ -1560,13 +1560,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                      >> 1U)))) {
         Vtop___024root____Vdpiimwrap_top__DOT__ID_u__DOT__regfile_u__DOT__ebreak_TOP();
     }
-    if ((1U & (~ ((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
-                  & (IData)(vlSelf->axi_r_valid_i))))) {
-        if (((0U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
-             | (1U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)))) {
-            vlSelf->top__DOT__axi_if_u__DOT__instr_valid = 0U;
-        }
-    }
     if (((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
          & (IData)(vlSelf->axi_r_valid_i))) {
         vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg 
@@ -1578,6 +1571,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     if (((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
          & (IData)(vlSelf->axi_r_valid_i))) {
         vlSelf->top__DOT__axi_if_u__DOT__instr_valid_reg = 1U;
+    } else if (((0U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
+                | (1U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)))) {
+        vlSelf->top__DOT__axi_if_u__DOT__instr_valid_reg = 0U;
     }
     vlSelf->top__DOT__axi_if_u__DOT__addr_reg = ((1U 
                                                   == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
