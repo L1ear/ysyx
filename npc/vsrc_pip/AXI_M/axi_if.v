@@ -140,20 +140,20 @@ reg     [`XLEN-1:0]     addr_reg;
 always @(*) begin
     case(r_state)
         r_state_idle: begin
-            ar_valid <= 1'b0;
-            r_ready <= 1'b0;
+            ar_valid = 1'b0;
+            r_ready = 1'b0;
         end
         r_state_ar_wait: begin
-            ar_valid <= 1'b1;
-            r_ready <= 1'b0;
+            ar_valid = 1'b1;
+            r_ready = 1'b0;
         end
         r_state_r_wait: begin
-            ar_valid <= 1'b0;
-            r_ready <= 1'b1;
+            ar_valid = 1'b0;
+            r_ready = 1'b1;
         end
         r_state_trans_ok: begin
-            ar_valid <= 1'b0;
-            r_ready <= 1'b0;
+            ar_valid = 1'b0;
+            r_ready = 1'b0;
         end
         default: begin
 
