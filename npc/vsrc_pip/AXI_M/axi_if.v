@@ -165,18 +165,33 @@ end
 reg                 instr_valid_reg;
 reg     [`XLEN-1:0] rd_data_reg;
 always@(posedge clock) begin
-    if((r_state == r_state_r_wait) && axi_r_valid_i) begin
-        instr_valid_reg <= 1'b1;
-        rd_data_reg <= axi_r_data_i;
-    end
-    else if(r_state == r_state_trans_ok) begin
-        instr_valid_reg <= instr_valid_reg;
-        rd_data_reg <= rd_data_reg;
-    end
-    else begin
-        instr_valid_reg <= 1'b0;
-        rd_data_reg <= `XLEN'b0;;
-    end
+    case (r_state)
+        r_state_idle: begin
+            instr_valid_reg = 1'b0;
+            rd_data_reg = `XLEN'b0;
+        end
+        r_state_ar_wait: begin
+            instr_valid_reg = 1'b0;
+            rd_data_reg = `XLEN'b0;
+        end
+        r_state_r_wait: begin
+            if(axi_r_valid_i) begin
+                instr_valid_reg = 1'b1;
+                rd_data_reg = axi_r_data_i;
+            end
+            else begin
+                instr_valid_reg = 1'b0;
+                rd_data_reg = `XLEN'b0;
+            end
+        end
+        r_state_trans_ok: begin
+            instr_valid_reg = instr_valid_reg;
+            rd_data_reg = rd_data_reg;
+        end
+        default: begin
+
+        end
+    endcase
 end
     assign rw_ready_o = instr_valid_reg;
     assign data_read_o = rd_data_reg;
