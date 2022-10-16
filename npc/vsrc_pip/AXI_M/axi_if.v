@@ -169,7 +169,7 @@ always@(posedge clock) begin
         instr_valid_reg <= 1'b1;
         rd_data_reg <= axi_r_data_i;
     end
-    else if(r_state == r_state_idle) begin
+    else if((r_state == r_state_idle) || (r_state == r_state_ar_wait)) begin
         instr_valid <= 1'b0;
         rd_data_reg <= `XLEN'b0;;
     end

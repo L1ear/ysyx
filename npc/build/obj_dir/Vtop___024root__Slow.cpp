@@ -1473,7 +1473,7 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                                      (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                                                                       >> 0x14U))))
                                                    : 0ULL)))));
-    vlSelf->top__DOT__wb_stall_n = (1U & (~ ((~ (IData)(vlSelf->top__DOT__axi_if_u__DOT__instr_valid)) 
+    vlSelf->top__DOT__wb_stall_n = (1U & (~ ((~ (IData)(vlSelf->top__DOT__axi_if_u__DOT__instr_valid_reg)) 
                                              | (IData)(vlSelf->top__DOT__ls_not_ok))));
     vlSelf->axi_ar_addr_o = vlSelf->sram_addr;
     vlSelf->top__DOT__axi_if_u__DOT__r_state_next = 
@@ -2789,7 +2789,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__pc_next = 0;
     vlSelf->top__DOT__pc_new = 0;
     vlSelf->top__DOT__is_jump = 0;
-    vlSelf->top__DOT__sram_rdata = 0;
     vlSelf->top__DOT__src1sel_id = 0;
     vlSelf->top__DOT__src2sel_id = 0;
     vlSelf->top__DOT__aluctr_id = 0;
@@ -2820,6 +2819,8 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi_if_u__DOT__r_ready = 0;
     vlSelf->top__DOT__axi_if_u__DOT__instr_valid = 0;
     vlSelf->top__DOT__axi_if_u__DOT__addr_reg = 0;
+    vlSelf->top__DOT__axi_if_u__DOT__instr_valid_reg = 0;
+    vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg = 0;
     VL_ZERO_RESET_W(96, vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout);
     vlSelf->top__DOT__ID_u__DOT__ext_op = 0;
     vlSelf->top__DOT__ID_u__DOT__imm = 0;
