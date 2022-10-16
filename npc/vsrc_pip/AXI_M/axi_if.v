@@ -185,8 +185,14 @@ always@(posedge clock) begin
             end
         end
         r_state_trans_ok: begin
-            instr_valid_reg = instr_valid_reg;
-            rd_data_reg = rd_data_reg;
+            if (rw_addr_i != addr_reg) begin
+                instr_valid_reg = 1'b0;
+                rd_data_reg = `XLEN'b0;
+            end 
+            else begin
+                instr_valid_reg = instr_valid_reg;
+                rd_data_reg = rd_data_reg;
+            end
         end
         default: begin
 
