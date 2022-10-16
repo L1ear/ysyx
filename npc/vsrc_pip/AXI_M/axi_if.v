@@ -80,8 +80,7 @@ module axi_if # (
     // 读通道状态切换
     parameter       r_state_idle = 2'b00,
                     r_state_ar_wait = 2'b01,
-                    r_state_r_wait = 2'b11,
-                    r_state_trans_ok = 2'b10;    
+                    r_state_r_wait = 2'b11;    
     reg     [1:0]   r_state,r_state_next;
     reg             ar_valid,r_ready,instr_valid;
     always @(posedge clock or negedge reset) begin
@@ -92,17 +91,6 @@ module axi_if # (
             r_state <= r_state_next;
         end
     end
-
-reg     [`XLEN-1:0]     addr_reg;
-    always @(posedge clock) begin
-        if(r_state == r_state_ar_wait) begin
-            addr_reg <= rw_addr_i;
-        end
-        else begin
-            addr_reg <= addr_reg;
-        end
-    end
-// assign addr_reg = (r_state == r_state_ar_wait) ? rw_addr_i : addr_reg;
 
   always @(*) begin
       case(r_state)
@@ -115,21 +103,8 @@ reg     [`XLEN-1:0]     addr_reg;
               else                  r_state_next <= r_state_ar_wait;
           end
           r_state_r_wait: begin
-              if(axi_r_valid_i)     r_state_next = r_state_trans_ok;
+              if(axi_r_valid_i)     r_state_next <= r_state_idle;
               else                  r_state_next <= r_state_r_wait;
-          end
-          r_state_trans_ok: begin
-              if(rw_valid_i) begin
-                  if(rw_addr_i != addr_reg) begin
-                      r_state_next <= r_state_ar_wait;
-                  end
-                  else begin
-                      r_state_next <= r_state_trans_ok;
-                  end
-              end
-              else begin
-                  r_state_next <= r_state_idle;
-              end
           end
           default: begin
 
@@ -150,10 +125,6 @@ always @(*) begin
         r_state_r_wait: begin
             ar_valid <= 1'b0;
             r_ready <= 1'b1;
-        end
-        r_state_trans_ok: begin
-            ar_valid <= 1'b0;
-            r_ready <= 1'b0;
         end
         default: begin
 
