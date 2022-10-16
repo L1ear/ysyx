@@ -80,7 +80,7 @@ module axi_if # (
     // 读通道状态切换
     parameter       r_state_idle = 2'b00,
                     r_state_ar_wait = 2'b01,
-                    r_state_r_wait = 2'b11;
+                    r_state_r_wait = 2'b11,
                     r_state_trans_ok = 2'b10;    
     reg     [1:0]   r_state,r_state_next;
     reg             ar_valid,r_ready,instr_valid;
