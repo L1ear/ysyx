@@ -31,20 +31,20 @@ wire    [`XLEN-1:0]     rd_data_base;
 //     if(rden)
 //         vmemread(addr_i, 8, rd_data_base, pc_ls_i);
 // end
-reg     ls_ok;
-always @(posedge clk or negedge rstn) begin
-    if(~rstn) begin
-        ls_ok <= 1'b0;
-    end 
-    else begin
-        if((rden & ls_sram_rd_data_valid) || (wren & ls_sram_wr_data_ok)) begin
-            ls_ok <= 1'b1;
-        end
-        else begin
-            ls_ok <= 1'b0;
-        end
-    end
-end
+// reg     ls_ok;
+// always @(posedge clk or negedge rstn) begin
+//     if(~rstn) begin
+//         ls_ok <= 1'b0;
+//     end 
+//     else begin
+//         if((rden & ls_sram_rd_data_valid) || (wren & ls_sram_wr_data_ok)) begin
+//             ls_ok <= 1'b1;
+//         end
+//         else begin
+//             ls_ok <= 1'b0;
+//         end
+//     end
+// end
 
 assign  ls_sram_addr = addr_i;
 assign  ls_sram_rd_en = rden && ~ls_ok;

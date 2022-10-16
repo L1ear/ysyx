@@ -76,22 +76,15 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     } else {
         vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx = 0U;
     }
-    if (vlSelf->rst_n) {
-        if ((((3U == (0x7fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                               >> 2U))) & (IData)(vlSelf->ls_sram_rd_data_valid)) 
-             | ((8U == (0x1fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                 >> 4U))) & (IData)(vlSelf->ls_sram_wr_data_ok)))) {
-            vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__ls_ok = 1U;
-        } else if ((((3U == (0x7fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                      >> 2U))) & (~ (IData)(vlSelf->ls_sram_rd_data_valid))) 
-                    | ((8U == (0x1fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                        >> 4U))) & 
-                       (~ (IData)(vlSelf->ls_sram_wr_data_ok))))) {
-            vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__ls_ok = 0U;
-        }
-    } else {
-        vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__ls_ok = 0U;
-    }
+    vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__ls_ok 
+        = ((IData)(vlSelf->rst_n) & (((3U == (0x7fU 
+                                              & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
+                                                 >> 2U))) 
+                                      & (IData)(vlSelf->ls_sram_rd_data_valid)) 
+                                     | ((8U == (0x1fU 
+                                                & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
+                                                   >> 4U))) 
+                                        & (IData)(vlSelf->ls_sram_wr_data_ok))));
     if (vlSelf->rst_n) {
         if ((1U & ((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause) 
                    | vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U]))) {
