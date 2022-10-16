@@ -93,7 +93,7 @@ module axi_if # (
         end
     end
 
-wire     [`XLEN-1:0]     addr_reg;
+reg     [`XLEN-1:0]     addr_reg;
     // always @(posedge clk) begin
     //     if()
     // end
