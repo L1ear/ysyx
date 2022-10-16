@@ -116,7 +116,7 @@ reg     [`XLEN-1:0]     addr_reg;
           end
           r_state_r_wait: begin
               if(axi_r_valid_i)     r_state_next = r_state_trans_ok;
-              else                  r_state_next <= r_state_r_wait;
+              else                  r_state_next = r_state_r_wait;
           end
           r_state_trans_ok: begin
               if(rw_valid_i) begin
