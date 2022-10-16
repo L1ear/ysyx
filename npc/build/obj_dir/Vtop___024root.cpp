@@ -1560,6 +1560,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg 
                 = ((IData)(vlSelf->axi_r_valid_i) ? vlSelf->axi_r_data_i
                     : 0ULL);
+        } else if ((vlSelf->sram_addr != vlSelf->top__DOT__axi_if_u__DOT__addr_reg)) {
+            vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg = 0ULL;
         }
     } else {
         vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg = 0ULL;
@@ -1568,6 +1570,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         if ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))) {
             vlSelf->top__DOT__axi_if_u__DOT__instr_valid_reg 
                 = vlSelf->axi_r_valid_i;
+        } else if ((vlSelf->sram_addr != vlSelf->top__DOT__axi_if_u__DOT__addr_reg)) {
+            vlSelf->top__DOT__axi_if_u__DOT__instr_valid_reg = 0U;
         }
     } else {
         vlSelf->top__DOT__axi_if_u__DOT__instr_valid_reg = 0U;

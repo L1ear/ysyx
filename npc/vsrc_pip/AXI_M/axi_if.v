@@ -13,8 +13,8 @@ module axi_if # (
     input                               reset,
 
 	input                               rw_valid_i,         //IF&MEM输入信号
-	output                              rw_ready_o,         //IF&MEM输入信号
-    output [RW_DATA_WIDTH-1:0]      data_read_o,        //IF&MEM输入信号
+	output reg                             rw_ready_o,         //IF&MEM输入信号
+    output reg [RW_DATA_WIDTH-1:0]      data_read_o,        //IF&MEM输入信号
     // input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //IF&MEM输入信号
     input  [RW_ADDR_WIDTH-1:0]          rw_addr_i,          //IF&MEM输入信号
     // input  [7:0]                        rw_size_i,          //IF&MEM输入信号
@@ -165,33 +165,37 @@ end
 reg                 instr_valid_reg;
 reg     [`XLEN-1:0] rd_data_reg;
 always@(posedge clock) begin
+    if((r_state == r_state_r_wait) && axi_r_valid_i) begin
+        instr_valid_reg <= 1'b1;
+        rd_data_reg <= axi_r_data_i;
+    end
+    // else if((r_state == r_state_idle) || (r_state == r_state_idle)) begin
+    //     instr_valid <= 1'b0;
+    //     rd_data_reg <= `XLEN'b0;;
+    // end
+end
+always@(*) begin
     case (r_state)
         r_state_idle: begin
-            instr_valid_reg = 1'b0;
-            rd_data_reg = `XLEN'b0;
+            rw_ready_o = 1'b0;
+            data_read_o = `XLEN'b0;
         end
         r_state_ar_wait: begin
-            instr_valid_reg = 1'b0;
-            rd_data_reg = `XLEN'b0;
+            rw_ready_o = 1'b0;
+            data_read_o = `XLEN'b0;
         end
         r_state_r_wait: begin
-            if(axi_r_valid_i) begin
-                instr_valid_reg = 1'b1;
-                rd_data_reg = axi_r_data_i;
-            end
-            else begin
-                instr_valid_reg = 1'b0;
-                rd_data_reg = `XLEN'b0;
-            end
+            rw_ready_o = 1'b0;
+            data_read_o = `XLEN'b0;
         end
         r_state_trans_ok: begin
             if (rw_addr_i != addr_reg) begin
-                instr_valid_reg = 1'b0;
-                rd_data_reg = `XLEN'b0;
+                rw_ready_o = 1'b0;
+                data_read_o = `XLEN'b0;
             end 
             else begin
-                instr_valid_reg = instr_valid_reg;
-                rd_data_reg = rd_data_reg;
+                rw_ready_o = instr_valid_reg;
+                data_read_o = rd_data_reg;
             end
         end
         default: begin
@@ -199,8 +203,8 @@ always@(posedge clock) begin
         end
     endcase
 end
-    assign rw_ready_o = instr_valid_reg;
-    assign data_read_o = rd_data_reg;
+    // assign rw_ready_o = instr_valid_reg;
+    // assign data_read_o = rd_data_reg;
     
     // ------------------Read Transaction------------------
 
