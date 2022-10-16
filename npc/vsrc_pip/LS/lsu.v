@@ -40,7 +40,7 @@ always @(posedge clk or negedge rstn) begin
         if((rden & ls_sram_rd_data_valid) || (wren & ls_sram_wr_data_ok)) begin
             ls_ok <= 1'b1;
         end
-        else if((rden & ~ls_sram_rd_data_valid) || (wren & ~ls_sram_wr_data_ok)) begin
+        else begin
             ls_ok <= 1'b0;
         end
     end
