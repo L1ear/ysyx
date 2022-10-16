@@ -14,7 +14,7 @@ module axi_if # (
 
 	input                               rw_valid_i,         //IF&MEM输入信号
 	output                              rw_ready_o,         //IF&MEM输入信号
-    output reg [RW_DATA_WIDTH-1:0]      data_read_o,        //IF&MEM输入信号
+    output [RW_DATA_WIDTH-1:0]      data_read_o,        //IF&MEM输入信号
     // input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //IF&MEM输入信号
     input  [RW_ADDR_WIDTH-1:0]          rw_addr_i,          //IF&MEM输入信号
     // input  [7:0]                        rw_size_i,          //IF&MEM输入信号
@@ -162,17 +162,20 @@ always @(*) begin
 
 end
 //产生instr_valid信号
+reg                 instr_valid_reg;
+reg     [`XLEN-1:0] rd_data_reg;
 always@(posedge clock) begin
     if((r_state == r_state_r_wait) && axi_r_valid_i) begin
-        instr_valid <= 1'b1;
-        data_read_o <= axi_r_data_i;
+        instr_valid_reg <= 1'b1;
+        rd_data_reg <= axi_r_data_i;
     end
-    else begin
+    else if(r_state == r_state_idle) begin
         instr_valid <= 1'b0;
-        data_read_o <= `XLEN'b0;;
+        rd_data_reg <= `XLEN'b0;;
     end
 end
-    assign rw_ready_o = instr_valid;
+    assign rw_ready_o = instr_valid_reg;
+    assign data_read_o = rd_data_reg;
     
     // ------------------Read Transaction------------------
 
