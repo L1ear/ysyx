@@ -1476,10 +1476,6 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__wb_stall_n = (1U & (~ ((~ (IData)(vlSelf->top__DOT__axi_if_u__DOT__instr_valid)) 
                                              | (IData)(vlSelf->top__DOT__ls_not_ok))));
     vlSelf->axi_ar_addr_o = vlSelf->sram_addr;
-    vlSelf->top__DOT__axi_if_u__DOT__addr_reg = ((1U 
-                                                  == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
-                                                  ? vlSelf->sram_addr
-                                                  : vlSelf->top__DOT__axi_if_u__DOT__addr_reg);
     vlSelf->top__DOT__axi_if_u__DOT__r_state_next = 
         ((2U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
           ? ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
@@ -2866,7 +2862,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause = 0;
     VL_ZERO_RESET_W(289, vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout);
     VL_ZERO_RESET_W(289, vlSelf->top__DOT__wb_reg_u__DOT____Vcellinp__wb_reg__i_din);
-    vlSelf->__Vchglast__TOP__top__DOT__axi_if_u__DOT__addr_reg = 0;
     for (int __Vi0=0; __Vi0<5; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }

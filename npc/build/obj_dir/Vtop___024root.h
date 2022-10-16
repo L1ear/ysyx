@@ -166,7 +166,6 @@ VL_MODULE(Vtop___024root) {
     VlWide<8>/*225:0*/ top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout;
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout;
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellinp__wb_reg__i_din;
-    QData/*63:0*/ __Vchglast__TOP__top__DOT__axi_if_u__DOT__addr_reg;
     VlUnpacked<CData/*0:0*/, 5> __Vm_traceActivity;
 
     // INTERNAL VARIABLES

@@ -1543,8 +1543,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                  & (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                                                     >> 0xfU)))));
     vlSelf->sram_addr_valid = (0ULL != vlSelf->top__DOT__pc_new);
-    vlSelf->sram_addr = vlSelf->top__DOT__pc_new;
-    vlSelf->axi_ar_addr_o = vlSelf->sram_addr;
 }
 
 VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
@@ -1569,6 +1567,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi_if_u__DOT__instr_valid = 
         ((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
          & (IData)(vlSelf->axi_r_valid_i));
+    vlSelf->top__DOT__axi_if_u__DOT__addr_reg = ((1U 
+                                                  == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
+                                                  ? vlSelf->sram_addr
+                                                  : vlSelf->top__DOT__axi_if_u__DOT__addr_reg);
     if ((1U & vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[2U])) {
         __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 
             = ((0U == (0x1fU & (vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[6U] 
@@ -1622,6 +1624,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp45;
     VlWide<3>/*95:0*/ __Vtemp46;
     // Body
+    vlSelf->sram_addr = vlSelf->top__DOT__pc_new;
+    vlSelf->axi_ar_addr_o = vlSelf->sram_addr;
     vlSelf->top__DOT__axi_if_u__DOT__r_state = ((IData)(vlSelf->rst_n)
                                                  ? (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state_next)
                                                  : 0U);
@@ -3129,10 +3133,6 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__7(Vtop___024root* vlSelf) {
                  >> 1U));
     vlSelf->top__DOT__wb_stall_n = (1U & (~ ((~ (IData)(vlSelf->top__DOT__axi_if_u__DOT__instr_valid)) 
                                              | (IData)(vlSelf->top__DOT__ls_not_ok))));
-    vlSelf->top__DOT__axi_if_u__DOT__addr_reg = ((1U 
-                                                  == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
-                                                  ? vlSelf->sram_addr
-                                                  : vlSelf->top__DOT__axi_if_u__DOT__addr_reg);
     vlSelf->top__DOT__axi_if_u__DOT__r_state_next = 
         ((2U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
           ? ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
@@ -3191,11 +3191,6 @@ VL_INLINE_OPT QData Vtop___024root___change_request_1(Vtop___024root* vlSelf) {
     // Body
     // Change detection
     QData __req = false;  // Logically a bool
-    __req |= ((vlSelf->top__DOT__axi_if_u__DOT__addr_reg ^ vlSelf->__Vchglast__TOP__top__DOT__axi_if_u__DOT__addr_reg));
-    VL_DEBUG_IF( if(__req && ((vlSelf->top__DOT__axi_if_u__DOT__addr_reg ^ vlSelf->__Vchglast__TOP__top__DOT__axi_if_u__DOT__addr_reg))) VL_DBG_MSGF("        CHANGE: /home/qw/ysyx-workbench/npc/vsrc_pip/AXI_M/axi_if.v:96: top.axi_if_u.addr_reg\n"); );
-    // Final
-    vlSelf->__Vchglast__TOP__top__DOT__axi_if_u__DOT__addr_reg 
-        = vlSelf->top__DOT__axi_if_u__DOT__addr_reg;
     return __req;
 }
 
