@@ -94,10 +94,15 @@ module axi_if # (
     end
 
 reg     [`XLEN-1:0]     addr_reg;
-    // always @(posedge clk) begin
-    //     if()
-    // end
-assign addr_reg = (r_state == r_state_ar_wait) ? rw_addr_i : addr_reg;
+    always @(posedge clk) begin
+        if(r_state == r_state_ar_wait) begin
+            addr_reg <= rw_addr_i;
+        end
+        else begin
+            addr_reg <= addr_reg;
+        end
+    end
+// assign addr_reg = (r_state == r_state_ar_wait) ? rw_addr_i : addr_reg;
 
   always @(*) begin
       case(r_state)
