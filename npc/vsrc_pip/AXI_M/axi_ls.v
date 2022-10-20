@@ -12,10 +12,12 @@ module axi_ls # (
     input                               clock,
     input                               reset,
 
-	input                               rw_valid_i,         //IF&MEM输入信号
+    input                               wr_valid_i,         //写有效
+	input                               rw_valid_i,         //读有效
 	output reg                             rw_ready_o,         //IF&MEM输入信号
     output reg [RW_DATA_WIDTH-1:0]      data_read_o,        //IF&MEM输入信号
-    // input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //IF&MEM输入信号
+    input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //IF&MEM输入信号
+    input  [AXI_STRB_WIDTH-1:0]         rw_w_mask_i,
     input  [RW_ADDR_WIDTH-1:0]          rw_addr_i,          //IF&MEM输入信号
     // input  [7:0]                        rw_size_i,          //IF&MEM输入信号
 
@@ -40,7 +42,7 @@ module axi_ls # (
     output                              axi_w_valid_o,      //lite
     output [AXI_DATA_WIDTH-1:0]         axi_w_data_o,       //lite
     output [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o,       //lite
-    output                              axi_w_last_o,
+    output                              axi_w_last_o,       //lite
     output [AXI_USER_WIDTH-1:0]         axi_w_user_o,
     
     output                              axi_b_ready_o,      //lite           
@@ -76,8 +78,77 @@ module axi_ls # (
 
     // 写通道状态切换
 
-    // parameter       w_state_idle = 2'b00;
-    //                 w_state_wr
+    parameter       w_state_idle = 2'b00,
+                    w_state_aw_wait = 2'b01,
+                    w_state_dw_wait = 2'b11,
+                    w_state_b_wait_trans_ok = 2'b10;
+    reg     [1:0]   w_state,w_state_next;
+    reg             aw_valid,w_valid,b_ready,trans_ok;
+    always @(posedge clock or negedge reset) begin
+        if(~reset) begin
+            w_state <= w_state_idle;
+        end
+        else begin
+            w_state <= w_state_next;
+        end
+    end
+//状态切换
+    always @(*) begin
+        case(w_state) 
+            w_state_idle: begin
+                if(wr_valid_i) begin
+                    w_state_next = w_state_aw_wait;
+                end
+                else begin
+                    w_state_next = w_state_idle;
+                end
+            end 
+            w_state_aw_wait: begin
+                if(axi_aw_ready_i) begin
+                    w_state_next = w_state_dw_wait;
+                end
+                else begin
+                    w_state_next = w_state_aw_wait;
+                end
+            end
+            w_state_dw_wait: begin
+                if(axi_w_ready_i) begin
+                    w_state_next = w_state_b_wait_trans_ok;
+                end
+                else begin
+                    w_state_next = w_state_dw_wait;
+                end
+            end
+            w_state_b_wait_trans_ok: begin
+//TODO
+            end
+        endcase
+    end
+//输出逻辑
+  always @(*) begin 
+    case(w_state) 
+        w_state_idle: begin
+            aw_valid = 1'b0;
+            w_valid = 1'b0;
+            b_ready = 1'b0;
+        end 
+        w_state_aw_wait: begin
+            aw_valid = 1'b1;
+            w_valid = 1'b0;
+            b_ready = 1'b0;
+        end
+        w_state_dw_wait: begin
+            aw_valid = 1'b0;
+            w_valid = 1'b1;
+            b_ready = 1'b0;
+        end
+        w_state_b_wait_trans_ok: begin
+            b_ready = axi_b_valid_i;
+            aw_valid = 1'b0;
+            w_valid = 1'b0;
+        end
+      endcase
+  end
 
     // 读通道状态切换
     parameter       r_state_idle = 2'b00,
