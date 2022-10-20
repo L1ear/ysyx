@@ -13,9 +13,9 @@ module axi_ls # (
     input                               reset,
 
 	input                               rw_valid_i,         //IF&MEM输入信号
-	output                              rw_ready_o,         //IF&MEM输入信号
+	output reg                             rw_ready_o,         //IF&MEM输入信号
     output reg [RW_DATA_WIDTH-1:0]      data_read_o,        //IF&MEM输入信号
-    input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //IF&MEM输入信号
+    // input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //IF&MEM输入信号
     input  [RW_ADDR_WIDTH-1:0]          rw_addr_i,          //IF&MEM输入信号
     // input  [7:0]                        rw_size_i,          //IF&MEM输入信号
 
@@ -75,13 +75,15 @@ module axi_ls # (
     // ------------------State Machine------------------TODO
 
     // 写通道状态切换
+
     // parameter       w_state_idle = 2'b00;
     //                 w_state_wr
 
     // 读通道状态切换
     parameter       r_state_idle = 2'b00,
                     r_state_ar_wait = 2'b01,
-                    r_state_r_wait = 2'b11;    
+                    r_state_r_wait = 2'b11,
+                    r_state_trans_ok = 2'b10;    
     reg     [1:0]   r_state,r_state_next;
     reg             ar_valid,r_ready,instr_valid;
     always @(posedge clock or negedge reset) begin
@@ -93,19 +95,43 @@ module axi_ls # (
         end
     end
 
+reg     [`XLEN-1:0]     addr_reg;
+    always @(posedge clock) begin
+        if(r_state == r_state_ar_wait) begin
+            addr_reg <= rw_addr_i;
+        end
+        else begin
+            addr_reg <= addr_reg;
+        end
+    end
+// assign addr_reg = (r_state == r_state_ar_wait) ? rw_addr_i : addr_reg;
+
   always @(*) begin
       case(r_state)
           r_state_idle: begin
-              if(rw_valid_i)        r_state_next <= r_state_ar_wait;
-              else                  r_state_next <= r_state_idle;
+              if(rw_valid_i)        r_state_next = r_state_ar_wait;
+              else                  r_state_next = r_state_idle;
           end
           r_state_ar_wait: begin
-              if(axi_ar_ready_i)    r_state_next <= r_state_r_wait;
-              else                  r_state_next <= r_state_ar_wait;
+              if(axi_ar_ready_i)    r_state_next = r_state_r_wait;
+              else                  r_state_next = r_state_ar_wait;
           end
           r_state_r_wait: begin
-              if(axi_r_valid_i)     r_state_next <= r_state_idle;
-              else                  r_state_next <= r_state_r_wait;
+              if(axi_r_valid_i)     r_state_next = r_state_trans_ok;
+              else                  r_state_next = r_state_r_wait;
+          end
+          r_state_trans_ok: begin
+              if(rw_valid_i) begin
+                  if(rw_addr_i != addr_reg) begin
+                      r_state_next = r_state_ar_wait;
+                  end
+                  else begin
+                      r_state_next = r_state_trans_ok;
+                  end
+              end
+              else begin
+                  r_state_next = r_state_idle;
+              end
           end
           default: begin
 
@@ -116,16 +142,20 @@ module axi_ls # (
 always @(*) begin
     case(r_state)
         r_state_idle: begin
-            ar_valid <= 1'b0;
-            r_ready <= 1'b0;
+            ar_valid = 1'b0;
+            r_ready = 1'b0;
         end
         r_state_ar_wait: begin
-            ar_valid <= 1'b1;
-            r_ready <= 1'b0;
+            ar_valid = 1'b1;
+            r_ready = 1'b0;
         end
         r_state_r_wait: begin
-            ar_valid <= 1'b0;
-            r_ready <= 1'b1;
+            ar_valid = 1'b0;
+            r_ready = 1'b1;
+        end
+        r_state_trans_ok: begin
+            ar_valid = 1'b0;
+            r_ready = 1'b0;
         end
         default: begin
 
@@ -134,17 +164,49 @@ always @(*) begin
 
 end
 //产生instr_valid信号
+reg                 instr_valid_reg;
+reg     [`XLEN-1:0] rd_data_reg;
 always@(posedge clock) begin
     if((r_state == r_state_r_wait) && axi_r_valid_i) begin
-        instr_valid <= 1'b1;
-        data_read_o <= axi_r_data_i;
+        instr_valid_reg <= 1'b1;
+        rd_data_reg <= axi_r_data_i;
     end
-    else begin
-        instr_valid <= 1'b0;
-        data_read_o <= `XLEN'b0;;
-    end
+    // else if((r_state == r_state_idle) || (r_state == r_state_idle)) begin
+    //     instr_valid <= 1'b0;
+    //     rd_data_reg <= `XLEN'b0;;
+    // end
 end
-    assign rw_ready_o = instr_valid;
+always@(*) begin
+    case (r_state)
+        r_state_idle: begin
+            rw_ready_o = 1'b0;
+            data_read_o = `XLEN'b0;
+        end
+        r_state_ar_wait: begin
+            rw_ready_o = 1'b0;
+            data_read_o = `XLEN'b0;
+        end
+        r_state_r_wait: begin
+            rw_ready_o = 1'b0;
+            data_read_o = `XLEN'b0;
+        end
+        r_state_trans_ok: begin
+            if (rw_addr_i != addr_reg) begin
+                rw_ready_o = 1'b0;
+                data_read_o = `XLEN'b0;
+            end 
+            else begin
+                rw_ready_o = instr_valid_reg;
+                data_read_o = rd_data_reg;
+            end
+        end
+        default: begin
+
+        end
+    endcase
+end
+    // assign rw_ready_o = instr_valid_reg;
+    // assign data_read_o = rd_data_reg;
     
     // ------------------Read Transaction------------------
 
