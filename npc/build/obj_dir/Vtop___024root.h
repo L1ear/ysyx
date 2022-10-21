@@ -100,7 +100,6 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__rs2_sel;
         CData/*0:0*/ top__DOT__ex_flush;
         CData/*0:0*/ top__DOT__ls_not_ok;
-        CData/*0:0*/ top__DOT__ls_sram_wr_data_ok;
         CData/*0:0*/ top__DOT__wb_stall_n;
         CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero;
@@ -143,9 +142,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o;
+        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
     };
     struct {
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res;
