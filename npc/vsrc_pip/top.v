@@ -450,7 +450,7 @@ ls_stage ls_u(
     .ls_sram_rd_data        (ls_sram_rd_data        )
 );
 
-axi_ls axi_ls_i(
+axi_ls axi_ls_u(
     .clock          (clk),
     .reset          (rst_n),
 
