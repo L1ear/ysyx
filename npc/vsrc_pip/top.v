@@ -455,9 +455,9 @@ axi_ls axi_ls_i(
     .reset          (rst_n),
 
 	.rw_valid_i     (ls_sram_rd_en),         //IF&MEM输入信号
-	.rw_ready_o     (sram_data_valid),         //IF&MEM输入信号
-    .data_read_o    (sram_rdata),        //IF&MEM输入信号
-    .rw_addr_i      (sram_addr),          //IF&MEM输入信号
+	.rw_ready_o     (ls_sram_rd_data_valid),         //IF&MEM输入信号
+    .data_read_o    (ls_sram_rd_data),        //IF&MEM输入信号
+    .rw_addr_i      (ls_sram_addr),          //IF&MEM输入信号
 
     wr_valid_i      (ls_sram_wr_en),         //写有效
     wr_ok_o         (ls_sram_wr_data_ok),            //读完成
