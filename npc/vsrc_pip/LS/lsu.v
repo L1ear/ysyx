@@ -70,14 +70,61 @@ assign  ld  = rden & (memop == `ld);
 
 
 // //仅支持对齐的访问，否则出错
-
+reg     [7      :0]     rd_data_b;
+reg     [15     :0]     rd_data_h;
+reg     [31     :0]     rd_data_w;
+//仅支持对齐的访问，否则出错
+always @(*) begin
+    case(addr_i[2:0])
+        3'b000: begin
+            rd_data_b = rd_data_base[7      :0];
+            rd_data_h = rd_data_base[15     :0];
+            rd_data_w = rd_data_base[31     :0];
+        end
+        3'b001: begin
+            rd_data_b = rd_data_base[15     :8];
+            rd_data_h = rd_data_base[15     :0];
+            rd_data_w = rd_data_base[31     :0];
+        end
+        3'b010: begin
+            rd_data_b = rd_data_base[23     :16];
+            rd_data_h = rd_data_base[31     :16];
+            rd_data_w = rd_data_base[31     :0];
+        end
+        3'b011: begin
+            rd_data_b = rd_data_base[31     :24];
+            rd_data_h = rd_data_base[31     :16];
+            rd_data_w = rd_data_base[31     :0];
+        end
+        3'b100: begin
+            rd_data_b = rd_data_base[39     :32];
+            rd_data_h = rd_data_base[47     :32];
+            rd_data_w = rd_data_base[63     :32];
+        end
+        3'b101: begin
+            rd_data_b = rd_data_base[47     :40];
+            rd_data_h = rd_data_base[47     :32];
+            rd_data_w = rd_data_base[63     :32];
+        end
+        3'b110: begin
+            rd_data_b = rd_data_base[55     :48];
+            rd_data_h = rd_data_base[63     :48];
+            rd_data_w = rd_data_base[63     :32];
+        end
+        3'b111: begin
+            rd_data_b = rd_data_base[63     :56];
+            rd_data_h = rd_data_base[63     :48];
+            rd_data_w = rd_data_base[63     :32];
+        end               
+    endcase
+end
 assign  ls_res_o = `XLEN'b0
-                   |({`XLEN{lb}} & {{56{rd_data_base[7]}},rd_data_base[7:0]})
-                   |({`XLEN{lbu}} & {56'b0,rd_data_base[7:0]})
-                   |({`XLEN{lh}} & {{48{rd_data_base[15]}},rd_data_base[15:0]})
-                   |({`XLEN{lhu}} & {48'b0,rd_data_base[15:0]})
-                   |({`XLEN{lw}} & {{32{rd_data_base[31]}},rd_data_base[31:0]})
-                   |({`XLEN{lwu}} & {32'b0,rd_data_base[31:0]})
+                   |({`XLEN{lb}} & {{56{rd_data_b[7]}},rd_data_b})
+                   |({`XLEN{lbu}} & {56'b0,rd_data_b})
+                   |({`XLEN{lh}} & {{48{rd_data_h[15]}},rd_data_h})
+                   |({`XLEN{lhu}} & {48'b0,rd_data_h})
+                   |({`XLEN{lw}} & {{32{rd_data_w[31]}},rd_data_w})
+                   |({`XLEN{lwu}} & {32'b0,rd_data_w})
                    |({`XLEN{ld}} & rd_data_base);
 
 //写mem-------------------------------------------------------------------
