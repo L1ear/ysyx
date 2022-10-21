@@ -458,10 +458,10 @@ axi_ls axi_ls_i(
 	.rw_ready_o     (ls_sram_rd_data_valid),         //IF&MEM输入信号
     .data_read_o    (ls_sram_rd_data),        //IF&MEM输入信号
     .rw_addr_i      (ls_sram_addr),          //IF&MEM输入信号
-    wr_valid_i      (ls_sram_wr_en),         //写有效
-    wr_ok_o         (ls_sram_wr_data_ok),            //读完成
-    rw_w_data_i     (ls_sram_wr_data),        //写数据
-    rw_w_mask_i     (ls_sram_wr_mask),        
+    .wr_valid_i      (ls_sram_wr_en),         //写有效
+    .wr_ok_o         (ls_sram_wr_data_ok),            //读完成
+    .rw_w_data_i     (ls_sram_wr_data),        //写数据
+    .rw_w_mask_i     (ls_sram_wr_mask),        
 
 
     .axi_aw_ready_i (axi_aw_ready_i ),     //lite         
