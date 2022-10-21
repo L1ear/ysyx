@@ -169,9 +169,9 @@ module axi_ls # (
             if(rw_addr_i != addr_reg) begin
                 wr_ok_o = 1'b0;
             end
-            // else begin
-            //     wr_ok_o = trans_ok;
-            // end
+            else begin
+                wr_ok_o = trans_ok;
+            end
         end
         default: begin
 
