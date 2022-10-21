@@ -120,9 +120,17 @@ module axi_ls # (
                 end
             end
             w_state_b_wait_trans_ok: begin
-//TODO
+//TODO**************************************************************************************************************
+                if(axi_b_valid_i) begin
+                    trans_ok = 
+                end
             end
         endcase
+    end
+    always @(posedge clock) begin
+        if((w_state == w_state_b_wait_trans_ok) && axi_b_valid_i) begin
+            trans_ok = 1'b1;
+        end
     end
 //输出逻辑
   always @(*) begin 
