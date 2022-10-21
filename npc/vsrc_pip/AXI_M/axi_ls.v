@@ -138,10 +138,10 @@ module axi_ls # (
     end
     always @(posedge clock) begin
         if((w_state == w_state_b_wait_trans_ok) && axi_b_valid_i) begin
-            trans_ok = 1'b1;
+            trans_ok <= 1'b1;
         end
-        else(w_state != w_state_b_wait_trans_ok) begin
-            trans_ok = 1'b0;
+        else if(w_state != w_state_b_wait_trans_ok) begin
+            trans_ok <= 1'b0;
         end
     end
 //输出逻辑
