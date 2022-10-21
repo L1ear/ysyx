@@ -20,7 +20,7 @@ module axi_ls # (
     input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //写数据
     input  [AXI_STRB_WIDTH-1:0]         rw_w_mask_i,        
     input  [RW_ADDR_WIDTH-1:0]          rw_addr_i,          //IF&MEM输入信号
-    // input  [7:0]                        rw_size_i,          //IF&MEM输入信号
+    input  [2:0]                        wr_size_i,          //IF&MEM输入信号
 
 
 
@@ -346,7 +346,7 @@ end
     assign axi_aw_id_o      = axi_id;                                                                           //初始化信号即可
     assign axi_aw_user_o    = axi_user;                                                                         //初始化信号即可
     assign axi_aw_len_o     = axi_len;
-    assign axi_aw_size_o    = $clog2(rw_w_mask_i+1);
+    assign axi_aw_size_o    = wr_size_i;
     assign axi_aw_burst_o   = `AXI_BURST_TYPE_INCR;                                                             
     assign axi_aw_lock_o    = 1'b0;                                                                             //初始化信号即可
     assign axi_aw_cache_o   = `AXI_AWCACHE_WRITE_BACK_READ_AND_WRITE_ALLOCATE;                                  //初始化信号即可

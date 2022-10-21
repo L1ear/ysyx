@@ -150,7 +150,8 @@ wire    [`XLEN-1:0]     ls_sram_wr_data;
 wire    [7      :0]     ls_sram_wr_mask;        
 wire                    ls_sram_rd_data_valid;  
 wire                    ls_sram_wr_data_ok;     
-wire    [`XLEN-1:0]     ls_sram_rd_data;        
+wire    [`XLEN-1:0]     ls_sram_rd_data;  
+wire    [2      :0]     ls_sram_wr_size;      
 
 //wb signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
@@ -445,6 +446,7 @@ ls_stage ls_u(
     .ls_sram_wr_en          (ls_sram_wr_en          ),
     .ls_sram_wr_data        (ls_sram_wr_data        ),
     .ls_sram_wr_mask        (ls_sram_wr_mask        ),
+    .ls_sram_wr_size        (ls_sram_wr_size        ),
     .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
     .ls_sram_wr_data_ok     (ls_sram_wr_data_ok     ),
     .ls_sram_rd_data        (ls_sram_rd_data        )
@@ -461,7 +463,8 @@ axi_ls axi_ls_u(
     .wr_valid_i      (ls_sram_wr_en),         //写有效
     .wr_ok_o         (ls_sram_wr_data_ok),            //读完成
     .rw_w_data_i     (ls_sram_wr_data),        //写数据
-    .rw_w_mask_i     (ls_sram_wr_mask),        
+    .rw_w_mask_i     (ls_sram_wr_mask), 
+    .wr_size_i      (ls_sram_wr_size),       
 
 
     .axi_aw_ready_i (axi_aw_ready_i ),     //lite         

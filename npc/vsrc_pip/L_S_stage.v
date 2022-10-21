@@ -21,6 +21,7 @@ module ls_stage (
     output                          ls_sram_wr_en,
     output          [`XLEN-1:0]     ls_sram_wr_data,
     output          [7      :0]     ls_sram_wr_mask,
+    output          [2      :0]     ls_sram_wr_size,
     input                           ls_sram_rd_data_valid,
     input                           ls_sram_wr_data_ok,
     input           [`XLEN-1:0]     ls_sram_rd_data
@@ -52,7 +53,8 @@ lsu lsu_u(
     .ls_sram_wr_mask        (ls_sram_wr_mask        ),
     .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
     .ls_sram_wr_data_ok     (ls_sram_wr_data_ok     ),
-    .ls_sram_rd_data        (ls_sram_rd_data        )
+    .ls_sram_rd_data        (ls_sram_rd_data        ),
+    .ls_sram_wr_size        (ls_sram_wr_size        )
 );
 
 ls_ctr  ls_ctr_u(
