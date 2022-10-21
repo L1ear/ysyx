@@ -68,7 +68,7 @@ module top # (
     input                               axi_b_valid_i,      //lite
     input  [1:0]                        axi_b_resp_i,       //lite        
     input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
+    input  [AXI_USER_WIDTH-1:0]         axi_b_user_i
 
 // //ls sram interface
 //     output          [`XLEN-1:0]     ls_sram_addr,
