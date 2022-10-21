@@ -70,15 +70,15 @@ module top # (
     input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
     input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
 
-//ls sram interface
-    output          [`XLEN-1:0]     ls_sram_addr,
-    output                          ls_sram_rd_en,          
-    output                          ls_sram_wr_en,
-    output          [`XLEN-1:0]     ls_sram_wr_data,
-    output          [7      :0]     ls_sram_wr_mask,
-    input                           ls_sram_rd_data_valid,
-    input                           ls_sram_wr_data_ok,
-    input           [`XLEN-1:0]     ls_sram_rd_data
+// //ls sram interface
+//     output          [`XLEN-1:0]     ls_sram_addr,
+//     output                          ls_sram_rd_en,          
+//     output                          ls_sram_wr_en,
+//     output          [`XLEN-1:0]     ls_sram_wr_data,
+//     output          [7      :0]     ls_sram_wr_mask,
+//     input                           ls_sram_rd_data_valid,
+//     input                           ls_sram_wr_data_ok,
+//     input           [`XLEN-1:0]     ls_sram_rd_data
 
 );
 
@@ -143,6 +143,14 @@ wire    [`XLEN-1:0]     csr_mtvec,csr_mepc;
 wire                    trap_ls;
 wire                    ls_stall_n;
 wire                    ls_not_ok;
+wire    [`XLEN-1:0]     ls_sram_addr;           
+wire                    ls_sram_rd_en;          
+wire                    ls_sram_wr_en;          
+wire    [`XLEN-1:0]     ls_sram_wr_data;        
+wire    [7      :0]     ls_sram_wr_mask;        
+wire                    ls_sram_rd_data_valid;  
+wire                    ls_sram_wr_data_ok;     
+wire    [`XLEN-1:0]     ls_sram_rd_data;        
 
 //wb signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
@@ -440,6 +448,71 @@ ls_stage ls_u(
     .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
     .ls_sram_wr_data_ok     (ls_sram_wr_data_ok     ),
     .ls_sram_rd_data        (ls_sram_rd_data        )
+);
+
+axi_ls axi_ls_i(
+    .clock          (clk),
+    .reset          (rst_n),
+
+	.rw_valid_i     (ls_sram_rd_en),         //IF&MEM输入信号
+	.rw_ready_o     (sram_data_valid),         //IF&MEM输入信号
+    .data_read_o    (sram_rdata),        //IF&MEM输入信号
+    .rw_addr_i      (sram_addr),          //IF&MEM输入信号
+
+    wr_valid_i      (ls_sram_wr_en),         //写有效
+    wr_ok_o         (ls_sram_wr_data_ok),            //读完成
+    rw_w_data_i     (ls_sram_wr_data),        //写数据
+    rw_w_mask_i     (ls_sram_wr_mask),        
+
+
+    .axi_aw_ready_i (axi_aw_ready_i ),     //lite         
+    .axi_aw_valid_o (axi_aw_valid_o ),     //lite
+    .axi_aw_addr_o  (axi_aw_addr_o  ),      //lite
+    .axi_aw_prot_o  (axi_aw_prot_o  ),
+    .axi_aw_id_o    (axi_aw_id_o    ),
+    .axi_aw_user_o  (axi_aw_user_o  ),
+    .axi_aw_len_o   (axi_aw_len_o   ),       
+    .axi_aw_size_o  (axi_aw_size_o  ),
+    .axi_aw_burst_o (axi_aw_burst_o ),
+    .axi_aw_lock_o  (axi_aw_lock_o  ),
+    .axi_aw_cache_o (axi_aw_cache_o ),
+    .axi_aw_qos_o   (axi_aw_qos_o   ),
+    .axi_aw_region_o(axi_aw_region_o),
+
+    .axi_w_ready_i  (axi_w_ready_i),      //lite              
+    .axi_w_valid_o  (axi_w_valid_o),      //lite
+    .axi_w_data_o   (axi_w_data_o ),       //lite
+    .axi_w_strb_o   (axi_w_strb_o ),       //lite
+    .axi_w_last_o   (axi_w_last_o ),  
+    .axi_w_user_o   (axi_w_user_o ),
+
+    .axi_b_ready_o  (axi_b_ready_o),      //lite           
+    .axi_b_valid_i  (axi_b_valid_i),      //lite
+    .axi_b_resp_i   (axi_b_resp_i ),       //lite            
+    .axi_b_id_i     (axi_b_id_i   ),
+    .axi_b_user_i   (axi_b_user_i ),
+
+    .axi_ar_ready_i (axi_ar_ready_i),     //lite              
+    .axi_ar_valid_o (axi_ar_valid_o),     //lite
+    .axi_ar_addr_o  (axi_ar_addr_o  ),      //lite
+    .axi_ar_prot_o  (axi_ar_prot_o  ),
+    .axi_ar_id_o    (axi_ar_id_o    ),
+    .axi_ar_user_o  (axi_ar_user_o  ),
+    .axi_ar_len_o   (axi_ar_len_o   ),       //lite
+    .axi_ar_size_o  (axi_ar_size_o  ),     //lite
+    .axi_ar_burst_o (axi_ar_burst_o ),
+    .axi_ar_lock_o  (axi_ar_lock_o  ),
+    .axi_ar_cache_o (axi_ar_cache_o ),
+    .axi_ar_qos_o   (axi_ar_qos_o   ),
+    .axi_ar_region_o(axi_ar_region_o),
+
+    .axi_r_ready_o  (axi_r_ready_o ),      //lite            
+    .axi_r_valid_i  (axi_r_valid_i ),      //lite            
+    .axi_r_resp_i   (axi_r_resp_i  ),
+    .axi_r_data_i   (axi_r_data_i  ),       //lite
+    .axi_r_last_i   (axi_r_last_i  ),
+    .axi_r_id_i     (axi_r_id_i    ),
+    .axi_r_user_i   (axi_r_user_i  )
 );
 
 WB_reg wb_reg_u(
