@@ -153,20 +153,20 @@ void single_cycle(int i) {
   mem_sigs.update_output(*memref);
   
   //读指令
-  // if(top->sram_ren){
-  //   if(top->sram_addr!=0 && top->sram_addr_valid){
-  //     uint64_t buf;
-  //     // mem.read(top->sram_addr & ~0x7ull, 8, (uint8_t *)(&buf));
-  //     // top->sram_rdata = buf;
-  //     // top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
-  //     int x = rand();
-  //     // top->sram_data_valid = 1;
-  //   }
-  //   else {
-  //     // top->sram_rdata = 0;
-  //     // top->sram_data_valid = 0;
-  //   }
-  // }
+  if(top->sram_ren){
+    if(top->sram_addr!=0 && top->sram_addr_valid){
+      uint64_t buf;
+      // mem.read(top->sram_addr & ~0x7ull, 8, (uint8_t *)(&buf));
+      // top->sram_rdata = buf;
+      // top->sram_rdata = memread(top->sram_addr & ~0x7ull, 8, pc);
+      int x = rand();
+      // top->sram_data_valid = 1;
+    }
+    else {
+      // top->sram_rdata = 0;
+      // top->sram_data_valid = 0;
+    }
+  }
   //读数据
   if(top->ls_sram_rd_en){
     // uint64_t buf;
