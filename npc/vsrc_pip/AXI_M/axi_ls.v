@@ -355,7 +355,7 @@ end
 
     // 写数据通道
     assign axi_w_valid_o    = w_valid;
-    wire    [63:0]      shift = rw_addr_i[2:0]<<3;
+    wire    [5:0]      shift = rw_addr_i[2:0]<<3;
     assign axi_w_data_o     = rw_w_data_i << shift;
     assign axi_w_strb_o     = rw_w_mask_i << shift;
     assign axi_w_last_o     = w_valid;
