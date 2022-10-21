@@ -125,8 +125,8 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                | ((QData)((IData)(
                                                                   vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[2U])) 
                                                   >> 2U)))) 
-                            << (0x38U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
-                                         << 1U)));
+                            << (0x30U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
+                                         << 2U)));
     vlSelf->top__DOT__axi_ls_u__DOT__r_state_next = 
         ((2U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))
           ? ((1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))
@@ -1412,9 +1412,15 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     vlSelf->axi_ar_valid_o = vlSelf->top__DOT__axi_ls_u__DOT__ar_valid;
     vlSelf->axi_r_ready_o = vlSelf->top__DOT__axi_ls_u__DOT__r_ready;
     vlSelf->axi_aw_size_o = vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_size;
-    vlSelf->axi_w_strb_o = (0xffU & ((IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask) 
-                                     << (7U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
-                                               >> 2U))));
+    vlSelf->axi_w_strb_o = ((7U >= ((IData)(1U) + (7U 
+                                                   & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
+                                                      >> 2U))))
+                             ? (0xffU & ((IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask) 
+                                         << ((IData)(1U) 
+                                             + (7U 
+                                                & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
+                                                   >> 2U)))))
+                             : 0U);
     if ((0x10U & vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])) {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b 
             = (0xffU & ((8U & vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])
