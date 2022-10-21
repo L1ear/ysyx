@@ -880,8 +880,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgCData(oldp+253,(vlSelf->top__DOT__axi_ls_u__DOT__r_state),2);
             tracep->chgBit(oldp+254,(vlSelf->top__DOT__axi_ls_u__DOT__ar_valid));
             tracep->chgBit(oldp+255,(vlSelf->top__DOT__axi_ls_u__DOT__r_ready));
-            tracep->chgCData(oldp+256,((0x30U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
-                                                 << 2U))),6);
+            tracep->chgCData(oldp+256,((0x38U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
+                                                 << 1U))),6);
             tracep->chgWData(oldp+257,(vlSelf->top__DOT__wb_reg_u__DOT____Vcellinp__wb_reg__i_din),289);
             tracep->chgWData(oldp+267,(vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout),289);
         }
