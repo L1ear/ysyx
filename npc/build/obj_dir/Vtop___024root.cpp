@@ -216,6 +216,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
 extern const VlUnpacked<CData/*0:0*/, 4> Vtop__ConstPool__TABLE_f41eaeaa_0;
 extern const VlUnpacked<CData/*0:0*/, 4> Vtop__ConstPool__TABLE_bc203658_0;
 extern const VlUnpacked<CData/*7:0*/, 16> Vtop__ConstPool__TABLE_989dfc00_0;
+extern const VlUnpacked<CData/*2:0*/, 16> Vtop__ConstPool__TABLE_0ca066a7_0;
 
 VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -607,6 +608,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                 >> 0xeU)))))));
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask 
         = Vtop__ConstPool__TABLE_989dfc00_0[__Vtableidx1];
+    vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_size 
+        = Vtop__ConstPool__TABLE_0ca066a7_0[__Vtableidx1];
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en 
         = ((((1U == (7U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                            >> 0xeU))) | (2U == (7U 
@@ -753,9 +756,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     vlSelf->axi_w_last_o = vlSelf->top__DOT__axi_ls_u__DOT__w_valid;
     vlSelf->axi_ar_valid_o = vlSelf->top__DOT__axi_ls_u__DOT__ar_valid;
     vlSelf->axi_r_ready_o = vlSelf->top__DOT__axi_ls_u__DOT__r_ready;
-    vlSelf->axi_aw_size_o = (7U & VL_CLOG2_I(((IData)(1U) 
-                                              + (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask))));
     vlSelf->axi_w_strb_o = vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask;
+    vlSelf->axi_aw_size_o = vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_size;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc 
         = ((0x341U == (0xfffU & ((vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[5U] 
                                   << 0xaU) | (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 

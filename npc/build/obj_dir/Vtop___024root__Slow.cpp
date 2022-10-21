@@ -58,6 +58,7 @@ void Vtop___024root___initial__TOP__1(Vtop___024root* vlSelf) {
 }
 
 extern const VlUnpacked<CData/*7:0*/, 16> Vtop__ConstPool__TABLE_989dfc00_0;
+extern const VlUnpacked<CData/*2:0*/, 16> Vtop__ConstPool__TABLE_0ca066a7_0;
 extern const VlUnpacked<CData/*0:0*/, 4> Vtop__ConstPool__TABLE_f41eaeaa_0;
 extern const VlUnpacked<CData/*0:0*/, 4> Vtop__ConstPool__TABLE_bc203658_0;
 
@@ -223,6 +224,8 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
                                                 >> 0xeU)))))));
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask 
         = Vtop__ConstPool__TABLE_989dfc00_0[__Vtableidx1];
+    vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_size 
+        = Vtop__ConstPool__TABLE_0ca066a7_0[__Vtableidx1];
     __Vtableidx2 = vlSelf->top__DOT__axi_ls_u__DOT__r_state;
     vlSelf->top__DOT__axi_ls_u__DOT__ar_valid = Vtop__ConstPool__TABLE_f41eaeaa_0
         [__Vtableidx2];
@@ -1404,9 +1407,8 @@ void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     vlSelf->axi_b_ready_o = vlSelf->top__DOT__axi_ls_u__DOT__b_ready;
     vlSelf->axi_w_valid_o = vlSelf->top__DOT__axi_ls_u__DOT__w_valid;
     vlSelf->axi_w_last_o = vlSelf->top__DOT__axi_ls_u__DOT__w_valid;
-    vlSelf->axi_aw_size_o = (7U & VL_CLOG2_I(((IData)(1U) 
-                                              + (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask))));
     vlSelf->axi_w_strb_o = vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask;
+    vlSelf->axi_aw_size_o = vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_size;
     vlSelf->axi_ar_valid_o = vlSelf->top__DOT__axi_ls_u__DOT__ar_valid;
     vlSelf->axi_r_ready_o = vlSelf->top__DOT__axi_ls_u__DOT__r_ready;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc 
@@ -2938,6 +2940,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__forwarding_u__DOT__reg_wben = 0;
     vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx = 0;
     VL_ZERO_RESET_W(226, vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout);
+    vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_size = 0;
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask = 0;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en = 0;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc = 0;
