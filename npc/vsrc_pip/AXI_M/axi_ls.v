@@ -151,16 +151,19 @@ module axi_ls # (
             aw_valid = 1'b0;
             w_valid = 1'b0;
             b_ready = 1'b0;
+            wr_ok_o = 1'b0;
         end 
         w_state_aw_wait: begin
             aw_valid = 1'b1;
             w_valid = 1'b0;
             b_ready = 1'b0;
+            wr_ok_o = 1'b0;
         end
         w_state_dw_wait: begin
             aw_valid = 1'b0;
             w_valid = 1'b1;
             b_ready = 1'b0;
+            wr_ok_o = 1'b0;
         end
         w_state_b_wait_trans_ok: begin
             b_ready = axi_b_valid_i;
