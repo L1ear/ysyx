@@ -18,9 +18,6 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , instr_diff{vlSymsp->TOP.instr_diff}
     , regA0{vlSymsp->TOP.regA0}
     , stall_n_diff{vlSymsp->TOP.stall_n_diff}
-    , sram_addr{vlSymsp->TOP.sram_addr}
-    , sram_ren{vlSymsp->TOP.sram_ren}
-    , sram_addr_valid{vlSymsp->TOP.sram_addr_valid}
     , axi_ar_ready_i{vlSymsp->TOP.axi_ar_ready_i}
     , axi_ar_valid_o{vlSymsp->TOP.axi_ar_valid_o}
     , axi_ar_addr_o{vlSymsp->TOP.axi_ar_addr_o}

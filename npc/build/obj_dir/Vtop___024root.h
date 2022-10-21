@@ -22,8 +22,6 @@ VL_MODULE(Vtop___024root) {
     VL_IN8(clk,0,0);
     VL_IN8(rst_n,0,0);
     VL_OUT8(stall_n_diff,0,0);
-    VL_OUT8(sram_ren,0,0);
-    VL_OUT8(sram_addr_valid,0,0);
     VL_IN8(axi_ar_ready_i,0,0);
     VL_OUT8(axi_ar_valid_o,0,0);
     VL_OUT8(axi_ar_prot_o,2,0);
@@ -73,7 +71,6 @@ VL_MODULE(Vtop___024root) {
     VL_OUT64(pc_diff,63,0);
     VL_OUT64(pc_decoding,63,0);
     VL_OUT64(regA0,63,0);
-    VL_OUT64(sram_addr,63,0);
     VL_OUT64(axi_ar_addr_o,63,0);
     VL_IN64(axi_r_data_i,63,0);
     VL_OUT64(axi_aw_addr_o,63,0);
