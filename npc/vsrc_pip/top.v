@@ -18,9 +18,9 @@ module top # (
 //instr sram  interface
     // input           [`XLEN-1:0]     sram_rdata,
     // input                           sram_data_valid,
-    output          [`XLEN-1:0]     sram_addr,
-    output                          sram_ren,
-    output                          sram_addr_valid,
+    // output          [`XLEN-1:0]     sram_addr,
+    // output                          sram_ren,
+    // output                          sram_addr_valid,
 
     input                               axi_ar_ready_i,     //lite              
     output                              axi_ar_valid_o,     //lite
