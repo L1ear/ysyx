@@ -14,7 +14,7 @@ module axi_ls # (
 
     input                               wr_valid_i,         //写有效
 	input                               rw_valid_i,         //读有效
-    output                              wr_ok_o,            //读完成
+    output reg                          wr_ok_o,            //读完成
 	output reg                             rw_ready_o,         //读完成
     output reg [RW_DATA_WIDTH-1:0]      data_read_o,        //读数据
     input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //写数据
