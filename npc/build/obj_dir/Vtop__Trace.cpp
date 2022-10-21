@@ -1098,19 +1098,16 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                 & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__instr_valid_reg))))));
         tracep->chgBit(oldp+426,((((IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state) 
                                    >> 1U) & ((~ (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
-                                             & ((~ 
-                                                 (((((QData)((IData)(
-                                                                     vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[2U])) 
-                                                     << 0x3eU) 
-                                                    | (((QData)((IData)(
-                                                                        vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[1U])) 
-                                                        << 0x1eU) 
-                                                       | ((QData)((IData)(
-                                                                          vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])) 
-                                                          >> 2U))) 
-                                                   != vlSelf->top__DOT__axi_ls_u__DOT__addr_reg) 
-                                                  | (vlSelf->top__DOT__ls_u__DOT__wr_data 
-                                                     != vlSelf->top__DOT__axi_ls_u__DOT__wr_data_reg))) 
+                                             & (((((QData)((IData)(
+                                                                   vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[2U])) 
+                                                   << 0x3eU) 
+                                                  | (((QData)((IData)(
+                                                                      vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[1U])) 
+                                                      << 0x1eU) 
+                                                     | ((QData)((IData)(
+                                                                        vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])) 
+                                                        >> 2U))) 
+                                                 == vlSelf->top__DOT__axi_ls_u__DOT__addr_reg) 
                                                 & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__trans_ok))))));
         tracep->chgBit(oldp+427,(vlSelf->top__DOT__wb_stall_n));
         tracep->chgQData(oldp+428,(((IData)(vlSelf->top__DOT__is_jump)
@@ -1191,19 +1188,17 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                               & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                                                  >> 4U)))
                                              ? ((((
-                                                   (((QData)((IData)(
-                                                                     vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[2U])) 
-                                                     << 0x3eU) 
-                                                    | (((QData)((IData)(
-                                                                        vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[1U])) 
-                                                        << 0x1eU) 
-                                                       | ((QData)((IData)(
-                                                                          vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])) 
-                                                          >> 2U))) 
-                                                   != vlSelf->top__DOT__axi_ls_u__DOT__addr_reg) 
-                                                  & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__trans_ok)) 
-                                                 & (vlSelf->top__DOT__ls_u__DOT__wr_data 
-                                                    != vlSelf->top__DOT__axi_ls_u__DOT__wr_data_reg))
+                                                   ((QData)((IData)(
+                                                                    vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[2U])) 
+                                                    << 0x3eU) 
+                                                   | (((QData)((IData)(
+                                                                       vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[1U])) 
+                                                       << 0x1eU) 
+                                                      | ((QData)((IData)(
+                                                                         vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])) 
+                                                         >> 2U))) 
+                                                  != vlSelf->top__DOT__axi_ls_u__DOT__addr_reg) 
+                                                 & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__trans_ok))
                                                  ? 1U
                                                  : 2U)
                                              : 0U))
