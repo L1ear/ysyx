@@ -24,7 +24,7 @@ static const uint32_t img [] = {
 0x07100113,//addi x2,x0,0x00000071        3    addi x2,x0,0x71
 0x0f000193,//addi x3,x0,0x000000f0        4    addi x3,x0,0xf0
 0x0f100213,//addi x4,x0,0x000000f1        5    addi x4,x0,0xf1
-0x001f8023,//sb x1,0(x31)                 6    sb x1,0(x31)
+// 0x001f8023,//sb x1,0(x31)                 6    sb x1,0(x31)
 0x01809093,//slli x1,x1,24                7    slli x1,x1,24
 0x002f80a3,//sb x2,1(x31)                 8    sb x2,1(x31)
 0x003f8123,//sb x3,2(x31)                 9    sb x3,2(x31)
