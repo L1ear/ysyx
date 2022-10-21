@@ -341,7 +341,7 @@ end
     wire [2:0] axi_size     = AXI_SIZE[2:0];
     // 写地址通道  以下没有备注初始化信号的都可能是你需要产生和用到的
     assign axi_aw_valid_o   = aw_valid;
-    assign axi_aw_addr_o    = rw_addr_i;
+    assign axi_aw_addr_o    = rw_addr_i & ~64'b7;
     assign axi_aw_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_aw_id_o      = axi_id;                                                                           //初始化信号即可
     assign axi_aw_user_o    = axi_user;                                                                         //初始化信号即可
@@ -355,8 +355,8 @@ end
 
     // 写数据通道
     assign axi_w_valid_o    = w_valid;
-    assign axi_w_data_o     = rw_w_data_i ;
-    assign axi_w_strb_o     = rw_w_mask_i;
+    assign axi_w_data_o     = rw_w_data_i << rw_addr_i[2:0];
+    assign axi_w_strb_o     = rw_w_mask_i << rw_addr_i[2:0];
     assign axi_w_last_o     = w_valid;
     assign axi_w_user_o     = axi_user;                                                                         //初始化信号即可
 
