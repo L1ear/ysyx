@@ -124,7 +124,7 @@ module axi_ls # (
 //TODO**************************************************************************************************************
                 if(wr_valid_i) begin
                     // if(trans_ok) begin
-                        if(rw_addr_i != addr_reg && trans_ok && rw_w_data_i != wr_data_reg) begin
+                        if(rw_addr_i != addr_reg && trans_ok) begin
                             w_state_next = w_state_aw_wait;
                         end
                         else begin
@@ -174,7 +174,7 @@ module axi_ls # (
             b_ready = axi_b_valid_i;
             aw_valid = 1'b0;
             w_valid = 1'b0;
-            if(rw_addr_i != addr_reg || rw_w_data_i != wr_data_reg) begin
+            if(rw_addr_i != addr_reg) begin
                 wr_ok_o = 1'b0;
             end
             else begin
