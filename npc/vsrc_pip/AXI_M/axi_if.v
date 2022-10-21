@@ -173,7 +173,7 @@ always@(posedge clock) begin
         instr_valid_reg <= 1'b0;
     end
 end
-always@(*) begin
+always@(*) begin            //这里的data_read_o信号控制其实可以去掉，只用控制rw_ready_o信号来控制握手就行了
     case (r_state)
         r_state_idle: begin
             rw_ready_o = 1'b0;
