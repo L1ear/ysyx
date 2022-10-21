@@ -269,7 +269,7 @@ always@(posedge clock) begin
         rd_data_reg <= axi_r_data_i;
     end
     else if(r_state == r_state_trans_ok) begin
-        instr_valid_regs <= 1'b0;
+        instr_valid_reg <= 1'b0;
     end
 end
 always@(*) begin
