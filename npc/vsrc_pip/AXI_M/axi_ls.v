@@ -357,7 +357,7 @@ end
     assign axi_w_valid_o    = w_valid;
     wire    [5:0]      shift = {3'b0,rw_addr_i[2:0]}<<3;
     assign axi_w_data_o     = rw_w_data_i << shift;
-    assign axi_w_strb_o     = rw_w_mask_i << shift;
+    assign axi_w_strb_o     = rw_w_mask_i << rw_addr_i[2:0];
     assign axi_w_last_o     = w_valid;
     assign axi_w_user_o     = axi_user;                                                                         //初始化信号即可
 
