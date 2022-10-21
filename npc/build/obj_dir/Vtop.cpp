@@ -67,14 +67,6 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , axi_b_resp_i{vlSymsp->TOP.axi_b_resp_i}
     , axi_b_id_i{vlSymsp->TOP.axi_b_id_i}
     , axi_b_user_i{vlSymsp->TOP.axi_b_user_i}
-    , ls_sram_addr{vlSymsp->TOP.ls_sram_addr}
-    , ls_sram_rd_en{vlSymsp->TOP.ls_sram_rd_en}
-    , ls_sram_wr_en{vlSymsp->TOP.ls_sram_wr_en}
-    , ls_sram_wr_data{vlSymsp->TOP.ls_sram_wr_data}
-    , ls_sram_wr_mask{vlSymsp->TOP.ls_sram_wr_mask}
-    , ls_sram_rd_data_valid{vlSymsp->TOP.ls_sram_rd_data_valid}
-    , ls_sram_wr_data_ok{vlSymsp->TOP.ls_sram_wr_data_ok}
-    , ls_sram_rd_data{vlSymsp->TOP.ls_sram_rd_data}
     , rootp{&(vlSymsp->TOP)}
 {
 }

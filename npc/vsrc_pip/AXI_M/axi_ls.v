@@ -173,6 +173,9 @@ module axi_ls # (
                 wr_ok_o = trans_ok;
             end
         end
+        default: begin
+
+        end
       endcase
   end
 
