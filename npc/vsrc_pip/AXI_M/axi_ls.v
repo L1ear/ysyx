@@ -122,9 +122,14 @@ module axi_ls # (
             end
             w_state_b_wait_trans_ok: begin
 //TODO**************************************************************************************************************
-                if(wr_valid_i && trans_ok) begin
-                    if(rw_addr_i != addr_reg) begin
-                        w_state_next = w_state_aw_wait;
+                if(wr_valid_i) begin
+                    if(trans_ok) begin
+                        if(rw_addr_i != addr_reg) begin
+                            w_state_next = w_state_aw_wait;
+                        end
+                        else begin
+                            w_state_next = w_state_b_wait_trans_ok;
+                        end
                     end
                     else begin
                         w_state_next = w_state_b_wait_trans_ok;
