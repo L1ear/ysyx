@@ -169,8 +169,8 @@ assign axi_ar_qos_o     =   if_axi_ar_valid_i ? if_axi_ar_qos_i    : ls_axi_ar_q
 assign axi_ar_region_o  =   if_axi_ar_valid_i ? if_axi_ar_region_i : ls_axi_ar_region_i ;
 assign axi_r_ready_o    =   if_axi_ar_valid_i ? if_axi_r_ready_i   : ls_axi_r_ready_i   ;     
 
-assign if_axi_ar_ready_o   =  axi_ar_id_o ? 0 : axi_ar_ready_i;
-assign ls_axi_ar_ready_o   = axi_ar_id_o ? axi_ar_ready_i : 0;
+assign if_axi_ar_ready_o   =  axi_ar_id_o[0] ? 0 : axi_ar_ready_i;
+assign ls_axi_ar_ready_o   =  axi_ar_id_o[0] ? axi_ar_ready_i : 0;
 
 assign if_axi_r_valid_o    = axi_r_id_i[0] ? 'b0 : axi_r_valid_i;  
 assign ls_axi_r_valid_o    = axi_r_id_i[0] ? axi_r_valid_i : 'b0;

@@ -81,7 +81,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->axi_ar_lock_o = 0U;
     vlSelf->axi_ar_cache_o = 2U;
     vlSelf->axi_ar_qos_o = 0U;
-    if ((0U != (IData)(vlSelf->axi_r_id_i))) {
+    if ((1U & (IData)(vlSelf->axi_r_id_i))) {
         vlSelf->top__DOT__if_axi_r_valid_i = 0U;
         vlSelf->top__DOT__ls_axi_r_valid_i = (1U & (IData)(vlSelf->axi_r_valid_i));
     } else {

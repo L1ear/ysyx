@@ -1133,11 +1133,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         tracep->chgBit(oldp+438,(((0U != (IData)(vlSelf->axi_ar_id_o))
                                    ? 0U : (1U & (IData)(vlSelf->axi_ar_ready_i)))));
         tracep->chgBit(oldp+439,(vlSelf->top__DOT__if_axi_r_valid_i));
-        tracep->chgCData(oldp+440,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->chgCData(oldp+440,(((1U & (IData)(vlSelf->axi_r_id_i))
                                      ? 0U : (3U & (IData)(vlSelf->axi_r_resp_i)))),2);
-        tracep->chgQData(oldp+441,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->chgQData(oldp+441,(((1U & (IData)(vlSelf->axi_r_id_i))
                                      ? 0ULL : vlSelf->axi_r_data_i)),64);
-        tracep->chgBit(oldp+443,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->chgBit(oldp+443,(((1U & (IData)(vlSelf->axi_r_id_i))
                                    ? 0U : (1U & (IData)(vlSelf->axi_r_last_i)))));
         tracep->chgBit(oldp+444,((((IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state) 
                                    >> 1U) & ((~ (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
@@ -1146,13 +1146,13 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                    ? (1U & (IData)(vlSelf->axi_ar_ready_i))
                                    : 0U)));
         tracep->chgBit(oldp+446,(vlSelf->top__DOT__ls_axi_r_valid_i));
-        tracep->chgCData(oldp+447,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->chgCData(oldp+447,(((1U & (IData)(vlSelf->axi_r_id_i))
                                      ? (3U & (IData)(vlSelf->axi_r_resp_i))
                                      : 0U)),2);
-        tracep->chgQData(oldp+448,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->chgQData(oldp+448,(((1U & (IData)(vlSelf->axi_r_id_i))
                                      ? vlSelf->axi_r_data_i
                                      : 0ULL)),64);
-        tracep->chgBit(oldp+450,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->chgBit(oldp+450,(((1U & (IData)(vlSelf->axi_r_id_i))
                                    ? (1U & (IData)(vlSelf->axi_r_last_i))
                                    : 0U)));
         tracep->chgBit(oldp+451,((((IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state) 

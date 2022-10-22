@@ -2060,11 +2060,11 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+439,(((0U != (IData)(vlSelf->axi_ar_id_o))
                                     ? 0U : (1U & (IData)(vlSelf->axi_ar_ready_i)))));
         tracep->fullBit(oldp+440,(vlSelf->top__DOT__if_axi_r_valid_i));
-        tracep->fullCData(oldp+441,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->fullCData(oldp+441,(((1U & (IData)(vlSelf->axi_r_id_i))
                                       ? 0U : (3U & (IData)(vlSelf->axi_r_resp_i)))),2);
-        tracep->fullQData(oldp+442,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->fullQData(oldp+442,(((1U & (IData)(vlSelf->axi_r_id_i))
                                       ? 0ULL : vlSelf->axi_r_data_i)),64);
-        tracep->fullBit(oldp+444,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->fullBit(oldp+444,(((1U & (IData)(vlSelf->axi_r_id_i))
                                     ? 0U : (1U & (IData)(vlSelf->axi_r_last_i)))));
         tracep->fullBit(oldp+445,((((IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state) 
                                     >> 1U) & ((~ (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
@@ -2073,13 +2073,13 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                     ? (1U & (IData)(vlSelf->axi_ar_ready_i))
                                     : 0U)));
         tracep->fullBit(oldp+447,(vlSelf->top__DOT__ls_axi_r_valid_i));
-        tracep->fullCData(oldp+448,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->fullCData(oldp+448,(((1U & (IData)(vlSelf->axi_r_id_i))
                                       ? (3U & (IData)(vlSelf->axi_r_resp_i))
                                       : 0U)),2);
-        tracep->fullQData(oldp+449,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->fullQData(oldp+449,(((1U & (IData)(vlSelf->axi_r_id_i))
                                       ? vlSelf->axi_r_data_i
                                       : 0ULL)),64);
-        tracep->fullBit(oldp+451,(((0U != (IData)(vlSelf->axi_r_id_i))
+        tracep->fullBit(oldp+451,(((1U & (IData)(vlSelf->axi_r_id_i))
                                     ? (1U & (IData)(vlSelf->axi_r_last_i))
                                     : 0U)));
         tracep->fullBit(oldp+452,((((IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state) 

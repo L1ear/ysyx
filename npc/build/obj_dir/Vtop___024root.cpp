@@ -180,7 +180,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
     if (((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
          & (IData)(vlSelf->top__DOT__if_axi_r_valid_i))) {
         vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg 
-            = ((0U != (IData)(vlSelf->axi_r_id_i)) ? 0ULL
+            = ((1U & (IData)(vlSelf->axi_r_id_i)) ? 0ULL
                 : vlSelf->axi_r_data_i);
     }
     if (((3U == (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
@@ -202,7 +202,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
     if (((3U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state)) 
          & (IData)(vlSelf->top__DOT__ls_axi_r_valid_i))) {
         vlSelf->top__DOT__axi_ls_u__DOT__rd_data_reg 
-            = ((0U != (IData)(vlSelf->axi_r_id_i)) ? vlSelf->axi_r_data_i
+            = ((1U & (IData)(vlSelf->axi_r_id_i)) ? vlSelf->axi_r_data_i
                 : 0ULL);
     }
     if (((1U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state)) 
@@ -241,7 +241,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___combo__TOP__5\n"); );
     // Body
-    if ((0U != (IData)(vlSelf->axi_r_id_i))) {
+    if ((1U & (IData)(vlSelf->axi_r_id_i))) {
         vlSelf->top__DOT__if_axi_r_valid_i = 0U;
         vlSelf->top__DOT__ls_axi_r_valid_i = (1U & (IData)(vlSelf->axi_r_valid_i));
     } else {
