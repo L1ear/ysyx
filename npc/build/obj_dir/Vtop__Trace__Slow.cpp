@@ -467,7 +467,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+471,"top axi_if_u axi_user", false,-1, 0,0);
         tracep->declBus(c+468,"top axi_if_u axi_len", false,-1, 7,0);
         tracep->declBus(c+469,"top axi_if_u axi_size", false,-1, 2,0);
-        tracep->declBit(c+471,"top axi_if_u axi_aw_id_o", false,-1);
         tracep->declBit(c+381,"top ID_reg_u clk", false,-1);
         tracep->declBit(c+382,"top ID_reg_u rst_n", false,-1);
         tracep->declQuad(c+27,"top ID_reg_u pc_id_reg_i", false,-1, 63,0);
