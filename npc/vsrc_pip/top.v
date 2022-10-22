@@ -235,7 +235,7 @@ assign  pc_decoding = pc_id;
 assign  instr_diff = instr_wb;
 assign  stall_n_diff = wb_stall_n;
 
-module axi_crossbar(
+axi_crossbar axi_crossbar_u(
 //if interface  id: 0
     .if_axi_ar_ready_o  (if_axi_ar_ready_i ),     //lite              
     .if_axi_ar_valid_i  (if_axi_ar_valid_o ),     //lite
