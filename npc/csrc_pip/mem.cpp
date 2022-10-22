@@ -10,8 +10,8 @@
 axi4_mem<64,64,4> mem(4096l*1024*1024);
 axi4_ptr<64,64,4> mem_ptr;
 
-// uint8_t imem[0x8000000] __attribute((aligned(4096)));
-// uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
+uint8_t imem[0x8000000] __attribute((aligned(4096)));
+uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
 
 //for diff-test
 static char *diff_so_file = NULL;
@@ -19,7 +19,7 @@ static int difftest_port = 1234;
 
 // char img[] = "/home/qw/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv64-npc.bin";
 static const uint32_t img [] = {
-0x00007f97,//auipc x31,7                  1    auipc x31,0x7
+0x00200fb3,//add x31,x0,x2                1    mv  x31,sp
 0x00001097,//auipc x1,1                   2    auipc x1,0x1
 0x00002117,//auipc x2,2                   3    auipc x2,0x2
 0x00003197,//auipc x3,3                   4    auipc x3,0x3
@@ -56,7 +56,7 @@ long load_img() {
   if (img_file == NULL) {
     printf("No image is given. Use the default build-in image.\n");
     memcpy(guest_to_host(RESET_VECTOR), img, sizeof(img));
-    // mem.write(0x80000000, sizeof(img), guest_to_host(RESET_VECTOR));
+    mem.write(0x80000000, sizeof(img), guest_to_host(RESET_VECTOR));
     // img_file = img;
     return sizeof(img); // built-in image size
   }
@@ -70,88 +70,88 @@ long load_img() {
   printf("The image is %s, size = %ld\n", img_file, size);
 
   fseek(fp, 0, SEEK_SET);
-  // int ret = fread(guest_to_host(0x80000000), size, 1, fp);
+  int ret = fread(guest_to_host(0x80000000), size, 1, fp);
   mem.load_binary(img_file, 0x80000000);
-  // assert(ret == 1);
+  assert(ret == 1);
 
   fclose(fp);
   return size;
 }
 
 
-// uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
-//   // printf("imem:");
-//   // for(int i = 0;i<4;i++){
-//   //   printf("%02x",imem[i]);
-//   // }
-//   // printf("\n");
-//   // printf("*****************************memread: %llx\n",addr);
-//   if(addr == 0xa0000048){
-//     // Log("%ld\n",get_time());
-//     // difftest_skip_ref();
-//     Log("get time: %08x\n",instrAddr);
-//     return get_time();
-//   }
-//   if(addr == 0xa00003f8){
-//     // difftest_skip_ref();
-//     return 0;
-//   }
-//   else if(addr>0x88000000||addr<0x80000000){
-//     printf("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
-//     return 0;
-//     }
-//   else
-//     switch (len){
-//     case 1:
-//       if(addr==0) addr+= 0x80000000;
-//       return *(uint8_t  *)(imem + addr - 0x80000000);
-//       break;
-//     case 2:
-//       return *(uint16_t  *)(imem + addr - 0x80000000);
-//       break;
-//     case 4:
-//       // printf("instr read!!!! %lx\n",*(uint32_t  *)(imem + addr - 0x80000000));
-//       return *(uint32_t  *)(imem + addr - 0x80000000);
-//       break;
-//     case 8:
-//       return *(uint64_t  *)(imem + addr - 0x80000000);
-//       break;
-//     default:
-//     return 0;
-//       break;
-//   }
-// }
+uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
+  // printf("imem:");
+  // for(int i = 0;i<4;i++){
+  //   printf("%02x",imem[i]);
+  // }
+  // printf("\n");
+  // printf("*****************************memread: %llx\n",addr);
+  if(addr == 0xa0000048){
+    // Log("%ld\n",get_time());
+    // difftest_skip_ref();
+    Log("get time: %08x\n",instrAddr);
+    return get_time();
+  }
+  if(addr == 0xa00003f8){
+    // difftest_skip_ref();
+    return 0;
+  }
+  else if(addr>0x88000000||addr<0x80000000){
+    printf("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
+    return 0;
+    }
+  else
+    switch (len){
+    case 1:
+      if(addr==0) addr+= 0x80000000;
+      return *(uint8_t  *)(imem + addr - 0x80000000);
+      break;
+    case 2:
+      return *(uint16_t  *)(imem + addr - 0x80000000);
+      break;
+    case 4:
+      // printf("instr read!!!! %lx\n",*(uint32_t  *)(imem + addr - 0x80000000));
+      return *(uint32_t  *)(imem + addr - 0x80000000);
+      break;
+    case 8:
+      return *(uint64_t  *)(imem + addr - 0x80000000);
+      break;
+    default:
+    return 0;
+      break;
+  }
+}
 
 
-// void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
-//   if(addr == 0xa00003f8){
-//     // difftest_skip_ref();
+void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
+  if(addr == 0xa00003f8){
+    // difftest_skip_ref();
 
-//     printf("%c",(uint8_t)data);
-//   }
-//   else if(addr>0x88000000||addr<0x80000000){
-//       printf("%08lx: write out of boundary!\nPC: %08lx\n",addr, instrAddr);
-//       // assert(0);
-//       } 
-//   else 
-//     switch (len) {
-//     case 1:
-//       *(uint8_t  *)(imem + addr - 0x80000000) = data; 
-//       return;
-//     case 2: 
-//       *(uint16_t *)(imem + addr - 0x80000000) = data; 
-//       return;
-//     case 4: 
-//       *(uint32_t *)(imem + addr - 0x80000000) = data; 
-//       return;
-//     case 8: 
-//       // printf("sw:%016llx\n",data);
-//       *(uint64_t *)(imem + addr - 0x80000000) = data; 
-//       // printf("after:%016llx\n",*(uint64_t *)(imem + addr - 0x80000000));
-//       return;
-//     default: break;
-//   }
-// }
+    printf("%c",(uint8_t)data);
+  }
+  else if(addr>0x88000000||addr<0x80000000){
+      printf("%08lx: write out of boundary!\nPC: %08lx\n",addr, instrAddr);
+      // assert(0);
+      } 
+  else 
+    switch (len) {
+    case 1:
+      *(uint8_t  *)(imem + addr - 0x80000000) = data; 
+      return;
+    case 2: 
+      *(uint16_t *)(imem + addr - 0x80000000) = data; 
+      return;
+    case 4: 
+      *(uint32_t *)(imem + addr - 0x80000000) = data; 
+      return;
+    case 8: 
+      // printf("sw:%016llx\n",data);
+      *(uint64_t *)(imem + addr - 0x80000000) = data; 
+      // printf("after:%016llx\n",*(uint64_t *)(imem + addr - 0x80000000));
+      return;
+    default: break;
+  }
+}
 
 int is_batch_mode = false;
 void sdb_set_batch_mode() {

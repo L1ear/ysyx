@@ -144,7 +144,7 @@ static int cmd_x(char *args) {
   //printf("the amount of mem: %d\nthe begin addr: %lx \n",atoi(mem_cnt),htoi(bg_addr));
   for(i = 0; i<atoi(mem_cnt); i++)
   {
-    // printf("0x%lx: %08lx\n",htoi(bg_addr)+i*4,memread(htoi(bg_addr)+i*4,4,NULL));
+    printf("0x%lx: %08lx\n",htoi(bg_addr)+i*4,memread(htoi(bg_addr)+i*4,4,NULL));
   }
   return 0;
 }
