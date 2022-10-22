@@ -82,6 +82,7 @@ module top # (
 
 );
 //axi signal
+wire                              instr_fetching;
 wire                              if_axi_ar_ready_i;     //lite              
 wire                              if_axi_ar_valid_o;     //lite
 wire [AXI_ADDR_WIDTH-1:0]         if_axi_ar_addr_o;      //lite
@@ -240,6 +241,7 @@ assign  stall_n_diff = wb_stall_n;
 
 axi_crossbar axi_crossbar_u(
 //if interface  id: 0
+    .instr_fetching (instr_fetching),
     .if_axi_ar_ready_o  (if_axi_ar_ready_i ),     //lite              
     .if_axi_ar_valid_i  (if_axi_ar_valid_o ),     //lite
     .if_axi_ar_addr_i   (if_axi_ar_addr_o  ),      //lite
@@ -390,6 +392,7 @@ axi_if axi_if_u(
 	.rw_ready_o     (sram_data_valid),         //IF&MEM输入信号
     .data_read_o    (sram_rdata),        //IF&MEM输入信号
     .rw_addr_i      (sram_addr),          //IF&MEM输入信号
+    .instr_fetching (instr_fetching),
 
     .axi_ar_ready_i (if_axi_ar_ready_i),     //lite              
     .axi_ar_valid_o (if_axi_ar_valid_o),     //lite

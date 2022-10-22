@@ -19,6 +19,8 @@ module axi_if # (
     input  [RW_ADDR_WIDTH-1:0]          rw_addr_i,          //IF&MEM输入信号
     // input  [7:0]                        rw_size_i,          //IF&MEM输入信号
 
+    output  reg                         instr_fetching,
+
 
 
     // Advanced eXtensible Interface
@@ -151,23 +153,28 @@ always@(*) begin            //这里的data_read_o信号控制其实可以去掉
         r_state_idle: begin
             rw_ready_o = 1'b0;
             data_read_o = `XLEN'b0;
+            instr_fetching = 1'b0;
         end
         r_state_ar_wait: begin
             rw_ready_o = 1'b0;
             data_read_o = `XLEN'b0;
+            instr_fetching = 1'b1;
         end
         r_state_r_wait: begin
             rw_ready_o = 1'b0;
             data_read_o = `XLEN'b0;
+            instr_fetching = 1'b1;
         end
         r_state_trans_ok: begin
             if (rw_addr_i != addr_reg) begin
                 rw_ready_o = 1'b0;
                 data_read_o = `XLEN'b0;
+                instr_fetching = 1'b1;
             end 
             else begin
                 rw_ready_o = instr_valid_reg;
                 data_read_o = rd_data_reg;
+                instr_fetching = 1'b0;
             end
         end
         default: begin
