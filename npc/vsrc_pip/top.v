@@ -158,9 +158,9 @@ wire                    if_stall_n;
 wire                    if_instr_valid;
 wire                    sram_data_valid;
 wire    [`XLEN-1:0]     sram_rdata;
-wire    [`XLEN-1:0]     sram_addr,
-wire                    sram_ren,
-wire                    sram_addr_valid,
+wire    [`XLEN-1:0]     sram_addr;
+wire                    sram_ren;
+wire                    sram_addr_valid;
 
 //id signal-----------------------------------------------------
 wire    [`inst_len-1:0] instr_if_id_reg;
