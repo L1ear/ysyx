@@ -22,33 +22,6 @@ module axi_if # (
 
 
     // Advanced eXtensible Interface
-    input                               axi_aw_ready_i,     //lite         
-    output                              axi_aw_valid_o,     //lite
-    output [AXI_ADDR_WIDTH-1:0]         axi_aw_addr_o,      //lite
-    output [2:0]                        axi_aw_prot_o,
-    output [AXI_ID_WIDTH-1:0]           axi_aw_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_aw_user_o,
-    output [7:0]                        axi_aw_len_o,       
-    output [2:0]                        axi_aw_size_o,
-    output [1:0]                        axi_aw_burst_o,
-    output                              axi_aw_lock_o,
-    output [3:0]                        axi_aw_cache_o,
-    output [3:0]                        axi_aw_qos_o,
-    output [3:0]                        axi_aw_region_o,
-
-    input                               axi_w_ready_i,      //lite              
-    output                              axi_w_valid_o,      //lite
-    output [AXI_DATA_WIDTH-1:0]         axi_w_data_o,       //lite
-    output [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o,       //lite
-    output                              axi_w_last_o,
-    output [AXI_USER_WIDTH-1:0]         axi_w_user_o,
-    
-    output                              axi_b_ready_o,      //lite           
-    input                               axi_b_valid_i,      //lite
-    input  [1:0]                        axi_b_resp_i,       //lite            
-    input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
-
     input                               axi_ar_ready_i,     //lite              
     output                              axi_ar_valid_o,     //lite
     output [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o,      //lite
