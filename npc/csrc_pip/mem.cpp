@@ -11,7 +11,7 @@ axi4_mem<64,64,4> mem(4096l*1024*1024);
 axi4_ptr<64,64,4> mem_ptr;
 
 // uint8_t imem[0x8000000] __attribute((aligned(4096)));
-uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
+// uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
 
 //for diff-test
 static char *diff_so_file = NULL;
