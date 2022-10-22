@@ -1130,7 +1130,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         tracep->chgCData(oldp+435,(vlSelf->axi_b_resp_i),2);
         tracep->chgCData(oldp+436,(vlSelf->axi_b_id_i),4);
         tracep->chgBit(oldp+437,(vlSelf->axi_b_user_i));
-        tracep->chgBit(oldp+438,(((0U != (IData)(vlSelf->axi_ar_id_o))
+        tracep->chgBit(oldp+438,(((1U & (IData)(vlSelf->axi_ar_id_o))
                                    ? 0U : (1U & (IData)(vlSelf->axi_ar_ready_i)))));
         tracep->chgBit(oldp+439,(vlSelf->top__DOT__if_axi_r_valid_i));
         tracep->chgCData(oldp+440,(((1U & (IData)(vlSelf->axi_r_id_i))
@@ -1142,7 +1142,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         tracep->chgBit(oldp+444,((((IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state) 
                                    >> 1U) & ((~ (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
                                              & (IData)(vlSelf->axi_b_valid_i)))));
-        tracep->chgBit(oldp+445,(((0U != (IData)(vlSelf->axi_ar_id_o))
+        tracep->chgBit(oldp+445,(((1U & (IData)(vlSelf->axi_ar_id_o))
                                    ? (1U & (IData)(vlSelf->axi_ar_ready_i))
                                    : 0U)));
         tracep->chgBit(oldp+446,(vlSelf->top__DOT__ls_axi_r_valid_i));
@@ -1232,7 +1232,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                  : 2U)
                                              : 0U))
                                      : ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
-                                         ? (((0U != (IData)(vlSelf->axi_ar_id_o))
+                                         ? (((1U & (IData)(vlSelf->axi_ar_id_o))
                                               ? 0U : 
                                              (1U & (IData)(vlSelf->axi_ar_ready_i)))
                                              ? 3U : 1U)
@@ -1305,7 +1305,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                  : 2U)
                                              : 0U))
                                      : ((1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))
-                                         ? (((0U != (IData)(vlSelf->axi_ar_id_o))
+                                         ? (((1U & (IData)(vlSelf->axi_ar_id_o))
                                               ? (1U 
                                                  & (IData)(vlSelf->axi_ar_ready_i))
                                               : 0U)

@@ -3375,7 +3375,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__7(Vtop___024root* vlSelf) {
                                         >> 2U))) != vlSelf->top__DOT__axi_ls_u__DOT__addr_reg)
                                      ? 1U : 2U) : 0U))
           : ((1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))
-              ? (((0U != (IData)(vlSelf->axi_ar_id_o))
+              ? (((1U & (IData)(vlSelf->axi_ar_id_o))
                    ? (1U & (IData)(vlSelf->axi_ar_ready_i))
                    : 0U) ? 3U : 1U) : ((3U == (0x7fU 
                                                & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
@@ -3390,7 +3390,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__7(Vtop___024root* vlSelf) {
                                      != vlSelf->top__DOT__axi_if_u__DOT__addr_reg)
                                      ? 1U : 2U) : 0U))
           : ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
-              ? (((0U != (IData)(vlSelf->axi_ar_id_o))
+              ? (((1U & (IData)(vlSelf->axi_ar_id_o))
                    ? 0U : (1U & (IData)(vlSelf->axi_ar_ready_i)))
                   ? 3U : 1U) : ((0ULL != vlSelf->top__DOT__pc_new)
                                  ? 1U : 0U)));

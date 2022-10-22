@@ -2057,7 +2057,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+436,(vlSelf->axi_b_resp_i),2);
         tracep->fullCData(oldp+437,(vlSelf->axi_b_id_i),4);
         tracep->fullBit(oldp+438,(vlSelf->axi_b_user_i));
-        tracep->fullBit(oldp+439,(((0U != (IData)(vlSelf->axi_ar_id_o))
+        tracep->fullBit(oldp+439,(((1U & (IData)(vlSelf->axi_ar_id_o))
                                     ? 0U : (1U & (IData)(vlSelf->axi_ar_ready_i)))));
         tracep->fullBit(oldp+440,(vlSelf->top__DOT__if_axi_r_valid_i));
         tracep->fullCData(oldp+441,(((1U & (IData)(vlSelf->axi_r_id_i))
@@ -2069,7 +2069,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+445,((((IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state) 
                                     >> 1U) & ((~ (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
                                               & (IData)(vlSelf->axi_b_valid_i)))));
-        tracep->fullBit(oldp+446,(((0U != (IData)(vlSelf->axi_ar_id_o))
+        tracep->fullBit(oldp+446,(((1U & (IData)(vlSelf->axi_ar_id_o))
                                     ? (1U & (IData)(vlSelf->axi_ar_ready_i))
                                     : 0U)));
         tracep->fullBit(oldp+447,(vlSelf->top__DOT__ls_axi_r_valid_i));
@@ -2160,7 +2160,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                   : 2U)
                                               : 0U))
                                       : ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
-                                          ? (((0U != (IData)(vlSelf->axi_ar_id_o))
+                                          ? (((1U & (IData)(vlSelf->axi_ar_id_o))
                                                ? 0U
                                                : (1U 
                                                   & (IData)(vlSelf->axi_ar_ready_i)))
@@ -2236,7 +2236,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                   : 2U)
                                               : 0U))
                                       : ((1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))
-                                          ? (((0U != (IData)(vlSelf->axi_ar_id_o))
+                                          ? (((1U & (IData)(vlSelf->axi_ar_id_o))
                                                ? (1U 
                                                   & (IData)(vlSelf->axi_ar_ready_i))
                                                : 0U)
