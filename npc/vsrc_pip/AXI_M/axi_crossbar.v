@@ -1,4 +1,12 @@
-module axi_crossbar(
+module axi_crossbar # (
+    parameter RW_DATA_WIDTH     = 64,
+    parameter RW_ADDR_WIDTH     = 64,
+    parameter AXI_DATA_WIDTH    = 64,
+    parameter AXI_ADDR_WIDTH    = 64,
+    parameter AXI_ID_WIDTH      = 4,
+    parameter AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8,
+    parameter AXI_USER_WIDTH    = 1
+)(
 //if interface  id: 0
     output                              if_axi_ar_ready_o,     //lite              
     input                               if_axi_ar_valid_i,     //lite
