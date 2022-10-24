@@ -19,6 +19,7 @@ module lsu (
     output          [`XLEN-1:0]     ls_sram_wr_data,
     output          [7      :0]     ls_sram_wr_mask,
     output          [2      :0]     ls_sram_wr_size,
+    output          [2      :0]     ls_sram_rd_size,
     input                           ls_sram_rd_data_valid,
     input                           ls_sram_wr_data_ok,
     input           [`XLEN-1:0]     ls_sram_rd_data
@@ -55,6 +56,7 @@ assign  ls_sram_wr_data = wr_data_i;
 assign  rd_data_base = ls_sram_rd_data;
 assign  ls_not_ok = (rden & ~ls_sram_rd_data_valid) || (wren & ~ls_sram_wr_data_ok);
 assign  ls_sram_wr_size = wr_size;
+assign  ls_sram_rd_size = rd_size;
 
 
 
@@ -68,6 +70,16 @@ assign  lw  = rden & (memop == `lw);
 assign  lwu = rden & (memop == `lwu);
 assign  ld  = rden & (memop == `ld);
 
+wire   [2:0]     rd_size;
+
+assign  rd_size = 3'b0
+                   |({3{lb}} & 3'd0)
+                   |({3{lbu}} & 3'd0)
+                   |({3{lh}} & 3'd1)
+                   |({3{lhu}} & 3'd1)
+                   |({3{lw}} & 3'd2)
+                   |({3{lwu}} & 3'd2)
+                   |({3{ld}} & 3'd3);
 
 // //仅支持对齐的访问，否则出错
 reg     [7      :0]     rd_data_b;

@@ -21,6 +21,7 @@ module axi_ls # (
     input  [AXI_STRB_WIDTH-1:0]         rw_w_mask_i,        
     input  [RW_ADDR_WIDTH-1:0]          rw_addr_i,          //IF&MEM输入信号
     input  [2:0]                        wr_size_i,          //IF&MEM输入信号
+    input  [2:0]                        rd_size_i,          //IF&MEM输入信号
 
 
 
@@ -325,7 +326,7 @@ end
     assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
     assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
     assign axi_ar_len_o     = axi_len;                                                                          
-    assign axi_ar_size_o    = axi_size;
+    assign axi_ar_size_o    = rd_size_i;
     assign axi_ar_burst_o   = `AXI_BURST_TYPE_INCR;
     assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
     assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可

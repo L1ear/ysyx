@@ -205,7 +205,7 @@ void single_cycle(int i) {
       if(en == 1 )
         {
 
-          if(instr_last == 0x3ea78c23 ||instr_last == 0x0487b783){
+          if(instr_last == 0x3ea78c23 ||instr_last == 0x0487b783){    //跳过printf和读取时间
             difftest_skip_ref();
           }
           Log("%lx\n",instr_last);
