@@ -72,14 +72,7 @@ assign  ld  = rden & (memop == `ld);
 
 wire   [2:0]     rd_size;
 
-assign  rd_size = 3'b0
-                   |({3{lb}} & 3'd0)
-                   |({3{lbu}} & 3'd0)
-                   |({3{lh}} & 3'd1)
-                   |({3{lhu}} & 3'd1)
-                   |({3{lw}} & 3'd2)
-                   |({3{lwu}} & 3'd2)
-                   |({3{ld}} & 3'd3);
+assign  rd_size = 3'd3;
 
 // //仅支持对齐的访问，否则出错
 reg     [7      :0]     rd_data_b;
@@ -90,44 +83,55 @@ always @(*) begin
     case(addr_i[2:0])
         3'b000: begin
             rd_data_b = rd_data_base[7      :0];
-            rd_data_h = rd_data_base[15     :0];
-            rd_data_w = rd_data_base[31     :0];
         end
         3'b001: begin
             rd_data_b = rd_data_base[15     :8];
-            rd_data_h = rd_data_base[15     :0];
-            rd_data_w = rd_data_base[31     :0];
         end
         3'b010: begin
             rd_data_b = rd_data_base[23     :16];
-            rd_data_h = rd_data_base[31     :16];
-            rd_data_w = rd_data_base[31     :0];
         end
         3'b011: begin
             rd_data_b = rd_data_base[31     :24];
-            rd_data_h = rd_data_base[31     :16];
-            rd_data_w = rd_data_base[31     :0];
         end
         3'b100: begin
             rd_data_b = rd_data_base[39     :32];
-            rd_data_h = rd_data_base[47     :32];
-            rd_data_w = rd_data_base[63     :32];
         end
         3'b101: begin
             rd_data_b = rd_data_base[47     :40];
-            rd_data_h = rd_data_base[47     :32];
-            rd_data_w = rd_data_base[63     :32];
         end
         3'b110: begin
             rd_data_b = rd_data_base[55     :48];
-            rd_data_h = rd_data_base[63     :48];
-            rd_data_w = rd_data_base[63     :32];
         end
         3'b111: begin
             rd_data_b = rd_data_base[63     :56];
-            rd_data_h = rd_data_base[63     :48];
-            rd_data_w = rd_data_base[63     :32];
         end               
+    endcase
+end
+
+always @(*) begin
+    case(addr_i[2:1])
+        2'b00: begin
+            rd_data_h = rd_data_base[15     :0];
+        end
+        2'b01: begin
+            rd_data_h = rd_data_base[31     :16];
+        end
+        2'b10: begin
+            rd_data_h = rd_data_base[47     :32];
+        end
+        2'b11: begin
+            rd_data_h = rd_data_base[63     :48];
+        end              
+    endcase
+end
+always @(*) begin
+    case(addr_i[2])
+        1'b0: begin
+            rd_data_w = rd_data_base[31     :0];
+        end
+        1'b1: begin
+            rd_data_w = rd_data_base[63     :32];
+        end            
     endcase
 end
 assign  ls_res_o = `XLEN'b0
