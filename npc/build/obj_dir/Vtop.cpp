@@ -13,16 +13,55 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     : vlSymsp{new Vtop__Syms(_vcontextp__, _vcname__, this)}
     , clk{vlSymsp->TOP.clk}
     , rst_n{vlSymsp->TOP.rst_n}
-    , DmemDataO{vlSymsp->TOP.DmemDataO}
-    , instr{vlSymsp->TOP.instr}
-    , instrAddr{vlSymsp->TOP.instrAddr}
-    , DmemAddr{vlSymsp->TOP.DmemAddr}
-    , DmemDataI{vlSymsp->TOP.DmemDataI}
-    , MemWr{vlSymsp->TOP.MemWr}
-    , MemOp{vlSymsp->TOP.MemOp}
-    , OPcode{vlSymsp->TOP.OPcode}
+    , pc_diff{vlSymsp->TOP.pc_diff}
+    , pc_decoding{vlSymsp->TOP.pc_decoding}
+    , instr_diff{vlSymsp->TOP.instr_diff}
     , regA0{vlSymsp->TOP.regA0}
-    , dnpc{vlSymsp->TOP.dnpc}
+    , stall_n_diff{vlSymsp->TOP.stall_n_diff}
+    , axi_ar_ready_i{vlSymsp->TOP.axi_ar_ready_i}
+    , axi_ar_valid_o{vlSymsp->TOP.axi_ar_valid_o}
+    , axi_ar_addr_o{vlSymsp->TOP.axi_ar_addr_o}
+    , axi_ar_prot_o{vlSymsp->TOP.axi_ar_prot_o}
+    , axi_ar_id_o{vlSymsp->TOP.axi_ar_id_o}
+    , axi_ar_user_o{vlSymsp->TOP.axi_ar_user_o}
+    , axi_ar_len_o{vlSymsp->TOP.axi_ar_len_o}
+    , axi_ar_size_o{vlSymsp->TOP.axi_ar_size_o}
+    , axi_ar_burst_o{vlSymsp->TOP.axi_ar_burst_o}
+    , axi_ar_lock_o{vlSymsp->TOP.axi_ar_lock_o}
+    , axi_ar_cache_o{vlSymsp->TOP.axi_ar_cache_o}
+    , axi_ar_qos_o{vlSymsp->TOP.axi_ar_qos_o}
+    , axi_ar_region_o{vlSymsp->TOP.axi_ar_region_o}
+    , axi_r_ready_o{vlSymsp->TOP.axi_r_ready_o}
+    , axi_r_valid_i{vlSymsp->TOP.axi_r_valid_i}
+    , axi_r_resp_i{vlSymsp->TOP.axi_r_resp_i}
+    , axi_r_data_i{vlSymsp->TOP.axi_r_data_i}
+    , axi_r_last_i{vlSymsp->TOP.axi_r_last_i}
+    , axi_r_id_i{vlSymsp->TOP.axi_r_id_i}
+    , axi_r_user_i{vlSymsp->TOP.axi_r_user_i}
+    , axi_aw_ready_i{vlSymsp->TOP.axi_aw_ready_i}
+    , axi_aw_valid_o{vlSymsp->TOP.axi_aw_valid_o}
+    , axi_aw_addr_o{vlSymsp->TOP.axi_aw_addr_o}
+    , axi_aw_prot_o{vlSymsp->TOP.axi_aw_prot_o}
+    , axi_aw_id_o{vlSymsp->TOP.axi_aw_id_o}
+    , axi_aw_user_o{vlSymsp->TOP.axi_aw_user_o}
+    , axi_aw_len_o{vlSymsp->TOP.axi_aw_len_o}
+    , axi_aw_size_o{vlSymsp->TOP.axi_aw_size_o}
+    , axi_aw_burst_o{vlSymsp->TOP.axi_aw_burst_o}
+    , axi_aw_lock_o{vlSymsp->TOP.axi_aw_lock_o}
+    , axi_aw_cache_o{vlSymsp->TOP.axi_aw_cache_o}
+    , axi_aw_qos_o{vlSymsp->TOP.axi_aw_qos_o}
+    , axi_aw_region_o{vlSymsp->TOP.axi_aw_region_o}
+    , axi_w_ready_i{vlSymsp->TOP.axi_w_ready_i}
+    , axi_w_valid_o{vlSymsp->TOP.axi_w_valid_o}
+    , axi_w_data_o{vlSymsp->TOP.axi_w_data_o}
+    , axi_w_strb_o{vlSymsp->TOP.axi_w_strb_o}
+    , axi_w_last_o{vlSymsp->TOP.axi_w_last_o}
+    , axi_w_user_o{vlSymsp->TOP.axi_w_user_o}
+    , axi_b_ready_o{vlSymsp->TOP.axi_b_ready_o}
+    , axi_b_valid_i{vlSymsp->TOP.axi_b_valid_i}
+    , axi_b_resp_i{vlSymsp->TOP.axi_b_resp_i}
+    , axi_b_id_i{vlSymsp->TOP.axi_b_id_i}
+    , axi_b_user_i{vlSymsp->TOP.axi_b_user_i}
     , rootp{&(vlSymsp->TOP)}
 {
 }
@@ -69,7 +108,7 @@ static void _eval_initial_loop(Vtop__Syms* __restrict vlSymsp) {
             Verilated::debug(1);
             __Vchange = Vtop___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/home/qw/ysyx-workbench/npc/vsrc/top.v", 2, "",
+            VL_FATAL_MT("/home/qw/ysyx-workbench/npc/vsrc_pip/top.v", 2, "",
                 "Verilated model didn't DC converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {
@@ -100,7 +139,7 @@ void Vtop::eval_step() {
             Verilated::debug(1);
             __Vchange = Vtop___024root___change_request(&(vlSymsp->TOP));
             Verilated::debug(__Vsaved_debug);
-            VL_FATAL_MT("/home/qw/ysyx-workbench/npc/vsrc/top.v", 2, "",
+            VL_FATAL_MT("/home/qw/ysyx-workbench/npc/vsrc_pip/top.v", 2, "",
                 "Verilated model didn't converge\n"
                 "- See https://verilator.org/warn/DIDNOTCONVERGE");
         } else {
