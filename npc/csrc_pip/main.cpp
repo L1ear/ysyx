@@ -66,12 +66,12 @@ int reset(int i) {
     axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
     axi4_ref<64,64,4> * memref;
 
-    axi4     <63,64,4> mmio_sigs;
-    axi4_ref <63,64,4> mmio_sigs_ref(mmio_sigs);
-    axi4_ref <63,64,4> * mmioref;
-    axi4_ptr <63,64,4> mmio_ptr;
+    axi4     <64,64,4> mmio_sigs;
+    axi4_ref <64,64,4> mmio_sigs_ref(mmio_sigs);
+    axi4_ref <64,64,4> * mmioref;
+    axi4_ptr <64,64,4> mmio_ptr;
 
-    axi4_xbar<63,64,4> mmio; 
+    axi4_xbar<64,64,4> mmio; 
 
     uartlite           uart;
 int main(int argc, char *argv[])
@@ -122,7 +122,7 @@ int main(int argc, char *argv[])
     assert(mem_ptr.check());
 
     
-    axi4_ref <63,64,4> mmio_ref(mmio_ptr);
+    axi4_ref <64,64,4> mmio_ref(mmio_ptr);
     
     mmioref = &mmio_ref;
   
