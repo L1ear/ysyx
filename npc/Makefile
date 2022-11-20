@@ -19,7 +19,7 @@ VERILATOR_CFLAGS += -MMD --build -cc  --trace\
 VERILATOR_FLAGS += -MMD --build -cc  --trace --exe  -y ./vsrc_pip -top $(TOPNAME)\
 				-O3 --x-assign fast --x-initial fast --noassert --Mdir $(OBJ_DIR)\
 				-o $(abspath $(BIN)) $(addprefix -I, $(INC_PATH))\
-				$(addprefix -LDFLAGS , $(LDFLAGS)) -CFLAGS "-l pthread"
+				$(addprefix -LDFLAGS , $(LDFLAGS)) 
 
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
@@ -45,7 +45,7 @@ include $(NVBOARD_HOME)/scripts/nvboard.mk
 # rules for verilator
 INCFLAGS = $(addprefix -I, $(INC_PATH))
 CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\"" -l pthread
-LDFLAGS += -lreadline -ldl
+LDFLAGS += -lreadline -ldl -l pthread
 
 # rules for diff-test and img load
 CONFIG_DIFFTEST=y
