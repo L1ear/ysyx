@@ -65,7 +65,14 @@ int reset(int i) {
     axi4<64,64,4> mem_sigs;
     axi4_ref<64,64,4> mem_sigs_ref(mem_sigs);
     axi4_ref<64,64,4> * memref;
-    // axi4_ref<64,64,4> mem_ref(mem_ptr);
+
+    axi4     <63,64,4> mmio_sigs;
+    axi4_ref <63,64,4> mmio_sigs_ref(mmio_sigs);
+    axi4_ref <63,64,4> * mmioref;
+
+    axi4_xbar<63,64,4> mmio; 
+
+    uartlite           uart;
 int main(int argc, char *argv[])
 {
     // nvboard_bind_all_pins(&top);
@@ -115,13 +122,13 @@ int main(int argc, char *argv[])
 
     axi4_ptr <63,64,4> mmio_ptr;
     axi4_ref <63,64,4> mmio_ref(mmio_ptr);
-    axi4     <63,64,4> mmio_sigs;
-    axi4_ref <63,64,4> mmio_sigs_ref(mmio_sigs);
-    axi4_xbar<63,64,4> mmio;   
+    mmioref = &mmio_ref;
     
-    // uartlite           uart;
-    // std::thread        uart_input_thread(uart_input,std::ref(uart));
-    // assert(mmio.add_dev(0x60100000,1024*1024,&uart));
+      
+    
+    
+    std::thread        uart_input_thread(uart_input,std::ref(uart));
+    assert(mmio.add_dev(0x60100000,1024*1024,&uart));
 
     Log("axi check complete!");
 
@@ -169,11 +176,18 @@ char  stall;
 void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
+  mmio_sigs.update_input(*mmioref);
   mem_sigs.update_input(*memref);
-  
   top->eval();
   
   mem.beat(mem_sigs_ref);
+  mmio.beat(mmio_sigs_ref);
+  while (uart.exist_tx()) {
+                char c = uart.getc();
+                printf("%c",c);
+                fflush(stdout);
+            }
+  mmio_sigs.update_output(*mmioref);
   mem_sigs.update_output(*memref);
   
   // //读指令
