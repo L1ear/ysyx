@@ -133,9 +133,9 @@ int main(int argc, char *argv[])
     
 
     axi4_ref<64,64,4> mem_ref(mem_ptr);
-    Log("axi check complete!");
+    
     memref = &mem_ref;
-
+Log("axi check complete!");
     // assert(&((*memref).awid));
     sim_time = reset(sim_time);
   
