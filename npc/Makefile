@@ -15,7 +15,7 @@ INC_PATH ?=
 IMG ?=
 VERILATOR = verilator
 VERILATOR_CFLAGS += -MMD --build -cc  --trace\
-				-O3 --x-assign fast --x-initial fast --noassert
+				-O3 --x-assign fast --x-initial fast --noassert -l pthread
 VERILATOR_FLAGS += -MMD --build -cc  --trace --exe  -y ./vsrc_pip -top $(TOPNAME)\
 				-O3 --x-assign fast --x-initial fast --noassert --Mdir $(OBJ_DIR)\
 				-o $(abspath $(BIN)) $(addprefix -I, $(INC_PATH))\
