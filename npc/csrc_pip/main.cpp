@@ -185,13 +185,13 @@ void single_cycle(int i) {
   top->eval();
   
   mem.beat(mem_sigs_ref);
-  // mmio.beat(mmio_sigs_ref);
-  // while (uart.exist_tx()) {
-  //               char c = uart.getc();
-  //               printf("%c",c);
-  //               fflush(stdout);
-  //           }
-  // mmio_sigs.update_output(*mmioref);
+  mmio.beat(mmio_sigs_ref);
+  while (uart.exist_tx()) {
+                char c = uart.getc();
+                printf("%c",c);
+                fflush(stdout);
+            }
+  mmio_sigs.update_output(*mmioref);
   mem_sigs.update_output(*memref);
   
   // //读指令
