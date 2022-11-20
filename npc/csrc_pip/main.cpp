@@ -119,8 +119,8 @@ int main(int argc, char *argv[])
     axi4_ref <63,64,4> mmio_sigs_ref(mmio_sigs);
     axi4_xbar<63,64,4> mmio;   
     
-    uartlite           uart;
-    std::thread        uart_input_thread(uart_input,std::ref(uart));
+    // uartlite           uart;
+    // std::thread        uart_input_thread(uart_input,std::ref(uart));
     // assert(mmio.add_dev(0x60100000,1024*1024,&uart));
 
     Log("axi check complete!");
