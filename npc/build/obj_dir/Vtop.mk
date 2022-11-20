@@ -35,12 +35,13 @@ VM_PREFIX = Vtop
 VM_MODPREFIX = Vtop
 # User CFLAGS (from -CFLAGS on Verilator command line)
 VM_USER_CFLAGS = \
-	-l pthread \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
 	-lreadline \
 	-ldl \
+	-l \
+	pthread \
 	-L \
 	/home/qw/ysyx-workbench/nemu/build/ \
 
