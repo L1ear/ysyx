@@ -130,9 +130,10 @@ int main(int argc, char *argv[])
     std::thread        uart_input_thread(uart_input,std::ref(uart));
     assert(mmio.add_dev(0x60100000,1024*1024,&uart));
 
-    Log("axi check complete!");
+    
 
     axi4_ref<64,64,4> mem_ref(mem_ptr);
+    Log("axi check complete!");
     memref = &mem_ref;
 
     // assert(&((*memref).awid));
@@ -176,7 +177,9 @@ char  stall;
 void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
+  printf("b\n");
   mmio_sigs.update_input(*mmioref);
+  printf("a\n");
   mem_sigs.update_input(*memref);
   top->eval();
   
