@@ -122,6 +122,7 @@ int main(int argc, char *argv[])
 
     axi4_ptr <63,64,4> mmio_ptr;
     axi4_ref <63,64,4> mmio_ref(mmio_ptr);
+    assert(1);
     mmioref = &mmio_ref;
     
       
