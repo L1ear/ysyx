@@ -1,4 +1,8 @@
 #include "include/common.h"
+#include <iostream>
+#include <termios.h>
+#include <unistd.h>
+#include <thread>
 
 extern CPU_state cpu;
 extern axi4_mem<64,64,4> mem;
@@ -98,7 +102,11 @@ int main(int argc, char *argv[])
     mem_ptr.bready  = &(top->axi_b_ready_o);
     
     assert(mem_ptr.check());
-    
+
+    uartlite           uart;
+    std::thread        uart_input_thread(uart_input,std::ref(uart));
+    assert(mmio.add_dev(0xa00003f8,1024*1024,&uart));
+
     Log("axi check complete!");
 
     axi4_ref<64,64,4> mem_ref(mem_ptr);
