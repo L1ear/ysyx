@@ -69,6 +69,7 @@ int reset(int i) {
     axi4     <63,64,4> mmio_sigs;
     axi4_ref <63,64,4> mmio_sigs_ref(mmio_sigs);
     axi4_ref <63,64,4> * mmioref;
+    axi4_ptr <63,64,4> mmio_ptr;
 
     axi4_xbar<63,64,4> mmio; 
 
@@ -120,7 +121,7 @@ int main(int argc, char *argv[])
     
     assert(mem_ptr.check());
 
-    axi4_ptr <63,64,4> mmio_ptr;
+    
     axi4_ref <63,64,4> mmio_ref(mmio_ptr);
     
     mmioref = &mmio_ref;
