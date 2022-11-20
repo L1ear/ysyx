@@ -124,12 +124,12 @@ int main(int argc, char *argv[])
     axi4_ref <63,64,4> mmio_ref(mmio_ptr);
     
     mmioref = &mmio_ref;
-    assert(mmioref);
+  
       
     
     
     std::thread        uart_input_thread(uart_input,std::ref(uart));
-    assert(mmio.add_dev(0x60100000,1024*1024,&uart));
+    assert(mmio.add_dev(0xa00003f8,1024*1024,&uart));
 
     Log("axi check complete!");
 
