@@ -19,7 +19,7 @@ VERILATOR_CFLAGS += -MMD --build -cc  --trace\
 VERILATOR_FLAGS += -MMD --build -cc  --trace --exe  -y ./vsrc_pip -top $(TOPNAME)\
 				-O3 --x-assign fast --x-initial fast --noassert --Mdir $(OBJ_DIR)\
 				-o $(abspath $(BIN)) $(addprefix -I, $(INC_PATH))\
-				$(addprefix -LDFLAGS , $(LDFLAGS)) -CFLAGS -l pthread
+				$(addprefix -LDFLAGS , $(LDFLAGS)) -CFLAGS "-l pthread"
 
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
