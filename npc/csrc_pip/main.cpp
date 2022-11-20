@@ -33,7 +33,17 @@ void nvboard_bind_all_pins(Vtop* top);
 
 int err = false;
 
-
+void uart_input(uartlite &uart) {
+    termios tmp;
+    tcgetattr(STDIN_FILENO,&tmp);
+    tmp.c_lflag &=(~ICANON & ~ECHO);
+    tcsetattr(STDIN_FILENO,TCSANOW,&tmp);
+    while (1) {
+        char c = getchar();
+        if (c == 10) c = 13; // convert lf to cr
+        uart.putc(c);
+    }
+}
 
 int reset(int i) {
   top->rst_n = 0; top->eval();
