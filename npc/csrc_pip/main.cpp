@@ -181,8 +181,9 @@ int main(int argc, char *argv[])
 
     en = 1;
     sdb_mainloop();
-    top->final();
     uart_input_thread.detach();
+    top->final();
+    
     // while(en)
     // {
     //   single_cycle(sim_time);
