@@ -227,7 +227,7 @@ void single_cycle(int i) {
     // assert(0);
     //             printf("1\r\n");
                 char c = uart.getc();
-                printf("%c\n",c);
+                printf("%c",c);
                 fflush(stdout);
             }
   mmio_sigs.update_output(*mmioref);
