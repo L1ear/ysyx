@@ -44,7 +44,7 @@ include $(NVBOARD_HOME)/scripts/nvboard.mk
 
 # rules for verilator
 INCFLAGS = $(addprefix -I, $(INC_PATH))
-CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\"" -l pthread
+CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\"" -l pthread -std=gnu++11
 LDFLAGS += -lreadline -ldl -l pthread
 
 # rules for diff-test and img load
