@@ -40,8 +40,9 @@ void uart_input(uartlite &uart) {
     tmp.c_lflag &=(~ICANON & ~ECHO);
     tcsetattr(STDIN_FILENO,TCSANOW,&tmp);
     while (1) {
+      assert(0);
         char c = getchar();
-        assert(0);
+        
         if (c == 10) c = 13; // convert lf to cr
         uart.putc(c);
         printf("1\n");
