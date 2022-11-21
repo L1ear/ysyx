@@ -212,7 +212,6 @@ char  stall;
 void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
-  printf("a\n");
   mmio_sigs.update_input(*mmioref);
   mem_sigs.update_input(*memref);
   top->eval();
@@ -227,7 +226,7 @@ void single_cycle(int i) {
             }
   mmio_sigs.update_output(*mmioref);
   mem_sigs.update_output(*memref);
-  assert(uart.irq());
+  assert(!uart.irq());
   // //读指令
   // if(top->sram_ren){
   //   if(top->sram_addr!=0 && top->sram_addr_valid){
