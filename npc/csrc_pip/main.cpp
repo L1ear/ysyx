@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
     
     
     std::thread        uart_input_thread(uart_input,std::ref(uart));
-    assert(mmio.add_dev(0x60100000,1024*1024,&uart));
+    assert(mmio.add_dev(0xa00003f8,16,&uart));
 
     Log("axi check complete!");
 
