@@ -209,9 +209,7 @@ char  stall;
 void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
-  printf("b\n");
   mmio_sigs.update_input(*mmioref);
-  printf("a\n");
   mem_sigs.update_input(*memref);
   top->eval();
   
