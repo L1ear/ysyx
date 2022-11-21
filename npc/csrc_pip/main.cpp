@@ -3,8 +3,7 @@
 #include <termios.h>
 #include <unistd.h>
 #include <thread>
-using namespace std;
- 
+
 extern CPU_state cpu;
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
@@ -34,7 +33,9 @@ void nvboard_bind_all_pins(Vtop* top);
 
 int err = false;
 
+
 void uart_input(uartlite &uart) {
+    assert(0);
     termios tmp;
     tcgetattr(STDIN_FILENO,&tmp);
     tmp.c_lflag &=(~ICANON & ~ECHO);
@@ -163,7 +164,7 @@ int main(int argc, char *argv[])
       
     
     
-    std::thread        uart_input_thread(uart_input,std::ref(uart));
+    std::thread uart_input_thread(uart_input,std::ref(uart));
     assert(mmio.add_dev(0xa00003f8,8,&uart));
 
     Log("axi check complete!");
