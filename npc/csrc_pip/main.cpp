@@ -42,6 +42,7 @@ void uart_input(uartlite &uart) {
         char c = getchar();
         if (c == 10) c = 13; // convert lf to cr
         uart.putc(c);
+        printf("1\n");
     }
 }
 
@@ -181,7 +182,7 @@ int main(int argc, char *argv[])
 
     en = 1;
     sdb_mainloop();
-    uart_input_thread.join();
+    // uart_input_thread.join();
     top->final();
     
     // while(en)
