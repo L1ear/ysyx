@@ -42,6 +42,7 @@ VM_USER_LDLIBS = \
 	-ldl \
 	-l \
 	pthread \
+	-std=gnu++11 \
 	-L \
 	/home/qw/ysyx-workbench/nemu/build/ \
 

@@ -3,7 +3,8 @@
 #include <termios.h>
 #include <unistd.h>
 #include <thread>
-
+using namespace std;
+ 
 extern CPU_state cpu;
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
