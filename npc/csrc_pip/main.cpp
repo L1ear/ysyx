@@ -43,6 +43,7 @@ void uart_input(uartlite &uart) {
         if (c == 10) c = 13; // convert lf to cr
         uart.putc(c);
         printf("1\n");
+        assert(0);
     }
 }
 
