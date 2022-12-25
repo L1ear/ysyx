@@ -1,6 +1,6 @@
 module stl_reg #(
-  WIDTH = 1,
-  RESET_VAL = 0
+  parameter WIDTH = 1,
+  parameter RESET_VAL = 0
 )(
   input                     i_clk   ,
   input                     i_rst_n ,
