@@ -1,5 +1,5 @@
 `include "defines.v"
-module regfiles(
+module regfile(
 	input							clk,
 	input	[`XLEN-1:0]				pc_wb,					//for diff-test
 				
