@@ -1,3 +1,4 @@
+`include "defines.v"
 module CSR (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
