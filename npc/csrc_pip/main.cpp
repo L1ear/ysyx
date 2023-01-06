@@ -350,10 +350,10 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
     printf("data:%016llx\n",wdata);
     printf("addr:%016llx \nmask:%d\no_data:%016llx\nWRdata:%016llx\n\n",waddr,wmask, wdata, *(uint8_t*)(WRdata+7));
     // assert(0);
-    switch (size)
+    switch ((uint8_t)size)
     {
     case 0:
-        switch (wmask)
+        switch ((uint8_t)wmask)
         {
         case 1:
           memwrite(waddr, 1, WRdata[0], 0);
