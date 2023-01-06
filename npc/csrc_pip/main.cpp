@@ -385,7 +385,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
         }
       break;
     case 1:
-      switch (wmask)
+      switch ((uint8_t)wmask)
       {
       case 3:
       // assert(0);
@@ -406,7 +406,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
       }
       break;
     case 2:
-      switch (wmask)
+      switch ((uint8_t)wmask)
       {
       case 15:
         memwrite(waddr, 4, *(uint32_t *)WRdata, 0);
