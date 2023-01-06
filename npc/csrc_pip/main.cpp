@@ -386,7 +386,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
       switch (wmask)
       {
       case 3:
-      assert(0);
+      // assert(0);
         printf("addr:%016llx \nsize: %d\ndata: %016llx\n",waddr, 2, *(uint16_t *)WRdata);
         memwrite(waddr, 2, *(uint16_t *)WRdata, 0);
         break;
