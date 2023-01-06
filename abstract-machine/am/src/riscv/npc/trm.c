@@ -15,7 +15,7 @@ Area heap = RANGE(&_heap_start, PMEM_END);
 static const char mainargs[] = MAINARGS;
 
 void putch(char ch) {
-  uint64_t addr = 0xa00003f8+4;
+  uint64_t addr = 0xa00003f8;
   *(volatile uint8_t  *)addr = ch;
 }
 
