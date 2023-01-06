@@ -407,7 +407,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
       switch (wmask)
       {
       case 15:
-        memwrite(waddr, 4, *(uint32_t *)WRdata[0], 0);
+        memwrite(waddr, 4, *(uint32_t *)WRdata, 0);
         break;
       case 240:
         memwrite(waddr, 4, *(uint32_t *)WRdata[4], 0);
