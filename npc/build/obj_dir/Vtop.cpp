@@ -106,6 +106,7 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , axi_mmio_b_resp_i{vlSymsp->TOP.axi_mmio_b_resp_i}
     , axi_mmio_b_id_i{vlSymsp->TOP.axi_mmio_b_id_i}
     , axi_mmio_b_user_i{vlSymsp->TOP.axi_mmio_b_user_i}
+    , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , rootp{&(vlSymsp->TOP)}
 {
 }

@@ -1,8 +1,8 @@
 
-import "DPI-C" function void axiSlaveRead(
-    input longint raddr, output longint rdata);
-import "DPI-C" function void axiSlaveWrite(
-    input longint waddr, input longint wdata, input byte wmask);
+// import "DPI-C" function void axiSlaveRead(
+//     input longint raddr, output longint rdata);
+// import "DPI-C" function void axiSlaveWrite(
+//     input longint waddr, input longint wdata, input byte wmask);
 module myip_AXI_Lite_v1_0_S00_AXI #
 	(
 		// Users to add parameters here

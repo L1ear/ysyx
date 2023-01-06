@@ -340,4 +340,10 @@ void ebreak(){
   }
 }
 
+extern "C"  void axiSlaveRead(long long raddr, long long* rdata){
+  
 
+}
+extern "C"  void axiSlaveWrite(long long waddr, long long wdata, char wmask){
+
+}
