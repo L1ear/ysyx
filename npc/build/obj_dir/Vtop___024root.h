@@ -240,7 +240,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid;
         CData/*0:0*/ top__DOT__ifAxiSlaveRam_u__DOT__slv_reg_rden;
         CData/*0:0*/ top__DOT__ifAxiSlaveRam_u__DOT__aw_en;
-        CData/*2:0*/ top__DOT__lsAxiSlaveRam_u__DOT__S_AXI_AWSIZE;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_wready;
         CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp;
@@ -251,9 +250,9 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg_rden;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__aw_en;
         SData/*15:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h;
+        IData/*31:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w;
     };
     struct {
-        IData/*31:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w;
         IData/*31:0*/ top__DOT__ifAxiSlaveRam_u__DOT__byte_index;
         IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
         QData/*63:0*/ top__DOT__ls_axi_w_data_o;

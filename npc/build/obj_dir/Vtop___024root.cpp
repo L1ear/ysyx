@@ -265,7 +265,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid)) 
               & (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready)) 
              & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__aw_valid))) {
-            Vtop___024unit____Vdpiimwrap_axiSlaveWrite_TOP____024unit(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr, (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__S_AXI_AWSIZE), vlSelf->top__DOT__ls_axi_w_data_o, (IData)(vlSelf->top__DOT__ls_axi_w_strb_o));
+            Vtop___024unit____Vdpiimwrap_axiSlaveWrite_TOP____024unit(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr, (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_size), vlSelf->top__DOT__ls_axi_w_data_o, (IData)(vlSelf->top__DOT__ls_axi_w_strb_o));
         }
     } else {
         vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__slv_reg0 = 0ULL;

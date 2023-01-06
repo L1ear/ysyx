@@ -1220,7 +1220,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+638,"top lsAxiSlaveRam_u C_S_AXI_DATA_WIDTH", false,-1, 31,0);
         tracep->declBus(c+638,"top lsAxiSlaveRam_u C_S_AXI_ADDR_WIDTH", false,-1, 31,0);
         tracep->declBus(c+596,"top lsAxiSlaveRam_u S_AXI_ARSIZE", false,-1, 2,0);
-        tracep->declBus(c+655,"top lsAxiSlaveRam_u S_AXI_AWSIZE", false,-1, 2,0);
+        tracep->declBus(c+76,"top lsAxiSlaveRam_u S_AXI_AWSIZE", false,-1, 2,0);
         tracep->declBit(c+465,"top lsAxiSlaveRam_u S_AXI_ACLK", false,-1);
         tracep->declBit(c+466,"top lsAxiSlaveRam_u S_AXI_ARESETN", false,-1);
         tracep->declQuad(c+74,"top lsAxiSlaveRam_u S_AXI_AWADDR", false,-1, 63,0);
@@ -1258,10 +1258,10 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+52,"top lsAxiSlaveRam_u slv_reg1", false,-1, 63,0);
         tracep->declQuad(c+54,"top lsAxiSlaveRam_u slv_reg2", false,-1, 63,0);
         tracep->declQuad(c+56,"top lsAxiSlaveRam_u slv_reg3", false,-1, 63,0);
-        tracep->declBit(c+656,"top lsAxiSlaveRam_u slv_reg_rden", false,-1);
+        tracep->declBit(c+655,"top lsAxiSlaveRam_u slv_reg_rden", false,-1);
         tracep->declBit(c+587,"top lsAxiSlaveRam_u slv_reg_wren", false,-1);
-        tracep->declQuad(c+657,"top lsAxiSlaveRam_u reg_data_out", false,-1, 63,0);
-        tracep->declBus(c+659,"top lsAxiSlaveRam_u byte_index", false,-1, 31,0);
+        tracep->declQuad(c+656,"top lsAxiSlaveRam_u reg_data_out", false,-1, 63,0);
+        tracep->declBus(c+658,"top lsAxiSlaveRam_u byte_index", false,-1, 31,0);
         tracep->declBit(c+58,"top lsAxiSlaveRam_u aw_en", false,-1);
     }
 }
@@ -2711,9 +2711,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+651,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg_rden));
         tracep->fullQData(oldp+652,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__reg_data_out),64);
         tracep->fullIData(oldp+654,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__byte_index),32);
-        tracep->fullCData(oldp+655,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__S_AXI_AWSIZE),3);
-        tracep->fullBit(oldp+656,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__slv_reg_rden));
-        tracep->fullQData(oldp+657,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out),64);
-        tracep->fullIData(oldp+659,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__byte_index),32);
+        tracep->fullBit(oldp+655,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__slv_reg_rden));
+        tracep->fullQData(oldp+656,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out),64);
+        tracep->fullIData(oldp+658,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__byte_index),32);
     }
 }
