@@ -348,7 +348,7 @@ extern "C"  void axiSlaveRead(long long raddr, char size, long long* rdata){
 extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char wmask){
     uint8_t WRdata[8] = {wdata, wdata>>8, wdata>>16, wdata>>24, wdata>>32, wdata>>40, wdata>>48, wdata>>56};
     // printf("addr:%016llx\n",raddr);
-    printf("addr:%016llx \nmask:%d\no_data:%016llx\nWRdata:%016llx\n\n",waddr,wmask, wdata, *(uint8_t*)(WRdata+7));
+    printf("addr:%016llx \nmask:%d\no_data:%016llx\nWRdata:%016llx\n\n",waddr,(uint8_t)wmask, wdata, *(uint8_t*)(WRdata+7));
     // assert(0);
     switch (size)
     {
