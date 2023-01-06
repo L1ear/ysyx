@@ -305,7 +305,7 @@ always@(*) begin
             end 
             else begin
                 rw_ready_o = instr_valid_reg;
-                data_read_o = rd_data_reg;
+                data_read_o = 'b0;//rd_data_reg;
             end
         end
         default: begin
