@@ -403,22 +403,22 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
         break;
       }
       break;
-    // case 2:
-    //   switch (wmask)
-    //   {
-    //   case 15:
-    //     memwrite(waddr, 4, *(uint32_t *)WRdata[0], 0);
-    //     break;
-    //   case 240:
-    //     memwrite(waddr, 4, *(uint32_t *)WRdata[4], 0);
-    //     break;
-    //   default:
-    //     break;
-    //   }
-    // break;
-    // case 3:
-    //   memwrite(waddr, 8, *(uint64_t *)WRdata[0], 0);
-    // break;
+    case 2:
+      switch (wmask)
+      {
+      case 15:
+        memwrite(waddr, 4, *(uint32_t *)WRdata[0], 0);
+        break;
+      case 240:
+        memwrite(waddr, 4, *(uint32_t *)WRdata[4], 0);
+        break;
+      default:
+        break;
+      }
+    break;
+    case 3:
+      memwrite(waddr, 8, *(uint64_t *)WRdata[0], 0);
+    break;
     default:
       break;
     }
