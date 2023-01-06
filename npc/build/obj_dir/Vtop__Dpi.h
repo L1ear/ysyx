@@ -13,10 +13,6 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/AXI_M/axi_slave_ram.v:2:30
-    extern void axiSlaveRead(long long raddr, long long* rdata);
-    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/AXI_M/axi_slave_ram.v:4:30
-    extern void axiSlaveWrite(long long waddr, long long wdata, char wmask);
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/ID/regfile.v:22:30
     extern void ebreak();
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/ID/regfile.v:23:30
