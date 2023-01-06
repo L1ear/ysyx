@@ -368,7 +368,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	// Implement memory mapped register select and read logic generation
 	// Slave register read enable is asserted when valid address is available
 	// and the slave is ready to accept the read address.
-	// assign slv_reg_rden = axi_arready & S_AXI_ARVALID & ~axi_rvalid;
+	assign slv_reg_rden = axi_arready & S_AXI_ARVALID & ~axi_rvalid;
 	// always @(*)
 	// begin
 	//       // Address decoding for reading registers
