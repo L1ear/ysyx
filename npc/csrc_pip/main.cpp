@@ -388,9 +388,9 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
       case 3:
         memwrite(waddr, 2, *(uint16_t *)WRdata[0], 0);
         break;
-      case 12:
-        memwrite(waddr, 2, *(uint16_t *)WRdata[2], 0);
-        break;
+      // case 12:
+      //   memwrite(waddr, 2, *(uint16_t *)WRdata[2], 0);
+      //   break;
       // case 48:
       //   memwrite(waddr, 2, *(uint16_t *)WRdata[4], 0);
       //   break;
