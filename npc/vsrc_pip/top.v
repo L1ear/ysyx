@@ -862,36 +862,36 @@ ifAxiSlaveRam_u (
   .S_AXI_RREADY  ( if_axi_r_ready_o)
 );
 
-myip_AXI_Lite_v1_0_S00_AXI 
-#(
-  .C_S_AXI_DATA_WIDTH(`XLEN),
-  .C_S_AXI_ADDR_WIDTH (`XLEN)
-)
-lsAxiSlaveRam_u (
-  .S_AXI_ACLK (clk ),
-  .S_AXI_ARESETN (rst_n ),
-  .S_AXI_AWADDR (ls_axi_aw_addr_o ),
-  .S_AXI_AWPROT (ls_axi_aw_prot_o ),
-  .S_AXI_AWSIZE (ls_axi_aw_size_o),
-  .S_AXI_AWVALID (ls_axi_aw_valid_o ),
-  .S_AXI_AWREADY (ls_axi_aw_ready_i ),
-  .S_AXI_WDATA (ls_axi_w_data_o ),
-  .S_AXI_WSTRB (ls_axi_w_strb_o ),
-  .S_AXI_WVALID (ls_axi_w_valid_o ),
-  .S_AXI_WREADY (ls_axi_w_ready_i ),
-  .S_AXI_BRESP (ls_axi_b_resp_i ),
-  .S_AXI_BVALID (ls_axi_b_valid_i ),
-  .S_AXI_BREADY (ls_axi_b_ready_o ),
-  .S_AXI_ARADDR (ls_axi_ar_addr_o ),
-  .S_AXI_ARPROT (ls_axi_ar_prot_o ),
-  .S_AXI_ARVALID (ls_axi_ar_valid_o ),
-  .S_AXI_ARREADY (ls_axi_ar_ready_i ),
-  .S_AXI_ARSIZE (ls_axi_ar_size_o ),
-  .S_AXI_RDATA (ls_axi_r_data_i ),
-  .S_AXI_RRESP (ls_axi_r_resp_i ),
-  .S_AXI_RVALID (ls_axi_r_valid_i ),
-  .S_AXI_RREADY  ( ls_axi_r_ready_o)
-);
+// myip_AXI_Lite_v1_0_S00_AXI 
+// #(
+//   .C_S_AXI_DATA_WIDTH(`XLEN),
+//   .C_S_AXI_ADDR_WIDTH (`XLEN)
+// )
+// lsAxiSlaveRam_u (
+//   .S_AXI_ACLK (clk ),
+//   .S_AXI_ARESETN (rst_n ),
+//   .S_AXI_AWADDR (ls_axi_aw_addr_o ),
+//   .S_AXI_AWPROT (ls_axi_aw_prot_o ),
+//   .S_AXI_AWSIZE (ls_axi_aw_size_o),
+//   .S_AXI_AWVALID (ls_axi_aw_valid_o ),
+//   .S_AXI_AWREADY (ls_axi_aw_ready_i ),
+//   .S_AXI_WDATA (ls_axi_w_data_o ),
+//   .S_AXI_WSTRB (ls_axi_w_strb_o ),
+//   .S_AXI_WVALID (ls_axi_w_valid_o ),
+//   .S_AXI_WREADY (ls_axi_w_ready_i ),
+//   .S_AXI_BRESP (ls_axi_b_resp_i ),
+//   .S_AXI_BVALID (ls_axi_b_valid_i ),
+//   .S_AXI_BREADY (ls_axi_b_ready_o ),
+//   .S_AXI_ARADDR (ls_axi_ar_addr_o ),
+//   .S_AXI_ARPROT (ls_axi_ar_prot_o ),
+//   .S_AXI_ARVALID (ls_axi_ar_valid_o ),
+//   .S_AXI_ARREADY (ls_axi_ar_ready_i ),
+//   .S_AXI_ARSIZE (ls_axi_ar_size_o ),
+//   .S_AXI_RDATA (ls_axi_r_data_i ),
+//   .S_AXI_RRESP (ls_axi_r_resp_i ),
+//   .S_AXI_RVALID (ls_axi_r_valid_i ),
+//   .S_AXI_RREADY  ( ls_axi_r_ready_o)
+// );
 
 endmodule //top
 
