@@ -54,7 +54,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid;
     vlSelf->__Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0U;
     if (vlSelf->rst_n) {
-        if (vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg_rden) {
+        if ((((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_arready) 
+              & (IData)(vlSelf->top__DOT__axi_if_u__DOT__ar_valid)) 
+             & (~ (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid)))) {
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      (0xfffffffffffffff8ULL 
                                                                       & vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_araddr), 3U, __Vtask_axiSlaveRead__3__rdata);

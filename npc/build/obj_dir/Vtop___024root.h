@@ -232,7 +232,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ifAxiSlaveRam_u__DOT__axi_arready;
         CData/*1:0*/ top__DOT__ifAxiSlaveRam_u__DOT__axi_rresp;
         CData/*0:0*/ top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid;
-        CData/*0:0*/ top__DOT__ifAxiSlaveRam_u__DOT__slv_reg_rden;
         CData/*0:0*/ top__DOT__ifAxiSlaveRam_u__DOT__aw_en;
         SData/*15:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h;
         IData/*31:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w;
@@ -251,9 +250,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__axi_if_u__DOT__addr_reg;
         QData/*63:0*/ top__DOT__axi_if_u__DOT__rd_data_reg;
         QData/*63:0*/ top__DOT__ID_u__DOT__imm;
+        QData/*63:0*/ top__DOT__ex_stage_u__DOT__src1;
     };
     struct {
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__src1;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__src2;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__rs1;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__rs2;

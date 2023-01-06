@@ -3354,7 +3354,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg1 = 0;
     vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg2 = 0;
     vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg3 = 0;
-    vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg_rden = 0;
     vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__reg_data_out = 0;
     vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__byte_index = 0;
     vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__aw_en = 0;

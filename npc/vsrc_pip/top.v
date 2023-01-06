@@ -313,54 +313,54 @@ axi_crossbar axi_crossbar_u(
     .if_axi_r_id_o      (),//if_axi_r_id_i     ),
     .if_axi_r_user_o    (),//if_axi_r_user_i   ),
 //ls interface  id: 1
-    .ls_axi_aw_ready_o  (ls_axi_aw_ready_i ),     //lite         
-    .ls_axi_aw_valid_i  (ls_axi_aw_valid_o ),     //lite
-    .ls_axi_aw_addr_i   (ls_axi_aw_addr_o  ),      //lite
-    .ls_axi_aw_prot_i   (ls_axi_aw_prot_o  ),
-    .ls_axi_aw_id_i     (ls_axi_aw_id_o    ),
-    .ls_axi_aw_user_i   (ls_axi_aw_user_o  ),
-    .ls_axi_aw_len_i    (ls_axi_aw_len_o   ),       
-    .ls_axi_aw_size_i   (ls_axi_aw_size_o  ),
-    .ls_axi_aw_burst_i  (ls_axi_aw_burst_o ),
-    .ls_axi_aw_lock_i   (ls_axi_aw_lock_o  ),
-    .ls_axi_aw_cache_i  (ls_axi_aw_cache_o ),
-    .ls_axi_aw_qos_i    (ls_axi_aw_qos_o   ),
-    .ls_axi_aw_region_i (ls_axi_aw_region_o),
+    .ls_axi_aw_ready_o  (),//ls_axi_aw_ready_i ),     //lite         
+    .ls_axi_aw_valid_i  (),//ls_axi_aw_valid_o ),     //lite
+    .ls_axi_aw_addr_i   (),//ls_axi_aw_addr_o  ),      //lite
+    .ls_axi_aw_prot_i   (),//ls_axi_aw_prot_o  ),
+    .ls_axi_aw_id_i     (),//ls_axi_aw_id_o    ),
+    .ls_axi_aw_user_i   (),//ls_axi_aw_user_o  ),
+    .ls_axi_aw_len_i    (),//ls_axi_aw_len_o   ),       
+    .ls_axi_aw_size_i   (),//ls_axi_aw_size_o  ),
+    .ls_axi_aw_burst_i  (),//ls_axi_aw_burst_o ),
+    .ls_axi_aw_lock_i   (),//ls_axi_aw_lock_o  ),
+    .ls_axi_aw_cache_i  (),//ls_axi_aw_cache_o ),
+    .ls_axi_aw_qos_i    (),//ls_axi_aw_qos_o   ),
+    .ls_axi_aw_region_i (),//ls_axi_aw_region_o),
 
-    .ls_axi_w_ready_o   (ls_axi_w_ready_i  ),      //lite              
-    .ls_axi_w_valid_i   (ls_axi_w_valid_o  ),      //lite
-    .ls_axi_w_data_i    (ls_axi_w_data_o   ),       //lite
-    .ls_axi_w_strb_i    (ls_axi_w_strb_o   ),       //lite
-    .ls_axi_w_last_i    (ls_axi_w_last_o   ),       //lite
-    .ls_axi_w_user_i    (ls_axi_w_user_o   ),
-    
-    .ls_axi_b_ready_i   (ls_axi_b_ready_o  ),      //lite           
-    .ls_axi_b_valid_o   (ls_axi_b_valid_i  ),      //lite
-    .ls_axi_b_resp_o    (ls_axi_b_resp_i   ),       //lite            
-    .ls_axi_b_id_o      (ls_axi_b_id_i     ),
-    .ls_axi_b_user_o    (ls_axi_b_user_i   ),
+    .ls_axi_w_ready_o   (),//ls_axi_w_ready_i  ),      //lite              
+    .ls_axi_w_valid_i   (),//ls_axi_w_valid_o  ),      //lite
+    .ls_axi_w_data_i    (),//ls_axi_w_data_o   ),       //lite
+    .ls_axi_w_strb_i    (),//ls_axi_w_strb_o   ),       //lite
+    .ls_axi_w_last_i    (),//ls_axi_w_last_o   ),       //lite
+    .ls_axi_w_user_i    (),//ls_axi_w_user_o   ),
 
-    .ls_axi_ar_ready_o  (ls_axi_ar_ready_i ),     //lite              
-    .ls_axi_ar_valid_i  (ls_axi_ar_valid_o ),     //lite
-    .ls_axi_ar_addr_i   (ls_axi_ar_addr_o  ),      //lite
-    .ls_axi_ar_prot_i   (ls_axi_ar_prot_o  ),
-    .ls_axi_ar_id_i     (ls_axi_ar_id_o    ),
-    .ls_axi_ar_user_i   (ls_axi_ar_user_o  ),
-    .ls_axi_ar_len_i    (ls_axi_ar_len_o   ),       //lite
-    .ls_axi_ar_size_i   (ls_axi_ar_size_o  ),      //lite
-    .ls_axi_ar_burst_i  (ls_axi_ar_burst_o ),
-    .ls_axi_ar_lock_i   (ls_axi_ar_lock_o  ),
-    .ls_axi_ar_cache_i  (ls_axi_ar_cache_o ),
-    .ls_axi_ar_qos_i    (ls_axi_ar_qos_o   ),
-    .ls_axi_ar_region_i (ls_axi_ar_region_o),
-    
-    .ls_axi_r_ready_i   (ls_axi_r_ready_o  ),      //lite            
-    .ls_axi_r_valid_o   (ls_axi_r_valid_i  ),      //lite            
-    .ls_axi_r_resp_o    (ls_axi_r_resp_i   ),
-    .ls_axi_r_data_o    (ls_axi_r_data_i   ),       //lite
-    .ls_axi_r_last_o    (ls_axi_r_last_i   ),
-    .ls_axi_r_id_o      (ls_axi_r_id_i     ),
-    .ls_axi_r_user_o    (ls_axi_r_user_i   ),
+    .ls_axi_b_ready_i   (),//ls_axi_b_ready_o  ),      //lite           
+    .ls_axi_b_valid_o   (),//ls_axi_b_valid_i  ),      //lite
+    .ls_axi_b_resp_o    (),//ls_axi_b_resp_i   ),       //lite            
+    .ls_axi_b_id_o      (),//ls_axi_b_id_i     ),
+    .ls_axi_b_user_o    (),//ls_axi_b_user_i   ),
+
+    .ls_axi_ar_ready_o  (),//ls_axi_ar_ready_i ),     //lite              
+    .ls_axi_ar_valid_i  (),//ls_axi_ar_valid_o ),     //lite
+    .ls_axi_ar_addr_i   (),//ls_axi_ar_addr_o  ),      //lite
+    .ls_axi_ar_prot_i   (),//ls_axi_ar_prot_o  ),
+    .ls_axi_ar_id_i     (),//ls_axi_ar_id_o    ),
+    .ls_axi_ar_user_i   (),//ls_axi_ar_user_o  ),
+    .ls_axi_ar_len_i    (),//ls_axi_ar_len_o   ),       //lite
+    .ls_axi_ar_size_i   (),//ls_axi_ar_size_o  ),      //lite
+    .ls_axi_ar_burst_i  (),//ls_axi_ar_burst_o ),
+    .ls_axi_ar_lock_i   (),//ls_axi_ar_lock_o  ),
+    .ls_axi_ar_cache_i  (),//ls_axi_ar_cache_o ),
+    .ls_axi_ar_qos_i    (),//ls_axi_ar_qos_o   ),
+    .ls_axi_ar_region_i (),//ls_axi_ar_region_o),
+
+    .ls_axi_r_ready_i   (),//ls_axi_r_ready_o  ),      //lite            
+    .ls_axi_r_valid_o   (),//ls_axi_r_valid_i  ),      //lite            
+    .ls_axi_r_resp_o    (),//ls_axi_r_resp_i   ),
+    .ls_axi_r_data_o    (),//ls_axi_r_data_i   ),       //lite
+    .ls_axi_r_last_o    (),//ls_axi_r_last_i   ),
+    .ls_axi_r_id_o      (),//ls_axi_r_id_i     ),
+    .ls_axi_r_user_o    (),//ls_axi_r_user_i   ),
 //mem
     .axi_aw_ready_i     (axi_aw_ready_i    ),     //lite         
     .axi_aw_valid_o     (axi_aw_valid_o    ),     //lite
@@ -862,36 +862,36 @@ ifAxiSlaveRam_u (
   .S_AXI_RREADY  ( if_axi_r_ready_o)
 );
 
-// myip_AXI_Lite_v1_0_S00_AXI 
-// #(
-//   .C_S_AXI_DATA_WIDTH(`XLEN),
-//   .C_S_AXI_ADDR_WIDTH (`XLEN)
-// )
-// lsAxiSlaveRam_u (
-//   .S_AXI_ACLK (clk ),
-//   .S_AXI_ARESETN (rst_n ),
-//   .S_AXI_AWADDR (ls_axi_aw_addr_o ),
-//   .S_AXI_AWPROT (ls_axi_aw_prot_o ),
-//   .S_AXI_AWSIZE (ls_axi_aw_size_o),
-//   .S_AXI_AWVALID (ls_axi_aw_valid_o ),
-//   .S_AXI_AWREADY (ls_axi_aw_ready_i ),
-//   .S_AXI_WDATA (ls_axi_w_data_o ),
-//   .S_AXI_WSTRB (ls_axi_w_strb_o ),
-//   .S_AXI_WVALID (ls_axi_w_valid_o ),
-//   .S_AXI_WREADY (ls_axi_w_ready_i ),
-//   .S_AXI_BRESP (ls_axi_b_resp_i ),
-//   .S_AXI_BVALID (ls_axi_b_valid_i ),
-//   .S_AXI_BREADY (ls_axi_b_ready_o ),
-//   .S_AXI_ARADDR (ls_axi_ar_addr_o ),
-//   .S_AXI_ARPROT (ls_axi_ar_prot_o ),
-//   .S_AXI_ARVALID (ls_axi_ar_valid_o ),
-//   .S_AXI_ARREADY (ls_axi_ar_ready_i ),
-//   .S_AXI_ARSIZE (ls_axi_ar_size_o ),
-//   .S_AXI_RDATA (ls_axi_r_data_i ),
-//   .S_AXI_RRESP (ls_axi_r_resp_i ),
-//   .S_AXI_RVALID (ls_axi_r_valid_i ),
-//   .S_AXI_RREADY  ( ls_axi_r_ready_o)
-// );
+myip_AXI_Lite_v1_0_S00_AXI 
+#(
+  .C_S_AXI_DATA_WIDTH(`XLEN),
+  .C_S_AXI_ADDR_WIDTH (`XLEN)
+)
+lsAxiSlaveRam_u (
+  .S_AXI_ACLK (clk ),
+  .S_AXI_ARESETN (rst_n ),
+  .S_AXI_AWADDR (ls_axi_aw_addr_o ),
+  .S_AXI_AWPROT (ls_axi_aw_prot_o ),
+  .S_AXI_AWSIZE (ls_axi_aw_size_o),
+  .S_AXI_AWVALID (ls_axi_aw_valid_o ),
+  .S_AXI_AWREADY (ls_axi_aw_ready_i ),
+  .S_AXI_WDATA (ls_axi_w_data_o ),
+  .S_AXI_WSTRB (ls_axi_w_strb_o ),
+  .S_AXI_WVALID (ls_axi_w_valid_o ),
+  .S_AXI_WREADY (ls_axi_w_ready_i ),
+  .S_AXI_BRESP (ls_axi_b_resp_i ),
+  .S_AXI_BVALID (ls_axi_b_valid_i ),
+  .S_AXI_BREADY (ls_axi_b_ready_o ),
+  .S_AXI_ARADDR (ls_axi_ar_addr_o ),
+  .S_AXI_ARPROT (ls_axi_ar_prot_o ),
+  .S_AXI_ARVALID (ls_axi_ar_valid_o ),
+  .S_AXI_ARREADY (ls_axi_ar_ready_i ),
+  .S_AXI_ARSIZE (ls_axi_ar_size_o ),
+  .S_AXI_RDATA (ls_axi_r_data_i ),
+  .S_AXI_RRESP (ls_axi_r_resp_i ),
+  .S_AXI_RVALID (ls_axi_r_valid_i ),
+  .S_AXI_RREADY  ( ls_axi_r_ready_o)
+);
 
 endmodule //top
 
