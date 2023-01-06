@@ -286,7 +286,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	    end 
 	  else
 	    begin    
-	      if (axi_awready && S_AXI_AWVALID && ~axi_bvalid && axi_wready && S_AXI_WVALID)
+	      if (axi_wready && S_AXI_WVALID)
 	        begin
 	          // indicates a valid write response is available
 	          axi_bvalid <= 1'b1;
