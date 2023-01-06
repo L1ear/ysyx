@@ -216,7 +216,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	// These registers are cleared when reset (active low) is applied.
 	// Slave register write enable is asserted when valid address and data are available
 	// and the slave is ready to accept the write address and write data.
-	assign slv_reg_wren = axi_wready && S_AXI_WVALID && axi_awready && S_AXI_AWVALID;
+	assign slv_reg_wren = axi_wready && S_AXI_WVALID ;
 
 	always @( posedge S_AXI_ACLK )
 	begin
