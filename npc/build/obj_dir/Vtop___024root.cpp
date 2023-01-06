@@ -51,22 +51,22 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     // Body
     __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_wready 
         = vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready;
+    __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid 
+        = vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid;
     __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__aw_en = vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__aw_en;
     __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_awready 
         = vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_awready;
-    __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid 
-        = vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid;
-    __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_wready 
-        = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready;
-    __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__aw_en = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__aw_en;
-    __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid 
-        = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid;
-    __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_awready 
-        = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
-    __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid 
-        = vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid;
     __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid 
         = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid;
+    __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__aw_en = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__aw_en;
+    __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_wready 
+        = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready;
+    __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_awready 
+        = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
+    __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid 
+        = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid;
+    __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid 
+        = vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid;
     vlSelf->__Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0U;
     if (vlSelf->rst_n) {
         if ((((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_arready) 
@@ -103,6 +103,25 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         = ((IData)(vlSelf->rst_n) & ((~ (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready)) 
                                      & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID)));
     if (vlSelf->rst_n) {
+        if (((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready) 
+             & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID))) {
+            vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bresp = 0U;
+        }
+    } else {
+        vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bresp = 0U;
+    }
+    if (vlSelf->rst_n) {
+        if (((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready) 
+             & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID))) {
+            __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid = 1U;
+        } else if (((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_BREADY) 
+                    & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid))) {
+            __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid = 0U;
+        }
+    } else {
+        __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid = 0U;
+    }
+    if (vlSelf->rst_n) {
         if ((((~ (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_awready)) 
               & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_AWVALID)) 
              & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__aw_en))) {
@@ -120,38 +139,27 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__aw_en = 1U;
     }
     if (vlSelf->rst_n) {
-        if ((((((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_awready) 
-                & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_AWVALID)) 
-               & (~ (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid))) 
-              & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready)) 
-             & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID))) {
-            __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid = 1U;
-            vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bresp = 0U;
-        } else if (((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_BREADY) 
-                    & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid))) {
-            __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid = 0U;
+        if (((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready) 
+             & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid))) {
+            vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp = 0U;
         }
     } else {
-        __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_bvalid = 0U;
-        vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bresp = 0U;
+        vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp = 0U;
+    }
+    if (vlSelf->rst_n) {
+        if (((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready) 
+             & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid))) {
+            __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid = 1U;
+        } else if (((IData)(vlSelf->top__DOT__axi_ls_u__DOT__b_ready) 
+                    & (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid))) {
+            __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid = 0U;
+        }
+    } else {
+        __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid = 0U;
     }
     __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_wready 
         = ((IData)(vlSelf->rst_n) & ((~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready)) 
                                      & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid)));
-    if (vlSelf->rst_n) {
-        if ((((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_arready) 
-              & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__ar_valid)) 
-             & (~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid)))) {
-            __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid = 1U;
-            vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp = 0U;
-        } else if (((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid) 
-                    & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_ready))) {
-            __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid = 0U;
-        }
-    } else {
-        __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid = 0U;
-        vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp = 0U;
-    }
     if (vlSelf->rst_n) {
         if ((((~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready)) 
               & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__aw_valid)) 
@@ -170,6 +178,20 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__aw_en = 1U;
     }
     if (vlSelf->rst_n) {
+        if ((((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_arready) 
+              & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__ar_valid)) 
+             & (~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid)))) {
+            __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid = 1U;
+            vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp = 0U;
+        } else if (((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid) 
+                    & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_ready))) {
+            __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid = 0U;
+        }
+    } else {
+        __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid = 0U;
+        vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp = 0U;
+    }
+    if (vlSelf->rst_n) {
         if ((((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_arready) 
               & (IData)(vlSelf->top__DOT__axi_if_u__DOT__ar_valid)) 
              & (~ (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid)))) {
@@ -182,22 +204,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     } else {
         __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid = 0U;
         vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rresp = 0U;
-    }
-    if (vlSelf->rst_n) {
-        if ((((((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready) 
-                & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__aw_valid)) 
-               & (~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid))) 
-              & (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready)) 
-             & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid))) {
-            __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid = 1U;
-            vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp = 0U;
-        } else if (((IData)(vlSelf->top__DOT__axi_ls_u__DOT__b_ready) 
-                    & (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid))) {
-            __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid = 0U;
-        }
-    } else {
-        __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid = 0U;
-        vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp = 0U;
     }
     if (vlSelf->rst_n) {
         if (((((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready) 
