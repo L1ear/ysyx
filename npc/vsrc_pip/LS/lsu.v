@@ -1,4 +1,4 @@
-
+`include "defines.v"
 module lsu (
     input                           clk,rstn,
     input                           wren,rden,
