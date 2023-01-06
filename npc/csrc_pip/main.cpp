@@ -382,25 +382,25 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
           break;
         }
       break;
-    // case 1:
-    //   switch (wmask)
-    //   {
-    //   case 3:
-    //     memwrite(waddr, 2, *(uint16_t *)WRdata[0], 0);
-    //     break;
-    //   case 12:
-    //     memwrite(waddr, 2, *(uint16_t *)WRdata[2], 0);
-    //     break;
-    //   case 48:
-    //     memwrite(waddr, 2, *(uint16_t *)WRdata[4], 0);
-    //     break;
-    //   case 192:
-    //     memwrite(waddr, 2, *(uint16_t *)WRdata[6], 0);
-    //     break;
-    //   default:
-    //     break;
-    //   }
-    //   break;
+    case 1:
+      switch (wmask)
+      {
+      case 3:
+        memwrite(waddr, 2, *(uint16_t *)WRdata[0], 0);
+        break;
+      case 12:
+        memwrite(waddr, 2, *(uint16_t *)WRdata[2], 0);
+        break;
+      case 48:
+        memwrite(waddr, 2, *(uint16_t *)WRdata[4], 0);
+        break;
+      case 192:
+        memwrite(waddr, 2, *(uint16_t *)WRdata[6], 0);
+        break;
+      default:
+        break;
+      }
+      break;
     // case 2:
     //   switch (wmask)
     //   {
