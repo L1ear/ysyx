@@ -343,18 +343,80 @@ void ebreak(){
 extern "C"  void axiSlaveRead(long long raddr, char size, long long* rdata){
       // printf("addr:%016llx \nsize: %d\ndata: %016llx\n",raddr, 2^size, memread(raddr & ~0x7ull, 8, pc));
       // assert(0);
-      *rdata = memread(raddr & ~0x7ull, pow(2,(double)size), pc);
+      *rdata = memread(raddr & ~0x7ull, pow(2,(double)size), 0);
 }
 extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char wmask){
     uint8_t WRdata[8] = {wdata, wdata>>8, wdata>>16, wdata>>24, wdata>>32, wdata>>40, wdata>>48, wdata>>56};
-    printf("o_data:%016llx\nWRdata:%016llx\n",wdata, *(uint64_t*)WRdata);
-    assert(0);
+    // printf("o_data:%016llx\nWRdata:%016llx\n",wdata, *(uint64_t*)WRdata);
+    // assert(0);
     switch (size)
     {
     case 0:
-      /* code */
+        switch (wmask)
+        {
+        case 1:
+          memwrite(waddr, 1, WRdata[0], 0);
+          break;
+        case 2:
+          memwrite(waddr, 1, WRdata[1], 0);
+          break;
+        case 4:
+          memwrite(waddr, 1, WRdata[2], 0);
+          break;
+        case 8:
+          memwrite(waddr, 1, WRdata[3], 0);
+          break;
+        case 16:
+          memwrite(waddr, 1, WRdata[4], 0);
+          break;
+        case 32:
+          memwrite(waddr, 1, WRdata[5], 0);
+          break;
+        case 64:
+          memwrite(waddr, 1, WRdata[6], 0);
+          break;
+        case 128:
+          memwrite(waddr, 1, WRdata[7], 0);
+          break;
+        default:
+          break;
+        }
       break;
-    
+    case 1:
+      switch (wmask)
+      {
+      case 3:
+        memwrite(waddr, 2, *(uint16_t *)WRdata[0], 0);
+        break;
+      case 12:
+        memwrite(waddr, 2, *(uint16_t *)WRdata[2], 0);
+        break;
+      case 48:
+        memwrite(waddr, 2, *(uint16_t *)WRdata[4], 0);
+        break;
+      case 192:
+        memwrite(waddr, 2, *(uint16_t *)WRdata[6], 0);
+        break;
+      default:
+        break;
+      }
+      break;
+    case 2:
+      switch (wmask)
+      {
+      case 15:
+        memwrite(waddr, 4, *(uint32_t *)WRdata[0], 0);
+        break;
+      case 240:
+        memwrite(waddr, 4, *(uint32_t *)WRdata[4], 0);
+        break;
+      default:
+        break;
+      }
+    break;
+    case 3:
+      memwrite(waddr, 8, *(uint64_t *)WRdata[0], 0);
+    break;
     default:
       break;
     }
