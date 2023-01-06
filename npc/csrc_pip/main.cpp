@@ -347,8 +347,8 @@ extern "C"  void axiSlaveRead(long long raddr, char size, long long* rdata){
 }
 extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char wmask){
     uint8_t WRdata[8] = {wdata, wdata>>8, wdata>>16, wdata>>24, wdata>>32, wdata>>40, wdata>>48, wdata>>56};
-    printf("o_data:%016llx\nWRdata:%016llx\n",wdata, *(uint8_t*)(WRdata+1));
-    assert(0);
+    // printf("o_data:%016llx\nWRdata:%016llx\n",wdata, *(uint8_t*)(WRdata));
+    // assert(0);
     switch (size)
     {
     case 0:
@@ -391,13 +391,13 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
         memwrite(waddr, 2, *(uint16_t *)WRdata, 0);
         break;
       case 12:
-        memwrite(waddr, 2, *(uint16_t *)WRdata[2], 0);
+        memwrite(waddr, 2, *(uint16_t *)(WRdata+2), 0);
         break;
       case 48:
-        memwrite(waddr, 2, *(uint16_t *)WRdata[4], 0);
+        memwrite(waddr, 2, *(uint16_t *)(WRdata+4), 0);
         break;
       case 192:
-        memwrite(waddr, 2, *(uint16_t *)WRdata[6], 0);
+        memwrite(waddr, 2, *(uint16_t *)(WRdata+6), 0);
         break;
       default:
         break;
@@ -410,14 +410,14 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
         memwrite(waddr, 4, *(uint32_t *)WRdata, 0);
         break;
       case 240:
-        memwrite(waddr, 4, *(uint32_t *)WRdata[4], 0);
+        memwrite(waddr, 4, *(uint32_t *)(WRdata+4), 0);
         break;
       default:
         break;
       }
     break;
     case 3:
-      memwrite(waddr, 8, *(uint64_t *)WRdata[0], 0);
+      memwrite(waddr, 8, *(uint64_t *)WRdata, 0);
     break;
     default:
       break;
