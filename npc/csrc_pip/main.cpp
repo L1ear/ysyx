@@ -346,42 +346,42 @@ extern "C"  void axiSlaveRead(long long raddr, char size, long long* rdata){
       *rdata = memread(raddr & ~0x7ull, pow(2,(double)size), 0);
 }
 extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char wmask){
-    // uint8_t WRdata[8] = {wdata, wdata>>8, wdata>>16, wdata>>24, wdata>>32, wdata>>40, wdata>>48, wdata>>56};
+    uint8_t WRdata[8] = {wdata, wdata>>8, wdata>>16, wdata>>24, wdata>>32, wdata>>40, wdata>>48, wdata>>56};
     // printf("o_data:%016llx\nWRdata:%016llx\n",wdata, *(uint64_t*)WRdata);
     // assert(0);
-    // switch (size)
-    // {
-    // case 0:
-    //     switch (wmask)
-    //     {
-    //     case 1:
-    //       memwrite(waddr, 1, WRdata[0], 0);
-    //       break;
-    //     case 2:
-    //       memwrite(waddr, 1, WRdata[1], 0);
-    //       break;
-    //     case 4:
-    //       memwrite(waddr, 1, WRdata[2], 0);
-    //       break;
-    //     case 8:
-    //       memwrite(waddr, 1, WRdata[3], 0);
-    //       break;
-    //     case 16:
-    //       memwrite(waddr, 1, WRdata[4], 0);
-    //       break;
-    //     case 32:
-    //       memwrite(waddr, 1, WRdata[5], 0);
-    //       break;
-    //     case 64:
-    //       memwrite(waddr, 1, WRdata[6], 0);
-    //       break;
-    //     case 128:
-    //       memwrite(waddr, 1, WRdata[7], 0);
-    //       break;
-    //     default:
-    //       break;
-    //     }
-    //   break;
+    switch (size)
+    {
+    case 0:
+        switch (wmask)
+        {
+        case 1:
+          memwrite(waddr, 1, WRdata[0], 0);
+          break;
+        case 2:
+          memwrite(waddr, 1, WRdata[1], 0);
+          break;
+        case 4:
+          memwrite(waddr, 1, WRdata[2], 0);
+          break;
+        case 8:
+          memwrite(waddr, 1, WRdata[3], 0);
+          break;
+        case 16:
+          memwrite(waddr, 1, WRdata[4], 0);
+          break;
+        case 32:
+          memwrite(waddr, 1, WRdata[5], 0);
+          break;
+        case 64:
+          memwrite(waddr, 1, WRdata[6], 0);
+          break;
+        case 128:
+          memwrite(waddr, 1, WRdata[7], 0);
+          break;
+        default:
+          break;
+        }
+      break;
     // case 1:
     //   switch (wmask)
     //   {
@@ -417,7 +417,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
     // case 3:
     //   memwrite(waddr, 8, *(uint64_t *)WRdata[0], 0);
     // break;
-    // default:
-    //   break;
-    // }
+    default:
+      break;
+    }
 }
