@@ -140,7 +140,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	    end 
 	  else
 	    begin    
-	      if (~axi_awready && S_AXI_AWVALID && S_AXI_WVALID && aw_en)
+	      if (~axi_awready && S_AXI_AWVALID && aw_en)
 	        begin
 	          // slave is ready to accept write address when 
 	          // there is a valid write address and write data
