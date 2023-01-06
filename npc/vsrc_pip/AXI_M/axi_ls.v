@@ -122,7 +122,6 @@ module axi_ls # (
                 end
             end
             w_state_b_wait_trans_ok: begin
-//TODO**************************************************************************************************************
                 if(wr_valid_i) begin
                     // if(trans_ok) begin
                         if((rw_addr_i != addr_reg ||rw_w_data_i != wr_data_reg) && trans_ok) begin
@@ -358,7 +357,7 @@ end
     // 写数据通道
     assign axi_w_valid_o    = w_valid;
     wire    [5:0]      shift = {3'b0,rw_addr_i[2:0]}<<3;
-    assign axi_w_data_o     = rw_w_data_i << shift;
+    assign axi_w_data_o     = 'b0;//rw_w_data_i << shift;
     assign axi_w_strb_o     = rw_w_mask_i << rw_addr_i[2:0];
     assign axi_w_last_o     = w_valid;
     assign axi_w_user_o     = axi_user;                                                                         //初始化信号即可
