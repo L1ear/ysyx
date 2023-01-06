@@ -377,7 +377,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
           break;
         case 128:
           memwrite(waddr, 1, WRdata[7], 0);
-          printf("**************************\naddr:%016llx \no_data:%016llx\nWRdata:%016llx\n*********************\n",waddr, wdata, *(uint8_t*)(WRdata[7]));
+          printf("**************************\naddr:%016llx \no_data:%016llx\nWRdata:%016llx\n*********************\n",waddr, wdata, *(uint8_t*)(WRdata+7));
           break;
         default:
           break;
