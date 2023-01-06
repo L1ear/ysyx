@@ -396,7 +396,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	      if (slv_reg_rden)
 	        begin
 	        //   axi_rdata <= reg_data_out;     // register read data
-				$finish();
+				
 				axiSlaveRead(axi_araddr & ~64'h7, {5'b0,S_AXI_ARSIZE}, axi_rdata);
 	        end   
 	    end
