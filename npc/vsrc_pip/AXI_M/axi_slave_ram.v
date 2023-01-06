@@ -314,7 +314,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
 	      axi_arready <= 1'b0;
-	      axi_araddr  <= 32'b0;
+	      axi_araddr  <= 64'b0;
 	    end 
 	  else
 	    begin    
@@ -371,10 +371,10 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	begin
 	      // Address decoding for reading registers
 	      case ( axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
-	        2'h0   : reg_data_out <= slv_reg0;
-	        2'h1   : reg_data_out <= slv_reg1;
-	        2'h2   : reg_data_out <= slv_reg2;
-	        2'h3   : reg_data_out <= slv_reg3;
+	        2'h0   : reg_data_out = slv_reg0;
+	        2'h1   : reg_data_out = slv_reg1;
+	        2'h2   : reg_data_out = slv_reg2;
+	        2'h3   : reg_data_out = slv_reg3;
 	        default : reg_data_out <= 0;
 	      endcase
 	end
@@ -394,7 +394,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	      if (slv_reg_rden)
 	        begin
 	        //   axi_rdata <= reg_data_out;     // register read data
-				axiSlaveRead(axi_araddr & 64'h7, S_AXI_ARSIZE, axi_rdata);
+				axiSlaveRead(axi_araddr & 64'h7, {5'b0,S_AXI_ARSIZE}, axi_rdata);
 	        end   
 	    end
 	end    
