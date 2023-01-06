@@ -60,7 +60,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
               & (IData)(vlSelf->top__DOT__axi_if_u__DOT__ar_valid)) 
              & (~ (IData)(vlSelf->top__DOT__myip_AXI_Lite_v1_0_S00_AXI_dut__DOT__axi_rvalid)))) {
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
-                                                                     (7ULL 
+                                                                     (0xfffffffffffffff8ULL 
                                                                       & vlSelf->top__DOT__myip_AXI_Lite_v1_0_S00_AXI_dut__DOT__axi_araddr), 3U, __Vtask_axiSlaveRead__2__rdata);
             vlSelf->top__DOT__myip_AXI_Lite_v1_0_S00_AXI_dut__DOT__axi_rdata 
                 = __Vtask_axiSlaveRead__2__rdata;

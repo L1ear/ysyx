@@ -341,7 +341,7 @@ void ebreak(){
 }
 
 extern "C"  void axiSlaveRead(long long raddr, char size, long long* rdata){
-      printf("addr:%016llx \nsize: %d\n data: %016llx\n",raddr, size, *rdata);
+      printf("addr:%016llx \nsize: %d\n data: %016llx\n",raddr, size, memread(raddr & ~0x7ull, (uint8_t)size, pc));
       assert(0);
       *rdata = memread(raddr & ~0x7ull, (uint8_t)size, pc);
 }
