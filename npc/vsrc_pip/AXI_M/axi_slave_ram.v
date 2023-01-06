@@ -1,8 +1,7 @@
 
-// import "DPI-C" function void axiSlaveRead(
-//     input longint raddr, output longint rdata);
-// import "DPI-C" function void axiSlaveWrite(
-//     input longint waddr, input longint wdata, input byte wmask);
+import "DPI-C" function void axiSlaveRead(input longint raddr, input byte size, output longint rdata);
+// import "DPI-C" function void axiSlaveWrite(input longint waddr, input longint wdata, input byte wmask);
+
 module myip_AXI_Lite_v1_0_S00_AXI #
 	(
 		// Users to add parameters here
@@ -17,7 +16,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	)
 	(
 		// Users to add ports here
-
+		input  [2:0] S_AXI_ARSIZE,
 		// User ports ends
 		// Do not modify the ports beyond this line
 
@@ -394,7 +393,8 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	      // output the read dada 
 	      if (slv_reg_rden)
 	        begin
-	          axi_rdata <= reg_data_out;     // register read data
+	        //   axi_rdata <= reg_data_out;     // register read data
+				axiSlaveRead(axi_araddr & 64'h7, S_AXI_ARSIZE, axi_rdata);
 	        end   
 	    end
 	end    

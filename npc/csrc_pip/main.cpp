@@ -341,8 +341,7 @@ void ebreak(){
 }
 
 extern "C"  void axiSlaveRead(long long raddr, long long* rdata){
-  
-
+      *rdata = memread(raddr & ~0x7ull, 8, pc);
 }
 extern "C"  void axiSlaveWrite(long long waddr, long long wdata, char wmask){
 
