@@ -353,7 +353,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
     switch (size)
     {
     case 0:
-        switch (wmask)
+        switch ((uint8_t)wmask)
         {
         case 1:
           memwrite(waddr, 1, WRdata[0], 0);
