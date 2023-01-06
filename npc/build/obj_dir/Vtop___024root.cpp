@@ -100,9 +100,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata = 0ULL;
     }
     __Vdly__top__DOT__ifAxiSlaveRam_u__DOT__axi_wready 
-        = ((IData)(vlSelf->rst_n) & ((((~ (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready)) 
-                                       & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID)) 
-                                      & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_AWVALID)) 
+        = ((IData)(vlSelf->rst_n) & (((~ (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready)) 
+                                      & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID)) 
                                      & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__aw_en)));
     if (vlSelf->rst_n) {
         if ((((~ (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_awready)) 
@@ -138,9 +137,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_bresp = 0U;
     }
     __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_wready 
-        = ((IData)(vlSelf->rst_n) & ((((~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready)) 
-                                       & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid)) 
-                                      & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__aw_valid)) 
+        = ((IData)(vlSelf->rst_n) & (((~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready)) 
+                                      & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid)) 
                                      & (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__aw_en)));
     if (vlSelf->rst_n) {
         if ((((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_arready) 
