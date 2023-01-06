@@ -173,7 +173,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	    end 
 	  else
 	    begin    
-	      if (~axi_awready && S_AXI_AWVALID && S_AXI_WVALID && aw_en)
+	      if (~axi_awready && S_AXI_AWVALID && aw_en)
 	        begin
 	          // Write Address latching 
 	          axi_awaddr <= S_AXI_AWADDR;
