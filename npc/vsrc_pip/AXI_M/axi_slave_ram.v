@@ -384,7 +384,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	begin
 	  if ( S_AXI_ARESETN == 1'b0 )
 	    begin
-	      axi_rdata  <= 0;
+	      axi_rdata  = 0;
 	    end 
 	  else
 	    begin    
