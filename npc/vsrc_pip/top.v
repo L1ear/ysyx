@@ -836,7 +836,7 @@ myip_AXI_Lite_v1_0_S00_AXI
   .C_S_AXI_DATA_WIDTH(`XLEN),
   .C_S_AXI_ADDR_WIDTH (`XLEN)
 )
-myip_AXI_Lite_v1_0_S00_AXI_dut (
+ifAxiSlaveRam_u (
   .S_AXI_ACLK (clk ),
   .S_AXI_ARESETN (rst_n ),
   .S_AXI_AWADDR ( ),

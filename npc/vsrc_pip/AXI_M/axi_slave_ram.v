@@ -1,6 +1,6 @@
 
 import "DPI-C" function void axiSlaveRead(input longint raddr, input byte size, output longint rdata);
-// import "DPI-C" function void axiSlaveWrite(input longint waddr, input longint wdata, input byte wmask);
+import "DPI-C" function void axiSlaveWrite(input longint waddr, input byte size, input longint wdata, input byte wmask);
 
 module myip_AXI_Lite_v1_0_S00_AXI #
 	(
@@ -17,6 +17,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	(
 		// Users to add ports here
 		input  [2:0] S_AXI_ARSIZE,
+		input  [2:0] S_AXI_AWSIZE,
 		// User ports ends
 		// Do not modify the ports beyond this line
 
@@ -229,42 +230,43 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	  else begin
 	    if (slv_reg_wren)
 	      begin
-	        case ( axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
-	          2'h0:
-	            for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
-	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-	                // Respective byte enables are asserted as per write strobes 
-	                // Slave register 0
-	                slv_reg0[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-	              end  
-	          2'h1:
-	            for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
-	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-	                // Respective byte enables are asserted as per write strobes 
-	                // Slave register 1
-	                slv_reg1[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-	              end  
-	          2'h2:
-	            for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
-	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-	                // Respective byte enables are asserted as per write strobes 
-	                // Slave register 2
-	                slv_reg2[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-	              end  
-	          2'h3:
-	            for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
-	              if ( S_AXI_WSTRB[byte_index] == 1 ) begin
-	                // Respective byte enables are asserted as per write strobes 
-	                // Slave register 3
-	                slv_reg3[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
-	              end  
-	          default : begin
-	                      slv_reg0 <= slv_reg0;
-	                      slv_reg1 <= slv_reg1;
-	                      slv_reg2 <= slv_reg2;
-	                      slv_reg3 <= slv_reg3;
-	                    end
-	        endcase
+			axiSlaveWrite(axi_awaddr, S_AXI_AWSIZE, S_AXI_WDATA, S_AXI_WSTRB);
+	        // case ( axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
+	        //   2'h0:
+	        //     for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+	        //       if ( S_AXI_WSTRB[byte_index] == 1 ) begin
+	        //         // Respective byte enables are asserted as per write strobes 
+	        //         // Slave register 0
+	        //         slv_reg0[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+	        //       end  
+	        //   2'h1:
+	        //     for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+	        //       if ( S_AXI_WSTRB[byte_index] == 1 ) begin
+	        //         // Respective byte enables are asserted as per write strobes 
+	        //         // Slave register 1
+	        //         slv_reg1[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+	        //       end  
+	        //   2'h2:
+	        //     for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+	        //       if ( S_AXI_WSTRB[byte_index] == 1 ) begin
+	        //         // Respective byte enables are asserted as per write strobes 
+	        //         // Slave register 2
+	        //         slv_reg2[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+	        //       end  
+	        //   2'h3:
+	        //     for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
+	        //       if ( S_AXI_WSTRB[byte_index] == 1 ) begin
+	        //         // Respective byte enables are asserted as per write strobes 
+	        //         // Slave register 3
+	        //         slv_reg3[(byte_index*8) +: 8] <= S_AXI_WDATA[(byte_index*8) +: 8];
+	        //       end  
+	        //   default : begin
+	        //               slv_reg0 <= slv_reg0;
+	        //               slv_reg1 <= slv_reg1;
+	        //               slv_reg2 <= slv_reg2;
+	        //               slv_reg3 <= slv_reg3;
+	        //             end
+	        // endcase
 	      end
 	  end
 	end    
@@ -366,18 +368,18 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	// Implement memory mapped register select and read logic generation
 	// Slave register read enable is asserted when valid address is available
 	// and the slave is ready to accept the read address.
-	assign slv_reg_rden = axi_arready & S_AXI_ARVALID & ~axi_rvalid;
-	always @(*)
-	begin
-	      // Address decoding for reading registers
-	      case ( axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
-	        2'h0   : reg_data_out = slv_reg0;
-	        2'h1   : reg_data_out = slv_reg1;
-	        2'h2   : reg_data_out = slv_reg2;
-	        2'h3   : reg_data_out = slv_reg3;
-	        default : reg_data_out <= 0;
-	      endcase
-	end
+	// assign slv_reg_rden = axi_arready & S_AXI_ARVALID & ~axi_rvalid;
+	// always @(*)
+	// begin
+	//       // Address decoding for reading registers
+	//       case ( axi_araddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
+	//         2'h0   : reg_data_out = slv_reg0;
+	//         2'h1   : reg_data_out = slv_reg1;
+	//         2'h2   : reg_data_out = slv_reg2;
+	//         2'h3   : reg_data_out = slv_reg3;
+	//         default : reg_data_out <= 0;
+	//       endcase
+	// end
 
 	// Output register or memory read data
 	always @( posedge S_AXI_ACLK )
