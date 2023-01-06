@@ -343,7 +343,7 @@ void ebreak(){
 extern "C"  void axiSlaveRead(long long raddr, char size, long long* rdata){
       // printf("addr:%016llx \nsize: %d\ndata: %016llx\n",raddr, 2^size, memread(raddr & ~0x7ull, 8, pc));
       // assert(0);
-      *rdata = memread(raddr & ~0x7ull, (uint8_t)8, pc);
+      *rdata = memread(raddr & ~0x7ull, pow(2,(double)size), pc);
 }
 extern "C"  void axiSlaveWrite(long long waddr, long long wdata, char wmask){
 
