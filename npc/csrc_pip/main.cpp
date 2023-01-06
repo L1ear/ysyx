@@ -345,6 +345,16 @@ extern "C"  void axiSlaveRead(long long raddr, char size, long long* rdata){
       // assert(0);
       *rdata = memread(raddr & ~0x7ull, pow(2,(double)size), pc);
 }
-extern "C"  void axiSlaveWrite(long long waddr, char wmask, long long wdata, char wmask){
-
+extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char wmask){
+    uint8_t WRdata[8];
+    * (uint64_t *)WRdata = wdata;
+    switch (size)
+    {
+    case 0:
+      /* code */
+      break;
+    
+    default:
+      break;
+    }
 }

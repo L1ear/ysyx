@@ -230,7 +230,7 @@ module myip_AXI_Lite_v1_0_S00_AXI #
 	  else begin
 	    if (slv_reg_wren)
 	      begin
-			axiSlaveWrite(axi_awaddr, S_AXI_AWSIZE, S_AXI_WDATA, S_AXI_WSTRB);
+			axiSlaveWrite(axi_awaddr, {5'b0,S_AXI_AWSIZE}, S_AXI_WDATA, S_AXI_WSTRB);
 	        // case ( axi_awaddr[ADDR_LSB+OPT_MEM_ADDR_BITS:ADDR_LSB] )
 	        //   2'h0:
 	        //     for ( byte_index = 0; byte_index <= (C_S_AXI_DATA_WIDTH/8)-1; byte_index = byte_index+1 )
