@@ -67,10 +67,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+37,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg1),64);
             tracep->chgQData(oldp+39,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg2),64);
             tracep->chgQData(oldp+41,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg3),64);
-            tracep->chgBit(oldp+43,(((((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready) 
-                                       & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID)) 
-                                      & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_awready)) 
-                                     & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_AWVALID))));
+            tracep->chgBit(oldp+43,(((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready) 
+                                     & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID))));
             tracep->chgBit(oldp+44,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__aw_en));
             tracep->chgQData(oldp+45,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr),64);
             tracep->chgQData(oldp+47,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr),64);
@@ -212,10 +210,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgBit(oldp+64,((((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_arready) 
                                       & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__ar_valid)) 
                                      & (~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid)))));
-            tracep->chgBit(oldp+65,(((((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready) 
-                                       & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid)) 
-                                      & (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready)) 
-                                     & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__aw_valid))));
+            tracep->chgBit(oldp+65,(((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready) 
+                                     & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid))));
         }
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[2U])) {
             tracep->chgBit(oldp+66,(vlSelf->top__DOT__instr_fetching));

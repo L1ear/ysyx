@@ -1342,10 +1342,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+38,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg1),64);
         tracep->fullQData(oldp+40,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg2),64);
         tracep->fullQData(oldp+42,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__slv_reg3),64);
-        tracep->fullBit(oldp+44,(((((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready) 
-                                    & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID)) 
-                                   & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_awready)) 
-                                  & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_AWVALID))));
+        tracep->fullBit(oldp+44,(((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_wready) 
+                                  & (IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__S_AXI_WVALID))));
         tracep->fullBit(oldp+45,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__aw_en));
         tracep->fullQData(oldp+46,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr),64);
         tracep->fullQData(oldp+48,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr),64);
@@ -1466,10 +1464,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+65,((((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_arready) 
                                    & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__ar_valid)) 
                                   & (~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid)))));
-        tracep->fullBit(oldp+66,(((((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready) 
-                                    & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid)) 
-                                   & (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready)) 
-                                  & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__aw_valid))));
+        tracep->fullBit(oldp+66,(((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready) 
+                                  & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_valid))));
         tracep->fullBit(oldp+67,(vlSelf->top__DOT__instr_fetching));
         tracep->fullBit(oldp+68,(vlSelf->top__DOT__axi_if_u__DOT__ar_valid));
         tracep->fullQData(oldp+69,(vlSelf->top__DOT__pc_new),64);
