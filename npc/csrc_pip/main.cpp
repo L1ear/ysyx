@@ -83,7 +83,6 @@ int reset(int i) {
     axi4_xbar<64,64,4> mmio; 
 
     uartlite           uart;
-    void init_vga();
 int main(int argc, char *argv[])
 {
     // nvboard_bind_all_pins(&top);
@@ -98,7 +97,6 @@ int main(int argc, char *argv[])
 
     
     init_monitor(argc, argv);
-     init_vga();
     init_screen();
    
     //********************************************************************
