@@ -93,14 +93,14 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
     // Log("get time: %08x\n",instrAddr);
     return get_time();
   }
-  if(addr == 0xa0000060){
+  else if(addr == 0xa0000060){
     i8042_data_io_handler(0,0,0);
     assert(0);
   }
-  if(addr == 0xa00003f8){
-    // difftest_skip_ref();
-    return 0;
-  }
+  // if(addr == 0xa00003f8){
+  //   // difftest_skip_ref();
+  //   return 0;
+  // }
   else if(addr>0x88000000||addr<0x80000000){
     printf("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
     assert(0);
