@@ -42,12 +42,12 @@ void init_screen() {
       SDL_TEXTUREACCESS_STATIC, 400, 300);
 }
 
-// static inline void update_screen() {
-//   SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
-//   SDL_RenderClear(renderer);
-//   SDL_RenderCopy(renderer, texture, NULL, NULL);
-//   SDL_RenderPresent(renderer);
-// }
+static inline void update_screen() {
+  SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
+  SDL_RenderClear(renderer);
+  SDL_RenderCopy(renderer, texture, NULL, NULL);
+  SDL_RenderPresent(renderer);
+}
 // #else
 // static void init_screen() {}
 
@@ -61,7 +61,7 @@ void vga_update_screen() {
   // TODO: call `update_screen()` when the sync register is non-zero,
   // then zero out the sync register
   if (vgactl_sync==1) {
-    IFDEF(CONFIG_VGA_SHOW_SCREEN, update_screen());
+    update_screen();
     vgactl_sync = 0;
   }
 }
