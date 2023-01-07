@@ -12,6 +12,7 @@ axi4_ptr<64,64,4> mem_ptr;
 
 uint8_t imem[0x8000000] __attribute((aligned(4096)));
 uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
+uint32_t i8042_data_io_handler;
 
 //for diff-test
 static char *diff_so_file = NULL;
@@ -91,6 +92,9 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
     // difftest_skip_ref();
     // Log("get time: %08x\n",instrAddr);
     return get_time();
+  }
+  if(addr == 0xa0000060){
+    i8042_data_io_handler(0,0,0);
   }
   if(addr == 0xa00003f8){
     // difftest_skip_ref();
