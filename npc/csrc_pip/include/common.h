@@ -24,7 +24,7 @@ extern Vtop* top;
 
 #define CONFIG_HAS_KEYBOARD 1
 
-
+#define TIMER_HZ 60
 
 #define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
 #define BITMASK(bits) ((1ull << (bits)) - 1)
