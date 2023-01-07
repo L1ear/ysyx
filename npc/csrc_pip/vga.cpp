@@ -16,8 +16,10 @@ static uint32_t screen_size() {
   return screen_width() * screen_height() * sizeof(uint32_t);
 }
 
-void *vmem[400*300*32] = NULL;              //记得改成static
+void *vmem[400*300*32];              //记得改成static
 static uint32_t *vgactl_port_base = NULL;
+int vgactl_sync = 0;
+
 
 #ifdef CONFIG_VGA_SHOW_SCREEN
 // #ifndef CONFIG_TARGET_AM
@@ -55,14 +57,14 @@ void init_screen() {
 // #endif
 #endif
 
-// void vga_update_screen() {
-//   // TODO: call `update_screen()` when the sync register is non-zero,
-//   // then zero out the sync register
-//   if (vgactl_port_base[1]==1) {
-//     IFDEF(CONFIG_VGA_SHOW_SCREEN, update_screen());
-//     vgactl_port_base[1] = 0;
-//   }
-// }
+void vga_update_screen() {
+  // TODO: call `update_screen()` when the sync register is non-zero,
+  // then zero out the sync register
+  if (vgactl_sync==1) {
+    IFDEF(CONFIG_VGA_SHOW_SCREEN, update_screen());
+    vgactl_sync = 0;
+  }
+}
 
 // void init_vga() {
 //   vgactl_port_base = (uint32_t *)new_space(8);
