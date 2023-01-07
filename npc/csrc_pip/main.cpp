@@ -9,6 +9,7 @@ extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
 
 void device_update();
+void init_screen();
 
 int nr_instr = 0;
 /* for vcd */
@@ -96,6 +97,7 @@ int main(int argc, char *argv[])
 
     
     init_monitor(argc, argv);
+    init_screen();
     //********************************************************************
     // mem_ptr.arid    = &(top->axi_ar_id_o); 
     // mem_ptr.araddr  = &(top->axi_ar_addr_o);  

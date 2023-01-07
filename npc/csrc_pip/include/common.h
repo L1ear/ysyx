@@ -23,7 +23,8 @@ extern axi4_ptr<64,64,4> mem_ptr;
 extern Vtop* top;
 
 #define CONFIG_HAS_KEYBOARD 1
-
+#define CONFIG_VGA_SIZE_400x300 1
+#define CONFIG_VGA_SHOW_SCREEN 1
 #define TIMER_HZ 60
 
 #define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
