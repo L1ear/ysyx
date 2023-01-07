@@ -107,6 +107,7 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   //   return 0;
   // }
   if(addr == 0xa0000100){
+    printf("get vga_cfg");
     return (400 << 16) | 300;
   }
   else if(addr>0x88000000||addr<0x80000000){
