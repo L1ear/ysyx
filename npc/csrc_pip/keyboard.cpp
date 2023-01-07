@@ -109,6 +109,7 @@ void device_update() {
     switch (event.type) {
       case SDL_QUIT:
         // nemu_state.state = NEMU_QUIT;
+        en = 0;
         break;
 #ifdef CONFIG_HAS_KEYBOARD
       // If a key was pressed
