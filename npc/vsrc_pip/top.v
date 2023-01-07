@@ -13,7 +13,7 @@ module top # (
     output          [`XLEN-1:0]     pc_diff,pc_decoding,
     output          [`inst_len-1:0] instr_diff,
 	output	        [`XLEN-1:0]		regA0,
-    output                          stall_n_diff,
+    output                          stall_n_diff
 
 //instr sram  interface
     // input           [`XLEN-1:0]     sram_rdata,
