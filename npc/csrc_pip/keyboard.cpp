@@ -8,6 +8,8 @@
 #include <SDL2/SDL.h>
 #define MAP(c, f) c(f)
 
+int flag=1;
+
 // Note that this is not the standard
 #define _KEYS(f) \
   f(ESCAPE) f(F1) f(F2) f(F3) f(F4) f(F5) f(F6) f(F7) f(F8) f(F9) f(F10) f(F11) f(F12) \
@@ -70,6 +72,10 @@ static uint32_t key_dequeue() {
 // static uint32_t *i8042_data_port_base = NULL;
 
 uint32_t i8042_data_io_handler(uint32_t offset, int len, bool is_write) {
+  if(flag){
+    init_keymap();
+    flag = 0;
+  }
   assert(!is_write);
   assert(offset == 0);
   return key_dequeue();
