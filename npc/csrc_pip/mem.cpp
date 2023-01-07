@@ -12,7 +12,7 @@ axi4_ptr<64,64,4> mem_ptr;
 
 uint8_t imem[0x8000000] __attribute((aligned(4096)));
 uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
-uint32_t i8042_data_io_handler;
+uint32_t i8042_data_io_handler(uint32_t offset, int len, bool is_write);
 
 //for diff-test
 static char *diff_so_file = NULL;
