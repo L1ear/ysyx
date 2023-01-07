@@ -1,10 +1,11 @@
 // #include <device/map.h>
 // #include <utils.h>
-
+#include <common.h>
 #define KEYDOWN_MASK 0x8000
 
 #ifndef CONFIG_TARGET_AM
 #include <SDL2/SDL.h>
+#define MAP(c, f) c(f)
 
 // Note that this is not the standard
 #define _KEYS(f) \
@@ -37,7 +38,7 @@ static int key_f = 0, key_r = 0;
 static void key_enqueue(uint32_t am_scancode) {
   key_queue[key_r] = am_scancode;
   key_r = (key_r + 1) % KEY_QUEUE_LEN;
-  Assert(key_r != key_f, "key queue overflow!");
+  // Assert(key_r != key_f, "key queue overflow!");
 }
 
 static uint32_t key_dequeue() {
