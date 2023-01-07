@@ -13,6 +13,8 @@ axi4_ptr<64,64,4> mem_ptr;
 uint8_t imem[0x8000000] __attribute((aligned(4096)));
 uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
 uint32_t i8042_data_io_handler(uint32_t offset, int len, bool is_write);
+void *vmem[400*300*32];
+int vgactl_sync;
 
 //for diff-test
 static char *diff_so_file = NULL;
@@ -104,6 +106,9 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   //   // difftest_skip_ref();
   //   return 0;
   // }
+  if(addr == 0xa0000100){
+    return (400 << 16) | 300;
+  }
   else if(addr>0x88000000||addr<0x80000000){
     printf("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
     // assert(0);
@@ -137,6 +142,12 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
     // difftest_skip_ref();
 
     printf("%c",(uint8_t)data);
+  }
+  else if(addr == 0xa0000104){
+    vgactl_sync = data;
+  }
+  else if(addr>0xa1000000||addr<0x80000000){
+    *(uint32_t*)(vmem + addr-0xa1000000) = data;
   }
   else if(addr>0x88000000||addr<0x80000000){
       printf("%08lx: write %d bytes out of boundary!\nPC: %08lx\n",addr, len, instrAddr);
