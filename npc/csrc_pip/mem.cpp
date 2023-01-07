@@ -98,6 +98,7 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   }
   else if(addr>0x88000000||addr<0x80000000){
     printf("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
+    assert(0);
     return 0;
     }
   else
