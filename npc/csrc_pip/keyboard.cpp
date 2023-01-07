@@ -1,6 +1,7 @@
 // #include <device/map.h>
 // #include <utils.h>
-#include <common.h>
+#include <assert.h>
+#include "include/common.h"
 #define KEYDOWN_MASK 0x8000
 
 #ifndef CONFIG_TARGET_AM
