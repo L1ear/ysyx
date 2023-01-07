@@ -3641,53 +3641,7 @@ void Vtop___024root___eval_debug_assertions(Vtop___024root* vlSelf) {
         Verilated::overWidthError("clk");}
     if (VL_UNLIKELY((vlSelf->rst_n & 0xfeU))) {
         Verilated::overWidthError("rst_n");}
-    if (VL_UNLIKELY((vlSelf->axi_ar_ready_i & 0xfeU))) {
-        Verilated::overWidthError("axi_ar_ready_i");}
-    if (VL_UNLIKELY((vlSelf->axi_r_valid_i & 0xfeU))) {
-        Verilated::overWidthError("axi_r_valid_i");}
-    if (VL_UNLIKELY((vlSelf->axi_r_resp_i & 0xfcU))) {
-        Verilated::overWidthError("axi_r_resp_i");}
-    if (VL_UNLIKELY((vlSelf->axi_r_last_i & 0xfeU))) {
-        Verilated::overWidthError("axi_r_last_i");}
-    if (VL_UNLIKELY((vlSelf->axi_r_id_i & 0xf0U))) {
-        Verilated::overWidthError("axi_r_id_i");}
-    if (VL_UNLIKELY((vlSelf->axi_r_user_i & 0xfeU))) {
-        Verilated::overWidthError("axi_r_user_i");}
-    if (VL_UNLIKELY((vlSelf->axi_aw_ready_i & 0xfeU))) {
-        Verilated::overWidthError("axi_aw_ready_i");}
-    if (VL_UNLIKELY((vlSelf->axi_w_ready_i & 0xfeU))) {
-        Verilated::overWidthError("axi_w_ready_i");}
-    if (VL_UNLIKELY((vlSelf->axi_b_valid_i & 0xfeU))) {
-        Verilated::overWidthError("axi_b_valid_i");}
-    if (VL_UNLIKELY((vlSelf->axi_b_resp_i & 0xfcU))) {
-        Verilated::overWidthError("axi_b_resp_i");}
-    if (VL_UNLIKELY((vlSelf->axi_b_id_i & 0xf0U))) {
-        Verilated::overWidthError("axi_b_id_i");}
-    if (VL_UNLIKELY((vlSelf->axi_b_user_i & 0xfeU))) {
-        Verilated::overWidthError("axi_b_user_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_ar_ready_i & 0xfeU))) {
-        Verilated::overWidthError("axi_mmio_ar_ready_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_r_valid_i & 0xfeU))) {
-        Verilated::overWidthError("axi_mmio_r_valid_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_r_resp_i & 0xfcU))) {
-        Verilated::overWidthError("axi_mmio_r_resp_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_r_last_i & 0xfeU))) {
-        Verilated::overWidthError("axi_mmio_r_last_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_r_id_i & 0xf0U))) {
-        Verilated::overWidthError("axi_mmio_r_id_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_r_user_i & 0xfeU))) {
-        Verilated::overWidthError("axi_mmio_r_user_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_aw_ready_i & 0xfeU))) {
-        Verilated::overWidthError("axi_mmio_aw_ready_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_w_ready_i & 0xfeU))) {
-        Verilated::overWidthError("axi_mmio_w_ready_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_b_valid_i & 0xfeU))) {
-        Verilated::overWidthError("axi_mmio_b_valid_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_b_resp_i & 0xfcU))) {
-        Verilated::overWidthError("axi_mmio_b_resp_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_b_id_i & 0xf0U))) {
-        Verilated::overWidthError("axi_mmio_b_id_i");}
-    if (VL_UNLIKELY((vlSelf->axi_mmio_b_user_i & 0xfeU))) {
-        Verilated::overWidthError("axi_mmio_b_user_i");}
+    if (VL_UNLIKELY((vlSelf->__pinNumber8 & 0xfeU))) {
+        Verilated::overWidthError("__pinNumber8");}
 }
 #endif  // VL_DEBUG
