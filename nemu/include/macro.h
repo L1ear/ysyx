@@ -86,7 +86,7 @@
 #define io_read(reg) \
   ({ reg##_T __io_param; \
     ioe_read(reg, &__io_param); \
-    printf("************************"); \
+    assert(); \
     __io_param; })
 
 #define io_write(reg, ...) \
