@@ -55,6 +55,7 @@ VM_USER_CLASSES = \
 	mem \
 	sdb \
 	timer \
+	vga \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
@@ -81,6 +82,8 @@ mem.o: /home/qw/ysyx-workbench/npc/csrc_pip/mem.cpp
 sdb.o: /home/qw/ysyx-workbench/npc/csrc_pip/sdb.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 timer.o: /home/qw/ysyx-workbench/npc/csrc_pip/timer.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+vga.o: /home/qw/ysyx-workbench/npc/csrc_pip/vga.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
