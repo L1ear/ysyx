@@ -32,6 +32,7 @@ static uint32_t keymap[256] = {};
 
 static void init_keymap() {
   MAP(_KEYS, SDL_KEYMAP)
+      assert(0);
 }
 
 #define KEY_QUEUE_LEN 1024
@@ -75,7 +76,6 @@ uint32_t i8042_data_io_handler(uint32_t offset, int len, bool is_write) {
   if(flag){
     init_keymap();
     flag = 0;
-    assert(0);
   }
   assert(!is_write);
   assert(offset == 0);
