@@ -1,20 +1,20 @@
 #include <assert.h>
 #include "include/common.h"
 
-// #define SCREEN_W (MUXDEF(CONFIG_VGA_SIZE_800x600, 800, 400))
-// #define SCREEN_H (MUXDEF(CONFIG_VGA_SIZE_800x600, 600, 300))
+#define SCREEN_W 400
+#define SCREEN_H 300
 
 static uint32_t screen_width() {
-  return io_read(AM_GPU_CONFIG).width;
+  return SCREEN_W;
 }
 
-// static uint32_t screen_height() {
-//   return MUXDEF(CONFIG_TARGET_AM, io_read(AM_GPU_CONFIG).height, SCREEN_H);
-// }
+static uint32_t screen_height() {
+  return SCREEN_H;
+}
 
-// static uint32_t screen_size() {
-//   return screen_width() * screen_height() * sizeof(uint32_t);
-// }
+static uint32_t screen_size() {
+  return screen_width() * screen_height() * sizeof(uint32_t);
+}
 
 static void *vmem = NULL;
 static uint32_t *vgactl_port_base = NULL;
