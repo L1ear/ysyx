@@ -40,6 +40,7 @@ void init_screen() {
   SDL_SetWindowTitle(window, title);
   texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
       SDL_TEXTUREACCESS_STATIC, 400, 300);
+      memset(vmem, 0, screen_size());
 }
 
 static inline void update_screen() {
