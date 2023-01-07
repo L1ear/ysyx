@@ -146,7 +146,7 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
   else if(addr == 0xa0000104){
     vgactl_sync = data;
   }
-  else if(addr>0xa1000000||addr<0x80000000){
+  else if(addr>=0xa1000000&&addr<0xa13A9800){
     *(uint32_t*)(vmem + addr-0xa1000000) = data;
   }
   else if(addr>0x88000000||addr<0x80000000){
