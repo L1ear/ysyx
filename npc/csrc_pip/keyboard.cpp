@@ -4,7 +4,7 @@
 #include "include/common.h"
 #define KEYDOWN_MASK 0x8000
 
-#ifndef CONFIG_TARGET_AM
+// #ifndef CONFIG_TARGET_AM
 #include <SDL2/SDL.h>
 #define MAP(c, f) c(f)
 
@@ -53,21 +53,21 @@ static uint32_t key_dequeue() {
   return key;
 }
 
-void send_key(uint8_t scancode, bool is_keydown) {
-  if (nemu_state.state == NEMU_RUNNING && keymap[scancode] != _KEY_NONE) {
-    uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);
-    key_enqueue(am_scancode);
-  }
-}
-#else // !CONFIG_TARGET_AM
-#define _KEY_NONE 0
+// void send_key(uint8_t scancode, bool is_keydown) {
+//   if (nemu_state.state == NEMU_RUNNING && keymap[scancode] != _KEY_NONE) {
+//     uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);
+//     key_enqueue(am_scancode);
+//   }
+// }
+// #else // !CONFIG_TARGET_AM
+// #define _KEY_NONE 0
 
-static uint32_t key_dequeue() {
-  AM_INPUT_KEYBRD_T ev = io_read(AM_INPUT_KEYBRD);
-  uint32_t am_scancode = ev.keycode | (ev.keydown ? KEYDOWN_MASK : 0);
-  return am_scancode;
-}
-#endif
+// static uint32_t key_dequeue() {
+//   AM_INPUT_KEYBRD_T ev = io_read(AM_INPUT_KEYBRD);
+//   uint32_t am_scancode = ev.keycode | (ev.keydown ? KEYDOWN_MASK : 0);
+//   return am_scancode;
+// }
+// #endif
 
 // static uint32_t *i8042_data_port_base = NULL;
 
