@@ -93,8 +93,10 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
     // Log("get time: %08x\n",instrAddr);
     return get_time();
   }
-  else if(addr == 0xa0000060){
-    i8042_data_io_handler(0,0,0);
+  if(addr == 0xa0000060){
+    printf("read key");
+    return (uint64_t)i8042_data_io_handler(0,0,0);
+    
     // assert(0);
   }
   // if(addr == 0xa00003f8){
