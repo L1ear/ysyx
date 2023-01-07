@@ -25,7 +25,6 @@ VL_MODULE(Vtop___024root) {
     VL_IN8(clk,0,0);
     VL_IN8(rst_n,0,0);
     VL_OUT8(stall_n_diff,0,0);
-    VL_IN8(__pinNumber8,0,0);
     VL_OUT(instr_diff,31,0);
     VL_OUT64(pc_diff,63,0);
     VL_OUT64(pc_decoding,63,0);

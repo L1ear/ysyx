@@ -18,7 +18,6 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , instr_diff{vlSymsp->TOP.instr_diff}
     , regA0{vlSymsp->TOP.regA0}
     , stall_n_diff{vlSymsp->TOP.stall_n_diff}
-    , __pinNumber8{vlSymsp->TOP.__pinNumber8}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , rootp{&(vlSymsp->TOP)}
 {

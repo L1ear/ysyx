@@ -2862,7 +2862,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->instr_diff = 0;
     vlSelf->regA0 = 0;
     vlSelf->stall_n_diff = 0;
-    vlSelf->__pinNumber8 = 0;
     vlSelf->top__DOT__if_axi_ar_region_o = 0;
     vlSelf->top__DOT__if_axi_r_last_i = 0;
     vlSelf->top__DOT__if_axi_r_id_i = 0;
