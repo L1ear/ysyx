@@ -16,7 +16,7 @@ static uint32_t screen_size() {
   return screen_width() * screen_height() * sizeof(uint32_t);
 }
 
-void *vmem[400*300*32];              //记得改成static
+uint8_t *vmem[400*300*32];              //记得改成static
 static uint32_t *vgactl_port_base = NULL;
 int vgactl_sync = 0;
 
@@ -44,7 +44,7 @@ void init_screen() {
 }
 
 static inline void update_screen() {
-  SDL_UpdateTexture(texture, NULL, vmem, SCREEN_W * sizeof(uint32_t));
+  SDL_UpdateTexture(texture, NULL, (void *)vmem, SCREEN_W * sizeof(uint32_t));
   SDL_RenderClear(renderer);
   SDL_RenderCopy(renderer, texture, NULL, NULL);
   SDL_RenderPresent(renderer);
