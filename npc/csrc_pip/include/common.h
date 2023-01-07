@@ -86,5 +86,9 @@ typedef riscv64_CPU_state CPU_state;
     printf(__VA_ARGS__); \
   } while (0)
 
+#define concat(x, y) concat_temp(x, y)
+
+
+
 
 #endif
