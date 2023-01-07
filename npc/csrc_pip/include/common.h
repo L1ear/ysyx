@@ -86,6 +86,9 @@ typedef riscv64_CPU_state CPU_state;
     printf(__VA_ARGS__); \
   } while (0)
 
+  
+// macro concatenation
+#define concat_temp(x, y) x ## y
 #define concat(x, y) concat_temp(x, y)
 
 
