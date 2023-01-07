@@ -32,8 +32,8 @@ void init_screen() {
   sprintf(title, "riscv64-npc");
   SDL_Init(SDL_INIT_VIDEO);
   SDL_CreateWindowAndRenderer(
-      400,
-      300,
+      800,
+      600,
       0, &window, &renderer);
   SDL_SetWindowTitle(window, title);
   texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ARGB8888,
