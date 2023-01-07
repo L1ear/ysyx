@@ -9,6 +9,8 @@
 #define MAP(c, f) c(f)
 
 int flag=1;
+void vga_update_screen();
+
 
 // Note that this is not the standard
 #define _KEYS(f) \
