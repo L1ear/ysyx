@@ -150,7 +150,7 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
   }
   else if(addr>=0xa1000000&&addr<0xa13A9800){
     printf("write%x to vmem:%x\n",data,addr);
-    *(uint32_t*)(vmem + addr-0xa1000000) = data;
+    *(uint32_t*)(vmem + addr-0xa1000000) = (uint32_t)data;
   }
   else if(addr>0x88000000||addr<0x80000000){
       printf("%08lx: write %d bytes out of boundary!\nPC: %08lx\n",addr, len, instrAddr);
