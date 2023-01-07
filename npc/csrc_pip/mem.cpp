@@ -149,7 +149,7 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
     vgactl_sync = data;
   }
   else if(addr>=0xa1000000&&addr<0xa13A9800){
-    printf("write%x to vmem:%016llx\n, vmem%016llx\n\n",data,addr-0xa1000000,vmem);
+    printf("write%x to vmem:%016llx\n, vmem%016llx\n\n",data,vmem+addr-0xa1000000,vmem);
     *(uint32_t*)(vmem + addr-0xa1000000) = (uint32_t)data;
   }
   else if(addr>0x88000000||addr<0x80000000){
