@@ -32,7 +32,6 @@ static uint32_t keymap[256] = {};
 
 static void init_keymap() {
   MAP(_KEYS, SDL_KEYMAP)
-      assert(0);
 }
 
 #define KEY_QUEUE_LEN 1024
@@ -54,12 +53,12 @@ static uint32_t key_dequeue() {
   return key;
 }
 
-// void send_key(uint8_t scancode, bool is_keydown) {
-//   if (nemu_state.state == NEMU_RUNNING && keymap[scancode] != _KEY_NONE) {
-//     uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);
-//     key_enqueue(am_scancode);
-//   }
-// }
+void send_key(uint8_t scancode, bool is_keydown) {
+  if (en == 1 && keymap[scancode] != _KEY_NONE) {
+    uint32_t am_scancode = keymap[scancode] | (is_keydown ? KEYDOWN_MASK : 0);
+    key_enqueue(am_scancode);
+  }
+}
 // #else // !CONFIG_TARGET_AM
 // #define _KEY_NONE 0
 
