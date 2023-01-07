@@ -7,6 +7,9 @@
 extern CPU_state cpu;
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
+
+void device_update();
+
 int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
@@ -215,6 +218,7 @@ uint64_t pc = 0;
 uint64_t instr_last;
 char  stall;
 void single_cycle(int i) {
+  device_update();
 //上升沿
   top->clk = 1; 
   //********************************************
