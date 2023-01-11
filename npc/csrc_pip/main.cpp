@@ -11,6 +11,7 @@ extern axi4_ptr<64,64,4> mem_ptr;
 void device_update();
 void init_screen();
 
+int nr_cycle = 0;
 int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
@@ -308,7 +309,7 @@ void single_cycle(int i) {
         }
       start = 0;
     }
-    
+
     instr_last = top->instr_diff;
     stall = top->stall_n_diff;
     cpu.pc = top->pc_diff;
