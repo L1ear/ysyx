@@ -80,6 +80,7 @@ static int cmd_q(char *args) {
 static int cmd_c(char *args) {
     while(en)
     {
+      nr_cycle++;
       single_cycle(sim_time);
         // nvboard_update();
       sim_time = sim_time+2;

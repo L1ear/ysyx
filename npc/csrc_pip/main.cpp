@@ -308,10 +308,9 @@ void single_cycle(int i) {
         }
       start = 0;
     }
-// #ifdef  difftest
+    
     instr_last = top->instr_diff;
     stall = top->stall_n_diff;
-// #endif
     cpu.pc = top->pc_diff;
     
     
