@@ -1,3 +1,4 @@
+`include "defines.v"
 module icache(
     input           [`XLEN-1:0]         addr,
 
