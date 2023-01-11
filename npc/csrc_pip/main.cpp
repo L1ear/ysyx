@@ -341,7 +341,8 @@ void ebreak(){
   en = 0;
   if(top->regA0 == 0){
     Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",cpu.pc);
-    Log("after %d instructions", nr_instr);
+    Log("after %d instructions and %d clock cycle", nr_instr, nr_cycle);
+    Log("IPC: %f", nr_instr/nr_cycle);
   }
     
   else
