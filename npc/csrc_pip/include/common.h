@@ -41,7 +41,7 @@ extern Vtop* top;
 extern int sim_time;
 extern int en;
 extern uint64_t *cpu_gpr;
-int nr_cycle;
+extern int nr_cycle;
 
 static int cmd_help(char *args);
 void sdb_mainloop();
