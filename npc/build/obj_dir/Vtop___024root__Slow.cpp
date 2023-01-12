@@ -1319,7 +1319,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
           ? ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
               ? ((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid)
                   ? 2U : 3U) : ((0ULL != vlSelf->top__DOT__pc_new)
-                                 ? ((vlSelf->top__DOT__pc_new 
+                                 ? (((4ULL + vlSelf->top__DOT__pc_new) 
                                      != vlSelf->top__DOT__axi_if_u__DOT__addr_reg)
                                      ? 1U : 2U) : 0U))
           : ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
@@ -1334,7 +1334,8 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__sram_data_valid = (((IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state) 
                                           >> 1U) & 
                                          ((~ (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state)) 
-                                          & ((vlSelf->top__DOT__pc_new 
+                                          & (((4ULL 
+                                               + vlSelf->top__DOT__pc_new) 
                                               == vlSelf->top__DOT__axi_if_u__DOT__addr_reg) 
                                              & (IData)(vlSelf->top__DOT__axi_if_u__DOT__instr_valid_reg))));
     vlSelf->top__DOT__axi_ls_u__DOT__w_state_next = 
