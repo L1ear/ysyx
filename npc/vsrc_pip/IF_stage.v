@@ -23,7 +23,7 @@ module IF_stage (
 
 
 assign  sram_ren = 1'b1;
-assign  sram_addr = pc_new_o;
+assign  sram_addr = pc_new_o+4;
 assign  sram_addr_valid = pc_new_o !='b0;
 assign  if_instr_valid = sram_data_valid;
 
