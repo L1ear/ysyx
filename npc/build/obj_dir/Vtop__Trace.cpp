@@ -246,7 +246,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                     >> 0x1bU)))))),64);
             tracep->chgBit(oldp+77,((0ULL != vlSelf->top__DOT__pc_new)));
             tracep->chgIData(oldp+78,(((1U & (IData)(
-                                                     (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                     (vlSelf->top__DOT__pc_new 
                                                       >> 2U)))
                                         ? (IData)((vlSelf->top__DOT__IF_u__DOT__instr_reg 
                                                    >> 0x20U))
@@ -535,7 +535,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgIData(oldp+170,(((IData)(vlSelf->top__DOT__id_flush)
                                          ? 0U : ((1U 
                                                   & (IData)(
-                                                            (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                            (vlSelf->top__DOT__pc_new 
                                                              >> 2U)))
                                                   ? (IData)(
                                                             (vlSelf->top__DOT__IF_u__DOT__instr_reg 
@@ -543,7 +543,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                   : (IData)(vlSelf->top__DOT__IF_u__DOT__instr_reg)))),32);
             __Vtemp77[0U] = ((IData)(vlSelf->top__DOT__id_flush)
                               ? 0U : ((1U & (IData)(
-                                                    (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                    (vlSelf->top__DOT__pc_new 
                                                      >> 2U)))
                                        ? (IData)((vlSelf->top__DOT__IF_u__DOT__instr_reg 
                                                   >> 0x20U))

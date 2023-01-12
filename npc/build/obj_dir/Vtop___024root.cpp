@@ -1151,7 +1151,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                       | (IData)(vlSelf->top__DOT__ls_not_ok))))) {
             vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                 = ((IData)(vlSelf->top__DOT__id_flush)
-                    ? 0U : ((1U & (IData)((vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                    ? 0U : ((1U & (IData)((vlSelf->top__DOT__pc_new 
                                            >> 2U)))
                              ? (IData)((vlSelf->top__DOT__IF_u__DOT__instr_reg 
                                         >> 0x20U)) : (IData)(vlSelf->top__DOT__IF_u__DOT__instr_reg)));
