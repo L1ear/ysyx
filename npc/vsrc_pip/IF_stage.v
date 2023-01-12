@@ -36,7 +36,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         instr_reg <= 'b0;
     end
-    else if(sram_data_valid) begin
+    else if(stall_n) begin
         instr_reg <= sram_rdata;
     end
 end
