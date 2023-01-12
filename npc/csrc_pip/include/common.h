@@ -21,6 +21,7 @@
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
 extern Vtop* top;
+extern int nr_instr;
 
 #define CONFIG_HAS_KEYBOARD 1
 #define CONFIG_VGA_SIZE_400x300 1
