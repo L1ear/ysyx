@@ -1120,9 +1120,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                  vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])) 
                                                  >> 0x1bU)))))),64);
         tracep->fullBit(oldp+78,((0ULL != vlSelf->top__DOT__pc_new)));
-        tracep->fullIData(oldp+79,(((1U & (IData)((
-                                                   (4ULL 
-                                                    + vlSelf->top__DOT__pc_new) 
+        tracep->fullIData(oldp+79,(((1U & (IData)((vlSelf->top__DOT__pc_new 
                                                    >> 2U)))
                                      ? (IData)((vlSelf->top__DOT__IF_u__DOT__instr_reg 
                                                 >> 0x20U))
@@ -1445,16 +1443,14 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                       ? 0ULL : vlSelf->top__DOT__pc_new)),64);
         tracep->fullIData(oldp+173,(((IData)(vlSelf->top__DOT__id_flush)
                                       ? 0U : ((1U & (IData)(
-                                                            ((4ULL 
-                                                              + vlSelf->top__DOT__pc_new) 
+                                                            (vlSelf->top__DOT__pc_new 
                                                              >> 2U)))
                                                ? (IData)(
                                                          (vlSelf->top__DOT__IF_u__DOT__instr_reg 
                                                           >> 0x20U))
                                                : (IData)(vlSelf->top__DOT__IF_u__DOT__instr_reg)))),32);
         __Vtemp53[0U] = ((IData)(vlSelf->top__DOT__id_flush)
-                          ? 0U : ((1U & (IData)(((4ULL 
-                                                  + vlSelf->top__DOT__pc_new) 
+                          ? 0U : ((1U & (IData)((vlSelf->top__DOT__pc_new 
                                                  >> 2U)))
                                    ? (IData)((vlSelf->top__DOT__IF_u__DOT__instr_reg 
                                               >> 0x20U))
