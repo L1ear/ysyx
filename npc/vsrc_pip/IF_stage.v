@@ -29,7 +29,7 @@ assign  if_instr_valid = sram_data_valid;
 
 
 
-assign  instr_o = sram_addr[2] ? instr_reg[63:32] : instr_reg[31:0];
+assign  instr_o = pc_new_o[2] ? instr_reg[63:32] : instr_reg[31:0];
 
 reg [`XLEN-1:0] instr_reg;
 always @(posedge clk or negedge rst_n) begin
