@@ -2426,21 +2426,19 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
             }
         }
     }
-    vlSelf->top__DOT__IF_u__DOT__instr_reg = ((IData)(vlSelf->rst_n)
-                                               ? ((2U 
-                                                   & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
-                                                   ? 
-                                                  ((1U 
-                                                    & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
-                                                    ? 0ULL
-                                                    : 
-                                                   (((4ULL 
-                                                      + vlSelf->top__DOT__pc_new) 
-                                                     != vlSelf->top__DOT__axi_if_u__DOT__addr_reg)
-                                                     ? 0ULL
-                                                     : vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg))
-                                                   : 0ULL)
-                                               : 0ULL);
+    if (vlSelf->rst_n) {
+        if (vlSelf->top__DOT__sram_data_valid) {
+            vlSelf->top__DOT__IF_u__DOT__instr_reg 
+                = ((2U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
+                    ? ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
+                        ? 0ULL : (((4ULL + vlSelf->top__DOT__pc_new) 
+                                   != vlSelf->top__DOT__axi_if_u__DOT__addr_reg)
+                                   ? 0ULL : vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg))
+                    : 0ULL);
+        }
+    } else {
+        vlSelf->top__DOT__IF_u__DOT__instr_reg = 0ULL;
+    }
     vlSelf->top__DOT__ex_stage_u__DOT__src2 = ((0x20000U 
                                                 & vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])
                                                 ? (
