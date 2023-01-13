@@ -235,8 +235,8 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ __Vdlyvset__top__DOT__cache_dut__DOT__iramWay1_1__DOT__ram__v0;
     CData/*5:0*/ __Vdlyvdim0__top__DOT__cache_dut__DOT__iramWay1_2__DOT__ram__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__cache_dut__DOT__iramWay1_2__DOT__ram__v0;
-    CData/*5:0*/ __Vdlyvdim0__top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram__v0;
-    CData/*0:0*/ __Vdlyvset__top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram__v0;
+    CData/*5:0*/ __Vdlyvdim0__top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram__v0;
+    CData/*0:0*/ __Vdlyvset__top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram__v0;
     CData/*4:0*/ __Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vclklast__TOP__clk;
@@ -248,7 +248,7 @@ VL_MODULE(Vtop___024root) {
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellinp__wb_reg__i_din;
     VlWide<4>/*127:0*/ __Vdlyvval__top__DOT__cache_dut__DOT__iramWay1_1__DOT__ram__v0;
     VlWide<4>/*127:0*/ __Vdlyvval__top__DOT__cache_dut__DOT__iramWay1_2__DOT__ram__v0;
-    VlWide<4>/*127:0*/ __Vdlyvval__top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram__v0;
+    VlWide<4>/*127:0*/ __Vdlyvval__top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram__v0;
     QData/*63:0*/ __Vtask_axiSlaveRead__0__rdata;
     QData/*63:0*/ __Vtask_axiSlaveRead__1__rdata;
     QData/*63:0*/ __Vtask_axiSlaveRead__2__rdata;

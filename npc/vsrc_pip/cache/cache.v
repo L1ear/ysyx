@@ -193,8 +193,8 @@ end
 reg [255:0] dpiRegWay1,dpiRegWay2;
 always @(posedge clk or negedge rst_n) begin
     if(getdataEn) begin
-        dpiRegWay1 <= {dataWay1_2, dataWay1_1};
-        dpiRegWay2 <= {dataWay2_1, dataWay2_1};
+        dpiRegWay1 <= {inDataWay1_2, inDataWay1_1};
+        dpiRegWay2 <= {inDataWay2_2, inDataWay2_1};
     end
 end
 

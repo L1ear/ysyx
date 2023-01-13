@@ -49,7 +49,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgBit(oldp+10,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid));
             tracep->chgCData(oldp+11,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp),2);
             tracep->chgQData(oldp+12,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata),64);
-            tracep->chgWData(oldp+14,(vlSelf->top__DOT__cache_dut__DOT__dataWay2_1),128);
+            tracep->chgWData(oldp+14,(vlSelf->top__DOT__cache_dut__DOT__dataWay2_2),128);
             tracep->chgQData(oldp+18,(vlSelf->top__DOT__axi_if_u__DOT__addr_reg),64);
             tracep->chgBit(oldp+20,(vlSelf->top__DOT__axi_if_u__DOT__instr_valid_reg));
             tracep->chgQData(oldp+21,(vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg),64);
@@ -1367,7 +1367,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[3U])) {
             tracep->chgWData(oldp+387,(vlSelf->top__DOT__cache_dut__DOT__dataWay1_1),128);
             tracep->chgWData(oldp+391,(vlSelf->top__DOT__cache_dut__DOT__dataWay1_2),128);
-            tracep->chgWData(oldp+395,(vlSelf->top__DOT__cache_dut__DOT__dataWay2_2),128);
+            tracep->chgWData(oldp+395,(vlSelf->top__DOT__cache_dut__DOT__dataWay2_1),128);
             tracep->chgWData(oldp+399,(vlSelf->top__DOT__cache_dut__DOT__way1Data),256);
             tracep->chgWData(oldp+407,(vlSelf->top__DOT__cache_dut__DOT__way2Data),256);
             tracep->chgQData(oldp+415,(vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles[0]),64);

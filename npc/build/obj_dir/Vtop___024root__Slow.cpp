@@ -3594,9 +3594,9 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->__Vdlyvdim0__top__DOT__cache_dut__DOT__iramWay1_2__DOT__ram__v0 = 0;
     VL_ZERO_RESET_W(128, vlSelf->__Vdlyvval__top__DOT__cache_dut__DOT__iramWay1_2__DOT__ram__v0);
     vlSelf->__Vdlyvset__top__DOT__cache_dut__DOT__iramWay1_2__DOT__ram__v0 = 0;
-    vlSelf->__Vdlyvdim0__top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram__v0 = 0;
-    VL_ZERO_RESET_W(128, vlSelf->__Vdlyvval__top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram__v0);
-    vlSelf->__Vdlyvset__top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram__v0 = 0;
+    vlSelf->__Vdlyvdim0__top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram__v0 = 0;
+    VL_ZERO_RESET_W(128, vlSelf->__Vdlyvval__top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram__v0);
+    vlSelf->__Vdlyvset__top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram__v0 = 0;
     vlSelf->__Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0;
     vlSelf->__Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0;
     vlSelf->__Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0;
