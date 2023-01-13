@@ -544,13 +544,15 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgCData(oldp+190,(vlSelf->top__DOT__cache_dut__DOT__cacheNexState),3);
             tracep->chgBit(oldp+191,(vlSelf->top__DOT__cache_dut__DOT__cacheHit));
             tracep->chgBit(oldp+192,(vlSelf->top__DOT__cache_dut__DOT__way1Hit));
-            tracep->chgBit(oldp+193,((((0U != (0x1fffffU 
-                                               & (vlSelf->top__DOT__cache_dut__DOT__tagWay2_q 
-                                                  ^ (IData)(
-                                                            (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
-                                                             >> 0xbU))))) 
+            tracep->chgBit(oldp+193,((((~ (IData)((0U 
+                                                   != 
+                                                   (0x1fffffU 
+                                                    & (vlSelf->top__DOT__cache_dut__DOT__tagWay2_q 
+                                                       ^ (IData)(
+                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                  >> 0xbU))))))) 
                                        & (IData)(vlSelf->top__DOT__cache_dut__DOT__bitValid2))
-                                       ? 0U : 1U)));
+                                       ? 1U : 0U)));
             tracep->chgWData(oldp+194,(vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1),128);
             tracep->chgWData(oldp+198,(vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2),128);
             tracep->chgWData(oldp+202,(vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1),128);

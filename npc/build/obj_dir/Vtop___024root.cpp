@@ -1052,16 +1052,17 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__cache_dut__DOT__cacheCurState 
         = ((IData)(vlSelf->rst_n) ? (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheNexState)
             : 0U);
-    vlSelf->top__DOT__cache_dut__DOT__way1Hit = (((0U 
-                                                   != 
-                                                   (0x1fffffU 
-                                                    & (vlSelf->top__DOT__cache_dut__DOT__tagWay1_q 
-                                                       ^ (IData)(
-                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
-                                                                  >> 0xbU))))) 
+    vlSelf->top__DOT__cache_dut__DOT__way1Hit = (((~ (IData)(
+                                                             (0U 
+                                                              != 
+                                                              (0x1fffffU 
+                                                               & (vlSelf->top__DOT__cache_dut__DOT__tagWay1_q 
+                                                                  ^ (IData)(
+                                                                            (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                             >> 0xbU))))))) 
                                                   & (IData)(vlSelf->top__DOT__cache_dut__DOT__bitValid1))
-                                                  ? 0U
-                                                  : 1U);
+                                                  ? 1U
+                                                  : 0U);
     vlSelf->pc_diff = (((QData)((IData)(vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[9U])) 
                         << 0x3fU) | (((QData)((IData)(
                                                       vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[8U])) 
@@ -1448,16 +1449,17 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__cache_dut__DOT__cacheHit = (1U 
                                                   & ((IData)(vlSelf->top__DOT__cache_dut__DOT__way1Hit) 
-                                                     | (((0U 
-                                                          != 
-                                                          (0x1fffffU 
-                                                           & (vlSelf->top__DOT__cache_dut__DOT__tagWay2_q 
-                                                              ^ (IData)(
-                                                                        (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
-                                                                         >> 0xbU))))) 
+                                                     | (((~ (IData)(
+                                                                    (0U 
+                                                                     != 
+                                                                     (0x1fffffU 
+                                                                      & (vlSelf->top__DOT__cache_dut__DOT__tagWay2_q 
+                                                                         ^ (IData)(
+                                                                                (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                                >> 0xbU))))))) 
                                                          & (IData)(vlSelf->top__DOT__cache_dut__DOT__bitValid2))
-                                                         ? 0U
-                                                         : 1U)));
+                                                         ? 1U
+                                                         : 0U)));
     vlSelf->top__DOT__axi_ls_u__DOT__w_state_next = 
         ((2U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state))
           ? ((1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state))

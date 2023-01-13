@@ -1528,13 +1528,15 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+191,(vlSelf->top__DOT__cache_dut__DOT__cacheNexState),3);
         tracep->fullBit(oldp+192,(vlSelf->top__DOT__cache_dut__DOT__cacheHit));
         tracep->fullBit(oldp+193,(vlSelf->top__DOT__cache_dut__DOT__way1Hit));
-        tracep->fullBit(oldp+194,((((0U != (0x1fffffU 
-                                            & (vlSelf->top__DOT__cache_dut__DOT__tagWay2_q 
-                                               ^ (IData)(
-                                                         (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
-                                                          >> 0xbU))))) 
+        tracep->fullBit(oldp+194,((((~ (IData)((0U 
+                                                != 
+                                                (0x1fffffU 
+                                                 & (vlSelf->top__DOT__cache_dut__DOT__tagWay2_q 
+                                                    ^ (IData)(
+                                                              (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                               >> 0xbU))))))) 
                                     & (IData)(vlSelf->top__DOT__cache_dut__DOT__bitValid2))
-                                    ? 0U : 1U)));
+                                    ? 1U : 0U)));
         tracep->fullWData(oldp+195,(vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1),128);
         tracep->fullWData(oldp+199,(vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2),128);
         tracep->fullWData(oldp+203,(vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1),128);
