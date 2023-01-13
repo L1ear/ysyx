@@ -187,6 +187,8 @@ always @(*) begin
             axiSlaveRead({32'b0,tag,11'd8}, 8, inDataWay1_1[127:64]);
             axiSlaveRead({32'b0,tag,11'd16}, 8, inDataWay1_2[63:0]);
             axiSlaveRead({32'b0,tag,11'd24}, 8, inDataWay1_2[127:64]);
+            inDataWay2_1 = $random();
+            inDataWay2_2 = $random();
             wenWay1_1 = 1'b1;
             wenWay1_2 = 1'b1;
             bitValid1_d = 1'b1;
@@ -197,6 +199,8 @@ always @(*) begin
             axiSlaveRead({32'b0,tag,11'd8}, 8, inDataWay2_1[127:64]);
             axiSlaveRead({32'b0,tag,11'd16}, 8, inDataWay2_2[63:0]);
             axiSlaveRead({32'b0,tag,11'd24}, 8, inDataWay2_2[127:64]);
+            inDataWay1_1 = $random();
+            inDataWay1_2 = $random();
             wenWay2_1 = 1'b1;
             wenWay2_2 = 1'b1;
             bitValid1_d = 1'b0;
@@ -204,6 +208,10 @@ always @(*) begin
         end
     end
     else begin
+        inDataWay1_1 = $random();
+        inDataWay1_2 = $random();
+        inDataWay2_1 = $random();
+        inDataWay2_2 = $random();
         wenWay1_1 = 1'b0;
         wenWay1_2 = 1'b0;
         wenWay1_1 = 1'b0;

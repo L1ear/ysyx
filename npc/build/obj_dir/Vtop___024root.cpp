@@ -1612,6 +1612,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                                       << 0xbU), 8U, vlSelf->__Vtask_axiSlaveRead__4__rdata);
             vlSelf->top__DOT__cache_dut__DOT__wenWay2_1 = 1U;
             vlSelf->top__DOT__cache_dut__DOT__wenWay2_2 = 1U;
+            vlSelf->top__DOT__cache_dut__DOT__bitValid1_d = 0U;
+            vlSelf->top__DOT__cache_dut__DOT__bitValid2_d = 1U;
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[0U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__4__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[1U] 
@@ -1660,6 +1662,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     } else {
         vlSelf->top__DOT__cache_dut__DOT__wenWay1_1 = 0U;
         vlSelf->top__DOT__cache_dut__DOT__wenWay1_2 = 0U;
+        vlSelf->top__DOT__cache_dut__DOT__bitValid1_d = 0U;
+        vlSelf->top__DOT__cache_dut__DOT__bitValid2_d = 0U;
     }
     vlSelf->top__DOT__csrdata_ls = (((((- (QData)((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc))) 
                                        & vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc) 
