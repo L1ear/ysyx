@@ -32,17 +32,17 @@ assign  if_instr_valid = cacheAddrOk_i && ~cacheDataOk_i;
 
 
 
-assign  instr_o = pc_new_o[2] ? instr_reg[63:32] : instr_reg[31:0];
+assign  instr_o = pc_new_o[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 
-reg [`XLEN-1:0] instr_reg;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        instr_reg <= 'b0;
-    end
-    else if(stall_n) begin
-        instr_reg <= sram_rdata;
-    end
-end
+// reg [`XLEN-1:0] instr_reg;
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n) begin
+//         instr_reg <= 'b0;
+//     end
+//     else if(stall_n) begin
+//         instr_reg <= sram_rdata;
+//     end
+// end
 
 
 wire    [`XLEN-1:0] pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
