@@ -34,7 +34,7 @@ reg    [127:0] inDataWay1_1,inDataWay1_2,inDataWay2_1,inDataWay2_2;
 reg            wenWay1_1,wenWay1_2,wenWay2_1,wenWay2_2;
 
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n) begin
+    if(~rst_n) begin
         cacheCurState <= idle;
     end
     else begin

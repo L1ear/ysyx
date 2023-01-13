@@ -272,7 +272,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declArray(c+448,"top cache_dut way2Data", false,-1, 255,0);
         tracep->declQuad(c+188,"top cache_dut rdDataReg", false,-1, 63,0);
         tracep->declBit(c+234,"top cache_dut getdataEn", false,-1);
-        tracep->declBit(c+1,"top cache_dut randomBit", false,-1);
+        tracep->declBus(c+1,"top cache_dut randomBit", false,-1, 31,0);
         tracep->declBus(c+585,"top cache_dut iramWay1_1 Bits", false,-1, 31,0);
         tracep->declBus(c+547,"top cache_dut iramWay1_1 Word_Depth", false,-1, 31,0);
         tracep->declBus(c+586,"top cache_dut iramWay1_1 Add_Width", false,-1, 31,0);
@@ -1047,7 +1047,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
     if (false && oldp) {}  // Prevent unused
     // Body
     {
-        tracep->fullBit(oldp+1,(vlSelf->top__DOT__cache_dut__DOT__randomBit));
+        tracep->fullIData(oldp+1,(vlSelf->top__DOT__cache_dut__DOT__randomBit),32);
         tracep->fullBit(oldp+2,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_arready));
         tracep->fullCData(oldp+3,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rresp),2);
         tracep->fullQData(oldp+4,(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rdata),64);

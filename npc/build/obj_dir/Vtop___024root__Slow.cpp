@@ -56,8 +56,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp36;
     VlWide<3>/*95:0*/ __Vtemp37;
     // Body
-    vlSelf->top__DOT__cache_dut__DOT__randomBit = (1U 
-                                                   & VL_RANDOM_I(1));
+    vlSelf->top__DOT__cache_dut__DOT__randomBit = VL_RANDOM_I(32);
     vlSelf->top__DOT__cache_dut__DOT__way1Data[0U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[0U];
     vlSelf->top__DOT__cache_dut__DOT__way1Data[1U] 
@@ -1367,7 +1366,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi_if_u__DOT__r_ready = Vtop__ConstPool__TABLE_bc203658_0
         [__Vtableidx2];
     if ((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) {
-        if (vlSelf->top__DOT__cache_dut__DOT__randomBit) {
+        if ((1U & vlSelf->top__DOT__cache_dut__DOT__randomBit)) {
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      ((QData)((IData)(
                                                                                 (0x1fffffU 

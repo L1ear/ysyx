@@ -1548,7 +1548,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                               >> 0x16U)))) 
            & (IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en));
     if ((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) {
-        if (vlSelf->top__DOT__cache_dut__DOT__randomBit) {
+        if ((1U & vlSelf->top__DOT__cache_dut__DOT__randomBit)) {
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      ((QData)((IData)(
                                                                                 (0x1fffffU 
