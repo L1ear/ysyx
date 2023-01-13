@@ -182,7 +182,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 assign rd_data_o = ({64{way1Hit}}&rdDataRegWay1)
-                 ||({64{way2Hit}}&rdDataRegWay2);
+                 | ({64{way2Hit}}&rdDataRegWay2);
 
 
 wire    getdataEn = cacheCurState == getdata;
