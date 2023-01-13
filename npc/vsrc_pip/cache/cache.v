@@ -177,6 +177,15 @@ wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
 wire [63:0] addrToRead = {32'b0,tag,11'b0};
 reg [31:0] randomBit;
+reg        missFlag;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n)begin
+        missFlag <= 'b0;
+    end
+    else if(getdataEn) begin
+        missFlag <= 'b1;
+    end
+end
 always @(*) begin
     randomBit = $random;
     if(getdataEn) begin
