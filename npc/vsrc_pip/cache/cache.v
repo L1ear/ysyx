@@ -175,7 +175,7 @@ assign rd_data_o = ({64{way1Hit}}&rdDataRegWay1)
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
-wire [63:0] addrToRead = {32'b0,tag,11'b0};
+wire [63:0] addrToRead = {32'b0,tag,index,5'b0};
 reg [31:0] randomBit;
 reg        missFlag;
 always @(posedge clk or negedge rst_n) begin

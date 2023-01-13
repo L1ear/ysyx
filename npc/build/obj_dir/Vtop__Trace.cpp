@@ -771,14 +771,14 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                     >> 
                                                     (0x3fU 
                                                      & (IData)(
-                                                               (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                               (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                 >> 5U))))))));
             tracep->chgBit(oldp+261,((1U & (IData)(
                                                    (vlSelf->top__DOT__cache_dut__DOT__validArray2 
                                                     >> 
                                                     (0x3fU 
                                                      & (IData)(
-                                                               (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                               (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                 >> 5U))))))));
             tracep->chgBit(oldp+262,(vlSelf->top__DOT__cache_dut__DOT__bitValid1_d));
             tracep->chgBit(oldp+263,(vlSelf->top__DOT__cache_dut__DOT__bitValid2_d));
