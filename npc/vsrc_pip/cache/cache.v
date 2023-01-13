@@ -166,7 +166,7 @@ always @(posedge clk or negedge rst_n) begin
     end
     else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
         if(way1Hit)begin
-            case(offset[4:3])
+            case(addr_i[4:3])
                 2'b00: rdDataReg <= way1Data[63:0];
                 2'b01: rdDataReg <= way1Data[127:64];
                 2'b10: rdDataReg <= way1Data[191:128];
@@ -174,7 +174,7 @@ always @(posedge clk or negedge rst_n) begin
             endcase
         end
         else begin
-            case(offset[4:3])
+            case(addr_i[4:3])
                 2'b00: rdDataReg <= way2Data[63:0];
                 2'b01: rdDataReg <= way2Data[127:64];
                 2'b10: rdDataReg <= way2Data[191:128];
