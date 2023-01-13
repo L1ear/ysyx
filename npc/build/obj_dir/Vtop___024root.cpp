@@ -680,14 +680,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                  ? (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state_next)
                                                  : 0U);
     if (vlSelf->rst_n) {
-        vlSelf->top__DOT__cache_dut__DOT__addr_ok_o 
-            = (((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                & (0ULL != vlSelf->top__DOT__pc_new)) 
-               | (((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                   & (0ULL != vlSelf->top__DOT__pc_new)) 
-                  & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)));
-    }
-    if (vlSelf->rst_n) {
         if ((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
               & (0ULL != vlSelf->top__DOT__pc_new)) 
              | (((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 

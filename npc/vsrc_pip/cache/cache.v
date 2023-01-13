@@ -96,10 +96,10 @@ end
 
 always @( *) begin
     if(idleEn || compareEn && cacheHit) begin
-        addr_ok_o <= 1'b1;
+        addr_ok_o = 1'b1;
     end
     else begin
-        addr_ok_o <= 1'b0;
+        addr_ok_o = 1'b0;
     end
 end       
 
