@@ -315,9 +315,8 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
         = Vtop__ConstPool__TABLE_b95eb736_0[__Vtableidx3];
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_size 
         = Vtop__ConstPool__TABLE_0ca066a7_0[__Vtableidx3];
+    vlSelf->top__DOT__cache_dut__DOT__randomBit = VL_RANDOM_I(32);
     if ((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) {
-        vlSelf->top__DOT__cache_dut__DOT__randomBit 
-            = VL_RANDOM_I(32);
         if ((1U & vlSelf->top__DOT__cache_dut__DOT__randomBit)) {
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      ((QData)((IData)(
