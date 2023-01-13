@@ -124,7 +124,7 @@ reg [20:0]  tagArray1[0:63];
 reg [20:0]  tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
-reg [20:0] tagWay1_q,tagWay2_q;
+wire [20:0] tagWay1_q,tagWay2_q;
 reg        validWay1_q,validWay2_q;
 
 always @(posedge clk or negedge rst_n) begin
@@ -133,20 +133,10 @@ always @(posedge clk or negedge rst_n) begin
         tagArray2[index] <= tagArray2_d;
     end
 end
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        tagWay1_q <= 'b0;
-        tagWay2_q <= 'b0;
-        validWay1_q <= 'b0;
-        validWay2_q <= 'b0;
-    end
-    else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
-        tagWay1_q <= tagArray1[addr_i[10:5]];
-        tagWay2_q <= tagArray2[addr_i[10:5]];
-        validWay1_q <= validArray1[addr_i[10:5]];
-        validWay2_q <= validArray2[addr_i[10:5]];
-    end
-end
+
+assign tagWay1_q = tagArray1[addr_i[10:5]];
+assign tagWay2_q = tagArray2[addr_i[10:5]];
+
 
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
