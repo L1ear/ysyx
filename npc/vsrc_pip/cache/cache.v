@@ -111,7 +111,6 @@ always @(posedge clk or negedge rst_n) begin
         validArray2[index] <= bitValid2_d;
     end
 end
-wire    validbitTest = validArray2[addr_i[10:5]];
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         bitValid1 <= 'b0;
@@ -124,7 +123,6 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 reg [20:0]  tagArray1[0:63];
-wire [20:0] tagTest = tagArray2[index];
 reg [20:0]  tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
