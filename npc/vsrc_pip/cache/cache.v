@@ -98,11 +98,10 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-wire        
+       
 
-// reg [63:0]   validArray1;
-reg [63:0]   validArray2; 
-reg [63:0]   validArray1;   //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
+reg [63:0]   validArray1;
+reg [63:0]   validArray2;    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
 reg        bitValid1,bitValid2;
 reg        bitValid1_d,bitValid2_d;
 //TODO
