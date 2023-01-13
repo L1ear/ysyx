@@ -106,7 +106,7 @@ end
 
 reg [63:0]   validArray1;
 reg [63:0]   validArray2;    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
-reg        bitValid1,bitValid2;
+wire        bitValid1,bitValid2;
 reg        bitValid1_d,bitValid2_d;
 //TODO
 always @(posedge clk or negedge rst_n) begin
@@ -115,22 +115,16 @@ always @(posedge clk or negedge rst_n) begin
         validArray2[index] <= bitValid2_d;
     end
 end
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        bitValid1 <= 'b0;
-        bitValid2 <= 'b0;
-    end
-    else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
-        bitValid1 <= validArray1[addr_i[10:5]];
-        bitValid2 <= validArray2[addr_i[10:5]];
-    end
-end
+
+assign bitValid1 = validArray1[addr_i[10:5]];
+assign bitValid2 = validArray2[addr_i[10:5]];
+
 
 reg [20:0]  tagArray1[0:63];
 reg [20:0]  tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
-reg [20:0] tagWay1_q,tagWay2_q;
+wire [20:0] tagWay1_q,tagWay2_q;
 reg        validWay1_q,validWay2_q;
 
 always @(posedge clk or negedge rst_n) begin
@@ -139,20 +133,10 @@ always @(posedge clk or negedge rst_n) begin
         tagArray2[index] <= tagArray2_d;
     end
 end
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        tagWay1_q <= 'b0;
-        tagWay2_q <= 'b0;
-        validWay1_q <= 'b0;
-        validWay2_q <= 'b0;
-    end
-    else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
-        tagWay1_q <= tagArray1[addr_i[10:5]];
-        tagWay2_q <= tagArray2[addr_i[10:5]];
-        validWay1_q <= validArray1[addr_i[10:5]];
-        validWay2_q <= validArray2[addr_i[10:5]];
-    end
-end
+
+assign tagWay1_q = tagArray1[addr_i[10:5]];
+assign tagWay2_q = tagArray2[addr_i[10:5]];
+
 
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
