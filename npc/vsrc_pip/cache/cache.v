@@ -183,20 +183,20 @@ always @(*) begin
     if(getdataEn) begin
         //TODO 真‘伪随机
         if($random) begin
-            axiSlaveRead({32'b0,tag,10'b0}, 8, inDataWay1_1[63:0]);
-            axiSlaveRead({32'b0,tag,10'd8}, 8, inDataWay1_1[127:64]);
-            axiSlaveRead({32'b0,tag,10'd16}, 8, inDataWay1_2[63:0]);
-            axiSlaveRead({32'b0,tag,10'd24}, 8, inDataWay1_2[127:64]);
+            axiSlaveRead({32'b0,tag,11'b0}, 8, inDataWay1_1[63:0]);
+            axiSlaveRead({32'b0,tag,11'd8}, 8, inDataWay1_1[127:64]);
+            axiSlaveRead({32'b0,tag,11'd16}, 8, inDataWay1_2[63:0]);
+            axiSlaveRead({32'b0,tag,11'd24}, 8, inDataWay1_2[127:64]);
             wenWay1_1 = 1'b1;
             wenWay1_2 = 1'b1;
             bitValid1_d = 1'b1;
             bitValid2_d = 1'b0;
         end
         else begin
-            axiSlaveRead({32'b0,tag,10'b0}, 8, inDataWay2_1[63:0]);
-            axiSlaveRead({32'b0,tag,10'd8}, 8, inDataWay2_1[127:64]);
-            axiSlaveRead({32'b0,tag,10'd16}, 8, inDataWay2_2[63:0]);
-            axiSlaveRead({32'b0,tag,10'd24}, 8, inDataWay2_2[127:64]);
+            axiSlaveRead({32'b0,tag,11'b0}, 8, inDataWay2_1[63:0]);
+            axiSlaveRead({32'b0,tag,11'd8}, 8, inDataWay2_1[127:64]);
+            axiSlaveRead({32'b0,tag,11'd16}, 8, inDataWay2_2[63:0]);
+            axiSlaveRead({32'b0,tag,11'd24}, 8, inDataWay2_2[127:64]);
             wenWay2_1 = 1'b1;
             wenWay2_2 = 1'b1;
         end
