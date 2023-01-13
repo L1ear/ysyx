@@ -152,8 +152,6 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__inDataWay2_2;
         IData/*20:0*/ top__DOT__cache_dut__DOT__tagArray1_d;
         IData/*20:0*/ top__DOT__cache_dut__DOT__tagArray2_d;
-        IData/*20:0*/ top__DOT__cache_dut__DOT__tagWay1_q;
-        IData/*20:0*/ top__DOT__cache_dut__DOT__tagWay2_q;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__way1Data;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__way2Data;
         IData/*31:0*/ top__DOT__cache_dut__DOT__randomBit;
@@ -163,10 +161,10 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__sram_rdata;
-    };
-    struct {
         QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__ls_sram_rd_data;
+    };
+    struct {
         QData/*63:0*/ top__DOT__wb_data;
         QData/*63:0*/ top__DOT__IF_u__DOT__pc_next_o;
         QData/*63:0*/ top__DOT__cache_dut__DOT__rdData_i;

@@ -502,7 +502,13 @@ cache_dut (
   .cacheAddr_o ( ),
   .rdData_i  ( )
 );
-
+// reg [255:0] dpiRegWay1,dpiRegWay2;
+// always @(posedge clk or negedge rst_n) begin
+//     if(getdataEn) begin
+//         dpiRegWay1 <= {dataWay1_1, dataWay1_2};
+//         dpiRegWay2 <= {dataWay1_2, dataWay2_2};
+//     end
+// end
 
 axi_if axi_if_u(
     .clock          (clk),
