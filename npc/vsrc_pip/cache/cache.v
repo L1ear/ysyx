@@ -100,7 +100,7 @@ end
 
 wire        
 
-reg [5:0]   validArray1,validArray2;    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
+reg    validArray1[5:0],validArray2[5:0];    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
 reg        bitValid1,bitValid2;
 reg        bitValid1_d,bitValid2_d;
 //TODO
