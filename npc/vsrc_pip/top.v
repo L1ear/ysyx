@@ -478,6 +478,27 @@ IF_stage IF_u(
     .sram_addr_valid(sram_addr_valid)
 );
 
+cache 
+cache_dut (
+  .clk (clk ),
+  .rst_n (rst_n ),
+
+  .addr_i (sram_addr ),
+  .valid_i (sram_addr_valid ),
+  .op_i (0 ),
+  .wr_data_i ( ),
+  .wr_mask_i ( ),
+  .addr_ok_o (addr_ok_o ),
+  .data_ok_o (data_ok_o ),
+  .rd_data_o (rd_data_o ),
+//to AXI
+  .cacheRdValid_o (cacheRdValid_o ),
+  .rdLast_i (rdLast_i ),
+  .cacheAddr_o (cacheAddr_o ),
+  .rdData_i  ( rdData_i)
+);
+
+
 axi_if axi_if_u(
     .clock          (clk),
     .reset          (rst_n),
