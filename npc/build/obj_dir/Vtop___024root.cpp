@@ -1597,6 +1597,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__cache_dut__DOT__wenWay2_2 = 0U;
             vlSelf->top__DOT__cache_dut__DOT__bitValid1_d = 1U;
             vlSelf->top__DOT__cache_dut__DOT__bitValid2_d = 0U;
+            vlSelf->top__DOT__cache_dut__DOT__tagArray1_d 
+                = (0x1fffffU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                        >> 0xbU)));
+            vlSelf->top__DOT__cache_dut__DOT__tagArray2_d = 0U;
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      (8ULL 
                                                                       + 
@@ -1679,6 +1683,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__cache_dut__DOT__wenWay1_2 = 0U;
             vlSelf->top__DOT__cache_dut__DOT__bitValid1_d = 0U;
             vlSelf->top__DOT__cache_dut__DOT__bitValid2_d = 1U;
+            vlSelf->top__DOT__cache_dut__DOT__tagArray1_d = 0U;
+            vlSelf->top__DOT__cache_dut__DOT__tagArray2_d 
+                = (0x1fffffU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                        >> 0xbU)));
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[0U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__4__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[1U] 
@@ -1786,6 +1794,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__cache_dut__DOT__wenWay2_2 = 0U;
         vlSelf->top__DOT__cache_dut__DOT__bitValid1_d = 0U;
         vlSelf->top__DOT__cache_dut__DOT__bitValid2_d = 0U;
+        vlSelf->top__DOT__cache_dut__DOT__tagArray1_d = 0U;
+        vlSelf->top__DOT__cache_dut__DOT__tagArray2_d = 0U;
     }
     vlSelf->top__DOT__csrdata_ls = (((((- (QData)((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc))) 
                                        & vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc) 

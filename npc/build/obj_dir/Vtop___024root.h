@@ -155,16 +155,18 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__inDataWay1_2;
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__inDataWay2_1;
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__inDataWay2_2;
+        IData/*20:0*/ top__DOT__cache_dut__DOT__tagArray1_d;
+        IData/*20:0*/ top__DOT__cache_dut__DOT__tagArray2_d;
         IData/*20:0*/ top__DOT__cache_dut__DOT__tagWay1_q;
         IData/*20:0*/ top__DOT__cache_dut__DOT__tagWay2_q;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__way1Data;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__way2Data;
         IData/*31:0*/ top__DOT__cache_dut__DOT__randomBit;
         IData/*31:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w;
-        IData/*31:0*/ top__DOT__ifAxiSlaveRam_u__DOT__byte_index;
-        IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
     };
     struct {
+        IData/*31:0*/ top__DOT__ifAxiSlaveRam_u__DOT__byte_index;
+        IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__csrdata_ls;

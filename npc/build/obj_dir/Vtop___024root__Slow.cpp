@@ -362,6 +362,10 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__cache_dut__DOT__wenWay2_2 = 0U;
             vlSelf->top__DOT__cache_dut__DOT__bitValid1_d = 1U;
             vlSelf->top__DOT__cache_dut__DOT__bitValid2_d = 0U;
+            vlSelf->top__DOT__cache_dut__DOT__tagArray1_d 
+                = (0x1fffffU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                        >> 0xbU)));
+            vlSelf->top__DOT__cache_dut__DOT__tagArray2_d = 0U;
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      (8ULL 
                                                                       + 
@@ -444,6 +448,10 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__cache_dut__DOT__wenWay1_2 = 0U;
             vlSelf->top__DOT__cache_dut__DOT__bitValid1_d = 0U;
             vlSelf->top__DOT__cache_dut__DOT__bitValid2_d = 1U;
+            vlSelf->top__DOT__cache_dut__DOT__tagArray1_d = 0U;
+            vlSelf->top__DOT__cache_dut__DOT__tagArray2_d 
+                = (0x1fffffU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                        >> 0xbU)));
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[0U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__4__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[1U] 
@@ -551,6 +559,8 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__cache_dut__DOT__wenWay2_2 = 0U;
         vlSelf->top__DOT__cache_dut__DOT__bitValid1_d = 0U;
         vlSelf->top__DOT__cache_dut__DOT__bitValid2_d = 0U;
+        vlSelf->top__DOT__cache_dut__DOT__tagArray1_d = 0U;
+        vlSelf->top__DOT__cache_dut__DOT__tagArray2_d = 0U;
     }
     vlSelf->top__DOT__ls_u__DOT__wr_data = (((0U == 
                                               (0x1fU 
@@ -3256,6 +3266,8 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<64; ++__Vi0) {
         vlSelf->top__DOT__cache_dut__DOT__tagArray1[__Vi0] = 0;
     }
+    vlSelf->top__DOT__cache_dut__DOT__tagArray1_d = 0;
+    vlSelf->top__DOT__cache_dut__DOT__tagArray2_d = 0;
     vlSelf->top__DOT__cache_dut__DOT__tagWay1_q = 0;
     vlSelf->top__DOT__cache_dut__DOT__tagWay2_q = 0;
     vlSelf->top__DOT__cache_dut__DOT__validWay1_q = 0;
