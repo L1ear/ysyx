@@ -334,7 +334,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[1U] 
                 = (IData)((vlSelf->__Vtask_axiSlaveRead__0__rdata 
                            >> 0x20U));
-            VL_EXTENDS_WI(128,32, __Vtemp59, VL_RANDOM_I(32));
+            VL_EXTEND_WQ(128,64, __Vtemp59, (((QData)((IData)(
+                                                              VL_RANDOM_I(32))) 
+                                              << 0x20U) 
+                                             | (QData)((IData)(
+                                                               VL_RANDOM_I(32)))));
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[0U] 
                 = __Vtemp59[0U];
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[1U] 
@@ -343,7 +347,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                 = __Vtemp59[2U];
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[3U] 
                 = __Vtemp59[3U];
-            VL_EXTENDS_WI(128,32, __Vtemp60, VL_RANDOM_I(32));
+            VL_EXTEND_WQ(128,64, __Vtemp60, (((QData)((IData)(
+                                                              VL_RANDOM_I(32))) 
+                                              << 0x20U) 
+                                             | (QData)((IData)(
+                                                               VL_RANDOM_I(32)))));
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[0U] 
                 = __Vtemp60[0U];
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[1U] 
@@ -403,7 +411,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
                                                                       << 0xbU), 8U, vlSelf->__Vtask_axiSlaveRead__4__rdata);
-            VL_EXTENDS_WI(128,32, __Vtemp61, VL_RANDOM_I(32));
+            VL_EXTEND_WQ(128,64, __Vtemp61, (((QData)((IData)(
+                                                              VL_RANDOM_I(32))) 
+                                              << 0x20U) 
+                                             | (QData)((IData)(
+                                                               VL_RANDOM_I(32)))));
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[0U] 
                 = __Vtemp61[0U];
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[1U] 
@@ -412,7 +424,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                 = __Vtemp61[2U];
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[3U] 
                 = __Vtemp61[3U];
-            VL_EXTENDS_WI(128,32, __Vtemp62, VL_RANDOM_I(32));
+            VL_EXTEND_WQ(128,64, __Vtemp62, (((QData)((IData)(
+                                                              VL_RANDOM_I(32))) 
+                                              << 0x20U) 
+                                             | (QData)((IData)(
+                                                               VL_RANDOM_I(32)))));
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[0U] 
                 = __Vtemp62[0U];
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[1U] 
@@ -471,7 +487,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                            >> 0x20U));
         }
     } else {
-        VL_EXTENDS_WI(128,32, __Vtemp63, VL_RANDOM_I(32));
+        VL_EXTEND_WQ(128,64, __Vtemp63, (((QData)((IData)(
+                                                          VL_RANDOM_I(32))) 
+                                          << 0x20U) 
+                                         | (QData)((IData)(
+                                                           VL_RANDOM_I(32)))));
         vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[0U] 
             = __Vtemp63[0U];
         vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[1U] 
@@ -480,7 +500,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             = __Vtemp63[2U];
         vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[3U] 
             = __Vtemp63[3U];
-        VL_EXTENDS_WI(128,32, __Vtemp64, VL_RANDOM_I(32));
+        VL_EXTEND_WQ(128,64, __Vtemp64, (((QData)((IData)(
+                                                          VL_RANDOM_I(32))) 
+                                          << 0x20U) 
+                                         | (QData)((IData)(
+                                                           VL_RANDOM_I(32)))));
         vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[0U] 
             = __Vtemp64[0U];
         vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[1U] 
@@ -489,7 +513,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             = __Vtemp64[2U];
         vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[3U] 
             = __Vtemp64[3U];
-        VL_EXTENDS_WI(128,32, __Vtemp65, VL_RANDOM_I(32));
+        VL_EXTEND_WQ(128,64, __Vtemp65, (((QData)((IData)(
+                                                          VL_RANDOM_I(32))) 
+                                          << 0x20U) 
+                                         | (QData)((IData)(
+                                                           VL_RANDOM_I(32)))));
         vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[0U] 
             = __Vtemp65[0U];
         vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[1U] 
@@ -498,7 +526,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
             = __Vtemp65[2U];
         vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[3U] 
             = __Vtemp65[3U];
-        VL_EXTENDS_WI(128,32, __Vtemp66, VL_RANDOM_I(32));
+        VL_EXTEND_WQ(128,64, __Vtemp66, (((QData)((IData)(
+                                                          VL_RANDOM_I(32))) 
+                                          << 0x20U) 
+                                         | (QData)((IData)(
+                                                           VL_RANDOM_I(32)))));
         vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[0U] 
             = __Vtemp66[0U];
         vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[1U] 
