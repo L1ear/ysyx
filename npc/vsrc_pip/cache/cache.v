@@ -74,7 +74,7 @@ always @(*) begin
             cacheNexState = idle;       //有问题，要该（validbit的问题）
         end 
         default: begin
-            cacheCurState = idle;
+            cacheNexState = idle;
         end  
     endcase
 end
