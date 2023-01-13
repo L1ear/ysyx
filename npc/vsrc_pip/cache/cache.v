@@ -144,9 +144,9 @@ always @(posedge clk or negedge rst_n) begin
     end
     else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
         tagWay1_q <= tagArray1[addr_i[10:5]];
-        tagWay2_q <= tagArray1[addr_i[10:5]];
+        tagWay2_q <= tagArray2[addr_i[10:5]];
         validWay1_q <= validArray1[addr_i[10:5]];
-        validWay2_q <= validArray1[addr_i[10:5]];
+        validWay2_q <= validArray2[addr_i[10:5]];
     end
 end
 
