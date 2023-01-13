@@ -179,10 +179,11 @@ assign rd_data_o = rdDataReg;
 
 
 wire    getdataEn = cacheCurState == getdata;
+wire    randomBit = $random;
 always @(*) begin
     if(getdataEn) begin
         //TODO 真‘伪随机
-        if($random) begin
+        if(randomBit) begin
             axiSlaveRead({32'b0,tag,11'b0}, 8, inDataWay1_1[63:0]);
             axiSlaveRead({32'b0,tag,11'd8}, 8, inDataWay1_1[127:64]);
             axiSlaveRead({32'b0,tag,11'd16}, 8, inDataWay1_2[63:0]);
@@ -212,10 +213,10 @@ always @(*) begin
         end
     end
     else begin
-        // inDataWay1_1 = {$random,$random,$random,$random};
-        // inDataWay1_2 = {$random,$random,$random,$random};
-        // inDataWay2_1 = {$random,$random,$random,$random};
-        // inDataWay2_2 = {$random,$random,$random,$random};
+        inDataWay1_1 = {$random,$random,$random,$random};
+        inDataWay1_2 = {$random,$random,$random,$random};
+        inDataWay2_1 = {$random,$random,$random,$random};
+        inDataWay2_2 = {$random,$random,$random,$random};
         wenWay1_1 = 1'b0;
         wenWay1_2 = 1'b0;
         wenWay2_1 = 1'b0;
