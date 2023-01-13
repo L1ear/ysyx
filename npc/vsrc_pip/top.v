@@ -210,8 +210,8 @@ wire    [`XLEN-1:0]     sram_rdata;
 wire    [`XLEN-1:0]     sram_addr;
 wire                    sram_ren;
 wire                    sram_addr_valid;
-wire                    cacheAddrOk_i,
-wire                    cacheDataOk_i,
+wire                    cacheAddrOk_i;
+wire                    cacheDataOk_i;
 
 //id signal-----------------------------------------------------
 wire    [`inst_len-1:0] instr_if_id_reg;
