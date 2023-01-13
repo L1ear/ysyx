@@ -1773,11 +1773,11 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullIData(oldp+266,(vlSelf->top__DOT__cache_dut__DOT__tagArray2_d),21);
         tracep->fullIData(oldp+267,(vlSelf->top__DOT__cache_dut__DOT__tagArray1
                                     [(0x3fU & (IData)(
-                                                      (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                      (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                        >> 5U)))]),21);
         tracep->fullIData(oldp+268,(vlSelf->top__DOT__cache_dut__DOT__tagArray2
                                     [(0x3fU & (IData)(
-                                                      (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                      (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                        >> 5U)))]),21);
         tracep->fullBit(oldp+269,((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))));
         tracep->fullBit(oldp+270,((2U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))));

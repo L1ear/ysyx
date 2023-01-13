@@ -116,8 +116,8 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign bitValid1 = validArray1[addr_i[10:5]];
-assign bitValid2 = validArray2[addr_i[10:5]];
+assign bitValid1 = validArray1[index];
+assign bitValid2 = validArray2[index];
 
 
 reg [20:0]  tagArray1[0:63];

@@ -4124,7 +4124,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                                      [
                                                                      (0x3fU 
                                                                       & (IData)(
-                                                                                (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                                                (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 5U)))] 
                                                                      ^ (IData)(
                                                                                (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
@@ -4147,7 +4147,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                                                      [
                                                                      (0x3fU 
                                                                       & (IData)(
-                                                                                (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                                                (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 5U)))] 
                                                                      ^ (IData)(
                                                                                (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
