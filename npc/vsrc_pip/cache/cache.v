@@ -29,6 +29,9 @@ localparam  idle    = 3'b000,
 reg     [2:0]   cacheCurState,cacheNexState;
 wire            cacheHit;
 wire            way1Hit,way2Hit;
+wire    [127:0] dataWay1_1,dataWay1_2,dataWay2_1,dataWay2_2;
+wire    [127:0] inDataWay1_1,inDataWay1_2,inDataWay2_1,inDataWay2_2;
+
 
 always @(posedge clk or negedge rstn) begin
     if(rst_n) begin
