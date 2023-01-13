@@ -203,7 +203,7 @@ S011HD1P_X32Y2D128_BW iramWay1_1 (
   .CLK (clk ),
   .CEN ((idleEn && valid_i) || (compareEn && valid_i && cacheHit) ),
   .WEN (wenWay1_1 ),
-  .BWEN (BWEN ),
+  .BWEN (0 ),
   .A (index ),
   .D  (inDataWay1_1)
 );
