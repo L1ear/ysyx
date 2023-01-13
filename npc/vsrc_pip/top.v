@@ -475,6 +475,8 @@ IF_stage IF_u(
     .if_instr_valid (if_instr_valid),
     .sram_rdata     (sram_rdata),
     .sram_data_valid(sram_data_valid),
+    .cacheAddrOk_i  (cacheAddrOk_i),
+    .cacheDataOk_i  (cacheDataOk_i),
     .sram_addr      (sram_addr),
     .sram_ren       (sram_ren),
     .sram_addr_valid(sram_addr_valid)
