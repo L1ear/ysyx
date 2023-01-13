@@ -72,7 +72,7 @@ always @(*) begin
         end
         getdata: begin
             //TODO
-            cacheNexState = idle;       //有问题，要该（validbit的问题）
+            cacheNexState = miss;       //有问题，要该（validbit的问题）
         end 
         default: begin
             cacheNexState = idle;
