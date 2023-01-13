@@ -4303,37 +4303,37 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___sequent__TOP__5\n"); );
     // Body
     vlSelf->top__DOT__cache_dut__DOT__way1Data[0U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[0U];
-    vlSelf->top__DOT__cache_dut__DOT__way1Data[1U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[1U];
-    vlSelf->top__DOT__cache_dut__DOT__way1Data[2U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[2U];
-    vlSelf->top__DOT__cache_dut__DOT__way1Data[3U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[3U];
-    vlSelf->top__DOT__cache_dut__DOT__way1Data[4U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay1_1[0U];
-    vlSelf->top__DOT__cache_dut__DOT__way1Data[5U] 
+    vlSelf->top__DOT__cache_dut__DOT__way1Data[1U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay1_1[1U];
-    vlSelf->top__DOT__cache_dut__DOT__way1Data[6U] 
+    vlSelf->top__DOT__cache_dut__DOT__way1Data[2U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay1_1[2U];
-    vlSelf->top__DOT__cache_dut__DOT__way1Data[7U] 
+    vlSelf->top__DOT__cache_dut__DOT__way1Data[3U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay1_1[3U];
+    vlSelf->top__DOT__cache_dut__DOT__way1Data[4U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[0U];
+    vlSelf->top__DOT__cache_dut__DOT__way1Data[5U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[1U];
+    vlSelf->top__DOT__cache_dut__DOT__way1Data[6U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[2U];
+    vlSelf->top__DOT__cache_dut__DOT__way1Data[7U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[3U];
     vlSelf->top__DOT__cache_dut__DOT__way2Data[0U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[0U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[1U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[1U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[2U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[2U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[3U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[3U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[4U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[0U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[5U] 
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[1U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[1U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[6U] 
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[2U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[2U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[7U] 
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[3U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[3U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[4U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[0U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[5U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[1U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[6U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[2U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[7U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[3U];
     if (vlSelf->__Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0) {
         vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles[vlSelf->__Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0] 
             = vlSelf->__Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;

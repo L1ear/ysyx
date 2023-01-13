@@ -159,31 +159,29 @@ wire    compareEn = cacheCurState == compare;
 
 wire [255:0]    way1Data = {dataWay1_2,dataWay1_1};
 wire [255:0]    way2Data = {dataWay2_2,dataWay2_1};
-reg [`XLEN-1:0] rdDataReg;
+reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         rdDataReg <='b0;
     end
     else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
-        if(way1Hit)begin
             case(addr_i[4:3])
-                2'b00: rdDataReg <= way1Data[63:0];
-                2'b01: rdDataReg <= way1Data[127:64];
-                2'b10: rdDataReg <= way1Data[191:128];
-                2'b11: rdDataReg <= way1Data[255:192];
+                2'b00: rdDataRegWay1 <= way1Data[63:0];
+                2'b01: rdDataRegWay1 <= way1Data[127:64];
+                2'b10: rdDataRegWay1 <= way1Data[191:128];
+                2'b11: rdDataRegWay1 <= way1Data[255:192];
             endcase
-        end
-        else begin
             case(addr_i[4:3])
-                2'b00: rdDataReg <= way2Data[63:0];
-                2'b01: rdDataReg <= way2Data[127:64];
-                2'b10: rdDataReg <= way2Data[191:128];
-                2'b11: rdDataReg <= way2Data[255:192];
+                2'b00: rdDataRegWay2 <= way2Data[63:0];
+                2'b01: rdDataRegWay2 <= way2Data[127:64];
+                2'b10: rdDataRegWay2 <= way2Data[191:128];
+                2'b11: rdDataRegWay2 <= way2Data[255:192];
             endcase
-        end
     end
 end
-assign rd_data_o = rdDataReg;
+
+assign rd_data_o = ({64{way1Hit}}&rdDataRegWay1)
+                 ||({64{way2Hit}}&rdDataRegWay2);
 
 
 wire    getdataEn = cacheCurState == getdata;
