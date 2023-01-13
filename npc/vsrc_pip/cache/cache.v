@@ -107,7 +107,7 @@ reg        bitValid1_d,bitValid2_d;
 always @(posedge clk or negedge rst_n) begin
     if(getdataEn) begin
         validArray1[0] <= bitValid1_d;
-        validArray2[0] <= bitValid2_d;
+        validArray2[index] <= bitValid2_d;
     end
 end
 always @(posedge clk or negedge rst_n) begin
