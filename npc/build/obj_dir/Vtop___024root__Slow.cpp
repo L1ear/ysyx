@@ -338,23 +338,6 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                    | ((QData)((IData)(
                                                                       vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[2U])) 
                                                       >> 2U))));
-    vlSelf->top__DOT__ls_sram_rd_data = ((2U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))
-                                          ? ((1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))
-                                              ? 0ULL
-                                              : (((
-                                                   ((QData)((IData)(
-                                                                    vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[2U])) 
-                                                    << 0x3eU) 
-                                                   | (((QData)((IData)(
-                                                                       vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[1U])) 
-                                                       << 0x1eU) 
-                                                      | ((QData)((IData)(
-                                                                         vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])) 
-                                                         >> 2U))) 
-                                                  != vlSelf->top__DOT__axi_ls_u__DOT__addr_reg)
-                                                  ? 0ULL
-                                                  : vlSelf->top__DOT__axi_ls_u__DOT__rd_data_reg))
-                                          : 0ULL);
     vlSelf->top__DOT__cache_dut__DOT__cacheHit = (1U 
                                                   & ((((~ (IData)(
                                                                   (0U 
@@ -378,6 +361,23 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                          & (IData)(vlSelf->top__DOT__cache_dut__DOT__bitValid2))
                                                          ? 1U
                                                          : 0U)));
+    vlSelf->top__DOT__ls_sram_rd_data = ((2U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))
+                                          ? ((1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))
+                                              ? 0ULL
+                                              : (((
+                                                   ((QData)((IData)(
+                                                                    vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[2U])) 
+                                                    << 0x3eU) 
+                                                   | (((QData)((IData)(
+                                                                       vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[1U])) 
+                                                       << 0x1eU) 
+                                                      | ((QData)((IData)(
+                                                                         vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])) 
+                                                         >> 2U))) 
+                                                  != vlSelf->top__DOT__axi_ls_u__DOT__addr_reg)
+                                                  ? 0ULL
+                                                  : vlSelf->top__DOT__axi_ls_u__DOT__rd_data_reg))
+                                          : 0ULL);
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en 
         = ((((1U == (7U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                            >> 0xeU))) | (2U == (7U 
@@ -1686,6 +1686,21 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                     | (vlSelf->top__DOT__ls_u__DOT__wr_data 
                                                        != vlSelf->top__DOT__axi_ls_u__DOT__wr_data_reg))) 
                                                   & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__trans_ok)))))));
+    vlSelf->top__DOT__if_instr_valid = (((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                         | ((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                            & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
+                                        & (~ ((((1U 
+                                                 == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
+                                               | (3U 
+                                                  == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
+                                              | (2U 
+                                                 == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
+    __Vtableidx1 = (((0ULL != vlSelf->top__DOT__pc_new) 
+                     << 4U) | (((IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit) 
+                                << 3U) | (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)));
+    vlSelf->top__DOT__cache_dut__DOT__cacheNexState 
+        = Vtop__ConstPool__TABLE_75b29e7d_0[__Vtableidx1];
     if ((0x10U & vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])) {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b 
             = (0xffU & ((8U & vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])
@@ -1731,21 +1746,6 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w 
             = (IData)(vlSelf->top__DOT__ls_sram_rd_data);
     }
-    vlSelf->top__DOT__if_instr_valid = (((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                         | ((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                            & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                                        & (~ ((((1U 
-                                                 == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                                & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                                               | (3U 
-                                                  == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
-                                              | (2U 
-                                                 == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
-    __Vtableidx1 = (((0ULL != vlSelf->top__DOT__pc_new) 
-                     << 4U) | (((IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit) 
-                                << 3U) | (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)));
-    vlSelf->top__DOT__cache_dut__DOT__cacheNexState 
-        = Vtop__ConstPool__TABLE_75b29e7d_0[__Vtableidx1];
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc 
         = ((0x341U == (0xfffU & ((vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[5U] 
                                   << 0xaU) | (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
@@ -3045,6 +3045,12 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
                                                                                 >> 0x3fU)))))))))))))))))))))))))))))))))))));
     if ((2U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))) {
+        vlSelf->top__DOT__sram_rdata = ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
+                                         ? 0ULL : (
+                                                   (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                    != vlSelf->top__DOT__axi_if_u__DOT__addr_reg)
+                                                    ? 0ULL
+                                                    : vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg));
         vlSelf->top__DOT__axi_if_u__DOT__r_state_next 
             = ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
                 ? ((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_rvalid)
@@ -3052,19 +3058,13 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                    ? ((vlSelf->top__DOT__IF_u__DOT__pc_next_o 
                                        != vlSelf->top__DOT__axi_if_u__DOT__addr_reg)
                                        ? 1U : 2U) : 0U));
-        vlSelf->top__DOT__sram_rdata = ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
-                                         ? 0ULL : (
-                                                   (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
-                                                    != vlSelf->top__DOT__axi_if_u__DOT__addr_reg)
-                                                    ? 0ULL
-                                                    : vlSelf->top__DOT__axi_if_u__DOT__rd_data_reg));
     } else {
+        vlSelf->top__DOT__sram_rdata = 0ULL;
         vlSelf->top__DOT__axi_if_u__DOT__r_state_next 
             = ((1U & (IData)(vlSelf->top__DOT__axi_if_u__DOT__r_state))
                 ? ((IData)(vlSelf->top__DOT__ifAxiSlaveRam_u__DOT__axi_arready)
                     ? 3U : 1U) : ((0ULL != vlSelf->top__DOT__pc_new)
                                    ? 1U : 0U));
-        vlSelf->top__DOT__sram_rdata = 0ULL;
     }
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift 
         = ((0x1000000U & vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])
@@ -3162,6 +3162,7 @@ void Vtop___024root___initial__TOP__4(Vtop___024root* vlSelf) {
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___initial__TOP__4\n"); );
     // Body
     Vtop___024root____Vdpiimwrap_top__DOT__ID_u__DOT__regfile_u__DOT__set_gpr_ptr__Vdpioc2_TOP(vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles);
+    vlSelf->top__DOT__sram_rdata = 0ULL;
 }
 
 void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
@@ -3172,6 +3173,10 @@ void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
     vlSelf->__Vclklast__TOP__rst_n = vlSelf->rst_n;
     Vtop___024root___initial__TOP__4(vlSelf);
+    vlSelf->__Vm_traceActivity[3U] = 1U;
+    vlSelf->__Vm_traceActivity[2U] = 1U;
+    vlSelf->__Vm_traceActivity[1U] = 1U;
+    vlSelf->__Vm_traceActivity[0U] = 1U;
 }
 
 void Vtop___024root___eval_settle(Vtop___024root* vlSelf) {
