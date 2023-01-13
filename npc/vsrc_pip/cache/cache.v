@@ -106,7 +106,7 @@ end
 
 reg [63:0]   validArray1;
 reg [63:0]   validArray2;    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
-reg        bitValid1,bitValid2;
+wire        bitValid1,bitValid2;
 reg        bitValid1_d,bitValid2_d;
 //TODO
 always @(posedge clk or negedge rst_n) begin
@@ -115,16 +115,10 @@ always @(posedge clk or negedge rst_n) begin
         validArray2[index] <= bitValid2_d;
     end
 end
-always @(*) begin
-    if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
-        bitValid1 = validArray1[addr_i[10:5]];
-        bitValid2 = validArray2[addr_i[10:5]];
-    end
-    else begin
-        bitValid1 = 0;
-        bitValid2 = 0;
-    end
-end
+
+assign bitValid1 = validArray1[addr_i[10:5]];
+assign bitValid2 = validArray2[addr_i[10:5]];
+
 
 reg [20:0]  tagArray1[0:63];
 reg [20:0]  tagArray2[0:63];
