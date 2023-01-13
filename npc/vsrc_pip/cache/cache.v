@@ -161,7 +161,7 @@ wire [255:0]    way1Data = {dataWay1_1,dataWay1_2};
 wire [255:0]    way2Data = {dataWay2_1,dataWay2_2};
 reg [`XLEN-1:0] rdDataReg;
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n) begin
+    if(~rst_n) begin
         rdDataReg <='b0;
     end
     else if(compareEn && cacheHit) begin
