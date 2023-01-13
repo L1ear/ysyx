@@ -27,6 +27,18 @@ void Vtop___024root::__Vconfigure(Vtop__Syms* _vlSymsp, bool first) {
 Vtop___024root::~Vtop___024root() {
 }
 
+void Vtop___024root____Vdpiimwrap_top__DOT__cache_dut__DOT__set_tag_array__Vdpioc2_TOP(const VlUnpacked<IData/*20:0*/, 64> &a);
+void Vtop___024root____Vdpiimwrap_top__DOT__ID_u__DOT__regfile_u__DOT__set_gpr_ptr__Vdpioc2_TOP(const VlUnpacked<QData/*63:0*/, 32> &a);
+
+void Vtop___024root___initial__TOP__3(Vtop___024root* vlSelf) {
+    if (false && vlSelf) {}  // Prevent unused
+    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___initial__TOP__3\n"); );
+    // Body
+    Vtop___024root____Vdpiimwrap_top__DOT__cache_dut__DOT__set_tag_array__Vdpioc2_TOP(vlSelf->top__DOT__cache_dut__DOT__tagArray1);
+    Vtop___024root____Vdpiimwrap_top__DOT__ID_u__DOT__regfile_u__DOT__set_gpr_ptr__Vdpioc2_TOP(vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles);
+}
+
 extern const VlUnpacked<CData/*0:0*/, 4> Vtop__ConstPool__TABLE_f41eaeaa_0;
 extern const VlUnpacked<CData/*0:0*/, 4> Vtop__ConstPool__TABLE_bc203658_0;
 extern const VlUnpacked<CData/*7:0*/, 16> Vtop__ConstPool__TABLE_b95eb736_0;
@@ -34,10 +46,10 @@ extern const VlUnpacked<CData/*2:0*/, 16> Vtop__ConstPool__TABLE_0ca066a7_0;
 void Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(QData/*63:0*/ raddr, CData/*7:0*/ size, QData/*63:0*/ &rdata);
 extern const VlUnpacked<CData/*2:0*/, 32> Vtop__ConstPool__TABLE_75b29e7d_0;
 
-void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
+void Vtop___024root___settle__TOP__4(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___settle__TOP__3\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___settle__TOP__4\n"); );
     // Variables
     CData/*4:0*/ __Vtableidx1;
     CData/*1:0*/ __Vtableidx2;
@@ -324,11 +336,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                      << 0xbU), 3U, vlSelf->__Vtask_axiSlaveRead__0__rdata);
+                                                                      << 0xbU), 3U, vlSelf->__Vtask_axiSlaveRead__1__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[0U] 
-                = (IData)(vlSelf->__Vtask_axiSlaveRead__0__rdata);
+                = (IData)(vlSelf->__Vtask_axiSlaveRead__1__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[1U] 
-                = (IData)((vlSelf->__Vtask_axiSlaveRead__0__rdata 
+                = (IData)((vlSelf->__Vtask_axiSlaveRead__1__rdata 
                            >> 0x20U));
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[0U] 
                 = VL_RANDOM_I(32);
@@ -374,11 +386,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__1__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__2__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[2U] 
-                = (IData)(vlSelf->__Vtask_axiSlaveRead__1__rdata);
+                = (IData)(vlSelf->__Vtask_axiSlaveRead__2__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[3U] 
-                = (IData)((vlSelf->__Vtask_axiSlaveRead__1__rdata 
+                = (IData)((vlSelf->__Vtask_axiSlaveRead__2__rdata 
                            >> 0x20U));
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      (0x10ULL 
@@ -388,11 +400,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__2__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__3__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[0U] 
-                = (IData)(vlSelf->__Vtask_axiSlaveRead__2__rdata);
+                = (IData)(vlSelf->__Vtask_axiSlaveRead__3__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[1U] 
-                = (IData)((vlSelf->__Vtask_axiSlaveRead__2__rdata 
+                = (IData)((vlSelf->__Vtask_axiSlaveRead__3__rdata 
                            >> 0x20U));
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      (0x18ULL 
@@ -402,11 +414,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__3__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__4__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[2U] 
-                = (IData)(vlSelf->__Vtask_axiSlaveRead__3__rdata);
+                = (IData)(vlSelf->__Vtask_axiSlaveRead__4__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[3U] 
-                = (IData)((vlSelf->__Vtask_axiSlaveRead__3__rdata 
+                = (IData)((vlSelf->__Vtask_axiSlaveRead__4__rdata 
                            >> 0x20U));
         } else {
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
@@ -415,7 +427,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                      << 0xbU), 3U, vlSelf->__Vtask_axiSlaveRead__4__rdata);
+                                                                      << 0xbU), 3U, vlSelf->__Vtask_axiSlaveRead__5__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[0U] 
                 = VL_RANDOM_I(32);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[1U] 
@@ -453,9 +465,9 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                 = (0x1fffffU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                         >> 0xbU)));
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[0U] 
-                = (IData)(vlSelf->__Vtask_axiSlaveRead__4__rdata);
+                = (IData)(vlSelf->__Vtask_axiSlaveRead__5__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[1U] 
-                = (IData)((vlSelf->__Vtask_axiSlaveRead__4__rdata 
+                = (IData)((vlSelf->__Vtask_axiSlaveRead__5__rdata 
                            >> 0x20U));
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      (8ULL 
@@ -465,11 +477,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__5__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__6__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[2U] 
-                = (IData)(vlSelf->__Vtask_axiSlaveRead__5__rdata);
+                = (IData)(vlSelf->__Vtask_axiSlaveRead__6__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[3U] 
-                = (IData)((vlSelf->__Vtask_axiSlaveRead__5__rdata 
+                = (IData)((vlSelf->__Vtask_axiSlaveRead__6__rdata 
                            >> 0x20U));
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      (0x10ULL 
@@ -479,11 +491,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__6__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__7__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[0U] 
-                = (IData)(vlSelf->__Vtask_axiSlaveRead__6__rdata);
+                = (IData)(vlSelf->__Vtask_axiSlaveRead__7__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[1U] 
-                = (IData)((vlSelf->__Vtask_axiSlaveRead__6__rdata 
+                = (IData)((vlSelf->__Vtask_axiSlaveRead__7__rdata 
                            >> 0x20U));
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      (0x18ULL 
@@ -493,11 +505,11 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__7__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__8__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[2U] 
-                = (IData)(vlSelf->__Vtask_axiSlaveRead__7__rdata);
+                = (IData)(vlSelf->__Vtask_axiSlaveRead__8__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[3U] 
-                = (IData)((vlSelf->__Vtask_axiSlaveRead__7__rdata 
+                = (IData)((vlSelf->__Vtask_axiSlaveRead__8__rdata 
                            >> 0x20U));
         }
     } else {
@@ -3140,16 +3152,6 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     vlSelf->stall_n_diff = vlSelf->top__DOT__wb_stall_n;
 }
 
-void Vtop___024root____Vdpiimwrap_top__DOT__ID_u__DOT__regfile_u__DOT__set_gpr_ptr__Vdpioc2_TOP(const VlUnpacked<QData/*63:0*/, 32> &a);
-
-void Vtop___024root___initial__TOP__4(Vtop___024root* vlSelf) {
-    if (false && vlSelf) {}  // Prevent unused
-    Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___initial__TOP__4\n"); );
-    // Body
-    Vtop___024root____Vdpiimwrap_top__DOT__ID_u__DOT__regfile_u__DOT__set_gpr_ptr__Vdpioc2_TOP(vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles);
-}
-
 void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
@@ -3157,7 +3159,7 @@ void Vtop___024root___eval_initial(Vtop___024root* vlSelf) {
     // Body
     vlSelf->__Vclklast__TOP__clk = vlSelf->clk;
     vlSelf->__Vclklast__TOP__rst_n = vlSelf->rst_n;
-    Vtop___024root___initial__TOP__4(vlSelf);
+    Vtop___024root___initial__TOP__3(vlSelf);
 }
 
 void Vtop___024root___eval_settle(Vtop___024root* vlSelf) {
@@ -3165,7 +3167,7 @@ void Vtop___024root___eval_settle(Vtop___024root* vlSelf) {
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___eval_settle\n"); );
     // Body
-    Vtop___024root___settle__TOP__3(vlSelf);
+    Vtop___024root___settle__TOP__4(vlSelf);
     vlSelf->__Vm_traceActivity[4U] = 1U;
     vlSelf->__Vm_traceActivity[3U] = 1U;
     vlSelf->__Vm_traceActivity[2U] = 1U;
@@ -3404,7 +3406,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out = 0;
     vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__byte_index = 0;
     vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__aw_en = 0;
-    vlSelf->__Vtask_axiSlaveRead__0__rdata = 0;
     vlSelf->__Vtask_axiSlaveRead__1__rdata = 0;
     vlSelf->__Vtask_axiSlaveRead__2__rdata = 0;
     vlSelf->__Vtask_axiSlaveRead__3__rdata = 0;
@@ -3412,6 +3413,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->__Vtask_axiSlaveRead__5__rdata = 0;
     vlSelf->__Vtask_axiSlaveRead__6__rdata = 0;
     vlSelf->__Vtask_axiSlaveRead__7__rdata = 0;
+    vlSelf->__Vtask_axiSlaveRead__8__rdata = 0;
     vlSelf->__Vdly__top__DOT__axi_if_u__DOT__addr_reg = 0;
     vlSelf->__Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0;
     vlSelf->__Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0;

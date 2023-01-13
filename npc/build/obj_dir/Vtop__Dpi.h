@@ -21,6 +21,8 @@ extern "C" {
     extern void ebreak();
     // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/ID/regfile.v:23:30
     extern void set_gpr_ptr(const svOpenArrayHandle a);
+    // DPI import at /home/qw/ysyx-workbench/npc/vsrc_pip/cache/cache.v:124:30
+    extern void set_tag_array(const svOpenArrayHandle a);
 
 #ifdef __cplusplus
 }

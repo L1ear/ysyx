@@ -246,7 +246,6 @@ VL_MODULE(Vtop___024root) {
     VlWide<8>/*225:0*/ top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout;
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout;
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellinp__wb_reg__i_din;
-    QData/*63:0*/ __Vtask_axiSlaveRead__0__rdata;
     QData/*63:0*/ __Vtask_axiSlaveRead__1__rdata;
     QData/*63:0*/ __Vtask_axiSlaveRead__2__rdata;
     QData/*63:0*/ __Vtask_axiSlaveRead__3__rdata;
@@ -254,6 +253,7 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ __Vtask_axiSlaveRead__5__rdata;
     QData/*63:0*/ __Vtask_axiSlaveRead__6__rdata;
     QData/*63:0*/ __Vtask_axiSlaveRead__7__rdata;
+    QData/*63:0*/ __Vtask_axiSlaveRead__8__rdata;
     QData/*63:0*/ __Vdly__top__DOT__axi_if_u__DOT__addr_reg;
     QData/*63:0*/ __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     VlUnpacked<CData/*0:0*/, 5> __Vm_traceActivity;

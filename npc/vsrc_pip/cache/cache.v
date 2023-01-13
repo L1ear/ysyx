@@ -121,8 +121,6 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-import "DPI-C" function void set_tag_array(input logic [20:0] a []);
-initial set_tag_array(tagArray1);
 reg [20:0]  tagArray1[0:63],tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
