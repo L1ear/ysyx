@@ -121,7 +121,8 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-reg [20:0]  tagArray1[0:63],tagArray2[0:63];
+reg [20:0]  tagArray1[0:63];
+reg [20:0]  tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
 reg [20:0] tagWay1_q,tagWay2_q;
