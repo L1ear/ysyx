@@ -142,8 +142,8 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign  way1Hit = ((|(tagWay1_q ^ tag)) && bitValid1) ? 'b0 : 'b1;
-assign  way2Hit = ((|(tagWay2_q ^ tag)) && bitValid2) ? 'b0 : 'b1;;
+assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
+assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
 assign  cacheHit = way1Hit || way2Hit;
 
 

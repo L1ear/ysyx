@@ -1050,7 +1050,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[7U] = 0U;
     }
     vlSelf->top__DOT__cache_dut__DOT__cacheCurState 
-        = ((IData)(vlSelf->rst_n) ? 0U : (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheNexState));
+        = ((IData)(vlSelf->rst_n) ? (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheNexState)
+            : 0U);
     vlSelf->top__DOT__cache_dut__DOT__way1Hit = (((0U 
                                                    != 
                                                    (0x1fffffU 
