@@ -179,11 +179,11 @@ assign rd_data_o = rdDataReg;
 
 
 wire    getdataEn = cacheCurState == getdata;
-wire    randomBit = $random;
+wire [31:0] randomBit = $random;
 always @(*) begin
     if(getdataEn) begin
         //TODO 真‘伪随机
-        if(randomBit) begin
+        if(randomBit[0]) begin
             axiSlaveRead({32'b0,tag,11'b0}, 8, inDataWay1_1[63:0]);
             axiSlaveRead({32'b0,tag,11'd8}, 8, inDataWay1_1[127:64]);
             axiSlaveRead({32'b0,tag,11'd16}, 8, inDataWay1_2[63:0]);
