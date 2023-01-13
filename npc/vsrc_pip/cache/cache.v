@@ -199,6 +199,8 @@ always @(*) begin
             axiSlaveRead({32'b0,tag,11'd24}, 8, inDataWay2_2[127:64]);
             wenWay2_1 = 1'b1;
             wenWay2_2 = 1'b1;
+            bitValid1_d = 1'b0;
+            bitValid2_d = 1'b1;
         end
     end
     else begin
@@ -206,6 +208,8 @@ always @(*) begin
         wenWay1_2 = 1'b0;
         wenWay1_1 = 1'b0;
         wenWay1_2 = 1'b0;
+        bitValid1_d = 1'b0;
+        bitValid2_d = 1'b0;
     end
 end
 
