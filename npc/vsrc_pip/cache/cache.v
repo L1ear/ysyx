@@ -115,14 +115,14 @@ always @(posedge clk or negedge rst_n) begin
         validArray2[index] <= bitValid2_d;
     end
 end
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        bitValid1 <= 'b0;
-        bitValid2 <= 'b0;
-    end
-    else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
+always @(*) begin
+    if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
         bitValid1 <= validArray1[addr_i[10:5]];
         bitValid2 <= validArray2[addr_i[10:5]];
+    end
+    else begin
+        bitValid1 <= 0;
+        bitValid2 <= 0;
     end
 end
 
