@@ -109,10 +109,6 @@ always @(posedge clk or negedge rst_n) begin
         validArray1[index] <= bitValid1_d;
         validArray2[index] <= bitValid2_d;
     end
-    else begin
-        validArray1[index] <= validArray1[index];
-        validArray2[index] <= validArray2[index];
-    end
 end
 always @(posedge clk or negedge rst_n) begin
     if(rst_n) begin
