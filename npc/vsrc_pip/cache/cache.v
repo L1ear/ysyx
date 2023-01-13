@@ -179,6 +179,7 @@ assign rd_data_o = rdDataReg;
 
 
 wire    getdataEn = cacheCurState == getdata;
+wire [63:0] addrToRead = {32'b0,tag,11'b0};
 reg [31:0] randomBit;
 always @(*) begin
     randomBit = $random;
@@ -186,10 +187,10 @@ always @(*) begin
         //TODO 真‘伪随机
         
         if(randomBit[0]) begin
-            axiSlaveRead({32'b0,tag,11'b0}, 8, inDataWay1_1[63:0]);
-            axiSlaveRead({32'b0,tag,11'd8}, 8, inDataWay1_1[127:64]);
-            axiSlaveRead({32'b0,tag,11'd16}, 8, inDataWay1_2[63:0]);
-            axiSlaveRead({32'b0,tag,11'd24}, 8, inDataWay1_2[127:64]);
+            axiSlaveRead(addrToRead, 8, inDataWay1_1[63:0]);
+            axiSlaveRead(addrToRead+8, 8, inDataWay1_1[127:64]);
+            axiSlaveRead(addrToRead+16, 8, inDataWay1_2[63:0]);
+            axiSlaveRead(addrToRead+24, 8, inDataWay1_2[127:64]);
             inDataWay2_1 = {$random,$random,$random,$random};
             inDataWay2_2 = {$random,$random,$random,$random};
             wenWay1_1 = 1'b1;
@@ -200,10 +201,10 @@ always @(*) begin
             bitValid2_d = 1'b0;
         end
         else begin
-            axiSlaveRead({32'b0,tag,11'b0}, 8, inDataWay2_1[63:0]);
-            axiSlaveRead({32'b0,tag,11'd8}, 8, inDataWay2_1[127:64]);
-            axiSlaveRead({32'b0,tag,11'd16}, 8, inDataWay2_2[63:0]);
-            axiSlaveRead({32'b0,tag,11'd24}, 8, inDataWay2_2[127:64]);
+            axiSlaveRead(addrToRead, 8, inDataWay2_1[63:0]);
+            axiSlaveRead(addrToRead+8, 8, inDataWay2_1[127:64]);
+            axiSlaveRead(addrToRead+16, 8, inDataWay2_2[63:0]);
+            axiSlaveRead(addrToRead+24, 8, inDataWay2_2[127:64]);
             inDataWay1_1 = {$random,$random,$random,$random};
             inDataWay1_2 = {$random,$random,$random,$random};
             wenWay2_1 = 1'b1;
