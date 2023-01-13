@@ -212,10 +212,10 @@ always @(*) begin
         end
     end
     else begin
-        inDataWay1_1 = {$random,$random,$random,$random};
-        inDataWay1_2 = {$random,$random,$random,$random};
-        inDataWay2_1 = {$random,$random,$random,$random};
-        inDataWay2_2 = {$random,$random,$random,$random};
+        // inDataWay1_1 = {$random,$random,$random,$random};
+        // inDataWay1_2 = {$random,$random,$random,$random};
+        // inDataWay2_1 = {$random,$random,$random,$random};
+        // inDataWay2_2 = {$random,$random,$random,$random};
         wenWay1_1 = 1'b0;
         wenWay1_2 = 1'b0;
         wenWay2_1 = 1'b0;
