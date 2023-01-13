@@ -71,7 +71,7 @@ always @(*) begin
         end
         getdata: begin
             //TODO
-            cacheNexState = compare;
+            cacheNexState = idle;       //有问题，要该（validbit的问题）
         end 
         default: begin
             
@@ -101,13 +101,23 @@ end
 wire        
 
 reg [5:0]   validArray1,validArray2;    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
+wire        bitValid1,bitValid2;
+reg        bitValid1_d,bitValid2_d;
+//TODO
+always @(posedge clk or negedge rst_n) begin
+    if(getdataEn) begin
+        validArray1 <= bitValid1_d;
+        validArray2 <= bitValid2_d;
+    end
+end
 always @(posedge clk or negedge rst_n) begin
     if(rst_n) begin
         bitValid1 <= 'b0;
         bitValid2 <= 'b0;
     end
-    else begin
-        
+    else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
+        bitValid1 <= validArray1[addr_i[10:5]];
+        bitValid2 <= validArray1[addr_i[10:5]];
     end
 end
 
@@ -132,8 +142,8 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign  way1Hit = |(tagWay1_q ^ tag) ? 'b0 : 'b1;
-assign  way2Hit = |(tagWay2_q ^ tag) ? 'b0 : 'b1;;
+assign  way1Hit = ((|(tagWay1_q ^ tag)) && bitValid1) ? 'b0 : 'b1;
+assign  way2Hit = ((|(tagWay2_q ^ tag)) && bitValid2) ? 'b0 : 'b1;;
 assign  cacheHit = way1Hit || way2Hit;
 
 
@@ -179,6 +189,8 @@ always @(*) begin
             axiSlaveRead({32'b0,tag,10'd24}, 8, inDataWay1_2[127:64]);
             wenWay1_1 = 1'b1;
             wenWay1_2 = 1'b1;
+            bitValid1_d = 1'b1;
+            bitValid2_d = 1'b0;
         end
         else begin
             axiSlaveRead({32'b0,tag,10'b0}, 8, inDataWay2_1[63:0]);
