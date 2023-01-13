@@ -182,8 +182,11 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n)begin
         missFlag <= 'b0;
     end
-    else if(getdataEn) begin
+    else if(getdataEn) begin        //在接入AXI后要加上LAST作为判断条件
         missFlag <= 'b1;
+    end
+    else begin
+        missFlag <= 'b0;
     end
 end
 always @(*) begin

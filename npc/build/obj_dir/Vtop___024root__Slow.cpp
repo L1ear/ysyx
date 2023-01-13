@@ -3384,6 +3384,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     VL_ZERO_RESET_W(256, vlSelf->top__DOT__cache_dut__DOT__way1Data);
     VL_ZERO_RESET_W(256, vlSelf->top__DOT__cache_dut__DOT__way2Data);
     vlSelf->top__DOT__cache_dut__DOT__randomBit = 0;
+    vlSelf->top__DOT__cache_dut__DOT__missFlag = 0;
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_1__CEN = 0;
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__CEN = 0;
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay2_1__CEN = 0;
