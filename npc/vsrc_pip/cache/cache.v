@@ -118,7 +118,7 @@ always @(posedge clk or negedge rst_n) begin
     end
     else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
         bitValid1 <= validArray1[addr_i[10:5]];
-        bitValid2 <= validArray1[addr_i[10:5]];
+        bitValid2 <= validArray2[addr_i[10:5]];
     end
 end
 
