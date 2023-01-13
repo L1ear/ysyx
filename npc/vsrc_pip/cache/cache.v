@@ -204,7 +204,7 @@ S011HD1P_X32Y2D128_BW iramWay1_1 (
   .CEN ((idleEn && valid_i) || (compareEn && valid_i && cacheHit) ),
   .WEN (wenWay1_1 ),
   .BWEN (BWEN ),
-  .A (A ),
+  .A (index ),
   .D  (inDataWay1_1)
 );
 
@@ -213,8 +213,8 @@ S011HD1P_X32Y2D128_BW iramWay1_2 (
   .CLK (clk ),
   .CEN ((idleEn && valid_i) || (compareEn && valid_i && cacheHit) ),
   .WEN (wenWay1_2 ),
-  .BWEN (BWEN ),
-  .A (A ),
+  .BWEN (0 ),
+  .A (index ),
   .D  ( inDataWay1_2)
 );
 
@@ -223,8 +223,8 @@ S011HD1P_X32Y2D128_BW iramWay2_1 (
   .CLK (clk ),
   .CEN ((idleEn && valid_i) || (compareEn && valid_i && cacheHit) ),
   .WEN (wenWay2_1 ),
-  .BWEN (BWEN ),
-  .A (A ),
+  .BWEN (0 ),
+  .A (index ),
   .D  ( inDataWay2_1)
 );
 
@@ -233,8 +233,8 @@ S011HD1P_X32Y2D128_BW iramWay2_2 (
   .CLK (clk ),
   .CEN ((idleEn && valid_i) || (compareEn && valid_i && cacheHit) ),
   .WEN (wenWay2_2 ),
-  .BWEN (BWEN ),
-  .A (A ),
+  .BWEN (0 ),
+  .A (index ),
   .D  ( inDataWay2_2)
 );
 // reg     [`XLEN-1:0]     data_1[0:255];
