@@ -164,7 +164,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         rdDataReg <='b0;
     end
-    else if(compareEn && cacheHit) begin
+    else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
         if(way1Hit)begin
             case(offset[4:3])
                 2'b00: rdDataReg <= way1Data[63:0];
