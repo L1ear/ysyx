@@ -681,8 +681,24 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgCData(oldp+223,(vlSelf->top__DOT__cache_dut__DOT__cacheCurState),3);
             tracep->chgCData(oldp+224,(vlSelf->top__DOT__cache_dut__DOT__cacheNexState),3);
             tracep->chgBit(oldp+225,(vlSelf->top__DOT__cache_dut__DOT__cacheHit));
-            tracep->chgBit(oldp+226,(vlSelf->top__DOT__cache_dut__DOT__way1Hit));
-            tracep->chgBit(oldp+227,(vlSelf->top__DOT__cache_dut__DOT__way2Hit));
+            tracep->chgBit(oldp+226,((((~ (IData)((0U 
+                                                   != 
+                                                   (0x1fffffU 
+                                                    & (vlSelf->top__DOT__cache_dut__DOT__tagWay1_q 
+                                                       ^ (IData)(
+                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                  >> 0xbU))))))) 
+                                       & (IData)(vlSelf->top__DOT__cache_dut__DOT__bitValid1))
+                                       ? 1U : 0U)));
+            tracep->chgBit(oldp+227,((((~ (IData)((0U 
+                                                   != 
+                                                   (0x1fffffU 
+                                                    & (vlSelf->top__DOT__cache_dut__DOT__tagWay2_q 
+                                                       ^ (IData)(
+                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                  >> 0xbU))))))) 
+                                       & (IData)(vlSelf->top__DOT__cache_dut__DOT__bitValid2))
+                                       ? 1U : 0U)));
             tracep->chgWData(oldp+228,(vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1),128);
             tracep->chgWData(oldp+232,(vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2),128);
             tracep->chgWData(oldp+236,(vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1),128);

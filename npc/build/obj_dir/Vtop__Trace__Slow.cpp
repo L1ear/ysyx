@@ -1657,8 +1657,24 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+224,(vlSelf->top__DOT__cache_dut__DOT__cacheCurState),3);
         tracep->fullCData(oldp+225,(vlSelf->top__DOT__cache_dut__DOT__cacheNexState),3);
         tracep->fullBit(oldp+226,(vlSelf->top__DOT__cache_dut__DOT__cacheHit));
-        tracep->fullBit(oldp+227,(vlSelf->top__DOT__cache_dut__DOT__way1Hit));
-        tracep->fullBit(oldp+228,(vlSelf->top__DOT__cache_dut__DOT__way2Hit));
+        tracep->fullBit(oldp+227,((((~ (IData)((0U 
+                                                != 
+                                                (0x1fffffU 
+                                                 & (vlSelf->top__DOT__cache_dut__DOT__tagWay1_q 
+                                                    ^ (IData)(
+                                                              (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                               >> 0xbU))))))) 
+                                    & (IData)(vlSelf->top__DOT__cache_dut__DOT__bitValid1))
+                                    ? 1U : 0U)));
+        tracep->fullBit(oldp+228,((((~ (IData)((0U 
+                                                != 
+                                                (0x1fffffU 
+                                                 & (vlSelf->top__DOT__cache_dut__DOT__tagWay2_q 
+                                                    ^ (IData)(
+                                                              (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                               >> 0xbU))))))) 
+                                    & (IData)(vlSelf->top__DOT__cache_dut__DOT__bitValid2))
+                                    ? 1U : 0U)));
         tracep->fullWData(oldp+229,(vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1),128);
         tracep->fullWData(oldp+233,(vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2),128);
         tracep->fullWData(oldp+237,(vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1),128);

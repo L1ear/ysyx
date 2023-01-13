@@ -71,8 +71,6 @@ VL_MODULE(Vtop___024root) {
         CData/*2:0*/ top__DOT__cache_dut__DOT__cacheCurState;
         CData/*2:0*/ top__DOT__cache_dut__DOT__cacheNexState;
         CData/*0:0*/ top__DOT__cache_dut__DOT__cacheHit;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__way1Hit;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__way2Hit;
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1_1;
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1_2;
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2_1;
@@ -97,10 +95,10 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow;
         CData/*0:0*/ top__DOT__forwarding_u__DOT__reg_wben;
-    };
-    struct {
         CData/*4:0*/ top__DOT__forwarding_u__DOT__reg_wb_idx;
         CData/*7:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b;
+    };
+    struct {
         CData/*2:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_size;
         CData/*7:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask;
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en;
@@ -163,10 +161,10 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__ifAxiSlaveRam_u__DOT__byte_index;
         IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
         QData/*63:0*/ top__DOT__pc_next;
-    };
-    struct {
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__sram_rdata;
+    };
+    struct {
         QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__ls_sram_rd_data;
         QData/*63:0*/ top__DOT__wb_data;
