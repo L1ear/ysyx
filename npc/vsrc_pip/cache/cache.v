@@ -8,6 +8,7 @@ module cache(
     input           [7:0]                   wr_mask_i,
     output  reg                             addr_ok_o,
     output                                  data_ok_o,
+    output                                  data_notok_o,
     output          [`XLEN-1:0]             rd_data_o,
 
 
@@ -157,6 +158,7 @@ assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
 assign  cacheHit = way1Hit || way2Hit;
 assign data_ok_o = compareEn && cacheHit;
+assign data_notok_o = compareEn && ~cacheHit;
 
 wire    compareEn = cacheCurState == compare;
 
