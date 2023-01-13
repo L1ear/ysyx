@@ -28,7 +28,7 @@ assign  sram_ren = 1'b1;
 assign  sram_addr = pc_next_o;
 assign  sram_addr_valid = pc_new_o !='b0;
 // assign  if_instr_valid = sram_data_valid;
-assign  if_instr_valid = cacheAddrOk_i && cacheDataOk_i;
+assign  if_instr_valid = cacheAddrOk_i && ~cacheDataOk_i;
 
 
 
