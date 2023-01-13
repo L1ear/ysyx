@@ -120,11 +120,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                != vlSelf->top__DOT__pc_new)) 
                                            & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)))
                                         ? ((1U & (IData)(
-                                                         (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                         (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                           >> 4U)))
                                             ? ((1U 
                                                 & (IData)(
-                                                          (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                          (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                            >> 3U)))
                                                 ? (
                                                    ((QData)((IData)(
@@ -140,7 +140,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                      vlSelf->top__DOT__cache_dut__DOT__way1Data[4U]))))
                                             : ((1U 
                                                 & (IData)(
-                                                          (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                          (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                            >> 3U)))
                                                 ? (
                                                    ((QData)((IData)(
@@ -162,11 +162,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                != vlSelf->top__DOT__pc_new)) 
                                            & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)))
                                         ? ((1U & (IData)(
-                                                         (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                         (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                           >> 4U)))
                                             ? ((1U 
                                                 & (IData)(
-                                                          (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                          (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                            >> 3U)))
                                                 ? (
                                                    ((QData)((IData)(
@@ -182,7 +182,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                      vlSelf->top__DOT__cache_dut__DOT__way2Data[4U]))))
                                             : ((1U 
                                                 & (IData)(
-                                                          (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
+                                                          (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                            >> 3U)))
                                                 ? (
                                                    ((QData)((IData)(

@@ -91,14 +91,17 @@ always @(posedge clk or negedge rst_n) begin
     //在compare到compare锁存地址信息时，要保证上一个请求是hit的，否则下一拍会进入miss，而保存的数据失效
     else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
         reqLatch <= {op_i,addr_i};
+    end
+end
+
+always @( *) begin
+    if(idleEn || compareEn && cacheHit) begin
         addr_ok_o <= 1'b1;
     end
     else begin
         addr_ok_o <= 1'b0;
     end
-end
-
-       
+end       
 
 reg [63:0]   validArray1;
 reg [63:0]   validArray2;    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit

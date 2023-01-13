@@ -3756,6 +3756,107 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                 << 3U) | (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)));
     vlSelf->top__DOT__cache_dut__DOT__cacheNexState 
         = Vtop__ConstPool__TABLE_75b29e7d_0[__Vtableidx1];
+    vlSelf->top__DOT__cache_dut__DOT__rd_data_o = (
+                                                   ((- (QData)((IData)(vlSelf->top__DOT__cache_dut__DOT__way1Hit))) 
+                                                    & ((((0U 
+                                                          == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                         & (0ULL 
+                                                            != vlSelf->top__DOT__pc_new)) 
+                                                        | (((1U 
+                                                             == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                            & (0ULL 
+                                                               != vlSelf->top__DOT__pc_new)) 
+                                                           & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)))
+                                                        ? 
+                                                       ((1U 
+                                                         & (IData)(
+                                                                   (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                    >> 4U)))
+                                                         ? 
+                                                        ((1U 
+                                                          & (IData)(
+                                                                    (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                     >> 3U)))
+                                                          ? 
+                                                         (((QData)((IData)(
+                                                                           vlSelf->top__DOT__cache_dut__DOT__way1Data[7U])) 
+                                                           << 0x20U) 
+                                                          | (QData)((IData)(
+                                                                            vlSelf->top__DOT__cache_dut__DOT__way1Data[6U])))
+                                                          : 
+                                                         (((QData)((IData)(
+                                                                           vlSelf->top__DOT__cache_dut__DOT__way1Data[5U])) 
+                                                           << 0x20U) 
+                                                          | (QData)((IData)(
+                                                                            vlSelf->top__DOT__cache_dut__DOT__way1Data[4U]))))
+                                                         : 
+                                                        ((1U 
+                                                          & (IData)(
+                                                                    (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                     >> 3U)))
+                                                          ? 
+                                                         (((QData)((IData)(
+                                                                           vlSelf->top__DOT__cache_dut__DOT__way1Data[3U])) 
+                                                           << 0x20U) 
+                                                          | (QData)((IData)(
+                                                                            vlSelf->top__DOT__cache_dut__DOT__way1Data[2U])))
+                                                          : 
+                                                         (((QData)((IData)(
+                                                                           vlSelf->top__DOT__cache_dut__DOT__way1Data[1U])) 
+                                                           << 0x20U) 
+                                                          | (QData)((IData)(
+                                                                            vlSelf->top__DOT__cache_dut__DOT__way1Data[0U])))))
+                                                        : 0ULL)) 
+                                                   | ((- (QData)((IData)(vlSelf->top__DOT__cache_dut__DOT__way2Hit))) 
+                                                      & ((((0U 
+                                                            == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                           & (0ULL 
+                                                              != vlSelf->top__DOT__pc_new)) 
+                                                          | (((1U 
+                                                               == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                              & (0ULL 
+                                                                 != vlSelf->top__DOT__pc_new)) 
+                                                             & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)))
+                                                          ? 
+                                                         ((1U 
+                                                           & (IData)(
+                                                                     (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                      >> 4U)))
+                                                           ? 
+                                                          ((1U 
+                                                            & (IData)(
+                                                                      (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                       >> 3U)))
+                                                            ? 
+                                                           (((QData)((IData)(
+                                                                             vlSelf->top__DOT__cache_dut__DOT__way2Data[7U])) 
+                                                             << 0x20U) 
+                                                            | (QData)((IData)(
+                                                                              vlSelf->top__DOT__cache_dut__DOT__way2Data[6U])))
+                                                            : 
+                                                           (((QData)((IData)(
+                                                                             vlSelf->top__DOT__cache_dut__DOT__way2Data[5U])) 
+                                                             << 0x20U) 
+                                                            | (QData)((IData)(
+                                                                              vlSelf->top__DOT__cache_dut__DOT__way2Data[4U]))))
+                                                           : 
+                                                          ((1U 
+                                                            & (IData)(
+                                                                      (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                                                       >> 3U)))
+                                                            ? 
+                                                           (((QData)((IData)(
+                                                                             vlSelf->top__DOT__cache_dut__DOT__way2Data[3U])) 
+                                                             << 0x20U) 
+                                                            | (QData)((IData)(
+                                                                              vlSelf->top__DOT__cache_dut__DOT__way2Data[2U])))
+                                                            : 
+                                                           (((QData)((IData)(
+                                                                             vlSelf->top__DOT__cache_dut__DOT__way2Data[1U])) 
+                                                             << 0x20U) 
+                                                            | (QData)((IData)(
+                                                                              vlSelf->top__DOT__cache_dut__DOT__way2Data[0U])))))
+                                                          : 0ULL)));
     VL_EXTEND_WI(65,1, __Vtemp59, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
         = ((vlSelf->top__DOT__ex_stage_u__DOT__src1 
@@ -4212,107 +4313,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                                           >> 0x20U))))
                     : vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res))
             : vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res);
-    vlSelf->top__DOT__cache_dut__DOT__rd_data_o = (
-                                                   ((- (QData)((IData)(vlSelf->top__DOT__cache_dut__DOT__way1Hit))) 
-                                                    & ((((0U 
-                                                          == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                                         & (0ULL 
-                                                            != vlSelf->top__DOT__pc_new)) 
-                                                        | (((1U 
-                                                             == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                                            & (0ULL 
-                                                               != vlSelf->top__DOT__pc_new)) 
-                                                           & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)))
-                                                        ? 
-                                                       ((1U 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
-                                                                    >> 4U)))
-                                                         ? 
-                                                        ((1U 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
-                                                                     >> 3U)))
-                                                          ? 
-                                                         (((QData)((IData)(
-                                                                           vlSelf->top__DOT__cache_dut__DOT__way1Data[7U])) 
-                                                           << 0x20U) 
-                                                          | (QData)((IData)(
-                                                                            vlSelf->top__DOT__cache_dut__DOT__way1Data[6U])))
-                                                          : 
-                                                         (((QData)((IData)(
-                                                                           vlSelf->top__DOT__cache_dut__DOT__way1Data[5U])) 
-                                                           << 0x20U) 
-                                                          | (QData)((IData)(
-                                                                            vlSelf->top__DOT__cache_dut__DOT__way1Data[4U]))))
-                                                         : 
-                                                        ((1U 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
-                                                                     >> 3U)))
-                                                          ? 
-                                                         (((QData)((IData)(
-                                                                           vlSelf->top__DOT__cache_dut__DOT__way1Data[3U])) 
-                                                           << 0x20U) 
-                                                          | (QData)((IData)(
-                                                                            vlSelf->top__DOT__cache_dut__DOT__way1Data[2U])))
-                                                          : 
-                                                         (((QData)((IData)(
-                                                                           vlSelf->top__DOT__cache_dut__DOT__way1Data[1U])) 
-                                                           << 0x20U) 
-                                                          | (QData)((IData)(
-                                                                            vlSelf->top__DOT__cache_dut__DOT__way1Data[0U])))))
-                                                        : 0ULL)) 
-                                                   | ((- (QData)((IData)(vlSelf->top__DOT__cache_dut__DOT__way2Hit))) 
-                                                      & ((((0U 
-                                                            == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                                           & (0ULL 
-                                                              != vlSelf->top__DOT__pc_new)) 
-                                                          | (((1U 
-                                                               == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                                              & (0ULL 
-                                                                 != vlSelf->top__DOT__pc_new)) 
-                                                             & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)))
-                                                          ? 
-                                                         ((1U 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
-                                                                      >> 4U)))
-                                                           ? 
-                                                          ((1U 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
-                                                                       >> 3U)))
-                                                            ? 
-                                                           (((QData)((IData)(
-                                                                             vlSelf->top__DOT__cache_dut__DOT__way2Data[7U])) 
-                                                             << 0x20U) 
-                                                            | (QData)((IData)(
-                                                                              vlSelf->top__DOT__cache_dut__DOT__way2Data[6U])))
-                                                            : 
-                                                           (((QData)((IData)(
-                                                                             vlSelf->top__DOT__cache_dut__DOT__way2Data[5U])) 
-                                                             << 0x20U) 
-                                                            | (QData)((IData)(
-                                                                              vlSelf->top__DOT__cache_dut__DOT__way2Data[4U]))))
-                                                           : 
-                                                          ((1U 
-                                                            & (IData)(
-                                                                      (vlSelf->top__DOT__IF_u__DOT__pc_next_o 
-                                                                       >> 3U)))
-                                                            ? 
-                                                           (((QData)((IData)(
-                                                                             vlSelf->top__DOT__cache_dut__DOT__way2Data[3U])) 
-                                                             << 0x20U) 
-                                                            | (QData)((IData)(
-                                                                              vlSelf->top__DOT__cache_dut__DOT__way2Data[2U])))
-                                                            : 
-                                                           (((QData)((IData)(
-                                                                             vlSelf->top__DOT__cache_dut__DOT__way2Data[1U])) 
-                                                             << 0x20U) 
-                                                            | (QData)((IData)(
-                                                                              vlSelf->top__DOT__cache_dut__DOT__way2Data[0U])))))
-                                                          : 0ULL)));
     VL_EXTEND_WQ(65,64, __Vtemp61, vlSelf->top__DOT__ex_stage_u__DOT__src1);
     VL_EXTEND_WQ(65,64, __Vtemp62, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin);
     VL_ADD_W(3, __Vtemp63, __Vtemp61, __Vtemp62);
