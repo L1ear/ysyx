@@ -533,6 +533,8 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                        >> 0x20U));
         vlSelf->top__DOT__cache_dut__DOT__wenWay1_1 = 0U;
         vlSelf->top__DOT__cache_dut__DOT__wenWay1_2 = 0U;
+        vlSelf->top__DOT__cache_dut__DOT__wenWay2_1 = 0U;
+        vlSelf->top__DOT__cache_dut__DOT__wenWay2_2 = 0U;
         vlSelf->top__DOT__cache_dut__DOT__bitValid1_d = 0U;
         vlSelf->top__DOT__cache_dut__DOT__bitValid2_d = 0U;
     }
