@@ -494,6 +494,7 @@ cache_dut (
   .wr_mask_i (0 ),
   .addr_ok_o (cacheAddrOk_i ),
   .data_ok_o (cacheDataOk_i ),
+  .data_notok_o(),
   .rd_data_o (sram_rdata ),
 //to AXI
   .cacheRdValid_o ( ),
