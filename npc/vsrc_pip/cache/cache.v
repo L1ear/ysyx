@@ -162,7 +162,8 @@ wire [255:0]    way2Data = {dataWay2_2,dataWay2_1};
 reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-        rdDataReg <='b0;
+        rdDataRegWay1 <='b0;
+        rdDataRegWay2 <= 'b0;
     end
     else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
             case(addr_i[4:3])
