@@ -160,12 +160,8 @@ wire    compareEn = cacheCurState == compare;
 wire [255:0]    way1Data = {dataWay1_2,dataWay1_1};
 wire [255:0]    way2Data = {dataWay2_2,dataWay2_1};
 reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        rdDataRegWay1 <='b0;
-        rdDataRegWay2 <= 'b0;
-    end
-    else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
+always @(*) begin
+    if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
             case(addr_i[4:3])
                 2'b00: rdDataRegWay1 <= way1Data[63:0];
                 2'b01: rdDataRegWay1 <= way1Data[127:64];
