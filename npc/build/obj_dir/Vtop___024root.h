@@ -67,8 +67,8 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ex_flush;
         CData/*0:0*/ top__DOT__ls_not_ok;
         CData/*0:0*/ top__DOT__wb_stall_n;
+        CData/*0:0*/ top__DOT__IF_u__DOT__cacheAddrOk_i;
         CData/*7:0*/ top__DOT__cache_dut__DOT__wr_mask_i;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__data_ok_o;
         CData/*0:0*/ top__DOT__cache_dut__DOT__cacheRdValid_o;
         CData/*0:0*/ top__DOT__cache_dut__DOT__rdLast_i;
         CData/*2:0*/ top__DOT__cache_dut__DOT__cacheCurState;
