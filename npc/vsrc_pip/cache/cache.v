@@ -46,10 +46,10 @@ always @(*) begin
     case (cacheCurState)
         idle: begin
             if(valid_i) begin
-                cacheNexState <= compare;
+                cacheNexState = compare;
             end
             else begin
-                cacheNexState <= idle;
+                cacheNexState = idle;
             end
         end
         compare: begin
