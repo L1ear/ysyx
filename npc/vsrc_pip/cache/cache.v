@@ -122,7 +122,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 
-reg [20:0]  tagArray1,tagArray2 [0:63];
+reg [20:0]  tagArray1[0:63],tagArray2[0:63];
 
 reg [20:0] tagWay1_q,tagWay2_q;
 reg        validWay1_q,validWay2_q;
@@ -135,7 +135,7 @@ always @(posedge clk or negedge rst_n) begin
         validWay2_q <= 'b0;
     end
     else if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
-        tagWay1_q <= tagArray1[20:0][addr_i[10:5]];
+        tagWay1_q <= tagArray1[addr_i[10:5]];
         tagWay2_q <= tagArray1[addr_i[10:5]];
         validWay1_q <= validArray1[addr_i[10:5]];
         validWay2_q <= validArray1[addr_i[10:5]];
