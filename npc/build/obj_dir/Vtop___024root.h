@@ -174,6 +174,7 @@ VL_MODULE(Vtop___024root) {
         QData/*32:0*/ top__DOT__cache_dut__DOT__reqLatch;
         QData/*63:0*/ top__DOT__cache_dut__DOT__validArray1;
         QData/*63:0*/ top__DOT__cache_dut__DOT__validArray2;
+        QData/*63:0*/ top__DOT__cache_dut__DOT__addrToRead;
         QData/*63:0*/ top__DOT__axi_if_u__DOT__addr_reg;
         QData/*63:0*/ top__DOT__axi_if_u__DOT__rd_data_reg;
         QData/*63:0*/ top__DOT__ID_u__DOT__imm;

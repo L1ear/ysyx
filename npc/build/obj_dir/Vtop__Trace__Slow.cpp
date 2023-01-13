@@ -1782,12 +1782,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+269,((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))));
         tracep->fullBit(oldp+270,((2U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))));
         tracep->fullBit(oldp+271,((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))));
-        tracep->fullQData(oldp+272,(((QData)((IData)(
-                                                     (0x1fffffU 
-                                                      & (IData)(
-                                                                (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
-                                                                 >> 0xbU))))) 
-                                     << 0xbU)),64);
+        tracep->fullQData(oldp+272,(vlSelf->top__DOT__cache_dut__DOT__addrToRead),64);
         tracep->fullIData(oldp+274,(vlSelf->top__DOT__cache_dut__DOT__randomBit),32);
         tracep->fullBit(oldp+275,(vlSelf->top__DOT__cache_dut__DOT__missFlag));
         tracep->fullWData(oldp+276,(vlSelf->top__DOT__cache_dut__DOT__dpiRegWay1),256);
