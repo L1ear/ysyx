@@ -3335,7 +3335,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ls_sram_rd_data = 0;
     vlSelf->top__DOT__wb_data = 0;
     vlSelf->top__DOT__wb_stall_n = 0;
-    vlSelf->top__DOT__IF_u__DOT__cacheAddrOk_i = 0;
     vlSelf->top__DOT__IF_u__DOT__instr_reg = 0;
     vlSelf->top__DOT__IF_u__DOT__pc_next_o = 0;
     vlSelf->top__DOT__cache_dut__DOT__wr_data_i = 0;

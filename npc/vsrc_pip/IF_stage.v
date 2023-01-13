@@ -14,7 +14,8 @@ module IF_stage (
 //sram interface
     input           [`XLEN-1:0]     sram_rdata,
     input                           sram_data_valid,
-    // input                           cacheAddrOk_i,
+    input                           cacheAddrOk_i,
+    input                           cacheDataOk_i,
     output          [`XLEN-1:0]     sram_addr,
     output                          sram_ren,
     output                          sram_addr_valid
@@ -26,7 +27,8 @@ module IF_stage (
 assign  sram_ren = 1'b1;
 assign  sram_addr = pc_next_o;
 assign  sram_addr_valid = pc_new_o !='b0;
-assign  if_instr_valid = sram_data_valid;
+// assign  if_instr_valid = sram_data_valid;
+assign  if_instr_valid = cacheAddrOk_i && cacheDataOk_i;
 
 
 

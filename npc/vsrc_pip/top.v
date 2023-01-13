@@ -210,6 +210,8 @@ wire    [`XLEN-1:0]     sram_rdata;
 wire    [`XLEN-1:0]     sram_addr;
 wire                    sram_ren;
 wire                    sram_addr_valid;
+wire                    cacheAddrOk_i,
+wire                    cacheDataOk_i,
 
 //id signal-----------------------------------------------------
 wire    [`inst_len-1:0] instr_if_id_reg;
@@ -486,11 +488,11 @@ cache_dut (
   .addr_i (sram_addr[31:0] ),
   .valid_i (sram_addr_valid ),
   .op_i (0 ),
-  .wr_data_i ( ),
-  .wr_mask_i ( ),
-  .addr_ok_o ( ),
-  .data_ok_o ( ),
-  .rd_data_o ( ),
+  .wr_data_i (0 ),
+  .wr_mask_i (0 ),
+  .addr_ok_o (cacheAddrOk_i ),
+  .data_ok_o (cacheDataOk_i ),
+  .rd_data_o (sram_rdata ),
 //to AXI
   .cacheRdValid_o ( ),
   .rdLast_i ( ),
