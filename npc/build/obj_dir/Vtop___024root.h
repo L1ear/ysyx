@@ -176,12 +176,11 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__IF_u__DOT__instr_reg;
         QData/*63:0*/ top__DOT__IF_u__DOT__pc_next_o;
         QData/*63:0*/ top__DOT__cache_dut__DOT__wr_data_i;
+        QData/*63:0*/ top__DOT__cache_dut__DOT__rd_data_o;
         QData/*63:0*/ top__DOT__cache_dut__DOT__rdData_i;
         QData/*32:0*/ top__DOT__cache_dut__DOT__reqLatch;
         QData/*63:0*/ top__DOT__cache_dut__DOT__validArray1;
         QData/*63:0*/ top__DOT__cache_dut__DOT__validArray2;
-        QData/*63:0*/ top__DOT__cache_dut__DOT__rdDataRegWay1;
-        QData/*63:0*/ top__DOT__cache_dut__DOT__rdDataRegWay2;
         QData/*63:0*/ top__DOT__axi_if_u__DOT__addr_reg;
         QData/*63:0*/ top__DOT__axi_if_u__DOT__rd_data_reg;
         QData/*63:0*/ top__DOT__ID_u__DOT__imm;
@@ -229,9 +228,9 @@ VL_MODULE(Vtop___024root) {
         VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray2;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay1_1__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay1_2__DOT__ram;
+        VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram;
     };
     struct {
-        VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram;
         VlUnpacked<QData/*63:0*/, 32> top__DOT__ID_u__DOT__regfile_u__DOT__regfiles;
     };

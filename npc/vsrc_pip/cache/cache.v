@@ -162,13 +162,13 @@ wire [255:0]    way2Data = {dataWay2_2,dataWay2_1};
 reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(*) begin
     if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
-            case(addr_i[4:3])
+            case(offset[4:3])
                 2'b00: rdDataRegWay1 = way1Data[63:0];
                 2'b01: rdDataRegWay1 = way1Data[127:64];
                 2'b10: rdDataRegWay1 = way1Data[191:128];
                 2'b11: rdDataRegWay1 = way1Data[255:192];
             endcase
-            case(addr_i[4:3])
+            case(offset[4:3])
                 2'b00: rdDataRegWay2 = way2Data[63:0];
                 2'b01: rdDataRegWay2 = way2Data[127:64];
                 2'b10: rdDataRegWay2 = way2Data[191:128];
