@@ -96,7 +96,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 always @( *) begin
-    if(idleEn || compareEn && cacheHit) begin
+    if(idleEn || (compareEn && cacheHit)) begin
         addr_ok_o = 1'b1;
     end
     else begin
@@ -134,8 +134,8 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign tagWay1_q = tagArray1[addr_i[10:5]];
-assign tagWay2_q = tagArray2[addr_i[10:5]];
+assign tagWay1_q = tagArray1[index];
+assign tagWay2_q = tagArray2[index];
 
 
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
