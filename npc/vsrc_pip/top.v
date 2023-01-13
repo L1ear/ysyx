@@ -483,7 +483,7 @@ cache_dut (
   .clk (clk ),
   .rst_n (rst_n ),
 
-  .addr_i (sram_addr ),
+  .addr_i (sram_addr[31:0] ),
   .valid_i (sram_addr_valid ),
   .op_i (0 ),
   .wr_data_i ( ),
