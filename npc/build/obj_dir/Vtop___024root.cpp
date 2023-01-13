@@ -609,6 +609,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     CData/*4:0*/ __Vtableidx1;
     CData/*3:0*/ __Vtableidx3;
     CData/*1:0*/ __Vtableidx4;
+    CData/*5:0*/ __Vdlyvdim0__top__DOT__cache_dut__DOT__tagArray1__v0;
+    CData/*0:0*/ __Vdlyvset__top__DOT__cache_dut__DOT__tagArray1__v0;
+    IData/*20:0*/ __Vdlyvval__top__DOT__cache_dut__DOT__tagArray1__v0;
     VlWide<10>/*319:0*/ __Vtemp27;
     VlWide<7>/*223:0*/ __Vtemp47;
     VlWide<3>/*95:0*/ __Vtemp51;
@@ -624,6 +627,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp63;
     QData/*63:0*/ __Vtemp18;
     // Body
+    __Vdlyvset__top__DOT__cache_dut__DOT__tagArray1__v0 = 0U;
     vlSelf->top__DOT__axi_ls_u__DOT__w_state = ((IData)(vlSelf->rst_n)
                                                  ? (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state_next)
                                                  : 0U);
@@ -723,6 +727,14 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
             = (1U & (IData)((vlSelf->top__DOT__cache_dut__DOT__validArray1 
                              >> (0x3fU & (IData)((vlSelf->top__DOT__IF_u__DOT__pc_next_o 
                                                   >> 5U))))));
+    }
+    if ((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) {
+        __Vdlyvval__top__DOT__cache_dut__DOT__tagArray1__v0 
+            = vlSelf->top__DOT__cache_dut__DOT__tagArray1_d;
+        __Vdlyvset__top__DOT__cache_dut__DOT__tagArray1__v0 = 1U;
+        __Vdlyvdim0__top__DOT__cache_dut__DOT__tagArray1__v0 
+            = (0x3fU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
+                                >> 5U)));
     }
     if (vlSelf->rst_n) {
         vlSelf->top__DOT__cache_dut__DOT__rdDataReg = 0ULL;
@@ -890,6 +902,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
         }
     } else {
         vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc = 0ULL;
+    }
+    if (__Vdlyvset__top__DOT__cache_dut__DOT__tagArray1__v0) {
+        vlSelf->top__DOT__cache_dut__DOT__tagArray1[__Vdlyvdim0__top__DOT__cache_dut__DOT__tagArray1__v0] 
+            = __Vdlyvval__top__DOT__cache_dut__DOT__tagArray1__v0;
     }
     vlSelf->top__DOT__axi_ls_u__DOT__aw_valid = (IData)(
                                                         (1U 
