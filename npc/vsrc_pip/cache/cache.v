@@ -170,8 +170,10 @@ always @(*) begin
     end
 end
 
-assign rd_data_o = ({64{way1Hit}}&rdDataRegWay1)
-                 | ({64{way2Hit}}&rdDataRegWay2);
+assign rd_data_o = ({64{way1Hit&&~missFlag}}&rdDataRegWay1)
+                 | ({64{way2Hit&&~missFlag}}&rdDataRegWay2)
+                 | ({64{missFlag && way1Hit}}&dpiRegWay1)
+                 | ({64{missFlag && way2Hit}}&dpiRegWay2);
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
@@ -189,6 +191,15 @@ always @(posedge clk or negedge rst_n) begin
         missFlag <= 'b0;
     end
 end
+
+reg [255:0] dpiRegWay1,dpiRegWay2;
+always @(posedge clk or negedge rst_n) begin
+    if(getdataEn) begin
+        dpiRegWay1 <= {dataWay1_1, dataWay1_2};
+        dpiRegWay2 <= {dataWay1_2, dataWay2_2};
+    end
+end
+
 always @(*) begin
     randomBit = $random;
     if(getdataEn) begin
