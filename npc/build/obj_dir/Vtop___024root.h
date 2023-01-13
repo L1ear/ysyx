@@ -77,8 +77,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1_2;
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2_1;
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2_2;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__bitValid1;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__bitValid2;
         CData/*0:0*/ top__DOT__cache_dut__DOT__bitValid1_d;
         CData/*0:0*/ top__DOT__cache_dut__DOT__bitValid2_d;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay1_q;
@@ -97,10 +95,10 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow;
         CData/*0:0*/ top__DOT__forwarding_u__DOT__reg_wben;
-    };
-    struct {
         CData/*4:0*/ top__DOT__forwarding_u__DOT__reg_wb_idx;
         CData/*7:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_b;
+    };
+    struct {
         CData/*2:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_size;
         CData/*7:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__wr_mask;
         CData/*0:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__csr_wr_en;
@@ -163,10 +161,10 @@ VL_MODULE(Vtop___024root) {
         IData/*31:0*/ top__DOT__ifAxiSlaveRam_u__DOT__byte_index;
         IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
         QData/*63:0*/ top__DOT__pc_next;
-    };
-    struct {
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__sram_rdata;
+    };
+    struct {
         QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__ls_sram_rd_data;
         QData/*63:0*/ top__DOT__wb_data;
@@ -236,6 +234,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ __Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_n;
+    CData/*0:0*/ __Vchglast__TOP__top__DOT__cache_dut__DOT__cacheHit;
     VlWide<3>/*95:0*/ top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout;
     VlWide<10>/*314:0*/ top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout;
     VlWide<8>/*225:0*/ top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout;
@@ -250,7 +249,7 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ __Vtask_axiSlaveRead__6__rdata;
     QData/*63:0*/ __Vtask_axiSlaveRead__7__rdata;
     QData/*63:0*/ __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
-    VlUnpacked<CData/*0:0*/, 4> __Vm_traceActivity;
+    VlUnpacked<CData/*0:0*/, 5> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
     Vtop__Syms* vlSymsp;  // Symbol table
