@@ -111,6 +111,7 @@ always @(posedge clk or negedge rst_n) begin
         validArray2[index] <= bitValid2_d;
     end
 end
+wire    validbitTest = validArray2[addr_i[10:5]];
 always @(posedge clk or negedge rst_n) begin
     if(rst_n) begin
         bitValid1 <= 'b0;
