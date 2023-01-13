@@ -493,8 +493,8 @@ cache_dut (
   .wr_data_i (0 ),
   .wr_mask_i (0 ),
   .addr_ok_o (cacheAddrOk_i ),
-  .data_ok_o (cacheDataOk_i ),
-  .data_notok_o(),
+  .data_ok_o ( ),
+  .data_notok_o(~cacheDataOk_i),
   .rd_data_o (sram_rdata ),
 //to AXI
   .cacheRdValid_o ( ),
