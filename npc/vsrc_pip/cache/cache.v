@@ -158,7 +158,7 @@ assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
 assign  cacheHit = way1Hit || way2Hit;
 assign data_ok_o = compareEn && cacheHit;
-assign data_notok_o = compareEn && ~cacheHit;
+assign data_notok_o = (compareEn && ~cacheHit) || getdataEn || missEn;
 
 wire    compareEn = cacheCurState == compare;
 
@@ -189,7 +189,7 @@ end
 assign rd_data_o = ({64{way1Hit}}&rdDataRegWay1)
                  | ({64{way2Hit}}&rdDataRegWay2);
 
-
+wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
 wire [63:0] addrToRead = {32'b0,tag,11'b0};
 reg [31:0] randomBit;
