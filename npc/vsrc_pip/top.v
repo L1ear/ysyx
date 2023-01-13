@@ -489,6 +489,7 @@ cache_dut (
 
   .addr_i (sram_addr[31:0] ),
   .valid_i (sram_addr_valid ),
+  .stall_n (if_stall_n),
   .op_i (0 ),
   .wr_data_i (0 ),
   .wr_mask_i (0 ),
