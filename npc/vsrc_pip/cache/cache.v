@@ -33,7 +33,7 @@ wire    [127:0] dataWay1_1,dataWay1_2,dataWay2_1,dataWay2_2;
 wire    [127:0] inDataWay1_1,inDataWay1_2,inDataWay2_1,inDataWay2_2;
 wire            wenWay1_1,wenWay1_2,wenWay2_1,wenWay2_2;
 
-always @(posedge clk or negedge rstn) begin
+always @(posedge clk or negedge rst_n) begin
     if(rst_n) begin
         cacheCurState <= idle;
     end
