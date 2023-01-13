@@ -324,7 +324,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                      << 0xbU), 8U, vlSelf->__Vtask_axiSlaveRead__0__rdata);
+                                                                      << 0xbU), 3U, vlSelf->__Vtask_axiSlaveRead__0__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[0U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__0__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[1U] 
@@ -370,7 +370,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 8U, vlSelf->__Vtask_axiSlaveRead__1__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__1__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[2U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__1__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[3U] 
@@ -384,7 +384,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 8U, vlSelf->__Vtask_axiSlaveRead__2__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__2__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[0U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__2__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[1U] 
@@ -398,7 +398,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 8U, vlSelf->__Vtask_axiSlaveRead__3__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__3__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[2U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__3__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_2[3U] 
@@ -411,7 +411,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                      << 0xbU), 8U, vlSelf->__Vtask_axiSlaveRead__4__rdata);
+                                                                      << 0xbU), 3U, vlSelf->__Vtask_axiSlaveRead__4__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[0U] 
                 = VL_RANDOM_I(32);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay1_1[1U] 
@@ -457,7 +457,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 8U, vlSelf->__Vtask_axiSlaveRead__5__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__5__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[2U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__5__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_1[3U] 
@@ -471,7 +471,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 8U, vlSelf->__Vtask_axiSlaveRead__6__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__6__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[0U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__6__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[1U] 
@@ -485,7 +485,7 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                                                                 >> 0xbU))))) 
-                                                                       << 0xbU)), 8U, vlSelf->__Vtask_axiSlaveRead__7__rdata);
+                                                                       << 0xbU)), 3U, vlSelf->__Vtask_axiSlaveRead__7__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[2U] 
                 = (IData)(vlSelf->__Vtask_axiSlaveRead__7__rdata);
             vlSelf->top__DOT__cache_dut__DOT__inDataWay2_2[3U] 

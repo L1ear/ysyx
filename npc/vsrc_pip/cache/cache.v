@@ -123,6 +123,7 @@ end
 
 
 reg [20:0]  tagArray1[0:63],tagArray2[0:63];
+reg [20:0]  tagArray1_d,tagArray2_d;
 
 reg [20:0] tagWay1_q,tagWay2_q;
 reg        validWay1_q,validWay2_q;
@@ -199,6 +200,8 @@ always @(*) begin
             wenWay2_2 = 1'b0;
             bitValid1_d = 1'b1;
             bitValid2_d = 1'b0;
+            tagArray1_d = tag;
+            tagArray2_d = 'b0;
         end
         else begin
             axiSlaveRead(addrToRead, 3, inDataWay2_1[63:0]);
@@ -213,6 +216,8 @@ always @(*) begin
             wenWay1_2 = 1'b0;
             bitValid1_d = 1'b0;
             bitValid2_d = 1'b1;
+            tagArray1_d = 'b0;
+            tagArray2_d = tag;
         end
     end
     else begin
@@ -226,6 +231,8 @@ always @(*) begin
         wenWay2_2 = 1'b0;
         bitValid1_d = 1'b0;
         bitValid2_d = 1'b0;
+        tagArray1_d = 'b0;
+        tagArray2_d = 'b0;
     end
 end
 
