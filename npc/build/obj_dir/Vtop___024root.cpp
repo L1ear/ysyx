@@ -3660,20 +3660,19 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__2(Vtop___024root* vlSelf) {
                              >> 0x3fU))) != (1U & (IData)(
                                                           (vlSelf->top__DOT__ex_stage_u__DOT__rs1 
                                                            >> 0x3fU)))));
-    if ((1U & (~ ((IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState) 
-                  >> 2U)))) {
-        vlSelf->top__DOT__cache_dut__DOT__cacheNexState 
-            = ((2U & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))
-                ? ((1U & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))
-                    ? 0U : 3U) : ((1U & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))
-                                   ? ((IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)
-                                       ? ((0ULL != vlSelf->top__DOT__pc_new)
-                                           ? 1U : 0U)
-                                       : 2U) : ((0ULL 
-                                                 != vlSelf->top__DOT__pc_new)
-                                                 ? 1U
-                                                 : 0U)));
-    }
+    vlSelf->top__DOT__cache_dut__DOT__cacheNexState 
+        = ((4U & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))
+            ? 0U : ((2U & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))
+                     ? ((1U & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))
+                         ? 0U : 3U) : ((1U & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))
+                                        ? ((IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)
+                                            ? ((0ULL 
+                                                != vlSelf->top__DOT__pc_new)
+                                                ? 1U
+                                                : 0U)
+                                            : 2U) : 
+                                       ((0ULL != vlSelf->top__DOT__pc_new)
+                                         ? 1U : 0U))));
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_1__CEN 
         = (((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
             & (0ULL != vlSelf->top__DOT__pc_new)) | 

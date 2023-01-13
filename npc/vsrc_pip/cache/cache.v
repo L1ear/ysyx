@@ -214,8 +214,8 @@ always @(*) begin
         inDataWay2_2 = {$random,$random,$random,$random};
         wenWay1_1 = 1'b0;
         wenWay1_2 = 1'b0;
-        wenWay1_1 = 1'b0;
-        wenWay1_2 = 1'b0;
+        wenWay2_1 = 1'b0;
+        wenWay2_2 = 1'b0;
         bitValid1_d = 1'b0;
         bitValid2_d = 1'b0;
     end
