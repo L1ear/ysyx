@@ -56,22 +56,6 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp103;
     VlWide<3>/*95:0*/ __Vtemp104;
     // Body
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[0U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[0U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[1U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[1U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[2U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[2U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[3U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[3U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[4U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[0U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[5U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[1U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[6U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[2U];
-    vlSelf->top__DOT__cache_dut__DOT__way2Data[7U] 
-        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[3U];
     vlSelf->top__DOT__cache_dut__DOT__way1Data[0U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay1_1[0U];
     vlSelf->top__DOT__cache_dut__DOT__way1Data[1U] 
@@ -88,6 +72,22 @@ void Vtop___024root___settle__TOP__3(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[2U];
     vlSelf->top__DOT__cache_dut__DOT__way1Data[7U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay1_2[3U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[0U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[0U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[1U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[1U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[2U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[2U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[3U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_1[3U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[4U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[0U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[5U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[1U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[6U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[2U];
+    vlSelf->top__DOT__cache_dut__DOT__way2Data[7U] 
+        = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[3U];
     vlSelf->pc_diff = (((QData)((IData)(vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[9U])) 
                         << 0x3fU) | (((QData)((IData)(
                                                       vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[8U])) 
