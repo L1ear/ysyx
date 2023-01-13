@@ -3266,6 +3266,9 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<64; ++__Vi0) {
         vlSelf->top__DOT__cache_dut__DOT__tagArray1[__Vi0] = 0;
     }
+    for (int __Vi0=0; __Vi0<64; ++__Vi0) {
+        vlSelf->top__DOT__cache_dut__DOT__tagArray2[__Vi0] = 0;
+    }
     vlSelf->top__DOT__cache_dut__DOT__tagArray1_d = 0;
     vlSelf->top__DOT__cache_dut__DOT__tagArray2_d = 0;
     vlSelf->top__DOT__cache_dut__DOT__tagWay1_q = 0;

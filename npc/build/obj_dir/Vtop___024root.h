@@ -224,10 +224,13 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg3;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out;
         VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray1;
+        VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray2;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay1_1__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay1_2__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram;
+    };
+    struct {
         VlUnpacked<QData/*63:0*/, 32> top__DOT__ID_u__DOT__regfile_u__DOT__regfiles;
     };
 

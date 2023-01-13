@@ -136,7 +136,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 always @(posedge clk or negedge rst_n) begin
-    if(rst_n) begin
+    if(~rst_n) begin
         tagWay1_q <= 'b0;
         tagWay2_q <= 'b0;
         validWay1_q <= 'b0;
