@@ -122,6 +122,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 reg [20:0]  tagArray1[0:63];
+wire [20:0] tagTest = tagArray2[index];
 reg [20:0]  tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
