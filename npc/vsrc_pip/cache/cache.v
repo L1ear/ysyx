@@ -186,7 +186,7 @@ always @(*) begin
     end
 end
 
-assign rd_data_o = rdDataRegWay2;
+assign rd_data_o = 0;
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
