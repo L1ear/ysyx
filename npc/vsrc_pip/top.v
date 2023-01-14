@@ -118,15 +118,15 @@ module top # (
     input  [AXI_ID_WIDTH-1:0]           axi_mmio_b_id_i,
     input  [AXI_USER_WIDTH-1:0]         axi_mmio_b_user_i
 
-//ls sram interface
-    output          [`XLEN-1:0]     ls_sram_addr,
-    output                          ls_sram_rd_en,          
-    output                          ls_sram_wr_en,
-    output          [`XLEN-1:0]     ls_sram_wr_data,
-    output          [7      :0]     ls_sram_wr_mask,
-    input                           ls_sram_rd_data_valid,
-    input                           ls_sram_wr_data_ok,
-    input           [`XLEN-1:0]     ls_sram_rd_data
+// ls sram interface
+//     output          [`XLEN-1:0]     ls_sram_addr,
+//     output                          ls_sram_rd_en,          
+//     output                          ls_sram_wr_en,
+//     output          [`XLEN-1:0]     ls_sram_wr_data,
+//     output          [7      :0]     ls_sram_wr_mask,
+//     input                           ls_sram_rd_data_valid,
+//     input                           ls_sram_wr_data_ok,
+//     input           [`XLEN-1:0]     ls_sram_rd_data
 
 );
 //axi signal
