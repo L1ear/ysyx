@@ -3360,7 +3360,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         = ((~ (IData)(vlSelf->top__DOT__instr_fetching)) 
            & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_user_i));
     if (vlSelf->top__DOT__instr_fetching) {
-        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_len = 3U;
+        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_len = 2U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size = 3U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_burst = 1U;
     } else {
@@ -3385,7 +3385,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
             = vlSelf->top__DOT__axi_if_u__DOT__r_ready;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_id = 0U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-            = vlSelf->top__DOT__IF_u__DOT__pc_next_o;
+            = vlSelf->top__DOT__axi_if_u__DOT__addr_reg;
     } else {
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_cache 
             = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_cache_i;
