@@ -194,7 +194,7 @@ end
     assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
     assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
-    assign axi_ar_len_o     = 'hf;                                                                          
+    assign axi_ar_len_o     = axi_len;                                                                          
     assign axi_ar_size_o    = axi_size;
     assign axi_ar_burst_o   = `AXI_BURST_TYPE_INCR;
     assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
@@ -208,7 +208,7 @@ end
     parameter AXI_SIZE      = $clog2(AXI_DATA_WIDTH / 8);
     wire [AXI_ID_WIDTH-1:0] axi_id              = {AXI_ID_WIDTH{1'b0}};
     wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
-    wire [7:0] axi_len      =  8'b0 ;
+    wire [7:0] axi_len      =  8'd2 ;
     wire [2:0] axi_size     = AXI_SIZE[2:0];
     // // 写地址通道  以下没有备注初始化信号的都可能是你需要产生和用到的
     // assign axi_aw_valid_o   = w_state_addr;
