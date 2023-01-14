@@ -293,7 +293,7 @@ assign  stall_n_diff = wb_stall_n;
 axi_crossbar axi_crossbar_u(
 //if interface  id: 0
     .instr_fetching (instr_fetching),
-    .if_axi_ar_ready_o  (),//if_axi_ar_ready_i ),     //lite              
+    .if_axi_ar_ready_o  (if_axi_ar_ready_i ),     //lite              
     .if_axi_ar_valid_i  (if_axi_ar_valid_o ),     //lite
     .if_axi_ar_addr_i   (if_axi_ar_addr_o  ),      //lite
     .if_axi_ar_prot_i   (if_axi_ar_prot_o  ),
@@ -308,12 +308,12 @@ axi_crossbar axi_crossbar_u(
     .if_axi_ar_region_i (if_axi_ar_region_o),
 
     .if_axi_r_ready_i   (if_axi_r_ready_o  ),      //lite            
-    .if_axi_r_valid_o   (),//if_axi_r_valid_i  ),      //lite            
-    .if_axi_r_resp_o    (),//if_axi_r_resp_i   ),
-    .if_axi_r_data_o    (),//if_axi_r_data_i   ),       //lite
-    .if_axi_r_last_o    (),//if_axi_r_last_i   ),
-    .if_axi_r_id_o      (),//if_axi_r_id_i     ),
-    .if_axi_r_user_o    (),//if_axi_r_user_i   ),
+    .if_axi_r_valid_o   (if_axi_r_valid_i  ),      //lite            
+    .if_axi_r_resp_o    (if_axi_r_resp_i   ),
+    .if_axi_r_data_o    (if_axi_r_data_i   ),       //lite
+    .if_axi_r_last_o    (if_axi_r_last_i   ),
+    .if_axi_r_id_o      (if_axi_r_id_i     ),
+    .if_axi_r_user_o    (if_axi_r_user_i   ),
 //ls interface  id: 1
     .ls_axi_aw_ready_o  (),//ls_axi_aw_ready_i ),     //lite         
     .ls_axi_aw_valid_i  (),//ls_axi_aw_valid_o ),     //lite
