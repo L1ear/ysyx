@@ -224,12 +224,11 @@ char  stall;
 void single_cycle(int i) {
   device_update();
 //上升沿
-  
+  top->clk = 1; 
   //********************************************
   mmio_sigs.update_input(*mmioref);
   mem_sigs.update_input(*memref);
   //********************************************
-  top->clk = 1; 
   top->eval();
   //********************************************
   mem.beat(mem_sigs_ref);
