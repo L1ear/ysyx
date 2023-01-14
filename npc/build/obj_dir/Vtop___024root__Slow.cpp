@@ -3437,7 +3437,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     for (int __Vi0=0; __Vi0<64; ++__Vi0) {
         VL_ZERO_RESET_W(128, vlSelf->top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram[__Vi0]);
     }
-    vlSelf->top__DOT__axi_if_u__DOT__fetchLenth = 0;
     vlSelf->top__DOT__axi_if_u__DOT__r_state = 0;
     vlSelf->top__DOT__axi_if_u__DOT__r_state_next = 0;
     vlSelf->top__DOT__axi_if_u__DOT__ar_valid = 0;
