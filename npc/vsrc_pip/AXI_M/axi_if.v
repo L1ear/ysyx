@@ -17,6 +17,7 @@ module axi_if # (
     output reg [RW_DATA_WIDTH-1:0]      data_read_o,        //IF&MEM输入信号
     // input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //IF&MEM输入信号
     input  [RW_ADDR_WIDTH-1:0]          rw_addr_i,          //IF&MEM输入信号
+    input  [7:0]                        fetchLenth,         //cache模块发来的取值长度
     // input  [7:0]                        rw_size_i,          //IF&MEM输入信号
 
     output  reg                         instr_fetching,
@@ -90,7 +91,7 @@ reg     [`XLEN-1:0]     addr_reg;
               else                  r_state_next = r_state_ar_wait;
           end
           r_state_r_wait: begin
-              if(axi_r_valid_i)     r_state_next = r_state_trans_ok;
+              if(axi_r_last_i)     r_state_next = r_state_trans_ok;
               else                  r_state_next = r_state_r_wait;
           end
           r_state_trans_ok: begin
@@ -189,11 +190,11 @@ end
 
     // Read address channel signals
     assign axi_ar_valid_o   = ar_valid;
-    assign axi_ar_addr_o    = rw_addr_i;
+    assign axi_ar_addr_o    = addr_reg;
     assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
     assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
-    assign axi_ar_len_o     = axi_len;                                                                          
+    assign axi_ar_len_o     = 2;                                                                          
     assign axi_ar_size_o    = axi_size;
     assign axi_ar_burst_o   = `AXI_BURST_TYPE_INCR;
     assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
