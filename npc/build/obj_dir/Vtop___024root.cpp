@@ -4236,7 +4236,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         = ((~ (IData)(vlSelf->top__DOT__instr_fetching)) 
            & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_user_i));
     if (vlSelf->top__DOT__instr_fetching) {
-        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_len = 0U;
+        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_len = 2U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size = 3U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_burst = 1U;
     } else {
