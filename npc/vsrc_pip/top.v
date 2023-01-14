@@ -858,36 +858,36 @@ pipline_ctrl pipline_ctrl_u(
     .ex_flush           (ex_flush)
 );
 
-myip_AXI_Lite_v1_0_S00_AXI 
-#(
-  .C_S_AXI_DATA_WIDTH(`XLEN),
-  .C_S_AXI_ADDR_WIDTH (`XLEN)
-)
-ifAxiSlaveRam_u (
-  .S_AXI_ACLK (clk ),
-  .S_AXI_ARESETN (rst_n ),
-  .S_AXI_AWADDR ( ),
-  .S_AXI_AWSIZE (),
-  .S_AXI_AWPROT ( ),
-  .S_AXI_AWVALID ( ),
-  .S_AXI_AWREADY ( ),
-  .S_AXI_WDATA ( ),
-  .S_AXI_WSTRB ( ),
-  .S_AXI_WVALID ( ),
-  .S_AXI_WREADY ( ),
-  .S_AXI_BRESP ( ),
-  .S_AXI_BVALID ( ),
-  .S_AXI_BREADY ( ),
-  .S_AXI_ARADDR (if_axi_ar_addr_o ),
-  .S_AXI_ARPROT (if_axi_ar_prot_o ),
-  .S_AXI_ARVALID (if_axi_ar_valid_o ),
-  .S_AXI_ARREADY (if_axi_ar_ready_i ),
-  .S_AXI_ARSIZE (if_axi_ar_size_o ),
-  .S_AXI_RDATA (if_axi_r_data_i ),
-  .S_AXI_RRESP (if_axi_r_resp_i ),
-  .S_AXI_RVALID (if_axi_r_valid_i ),
-  .S_AXI_RREADY  ( if_axi_r_ready_o)
-);
+// myip_AXI_Lite_v1_0_S00_AXI 
+// #(
+//   .C_S_AXI_DATA_WIDTH(`XLEN),
+//   .C_S_AXI_ADDR_WIDTH (`XLEN)
+// )
+// ifAxiSlaveRam_u (
+//   .S_AXI_ACLK (clk ),
+//   .S_AXI_ARESETN (rst_n ),
+//   .S_AXI_AWADDR ( ),
+//   .S_AXI_AWSIZE (),
+//   .S_AXI_AWPROT ( ),
+//   .S_AXI_AWVALID ( ),
+//   .S_AXI_AWREADY ( ),
+//   .S_AXI_WDATA ( ),
+//   .S_AXI_WSTRB ( ),
+//   .S_AXI_WVALID ( ),
+//   .S_AXI_WREADY ( ),
+//   .S_AXI_BRESP ( ),
+//   .S_AXI_BVALID ( ),
+//   .S_AXI_BREADY ( ),
+//   .S_AXI_ARADDR (if_axi_ar_addr_o ),
+//   .S_AXI_ARPROT (if_axi_ar_prot_o ),
+//   .S_AXI_ARVALID (if_axi_ar_valid_o ),
+//   .S_AXI_ARREADY (if_axi_ar_ready_i ),
+//   .S_AXI_ARSIZE (if_axi_ar_size_o ),
+//   .S_AXI_RDATA (if_axi_r_data_i ),
+//   .S_AXI_RRESP (if_axi_r_resp_i ),
+//   .S_AXI_RVALID (if_axi_r_valid_i ),
+//   .S_AXI_RREADY  ( if_axi_r_ready_o)
+// );
 
 myip_AXI_Lite_v1_0_S00_AXI 
 #(
