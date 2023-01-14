@@ -13,120 +13,120 @@ module top # (
     output          [`XLEN-1:0]     pc_diff,pc_decoding,
     output          [`inst_len-1:0] instr_diff,
 	output	        [`XLEN-1:0]		regA0,
-    output                          stall_n_diff
+    output                          stall_n_diff,
 
 //instr sram  interface
-    // input           [`XLEN-1:0]     sram_rdata,
-    // input                           sram_data_valid,
-    // output          [`XLEN-1:0]     sram_addr,
-    // output                          sram_ren,
-    // output                          sram_addr_valid,
+    input           [`XLEN-1:0]     sram_rdata,
+    input                           sram_data_valid,
+    output          [`XLEN-1:0]     sram_addr,
+    output                          sram_ren,
+    output                          sram_addr_valid,
 
-    // input                               axi_ar_ready_i,     //lite              
-    // output                              axi_ar_valid_o,     //lite
-    // output [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o,      //lite
-    // output [2:0]                        axi_ar_prot_o,
-    // output [AXI_ID_WIDTH-1:0]           axi_ar_id_o,
-    // output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
-    // output [7:0]                        axi_ar_len_o,       //lite
-    // output [2:0]                        axi_ar_size_o,      //lite
-    // output [1:0]                        axi_ar_burst_o,
-    // output                              axi_ar_lock_o,
-    // output [3:0]                        axi_ar_cache_o,
-    // output [3:0]                        axi_ar_qos_o,
-    // output [3:0]                        axi_ar_region_o,
+    input                               axi_ar_ready_i,     //lite              
+    output                              axi_ar_valid_o,     //lite
+    output [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o,      //lite
+    output [2:0]                        axi_ar_prot_o,
+    output [AXI_ID_WIDTH-1:0]           axi_ar_id_o,
+    output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
+    output [7:0]                        axi_ar_len_o,       //lite
+    output [2:0]                        axi_ar_size_o,      //lite
+    output [1:0]                        axi_ar_burst_o,
+    output                              axi_ar_lock_o,
+    output [3:0]                        axi_ar_cache_o,
+    output [3:0]                        axi_ar_qos_o,
+    output [3:0]                        axi_ar_region_o,
     
-    // output                              axi_r_ready_o,      //lite            
-    // input                               axi_r_valid_i,      //lite            
-    // input  [1:0]                        axi_r_resp_i,
-    // input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       //lite
-    // input                               axi_r_last_i,
-    // input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
-    // input  [AXI_USER_WIDTH-1:0]         axi_r_user_i,
+    output                              axi_r_ready_o,      //lite            
+    input                               axi_r_valid_i,      //lite            
+    input  [1:0]                        axi_r_resp_i,
+    input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       //lite
+    input                               axi_r_last_i,
+    input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
+    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i,
 
-    // input                               axi_aw_ready_i,     //lite        
-    // output                              axi_aw_valid_o,     //lite
-    // output [AXI_ADDR_WIDTH-1:0]         axi_aw_addr_o,      //lite
-    // output [2:0]                        axi_aw_prot_o,
-    // output [AXI_ID_WIDTH-1:0]           axi_aw_id_o,
-    // output [AXI_USER_WIDTH-1:0]         axi_aw_user_o,
-    // output [7:0]                        axi_aw_len_o,       
-    // output [2:0]                        axi_aw_size_o,
-    // output [1:0]                        axi_aw_burst_o,
-    // output                              axi_aw_lock_o,
-    // output [3:0]                        axi_aw_cache_o,
-    // output [3:0]                        axi_aw_qos_o,
-    // output [3:0]                        axi_aw_region_o,
-    // input                               axi_w_ready_i,      //lite        
-    // output                              axi_w_valid_o,      //lite
-    // output [AXI_DATA_WIDTH-1:0]         axi_w_data_o,       //lite
-    // output [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o,       //lite
-    // output                              axi_w_last_o,
-    // output [AXI_USER_WIDTH-1:0]         axi_w_user_o,
+    input                               axi_aw_ready_i,     //lite        
+    output                              axi_aw_valid_o,     //lite
+    output [AXI_ADDR_WIDTH-1:0]         axi_aw_addr_o,      //lite
+    output [2:0]                        axi_aw_prot_o,
+    output [AXI_ID_WIDTH-1:0]           axi_aw_id_o,
+    output [AXI_USER_WIDTH-1:0]         axi_aw_user_o,
+    output [7:0]                        axi_aw_len_o,       
+    output [2:0]                        axi_aw_size_o,
+    output [1:0]                        axi_aw_burst_o,
+    output                              axi_aw_lock_o,
+    output [3:0]                        axi_aw_cache_o,
+    output [3:0]                        axi_aw_qos_o,
+    output [3:0]                        axi_aw_region_o,
+    input                               axi_w_ready_i,      //lite        
+    output                              axi_w_valid_o,      //lite
+    output [AXI_DATA_WIDTH-1:0]         axi_w_data_o,       //lite
+    output [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o,       //lite
+    output                              axi_w_last_o,
+    output [AXI_USER_WIDTH-1:0]         axi_w_user_o,
         
-    // output                              axi_b_ready_o,      //lite        
-    // input                               axi_b_valid_i,      //lite
-    // input  [1:0]                        axi_b_resp_i,       //lite        
-    // input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
-    // input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
+    output                              axi_b_ready_o,      //lite        
+    input                               axi_b_valid_i,      //lite
+    input  [1:0]                        axi_b_resp_i,       //lite        
+    input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
+    input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
 
-    // input                               axi_mmio_ar_ready_i,     //lite              
-    // output                              axi_mmio_ar_valid_o,     //lite
-    // output [AXI_ADDR_WIDTH-1:0]         axi_mmio_ar_addr_o,      //lite
-    // output [2:0]                        axi_mmio_ar_prot_o,
-    // output [AXI_ID_WIDTH-1:0]           axi_mmio_ar_id_o,
-    // output [AXI_USER_WIDTH-1:0]         axi_mmio_ar_user_o,
-    // output [7:0]                        axi_mmio_ar_len_o,       //lite
-    // output [2:0]                        axi_mmio_ar_size_o,      //lite
-    // output [1:0]                        axi_mmio_ar_burst_o,
-    // output                              axi_mmio_ar_lock_o,
-    // output [3:0]                        axi_mmio_ar_cache_o,
-    // output [3:0]                        axi_mmio_ar_qos_o,
-    // output [3:0]                        axi_mmio_ar_region_o,
+    input                               axi_mmio_ar_ready_i,     //lite              
+    output                              axi_mmio_ar_valid_o,     //lite
+    output [AXI_ADDR_WIDTH-1:0]         axi_mmio_ar_addr_o,      //lite
+    output [2:0]                        axi_mmio_ar_prot_o,
+    output [AXI_ID_WIDTH-1:0]           axi_mmio_ar_id_o,
+    output [AXI_USER_WIDTH-1:0]         axi_mmio_ar_user_o,
+    output [7:0]                        axi_mmio_ar_len_o,       //lite
+    output [2:0]                        axi_mmio_ar_size_o,      //lite
+    output [1:0]                        axi_mmio_ar_burst_o,
+    output                              axi_mmio_ar_lock_o,
+    output [3:0]                        axi_mmio_ar_cache_o,
+    output [3:0]                        axi_mmio_ar_qos_o,
+    output [3:0]                        axi_mmio_ar_region_o,
   
-    // output                              axi_mmio_r_ready_o,      //lite            
-    // input                               axi_mmio_r_valid_i,      //lite            
-    // input  [1:0]                        axi_mmio_r_resp_i,
-    // input  [AXI_DATA_WIDTH-1:0]         axi_mmio_r_data_i,       //lite
-    // input                               axi_mmio_r_last_i,
-    // input  [AXI_ID_WIDTH-1:0]           axi_mmio_r_id_i,
-    // input  [AXI_USER_WIDTH-1:0]         axi_mmio_r_user_i,
+    output                              axi_mmio_r_ready_o,      //lite            
+    input                               axi_mmio_r_valid_i,      //lite            
+    input  [1:0]                        axi_mmio_r_resp_i,
+    input  [AXI_DATA_WIDTH-1:0]         axi_mmio_r_data_i,       //lite
+    input                               axi_mmio_r_last_i,
+    input  [AXI_ID_WIDTH-1:0]           axi_mmio_r_id_i,
+    input  [AXI_USER_WIDTH-1:0]         axi_mmio_r_user_i,
 
-    // input                               axi_mmio_aw_ready_i,     //lite        
-    // output                              axi_mmio_aw_valid_o,     //lite
-    // output [AXI_ADDR_WIDTH-1:0]         axi_mmio_aw_addr_o,      //lite
-    // output [2:0]                        axi_mmio_aw_prot_o,
-    // output [AXI_ID_WIDTH-1:0]           axi_mmio_aw_id_o,
-    // output [AXI_USER_WIDTH-1:0]         axi_mmio_aw_user_o,
-    // output [7:0]                        axi_mmio_aw_len_o,       
-    // output [2:0]                        axi_mmio_aw_size_o,
-    // output [1:0]                        axi_mmio_aw_burst_o,
-    // output                              axi_mmio_aw_lock_o,
-    // output [3:0]                        axi_mmio_aw_cache_o,
-    // output [3:0]                        axi_mmio_aw_qos_o,
-    // output [3:0]                        axi_mmio_aw_region_o,
-    // input                               axi_mmio_w_ready_i,      //lite        
-    // output                              axi_mmio_w_valid_o,      //lite
-    // output [AXI_DATA_WIDTH-1:0]         axi_mmio_w_data_o,       //lite
-    // output [AXI_DATA_WIDTH/8-1:0]       axi_mmio_w_strb_o,       //lite
-    // output                              axi_mmio_w_last_o,
-    // output [AXI_USER_WIDTH-1:0]         axi_mmio_w_user_o,
+    input                               axi_mmio_aw_ready_i,     //lite        
+    output                              axi_mmio_aw_valid_o,     //lite
+    output [AXI_ADDR_WIDTH-1:0]         axi_mmio_aw_addr_o,      //lite
+    output [2:0]                        axi_mmio_aw_prot_o,
+    output [AXI_ID_WIDTH-1:0]           axi_mmio_aw_id_o,
+    output [AXI_USER_WIDTH-1:0]         axi_mmio_aw_user_o,
+    output [7:0]                        axi_mmio_aw_len_o,       
+    output [2:0]                        axi_mmio_aw_size_o,
+    output [1:0]                        axi_mmio_aw_burst_o,
+    output                              axi_mmio_aw_lock_o,
+    output [3:0]                        axi_mmio_aw_cache_o,
+    output [3:0]                        axi_mmio_aw_qos_o,
+    output [3:0]                        axi_mmio_aw_region_o,
+    input                               axi_mmio_w_ready_i,      //lite        
+    output                              axi_mmio_w_valid_o,      //lite
+    output [AXI_DATA_WIDTH-1:0]         axi_mmio_w_data_o,       //lite
+    output [AXI_DATA_WIDTH/8-1:0]       axi_mmio_w_strb_o,       //lite
+    output                              axi_mmio_w_last_o,
+    output [AXI_USER_WIDTH-1:0]         axi_mmio_w_user_o,
         
-    // output                              axi_mmio_b_ready_o,      //lite        
-    // input                               axi_mmio_b_valid_i,      //lite
-    // input  [1:0]                        axi_mmio_b_resp_i,       //lite        
-    // input  [AXI_ID_WIDTH-1:0]           axi_mmio_b_id_i,
-    // input  [AXI_USER_WIDTH-1:0]         axi_mmio_b_user_i
+    output                              axi_mmio_b_ready_o,      //lite        
+    input                               axi_mmio_b_valid_i,      //lite
+    input  [1:0]                        axi_mmio_b_resp_i,       //lite        
+    input  [AXI_ID_WIDTH-1:0]           axi_mmio_b_id_i,
+    input  [AXI_USER_WIDTH-1:0]         axi_mmio_b_user_i
 
-// //ls sram interface
-//     output          [`XLEN-1:0]     ls_sram_addr,
-//     output                          ls_sram_rd_en,          
-//     output                          ls_sram_wr_en,
-//     output          [`XLEN-1:0]     ls_sram_wr_data,
-//     output          [7      :0]     ls_sram_wr_mask,
-//     input                           ls_sram_rd_data_valid,
-//     input                           ls_sram_wr_data_ok,
-//     input           [`XLEN-1:0]     ls_sram_rd_data
+//ls sram interface
+    output          [`XLEN-1:0]     ls_sram_addr,
+    output                          ls_sram_rd_en,          
+    output                          ls_sram_wr_en,
+    output          [`XLEN-1:0]     ls_sram_wr_data,
+    output          [7      :0]     ls_sram_wr_mask,
+    input                           ls_sram_rd_data_valid,
+    input                           ls_sram_wr_data_ok,
+    input           [`XLEN-1:0]     ls_sram_rd_data
 
 );
 //axi signal
@@ -290,174 +290,174 @@ assign  pc_decoding = pc_id;
 assign  instr_diff = instr_wb;
 assign  stall_n_diff = wb_stall_n;
 
-// axi_crossbar axi_crossbar_u(
-// //if interface  id: 0
-//     .instr_fetching (instr_fetching),
-//     .if_axi_ar_ready_o  (),//if_axi_ar_ready_i ),     //lite              
-//     .if_axi_ar_valid_i  (),//if_axi_ar_valid_o ),     //lite
-//     .if_axi_ar_addr_i   (),//if_axi_ar_addr_o  ),      //lite
-//     .if_axi_ar_prot_i   (),//if_axi_ar_prot_o  ),
-//     .if_axi_ar_id_i     (),//if_axi_ar_id_o    ),
-//     .if_axi_ar_user_i   (),//if_axi_ar_user_o  ),
-//     .if_axi_ar_len_i    (),//if_axi_ar_len_o   ),       //lite
-//     .if_axi_ar_size_i   (),//if_axi_ar_size_o  ),      //lite
-//     .if_axi_ar_burst_i  (),//if_axi_ar_burst_o ),
-//     .if_axi_ar_lock_i   (),//if_axi_ar_lock_o  ),
-//     .if_axi_ar_cache_i  (),//if_axi_ar_cache_o ),
-//     .if_axi_ar_qos_i    (),//if_axi_ar_qos_o   ),
-//     .if_axi_ar_region_i (),//if_axi_ar_region_o),
+axi_crossbar axi_crossbar_u(
+//if interface  id: 0
+    .instr_fetching (instr_fetching),
+    .if_axi_ar_ready_o  (),//if_axi_ar_ready_i ),     //lite              
+    .if_axi_ar_valid_i  (if_axi_ar_valid_o ),     //lite
+    .if_axi_ar_addr_i   (if_axi_ar_addr_o  ),      //lite
+    .if_axi_ar_prot_i   (if_axi_ar_prot_o  ),
+    .if_axi_ar_id_i     (if_axi_ar_id_o    ),
+    .if_axi_ar_user_i   (if_axi_ar_user_o  ),
+    .if_axi_ar_len_i    (if_axi_ar_len_o   ),       //lite
+    .if_axi_ar_size_i   (if_axi_ar_size_o  ),      //lite
+    .if_axi_ar_burst_i  (if_axi_ar_burst_o ),
+    .if_axi_ar_lock_i   (if_axi_ar_lock_o  ),
+    .if_axi_ar_cache_i  (if_axi_ar_cache_o ),
+    .if_axi_ar_qos_i    (if_axi_ar_qos_o   ),
+    .if_axi_ar_region_i (if_axi_ar_region_o),
 
-//     .if_axi_r_ready_i   (),//if_axi_r_ready_o  ),      //lite            
-//     .if_axi_r_valid_o   (),//if_axi_r_valid_i  ),      //lite            
-//     .if_axi_r_resp_o    (),//if_axi_r_resp_i   ),
-//     .if_axi_r_data_o    (),//if_axi_r_data_i   ),       //lite
-//     .if_axi_r_last_o    (),//if_axi_r_last_i   ),
-//     .if_axi_r_id_o      (),//if_axi_r_id_i     ),
-//     .if_axi_r_user_o    (),//if_axi_r_user_i   ),
-// //ls interface  id: 1
-//     .ls_axi_aw_ready_o  (),//ls_axi_aw_ready_i ),     //lite         
-//     .ls_axi_aw_valid_i  (),//ls_axi_aw_valid_o ),     //lite
-//     .ls_axi_aw_addr_i   (),//ls_axi_aw_addr_o  ),      //lite
-//     .ls_axi_aw_prot_i   (),//ls_axi_aw_prot_o  ),
-//     .ls_axi_aw_id_i     (),//ls_axi_aw_id_o    ),
-//     .ls_axi_aw_user_i   (),//ls_axi_aw_user_o  ),
-//     .ls_axi_aw_len_i    (),//ls_axi_aw_len_o   ),       
-//     .ls_axi_aw_size_i   (),//ls_axi_aw_size_o  ),
-//     .ls_axi_aw_burst_i  (),//ls_axi_aw_burst_o ),
-//     .ls_axi_aw_lock_i   (),//ls_axi_aw_lock_o  ),
-//     .ls_axi_aw_cache_i  (),//ls_axi_aw_cache_o ),
-//     .ls_axi_aw_qos_i    (),//ls_axi_aw_qos_o   ),
-//     .ls_axi_aw_region_i (),//ls_axi_aw_region_o),
+    .if_axi_r_ready_i   (if_axi_r_ready_o  ),      //lite            
+    .if_axi_r_valid_o   (),//if_axi_r_valid_i  ),      //lite            
+    .if_axi_r_resp_o    (),//if_axi_r_resp_i   ),
+    .if_axi_r_data_o    (),//if_axi_r_data_i   ),       //lite
+    .if_axi_r_last_o    (),//if_axi_r_last_i   ),
+    .if_axi_r_id_o      (),//if_axi_r_id_i     ),
+    .if_axi_r_user_o    (),//if_axi_r_user_i   ),
+//ls interface  id: 1
+    .ls_axi_aw_ready_o  (),//ls_axi_aw_ready_i ),     //lite         
+    .ls_axi_aw_valid_i  (),//ls_axi_aw_valid_o ),     //lite
+    .ls_axi_aw_addr_i   (),//ls_axi_aw_addr_o  ),      //lite
+    .ls_axi_aw_prot_i   (),//ls_axi_aw_prot_o  ),
+    .ls_axi_aw_id_i     (),//ls_axi_aw_id_o    ),
+    .ls_axi_aw_user_i   (),//ls_axi_aw_user_o  ),
+    .ls_axi_aw_len_i    (),//ls_axi_aw_len_o   ),       
+    .ls_axi_aw_size_i   (),//ls_axi_aw_size_o  ),
+    .ls_axi_aw_burst_i  (),//ls_axi_aw_burst_o ),
+    .ls_axi_aw_lock_i   (),//ls_axi_aw_lock_o  ),
+    .ls_axi_aw_cache_i  (),//ls_axi_aw_cache_o ),
+    .ls_axi_aw_qos_i    (),//ls_axi_aw_qos_o   ),
+    .ls_axi_aw_region_i (),//ls_axi_aw_region_o),
 
-//     .ls_axi_w_ready_o   (),//ls_axi_w_ready_i  ),      //lite              
-//     .ls_axi_w_valid_i   (),//ls_axi_w_valid_o  ),      //lite
-//     .ls_axi_w_data_i    (),//ls_axi_w_data_o   ),       //lite
-//     .ls_axi_w_strb_i    (),//ls_axi_w_strb_o   ),       //lite
-//     .ls_axi_w_last_i    (),//ls_axi_w_last_o   ),       //lite
-//     .ls_axi_w_user_i    (),//ls_axi_w_user_o   ),
+    .ls_axi_w_ready_o   (),//ls_axi_w_ready_i  ),      //lite              
+    .ls_axi_w_valid_i   (),//ls_axi_w_valid_o  ),      //lite
+    .ls_axi_w_data_i    (),//ls_axi_w_data_o   ),       //lite
+    .ls_axi_w_strb_i    (),//ls_axi_w_strb_o   ),       //lite
+    .ls_axi_w_last_i    (),//ls_axi_w_last_o   ),       //lite
+    .ls_axi_w_user_i    (),//ls_axi_w_user_o   ),
 
-//     .ls_axi_b_ready_i   (),//ls_axi_b_ready_o  ),      //lite           
-//     .ls_axi_b_valid_o   (),//ls_axi_b_valid_i  ),      //lite
-//     .ls_axi_b_resp_o    (),//ls_axi_b_resp_i   ),       //lite            
-//     .ls_axi_b_id_o      (),//ls_axi_b_id_i     ),
-//     .ls_axi_b_user_o    (),//ls_axi_b_user_i   ),
+    .ls_axi_b_ready_i   (),//ls_axi_b_ready_o  ),      //lite           
+    .ls_axi_b_valid_o   (),//ls_axi_b_valid_i  ),      //lite
+    .ls_axi_b_resp_o    (),//ls_axi_b_resp_i   ),       //lite            
+    .ls_axi_b_id_o      (),//ls_axi_b_id_i     ),
+    .ls_axi_b_user_o    (),//ls_axi_b_user_i   ),
 
-//     .ls_axi_ar_ready_o  (),//ls_axi_ar_ready_i ),     //lite              
-//     .ls_axi_ar_valid_i  (),//ls_axi_ar_valid_o ),     //lite
-//     .ls_axi_ar_addr_i   (),//ls_axi_ar_addr_o  ),      //lite
-//     .ls_axi_ar_prot_i   (),//ls_axi_ar_prot_o  ),
-//     .ls_axi_ar_id_i     (),//ls_axi_ar_id_o    ),
-//     .ls_axi_ar_user_i   (),//ls_axi_ar_user_o  ),
-//     .ls_axi_ar_len_i    (),//ls_axi_ar_len_o   ),       //lite
-//     .ls_axi_ar_size_i   (),//ls_axi_ar_size_o  ),      //lite
-//     .ls_axi_ar_burst_i  (),//ls_axi_ar_burst_o ),
-//     .ls_axi_ar_lock_i   (),//ls_axi_ar_lock_o  ),
-//     .ls_axi_ar_cache_i  (),//ls_axi_ar_cache_o ),
-//     .ls_axi_ar_qos_i    (),//ls_axi_ar_qos_o   ),
-//     .ls_axi_ar_region_i (),//ls_axi_ar_region_o),
+    .ls_axi_ar_ready_o  (),//ls_axi_ar_ready_i ),     //lite              
+    .ls_axi_ar_valid_i  (),//ls_axi_ar_valid_o ),     //lite
+    .ls_axi_ar_addr_i   (),//ls_axi_ar_addr_o  ),      //lite
+    .ls_axi_ar_prot_i   (),//ls_axi_ar_prot_o  ),
+    .ls_axi_ar_id_i     (),//ls_axi_ar_id_o    ),
+    .ls_axi_ar_user_i   (),//ls_axi_ar_user_o  ),
+    .ls_axi_ar_len_i    (),//ls_axi_ar_len_o   ),       //lite
+    .ls_axi_ar_size_i   (),//ls_axi_ar_size_o  ),      //lite
+    .ls_axi_ar_burst_i  (),//ls_axi_ar_burst_o ),
+    .ls_axi_ar_lock_i   (),//ls_axi_ar_lock_o  ),
+    .ls_axi_ar_cache_i  (),//ls_axi_ar_cache_o ),
+    .ls_axi_ar_qos_i    (),//ls_axi_ar_qos_o   ),
+    .ls_axi_ar_region_i (),//ls_axi_ar_region_o),
 
-//     .ls_axi_r_ready_i   (),//ls_axi_r_ready_o  ),      //lite            
-//     .ls_axi_r_valid_o   (),//ls_axi_r_valid_i  ),      //lite            
-//     .ls_axi_r_resp_o    (),//ls_axi_r_resp_i   ),
-//     .ls_axi_r_data_o    (),//ls_axi_r_data_i   ),       //lite
-//     .ls_axi_r_last_o    (),//ls_axi_r_last_i   ),
-//     .ls_axi_r_id_o      (),//ls_axi_r_id_i     ),
-//     .ls_axi_r_user_o    (),//ls_axi_r_user_i   ),
-// //mem
-//     .axi_aw_ready_i     (axi_aw_ready_i    ),     //lite         
-//     .axi_aw_valid_o     (axi_aw_valid_o    ),     //lite
-//     .axi_aw_addr_o      (axi_aw_addr_o     ),      //lite
-//     .axi_aw_prot_o      (axi_aw_prot_o     ),
-//     .axi_aw_id_o        (axi_aw_id_o       ),
-//     .axi_aw_user_o      (axi_aw_user_o     ),
-//     .axi_aw_len_o       (axi_aw_len_o      ),       
-//     .axi_aw_size_o      (axi_aw_size_o     ),
-//     .axi_aw_burst_o     (axi_aw_burst_o    ),
-//     .axi_aw_lock_o      (axi_aw_lock_o     ),
-//     .axi_aw_cache_o     (axi_aw_cache_o    ),
-//     .axi_aw_qos_o       (axi_aw_qos_o      ),
-//     .axi_aw_region_o    (axi_aw_region_o   ),
+    .ls_axi_r_ready_i   (),//ls_axi_r_ready_o  ),      //lite            
+    .ls_axi_r_valid_o   (),//ls_axi_r_valid_i  ),      //lite            
+    .ls_axi_r_resp_o    (),//ls_axi_r_resp_i   ),
+    .ls_axi_r_data_o    (),//ls_axi_r_data_i   ),       //lite
+    .ls_axi_r_last_o    (),//ls_axi_r_last_i   ),
+    .ls_axi_r_id_o      (),//ls_axi_r_id_i     ),
+    .ls_axi_r_user_o    (),//ls_axi_r_user_i   ),
+//mem
+    .axi_aw_ready_i     (axi_aw_ready_i    ),     //lite         
+    .axi_aw_valid_o     (axi_aw_valid_o    ),     //lite
+    .axi_aw_addr_o      (axi_aw_addr_o     ),      //lite
+    .axi_aw_prot_o      (axi_aw_prot_o     ),
+    .axi_aw_id_o        (axi_aw_id_o       ),
+    .axi_aw_user_o      (axi_aw_user_o     ),
+    .axi_aw_len_o       (axi_aw_len_o      ),       
+    .axi_aw_size_o      (axi_aw_size_o     ),
+    .axi_aw_burst_o     (axi_aw_burst_o    ),
+    .axi_aw_lock_o      (axi_aw_lock_o     ),
+    .axi_aw_cache_o     (axi_aw_cache_o    ),
+    .axi_aw_qos_o       (axi_aw_qos_o      ),
+    .axi_aw_region_o    (axi_aw_region_o   ),
 
-//     .axi_w_ready_i      (axi_w_ready_i     ),      //lite              
-//     .axi_w_valid_o      (axi_w_valid_o     ),      //lite
-//     .axi_w_data_o       (axi_w_data_o      ),       //lite
-//     .axi_w_strb_o       (axi_w_strb_o      ),       //lite
-//     .axi_w_last_o       (axi_w_last_o      ),       //lite
-//     .axi_w_user_o       (axi_w_user_o      ),
+    .axi_w_ready_i      (axi_w_ready_i     ),      //lite              
+    .axi_w_valid_o      (axi_w_valid_o     ),      //lite
+    .axi_w_data_o       (axi_w_data_o      ),       //lite
+    .axi_w_strb_o       (axi_w_strb_o      ),       //lite
+    .axi_w_last_o       (axi_w_last_o      ),       //lite
+    .axi_w_user_o       (axi_w_user_o      ),
     
-//     .axi_b_ready_o      (axi_b_ready_o),      //lite           
-//     .axi_b_valid_i      (axi_b_valid_i),      //lite
-//     .axi_b_resp_i       (axi_b_resp_i ),       //lite            
-//     .axi_b_id_i         (axi_b_id_i   ),
-//     .axi_b_user_i       (axi_b_user_i ),
+    .axi_b_ready_o      (axi_b_ready_o),      //lite           
+    .axi_b_valid_i      (axi_b_valid_i),      //lite
+    .axi_b_resp_i       (axi_b_resp_i ),       //lite            
+    .axi_b_id_i         (axi_b_id_i   ),
+    .axi_b_user_i       (axi_b_user_i ),
 
-//     .axi_ar_ready_i     (axi_ar_ready_i  ),     //lite              
-//     .axi_ar_valid_o     (axi_ar_valid_o  ),     //lite
-//     .axi_ar_addr_o      (axi_ar_addr_o   ),      //lite
-//     .axi_ar_prot_o      (axi_ar_prot_o   ),
-//     .axi_ar_id_o        (axi_ar_id_o     ),
-//     .axi_ar_user_o      (axi_ar_user_o   ),
-//     .axi_ar_len_o       (axi_ar_len_o    ),       //lite
-//     .axi_ar_size_o      (axi_ar_size_o   ),      //lite
-//     .axi_ar_burst_o     (axi_ar_burst_o  ),
-//     .axi_ar_lock_o      (axi_ar_lock_o   ),
-//     .axi_ar_cache_o     (axi_ar_cache_o  ),
-//     .axi_ar_qos_o       (axi_ar_qos_o    ),
-//     .axi_ar_region_o    (axi_ar_region_o ),
+    .axi_ar_ready_i     (axi_ar_ready_i  ),     //lite              
+    .axi_ar_valid_o     (axi_ar_valid_o  ),     //lite
+    .axi_ar_addr_o      (axi_ar_addr_o   ),      //lite
+    .axi_ar_prot_o      (axi_ar_prot_o   ),
+    .axi_ar_id_o        (axi_ar_id_o     ),
+    .axi_ar_user_o      (axi_ar_user_o   ),
+    .axi_ar_len_o       (axi_ar_len_o    ),       //lite
+    .axi_ar_size_o      (axi_ar_size_o   ),      //lite
+    .axi_ar_burst_o     (axi_ar_burst_o  ),
+    .axi_ar_lock_o      (axi_ar_lock_o   ),
+    .axi_ar_cache_o     (axi_ar_cache_o  ),
+    .axi_ar_qos_o       (axi_ar_qos_o    ),
+    .axi_ar_region_o    (axi_ar_region_o ),
     
-//     .axi_r_ready_o      (axi_r_ready_o ),      //lite            
-//     .axi_r_valid_i      (axi_r_valid_i ),      //lite            
-//     .axi_r_resp_i       (axi_r_resp_i  ),
-//     .axi_r_data_i       (axi_r_data_i  ),       //lite
-//     .axi_r_last_i       (axi_r_last_i  ),
-//     .axi_r_id_i         (axi_r_id_i    ),
-//     .axi_r_user_i       (axi_r_user_i  ),
-// //mmio
-//     .axi_mmio_aw_ready_i    (axi_mmio_aw_ready_i  ),
-//     .axi_mmio_aw_valid_o    (axi_mmio_aw_valid_o  ),
-//     .axi_mmio_aw_addr_o     (axi_mmio_aw_addr_o   ), 
-//     .axi_mmio_aw_prot_o     (axi_mmio_aw_prot_o   ),
-//     .axi_mmio_aw_id_o       (axi_mmio_aw_id_o     ),
-//     .axi_mmio_aw_user_o     (axi_mmio_aw_user_o   ),
-//     .axi_mmio_aw_len_o      (axi_mmio_aw_len_o    ),  
-//     .axi_mmio_aw_size_o     (axi_mmio_aw_size_o   ),
-//     .axi_mmio_aw_burst_o    (axi_mmio_aw_burst_o  ),
-//     .axi_mmio_aw_lock_o     (axi_mmio_aw_lock_o   ),
-//     .axi_mmio_aw_cache_o    (axi_mmio_aw_cache_o  ),
-//     .axi_mmio_aw_qos_o      (axi_mmio_aw_qos_o    ),
-//     .axi_mmio_aw_region_o   (axi_mmio_aw_region_o ),
-//     .axi_mmio_w_ready_i     (axi_mmio_w_ready_i   ), 
-//     .axi_mmio_w_valid_o     (axi_mmio_w_valid_o   ), 
-//     .axi_mmio_w_data_o      (axi_mmio_w_data_o    ),  
-//     .axi_mmio_w_strb_o      (axi_mmio_w_strb_o    ),  
-//     .axi_mmio_w_last_o      (axi_mmio_w_last_o    ),  
-//     .axi_mmio_w_user_o      (axi_mmio_w_user_o    ),
-//     .axi_mmio_b_ready_o     (axi_mmio_b_ready_o   ), 
-//     .axi_mmio_b_valid_i     (axi_mmio_b_valid_i   ), 
-//     .axi_mmio_b_resp_i      (axi_mmio_b_resp_i    ),  
-//     .axi_mmio_b_id_i        (axi_mmio_b_id_i      ),
-//     .axi_mmio_b_user_i      (axi_mmio_b_user_i    ),
-//     .axi_mmio_ar_ready_i    (axi_mmio_ar_ready_i  ),
-//     .axi_mmio_ar_valid_o    (axi_mmio_ar_valid_o  ),
-//     .axi_mmio_ar_addr_o     (axi_mmio_ar_addr_o   ), 
-//     .axi_mmio_ar_prot_o     (axi_mmio_ar_prot_o   ),
-//     .axi_mmio_ar_id_o       (axi_mmio_ar_id_o     ),
-//     .axi_mmio_ar_user_o     (axi_mmio_ar_user_o   ),
-//     .axi_mmio_ar_len_o      (axi_mmio_ar_len_o    ),  
-//     .axi_mmio_ar_size_o     (axi_mmio_ar_size_o   ), 
-//     .axi_mmio_ar_burst_o    (axi_mmio_ar_burst_o  ),
-//     .axi_mmio_ar_lock_o     (axi_mmio_ar_lock_o   ),
-//     .axi_mmio_ar_cache_o    (axi_mmio_ar_cache_o  ),
-//     .axi_mmio_ar_qos_o      (axi_mmio_ar_qos_o    ),
-//     .axi_mmio_ar_region_o   (axi_mmio_ar_region_o ),
-//     .axi_mmio_r_ready_o     (axi_mmio_r_ready_o   ), 
-//     .axi_mmio_r_valid_i     (axi_mmio_r_valid_i   ), 
-//     .axi_mmio_r_resp_i      (axi_mmio_r_resp_i    ),
-//     .axi_mmio_r_data_i      (axi_mmio_r_data_i    ),  
-//     .axi_mmio_r_last_i      (axi_mmio_r_last_i    ),
-//     .axi_mmio_r_id_i        (axi_mmio_r_id_i      ),
-//     .axi_mmio_r_user_i      (axi_mmio_r_user_i    )
-// );
+    .axi_r_ready_o      (axi_r_ready_o ),      //lite            
+    .axi_r_valid_i      (axi_r_valid_i ),      //lite            
+    .axi_r_resp_i       (axi_r_resp_i  ),
+    .axi_r_data_i       (axi_r_data_i  ),       //lite
+    .axi_r_last_i       (axi_r_last_i  ),
+    .axi_r_id_i         (axi_r_id_i    ),
+    .axi_r_user_i       (axi_r_user_i  ),
+//mmio
+    .axi_mmio_aw_ready_i    (axi_mmio_aw_ready_i  ),
+    .axi_mmio_aw_valid_o    (axi_mmio_aw_valid_o  ),
+    .axi_mmio_aw_addr_o     (axi_mmio_aw_addr_o   ), 
+    .axi_mmio_aw_prot_o     (axi_mmio_aw_prot_o   ),
+    .axi_mmio_aw_id_o       (axi_mmio_aw_id_o     ),
+    .axi_mmio_aw_user_o     (axi_mmio_aw_user_o   ),
+    .axi_mmio_aw_len_o      (axi_mmio_aw_len_o    ),  
+    .axi_mmio_aw_size_o     (axi_mmio_aw_size_o   ),
+    .axi_mmio_aw_burst_o    (axi_mmio_aw_burst_o  ),
+    .axi_mmio_aw_lock_o     (axi_mmio_aw_lock_o   ),
+    .axi_mmio_aw_cache_o    (axi_mmio_aw_cache_o  ),
+    .axi_mmio_aw_qos_o      (axi_mmio_aw_qos_o    ),
+    .axi_mmio_aw_region_o   (axi_mmio_aw_region_o ),
+    .axi_mmio_w_ready_i     (axi_mmio_w_ready_i   ), 
+    .axi_mmio_w_valid_o     (axi_mmio_w_valid_o   ), 
+    .axi_mmio_w_data_o      (axi_mmio_w_data_o    ),  
+    .axi_mmio_w_strb_o      (axi_mmio_w_strb_o    ),  
+    .axi_mmio_w_last_o      (axi_mmio_w_last_o    ),  
+    .axi_mmio_w_user_o      (axi_mmio_w_user_o    ),
+    .axi_mmio_b_ready_o     (axi_mmio_b_ready_o   ), 
+    .axi_mmio_b_valid_i     (axi_mmio_b_valid_i   ), 
+    .axi_mmio_b_resp_i      (axi_mmio_b_resp_i    ),  
+    .axi_mmio_b_id_i        (axi_mmio_b_id_i      ),
+    .axi_mmio_b_user_i      (axi_mmio_b_user_i    ),
+    .axi_mmio_ar_ready_i    (axi_mmio_ar_ready_i  ),
+    .axi_mmio_ar_valid_o    (axi_mmio_ar_valid_o  ),
+    .axi_mmio_ar_addr_o     (axi_mmio_ar_addr_o   ), 
+    .axi_mmio_ar_prot_o     (axi_mmio_ar_prot_o   ),
+    .axi_mmio_ar_id_o       (axi_mmio_ar_id_o     ),
+    .axi_mmio_ar_user_o     (axi_mmio_ar_user_o   ),
+    .axi_mmio_ar_len_o      (axi_mmio_ar_len_o    ),  
+    .axi_mmio_ar_size_o     (axi_mmio_ar_size_o   ), 
+    .axi_mmio_ar_burst_o    (axi_mmio_ar_burst_o  ),
+    .axi_mmio_ar_lock_o     (axi_mmio_ar_lock_o   ),
+    .axi_mmio_ar_cache_o    (axi_mmio_ar_cache_o  ),
+    .axi_mmio_ar_qos_o      (axi_mmio_ar_qos_o    ),
+    .axi_mmio_ar_region_o   (axi_mmio_ar_region_o ),
+    .axi_mmio_r_ready_o     (axi_mmio_r_ready_o   ), 
+    .axi_mmio_r_valid_i     (axi_mmio_r_valid_i   ), 
+    .axi_mmio_r_resp_i      (axi_mmio_r_resp_i    ),
+    .axi_mmio_r_data_i      (axi_mmio_r_data_i    ),  
+    .axi_mmio_r_last_i      (axi_mmio_r_last_i    ),
+    .axi_mmio_r_id_i        (axi_mmio_r_id_i      ),
+    .axi_mmio_r_user_i      (axi_mmio_r_user_i    )
+);
 
 IF_stage IF_u(
     .clk            (clk),
