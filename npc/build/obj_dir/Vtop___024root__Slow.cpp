@@ -1899,34 +1899,20 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                                   == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
                                               | (2U 
                                                  == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
-    vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_1__CEN 
-        = (1U & (~ ((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                      & (0ULL != vlSelf->top__DOT__pc_new)) 
-                     | (((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                         & (0ULL != vlSelf->top__DOT__pc_new)) 
-                        & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                    | (IData)(vlSelf->top__DOT__cache_dut__DOT__wenWay1_1))));
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__CEN 
         = (1U & (~ ((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                       & (0ULL != vlSelf->top__DOT__pc_new)) 
                      | (((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                          & (0ULL != vlSelf->top__DOT__pc_new)) 
                         & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                    | (IData)(vlSelf->top__DOT__cache_dut__DOT__wenWay1_2))));
-    vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay2_1__CEN 
-        = (1U & (~ ((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                      & (0ULL != vlSelf->top__DOT__pc_new)) 
-                     | (((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                         & (0ULL != vlSelf->top__DOT__pc_new)) 
-                        & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                    | (IData)(vlSelf->top__DOT__cache_dut__DOT__wenWay2_1))));
+                    | (IData)(vlSelf->top__DOT__cache_dut__DOT__wenWay1))));
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay2_2__CEN 
         = (1U & (~ ((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                       & (0ULL != vlSelf->top__DOT__pc_new)) 
                      | (((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                          & (0ULL != vlSelf->top__DOT__pc_new)) 
                         & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                    | (IData)(vlSelf->top__DOT__cache_dut__DOT__wenWay2_2))));
+                    | (IData)(vlSelf->top__DOT__cache_dut__DOT__wenWay2))));
     vlSelf->top__DOT__sram_rdata = (((- (QData)((IData)(vlSelf->top__DOT__cache_dut__DOT__way1Hit))) 
                                      & ((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                           & (0ULL != vlSelf->top__DOT__pc_new)) 
@@ -3575,15 +3561,9 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__cache_dut__DOT__missFlag = 0;
     vlSelf->top__DOT__cache_dut__DOT__rdCnt = 0;
     VL_ZERO_RESET_W(256, vlSelf->top__DOT__cache_dut__DOT__rdBuffer);
-    vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_1__CEN = 0;
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__A = 0;
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__CEN = 0;
-    vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay2_1__CEN = 0;
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay2_2__CEN = 0;
-    vlSelf->top__DOT__cache_dut__DOT__wenWay1_1 = 0;
-    vlSelf->top__DOT__cache_dut__DOT__wenWay1_2 = 0;
-    vlSelf->top__DOT__cache_dut__DOT__wenWay2_1 = 0;
-    vlSelf->top__DOT__cache_dut__DOT__wenWay2_2 = 0;
     for (int __Vi0=0; __Vi0<64; ++__Vi0) {
         VL_ZERO_RESET_W(128, vlSelf->top__DOT__cache_dut__DOT__iramWay1_1__DOT__ram[__Vi0]);
     }

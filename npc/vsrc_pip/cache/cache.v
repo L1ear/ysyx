@@ -271,6 +271,10 @@ always @(posedge clk or negedge rst_n) begin
             wenWay1 = 1'b0;
         end
     end
+    else begin
+        wenWay2 = 1'b0;
+        wenWay1 = 1'b0;
+    end
 end
 
 // reg [255:0] dpiRegWay1,dpiRegWay2;
