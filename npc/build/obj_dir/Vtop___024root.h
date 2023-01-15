@@ -203,6 +203,8 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_r_last;
         CData/*3:0*/ top__DOT__axi_crossbar_u__DOT__axi_r_id;
         CData/*0:0*/ top__DOT__cache_dut__DOT__cacheRdValid_o;
+        CData/*0:0*/ top__DOT__cache_dut__DOT__axiRdReady;
+        CData/*7:0*/ top__DOT__cache_dut__DOT__fetchLenth;
         CData/*0:0*/ top__DOT__cache_dut__DOT__rdLast_i;
         CData/*2:0*/ top__DOT__cache_dut__DOT__cacheCurState;
         CData/*2:0*/ top__DOT__cache_dut__DOT__cacheNexState;
@@ -249,10 +251,10 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__axi_ls_u__DOT__trans_ok;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state_next;
-        CData/*0:0*/ top__DOT__axi_ls_u__DOT__ar_valid;
-        CData/*0:0*/ top__DOT__axi_ls_u__DOT__r_ready;
     };
     struct {
+        CData/*0:0*/ top__DOT__axi_ls_u__DOT__ar_valid;
+        CData/*0:0*/ top__DOT__axi_ls_u__DOT__r_ready;
         CData/*0:0*/ top__DOT__axi_ls_u__DOT__instr_valid;
         CData/*0:0*/ top__DOT__axi_ls_u__DOT__instr_valid_reg;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
@@ -315,10 +317,10 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__subres;
         QData/*63:0*/ top__DOT__forwarding_u__DOT__rd_wb;
-        QData/*63:0*/ top__DOT__ls_u__DOT__wr_data;
-        QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__wr_data;
     };
     struct {
+        QData/*63:0*/ top__DOT__ls_u__DOT__wr_data;
+        QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__wr_data;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mepc;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mtvec;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mstatus;
