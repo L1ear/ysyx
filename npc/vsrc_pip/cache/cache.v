@@ -373,7 +373,7 @@ S011HD1P_X32Y2D128_BW iramWay2_1 (
 );
 
 S011HD1P_X32Y2D128_BW iramWay2_2 (
-  .Q (dataWay2_2 )
+  .Q (dataWay2_2 ),
   .CLK (clk ),
   .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ),
   .WEN (~wenWay2 ),
