@@ -524,12 +524,17 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     } else {
         __Vdly__top__DOT__cache_dut__DOT__rdCnt = 0U;
     }
-    vlSelf->top__DOT__cache_dut__DOT__missFlag = ((IData)(vlSelf->rst_n) 
-                                                  & (7U 
-                                                     == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)));
-    vlSelf->top__DOT__axi_ls_u__DOT__r_state = ((IData)(vlSelf->rst_n)
-                                                 ? (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state_next)
-                                                 : 0U);
+    if (vlSelf->rst_n) {
+        vlSelf->top__DOT__axi_ls_u__DOT__r_state = vlSelf->top__DOT__axi_ls_u__DOT__r_state_next;
+        vlSelf->top__DOT__cache_dut__DOT__missFlag 
+            = ((((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                 | (IData)(vlSelf->top__DOT__cache_dut__DOT__wenWay1)) 
+                | (IData)(vlSelf->top__DOT__cache_dut__DOT__wenWay2)) 
+               & 1U);
+    } else {
+        vlSelf->top__DOT__axi_ls_u__DOT__r_state = 0U;
+        vlSelf->top__DOT__cache_dut__DOT__missFlag = 0U;
+    }
     if (vlSelf->rst_n) {
         if (((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
              & (IData)(vlSelf->top__DOT__dataValid_o))) {
@@ -4122,7 +4127,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
 }
 
 extern const VlUnpacked<CData/*1:0*/, 32> Vtop__ConstPool__TABLE_b1b41ba9_0;
-extern const VlUnpacked<CData/*2:0*/, 128> Vtop__ConstPool__TABLE_38f572bc_0;
+extern const VlUnpacked<CData/*2:0*/, 128> Vtop__ConstPool__TABLE_b8110941_0;
 
 VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
@@ -4177,7 +4182,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
                                             << 3U) 
                                            | (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
     vlSelf->top__DOT__cache_dut__DOT__cacheNexState 
-        = Vtop__ConstPool__TABLE_38f572bc_0[__Vtableidx1];
+        = Vtop__ConstPool__TABLE_b8110941_0[__Vtableidx1];
 }
 
 VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
