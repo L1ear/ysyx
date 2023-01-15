@@ -503,7 +503,7 @@ cache_dut (
 //   .fetchLenth       (fetchLenth ),
   .rdLast_i         (rdLast_o   ),
   .cacheAddr_o      (rw_addr_i  ),
-  .rdData_i         (data_read_o),
+  .rdData_i         (data_read_o)
 //   .dataValid_i      (dataValid_o)
 );
 wire rw_valid_i ;
