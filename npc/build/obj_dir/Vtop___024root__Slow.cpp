@@ -132,6 +132,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         vlSelf->axi_mmio_w_user_o = 0U;
         vlSelf->axi_mmio_b_ready_o = 0U;
     }
+    vlSelf->top__DOT__cache_dut__DOT__randomBit = VL_RANDOM_I(32);
     vlSelf->top__DOT__cache_dut__DOT__way1Data[0U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay1_1[0U];
     vlSelf->top__DOT__cache_dut__DOT__way1Data[1U] 
@@ -164,7 +165,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[2U];
     vlSelf->top__DOT__cache_dut__DOT__way2Data[7U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[3U];
-    vlSelf->top__DOT__cache_dut__DOT__randomBit = VL_RANDOM_I(32);
     vlSelf->pc_diff = (((QData)((IData)(vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[9U])) 
                         << 0x3fU) | (((QData)((IData)(
                                                       vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[8U])) 
@@ -1526,6 +1526,14 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
             }
         }
     }
+    vlSelf->top__DOT__cache_dut__DOT__wenWay1 = ((IData)(vlSelf->rst_n) 
+                                                 & ((7U 
+                                                     == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                    & vlSelf->top__DOT__cache_dut__DOT__randomBit));
+    vlSelf->top__DOT__cache_dut__DOT__wenWay2 = ((IData)(vlSelf->rst_n) 
+                                                 & ((7U 
+                                                     == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                    & (~ vlSelf->top__DOT__cache_dut__DOT__randomBit)));
     vlSelf->top__DOT__cache_dut__DOT__cacheHit = ((IData)(vlSelf->top__DOT__cache_dut__DOT__way1Hit) 
                                                   | (IData)(vlSelf->top__DOT__cache_dut__DOT__way2Hit));
     if ((1U & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 

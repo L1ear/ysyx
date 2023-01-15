@@ -263,11 +263,7 @@ end
 wire    replaceEn = cacheCurState == replace;
 //延后一个周期写入，防止高位无法写入（即最后64位数据）
 always @(*) begin
-    if(~rst_n) begin
-        wenWay1 = 1'b0;
-        wenWay2 = 1'b0;
-    end
-    else if(replaceEn) begin
+    if(replaceEn) begin
         if(randomBit[0]) begin
             wenWay1 = 1'b1;
             wenWay2 = 1'b0;
