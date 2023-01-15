@@ -3727,8 +3727,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id = 0;
     vlSelf->top__DOT__IF_u__DOT__pc_next_o = 0;
     vlSelf->top__DOT__cache_dut__DOT__cacheRdValid_o = 0;
-    vlSelf->top__DOT__cache_dut__DOT__axiRdReady = 0;
-    vlSelf->top__DOT__cache_dut__DOT__fetchLenth = 0;
     vlSelf->top__DOT__cache_dut__DOT__rdLast_i = 0;
     vlSelf->top__DOT__cache_dut__DOT__cacheAddr_o = 0;
     vlSelf->top__DOT__cache_dut__DOT__rdData_i = 0;
