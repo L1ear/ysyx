@@ -514,6 +514,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                 vlSelf->top__DOT__cache_dut__DOT__wenWay2 = 1U;
                 vlSelf->top__DOT__cache_dut__DOT__wenWay1 = 0U;
             }
+        } else {
+            vlSelf->top__DOT__cache_dut__DOT__wenWay2 = 0U;
+            vlSelf->top__DOT__cache_dut__DOT__wenWay1 = 0U;
         }
     } else {
         vlSelf->top__DOT__cache_dut__DOT__wenWay1 = 0U;
