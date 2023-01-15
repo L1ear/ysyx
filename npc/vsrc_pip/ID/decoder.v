@@ -183,6 +183,7 @@ always @(*) begin
             DivSel = `DivMul;
         end   
         `jalr: begin
+            $finish();
             src1sel_o = `PC;
             src2sel_o = `src_4;  
             ext_op_o = `immI;  
