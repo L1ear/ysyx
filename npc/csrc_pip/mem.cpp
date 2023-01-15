@@ -140,6 +140,8 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
 
 
 void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
+    uint64_t buf;
+    buf = data;
   if(addr == 0xa00003f8){
     // difftest_skip_ref();
 
@@ -160,16 +162,20 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
     switch (len) {
     case 1:
       *(uint8_t  *)(imem + addr - 0x80000000) = data; 
+      mem.write(addr,1,(uint8_t *)(&buf));
       return;
     case 2: 
       *(uint16_t *)(imem + addr - 0x80000000) = data; 
+      mem.write(addr,2,(uint8_t *)(&buf));
       return;
     case 4: 
       *(uint32_t *)(imem + addr - 0x80000000) = data; 
+      mem.write(addr,4,(uint8_t *)(&buf));
       return;
     case 8: 
       // printf("sw:%016llx\n",data);
       *(uint64_t *)(imem + addr - 0x80000000) = data; 
+      mem.write(addr,8,(uint8_t *)(&buf));
       // printf("after:%016llx\n",*(uint64_t *)(imem + addr - 0x80000000));
       return;
     default: break;
