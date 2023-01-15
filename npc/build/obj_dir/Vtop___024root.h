@@ -332,7 +332,6 @@ VL_MODULE(Vtop___024root) {
     };
 
     // LOCAL VARIABLES
-    CData/*5:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__A;
     CData/*0:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__CEN;
     CData/*0:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay2_2__CEN;
     CData/*4:0*/ __Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
