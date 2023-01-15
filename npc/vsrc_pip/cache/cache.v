@@ -15,8 +15,8 @@ module cache(
 
 //to AXI
     output                                  cacheRdValid_o,
-    input                                   axiRdReady,
-    output          [7:0]                   fetchLenth,
+    // input                                   axiRdReady,
+    // output          [7:0]                   fetchLenth,
     input                                   rdLast_i,
     output          [`addr_width-1:0]       cacheAddr_o,
     input           [`XLEN-1:0]             rdData_i
