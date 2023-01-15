@@ -15,11 +15,12 @@ module cache(
 
 //to AXI
     output                                  cacheRdValid_o,
-    // input                                   axiRdReady,
-    // output          [7:0]                   fetchLenth,
+    input                                   axiRdReady,
+    output          [7:0]                   fetchLenth,
     input                                   rdLast_i,
     output          [`addr_width-1:0]       cacheAddr_o,
-    input           [`XLEN-1:0]             rdData_i
+    input           [`XLEN-1:0]             rdData_i,
+    input                                   dataValid_i
 );
 
 
@@ -70,12 +71,14 @@ always @(*) begin
             end
         end
         miss: begin
-            //TODO
-            cacheNexState = getdata;
+            if(axiRdReady) begin
+                cacheNexState = getdata;
+            end
         end
         getdata: begin
-            //TODO
-            cacheNexState = compare;       //有问题，要该（validbit的问题）
+            if(rdLast_i) begin
+                cacheNexState = compare;       //有问题，要该（validbit的问题）
+            end
         end 
         default: begin
             cacheNexState = idle;
@@ -193,25 +196,37 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-reg [255:0] dpiRegWay1,dpiRegWay2;
+assign cacheRdValid_o = missEn && axiRdReady;
+assign cacheAddr_o = addrToRead;
+assign inDataWay1_1 = rdBuffer[127:0];
+assign inDataWay1_2 = rdBuffer[255:128];
+assign inDataWay2_1 = rdBuffer[127:0];
+assign inDataWay2_2 = rdBuffer[255:128];
+reg [1:0]   rdCnt;
 always @(posedge clk or negedge rst_n) begin
-    if(getdataEn) begin
-        dpiRegWay1 <= {inDataWay1_2, inDataWay1_1};
-        dpiRegWay2 <= {inDataWay2_2, inDataWay2_1};
+    if(~rst_n) begin
+        rdCnt <= 'b0;
+    end
+    else if(getdataEn && dataValid_i) begin
+        rdCnt <= rdCnt + 'b1;
+    end
+end
+
+reg [255:0] rdBuffer;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        rdBuffer <= 'b0;
+    end 
+    else if(getdataEn && dataValid_i) begin
+        rdBuffer[rdCnt*64+:64] <= rdData_i;
     end
 end
 
 always @(*) begin
     randomBit = $random;
-    if(getdataEn) begin
+    if(getdataEn && rdLast_i) begin
         //TODO 真‘伪随机
         if(randomBit[0]) begin
-            axiSlaveRead(addrToRead, 3, inDataWay1_1[63:0]);
-            axiSlaveRead(addrToRead+8, 3, inDataWay1_1[127:64]);
-            axiSlaveRead(addrToRead+16, 3, inDataWay1_2[63:0]);
-            axiSlaveRead(addrToRead+24, 3, inDataWay1_2[127:64]);
-            inDataWay2_1 = {$random,$random,$random,$random};
-            inDataWay2_2 = {$random,$random,$random,$random};
             wenWay1_1 = 1'b1;
             wenWay1_2 = 1'b1;
             wenWay2_1 = 1'b0;
@@ -222,12 +237,6 @@ always @(*) begin
             tagArray2_d = 'b0;
         end
         else begin
-            axiSlaveRead(addrToRead, 3, inDataWay2_1[63:0]);
-            axiSlaveRead(addrToRead+8, 3, inDataWay2_1[127:64]);
-            axiSlaveRead(addrToRead+16, 3, inDataWay2_2[63:0]);
-            axiSlaveRead(addrToRead+24, 3, inDataWay2_2[127:64]);
-            inDataWay1_1 = {$random,$random,$random,$random};
-            inDataWay1_2 = {$random,$random,$random,$random};
             wenWay2_1 = 1'b1;
             wenWay2_2 = 1'b1;
             wenWay1_1 = 1'b0;
@@ -239,10 +248,6 @@ always @(*) begin
         end
     end
     else begin
-        inDataWay1_1 = {$random,$random,$random,$random};
-        inDataWay1_2 = {$random,$random,$random,$random};
-        inDataWay2_1 = {$random,$random,$random,$random};
-        inDataWay2_2 = {$random,$random,$random,$random};
         wenWay1_1 = 1'b0;
         wenWay1_2 = 1'b0;
         wenWay2_1 = 1'b0;
@@ -253,6 +258,67 @@ always @(*) begin
         tagArray2_d = 'b0;
     end
 end
+
+// reg [255:0] dpiRegWay1,dpiRegWay2;
+// always @(posedge clk or negedge rst_n) begin
+//     if(getdataEn) begin
+//         dpiRegWay1 <= {inDataWay1_2, inDataWay1_1};
+//         dpiRegWay2 <= {inDataWay2_2, inDataWay2_1};
+//     end
+// end
+
+// always @(*) begin
+//     randomBit = $random;
+//     if(getdataEn) begin
+//         //TODO 真‘伪随机
+//         if(randomBit[0]) begin
+//             axiSlaveRead(addrToRead, 3, inDataWay1_1[63:0]);
+//             axiSlaveRead(addrToRead+8, 3, inDataWay1_1[127:64]);
+//             axiSlaveRead(addrToRead+16, 3, inDataWay1_2[63:0]);
+//             axiSlaveRead(addrToRead+24, 3, inDataWay1_2[127:64]);
+//             inDataWay2_1 = {$random,$random,$random,$random};
+//             inDataWay2_2 = {$random,$random,$random,$random};
+//             wenWay1_1 = 1'b1;
+//             wenWay1_2 = 1'b1;
+//             wenWay2_1 = 1'b0;
+//             wenWay2_2 = 1'b0;
+//             bitValid1_d = 1'b1;
+//             bitValid2_d = 1'b0;
+//             tagArray1_d = tag;
+//             tagArray2_d = 'b0;
+//         end
+//         else begin
+//             axiSlaveRead(addrToRead, 3, inDataWay2_1[63:0]);
+//             axiSlaveRead(addrToRead+8, 3, inDataWay2_1[127:64]);
+//             axiSlaveRead(addrToRead+16, 3, inDataWay2_2[63:0]);
+//             axiSlaveRead(addrToRead+24, 3, inDataWay2_2[127:64]);
+//             inDataWay1_1 = {$random,$random,$random,$random};
+//             inDataWay1_2 = {$random,$random,$random,$random};
+//             wenWay2_1 = 1'b1;
+//             wenWay2_2 = 1'b1;
+//             wenWay1_1 = 1'b0;
+//             wenWay1_2 = 1'b0;
+//             bitValid1_d = 1'b0;
+//             bitValid2_d = 1'b1;
+//             tagArray1_d = 'b0;
+//             tagArray2_d = tag;
+//         end
+//     end
+//     else begin
+//         inDataWay1_1 = {$random,$random,$random,$random};
+//         inDataWay1_2 = {$random,$random,$random,$random};
+//         inDataWay2_1 = {$random,$random,$random,$random};
+//         inDataWay2_2 = {$random,$random,$random,$random};
+//         wenWay1_1 = 1'b0;
+//         wenWay1_2 = 1'b0;
+//         wenWay2_1 = 1'b0;
+//         wenWay2_2 = 1'b0;
+//         bitValid1_d = 1'b0;
+//         bitValid2_d = 1'b0;
+//         tagArray1_d = 'b0;
+//         tagArray2_d = 'b0;
+//     end
+// end
 
 
 

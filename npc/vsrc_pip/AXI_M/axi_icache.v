@@ -133,7 +133,7 @@ assign instr_fetching = ~(r_state == r_state_idle);
     parameter AXI_SIZE      = $clog2(AXI_DATA_WIDTH / 8);
     wire [AXI_ID_WIDTH-1:0] axi_id              = {AXI_ID_WIDTH{1'b0}};
     wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
-    wire [7:0] axi_len      =  8'd3 ;                           //lenth为长度减1
+    wire [7:0] axi_len      =  fetchLenth ;                           //lenth为长度减1
     wire [2:0] axi_size     = AXI_SIZE[2:0];
     // // 写地址通道  以下没有备注初始化信号的都可能是你需要产生和用到的
     // assign axi_aw_valid_o   = w_state_addr;

@@ -498,45 +498,84 @@ cache_dut (
   .data_notok_o(cacheDataOk_i),
   .rd_data_o (sram_rdata ),
 //to AXI
-  .cacheRdValid_o ( ),
-  .rdLast_i ( ),
-  .cacheAddr_o ( ),
-  .rdData_i  ( )
+  .cacheRdValid_o   (rw_valid_i),
+  .axiRdReady       (rw_ready_o),
+  .fetchLenth       (fetchLenth),
+  .rdLast_i         (rdLast_o),
+  .cacheAddr_o      (rw_addr_i),
+  .rdData_i         (data_read_o),
+  .dataValid_i      (dataValid_o)
+);
+
+axi_icache axi_icache_dut (
+  .clock (clock ),
+  .reset (reset ),
+  .rw_valid_i (rw_valid_i ),
+  .rw_ready_o (rw_ready_o ),
+  .data_read_o (data_read_o ),
+  .rw_addr_i (rw_addr_i ),
+  .fetchLenth (fetchLenth ),
+  .rdLast_o (rdLast_o ),
+  .dataValid_o (dataValid_o ),
+
+  .instr_fetching (instr_fetching ),
+
+  .axi_ar_ready_i (if_axi_ar_ready_i ),
+  .axi_ar_valid_o (if_axi_ar_valid_o ),
+  .axi_ar_addr_o (if_axi_ar_addr_o ),
+  .axi_ar_prot_o (if_axi_ar_prot_o ),
+  .axi_ar_id_o (if_axi_ar_id_o ),
+  .axi_ar_user_o (if_axi_ar_user_o ),
+  .axi_ar_len_o (if_axi_ar_len_o ),
+  .axi_ar_size_o (if_axi_ar_size_o ),
+  .axi_ar_burst_o (if_axi_ar_burst_o ),
+  .axi_ar_lock_o (if_axi_ar_lock_o ),
+  .axi_ar_cache_o (if_axi_ar_cache_o ),
+  .axi_ar_qos_o (if_axi_ar_qos_o ),
+  .axi_ar_region_o (if_axi_ar_region_o ),
+
+  .axi_r_ready_o (if_axi_r_ready_o ),
+  .axi_r_valid_i (if_axi_r_valid_i ),
+  .axi_r_resp_i (if_axi_r_resp_i ),
+  .axi_r_data_i (if_axi_r_data_i ),
+  .axi_r_last_i (if_axi_r_last_i ),
+  .axi_r_id_i (if_axi_r_id_i ),
+  .axi_r_user_i  ( if_axi_r_user_i)
 );
 
 
-axi_if axi_if_u(
-    .clock          (clk),
-    .reset          (rst_n),
+// axi_if axi_if_u(
+//     .clock          (clk),
+//     .reset          (rst_n),
 
-	.rw_valid_i     (sram_addr_valid),         //IF&MEM输入信号
-	.rw_ready_o     (sram_data_valid),         //IF&MEM输入信号
-    .data_read_o    (),//sram_rdata),        //IF&MEM输入信号
-    .rw_addr_i      (sram_addr),          //IF&MEM输入信号
-    .instr_fetching (instr_fetching),
+// 	.rw_valid_i     (sram_addr_valid),         //IF&MEM输入信号
+// 	.rw_ready_o     (sram_data_valid),         //IF&MEM输入信号
+//     .data_read_o    (),//sram_rdata),        //IF&MEM输入信号
+//     .rw_addr_i      (sram_addr),          //IF&MEM输入信号
+//     .instr_fetching (instr_fetching),
 
-    .axi_ar_ready_i (if_axi_ar_ready_i),     //lite              
-    .axi_ar_valid_o (if_axi_ar_valid_o),     //lite
-    .axi_ar_addr_o  (if_axi_ar_addr_o  ),      //lite
-    .axi_ar_prot_o  (if_axi_ar_prot_o  ),
-    .axi_ar_id_o    (if_axi_ar_id_o    ),
-    .axi_ar_user_o  (if_axi_ar_user_o  ),
-    .axi_ar_len_o   (if_axi_ar_len_o   ),       //lite
-    .axi_ar_size_o  (if_axi_ar_size_o  ),     //lite
-    .axi_ar_burst_o (if_axi_ar_burst_o ),
-    .axi_ar_lock_o  (if_axi_ar_lock_o  ),
-    .axi_ar_cache_o (if_axi_ar_cache_o ),
-    .axi_ar_qos_o   (if_axi_ar_qos_o   ),
-    .axi_ar_region_o(if_axi_ar_region_o),
+//     .axi_ar_ready_i (if_axi_ar_ready_i),     //lite              
+//     .axi_ar_valid_o (if_axi_ar_valid_o),     //lite
+//     .axi_ar_addr_o  (if_axi_ar_addr_o  ),      //lite
+//     .axi_ar_prot_o  (if_axi_ar_prot_o  ),
+//     .axi_ar_id_o    (if_axi_ar_id_o    ),
+//     .axi_ar_user_o  (if_axi_ar_user_o  ),
+//     .axi_ar_len_o   (if_axi_ar_len_o   ),       //lite
+//     .axi_ar_size_o  (if_axi_ar_size_o  ),     //lite
+//     .axi_ar_burst_o (if_axi_ar_burst_o ),
+//     .axi_ar_lock_o  (if_axi_ar_lock_o  ),
+//     .axi_ar_cache_o (if_axi_ar_cache_o ),
+//     .axi_ar_qos_o   (if_axi_ar_qos_o   ),
+//     .axi_ar_region_o(if_axi_ar_region_o),
 
-    .axi_r_ready_o  (if_axi_r_ready_o ),      //lite            
-    .axi_r_valid_i  (if_axi_r_valid_i ),      //lite            
-    .axi_r_resp_i   (if_axi_r_resp_i  ),
-    .axi_r_data_i   (if_axi_r_data_i  ),       //lite
-    .axi_r_last_i   (if_axi_r_last_i  ),
-    .axi_r_id_i     (if_axi_r_id_i    ),
-    .axi_r_user_i   (if_axi_r_user_i  )
-);
+//     .axi_r_ready_o  (if_axi_r_ready_o ),      //lite            
+//     .axi_r_valid_i  (if_axi_r_valid_i ),      //lite            
+//     .axi_r_resp_i   (if_axi_r_resp_i  ),
+//     .axi_r_data_i   (if_axi_r_data_i  ),       //lite
+//     .axi_r_last_i   (if_axi_r_last_i  ),
+//     .axi_r_id_i     (if_axi_r_id_i    ),
+//     .axi_r_user_i   (if_axi_r_user_i  )
+// );
 
 ID_reg ID_reg_u(
     .clk            (clk),
