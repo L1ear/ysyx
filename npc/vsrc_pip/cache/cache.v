@@ -74,10 +74,16 @@ always @(*) begin
             if(axiRdReady) begin
                 cacheNexState = getdata;
             end
+            else begin
+                cacheNexState = miss;
+            end
         end
         getdata: begin
             if(rdLast_i) begin
                 cacheNexState = compare;       //有问题，要该（validbit的问题）
+            end
+            else begin
+                cacheNexState = getdata;
             end
         end 
         default: begin
@@ -197,7 +203,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 assign cacheRdValid_o = missEn && axiRdReady;
-assign cacheAddr_o = addrToRead;
+assign cacheAddr_o = addrToRead[31:0];
 assign inDataWay1_1 = rdBuffer[127:0];
 assign inDataWay1_2 = rdBuffer[255:128];
 assign inDataWay2_1 = rdBuffer[127:0];
