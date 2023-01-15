@@ -3378,7 +3378,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_cache = 2U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_qos = 0U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_valid 
-            = vlSelf->top__DOT__axi_if_u__DOT__ar_valid;
+            = (1U & (IData)(vlSelf->top__DOT__IF_u__DOT__pc_next_o));
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_region 
             = vlSelf->top__DOT__if_axi_ar_region_o;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready 
@@ -3392,7 +3392,7 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_qos 
             = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_qos_i;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_valid 
-            = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_valid_i;
+            = (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_valid_i));
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_region 
             = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_region_i;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready 
