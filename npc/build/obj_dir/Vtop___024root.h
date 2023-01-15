@@ -210,16 +210,18 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__cache_dut__DOT__cacheHit;
         CData/*0:0*/ top__DOT__cache_dut__DOT__way1Hit;
         CData/*0:0*/ top__DOT__cache_dut__DOT__way2Hit;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1_1;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1_2;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2_1;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2_2;
+        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1;
+        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2;
         CData/*0:0*/ top__DOT__cache_dut__DOT__bitValid1_d;
         CData/*0:0*/ top__DOT__cache_dut__DOT__bitValid2_d;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay1_q;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay2_q;
         CData/*0:0*/ top__DOT__cache_dut__DOT__missFlag;
         CData/*1:0*/ top__DOT__cache_dut__DOT__rdCnt;
+        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1_1;
+        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1_2;
+        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2_1;
+        CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2_2;
         CData/*1:0*/ top__DOT__axi_icache_dut__DOT__r_state;
         CData/*1:0*/ top__DOT__axi_icache_dut__DOT__r_state_next;
         CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
@@ -249,10 +251,10 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state_next;
         CData/*0:0*/ top__DOT__axi_ls_u__DOT__ar_valid;
         CData/*0:0*/ top__DOT__axi_ls_u__DOT__r_ready;
-        CData/*0:0*/ top__DOT__axi_ls_u__DOT__instr_valid;
-        CData/*0:0*/ top__DOT__axi_ls_u__DOT__instr_valid_reg;
     };
     struct {
+        CData/*0:0*/ top__DOT__axi_ls_u__DOT__instr_valid;
+        CData/*0:0*/ top__DOT__axi_ls_u__DOT__instr_valid_reg;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_wready;
         CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp;
@@ -315,10 +317,10 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__rd_data_reg;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr;
-        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata;
-        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg0;
     };
     struct {
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg0;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg1;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg2;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg3;
