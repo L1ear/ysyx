@@ -212,8 +212,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__cache_dut__DOT__way2Hit;
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1;
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__bitValid1_d;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__bitValid2_d;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay1_q;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay2_q;
         CData/*0:0*/ top__DOT__cache_dut__DOT__missFlag;
@@ -251,10 +249,10 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__axi_ls_u__DOT__instr_valid_reg;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_wready;
-    };
-    struct {
         CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid;
+    };
+    struct {
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_arready;
         CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid;
@@ -264,8 +262,6 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__dataWay1_2;
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__dataWay2_1;
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__dataWay2_2;
-        IData/*20:0*/ top__DOT__cache_dut__DOT__tagArray1_d;
-        IData/*20:0*/ top__DOT__cache_dut__DOT__tagArray2_d;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__way1Data;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__way2Data;
         IData/*31:0*/ top__DOT__cache_dut__DOT__randomBit;
@@ -317,12 +313,12 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg0;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg1;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg2;
-    };
-    struct {
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg3;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out;
         VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray1;
         VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray2;
+    };
+    struct {
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay1_1__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay1_2__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay2_1__DOT__ram;
