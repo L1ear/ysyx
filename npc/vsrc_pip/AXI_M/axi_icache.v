@@ -59,8 +59,8 @@ module axi_icache # (
                     r_state_r_wait = 2'b11,
                     r_state_trans_ok = 2'b10;    
     reg     [1:0]   r_state,r_state_next;
-    wire            ar_valid;
-    reg             r_ready,instr_valid;
+    wire            ar_valid,r_ready;
+    // reg             instr_valid;
     reg     [`XLEN-1:0]     addr_reg;
     always @(posedge clock or negedge reset) begin
         if(~reset) begin
@@ -90,111 +90,32 @@ module axi_icache # (
       endcase
   end
 
-
+//锁存地址
 always @(posedge clock or negedge reset) begin
-    if((r_state == r_state_idle) && rw_valid_i) begin
-        
+    if(~reset) begin
+        addr_reg <= 'b0;
     end
-    else begin
-        
+    else if((r_state == r_state_idle) && rw_valid_i) begin
+        addr_reg <= rw_addr_i;
     end
 end
+
 assign rw_ready_o = r_state == r_state_idle;
 assign rdLast_o = axi_r_last_i;
 assign dataValid_o = axi_r_valid_i && axi_r_ready_o;
 assign ar_valid = r_state == r_state_ar_wait;
-
+assign r_ready = r_state == r_state_r_wait;
+assign data_read_o = axi_r_data_i;
+assign instr_fetching = ~(r_state == r_state_idle);
 //   //此处假设在握手期间，addr等信息不会改变，后面记得注意这一条件，可能要改
-// always @(*) begin
-//     case(r_state)
-//         r_state_idle: begin
-//             ar_valid = 1'b0;
-//             r_ready = 1'b0;
-//         end
-//         r_state_ar_wait: begin
-//             ar_valid = 1'b1;
-//             r_ready = 1'b0;
-//         end
-//         r_state_r_wait: begin
-//             ar_valid = 1'b0;
-//             r_ready = 1'b1;
-//         end
-//         r_state_trans_ok: begin
-//             ar_valid = 1'b0;
-//             r_ready = 1'b0;
-//         end
-//         default: begin
 
-//         end
-//     endcase
 
-// end
-
-// reg     [`XLEN-1:0]     addr_reg;
-//     always @(posedge clock) begin
-//         if(r_state == r_state_ar_wait) begin
-//             addr_reg <= rw_addr_i;
-//         end
-//         else begin
-//             addr_reg <= addr_reg;
-//         end
-//     end
-// // assign addr_reg = (r_state == r_state_ar_wait) ? rw_addr_i : addr_reg;
-
-// //产生instr_valid信号
-// reg                 instr_valid_reg;
-// reg     [`XLEN-1:0] rd_data_reg;
-// always@(posedge clock) begin
-//     if((r_state == r_state_r_wait) && axi_r_valid_i) begin
-//         instr_valid_reg <= 1'b1;
-//         rd_data_reg <= axi_r_data_i;
-//     end
-//     else if(r_state != r_state_trans_ok) begin
-//         instr_valid_reg <= 1'b0;
-//     end
-// end
-// always@(*) begin            //这里的data_read_o信号控制其实可以去掉，只用控制rw_ready_o信号来控制握手就行了
-//     case (r_state)
-//         r_state_idle: begin
-//             rw_ready_o = 1'b0;
-//             data_read_o = `XLEN'b0;
-//             instr_fetching = 1'b0;
-//         end
-//         r_state_ar_wait: begin
-//             rw_ready_o = 1'b0;
-//             data_read_o = `XLEN'b0;
-//             instr_fetching = 1'b1;
-//         end
-//         r_state_r_wait: begin
-//             rw_ready_o = 1'b0;
-//             data_read_o = `XLEN'b0;
-//             instr_fetching = 1'b1;
-//         end
-//         r_state_trans_ok: begin
-//             if (rw_addr_i != addr_reg) begin
-//                 rw_ready_o = 1'b0;
-//                 data_read_o = `XLEN'b0;
-//                 instr_fetching = 1'b1;
-//             end 
-//             else begin
-//                 rw_ready_o = instr_valid_reg;
-//                 data_read_o = rd_data_reg;
-//                 instr_fetching = 1'b0;
-//             end
-//         end
-//         default: begin
-
-//         end
-//     endcase
-// end
-//     // assign rw_ready_o = instr_valid_reg;
-//     // assign data_read_o = rd_data_reg;
     
     // ------------------Read Transaction------------------
 
     // Read address channel signals
     assign axi_ar_valid_o   = ar_valid;
-    assign axi_ar_addr_o    = 64'h80000000;
+    assign axi_ar_addr_o    = addr_reg;
     assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
     assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
@@ -212,7 +133,7 @@ assign ar_valid = r_state == r_state_ar_wait;
     parameter AXI_SIZE      = $clog2(AXI_DATA_WIDTH / 8);
     wire [AXI_ID_WIDTH-1:0] axi_id              = {AXI_ID_WIDTH{1'b0}};
     wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
-    wire [7:0] axi_len      =  8'd4 ;                           //lenth为长度减1
+    wire [7:0] axi_len      =  8'd3 ;                           //lenth为长度减1
     wire [2:0] axi_size     = AXI_SIZE[2:0];
     // // 写地址通道  以下没有备注初始化信号的都可能是你需要产生和用到的
     // assign axi_aw_valid_o   = w_state_addr;

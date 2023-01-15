@@ -71,7 +71,7 @@ module axi_if # (
 
 reg     [`XLEN-1:0]     addr_reg;
     always @(posedge clock) begin
-        if((r_state == r_state_idle) && rw_valid_i) begin
+        if(r_state == r_state_ar_wait) begin
             addr_reg <= rw_addr_i;
         end
         else begin
@@ -190,7 +190,7 @@ end
 
     // Read address channel signals
     assign axi_ar_valid_o   = ar_valid;
-    assign axi_ar_addr_o    = addr_reg;
+    assign axi_ar_addr_o    = rw_addr_i;
     assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
     assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可

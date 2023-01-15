@@ -4263,7 +4263,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
             = vlSelf->top__DOT__axi_if_u__DOT__r_ready;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_id = 0U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-            = vlSelf->top__DOT__IF_u__DOT__pc_next_o;
+            = vlSelf->top__DOT__axi_if_u__DOT__addr_reg;
     } else {
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_cache 
             = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_cache_i;
