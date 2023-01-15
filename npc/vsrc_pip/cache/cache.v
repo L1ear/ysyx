@@ -148,6 +148,7 @@ end
 
 assign tagWay1_q = tagArray1[index];
 assign tagWay2_q = tagArray2[index];
+wire    [20:0]  tagtest = tagArray2[9];
 
 
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
