@@ -498,22 +498,28 @@ cache_dut (
   .data_notok_o(cacheDataOk_i),
   .rd_data_o (sram_rdata ),
 //to AXI
-  .cacheRdValid_o   (rw_valid_i),
-  .axiRdReady       (rw_ready_o),
-  .fetchLenth       (fetchLenth),
-  .rdLast_i         (rdLast_o),
-  .cacheAddr_o      (rw_addr_i),
+  .cacheRdValid_o   (rw_valid_i ),
+  .axiRdReady       (rw_ready_o ),
+  .fetchLenth       (fetchLenth ),
+  .rdLast_i         (rdLast_o   ),
+  .cacheAddr_o      (rw_addr_i  ),
   .rdData_i         (data_read_o),
   .dataValid_i      (dataValid_o)
 );
-
+wire rw_valid_i ;
+wire rw_ready_o ;
+wire [7:0]fetchLenth ;
+wire rdLast_o   ;
+wire [31:0]rw_addr_i  ;
+wire [63:0]data_read_o;
+wire dataValid_o;
 axi_icache axi_icache_dut (
-  .clock (clock ),
-  .reset (reset ),
+  .clock (clk ),
+  .reset (rst_n ),
   .rw_valid_i (rw_valid_i ),
   .rw_ready_o (rw_ready_o ),
   .data_read_o (data_read_o ),
-  .rw_addr_i (rw_addr_i ),
+  .rw_addr_i ({32'b0,rw_addr_i} ),
   .fetchLenth (fetchLenth ),
   .rdLast_o (rdLast_o ),
   .dataValid_o (dataValid_o ),
