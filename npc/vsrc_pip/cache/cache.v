@@ -88,7 +88,7 @@ always @(*) begin
             end
         end 
         replace: begin
-            cacheNexState = compare;
+            cacheNexState = idle;
         end
         default: begin
             cacheNexState = idle;
