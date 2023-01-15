@@ -264,17 +264,17 @@ wire    replaceEn = cacheCurState == replace;
 always @(*) begin
     if(replaceEn) begin
         if(randomBit[0]) begin
-            wenWay1 <= 1'b1;
-            wenWay2 <= 1'b0;
+            wenWay1 = 1'b1;
+            wenWay2 = 1'b0;
         end
         else begin
-            wenWay2 <= 1'b1;
-            wenWay1 <= 1'b0;
+            wenWay2 = 1'b1;
+            wenWay1 = 1'b0;
         end
     end
     else begin
-        wenWay2 <= 1'b0;
-        wenWay1 <= 1'b0;
+        wenWay2 = 1'b0;
+        wenWay1 = 1'b0;
     end
 end
 
