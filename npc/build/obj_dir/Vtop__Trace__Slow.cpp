@@ -2949,7 +2949,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+691,(0U),3);
         tracep->fullCData(oldp+692,(0U),4);
         tracep->fullBit(oldp+693,(0U));
-        tracep->fullCData(oldp+694,(3U),8);
+        tracep->fullCData(oldp+694,(4U),8);
         tracep->fullCData(oldp+695,(3U),3);
         tracep->fullCData(oldp+696,(1U),2);
         tracep->fullBit(oldp+697,(0U));

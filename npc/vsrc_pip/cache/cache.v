@@ -15,6 +15,8 @@ module cache(
 
 //to AXI
     output                                  cacheRdValid_o,
+    input                                   axiRdReady,
+    output          [7:0]                   fetchLenth,
     input                                   rdLast_i,
     output          [`addr_width-1:0]       cacheAddr_o,
     input           [`XLEN-1:0]             rdData_i
@@ -25,7 +27,7 @@ module cache(
 
 localparam  idle    = 3'b000,
             compare = 3'b001,
-            miss    = 3'b010,
+            miss    = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
             getdata = 3'b011;
 
 reg     [2:0]   cacheCurState,cacheNexState;
