@@ -102,7 +102,7 @@ always @(posedge clk or negedge rst_n) begin
         reqLatch <= 'b0;
     end
     //在compare到compare锁存地址信息时，要保证上一个请求是hit的，否则下一拍会进入miss，而保存的数据失效
-    else if(((idleEn && valid_i) || (compareEn && valid_i && cacheHit) && stall_n)) begin
+    else if(((idleEn && valid_i) || (compareEn && valid_i && cacheHit))) begin
         reqLatch <= {op_i,addr_i};
     end
 end
