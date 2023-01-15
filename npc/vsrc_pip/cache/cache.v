@@ -257,7 +257,6 @@ end
 
 //延后一个周期写入，防止高位无法写入（即最后64位数据）
 always @(posedge clk or negedge rst_n) begin
-    randomBit = $random;
     if(~rst_n) begin
         wenWay1 <= 1'b0;
         wenWay2 <= 1'b0;
