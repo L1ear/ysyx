@@ -71,7 +71,7 @@ module axi_if # (
 
 reg     [`XLEN-1:0]     addr_reg;
     always @(posedge clock) begin
-        if(r_state == r_state_ar_wait) begin
+        if((r_state == r_state_idle) && rw_valid_i) begin
             addr_reg <= rw_addr_i;
         end
         else begin
