@@ -224,7 +224,6 @@ char  stall;
 void single_cycle(int i) {
   device_update();
 //上升沿
-printf("%d\n",top->axi_ar_valid_o);
   top->clk = 1; 
   //********************************************
   mmio_sigs.update_input(*mmioref);
