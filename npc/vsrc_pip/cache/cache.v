@@ -102,7 +102,7 @@ always @(posedge clk or negedge rst_n) begin
         reqLatch <= 'b0;
     end
     //在compare到compare锁存地址信息时，要保证上一个请求是hit的，否则下一拍会进入miss，而保存的数据失效
-    else if(((idleEn && valid_i) || (compareEn && valid_i && cacheHit))) begin
+    else if(((idleEn && valid_i) || (compareEn && valid_i && cacheHit) && stall_n)) begin
         reqLatch <= {op_i,addr_i};
     end
 end
@@ -347,7 +347,7 @@ S011HD1P_X32Y2D128_BW iramWay1_1 (
   .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ),
   .WEN (~wenWay1 ),
   .BWEN (0 ),
-  .A (index ),
+  .A (stall_n ? addr_i[10:5] : index ),
   .D  (inDataWay1_1)
 );
 
@@ -357,7 +357,7 @@ S011HD1P_X32Y2D128_BW iramWay1_2 (
   .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ),
   .WEN (~wenWay1 ),
   .BWEN (0 ),
-  .A (index ),
+  .A (stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay1_2)
 );
 
@@ -367,7 +367,7 @@ S011HD1P_X32Y2D128_BW iramWay2_1 (
   .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ),
   .WEN (~wenWay2 ),
   .BWEN (0 ),
-  .A (index ),
+  .A (stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay2_1)
 );
 
@@ -377,7 +377,7 @@ S011HD1P_X32Y2D128_BW iramWay2_2 (
   .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ),
   .WEN (~wenWay2 ),
   .BWEN (0 ),
-  .A (index ),
+  .A (stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay2_2)
 );
 // reg     [`XLEN-1:0]     data_1[0:255];
