@@ -1526,14 +1526,12 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
             }
         }
     }
-    vlSelf->top__DOT__cache_dut__DOT__wenWay1 = ((IData)(vlSelf->rst_n) 
-                                                 & ((7U 
-                                                     == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                                    & vlSelf->top__DOT__cache_dut__DOT__randomBit));
-    vlSelf->top__DOT__cache_dut__DOT__wenWay2 = ((IData)(vlSelf->rst_n) 
-                                                 & ((7U 
-                                                     == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                                    & (~ vlSelf->top__DOT__cache_dut__DOT__randomBit)));
+    vlSelf->top__DOT__cache_dut__DOT__wenWay1 = ((7U 
+                                                  == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                 & vlSelf->top__DOT__cache_dut__DOT__randomBit);
+    vlSelf->top__DOT__cache_dut__DOT__wenWay2 = ((7U 
+                                                  == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                 & (~ vlSelf->top__DOT__cache_dut__DOT__randomBit));
     vlSelf->top__DOT__cache_dut__DOT__cacheHit = ((IData)(vlSelf->top__DOT__cache_dut__DOT__way1Hit) 
                                                   | (IData)(vlSelf->top__DOT__cache_dut__DOT__way2Hit));
     if ((1U & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
