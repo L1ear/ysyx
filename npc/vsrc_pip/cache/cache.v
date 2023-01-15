@@ -158,16 +158,16 @@ reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(*) begin
     if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
             case(offset[4:3])
-                2'b00: rdDataRegWay1 = missFlag ? dpiRegWay1[63:0]    : way1Data[63:0]   ;
-                2'b01: rdDataRegWay1 = missFlag ? dpiRegWay1[127:64]  : way1Data[127:64] ;
-                2'b10: rdDataRegWay1 = missFlag ? dpiRegWay1[191:128] : way1Data[191:128];
-                2'b11: rdDataRegWay1 = missFlag ? dpiRegWay1[255:192] : way1Data[255:192];
+                2'b00: rdDataRegWay1 = missFlag ? rdBuffer[63:0]    : way1Data[63:0]   ;
+                2'b01: rdDataRegWay1 = missFlag ? rdBuffer[127:64]  : way1Data[127:64] ;
+                2'b10: rdDataRegWay1 = missFlag ? rdBuffer[191:128] : way1Data[191:128];
+                2'b11: rdDataRegWay1 = missFlag ? rdBuffer[255:192] : way1Data[255:192];
             endcase
             case(offset[4:3])
-                2'b00: rdDataRegWay2 = missFlag ? dpiRegWay2[63:0]    : way2Data[63:0];
-                2'b01: rdDataRegWay2 = missFlag ? dpiRegWay2[127:64]  : way2Data[127:64];
-                2'b10: rdDataRegWay2 = missFlag ? dpiRegWay2[191:128] : way2Data[191:128];
-                2'b11: rdDataRegWay2 = missFlag ? dpiRegWay2[255:192] : way2Data[255:192];
+                2'b00: rdDataRegWay2 = missFlag ? rdBuffer[63:0]    : way2Data[63:0];
+                2'b01: rdDataRegWay2 = missFlag ? rdBuffer[127:64]  : way2Data[127:64];
+                2'b10: rdDataRegWay2 = missFlag ? rdBuffer[191:128] : way2Data[191:128];
+                2'b11: rdDataRegWay2 = missFlag ? rdBuffer[255:192] : way2Data[255:192];
             endcase
     end
     else begin
