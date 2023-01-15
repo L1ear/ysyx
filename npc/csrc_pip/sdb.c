@@ -82,6 +82,7 @@ static int cmd_c(char *args) {
     {
       nr_cycle++;
       single_cycle(sim_time);
+      if(sim_time == 14655328) assert(0);
         // nvboard_update();
       sim_time = sim_time+2;
         //if(i>=1000) en = 0;
