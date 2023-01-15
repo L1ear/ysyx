@@ -29,7 +29,8 @@ module cache(
 localparam  idle    = 3'b000,
             compare = 3'b001,
             miss    = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
-            getdata = 3'b011;
+            getdata = 3'b011,
+            replace = 3'b111;
 
 reg     [2:0]   cacheCurState,cacheNexState;
 wire            cacheHit;
@@ -80,12 +81,15 @@ always @(*) begin
         end
         getdata: begin
             if(rdLast_i) begin
-                cacheNexState = compare;       //有问题，要该（validbit的问题）
+                cacheNexState = replace;       //有问题，要该（validbit的问题）
             end
             else begin
                 cacheNexState = getdata;
             end
         end 
+        replace: begin
+            cacheNexState = compare;
+        end
         default: begin
             cacheNexState = idle;
         end  
@@ -161,10 +165,10 @@ wire    compareEn = cacheCurState == compare;
 
 wire [255:0]    way1Data = {dataWay1_2,dataWay1_1};
 wire [255:0]    way2Data = {dataWay2_2,dataWay2_1};
-wire test = (idleEn && valid_i) || (compareEn && valid_i && cacheHit);
+// wire test = (idleEn && valid_i) || (compareEn && valid_i && cacheHit);
 reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(*) begin
-    if(test) begin
+    if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
             case(offset[4:3])
                 2'b00: rdDataRegWay1 = missFlag ? rdBuffer[63:0]    : way1Data[63:0]   ;
                 2'b01: rdDataRegWay1 = missFlag ? rdBuffer[127:64]  : way1Data[127:64] ;
