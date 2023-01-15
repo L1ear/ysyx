@@ -325,10 +325,8 @@ always @(*) begin
         inDataWay1_2 = {$random,$random,$random,$random};
         inDataWay2_1 = {$random,$random,$random,$random};
         inDataWay2_2 = {$random,$random,$random,$random};
-        wenWay1_1 = 1'b0;
-        wenWay1_2 = 1'b0;
-        wenWay2_1 = 1'b0;
-        wenWay2_2 = 1'b0;
+        wenWay1 = 1'b0;
+        wenWay2 = 1'b0;
         bitValid1_d = 1'b0;
         bitValid2_d = 1'b0;
         tagArray1_d = 'b0;
