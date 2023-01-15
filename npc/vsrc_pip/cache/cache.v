@@ -15,9 +15,12 @@ module cache(
 
 //to AXI
     output                                  cacheRdValid_o,
+    input                                   axiRdReady,
+    output          [7:0]                   fetchLenth,
     input                                   rdLast_i,
     output          [`addr_width-1:0]       cacheAddr_o,
-    input           [`XLEN-1:0]             rdData_i
+    input           [`XLEN-1:0]             rdData_i,
+    input                                   dataValid_i
 );
 
 
@@ -25,15 +28,16 @@ module cache(
 
 localparam  idle    = 3'b000,
             compare = 3'b001,
-            miss    = 3'b010,
-            getdata = 3'b011;
+            miss    = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
+            getdata = 3'b011,
+            replace = 3'b111;
 
 reg     [2:0]   cacheCurState,cacheNexState;
 wire            cacheHit;
 wire            way1Hit,way2Hit;
 wire    [127:0] dataWay1_1,dataWay1_2,dataWay2_1,dataWay2_2;
 reg    [127:0] inDataWay1_1,inDataWay1_2,inDataWay2_1,inDataWay2_2;
-reg            wenWay1_1,wenWay1_2,wenWay2_1,wenWay2_2;
+reg            wenWay1,wenWay2;
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -68,13 +72,24 @@ always @(*) begin
             end
         end
         miss: begin
-            //TODO
-            cacheNexState = getdata;
+            if(axiRdReady) begin
+                cacheNexState = getdata;
+            end
+            else begin
+                cacheNexState = miss;
+            end
         end
         getdata: begin
-            //TODO
-            cacheNexState = compare;       //有问题，要该（validbit的问题）
+            if(rdLast_i) begin
+                cacheNexState = replace;       //有问题，要该（validbit的问题）
+            end
+            else begin
+                cacheNexState = getdata;
+            end
         end 
+        replace: begin
+            cacheNexState = idle;
+        end
         default: begin
             cacheNexState = idle;
         end  
@@ -137,6 +152,7 @@ end
 
 assign tagWay1_q = tagArray1[index];
 assign tagWay2_q = tagArray2[index];
+wire    [20:0]  tagtest = tagArray2[9];
 
 
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
@@ -149,20 +165,21 @@ wire    compareEn = cacheCurState == compare;
 
 wire [255:0]    way1Data = {dataWay1_2,dataWay1_1};
 wire [255:0]    way2Data = {dataWay2_2,dataWay2_1};
+// wire test = (idleEn && valid_i) || (compareEn && valid_i && cacheHit);
 reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(*) begin
     if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
             case(offset[4:3])
-                2'b00: rdDataRegWay1 = missFlag ? dpiRegWay1[63:0]    : way1Data[63:0]   ;
-                2'b01: rdDataRegWay1 = missFlag ? dpiRegWay1[127:64]  : way1Data[127:64] ;
-                2'b10: rdDataRegWay1 = missFlag ? dpiRegWay1[191:128] : way1Data[191:128];
-                2'b11: rdDataRegWay1 = missFlag ? dpiRegWay1[255:192] : way1Data[255:192];
+                2'b00: rdDataRegWay1 = missFlag ? rdBuffer[63:0]    : way1Data[63:0]   ;
+                2'b01: rdDataRegWay1 = missFlag ? rdBuffer[127:64]  : way1Data[127:64] ;
+                2'b10: rdDataRegWay1 = missFlag ? rdBuffer[191:128] : way1Data[191:128];
+                2'b11: rdDataRegWay1 = missFlag ? rdBuffer[255:192] : way1Data[255:192];
             endcase
             case(offset[4:3])
-                2'b00: rdDataRegWay2 = missFlag ? dpiRegWay2[63:0]    : way2Data[63:0];
-                2'b01: rdDataRegWay2 = missFlag ? dpiRegWay2[127:64]  : way2Data[127:64];
-                2'b10: rdDataRegWay2 = missFlag ? dpiRegWay2[191:128] : way2Data[191:128];
-                2'b11: rdDataRegWay2 = missFlag ? dpiRegWay2[255:192] : way2Data[255:192];
+                2'b00: rdDataRegWay2 = missFlag ? rdBuffer[63:0]    : way2Data[63:0];
+                2'b01: rdDataRegWay2 = missFlag ? rdBuffer[127:64]  : way2Data[127:64];
+                2'b10: rdDataRegWay2 = missFlag ? rdBuffer[191:128] : way2Data[191:128];
+                2'b11: rdDataRegWay2 = missFlag ? rdBuffer[255:192] : way2Data[255:192];
             endcase
     end
     else begin
@@ -183,7 +200,8 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n)begin
         missFlag <= 'b0;
     end
-    else if(getdataEn) begin        //在接入AXI后要加上LAST作为判断条件
+    //将missFlag延后写入sram一个周期，防止读出错误数据
+    else if(replaceEn) begin        //在接入AXI后要加上LAST作为判断条件
         missFlag <= 'b1;
     end
     else begin
@@ -191,17 +209,87 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-reg [255:0] dpiRegWay1,dpiRegWay2;
+assign cacheRdValid_o = missEn && axiRdReady;
+assign cacheAddr_o = addrToRead[31:0];
+assign inDataWay1_1 = rdBuffer[127:0];
+assign inDataWay1_2 = rdBuffer[255:128];
+assign inDataWay2_1 = rdBuffer[127:0];
+assign inDataWay2_2 = rdBuffer[255:128];
+reg [1:0]   rdCnt;
 always @(posedge clk or negedge rst_n) begin
-    if(getdataEn) begin
-        dpiRegWay1 <= {inDataWay1_2, inDataWay1_1};
-        dpiRegWay2 <= {inDataWay2_2, inDataWay2_1};
+    if(~rst_n) begin
+        rdCnt <= 'b0;
+    end
+    else if(getdataEn && dataValid_i) begin
+        rdCnt <= rdCnt + 'b1;
     end
 end
 
+reg [255:0] rdBuffer;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        rdBuffer <= 'b0;
+    end 
+    else if(getdataEn && dataValid_i) begin
+        rdBuffer[rdCnt*64+:64] <= rdData_i;
+    end
+end
+
+always randomBit = $random;
+// always @(*) begin
+    
+//     if(getdataEn && rdLast_i) begin
+//         //TODO 真‘伪随机
+//         if(randomBit[0]) begin
+//             bitValid1_d = 1'b1;
+//             bitValid2_d = 1'b0;
+//             tagArray1_d = tag;
+//             tagArray2_d = 'b0;
+//         end
+//         else begin
+//             bitValid1_d = 1'b0;
+//             bitValid2_d = 1'b1;
+//             tagArray1_d = 'b0;
+//             tagArray2_d = tag;
+//         end
+//     end
+//     else begin
+//         bitValid1_d = 1'b0;
+//         bitValid2_d = 1'b0;
+//         tagArray1_d = 'b0;
+//         tagArray2_d = 'b0;
+//     end
+// end
+wire    replaceEn = cacheCurState == replace;
+//延后一个周期写入，防止高位无法写入（即最后64位数据）
+// always @(*) begin
+//     if(replaceEn) begin
+//         if(randomBit[0]) begin
+//             wenWay1 = 1'b1;
+//             wenWay2 = 1'b0;
+//         end
+//         else begin
+//             wenWay2 = 1'b1;
+//             wenWay1 = 1'b0;
+//         end
+//     end
+//     else begin
+//         wenWay2 = 1'b0;
+//         wenWay1 = 1'b0;
+//     end
+// end
+
+// reg [255:0] dpiRegWay1,dpiRegWay2;
+// always @(posedge clk or negedge rst_n) begin
+//     if(getdataEn) begin
+//         dpiRegWay1 <= {inDataWay1_2, inDataWay1_1};
+//         dpiRegWay2 <= {inDataWay2_2, inDataWay2_1};
+//     end
+// end
+
 always @(*) begin
-    randomBit = $random;
-    if(getdataEn) begin
+    // randomBit = $random;
+    if(getdataEn && rdLast_i) begin
         //TODO 真‘伪随机
         if(randomBit[0]) begin
             axiSlaveRead(addrToRead, 3, inDataWay1_1[63:0]);
@@ -210,10 +298,8 @@ always @(*) begin
             axiSlaveRead(addrToRead+24, 3, inDataWay1_2[127:64]);
             inDataWay2_1 = {$random,$random,$random,$random};
             inDataWay2_2 = {$random,$random,$random,$random};
-            wenWay1_1 = 1'b1;
-            wenWay1_2 = 1'b1;
-            wenWay2_1 = 1'b0;
-            wenWay2_2 = 1'b0;
+            wenWay1 = 1'b1;
+            wenWay2 = 1'b0;
             bitValid1_d = 1'b1;
             bitValid2_d = 1'b0;
             tagArray1_d = tag;
@@ -226,10 +312,8 @@ always @(*) begin
             axiSlaveRead(addrToRead+24, 3, inDataWay2_2[127:64]);
             inDataWay1_1 = {$random,$random,$random,$random};
             inDataWay1_2 = {$random,$random,$random,$random};
-            wenWay2_1 = 1'b1;
-            wenWay2_2 = 1'b1;
-            wenWay1_1 = 1'b0;
-            wenWay1_2 = 1'b0;
+            wenWay2 = 1'b1;
+            wenWay1 = 1'b0;
             bitValid1_d = 1'b0;
             bitValid2_d = 1'b1;
             tagArray1_d = 'b0;
@@ -257,40 +341,40 @@ end
 S011HD1P_X32Y2D128_BW iramWay1_1 (
   .Q (dataWay1_1 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1_1) ),
-  .WEN (~wenWay1_1 ),
+  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ),
+  .WEN (~wenWay1 ),
   .BWEN (0 ),
-  .A (stall_n ? addr_i[10:5] : index ),
+  .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
   .D  (inDataWay1_1)
 );
 
 S011HD1P_X32Y2D128_BW iramWay1_2 (
   .Q (dataWay1_2 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1_2) ),
-  .WEN (~wenWay1_2 ),
+  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ),
+  .WEN (~wenWay1 ),
   .BWEN (0 ),
-  .A (stall_n ? addr_i[10:5] : index ),
+  .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay1_2)
 );
 
 S011HD1P_X32Y2D128_BW iramWay2_1 (
   .Q (dataWay2_1 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2_1) ),
-  .WEN (~wenWay2_1 ),
+  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ),
+  .WEN (~wenWay2 ),
   .BWEN (0 ),
-  .A (stall_n ? addr_i[10:5] : index ),
+  .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay2_1)
 );
 
 S011HD1P_X32Y2D128_BW iramWay2_2 (
   .Q (dataWay2_2 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2_2) ),
-  .WEN (~wenWay2_2 ),
+  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ),
+  .WEN (~wenWay2 ),
   .BWEN (0 ),
-  .A (stall_n ? addr_i[10:5] : index ),
+  .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay2_2)
 );
 // reg     [`XLEN-1:0]     data_1[0:255];
