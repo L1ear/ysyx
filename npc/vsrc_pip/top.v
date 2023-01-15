@@ -499,12 +499,12 @@ cache_dut (
   .rd_data_o (sram_rdata ),
 //to AXI
   .cacheRdValid_o   (rw_valid_i ),
-  .axiRdReady       (rw_ready_o ),
-  .fetchLenth       (fetchLenth ),
+//   .axiRdReady       (rw_ready_o ),
+//   .fetchLenth       (fetchLenth ),
   .rdLast_i         (rdLast_o   ),
   .cacheAddr_o      (rw_addr_i  ),
   .rdData_i         (data_read_o),
-  .dataValid_i      (dataValid_o)
+//   .dataValid_i      (dataValid_o)
 );
 wire rw_valid_i ;
 wire rw_ready_o ;
