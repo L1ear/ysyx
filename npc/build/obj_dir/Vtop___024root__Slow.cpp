@@ -206,9 +206,12 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         = ((0U == (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state)) 
            & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_user_i));
     if ((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))) {
+        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_len = 3U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size = 3U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_burst = 1U;
     } else {
+        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_len 
+            = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_len_i;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size 
             = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_size_i;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_burst 
@@ -222,8 +225,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_qos = 0U;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready 
             = (3U == (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state));
-        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_len 
-            = vlSelf->top__DOT__fetchLenth;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_region 
             = vlSelf->top__DOT__if_axi_ar_region_o;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_id = 0U;
@@ -234,8 +235,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
             = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_qos_i;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready 
             = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_r_ready_i;
-        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_len 
-            = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_len_i;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_region 
             = vlSelf->top__DOT__axi_crossbar_u__DOT__ls_axi_ar_region_i;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_id 
