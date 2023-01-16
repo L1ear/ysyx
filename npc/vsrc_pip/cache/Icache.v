@@ -81,7 +81,7 @@ always @(*) begin
         end
         getdata: begin
             if(rdLast_i) begin
-                cacheNexState = replace;       //有问题，要该（validbit的问题）
+                cacheNexState = compare;       //有问题，要该（validbit的问题）
             end
             else begin
                 cacheNexState = getdata;
@@ -163,11 +163,11 @@ end
 assign tagWay1_q = tagArray1[index];
 assign tagWay2_q = tagArray2[index];
 
-
+//hit信号产生
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
 assign  cacheHit = way1Hit || way2Hit;
-
+//dataOk信号仅在compare阶段并且命中的情况下为高，
 assign data_ok_o = compareEn && cacheHit;
 assign data_notok_o = (compareEn && ~cacheHit) || getdataEn || missEn;
 
