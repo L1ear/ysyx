@@ -81,7 +81,7 @@ always @(*) begin
         end
         getdata: begin
             if(rdLast_i) begin
-                cacheNexState = compare;       //有问题，要该（validbit的问题）
+                cacheNexState = replace;       //有问题，要该（validbit的问题）
             end
             else begin
                 cacheNexState = getdata;
