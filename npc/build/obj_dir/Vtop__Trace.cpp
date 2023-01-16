@@ -392,10 +392,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgBit(oldp+102,(((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                       | ((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                          & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)))));
-            tracep->chgBit(oldp+103,(((((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                        & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                                       | (3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
-                                      | (2U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
+            tracep->chgBit(oldp+103,((((((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                         & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
+                                        | (3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
+                                       | (2U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
+                                      | (7U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
             tracep->chgIData(oldp+104,(((1U & (IData)(
                                                       (vlSelf->top__DOT__pc_new 
                                                        >> 2U)))

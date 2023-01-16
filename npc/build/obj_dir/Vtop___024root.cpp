@@ -1930,12 +1930,14 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__if_instr_valid = (((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                          | ((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                             & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                                        & (~ ((((1U 
-                                                 == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                                & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                                               | (3U 
+                                        & (~ (((((1U 
+                                                  == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                                 & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
+                                                | (3U 
+                                                   == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
+                                               | (2U 
                                                   == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
-                                              | (2U 
+                                              | (7U 
                                                  == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
     vlSelf->top__DOT__ls_not_ok = (((3U == (0x7fU & 
                                             (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 

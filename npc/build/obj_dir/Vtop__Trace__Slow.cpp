@@ -1730,10 +1730,11 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+103,(((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                    | ((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                       & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)))));
-        tracep->fullBit(oldp+104,(((((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-                                     & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-                                    | (3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
-                                   | (2U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
+        tracep->fullBit(oldp+104,((((((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+                                      & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
+                                     | (3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
+                                    | (2U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
+                                   | (7U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
         tracep->fullIData(oldp+105,(((1U & (IData)(
                                                    (vlSelf->top__DOT__pc_new 
                                                     >> 2U)))
