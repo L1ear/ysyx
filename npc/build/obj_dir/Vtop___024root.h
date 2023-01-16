@@ -331,6 +331,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__CEN;
     CData/*5:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay2_2__A;
     CData/*0:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay2_2__CEN;
+    CData/*1:0*/ __Vdly__top__DOT__cache_dut__DOT__rdCnt;
     CData/*4:0*/ __Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vclklast__TOP__clk;
@@ -341,7 +342,7 @@ VL_MODULE(Vtop___024root) {
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout;
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellinp__wb_reg__i_din;
     QData/*63:0*/ __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
-    VlUnpacked<CData/*0:0*/, 5> __Vm_traceActivity;
+    VlUnpacked<CData/*0:0*/, 6> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
     Vtop__Syms* vlSymsp;  // Symbol table
