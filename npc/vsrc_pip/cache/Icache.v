@@ -208,6 +208,7 @@ wire    getdataEn = cacheCurState == getdata;
 wire [63:0] addrToRead = {32'b0,tag,index,5'b0};
 reg [31:0] randomBit;
 reg        missFlag;
+//由于根据sram模型，写入数据再读出至少需要两个周期，而为了获得更好的性能，在写入后即可读出数据，故需一个信号指示使用rdBUffer里存放的数据而不是sram的
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n)begin
         missFlag <= 'b0;
@@ -228,6 +229,8 @@ assign inDataWay1_2 = rdBuffer[255:128];
 assign inDataWay2_1 = rdBuffer[127:0];
 assign inDataWay2_2 = rdBuffer[255:128];
 reg [1:0]   rdCnt;
+//这一部分将axi过来的数据保持在buffer中，在一次存入cache的sram
+//icache每次读内存都是固定的读4个64位word，所以使用一个2位的计数器循环计数
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         rdCnt <= 'b0;
@@ -236,7 +239,6 @@ always @(posedge clk or negedge rst_n) begin
         rdCnt <= rdCnt + 'b1;
     end
 end
-
 reg [255:0] rdBuffer;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -247,9 +249,9 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
+//根据随机决定替换哪个way
 always randomBit = $random;
 always @(*) begin
-    
     if(getdataEn && rdLast_i) begin
         //TODO 真‘伪随机
         if(randomBit[0]) begin
@@ -272,8 +274,9 @@ always @(*) begin
         tagArray2_d = 'b0;
     end
 end
+
 wire    replaceEn = cacheCurState == replace;
-//延后一个周期写入，防止高位无法写入（即最后64位数据）
+//这里延后一个周期将写是能拉高写入，防止高位无法写入（即最后64位数据）
 always @(*) begin
     if(replaceEn) begin
         if(randomBit[0]) begin
@@ -292,6 +295,8 @@ always @(*) begin
 end
 
 
+//片选信号仅在idle且读有效、compare且命中且读有效、写使能有效这三种情况拉高
+//关于地址信号：在需要写入数据时，无论如何都要使用latch住的地址，在读的时候若stall了也要使用latch的，而在正常执行的时候要使用cache模块输入的地址
 S011HD1P_X32Y2D128_BW iramWay1_1 (
   .Q (dataWay1_1 ),
   .CLK (clk ),
@@ -331,25 +336,7 @@ S011HD1P_X32Y2D128_BW iramWay2_2 (
   .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay2_2)
 );
-// reg     [`XLEN-1:0]     data_1[0:255];
-// reg     [`XLEN-1:0]     data_2[0:255];
-// reg     [54     :0]     tagvd_1[0:255];
-// reg     [54     :0]     tagvd_2[0:255];
 
-// wire    index = addr[10:3];
-// wire    tag = addr[63:11];
-// wire    tag_1 = tagvd_1[index][52:0];
-// wire    tag_2 = tagvd_2[index][52:0];
-
-// wire    hit_1 = (tag == tag_1) && tagvd_1[addr[10:3]][53];
-// wire    hit_2 = (tag == tag_2) && tagvd_2[addr[10:3]][53];
-// assign  valid = hit_1 || hit_2;
-
-// assign  data_o = ({64{hit_1}} && data_1[index]) ||
-//                  ({64{hit_2}} && data_2[index]);
-// // always@()begin
-
-// // end
 
 
 endmodule
