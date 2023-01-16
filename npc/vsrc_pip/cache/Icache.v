@@ -213,7 +213,7 @@ always @(posedge clk or negedge rst_n) begin
         missFlag <= 'b0;
     end
     //将missFlag延后写入sram一个周期，防止读出错误数据
-    else if(missEn) begin        //在接入AXI后要加上LAST作为判断条件
+    else if(replaceEn) begin        //在接入AXI后要加上LAST作为判断条件
         missFlag <= 'b1;
     end
     else begin
