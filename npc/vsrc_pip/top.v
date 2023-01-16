@@ -482,8 +482,7 @@ IF_stage IF_u(
     .sram_addr_valid(sram_addr_valid)
 );
 
-cache 
-cache_dut (
+Icache cache_dut (
   .clk (clk ),
   .rst_n (rst_n ),
 

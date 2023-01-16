@@ -1,5 +1,5 @@
 `include "defines.v"
-module cache(
+module Icache(
     input                                   clk,rst_n,
 //from PIPLINE
     input           [`addr_width-1:0]       addr_i,
@@ -106,12 +106,14 @@ always @(posedge clk or negedge rst_n) begin
         reqLatch <= 'b0;
     end
     //在compare到compare锁存地址信息时，要保证上一个请求是hit的，否则下一拍会进入miss，而保存的数据失效
+    //同时要保证在stall时不锁存，因为1、stall有可能是由cache缺失或其他自身原因造成，此时不能锁存其他数据
+    //2、有可能由其他阶段造成如ls部分stall等，此时也不能锁存，否则会锁存下一拍的地址，但是pc还没有变化，导致取得的指令出错
     else if(((idleEn && valid_i) || (compareEn && valid_i && cacheHit) && stall_n)) begin
         reqLatch <= {op_i,addr_i};
     end
 end
 
-always @( *) begin
+always @(*) begin
     if(idleEn || (compareEn && cacheHit)) begin
         addr_ok_o = 1'b1;
     end
@@ -278,68 +280,6 @@ always @(*) begin
         wenWay1 = 1'b0;
     end
 end
-
-// reg [255:0] dpiRegWay1,dpiRegWay2;
-// always @(posedge clk or negedge rst_n) begin
-//     if(getdataEn) begin
-//         dpiRegWay1 <= {inDataWay1_2, inDataWay1_1};
-//         dpiRegWay2 <= {inDataWay2_2, inDataWay2_1};
-//     end
-// end
-
-// always @(*) begin
-//     randomBit = $random;
-//     if(getdataEn) begin
-//         //TODO 真‘伪随机
-//         if(randomBit[0]) begin
-//             axiSlaveRead(addrToRead, 3, inDataWay1_1[63:0]);
-//             axiSlaveRead(addrToRead+8, 3, inDataWay1_1[127:64]);
-//             axiSlaveRead(addrToRead+16, 3, inDataWay1_2[63:0]);
-//             axiSlaveRead(addrToRead+24, 3, inDataWay1_2[127:64]);
-//             inDataWay2_1 = {$random,$random,$random,$random};
-//             inDataWay2_2 = {$random,$random,$random,$random};
-//             wenWay1_1 = 1'b1;
-//             wenWay1_2 = 1'b1;
-//             wenWay2_1 = 1'b0;
-//             wenWay2_2 = 1'b0;
-//             bitValid1_d = 1'b1;
-//             bitValid2_d = 1'b0;
-//             tagArray1_d = tag;
-//             tagArray2_d = 'b0;
-//         end
-//         else begin
-//             axiSlaveRead(addrToRead, 3, inDataWay2_1[63:0]);
-//             axiSlaveRead(addrToRead+8, 3, inDataWay2_1[127:64]);
-//             axiSlaveRead(addrToRead+16, 3, inDataWay2_2[63:0]);
-//             axiSlaveRead(addrToRead+24, 3, inDataWay2_2[127:64]);
-//             inDataWay1_1 = {$random,$random,$random,$random};
-//             inDataWay1_2 = {$random,$random,$random,$random};
-//             wenWay2_1 = 1'b1;
-//             wenWay2_2 = 1'b1;
-//             wenWay1_1 = 1'b0;
-//             wenWay1_2 = 1'b0;
-//             bitValid1_d = 1'b0;
-//             bitValid2_d = 1'b1;
-//             tagArray1_d = 'b0;
-//             tagArray2_d = tag;
-//         end
-//     end
-//     else begin
-//         inDataWay1_1 = {$random,$random,$random,$random};
-//         inDataWay1_2 = {$random,$random,$random,$random};
-//         inDataWay2_1 = {$random,$random,$random,$random};
-//         inDataWay2_2 = {$random,$random,$random,$random};
-//         wenWay1_1 = 1'b0;
-//         wenWay1_2 = 1'b0;
-//         wenWay2_1 = 1'b0;
-//         wenWay2_2 = 1'b0;
-//         bitValid1_d = 1'b0;
-//         bitValid2_d = 1'b0;
-//         tagArray1_d = 'b0;
-//         tagArray2_d = 'b0;
-//     end
-// end
-
 
 
 S011HD1P_X32Y2D128_BW iramWay1_1 (
