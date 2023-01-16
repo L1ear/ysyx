@@ -127,13 +127,14 @@ reg [63:0]   validArray1;
 reg [63:0]   validArray2;    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
 wire        bitValid1,bitValid2;
 reg        bitValid1_d,bitValid2_d;
-//TODO
+
+//valid Bit的写入在getdata的末尾写入
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         validArray1 <= 'b0;
         validArray2 <= 'b0;
     end
-    if(getdataEn) begin
+    else if(getdataEn) begin
         validArray1[index] <= bitValid1_d;
         validArray2[index] <= bitValid2_d;
     end
@@ -150,6 +151,8 @@ reg [20:0]  tagArray1_d,tagArray2_d;
 wire [20:0] tagWay1_q,tagWay2_q;
 reg        validWay1_q,validWay2_q;
 
+//tag的写入同样在getdata的末尾写入
+//此处是否能优化呢，即将tagArray1_d和tagArray2_d用一个信号表示，使用信号控制写入tagarray1还是2
 always @(posedge clk or negedge rst_n) begin
     if(getdataEn) begin
         tagArray1[index] <= tagArray1_d;
@@ -159,12 +162,12 @@ end
 
 assign tagWay1_q = tagArray1[index];
 assign tagWay2_q = tagArray2[index];
-wire    [20:0]  tagtest = tagArray2[9];
 
 
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
 assign  cacheHit = way1Hit || way2Hit;
+
 assign data_ok_o = compareEn && cacheHit;
 assign data_notok_o = (compareEn && ~cacheHit) || getdataEn || missEn;
 

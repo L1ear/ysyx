@@ -553,6 +553,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__cache_dut__DOT__rdBuffer[6U] = 0U;
         vlSelf->top__DOT__cache_dut__DOT__rdBuffer[7U] = 0U;
     }
+    if ((1U & (~ (IData)(vlSelf->rst_n)))) {
+        vlSelf->top__DOT__cache_dut__DOT__validArray2 = 0ULL;
+    }
     if ((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) {
         vlSelf->top__DOT__cache_dut__DOT__validArray2 
             = (((~ (1ULL << (0x3fU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
@@ -563,6 +566,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                    & (~ vlSelf->top__DOT__cache_dut__DOT__randomBit)))) 
                   << (0x3fU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                        >> 5U)))));
+    }
+    if ((1U & (~ (IData)(vlSelf->rst_n)))) {
+        vlSelf->top__DOT__cache_dut__DOT__validArray1 = 0ULL;
     }
     if ((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) {
         vlSelf->top__DOT__cache_dut__DOT__validArray1 
