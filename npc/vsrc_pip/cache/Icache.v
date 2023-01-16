@@ -113,6 +113,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
+//addrOk信号仅在idle或者compare且上一拍pc命中的情况下为高，表示新的pc可以被接收
 always @(*) begin
     if(idleEn || (compareEn && cacheHit)) begin
         addr_ok_o = 1'b1;
@@ -128,6 +129,10 @@ wire        bitValid1,bitValid2;
 reg        bitValid1_d,bitValid2_d;
 //TODO
 always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        validArray1 <= 'b0;
+        validArray2 <= 'b0;
+    end
     if(getdataEn) begin
         validArray1[index] <= bitValid1_d;
         validArray2[index] <= bitValid2_d;
