@@ -87,6 +87,7 @@ always @(*) begin
                 cacheNexState = getdata;
             end
         end 
+        //此处须添加一个replace的阶段，为了防止在完成替换后，下一个pc命中，但是读数据的时候与在同一way上的写入操作产生冲突（即读取与写入的地址不一样）
         replace: begin
             cacheNexState = compare;
         end
@@ -273,7 +274,7 @@ end
 wire    replaceEn = cacheCurState == replace;
 //延后一个周期写入，防止高位无法写入（即最后64位数据）
 always @(*) begin
-    if(getdataEn && rdLast_i) begin
+    if(replaceEn) begin
         if(randomBit[0]) begin
             wenWay1 = 1'b1;
             wenWay2 = 1'b0;
