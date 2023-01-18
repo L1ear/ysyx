@@ -1,5 +1,5 @@
 `include "defines.v"
-module Icache(
+module Dcache(
     input                                   clk,rst_n,
 //from PIPLINE
     input           [`addr_width-1:0]       addr_i,
