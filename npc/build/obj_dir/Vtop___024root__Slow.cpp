@@ -3676,15 +3676,11 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                 >> 5U)));
     } else {
         vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_1__A 
-            = (0x3fU & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__stall_n)
-                         ? (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
-                            >> 5U) : (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                              >> 5U))));
+            = (0x3fU & (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
+                        >> 5U));
         vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A 
-            = (0x3fU & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__stall_n)
-                         ? (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
-                            >> 5U) : (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                              >> 5U))));
+            = (0x3fU & (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
+                        >> 5U));
     }
     if (vlSelf->top__DOT__Dcache_u__DOT__wenWay2) {
         vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_1__A 
@@ -3695,15 +3691,11 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
                                 >> 5U)));
     } else {
         vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_1__A 
-            = (0x3fU & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__stall_n)
-                         ? (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
-                            >> 5U) : (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                              >> 5U))));
+            = (0x3fU & (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
+                        >> 5U));
         vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A 
-            = (0x3fU & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__stall_n)
-                         ? (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
-                            >> 5U) : (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                              >> 5U))));
+            = (0x3fU & (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
+                        >> 5U));
     }
 }
 
@@ -4035,7 +4027,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mtvec = 0;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus = 0;
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause = 0;
-    vlSelf->top__DOT__Dcache_u__DOT__stall_n = 0;
     vlSelf->top__DOT__Dcache_u__DOT__rd_data_o = 0;
     vlSelf->top__DOT__Dcache_u__DOT__fetchLenth = 0;
     vlSelf->top__DOT__Dcache_u__DOT__rdData_i = 0;

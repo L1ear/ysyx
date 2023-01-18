@@ -804,7 +804,7 @@ Dcache Dcache_u (
   .wr_data_i        (ls_sram_wr_data ),
   .wr_mask_i        (ls_sram_wr_mask ),
     //这个stall可能要改
-  .stall_n          (1 ),
+  .stall_n          (ls_stall_n ),
 
   .data_ok_o        ( ),
   .data_notok_o     ( ),
