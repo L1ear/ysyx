@@ -331,15 +331,15 @@ end
 
 //在compare阶段锁存要写入的数据、mask
 reg [63:0]  wrDataLatch;
-reg [7:0]   wrSizeLatch;
+reg [7:0]   wrMaskLatch;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         wrDataLatch <= 'b0;
-        wrSizeLatch <= 'b0;
+        wrMaskLatch <= 'b0;
     end
     else if(compareEn && reqLatch[32]) begin
         wrDataLatch <= wr_data_i;
-        wrSizeLatch <= wr_mask_i;
+        wrMaskLatch <= wr_mask_i;
     end
 end
 
@@ -357,14 +357,14 @@ wire [63:0]    storeData;
 assign storeData = wr_data_i << {reqLatch[2:0],3'b0};
 
 wire  [63:0]  sramMask;
-assign sramMask[7:0]    = {8{wr_mask_i[0]}};
-assign sramMask[15:8]   = {8{wr_mask_i[1]}};
-assign sramMask[23:16]    = {8{wr_mask_i[2]}};
-assign sramMask[31:24]    = {8{wr_mask_i[3]}};
-assign sramMask[39:32]    = {8{wr_mask_i[4]}};
-assign sramMask[47:40]    = {8{wr_mask_i[5]}};
-assign sramMask[55:48]    = {8{wr_mask_i[6]}};
-assign sramMask[63:56]    = {8{wr_mask_i[7]}};
+assign sramMask[7:0]    = {8{wrMaskLatch[0]}};
+assign sramMask[15:8]   = {8{wrMaskLatch[1]}};
+assign sramMask[23:16]    = {8{wrMaskLatch[2]}};
+assign sramMask[31:24]    = {8{wrMaskLatch[3]}};
+assign sramMask[39:32]    = {8{wrMaskLatch[4]}};
+assign sramMask[47:40]    = {8{wrMaskLatch[5]}};
+assign sramMask[55:48]    = {8{wrMaskLatch[6]}};
+assign sramMask[63:56]    = {8{wrMaskLatch[7]}};
 
 //由于流水线字长为64,而一块sram是128,所以还要选择高低位
 
@@ -376,7 +376,7 @@ assign inDataWay2_2 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,s
 wire    [127:0]     maskWay1_1,maskWay1_2,maskWay2_1,maskWay2_2;
 assign maskWay1_1 = reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'b1;
 assign maskWay1_2 = reqLatch[32] ? (wrHigh ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'b1;
-assign maskWay2_1 = reqLatch[32] ? (wrLow ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'b1;
+assign maskWay2_1 = reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'b1;
 assign maskWay2_2 = reqLatch[32] ? (wrHigh ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'b1;
 
 
