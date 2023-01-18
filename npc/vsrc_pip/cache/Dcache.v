@@ -407,7 +407,7 @@ wire        wrMiss;
 assign wrMiss = compareEn && reqLatch[32] && ~cacheHit;
 
 //TODO
-wire [31:0] randomBit2 ;
+reg [31:0] randomBit2 ;
 always randomBit2 = $random;
 reg replaceWay;//0就是way1,1就是way2
 always @(posedge clk or negedge rst_n) begin
