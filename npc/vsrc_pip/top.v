@@ -813,7 +813,7 @@ Dcache Dcache_u (
   .cacheRdValid_o   ( ),
   .axiRdReady       ( 1),
   .fetchLenth       ( ),
-  .rdLast_i         ( ),
+  .rdLast_i         ( 1),
   .cacheRdAddr_o    ( ),
   .cacheWrAddr_o    ( ),
   .rdData_i         ( ),
