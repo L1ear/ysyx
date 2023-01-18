@@ -1611,22 +1611,18 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                      & (IData)(
                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                                 >> 5U))))))));
-            tracep->chgBit(oldp+510,((((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                       & (IData)(vlSelf->top__DOT__Dcache_u__DOT__rdLast_i)) 
+            tracep->chgBit(oldp+510,(((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                       & vlSelf->top__DOT__Dcache_u__DOT__randomBit)));
-            tracep->chgBit(oldp+511,((((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                       & (IData)(vlSelf->top__DOT__Dcache_u__DOT__rdLast_i)) 
+            tracep->chgBit(oldp+511,(((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                       & (~ vlSelf->top__DOT__Dcache_u__DOT__randomBit))));
-            tracep->chgIData(oldp+512,((((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                         & (IData)(vlSelf->top__DOT__Dcache_u__DOT__rdLast_i))
+            tracep->chgIData(oldp+512,(((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                          ? ((1U & vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                              ? (0x1fffffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                            >> 0xbU)))
                                              : 0U) : 0U)),21);
-            tracep->chgIData(oldp+513,((((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                         & (IData)(vlSelf->top__DOT__Dcache_u__DOT__rdLast_i))
+            tracep->chgIData(oldp+513,(((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                          ? ((1U & vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                              ? 0U : 
                                             (0x1fffffU 
