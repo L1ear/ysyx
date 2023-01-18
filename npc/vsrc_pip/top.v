@@ -801,8 +801,8 @@ Dcache Dcache_u (
   .op_i ( ~rden_ls | wren_ls ),
   .addr_ok_o (ls_addr_ok_i ),
   //ls-part
-  .wr_data_i        ( ),
-  .wr_mask_i        ( ),
+  .wr_data_i        (ls_sram_wr_data ),
+  .wr_mask_i        (ls_sram_wr_mask ),
     //这个stall可能要改
   .stall_n          ( ),
 
