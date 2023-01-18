@@ -785,27 +785,33 @@ ls_stage ls_u(
     .ls_sram_rd_data        (ls_sram_rd_data        )
 );
 
-Dcache Dcache_u (
-  .clk (clk ),
-  .rst_n (rst_n ),
-  .addr_i ((rden_ls || wren_ls) ? alures_ex : 'b0 ),
-  .valid_i ((rden_ls || wren_ls) ),
-  .op_i ( ~rden_ls ),
-  .wr_data_i (wr_data_i ),
-  .wr_mask_i (wr_mask_i ),
-  .stall_n (stall_n ),
-  .addr_ok_o (addr_ok_o ),
-  .data_ok_o (data_ok_o ),
-  .data_notok_o (data_notok_o ),
-  .rd_data_o (rd_data_o ),
-  .cacheRdValid_o (cacheRdValid_o ),
-  .axiRdReady (axiRdReady ),
-  .fetchLenth (fetchLenth ),
-  .rdLast_i (rdLast_i ),
-  .cacheAddr_o (cacheAddr_o ),
-  .rdData_i (rdData_i ),
-  .dataValid_i  ( dataValid_i)
-);
+// Dcache Dcache_u (
+//   .clk (clk ),
+//   .rst_n (rst_n ),
+//   //ex-part
+//   .addr_i ((rden_ls || wren_ls) ? alures_ex : 'b0 ),
+//   .valid_i ((rden_ls || wren_ls) ),
+//   .op_i ( ~rden_ls | wren_ls ),
+//   .addr_ok_o ( ),
+//   //ls-part
+//   .wr_data_i        ( ),
+//   .wr_mask_i        ( ),
+//     //这个stall可能要改
+//   .stall_n          ( ),
+
+//   .data_ok_o        ( ),
+//   .data_notok_o     ( ),
+
+//   .rd_data_o        ( ),
+//   //to AXI
+//   .cacheRdValid_o   ( ),
+//   .axiRdReady       ( ),
+//   .fetchLenth       ( ),
+//   .rdLast_i         ( ),
+//   .cacheAddr_o      ( ),
+//   .rdData_i         ( ),
+//   .dataValid_i      ( )
+// );
 
 
 axi_ls axi_ls_u(
