@@ -105,9 +105,9 @@ bcu bcu_u(
 );
 
 
-assign  wren  = (instr_ex_i[6      :2] == `store);
-assign  rden  = (instr_ex_i[6      :0] == {`load,2'b11});      //同理
-assign  exNotOk = ~ls_addr_ok_i;
+// assign  wren  = (instr_ex_i[6      :2] == `store);
+// assign  rden  = (instr_ex_i[6      :0] == {`load,2'b11});      //同理
+// assign  exNotOk = ~ls_addr_ok_i;
 // assign PC_ex_o = PC_ex_i;
 // assign instr_ex_o = instr_ex_i;
 // assign rs2_ex_o = rs2_ex_i;
