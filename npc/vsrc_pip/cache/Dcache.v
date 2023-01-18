@@ -1,4 +1,5 @@
 `include "defines.v"
+//未实现uncache
 module Dcache(
     input                                   clk,rst_n,
 //from PIPLINE
@@ -27,10 +28,17 @@ module Dcache(
     output          [7:0]                   fetchLenth,
     //最后一个数据信号
     input                                   rdLast_i,
-    output          [`addr_width-1:0]       cacheAddr_o,
+    output          [`addr_width-1:0]       cacheRdAddr_o,
+    output          [`addr_width-1:0]       cacheWrAddr_o,
     input           [`XLEN-1:0]             rdData_i,
     //数据有效信号
-    input                                   dataValid_i
+    input                                   dataValid_i,
+    //AXI可以接受写请求信号
+    input                                   axiWrReady,
+    //axi写请求有效信号
+    output                                  cacheWrValid_o,
+    output          [255:0]                 cacheWrData_o,
+    output          [7:0]                   storeLenth
 );
 
 
@@ -99,7 +107,12 @@ always @(*) begin
         end 
         //此处须添加一个replace的阶段，为了防止在完成替换后，下一个pc命中，但是读数据的时候与在同一way上的写入操作产生冲突（即读取与写入的地址不一样）
         replace: begin
-            cacheNexState = compare;
+            if(needWrBk_Reg) begin
+                cacheNexState = replace;
+            end
+            else begin
+                cacheNexState = compare;
+            end    
         end
         default: begin
             cacheNexState = idle;
@@ -223,7 +236,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n)begin
         missFlag <= 'b0;
     end
-    //将missFlag延后写入sram一个周期，防止读出错误数据
+    //将missFlag延后写入sram(即replace阶段)一个周期，防止读出错误数据
     else if(replaceEn) begin        //在接入AXI后要加上LAST作为判断条件
         missFlag <= 'b1;
     end
@@ -233,11 +246,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 assign cacheRdValid_o = missEn && axiRdReady;
-assign cacheAddr_o = addrToRead[31:0];
-assign inDataWay1_1 = rdBuffer[127:0];
-assign inDataWay1_2 = rdBuffer[255:128];
-assign inDataWay2_1 = rdBuffer[127:0];
-assign inDataWay2_2 = rdBuffer[255:128];
+assign cacheRdAddr_o = addrToRead[31:0];
 reg [1:0]   rdCnt;
 //这一部分将axi过来的数据保持在buffer中，在一次存入cache的sram
 //icache每次读内存都是固定的读4个64位word，所以使用一个2位的计数器循环计数
@@ -287,15 +296,26 @@ end
 
 wire    replaceEn = cacheCurState == replace;
 //这里延后一个周期将写是能拉高写入，防止高位无法写入（即最后64位数据）
+//不仅在替换时要写入，store命中也要写入
 always @(*) begin
-    if(replaceEn) begin
+    if((replaceEn && needWrBk_Reg) || (compareEn && cacheHit && reqLatch[32])) begin
         if(randomBit[0]) begin
             wenWay1 = 1'b1;
             wenWay2 = 1'b0;
         end
         else begin
-            wenWay2 = 1'b1;
             wenWay1 = 1'b0;
+            wenWay2 = 1'b1;
+        end
+    end
+    else if(compareEn && cacheHit && reqLatch[32]) begin
+        if(way1Hit) begin
+            wenWay1 = 1'b1;
+            wenWay2 = 1'b0;
+        end
+        else begin
+            wenWay1 = 1'b0;
+            wenWay2 = 1'b1;
         end
     end
     else begin
@@ -305,14 +325,137 @@ always @(*) begin
 end
 
 
+//写控制逻辑
+//1、写命中；2、写miss但不dirty；3、写miss且dirty
+//待添加快速写入（在读回数据时写入），非阻塞模式
+
+//在compare阶段锁存要写入的数据、mask
+reg [63:0]  wrDataLatch;
+reg [7:0]   wrSizeLatch;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        wrDataLatch <= 'b0;
+        wrSizeLatch <= 'b0;
+    end
+    else if(compareEn && reqLatch[32]) begin
+        wrDataLatch <= wr_data_i;
+        wrSizeLatch <= wr_mask_i;
+    end
+end
+
+reg [63:0]   dirtyArray1;
+reg [63:0]   dirtyArray2;
+//写Miss逻辑
+
+//写入：
+wire        wrLow,wrHigh;
+assign  wrLow  = reqLatch[32] & ~reqLatch[4];
+assign  wrHigh = reqLatch[32] &  reqLatch[4];
+wire [63:0]    storeData;
+//注意看赋值，目前还是阻塞模式
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+assign storeData = wr_data_i << {reqLatch[2:0],3'b0};
+
+wire  [63:0]  sramMask;
+assign sramMask[7:0]    = {8{wr_mask_i[0]}};
+assign sramMask[15:8]   = {8{wr_mask_i[1]}};
+assign sramMask[23:16]    = {8{wr_mask_i[2]}};
+assign sramMask[31:24]    = {8{wr_mask_i[3]}};
+assign sramMask[39:32]    = {8{wr_mask_i[4]}};
+assign sramMask[47:40]    = {8{wr_mask_i[5]}};
+assign sramMask[55:48]    = {8{wr_mask_i[6]}};
+assign sramMask[63:56]    = {8{wr_mask_i[7]}};
+
+//由于流水线字长为64,而一块sram是128,所以还要选择高低位
+
+assign inDataWay1_1 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[127:0];
+assign inDataWay1_2 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[255:128];
+assign inDataWay2_1 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[127:0];
+assign inDataWay2_2 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[255:128];
+
+wire    [127:0]     maskWay1_1,maskWay1_2,maskWay2_1,maskWay2_2;
+assign maskWay1_1 = reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'b1;
+assign maskWay1_2 = reqLatch[32] ? (wrHigh ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'b1;
+assign maskWay2_1 = reqLatch[32] ? (wrLow ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'b1;
+assign maskWay2_2 = reqLatch[32] ? (wrHigh ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'b1;
+
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        dirtyArray1 <= 'b0;
+        dirtyArray2 <= 'b0;
+    end
+    else if(compareEn && cacheHit && reqLatch[32]) begin
+        if(way1Hit) begin
+            dirtyArray1[index] <= 1'b1;
+        end
+        else begin
+            dirtyArray2[index] <= 1'b1;
+        end
+    end
+    else if(getdataEn && rdLast_i) begin
+        if(way1Hit) begin
+            dirtyArray1[index] <= 1'b0;
+        end
+        else begin
+            dirtyArray2[index] <= 1'b0;
+        end
+    end
+end
+
+wire        wrMiss;
+assign wrMiss = compareEn && reqLatch[32] && ~cacheHit;
+
+//TODO
+wire [31:0] randomBit2 = $random();
+reg replaceWay;//0就是way1,1就是way2
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        replaceWay <= 'b0;
+    end
+    else if(compareEn)begin
+        replaceWay <= randomBit2[0];
+    end
+end
+wire        needWrBk;
+assign needWrBk = wrMiss && (dirtyArray1[randomBit2] || dirtyArray2[randomBit2]);
+reg     needWrBk_Reg;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        needWrBk_Reg <= 'b0;
+    end
+    else if(compareEn) begin
+        needWrBk_Reg <= needWrBk;
+    end
+    if(axiWrReady && needWrBk_Reg) begin
+        needWrBk_Reg <= 'b0;
+    end
+end
+
+wire            uncache = 0;                //TODO
+
+assign cacheWrValid_o = needWrBk_Reg;
+wire    [31:0]  addrToWrite;
+
+assign addrToWrite = replaceWay ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
+assign cacheWrAddr_o = addrToWrite;
+
+assign cacheWrData_o = replaceWay ? way1Data : way2Data;
+assign storeLenth = uncache ? 'd1 : 'd4;
+
+// always @(posedge clk or negedge rst_n) begin
+    
+// end
+
+
 //片选信号仅在idle且读有效、compare且命中且读有效、写使能有效这三种情况拉高
 //关于地址信号：在需要写入数据时，无论如何都要使用latch住的地址，在读的时候若stall了也要使用latch的，而在正常执行的时候要使用cache模块输入的地址
 S011HD1P_X32Y2D128_BW iramWay1_1 (
   .Q (dataWay1_1 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ),
+  .CEN (~((idleEn && valid_i) || (compareEn) || wenWay1) ),
   .WEN (~wenWay1 ),
-  .BWEN (0 ),
+  .BWEN (~maskWay1_1 ),
   .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
   .D  (inDataWay1_1)
 );
@@ -320,9 +463,9 @@ S011HD1P_X32Y2D128_BW iramWay1_1 (
 S011HD1P_X32Y2D128_BW iramWay1_2 (
   .Q (dataWay1_2 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ),
+  .CEN (~((idleEn && valid_i) || (compareEn) || wenWay1) ),
   .WEN (~wenWay1 ),
-  .BWEN (0 ),
+  .BWEN (~maskWay1_2 ),
   .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay1_2)
 );
@@ -330,9 +473,9 @@ S011HD1P_X32Y2D128_BW iramWay1_2 (
 S011HD1P_X32Y2D128_BW iramWay2_1 (
   .Q (dataWay2_1 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ),
+  .CEN (~((idleEn && valid_i) || (compareEn) || wenWay2) ),
   .WEN (~wenWay2 ),
-  .BWEN (0 ),
+  .BWEN (~maskWay2_1 ),
   .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay2_1)
 );
@@ -340,9 +483,9 @@ S011HD1P_X32Y2D128_BW iramWay2_1 (
 S011HD1P_X32Y2D128_BW iramWay2_2 (
   .Q (dataWay2_2 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ),
+  .CEN (~((idleEn && valid_i) || (compareEn) || wenWay2) ),
   .WEN (~wenWay2 ),
-  .BWEN (0 ),
+  .BWEN (~maskWay2_2 ),
   .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay2_2)
 );

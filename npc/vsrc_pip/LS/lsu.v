@@ -198,7 +198,7 @@ assign  ls_res_o = `XLEN'b0
 //         wr_data_buf <= wr_data;
 //     end
 // end
-reg     [2:0]     wr_size;
+reg     [2:0]     wr_size;  //给cache的话，其实只要两位，mask可不要
 reg     [7:0]     wr_mask;  
 wire                    sb,sh,sw,sd;  
 
