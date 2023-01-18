@@ -720,7 +720,7 @@ ex_stage ex_stage_u(
     .exNotOk        (),
     .ls_addr_ok_i   (ls_addr_ok_i),
     .rden_ls        (rden_ls),
-    .wren_ls        (wren_ls),
+    .wren_ls        (wren_ls)
     // .mem_wren_ex_o,
     // .mem_lden_ex_o,
     // .mem_op_ex_o
