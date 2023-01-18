@@ -796,7 +796,7 @@ Dcache Dcache_u (
   .clk (clk ),
   .rst_n (rst_n ),
   //ex-part
-  .addr_i ((rden_ls || wren_ls) ? alures_ex : 'b0 ),
+  .addr_i ((rden_ls || wren_ls) ? alures_ex[31:0] : 'b0 ),
   .valid_i ((rden_ls || wren_ls) ),
   .op_i ( ~rden_ls | wren_ls ),
   .addr_ok_o (ls_addr_ok_i ),
