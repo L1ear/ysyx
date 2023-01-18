@@ -713,7 +713,12 @@ ex_stage ex_stage_u(
     .rs2_o          (rs2_ex_u_o),
     .alures_o       (alures_ex),
     .pc_next_o      (pc_jump),
-    .is_jump_o      (is_jump)
+    .is_jump_o      (is_jump),
+
+    .exNotOk        (),
+    .ls_addr_ok_i   (ls_addr_ok_i),
+    .rden_ls        (rden_ls),
+    .wren_ls        (wren_ls),
     // .mem_wren_ex_o,
     // .mem_lden_ex_o,
     // .mem_op_ex_o
@@ -785,33 +790,32 @@ ls_stage ls_u(
     .ls_sram_rd_data        (ls_sram_rd_data        )
 );
 
-// Dcache Dcache_u (
-//   .clk (clk ),
-//   .rst_n (rst_n ),
-//   //ex-part
-//   .addr_i ((rden_ls || wren_ls) ? alures_ex : 'b0 ),
-//   .valid_i ((rden_ls || wren_ls) ),
-//   .op_i ( ~rden_ls | wren_ls ),
-//   .addr_ok_o ( ),
-//   //ls-part
-//   .wr_data_i        ( ),
-//   .wr_mask_i        ( ),
-//     //这个stall可能要改
-//   .stall_n          ( ),
+Dcache Dcache_u (
+  .clk (clk ),
+  .rst_n (rst_n ),
+  //ex-part
+  .addr_i ((rden_ls || wren_ls) ? alures_ex : 'b0 ),
+  .valid_i ((rden_ls || wren_ls) ),
+  .op_i ( ~rden_ls | wren_ls ),
+  .addr_ok_o (ls_addr_ok_i ),
+  //ls-part
+  .wr_data_i        ( ),
+  .wr_mask_i        ( ),
+    //这个stall可能要改
+  .stall_n          ( ),
 
-//   .data_ok_o        ( ),
-//   .data_notok_o     ( ),
-
-//   .rd_data_o        ( ),
-//   //to AXI
-//   .cacheRdValid_o   ( ),
-//   .axiRdReady       ( ),
-//   .fetchLenth       ( ),
-//   .rdLast_i         ( ),
-//   .cacheAddr_o      ( ),
-//   .rdData_i         ( ),
-//   .dataValid_i      ( )
-// );
+  .data_ok_o        ( ),
+  .data_notok_o     ( ),
+  .rd_data_o        ( ),
+  //to AXI
+  .cacheRdValid_o   ( ),
+  .axiRdReady       ( ),
+  .fetchLenth       ( ),
+  .rdLast_i         ( ),
+  .cacheAddr_o      ( ),
+  .rdData_i         ( ),
+  .dataValid_i      ( )
+);
 
 
 axi_ls axi_ls_u(
