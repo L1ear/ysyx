@@ -21,7 +21,7 @@
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
 extern Vtop* top;
-extern int nr_instr;
+extern uint64_t nr_instr;
 
 #define CONFIG_HAS_KEYBOARD 1
 #define CONFIG_VGA_SIZE_400x300 1
@@ -42,7 +42,7 @@ extern int nr_instr;
 extern int sim_time;
 extern int en;
 extern uint64_t *cpu_gpr;
-extern int nr_cycle;
+extern uint64_t nr_cycle;
 
 static int cmd_help(char *args);
 void sdb_mainloop();
