@@ -134,7 +134,6 @@ void Vtop___024root___settle__TOP__1(Vtop___024root* vlSelf) {
         vlSelf->axi_mmio_w_user_o = 0U;
         vlSelf->axi_mmio_b_ready_o = 0U;
     }
-    vlSelf->top__DOT__Dcache_u__DOT__randomBit2 = VL_RANDOM_I(32);
     vlSelf->top__DOT__cache_dut__DOT__randomBit = VL_RANDOM_I(32);
     vlSelf->top__DOT__Dcache_u__DOT__randomBit = VL_RANDOM_I(32);
     vlSelf->top__DOT__cache_dut__DOT__way1Data[0U] 
@@ -4081,7 +4080,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__Dcache_u__DOT__wrHigh = 0;
     vlSelf->top__DOT__Dcache_u__DOT__storeData = 0;
     vlSelf->top__DOT__Dcache_u__DOT__sramMask = 0;
-    vlSelf->top__DOT__Dcache_u__DOT__randomBit2 = 0;
     vlSelf->top__DOT__Dcache_u__DOT__replaceWay = 0;
     vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg = 0;
     vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_1__A = 0;

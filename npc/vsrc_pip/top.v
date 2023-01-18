@@ -811,7 +811,7 @@ Dcache Dcache_u (
   .rd_data_o        ( ),
   //to AXI
   .cacheRdValid_o   ( ),
-  .axiRdReady       ( ),
+  .axiRdReady       ( 1),
   .fetchLenth       ( ),
   .rdLast_i         ( ),
   .cacheRdAddr_o    ( ),
