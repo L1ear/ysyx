@@ -252,6 +252,8 @@ wire    [`XLEN-1:0]     wbres_fw;
 wire    [1      :0]     rs1_sel,rs2_sel;
 wire    [4      :0]     rs1_idx_ex,rs2_idx_ex;
 wire                    ex_flush;
+wire                    rden_ls,wren_ls;
+wire                    ls_addr_ok_i;
 
 //ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
