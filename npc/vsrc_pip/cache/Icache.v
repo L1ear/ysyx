@@ -119,7 +119,7 @@ always @(posedge clk or negedge rst_n) begin
     //在compare到compare锁存地址信息时，要保证上一个请求是hit的，否则下一拍会进入miss，而保存的数据失效
     //同时要保证在stall时不锁存，因为1、stall有可能是由cache缺失或其他自身原因造成，此时不能锁存其他数据
     //2、有可能由其他阶段造成如ls部分stall等，此时也不能锁存，否则会锁存下一拍的地址，但是pc还没有变化，导致取得的指令出错
-    else if(((idleEn && valid_i) || (compareEn && valid_i && cacheHit) && stall_n)) begin
+    else if((((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) && stall_n)) begin
         reqLatch <= {op_i,addr_i};
     end
 end

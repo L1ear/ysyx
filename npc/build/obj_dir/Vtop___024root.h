@@ -153,8 +153,8 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__rs1_sel;
         CData/*1:0*/ top__DOT__rs2_sel;
         CData/*0:0*/ top__DOT__ex_flush;
+        CData/*0:0*/ top__DOT__ls_stall_n;
         CData/*0:0*/ top__DOT__ls_not_ok;
-        CData/*0:0*/ top__DOT__wb_stall_n;
         CData/*0:0*/ top__DOT__rw_valid_i;
         CData/*7:0*/ top__DOT__fetchLenth;
         CData/*0:0*/ top__DOT__dataValid_o;
