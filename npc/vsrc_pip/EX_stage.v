@@ -26,11 +26,11 @@ module ex_stage (
     output          [`XLEN-1:0]     alures_o,
     output          [`XLEN-1:0]     pc_next_o,
     output          [`XLEN-1:0]     rs2_o,
-    output                          is_jump_o,
-    output                          exNotOk,
+    output                          is_jump_o
+    // output                          exNotOk,
 
-    output                          rden_ls,wren_ls,
-    input                           ls_addr_ok_i,
+    // output                          rden_ls,wren_ls,
+    // input                           ls_addr_ok_i
     // output                          mem_wren_ex_o,
     // output                          mem_lden_ex_o,
     // output          [2      :0]     mem_op_ex_o
