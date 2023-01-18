@@ -814,9 +814,14 @@ Dcache Dcache_u (
   .axiRdReady       ( ),
   .fetchLenth       ( ),
   .rdLast_i         ( ),
-  .cacheAddr_o      ( ),
+  .cacheRdAddr_o    ( ),
+  .cacheWrAddr_o    ( ),
   .rdData_i         ( ),
-  .dataValid_i      ( )
+  .dataValid_i      ( ),
+  .axiWrReady       ( ),
+  .cacheWrValid_o   ( ),
+  .cacheWrData_o    ( ),
+  .storeLenth       ( )
 );
 
 
