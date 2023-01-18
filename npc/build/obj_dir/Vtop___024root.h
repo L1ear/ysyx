@@ -241,6 +241,7 @@ VL_MODULE(Vtop___024root) {
         CData/*7:0*/ top__DOT__Dcache_u__DOT__fetchLenth;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__rdLast_i;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__dataValid_i;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__axiWrReady;
         CData/*2:0*/ top__DOT__Dcache_u__DOT__cacheCurState;
         CData/*2:0*/ top__DOT__Dcache_u__DOT__cacheNexState;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__cacheHit;
@@ -250,10 +251,15 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenWay2;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay1_q;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay2_q;
-        CData/*0:0*/ top__DOT__Dcache_u__DOT__missFlag;
     };
     struct {
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__missFlag;
         CData/*1:0*/ top__DOT__Dcache_u__DOT__rdCnt;
+        CData/*7:0*/ top__DOT__Dcache_u__DOT__wrSizeLatch;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__wrLow;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__wrHigh;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__replaceWay;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__needWrBk_Reg;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__w_state;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__w_state_next;
         CData/*0:0*/ top__DOT__axi_ls_u__DOT__aw_valid;
@@ -292,6 +298,7 @@ VL_MODULE(Vtop___024root) {
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way2Data;
         IData/*31:0*/ top__DOT__Dcache_u__DOT__randomBit;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__rdBuffer;
+        IData/*31:0*/ top__DOT__Dcache_u__DOT__randomBit2;
         IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
@@ -310,6 +317,8 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__cache_dut__DOT__validArray1;
         QData/*63:0*/ top__DOT__cache_dut__DOT__validArray2;
         QData/*63:0*/ top__DOT__axi_icache_dut__DOT__addr_reg;
+    };
+    struct {
         QData/*63:0*/ top__DOT__ID_u__DOT__imm;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__src1;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__src2;
@@ -317,8 +326,6 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__rs2;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin;
-    };
-    struct {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src;
@@ -338,6 +345,11 @@ VL_MODULE(Vtop___024root) {
         QData/*32:0*/ top__DOT__Dcache_u__DOT__reqLatch;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__validArray1;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__validArray2;
+        QData/*63:0*/ top__DOT__Dcache_u__DOT__wrDataLatch;
+        QData/*63:0*/ top__DOT__Dcache_u__DOT__dirtyArray1;
+        QData/*63:0*/ top__DOT__Dcache_u__DOT__dirtyArray2;
+        QData/*63:0*/ top__DOT__Dcache_u__DOT__storeData;
+        QData/*63:0*/ top__DOT__Dcache_u__DOT__sramMask;
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__addr_reg;
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__wr_data_reg;
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__rd_data_reg;
@@ -371,13 +383,9 @@ VL_MODULE(Vtop___024root) {
     CData/*5:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay2_2__A;
     CData/*0:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay2_2__CEN;
     CData/*5:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_1__A;
-    CData/*0:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_1__CEN;
     CData/*5:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A;
-    CData/*0:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__CEN;
     CData/*5:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_1__A;
-    CData/*0:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_1__CEN;
     CData/*5:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A;
-    CData/*0:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__CEN;
     CData/*4:0*/ __Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vclklast__TOP__clk;
