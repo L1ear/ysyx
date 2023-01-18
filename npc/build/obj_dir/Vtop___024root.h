@@ -254,7 +254,7 @@ VL_MODULE(Vtop___024root) {
     };
     struct {
         CData/*1:0*/ top__DOT__Dcache_u__DOT__rdCnt;
-        CData/*7:0*/ top__DOT__Dcache_u__DOT__wrSizeLatch;
+        CData/*7:0*/ top__DOT__Dcache_u__DOT__wrMaskLatch;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wrLow;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wrHigh;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__replaceWay;

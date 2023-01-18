@@ -1252,7 +1252,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declArray(c+525,"top Dcache_u rdBuffer", false,-1, 255,0);
         tracep->declBit(c+533,"top Dcache_u replaceEn", false,-1);
         tracep->declQuad(c+534,"top Dcache_u wrDataLatch", false,-1, 63,0);
-        tracep->declBus(c+536,"top Dcache_u wrSizeLatch", false,-1, 7,0);
+        tracep->declBus(c+536,"top Dcache_u wrMaskLatch", false,-1, 7,0);
         tracep->declQuad(c+537,"top Dcache_u dirtyArray1", false,-1, 63,0);
         tracep->declQuad(c+539,"top Dcache_u dirtyArray2", false,-1, 63,0);
         tracep->declBit(c+541,"top Dcache_u wrLow", false,-1);
@@ -3099,7 +3099,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullWData(oldp+525,(vlSelf->top__DOT__Dcache_u__DOT__rdBuffer),256);
         tracep->fullBit(oldp+533,((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
         tracep->fullQData(oldp+534,(vlSelf->top__DOT__Dcache_u__DOT__wrDataLatch),64);
-        tracep->fullCData(oldp+536,(vlSelf->top__DOT__Dcache_u__DOT__wrSizeLatch),8);
+        tracep->fullCData(oldp+536,(vlSelf->top__DOT__Dcache_u__DOT__wrMaskLatch),8);
         tracep->fullQData(oldp+537,(vlSelf->top__DOT__Dcache_u__DOT__dirtyArray1),64);
         tracep->fullQData(oldp+539,(vlSelf->top__DOT__Dcache_u__DOT__dirtyArray2),64);
         tracep->fullBit(oldp+541,(vlSelf->top__DOT__Dcache_u__DOT__wrLow));
