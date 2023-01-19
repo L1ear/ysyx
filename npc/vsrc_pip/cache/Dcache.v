@@ -396,10 +396,10 @@ assign inDataWay2_1 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,s
 assign inDataWay2_2 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[255:128];
 
 wire    [127:0]     maskWay1_1,maskWay1_2,maskWay2_1,maskWay2_2;
-assign maskWay1_1 = reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'hffffffffffffffffffffffffffffffff;
-assign maskWay1_2 = reqLatch[32] ? (wrHigh ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'hffffffffffffffffffffffffffffffff;
-assign maskWay2_1 = reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'hffffffffffffffffffffffffffffffff;
-assign maskWay2_2 = reqLatch[32] ? (wrHigh ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'hffffffffffffffffffffffffffffffff;
+assign maskWay1_1 = reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'hffffffff;
+assign maskWay1_2 = reqLatch[32] ? (wrHigh ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'hffffffff;
+assign maskWay2_1 = reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'hffffffff;
+assign maskWay2_2 = reqLatch[32] ? (wrHigh ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 'hffffffff;
 
 
 always @(posedge clk or negedge rst_n) begin
