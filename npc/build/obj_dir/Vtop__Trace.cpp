@@ -1548,7 +1548,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                        : __Vtemp336[3U])
                                    : 0U);
             } else {
-                __Vtemp343[0U] = 1U;
+                __Vtemp343[0U] = 0xffffffffU;
                 __Vtemp343[1U] = 0U;
                 __Vtemp343[2U] = 0U;
                 __Vtemp343[3U] = 0U;
@@ -1585,7 +1585,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                        : __Vtemp345[3U])
                                    : 0U);
             } else {
-                __Vtemp352[0U] = 1U;
+                __Vtemp352[0U] = 0xffffffffU;
                 __Vtemp352[1U] = 0U;
                 __Vtemp352[2U] = 0U;
                 __Vtemp352[3U] = 0U;
@@ -1628,7 +1628,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                         >> 3U)))
                                           ? 0U : __Vtemp354[0U])
-                                      : 0U) : 1U));
+                                      : 0U) : 0xffffffffU));
             __Vtemp362[1U] = (~ ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                 >> 0x20U)))
                                   ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
@@ -1671,7 +1671,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                         >> 3U)))
                                           ? 0U : __Vtemp364[0U])
-                                      : 0U) : 1U));
+                                      : 0U) : 0xffffffffU));
             __Vtemp372[1U] = (~ ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                 >> 0x20U)))
                                   ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
