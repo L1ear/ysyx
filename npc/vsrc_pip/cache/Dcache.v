@@ -290,7 +290,7 @@ end
 
 //根据随机决定替换哪个way
 // always randomBit = $random;
-always @( *) begin
+always @(posedge clk) begin
     if(compareEn) begin
         randomBit = $random;
     end
