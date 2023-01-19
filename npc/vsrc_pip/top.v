@@ -827,7 +827,7 @@ Dcache Dcache_u (
   .storeLenth       (lsStoreLenth )
 );
 
-wire        DcacheRdValid_o,DcacheWrValid_o;
+wire        DcacheRdValid,DcacheWrValid;
 wire        lsAxiRdReady;
 wire [7:0]  lsFetchLenth;
 wire        lsRdLast;
@@ -849,7 +849,7 @@ axi_dcache axi_ls_u(
     .fetchLenth     (lsFetchLenth),
     .rdLast_o       (lsRdLast),
     .dataValid_o    (lsAxiRdDataVAlid),
-    .wr_valid_i     (DcacheWrValid_o),
+    .wr_valid_i     (DcacheWrValid),
     .wr_ready_o     (lsAxiWrReady),
     .cacheWrData_i  (lsAxiWrData),
     .storeLenth     (lsStoreLenth),
