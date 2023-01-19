@@ -303,10 +303,10 @@ end
 // always randomBit = $random;
 always @(posedge clk) begin
     if(compareEn) begin
-        randomBit = $random;
+        randomBit <= $random;
     end
     else begin
-        randomBit = randomBit;
+        randomBit <= randomBit;
     end
 end
 always @(*) begin
@@ -474,7 +474,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 wire        needWrBk;
-assign needWrBk = (wrMiss && (~replaceWay && dirtyArray1[index] || replaceWay && dirtyArray2[index])) || (rdMiss && (~randomBit[0] && dirtyArray1[index] || randomBit[0] && dirtyArray2[index]));
+assign needWrBk = (wrMiss && (~randomBit[0] && dirtyArray1[index] || randomBit[0] && dirtyArray2[index])) || (rdMiss && (~randomBit[0] && dirtyArray1[index] || randomBit[0] && dirtyArray2[index]));
 reg     needWrBk_Reg;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin

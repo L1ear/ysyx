@@ -1722,12 +1722,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
                                        >> (0x3fU & (IData)(
                                                            (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                             >> 5U)))))))));
+        } else if (((0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
+                    & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))) {
+            __Vdly__top__DOT__Dcache_u__DOT__needWrBk_Reg = 0U;
         }
     } else {
-        __Vdly__top__DOT__Dcache_u__DOT__needWrBk_Reg = 0U;
-    }
-    if (((0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
-         & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))) {
         __Vdly__top__DOT__Dcache_u__DOT__needWrBk_Reg = 0U;
     }
     vlSelf->top__DOT__cache_dut__DOT__rdCnt = __Vdly__top__DOT__cache_dut__DOT__rdCnt;
