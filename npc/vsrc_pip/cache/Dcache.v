@@ -483,7 +483,7 @@ always @(posedge clk or negedge rst_n) begin
     else if(compareEn) begin
         needWrBk_Reg <= needWrBk;
     end
-    if(axiWrReady && needWrBk_Reg) begin
+    else if(axiWrReady && needWrBk_Reg) begin
         needWrBk_Reg <= 'b0;
     end
 end
