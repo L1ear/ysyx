@@ -180,7 +180,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__cache_dut__DOT__dataWay1_1[3U] 
             = VL_RANDOM_I(32);
     }
-    if ((1U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state))) {
+    if (((0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
+         & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))) {
         vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
             = vlSelf->top__DOT__DcacheWrAddr;
     }
@@ -240,7 +241,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         __Vdlyvdim0__top__DOT__cache_dut__DOT__iramWay1_1__DOT__ram__v0 
             = vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__A;
     }
-    if ((1U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state))) {
+    if (((0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
+         & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))) {
         if (vlSelf->top__DOT__Dcache_u__DOT__replaceWay) {
             vlSelf->top__DOT__axi_ls_u__DOT__wr_data_reg[0U] 
                 = vlSelf->top__DOT__Dcache_u__DOT__way1Data[0U];
