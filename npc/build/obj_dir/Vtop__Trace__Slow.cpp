@@ -1853,7 +1853,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                   << 0x20U) 
                                                  | (QData)((IData)(
                                                                    vlSelf->top__DOT__Dcache_u__DOT__way2Data[0U]))))))
-                                     : 0ULL)),64);
+                                     : 7ULL)),64);
         tracep->fullBit(oldp+93,((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))));
         tracep->fullBit(oldp+94,((1U == (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))));
         tracep->fullQData(oldp+95,(vlSelf->top__DOT__axi_icache_dut__DOT__addr_reg),64);
