@@ -338,7 +338,7 @@ wire    replaceEn = cacheCurState == replace;
 //不仅在替换时要写入，store命中也要写入
 always @(*) begin
     if((replaceEn)) begin
-        if(randomBit[0]) begin
+        if(~randomBit[0]) begin
             wenWay1 = 1'b1;
             wenWay2 = 1'b0;
         end

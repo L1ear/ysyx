@@ -74,15 +74,6 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                          [1U] | vlSelf->__Vm_traceActivity
                          [4U]))) {
             if ((1U & vlSelf->top__DOT__Dcache_u__DOT__randomBit)) {
-                __Vtemp356[0U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[0U];
-                __Vtemp356[1U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[1U];
-                __Vtemp356[2U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[2U];
-                __Vtemp356[3U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[3U];
-                __Vtemp356[4U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[4U];
-                __Vtemp356[5U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[5U];
-                __Vtemp356[6U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[6U];
-                __Vtemp356[7U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[7U];
-            } else {
                 __Vtemp356[0U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[0U];
                 __Vtemp356[1U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[1U];
                 __Vtemp356[2U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[2U];
@@ -91,6 +82,15 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                 __Vtemp356[5U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[5U];
                 __Vtemp356[6U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[6U];
                 __Vtemp356[7U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[7U];
+            } else {
+                __Vtemp356[0U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[0U];
+                __Vtemp356[1U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[1U];
+                __Vtemp356[2U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[2U];
+                __Vtemp356[3U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[3U];
+                __Vtemp356[4U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[4U];
+                __Vtemp356[5U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[5U];
+                __Vtemp356[6U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[6U];
+                __Vtemp356[7U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[7U];
             }
             tracep->chgWData(oldp+75,(__Vtemp356),256);
         }

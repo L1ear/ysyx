@@ -1569,15 +1569,6 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullWData(oldp+60,(vlSelf->top__DOT__Dcache_u__DOT__way2Data),256);
         tracep->fullWData(oldp+68,(vlSelf->top__DOT__axi_ls_u__DOT__wr_data_reg),256);
         if ((1U & vlSelf->top__DOT__Dcache_u__DOT__randomBit)) {
-            __Vtemp256[0U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[0U];
-            __Vtemp256[1U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[1U];
-            __Vtemp256[2U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[2U];
-            __Vtemp256[3U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[3U];
-            __Vtemp256[4U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[4U];
-            __Vtemp256[5U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[5U];
-            __Vtemp256[6U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[6U];
-            __Vtemp256[7U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[7U];
-        } else {
             __Vtemp256[0U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[0U];
             __Vtemp256[1U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[1U];
             __Vtemp256[2U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[2U];
@@ -1586,6 +1577,15 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
             __Vtemp256[5U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[5U];
             __Vtemp256[6U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[6U];
             __Vtemp256[7U] = vlSelf->top__DOT__Dcache_u__DOT__way2Data[7U];
+        } else {
+            __Vtemp256[0U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[0U];
+            __Vtemp256[1U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[1U];
+            __Vtemp256[2U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[2U];
+            __Vtemp256[3U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[3U];
+            __Vtemp256[4U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[4U];
+            __Vtemp256[5U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[5U];
+            __Vtemp256[6U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[6U];
+            __Vtemp256[7U] = vlSelf->top__DOT__Dcache_u__DOT__way1Data[7U];
         }
         tracep->fullWData(oldp+76,(__Vtemp256),256);
         tracep->fullBit(oldp+84,((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))));
