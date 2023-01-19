@@ -318,7 +318,7 @@ wire    replaceEn = cacheCurState == replace;
 //这里延后一个周期将写是能拉高写入，防止高位无法写入（即最后64位数据）
 //不仅在替换时要写入，store命中也要写入
 always @(*) begin
-    if((replaceEn && needWrBk_Reg)) begin
+    if((replaceEn)) begin
         if(randomBit[0]) begin
             wenWay1 = 1'b1;
             wenWay2 = 1'b0;

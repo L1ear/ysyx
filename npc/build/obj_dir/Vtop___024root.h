@@ -209,6 +209,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__Dcache_u__DOT__way2Hit;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenWay1;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenWay2;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__validFlag;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay1_q;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay2_q;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__missFlag;
@@ -250,9 +251,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__sram_rdata;
         QData/*63:0*/ top__DOT__alures_ex;
         QData/*63:0*/ top__DOT__csrdata_ls;
-        QData/*63:0*/ top__DOT__ls_sram_rd_data;
     };
     struct {
+        QData/*63:0*/ top__DOT__ls_sram_rd_data;
         QData/*63:0*/ top__DOT__wb_data;
         QData/*63:0*/ top__DOT__DcacheRdAddr;
         QData/*63:0*/ top__DOT__DcacheWrAddr;
@@ -309,7 +310,7 @@ VL_MODULE(Vtop___024root) {
     };
 
     // LOCAL VARIABLES
-    CData/*0:0*/ top__DOT____Vcellinp__Dcache_u__valid_i;
+    CData/*0:0*/ top__DOT____Vcellinp__Dcache_u__exValid_i;
     CData/*5:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__A;
     CData/*0:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__CEN;
     CData/*5:0*/ top__DOT__cache_dut__DOT____Vcellinp__iramWay2_2__A;
