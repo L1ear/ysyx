@@ -493,10 +493,10 @@ wire            uncache = 0;                //TODO
 assign cacheWrValid_o = needWrBk_Reg;
 wire    [31:0]  addrToWrite;
 
-assign addrToWrite = replaceWay ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
+assign addrToWrite = randomBit[0] ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = addrToWrite;
 
-assign cacheWrData_o = replaceWay ? way1Data : way2Data;
+assign cacheWrData_o = randomBit[0] ? way1Data : way2Data;
 assign storeLenth = uncache ? 'd1 : 'd4;
 
 // always @(posedge clk or negedge rst_n) begin
