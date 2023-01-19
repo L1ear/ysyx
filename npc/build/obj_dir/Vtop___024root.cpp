@@ -1766,12 +1766,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         = ((IData)(vlSelf->rst_n) ? (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state_next)
             : 0U);
     if (vlSelf->rst_n) {
-        if (((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
-               & (0ULL != vlSelf->top__DOT__pc_new)) 
-              | (((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+        if ((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
+              & (0ULL != vlSelf->top__DOT__pc_new)) 
+             | ((((1U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                   & (0ULL != vlSelf->top__DOT__pc_new)) 
-                 & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))) 
-             & (IData)(vlSelf->top__DOT__if_stall_n))) {
+                 & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit)) 
+                & (IData)(vlSelf->top__DOT__if_stall_n)))) {
             vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                 = (QData)((IData)(vlSelf->top__DOT__IF_u__DOT__pc_next_o));
         }
@@ -2272,12 +2272,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                             (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                                              >> 4U))));
     if (vlSelf->rst_n) {
-        if (((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-               & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__valid_i)) 
-              | (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+        if ((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+              & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__valid_i)) 
+             | ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                   & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__valid_i)) 
-                 & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
-             & (IData)(vlSelf->top__DOT__ls_stall_n))) {
+                 & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)) 
+                & (IData)(vlSelf->top__DOT__ls_stall_n)))) {
             vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                 = (((QData)((IData)(((3U != (0x7fU 
                                              & ((vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U] 

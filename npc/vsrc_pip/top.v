@@ -787,10 +787,13 @@ ls_stage ls_u(
     .ls_sram_wr_mask        (ls_sram_wr_mask        ),
     .ls_sram_wr_size        (ls_sram_wr_size        ),
     .ls_sram_rd_size        (ls_sram_rd_size        ),
-    .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
-    .ls_sram_wr_data_ok     (ls_sram_wr_data_ok     ),
+    .ls_sram_rd_data_valid  (  ),
+    .ls_sram_wr_data_ok     (dataNotOk     ),
     .ls_sram_rd_data        (ls_sram_rd_data        )
 );
+
+//
+wire    dataNotOk;
 
 Dcache Dcache_u (
   .clk (clk ),
@@ -807,38 +810,57 @@ Dcache Dcache_u (
   .stall_n          (ls_stall_n ),
 
   .data_ok_o        ( ),
-  .data_notok_o     ( ),
-  .rd_data_o        ( ),
+  .data_notok_o     (dataNotOk ),
+  .rd_data_o        (ls_sram_rd_data ),
   //to AXI
-  .cacheRdValid_o   ( ),
-  .axiRdReady       ( 1),
-  .fetchLenth       ( ),
-  .rdLast_i         ( 1),
-  .cacheRdAddr_o    ( ),
-  .cacheWrAddr_o    ( ),
-  .rdData_i         ( ),
-  .dataValid_i      ( ),
-  .axiWrReady       ( ),
-  .cacheWrValid_o   ( ),
-  .cacheWrData_o    ( ),
-  .storeLenth       ( )
+  .cacheRdValid_o   (DcacheRdValid ),
+  .axiRdReady       (lsAxiRdReady ),
+  .fetchLenth       (lsFetchLenth ),
+  .rdLast_i         (lsRdLast ),
+  .cacheRdAddr_o    (DcacheRdAddr ),
+  .cacheWrAddr_o    (DcacheWrAddr ),
+  .rdData_i         (lsAxiRdData ),
+  .dataValid_i      (lsAxiRdDataVAlid ),
+  .axiWrReady       (lsAxiWrReady ),
+  .cacheWrValid_o   (DcacheWrValid ),
+  .cacheWrData_o    (lsAxiWrData ),
+  .storeLenth       (lsStoreLenth )
 );
 
+wire        DcacheRdValid_o,DcacheWrValid_o;
+wire        lsAxiRdReady;
+wire [7:0]  lsFetchLenth;
+wire        lsRdLast;
+wire [63:0] DcacheRdAddr,DcacheWrAddr;
+wire [63:0] lsAxiRdData;  
+wire        lsAxiRdDataVAlid;   
+wire        lsAxiWrReady;   
+wire [255:0]lsAxiWrData;
+wire [7:0]  lsStoreLenth;
 
 axi_ls axi_ls_u(
     .clock          (clk),
     .reset          (rst_n),
 
-	.rw_valid_i     (ls_sram_rd_en),         //IF&MEM输入信号
-	.rw_ready_o     (ls_sram_rd_data_valid),         //IF&MEM输入信号
-    .data_read_o    (ls_sram_rd_data),        //IF&MEM输入信号
-    .rw_addr_i      (ls_sram_addr),          //IF&MEM输入信号
-    .wr_valid_i      (ls_sram_wr_en),         //写有效
-    .wr_ok_o         (ls_sram_wr_data_ok),            //读完成
-    .rw_w_data_i     (ls_sram_wr_data),        //写数据
-    .rw_w_mask_i     (ls_sram_wr_mask), 
-    .wr_size_i      (ls_sram_wr_size),
-    .rd_size_i      (ls_sram_rd_size),       
+	.rw_valid_i     (DcacheRdValid),//ls_sram_rd_en          ),         //IF&MEM输入信号
+	.rw_ready_o     (lsAxiRdReady),//ls_sram_rd_data_valid  ),         //IF&MEM输入信号
+    .data_read_o    (lsAxiRdData),//ls_sram_rd_data        ),        //IF&MEM输入信号
+    .rw_addr_i      (DcacheRdAddr),//ls_sram_addr           ),          //IF&MEM输入信号
+    .fetchLenth     (lsFetchLenth),
+    .rdLast_o       (lsRdLast),
+    .dataValid_o    (lsAxiRdDataVAlid),
+    .wr_valid_i     (DcacheWrValid_o),
+    .wr_ready_o     (lsAxiWrReady),
+    .cacheWrData_i  (lsAxiWrData),
+    .storeLenth     (lsStoreLenth),
+    .rw_w_mask_i    ('hff),
+    .cacheWrAddr_i  (DcacheWrAddr),
+    // .wr_valid_i     (DcacheWrValid_o),//ls_sram_wr_en          ),         //写有效
+    // .wr_ok_o        (),//ls_sram_wr_data_ok     ),            //读完成
+    // .rw_w_data_i    (),//ls_sram_wr_data        ),        //写数据
+    // .rw_w_mask_i    (),//ls_sram_wr_mask        ), 
+    // .wr_size_i      (),//ls_sram_wr_size        ),
+    // .rd_size_i      (),//ls_sram_rd_size        ),       
 
 
     .axi_aw_ready_i (ls_axi_aw_ready_i ),     //lite         

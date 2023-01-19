@@ -21,24 +21,24 @@ module Dcache(
 
 //to AXI
     //cache发出读请求有效信号
-    output                                  cacheRdValid_o,
+    output                                  cacheRdValid_o,//
     //axi可以接受读请求的信号
-    input                                   axiRdReady,
+    input                                   axiRdReady,//
     //读取长度，icache恒为4,为一个cacheline的大小，这里未使用
-    output          [7:0]                   fetchLenth,
+    output          [7:0]                   fetchLenth,//
     //最后一个数据信号
-    input                                   rdLast_i,
-    output          [`addr_width-1:0]       cacheRdAddr_o,
-    output          [`addr_width-1:0]       cacheWrAddr_o,
-    input           [`XLEN-1:0]             rdData_i,
+    input                                   rdLast_i,//
+    output          [`addr_width-1:0]       cacheRdAddr_o,//
+    output          [`addr_width-1:0]       cacheWrAddr_o,//
+    input           [`XLEN-1:0]             rdData_i,//
     //数据有效信号
     input                                   dataValid_i,
     //AXI可以接受写请求信号
-    input                                   axiWrReady,
+    input                                   axiWrReady,//
     //axi写请求有效信号
-    output                                  cacheWrValid_o,
-    output          [255:0]                 cacheWrData_o,
-    output          [7:0]                   storeLenth
+    output                                  cacheWrValid_o,//
+    output          [255:0]                 cacheWrData_o,//
+    output          [7:0]                   storeLenth//
 );
 
 
