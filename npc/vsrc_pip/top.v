@@ -801,7 +801,7 @@ Dcache Dcache_u (
   //ex-part
   .addr_i ((rden_ls || wren_ls) ? alures_ex[31:0] : 'b0 ),
   .exValid_i ((rden_ls || wren_ls)),
-  .exValid_i ((ls_sram_wr_en || ls_sram_rd_en) ),
+  .lsValid_i ((ls_sram_wr_en || ls_sram_rd_en) ),
   .op_i ( ~rden_ls | wren_ls ),
   .addr_ok_o (ls_addr_ok_i ),
   //ls-part
