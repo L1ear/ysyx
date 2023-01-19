@@ -239,7 +239,7 @@ always @(*) begin
     end
     else begin
         rdDataRegWay1 = 'b0;
-        rdDataRegWay2 = 'b0;
+        rdDataRegWay2 = 'b111;
     end
 end
 
