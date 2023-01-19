@@ -838,7 +838,7 @@ wire        lsAxiWrReady;
 wire [255:0]lsAxiWrData;
 wire [7:0]  lsStoreLenth;
 
-axi_ls axi_ls_u(
+axi_dcache axi_ls_u(
     .clock          (clk),
     .reset          (rst_n),
 
