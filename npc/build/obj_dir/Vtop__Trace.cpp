@@ -248,7 +248,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                            >> 3U)))
-                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__missFlag)
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay)
                                                     ? 
                                                    (((QData)((IData)(
                                                                      vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[7U])) 
@@ -261,7 +261,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                      << 0x20U) 
                                                     | (QData)((IData)(
                                                                       vlSelf->top__DOT__Dcache_u__DOT__way1Data[6U]))))
-                                                : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__missFlag)
+                                                : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay)
                                                     ? 
                                                    (((QData)((IData)(
                                                                      vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[5U])) 
@@ -278,7 +278,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                            >> 3U)))
-                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__missFlag)
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay)
                                                     ? 
                                                    (((QData)((IData)(
                                                                      vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[3U])) 
@@ -291,7 +291,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                      << 0x20U) 
                                                     | (QData)((IData)(
                                                                       vlSelf->top__DOT__Dcache_u__DOT__way1Data[2U]))))
-                                                : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__missFlag)
+                                                : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay)
                                                     ? 
                                                    (((QData)((IData)(
                                                                      vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[1U])) 
@@ -319,7 +319,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                            >> 3U)))
-                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__missFlag)
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay)
                                                     ? 
                                                    (((QData)((IData)(
                                                                      vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[7U])) 
@@ -332,7 +332,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                      << 0x20U) 
                                                     | (QData)((IData)(
                                                                       vlSelf->top__DOT__Dcache_u__DOT__way2Data[6U]))))
-                                                : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__missFlag)
+                                                : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay)
                                                     ? 
                                                    (((QData)((IData)(
                                                                      vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[5U])) 
@@ -349,7 +349,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                            >> 3U)))
-                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__missFlag)
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay)
                                                     ? 
                                                    (((QData)((IData)(
                                                                      vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[3U])) 
@@ -362,7 +362,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                      << 0x20U) 
                                                     | (QData)((IData)(
                                                                       vlSelf->top__DOT__Dcache_u__DOT__way2Data[2U]))))
-                                                : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__missFlag)
+                                                : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay)
                                                     ? 
                                                    (((QData)((IData)(
                                                                      vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[1U])) 
@@ -794,10 +794,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                          | (3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) 
                                         | (2U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) 
                                        | (7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) 
-                                      | (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                          & (~ (IData)(
-                                                       (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                        >> 0x20U)))) 
+                                      | ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                           & (~ (IData)(
+                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                         >> 0x20U)))) 
+                                          & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay))) 
                                          & (((IData)(vlSelf->top__DOT__Dcache_u__DOT__way1Hit) 
                                              & (IData)(vlSelf->top__DOT__Dcache_u__DOT__wenDelay1)) 
                                             | ((IData)(vlSelf->top__DOT__Dcache_u__DOT__way2Hit) 
@@ -1559,10 +1560,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                        [(0x3fU & (IData)(
                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                           >> 5U)))]),21);
-            tracep->chgBit(oldp+486,((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
-            tracep->chgBit(oldp+487,((2U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
-            tracep->chgBit(oldp+488,((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
-            tracep->chgQData(oldp+489,((((QData)((IData)(
+            tracep->chgBit(oldp+486,(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay));
+            tracep->chgBit(oldp+487,((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
+            tracep->chgBit(oldp+488,((2U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
+            tracep->chgBit(oldp+489,((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
+            tracep->chgQData(oldp+490,((((QData)((IData)(
                                                          (0x1fffffU 
                                                           & (IData)(
                                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
@@ -1573,7 +1575,6 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                                 (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                                                 >> 5U)) 
                                                                         << 5U)))))),64);
-            tracep->chgBit(oldp+491,(vlSelf->top__DOT__Dcache_u__DOT__missFlag));
             tracep->chgCData(oldp+492,(vlSelf->top__DOT__Dcache_u__DOT__rdCnt),2);
             tracep->chgWData(oldp+493,(vlSelf->top__DOT__Dcache_u__DOT__rdBuffer),256);
             tracep->chgBit(oldp+501,((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
