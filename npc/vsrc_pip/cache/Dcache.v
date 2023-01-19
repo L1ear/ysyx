@@ -459,7 +459,7 @@ always @(posedge clk or negedge rst_n) begin
         replaceWay <= 'b0;
     end
     else if(compareEn)begin
-        replaceWay <= randomBit2[0];
+        replaceWay <= randomBit[0];
     end
 end
 wire        needWrBk;
