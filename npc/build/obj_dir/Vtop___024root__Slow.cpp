@@ -2192,9 +2192,9 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                          : 0ULL)));
     if ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
         vlSelf->top__DOT__Dcache_u__DOT__wenWay2 = 
-            (1U & (~ vlSelf->top__DOT__Dcache_u__DOT__randomBit));
-        vlSelf->top__DOT__Dcache_u__DOT__wenWay1 = 
             (1U & vlSelf->top__DOT__Dcache_u__DOT__randomBit);
+        vlSelf->top__DOT__Dcache_u__DOT__wenWay1 = 
+            (1U & (~ vlSelf->top__DOT__Dcache_u__DOT__randomBit));
     } else {
         vlSelf->top__DOT__Dcache_u__DOT__wenWay2 = 
             (1U & ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
