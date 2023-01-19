@@ -223,7 +223,7 @@ wire [255:0]    way2Data = {dataWay2_2,dataWay2_1};
 // wire test = (idleEn && valid_i) || (compareEn && valid_i && cacheHit);
 reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(*) begin
-    if((idleEn && exValid_i ) || (compareEn && exValid_i && cacheHit)) begin     //if里的条件有点问题（idle？？？）
+    if((idleEn && exValid_i && stall_n) || (compareEn && exValid_i && cacheHit) || lsValid_i) begin     //if里的条件有点问题（idle？？？）
             case(offset[4:3])
                 2'b00: rdDataRegWay1 = missFlag ? rdBuffer[63:0]    : way1Data[63:0]   ;
                 2'b01: rdDataRegWay1 = missFlag ? rdBuffer[127:64]  : way1Data[127:64] ;

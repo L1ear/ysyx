@@ -234,9 +234,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                     | (QData)((IData)(
                                                                       vlSelf->top__DOT__cache_dut__DOT__way2Data[0U]))))))
                                         : 0ULL)),64);
-            tracep->chgQData(oldp+88,((((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                          & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
-                                         & (IData)(vlSelf->top__DOT__ls_stall_n)) 
+            tracep->chgQData(oldp+88,(((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                         & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
                                         | (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                             & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
                                            & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)))
@@ -304,9 +303,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                     | (QData)((IData)(
                                                                       vlSelf->top__DOT__Dcache_u__DOT__way1Data[0U]))))))
                                         : 0ULL)),64);
-            tracep->chgQData(oldp+90,((((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                          & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
-                                         & (IData)(vlSelf->top__DOT__ls_stall_n)) 
+            tracep->chgQData(oldp+90,(((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                         & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
                                         | (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                             & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
                                            & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)))
