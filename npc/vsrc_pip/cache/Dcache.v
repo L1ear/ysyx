@@ -439,6 +439,8 @@ end
 
 wire        wrMiss;
 assign wrMiss = compareEn && reqLatch[32] && ~cacheHit;
+wire        rdMiss;
+assign rdMiss = compareEn && ~reqLatch[32] && ~cacheHit;
 
 //TODO
 reg [31:0] randomBit2 ;
@@ -453,7 +455,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 wire        needWrBk;
-assign needWrBk = wrMiss && (dirtyArray1[index] || dirtyArray2[index]);
+assign needWrBk = (wrMiss || rdMiss) && (dirtyArray1[index] || dirtyArray2[index]);
 reg     needWrBk_Reg;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
