@@ -787,7 +787,7 @@ ls_stage ls_u(
     .ls_sram_wr_mask        (ls_sram_wr_mask        ),
     .ls_sram_wr_size        (ls_sram_wr_size        ),
     .ls_sram_rd_size        (ls_sram_rd_size        ),
-    .ls_sram_rd_data_valid  (  ),
+    .ls_sram_rd_data_valid  (dataNotOk  ),
     .ls_sram_wr_data_ok     (dataNotOk     ),
     .ls_sram_rd_data        (ls_sram_rd_data        )
 );
