@@ -1718,11 +1718,13 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                  | (QData)((IData)(
                                                                    vlSelf->top__DOT__cache_dut__DOT__way2Data[0U]))))))
                                      : 0ULL)),64);
-        tracep->fullQData(oldp+89,(((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                      & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
-                                     | (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                         & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
-                                        & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)))
+        tracep->fullQData(oldp+89,(((((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                        & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
+                                       & (IData)(vlSelf->top__DOT__ls_stall_n)) 
+                                      | (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                          & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
+                                         & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
+                                     | (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i))
                                      ? ((1U & (IData)(
                                                       (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                        >> 4U)))
@@ -1785,11 +1787,13 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                  | (QData)((IData)(
                                                                    vlSelf->top__DOT__Dcache_u__DOT__way1Data[0U]))))))
                                      : 0ULL)),64);
-        tracep->fullQData(oldp+91,(((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                      & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
-                                     | (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                         & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
-                                        & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)))
+        tracep->fullQData(oldp+91,(((((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                        & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
+                                       & (IData)(vlSelf->top__DOT__ls_stall_n)) 
+                                      | (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                          & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
+                                         & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
+                                     | (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i))
                                      ? ((1U & (IData)(
                                                       (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                        >> 4U)))
@@ -2777,12 +2781,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+447,(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause),64);
         tracep->fullIData(oldp+449,(vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i),32);
         tracep->fullBit(oldp+450,(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i));
-        tracep->fullBit(oldp+451,(((8U == (0x1fU & 
-                                           (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                            >> 4U))) 
-                                   | (3U == (0x7fU 
-                                             & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                                >> 2U))))));
+        tracep->fullBit(oldp+451,(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i));
         tracep->fullBit(oldp+452,(((3U != (0x7fU & 
                                            ((vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U] 
                                              << 5U) 
@@ -2881,13 +2880,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+469,(vlSelf->top__DOT__Dcache_u__DOT__wenWay2));
         tracep->fullBit(oldp+470,(((((IData)(vlSelf->top__DOT__Dcache_u__DOT__validFlag) 
                                      & (1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) 
-                                    & (~ ((8U == (0x1fU 
-                                                  & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                                     >> 4U))) 
-                                          | (3U == 
-                                             (0x7fU 
-                                              & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                                 >> 2U)))))) 
+                                    & (~ (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i))) 
                                    & (IData)(vlSelf->top__DOT__ls_stall_n))));
         tracep->fullBit(oldp+471,(vlSelf->top__DOT__Dcache_u__DOT__validFlag));
         tracep->fullBit(oldp+472,((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
