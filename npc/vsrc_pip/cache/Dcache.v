@@ -312,7 +312,7 @@ end
 always @(*) begin
     if(getdataEn && rdLast_i) begin
         //TODO 真‘伪随机
-        if(randomBit[0]) begin
+        if(~randomBit[0]) begin
             bitValid1_d = 1'b1;
             bitValid2_d = 1'b0;
             tagArray1_d = tag;
