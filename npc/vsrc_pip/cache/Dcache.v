@@ -402,10 +402,10 @@ assign sramMask[63:56]    = {8{storeMask[7]}};
 
 //由于流水线字长为64,而一块sram是128,所以还要选择高低位
 
-assign inDataWay1_1 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[127:0];
-assign inDataWay1_2 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[255:128];
-assign inDataWay2_1 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[127:0];
-assign inDataWay2_2 = reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[255:128];
+assign inDataWay1_1 = replaceEn ? rdBuffer[127:0] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[127:0];
+assign inDataWay1_2 = replaceEn ? rdBuffer[255:128] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[255:128];
+assign inDataWay2_1 = replaceEn ? rdBuffer[127:0] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[127:0];
+assign inDataWay2_2 = replaceEn ? rdBuffer[255:128] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[255:128];
 
 wire    [127:0]     maskWay1_1,maskWay1_2,maskWay2_1,maskWay2_2;
 assign maskWay1_1 = replaceEn ? 128'hffffffffffffffffffffffffffffffff : reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 128'hffffffffffffffffffffffffffffffff;
