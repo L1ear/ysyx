@@ -105,11 +105,8 @@ always @(*) begin
                     cacheNexState = idle;
                 end
             end
-            else if(lsValid_i) begin
-                cacheNexState = miss;
-            end
             else begin
-                cacheNexState = idle;
+                cacheNexState = miss;
             end
         end
         miss: begin
