@@ -463,7 +463,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 wire        needWrBk;
-assign needWrBk = (wrMiss && (dirtyArray1[index] || dirtyArray2[index])) || (rdMiss && );
+assign needWrBk = (wrMiss && (dirtyArray1[index] || dirtyArray2[index])) || (rdMiss && (~randomBit[0] && dirtyArray1[index] || randomBit[0] && dirtyArray2[index]));
 reg     needWrBk_Reg;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
