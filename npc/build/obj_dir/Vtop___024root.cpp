@@ -1318,17 +1318,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
                                                  & (7U 
                                                     == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)));
     if (vlSelf->rst_n) {
-        if ((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-              & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
-             & (~ (IData)(vlSelf->top__DOT__ls_stall_n)))) {
-            vlSelf->top__DOT__Dcache_u__DOT__validFlag = 1U;
-        } else if ((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-            vlSelf->top__DOT__Dcache_u__DOT__validFlag = 0U;
-        }
-    } else {
-        vlSelf->top__DOT__Dcache_u__DOT__validFlag = 0U;
-    }
-    if (vlSelf->rst_n) {
         if (((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
              & (IData)(vlSelf->top__DOT__lsAxiRdDataVAlid))) {
             VL_ASSIGNSEL_WIIQ(256,64,(0xffU & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__rdCnt) 
@@ -1347,6 +1336,14 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[6U] = 0U;
         vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[7U] = 0U;
     }
+    vlSelf->top__DOT__Dcache_u__DOT__validFlag = ((IData)(vlSelf->rst_n) 
+                                                  & ((((0U 
+                                                        == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                                       | ((1U 
+                                                           == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                                          & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
+                                                      & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
+                                                     & (~ (IData)(vlSelf->top__DOT__ls_stall_n))));
     if (vlSelf->rst_n) {
         if (((0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state)) 
              & (IData)(vlSelf->top__DOT__DcacheRdValid))) {
