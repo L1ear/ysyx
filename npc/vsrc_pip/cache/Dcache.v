@@ -289,7 +289,15 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 //根据随机决定替换哪个way
-always randomBit = $random;
+// always randomBit = $random;
+always @( *) begin
+    if(compareEn) begin
+        randomBit = $random;
+    end
+    else begin
+        randomBit = randomBit;
+    end
+end
 always @(*) begin
     if(getdataEn && rdLast_i) begin
         //TODO 真‘伪随机
@@ -455,7 +463,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 wire        needWrBk;
-assign needWrBk = (wrMiss || rdMiss) && (dirtyArray1[index] || dirtyArray2[index]);
+assign needWrBk = (wrMiss && (dirtyArray1[index] || dirtyArray2[index])) || (rdMiss && );
 reg     needWrBk_Reg;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin

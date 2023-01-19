@@ -1697,9 +1697,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
     if (vlSelf->rst_n) {
         if ((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
             __Vdly__top__DOT__Dcache_u__DOT__needWrBk_Reg 
-                = ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                     & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                >> 0x20U))) & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
+                = (((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                      & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                 >> 0x20U))) & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
+                    | (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                        & (~ (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                      >> 0x20U)))) 
+                       & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)))) 
                    & ((IData)((vlSelf->top__DOT__Dcache_u__DOT__dirtyArray1 
                                >> (0x3fU & (IData)(
                                                    (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
