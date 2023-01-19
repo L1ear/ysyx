@@ -377,16 +377,18 @@ wire [63:0]    storeData;
 //注意看赋值，目前还是阻塞模式
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 assign storeData = wr_data_i << {reqLatch[2:0],3'b0};
+wire  [7:0] storeMask;
+assign storeMask = wr_mask_i << reqLatch[2:0];
 
 wire  [63:0]  sramMask;
-assign sramMask[7:0]    = {8{wr_mask_i[0]}};
-assign sramMask[15:8]   = {8{wr_mask_i[1]}};
-assign sramMask[23:16]    = {8{wr_mask_i[2]}};
-assign sramMask[31:24]    = {8{wr_mask_i[3]}};
-assign sramMask[39:32]    = {8{wr_mask_i[4]}};
-assign sramMask[47:40]    = {8{wr_mask_i[5]}};
-assign sramMask[55:48]    = {8{wr_mask_i[6]}};
-assign sramMask[63:56]    = {8{wr_mask_i[7]}};
+assign sramMask[7:0]    = {8{storeMask[0]}};
+assign sramMask[15:8]   = {8{storeMask[1]}};
+assign sramMask[23:16]    = {8{storeMask[2]}};
+assign sramMask[31:24]    = {8{storeMask[3]}};
+assign sramMask[39:32]    = {8{storeMask[4]}};
+assign sramMask[47:40]    = {8{storeMask[5]}};
+assign sramMask[55:48]    = {8{storeMask[6]}};
+assign sramMask[63:56]    = {8{storeMask[7]}};
 
 //由于流水线字长为64,而一块sram是128,所以还要选择高低位
 
