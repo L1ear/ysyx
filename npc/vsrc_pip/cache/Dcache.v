@@ -65,10 +65,10 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         validFlag <= 'b0;
     end
-    else if(idleEn && exValid_i && ~stall_n) begin
+    else if((idleEn || compareEn && cacheHit) && exValid_i && ~stall_n) begin
         validFlag <= 'b1;
     end
-    else if(compareEn) begin
+    else begin
         validFlag <= 'b0;
     end
 end

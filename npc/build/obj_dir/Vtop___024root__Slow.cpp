@@ -2182,8 +2182,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__if_axi_r_last_i = (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_last));
         vlSelf->top__DOT__ls_axi_r_last_i = 0U;
     }
-    if (((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-         & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))) {
+    if ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
         vlSelf->top__DOT__Dcache_u__DOT__wenWay2 = 
             (1U & (~ vlSelf->top__DOT__Dcache_u__DOT__randomBit));
         vlSelf->top__DOT__Dcache_u__DOT__wenWay1 = 
