@@ -566,7 +566,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__DcacheWrAddr = ((0xffffffff00000000ULL 
                                        & vlSelf->top__DOT__DcacheWrAddr) 
                                       | (IData)((IData)(
-                                                        ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceWay)
+                                                        ((1U 
+                                                          & vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                                           ? 
                                                          ((vlSelf->top__DOT__Dcache_u__DOT__tagArray2
                                                            [

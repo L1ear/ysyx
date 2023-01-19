@@ -496,7 +496,7 @@ wire    [31:0]  addrToWrite;
 assign addrToWrite = randomBit[0] ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = addrToWrite;
 
-assign cacheWrData_o = randomBit[0] ? way1Data : way2Data;
+assign cacheWrData_o = randomBit[0] ? way2Data : way1Data;
 assign storeLenth = uncache ? 'd1 : 'd4;
 
 // always @(posedge clk or negedge rst_n) begin
