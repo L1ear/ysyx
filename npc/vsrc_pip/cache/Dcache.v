@@ -5,7 +5,9 @@ module Dcache(
 //from PIPLINE
     input           [`addr_width-1:0]       addr_i,
     //valid表示有效的读取请求，op表示操作类型，icache恒为0,表示读
-    input                                   valid_i,op_i,
+    input                                   exValid_i,
+    input                                   lsValid_i,
+    input                                   op_i,
     //写数据以及mask，icache无效
     input           [`XLEN-1:0]             wr_data_i,
     input           [7:0]                   wr_mask_i,
@@ -57,6 +59,21 @@ wire    [127:0] dataWay1_1,dataWay1_2,dataWay2_1,dataWay2_2;
 reg    [127:0] inDataWay1_1,inDataWay1_2,inDataWay2_1,inDataWay2_2;
 reg            wenWay1,wenWay2;
 
+wire            reqCancel;
+reg             validFlag;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        validFlag <= 'b0;
+    end
+    else if(idleEn && exValid_i && ~stall_n) begin
+        validFlag <= 'b1;
+    end
+    else if(compareEn) begin
+        validFlag <= 'b0;
+    end
+end
+assign reqCancel = validFlag && compareEn && ~lsValid_i && stall_n;
+
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         cacheCurState <= idle;
@@ -69,7 +86,7 @@ end
 always @(*) begin
     case (cacheCurState)
         idle: begin
-            if(valid_i) begin
+            if(exValid_i) begin       
                 cacheNexState = compare;
             end
             else begin
@@ -77,8 +94,11 @@ always @(*) begin
             end
         end
         compare: begin
-            if(cacheHit) begin
-                if(valid_i) begin
+            if(reqCancel) begin
+                cacheNexState = idle;
+            end
+            else if(cacheHit) begin
+                if(exValid_i) begin
                     cacheNexState = compare;
                 end
                 else begin
@@ -132,7 +152,7 @@ always @(posedge clk or negedge rst_n) begin
     //在compare到compare锁存地址信息时，要保证上一个请求是hit的，否则下一拍会进入miss，而保存的数据失效
     //同时要保证在stall时不锁存，因为1、stall有可能是由cache缺失或其他自身原因造成，此时不能锁存其他数据
     //2、有可能由其他阶段造成如ls部分stall等，此时也不能锁存，否则会锁存下一拍的地址，但是pc还没有变化，导致取得的指令出错
-    else if(((idleEn && valid_i) || (compareEn && valid_i && cacheHit) && stall_n)) begin
+    else if(((idleEn && exValid_i) || (compareEn && exValid_i && cacheHit) && stall_n)) begin
         reqLatch <= {op_i,addr_i};
     end
 end
@@ -203,7 +223,7 @@ wire [255:0]    way2Data = {dataWay2_2,dataWay2_1};
 // wire test = (idleEn && valid_i) || (compareEn && valid_i && cacheHit);
 reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(*) begin
-    if((idleEn && valid_i) || (compareEn && valid_i && cacheHit)) begin
+    if((idleEn && exValid_i) || (compareEn && exValid_i && cacheHit)) begin     //if里的条件有点问题（idle？？？）
             case(offset[4:3])
                 2'b00: rdDataRegWay1 = missFlag ? rdBuffer[63:0]    : way1Data[63:0]   ;
                 2'b01: rdDataRegWay1 = missFlag ? rdBuffer[127:64]  : way1Data[127:64] ;
@@ -298,7 +318,7 @@ wire    replaceEn = cacheCurState == replace;
 //这里延后一个周期将写是能拉高写入，防止高位无法写入（即最后64位数据）
 //不仅在替换时要写入，store命中也要写入
 always @(*) begin
-    if((replaceEn && needWrBk_Reg) || (compareEn && cacheHit && reqLatch[32])) begin
+    if((replaceEn && needWrBk_Reg)) begin
         if(randomBit[0]) begin
             wenWay1 = 1'b1;
             wenWay2 = 1'b0;
@@ -456,7 +476,7 @@ assign storeLenth = uncache ? 'd1 : 'd4;
 S011HD1P_X32Y2D128_BW iramWay1_1 (
   .Q (dataWay1_1 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn) || wenWay1) ),
+  .CEN (~((idleEn && exValid_i) || (compareEn) || wenWay1) ),
   .WEN (~wenWay1 ),
   .BWEN (~maskWay1_1 ),
   .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
@@ -466,7 +486,7 @@ S011HD1P_X32Y2D128_BW iramWay1_1 (
 S011HD1P_X32Y2D128_BW iramWay1_2 (
   .Q (dataWay1_2 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn) || wenWay1) ),
+  .CEN (~((idleEn && exValid_i) || (compareEn) || wenWay1) ),
   .WEN (~wenWay1 ),
   .BWEN (~maskWay1_2 ),
   .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
@@ -476,7 +496,7 @@ S011HD1P_X32Y2D128_BW iramWay1_2 (
 S011HD1P_X32Y2D128_BW iramWay2_1 (
   .Q (dataWay2_1 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn) || wenWay2) ),
+  .CEN (~((idleEn && exValid_i) || (compareEn) || wenWay2) ),
   .WEN (~wenWay2 ),
   .BWEN (~maskWay2_1 ),
   .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
@@ -486,7 +506,7 @@ S011HD1P_X32Y2D128_BW iramWay2_1 (
 S011HD1P_X32Y2D128_BW iramWay2_2 (
   .Q (dataWay2_2 ),
   .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn) || wenWay2) ),
+  .CEN (~((idleEn && exValid_i) || (compareEn) || wenWay2) ),
   .WEN (~wenWay2 ),
   .BWEN (~maskWay2_2 ),
   .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
