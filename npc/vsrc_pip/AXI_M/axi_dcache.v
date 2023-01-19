@@ -190,7 +190,7 @@ assign wr_ready_o = w_state == w_state_idle;
     reg     [1:0]   r_state,r_state_next;
     wire            ar_valid,r_ready;
     // reg             instr_valid;
-    reg     [`XLEN-1:0]     addr_reg;
+    reg     [`XLEN-1:0]     rdAddr_reg;
     always @(posedge clock or negedge reset) begin
         if(~reset) begin
             r_state <= r_state_idle;
@@ -222,10 +222,10 @@ assign wr_ready_o = w_state == w_state_idle;
 //锁存地址
 always @(posedge clock or negedge reset) begin
     if(~reset) begin
-        addr_reg <= 'b0;
+        rdAddr_reg <= 'b0;
     end
     else if((r_state == r_state_idle) && rw_valid_i) begin
-        addr_reg <= rw_addr_i;
+        rdAddr_reg <= rw_addr_i;
     end
 end
 
