@@ -1864,17 +1864,21 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                      & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                 >> 0x20U))) 
                                     & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
-                                   & ((IData)((vlSelf->top__DOT__Dcache_u__DOT__dirtyArray1 
-                                               >> (0x3fU 
+                                   & (((~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceWay)) 
+                                       & (IData)((vlSelf->top__DOT__Dcache_u__DOT__dirtyArray1 
+                                                  >> 
+                                                  (0x3fU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 5U))))) 
-                                      | (IData)((vlSelf->top__DOT__Dcache_u__DOT__dirtyArray2 
-                                                 >> 
-                                                 (0x3fU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                             >> 5U))))))) 
+                                                              >> 5U)))))) 
+                                      | ((IData)(vlSelf->top__DOT__Dcache_u__DOT__replaceWay) 
+                                         & (IData)(
+                                                   (vlSelf->top__DOT__Dcache_u__DOT__dirtyArray2 
+                                                    >> 
+                                                    (0x3fU 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 5U)))))))) 
                                   | ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                        & (~ (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
