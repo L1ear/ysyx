@@ -235,7 +235,7 @@ assign dataValid_o = axi_r_valid_i && axi_r_ready_o;
 assign ar_valid = r_state == r_state_ar_wait;
 assign r_ready = r_state == r_state_r_wait;
 assign data_read_o = axi_r_data_i;
-assign instr_fetching = ~(r_state == r_state_idle);
+// assign instr_fetching = ~(r_state == r_state_idle);
     // assign rw_ready_o = instr_valid_reg;
     // assign data_read_o = rd_data_reg;
     
