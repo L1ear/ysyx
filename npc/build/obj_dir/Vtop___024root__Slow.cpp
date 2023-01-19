@@ -247,6 +247,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[2U];
     vlSelf->top__DOT__Dcache_u__DOT__way2Data[7U] = 
         vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[3U];
+    vlSelf->top__DOT__Dcache_u__DOT__randomBit2 = VL_RANDOM_I(32);
     vlSelf->pc_diff = (((QData)((IData)(vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[9U])) 
                         << 0x3fU) | (((QData)((IData)(
                                                       vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[8U])) 
@@ -4026,6 +4027,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__Dcache_u__DOT__storeData = 0;
     vlSelf->top__DOT__Dcache_u__DOT__storeMask = 0;
     vlSelf->top__DOT__Dcache_u__DOT__sramMask = 0;
+    vlSelf->top__DOT__Dcache_u__DOT__randomBit2 = 0;
     vlSelf->top__DOT__Dcache_u__DOT__replaceWay = 0;
     vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg = 0;
     vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A = 0;
