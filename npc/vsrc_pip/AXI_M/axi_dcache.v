@@ -127,21 +127,11 @@ module axi_dcache # (
                 end
             end
             w_state_b_wait_trans_ok: begin
-                if(wr_valid_i) begin
-                    // if(trans_ok) begin
-                        if((rw_addr_i != addr_reg ||rw_w_data_i != wr_data_reg) && trans_ok) begin
-                            w_state_next = w_state_aw_wait;
-                        end
-                        else begin
-                            w_state_next = w_state_b_wait_trans_ok;
-                        end
-                    // end
-                    // else begin
-                    //     w_state_next = w_state_b_wait_trans_ok;
-                    // end
+                if(axi_b_valid_i) begin
+                    w_state_next = w_state_idle;
                 end
                 else begin
-                    w_state_next = w_state_idle;
+                    w_state_next = w_state_b_wait_trans_ok;
                 end
             end
         endcase
