@@ -156,8 +156,8 @@ always @(posedge clock) begin
 end
 
 reg [1:0]   wrCnt;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
+always @(posedge clock or negedge reset) begin
+    if(~reset) begin
         wrCnt <= 'b0;
     end
     else if((w_state == w_state_dw_wait) && axi_w_ready_i) begin
