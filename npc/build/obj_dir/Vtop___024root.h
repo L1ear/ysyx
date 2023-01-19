@@ -213,6 +213,8 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay2_q;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__missFlag;
         CData/*1:0*/ top__DOT__Dcache_u__DOT__rdCnt;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__wenDelay1;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__wenDelay2;
         CData/*7:0*/ top__DOT__Dcache_u__DOT__wrMaskLatch;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wrLow;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wrHigh;
@@ -249,10 +251,10 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__sram_rdata;
-        QData/*63:0*/ top__DOT__alures_ex;
-        QData/*63:0*/ top__DOT__csrdata_ls;
     };
     struct {
+        QData/*63:0*/ top__DOT__alures_ex;
+        QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__ls_sram_rd_data;
         QData/*63:0*/ top__DOT__wb_data;
         QData/*63:0*/ top__DOT__DcacheRdAddr;
