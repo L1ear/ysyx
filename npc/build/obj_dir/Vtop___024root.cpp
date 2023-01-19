@@ -1183,8 +1183,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
     }
     if (vlSelf->rst_n) {
         if ((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-            vlSelf->top__DOT__Dcache_u__DOT__replaceWay 
-                = (1U & vlSelf->top__DOT__Dcache_u__DOT__randomBit2);
+            vlSelf->top__DOT__Dcache_u__DOT__replaceWay = 1U;
         }
     } else {
         vlSelf->top__DOT__Dcache_u__DOT__replaceWay = 0U;
