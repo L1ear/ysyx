@@ -178,7 +178,7 @@ always @(posedge clk or negedge rst_n) begin
         validArray1 <= 'b0;
         validArray2 <= 'b0;
     end
-    else if(getdataEn) begin
+    else if(getdataEn && rdLast_i) begin
         validArray1[index] <= bitValid1_d;
         validArray2[index] <= bitValid2_d;
     end
@@ -198,7 +198,7 @@ reg        validWay1_q,validWay2_q;
 //tag的写入同样在getdata的末尾写入
 //此处是否能优化呢，即将tagArray1_d和tagArray2_d用一个信号表示，使用信号控制写入tagarray1还是2
 always @(posedge clk or negedge rst_n) begin
-    if(getdataEn) begin
+    if(getdataEn && rdLast_i) begin
         tagArray1[index] <= tagArray1_d;
         tagArray2[index] <= tagArray2_d;
     end
@@ -315,14 +315,14 @@ always @(*) begin
         //TODO 真‘伪随机
         if(~randomBit[0]) begin
             bitValid1_d = 1'b1;
-            bitValid2_d = 1'b0;
+            bitValid2_d = validArray2[index];
             tagArray1_d = tag;
-            tagArray2_d = 'b0;
+            tagArray2_d = tagArray1[index];
         end
         else begin
-            bitValid1_d = 1'b0;
+            bitValid1_d = validArray1[index];
             bitValid2_d = 1'b1;
-            tagArray1_d = 'b0;
+            tagArray1_d = tagArray1[index];
             tagArray2_d = tag;
         end
     end
