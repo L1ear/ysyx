@@ -209,6 +209,8 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenWay1;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenWay2;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validFlag;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__bitValid1_d;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__bitValid2_d;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay1_q;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay2_q;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__replaceEnDelay;
@@ -242,17 +244,18 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay1_2;
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_1;
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_2;
+        IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray1_d;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way1Data;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way2Data;
         IData/*31:0*/ top__DOT__Dcache_u__DOT__randomBit;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__rdBuffer;
         VlWide<8>/*255:0*/ top__DOT__axi_ls_u__DOT__wr_data_reg;
         QData/*63:0*/ top__DOT__ls_axi_w_data_o;
+    };
+    struct {
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__sram_rdata;
-    };
-    struct {
         QData/*63:0*/ top__DOT__alures_ex;
         QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__ls_sram_rd_data;

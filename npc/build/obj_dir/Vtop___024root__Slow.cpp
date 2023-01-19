@@ -2315,6 +2315,32 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                            | (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))));
     vlSelf->top__DOT__cache_dut__DOT__cacheNexState 
         = Vtop__ConstPool__TABLE_b8110941_0[__Vtableidx1];
+    if (((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+         & (IData)(vlSelf->top__DOT__ls_axi_r_last_i))) {
+        vlSelf->top__DOT__Dcache_u__DOT__tagArray1_d 
+            = (0x1fffffU & ((1U & vlSelf->top__DOT__Dcache_u__DOT__randomBit)
+                             ? vlSelf->top__DOT__Dcache_u__DOT__tagArray1
+                            [(0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                               >> 5U)))]
+                             : (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                        >> 0xbU))));
+        vlSelf->top__DOT__Dcache_u__DOT__bitValid2_d 
+            = ((vlSelf->top__DOT__Dcache_u__DOT__randomBit 
+                | (IData)((vlSelf->top__DOT__Dcache_u__DOT__validArray2 
+                           >> (0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                >> 5U)))))) 
+               & 1U);
+        vlSelf->top__DOT__Dcache_u__DOT__bitValid1_d 
+            = (((~ vlSelf->top__DOT__Dcache_u__DOT__randomBit) 
+                | (IData)((vlSelf->top__DOT__Dcache_u__DOT__validArray1 
+                           >> (0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                >> 5U)))))) 
+               & 1U);
+    } else {
+        vlSelf->top__DOT__Dcache_u__DOT__tagArray1_d = 0U;
+        vlSelf->top__DOT__Dcache_u__DOT__bitValid2_d = 0U;
+        vlSelf->top__DOT__Dcache_u__DOT__bitValid1_d = 0U;
+    }
     __Vtableidx5 = (((IData)(vlSelf->top__DOT__ls_axi_r_last_i) 
                      << 4U) | (((((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
                                    ? 0U : 1U) ? (1U 
@@ -4037,12 +4063,15 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__Dcache_u__DOT__reqLatch = 0;
     vlSelf->top__DOT__Dcache_u__DOT__validArray1 = 0;
     vlSelf->top__DOT__Dcache_u__DOT__validArray2 = 0;
+    vlSelf->top__DOT__Dcache_u__DOT__bitValid1_d = 0;
+    vlSelf->top__DOT__Dcache_u__DOT__bitValid2_d = 0;
     for (int __Vi0=0; __Vi0<64; ++__Vi0) {
         vlSelf->top__DOT__Dcache_u__DOT__tagArray1[__Vi0] = 0;
     }
     for (int __Vi0=0; __Vi0<64; ++__Vi0) {
         vlSelf->top__DOT__Dcache_u__DOT__tagArray2[__Vi0] = 0;
     }
+    vlSelf->top__DOT__Dcache_u__DOT__tagArray1_d = 0;
     vlSelf->top__DOT__Dcache_u__DOT__validWay1_q = 0;
     vlSelf->top__DOT__Dcache_u__DOT__validWay2_q = 0;
     vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay = 0;
