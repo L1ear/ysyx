@@ -139,7 +139,7 @@ module axi_dcache # (
 reg     [`XLEN-1:0]     wrAddr_reg;
 reg     [255:0]         wr_data_reg;
 always @(posedge clock) begin
-        if(w_state == w_state_aw_wait) begin
+        if((w_state == w_state_idle) && wr_valid_i) begin
             wrAddr_reg <= cacheWrAddr_i;
             wr_data_reg <= cacheWrData_i;
         end
