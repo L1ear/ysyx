@@ -301,6 +301,8 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__ls_sram_rd_data;
         QData/*63:0*/ top__DOT__wb_data;
+        QData/*63:0*/ top__DOT__DcacheRdAddr;
+        QData/*63:0*/ top__DOT__DcacheWrAddr;
         QData/*63:0*/ top__DOT__axi_crossbar_u__DOT__ls_axi_aw_addr_i;
         QData/*63:0*/ top__DOT__axi_crossbar_u__DOT__ls_axi_w_data_i;
         QData/*63:0*/ top__DOT__axi_crossbar_u__DOT__ls_axi_ar_addr_i;
@@ -315,10 +317,10 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__src1;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__src2;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__rs1;
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__rs2;
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout;
     };
     struct {
+        QData/*63:0*/ top__DOT__ex_stage_u__DOT__rs2;
+        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__ALUout;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
@@ -375,10 +377,6 @@ VL_MODULE(Vtop___024root) {
     CData/*5:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A;
     CData/*5:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A;
     CData/*1:0*/ __Vdly__top__DOT__cache_dut__DOT__rdCnt;
-    CData/*5:0*/ __Vdlyvdim0__top__DOT__Dcache_u__DOT__tagArray1__v0;
-    CData/*0:0*/ __Vdlyvset__top__DOT__Dcache_u__DOT__tagArray1__v0;
-    CData/*5:0*/ __Vdlyvdim0__top__DOT__Dcache_u__DOT__tagArray2__v0;
-    CData/*0:0*/ __Vdlyvset__top__DOT__Dcache_u__DOT__tagArray2__v0;
     CData/*1:0*/ __Vdly__top__DOT__Dcache_u__DOT__rdCnt;
     CData/*1:0*/ __Vdly__top__DOT__axi_ls_u__DOT__wrCnt;
     CData/*4:0*/ __Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
@@ -391,8 +389,6 @@ VL_MODULE(Vtop___024root) {
     VlWide<8>/*225:0*/ top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout;
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout;
     VlWide<10>/*288:0*/ top__DOT__wb_reg_u__DOT____Vcellinp__wb_reg__i_din;
-    IData/*20:0*/ __Vdlyvval__top__DOT__Dcache_u__DOT__tagArray1__v0;
-    IData/*20:0*/ __Vdlyvval__top__DOT__Dcache_u__DOT__tagArray2__v0;
     QData/*63:0*/ __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     VlUnpacked<CData/*0:0*/, 6> __Vm_traceActivity;
 
