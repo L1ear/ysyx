@@ -65,14 +65,14 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         validFlag <= 'b0;
     end
-    else if((idleEn || compareEn && cacheHit) && exValid_i && ~stall_n) begin
+    else if((idleEn || compareEn && cacheHit) && exValid_i && stall_n) begin
         validFlag <= 'b1;
     end
     else begin
         validFlag <= 'b0;
     end
 end
-assign reqCancel = 0;//validFlag && compareEn && ~lsValid_i && stall_n;
+assign reqCancel = validFlag && compareEn && ~lsValid_i && stall_n;
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
