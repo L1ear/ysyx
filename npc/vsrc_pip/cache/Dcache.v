@@ -215,7 +215,14 @@ assign  cacheHit = way1Hit || way2Hit;
 //dataOk信号仅在compare阶段并且命中的情况下为高，
 assign data_ok_o = compareEn && cacheHit;
 //notok信号在idle阶段不置高
-assign data_notok_o = (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
+/*NotOk置高条件
+**1、compareEn && ~cacheHit         ：表示此次访问Miss
+**2、getdataEn、missEn、replaceEn    ：表示正在从总线请求数据
+**3、
+**
+**
+*/
+assign data_notok_o = (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn;// || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
 
 reg     replaceEnDelay;
 always @(posedge clk or negedge rst_n) begin
