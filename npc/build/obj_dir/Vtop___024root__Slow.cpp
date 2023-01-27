@@ -2707,17 +2707,24 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                   ((1U 
                                                     & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                                     ? 
-                                                   ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)
-                                                     ? 
-                                                    ((((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
-                                                       & (IData)(vlSelf->top__DOT__ls_stall_n)) 
-                                                      | ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i) 
-                                                         & (~ (IData)(
-                                                                      (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                       >> 0x20U)))))
-                                                      ? 1U
-                                                      : 0U)
-                                                     : 2U)
+                                                   (((((IData)(vlSelf->top__DOT__Dcache_u__DOT__validFlag) 
+                                                       & (1U 
+                                                          == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) 
+                                                      & (~ (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i))) 
+                                                     & (IData)(vlSelf->top__DOT__ls_stall_n))
+                                                     ? 0U
+                                                     : 
+                                                    ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)
+                                                      ? 
+                                                     ((((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
+                                                        & (IData)(vlSelf->top__DOT__ls_stall_n)) 
+                                                       | ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i) 
+                                                          & (~ (IData)(
+                                                                       (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                        >> 0x20U)))))
+                                                       ? 1U
+                                                       : 0U)
+                                                      : 2U))
                                                     : 
                                                    (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
                                                      & (IData)(vlSelf->top__DOT__ls_stall_n))

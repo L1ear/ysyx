@@ -1441,7 +1441,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
                                                            == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                                           & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
                                                       & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
-                                                     & (~ (IData)(vlSelf->top__DOT__ls_stall_n))));
+                                                     & (IData)(vlSelf->top__DOT__ls_stall_n)));
     vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay 
         = ((IData)(vlSelf->rst_n) & (7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)));
     if (vlSelf->rst_n) {
@@ -5599,17 +5599,24 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
                                                   ((1U 
                                                     & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                                     ? 
-                                                   ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)
-                                                     ? 
-                                                    ((((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
-                                                       & (IData)(vlSelf->top__DOT__ls_stall_n)) 
-                                                      | ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i) 
-                                                         & (~ (IData)(
-                                                                      (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                       >> 0x20U)))))
-                                                      ? 1U
-                                                      : 0U)
-                                                     : 2U)
+                                                   (((((IData)(vlSelf->top__DOT__Dcache_u__DOT__validFlag) 
+                                                       & (1U 
+                                                          == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) 
+                                                      & (~ (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i))) 
+                                                     & (IData)(vlSelf->top__DOT__ls_stall_n))
+                                                     ? 0U
+                                                     : 
+                                                    ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)
+                                                      ? 
+                                                     ((((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
+                                                        & (IData)(vlSelf->top__DOT__ls_stall_n)) 
+                                                       | ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i) 
+                                                          & (~ (IData)(
+                                                                       (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                        >> 0x20U)))))
+                                                       ? 1U
+                                                       : 0U)
+                                                      : 2U))
                                                     : 
                                                    (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
                                                      & (IData)(vlSelf->top__DOT__ls_stall_n))
