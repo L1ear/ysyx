@@ -59,20 +59,21 @@ wire    [127:0] dataWay1_1,dataWay1_2,dataWay2_1,dataWay2_2;
 reg    [127:0] inDataWay1_1,inDataWay1_2,inDataWay2_1,inDataWay2_2;
 reg            wenWay1,wenWay2;
 
-wire            reqCancel;
-reg             validFlag;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        validFlag <= 'b0;
-    end
-    else if((idleEn || compareEn && cacheHit) && exValid_i && stall_n) begin
-        validFlag <= 'b1;
-    end
-    else begin
-        validFlag <= 'b0;
-    end
-end
-assign reqCancel = validFlag && compareEn && ~lsValid_i && stall_n;
+//这里多虑了，jal后的l/s指令并不会流到ex阶段
+// wire            reqCancel;
+// reg             validFlag;
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n) begin
+//         validFlag <= 'b0;
+//     end
+//     else if((idleEn || compareEn && cacheHit) && exValid_i && stall_n) begin
+//         validFlag <= 'b1;
+//     end
+//     else begin
+//         validFlag <= 'b0;
+//     end
+// end
+// assign reqCancel = validFlag && compareEn && ~lsValid_i && stall_n;
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -94,10 +95,7 @@ always @(*) begin
             end
         end
         compare: begin
-            if(reqCancel) begin
-                cacheNexState = idle;
-            end
-            else if(cacheHit) begin
+            if(cacheHit) begin
                 if(exValid_i && stall_n || lsValid_i && ~reqLatch[32]) begin
                     cacheNexState = compare;
                 end
