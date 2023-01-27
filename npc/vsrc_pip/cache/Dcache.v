@@ -72,7 +72,7 @@ always @(posedge clk or negedge rst_n) begin
         validFlag <= 'b0;
     end
 end
-assign reqCancel = validFlag && compareEn && ~lsValid_i && stall_n;
+assign reqCancel = 0;//validFlag && compareEn && ~lsValid_i && stall_n;
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -214,12 +214,14 @@ assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
 assign  cacheHit = way1Hit || way2Hit;
 //dataOk信号仅在compare阶段并且命中的情况下为高，
 assign data_ok_o = compareEn && cacheHit;
+
 //notok信号在idle阶段不置高
 /*NotOk置高条件
 **1、compareEn && ~cacheHit         ：表示此次访问Miss
 **2、getdataEn、missEn、replaceEn    ：表示正在从总线请求数据
-**3、
-**
+**3、compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)):
+**  这种情况对应上一拍是store命令并且命中，而这一拍是load命令并且命中的情况，由于sram模型的写、读分别需要一拍，故写入后需要等待一拍在读，
+**  防止读出错误数据，本质上是read after write冲突，本应该使用流水线前递解决，整理完代码再改吧
 **
 */
 assign data_notok_o = (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
