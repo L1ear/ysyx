@@ -222,7 +222,7 @@ assign data_ok_o = compareEn && cacheHit;
 **
 **
 */
-assign data_notok_o = (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn;// || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
+assign data_notok_o = (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
 
 reg     replaceEnDelay;
 always @(posedge clk or negedge rst_n) begin
