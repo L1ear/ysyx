@@ -505,7 +505,7 @@ end
 
 wire            uncache = 0;                //TODO
 
-assign cacheWrValid_o = needWrBk;
+assign cacheWrValid_o = needWrBk_Reg;
 wire    [31:0]  addrToWrite;
 
 assign addrToWrite = randomBit[0] ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
