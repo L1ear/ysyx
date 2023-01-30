@@ -158,6 +158,7 @@ VL_MODULE(Vtop___024root) {
         CData/*7:0*/ top__DOT__fetchLenth;
         CData/*0:0*/ top__DOT__dataValid_o;
         CData/*0:0*/ top__DOT__DcacheRdValid;
+        CData/*0:0*/ top__DOT__DcacheWrValid;
         CData/*7:0*/ top__DOT__lsFetchLenth;
         CData/*0:0*/ top__DOT__lsAxiRdDataVAlid;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_w_ready;
@@ -184,9 +185,9 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__axi_icache_dut__DOT__r_state_next;
         CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero;
-        CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin;
     };
     struct {
+        CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__less;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry;
@@ -250,9 +251,9 @@ VL_MODULE(Vtop___024root) {
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__rdBuffer;
         VlWide<8>/*255:0*/ top__DOT__axi_ls_u__DOT__wr_data_reg;
         QData/*63:0*/ top__DOT__ls_axi_w_data_o;
-        QData/*63:0*/ top__DOT__pc_next;
     };
     struct {
+        QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__sram_rdata;
         QData/*63:0*/ top__DOT__alures_ex;

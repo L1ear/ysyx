@@ -104,7 +104,12 @@ always @(*) begin
                 end
             end
             else begin
-                cacheNexState = miss;
+                if(reqLatch[32] && axiWrBusy) begin
+                    cacheNexState = compare;
+                end
+                else begin
+                    cacheNexState = miss;
+                end
             end
         end
         miss: begin
@@ -495,7 +500,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         needWrBk_Reg <= 'b0;
     end
-    else if(compareEn) begin
+    else if(compareEn && ~axiWrBusy) begin
         needWrBk_Reg <= needWrBk;
     end
     else if(axiWrReady && cacheWrValid_o) begin
@@ -504,7 +509,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 wire            uncache = 0;                //TODO
-
+wire            axiWrBusy = needWrBk_Reg;
 assign cacheWrValid_o = needWrBk_Reg;
 wire    [31:0]  addrToWrite;
 
