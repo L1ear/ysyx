@@ -323,7 +323,7 @@ end
 always @(*) begin
     if(getdataEn && rdLast_i) begin
         //TODO 真‘伪随机
-        if(~randomBit[0]) begin
+        if(~randomBit) begin
             bitValid1_d = 1'b1;
             bitValid2_d = validArray2[index];
             tagArray1_d = tag;
@@ -349,7 +349,7 @@ wire    replaceEn = cacheCurState == replace;
 //不仅在替换时要写入，store命中也要写入
 always @(*) begin
     if((replaceEn)) begin
-        if(~randomBit[0]) begin
+        if(~randomBit) begin
             wenWay1 = 1'b1;
             wenWay2 = 1'b0;
         end
@@ -486,13 +486,13 @@ always @(posedge clk or negedge rst_n) begin
         replaceWay <= 'b0;
     end
     else if(compareEn)begin
-        replaceWay <= randomBit[0];
+        replaceWay <= randomBit;
     end
 end
 //需要写回替换的情况：
 //写miss，并且要写入的index数据为脏; 读miss，并且要读的index为脏 
 wire        needWrBk;
-assign needWrBk = (wrMiss && (~randomBit[0] && dirtyArray1[index] || randomBit[0] && dirtyArray2[index])) || (rdMiss && (~randomBit[0] && dirtyArray1[index] || randomBit[0] && dirtyArray2[index]));
+assign needWrBk = (wrMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index])) || (rdMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index]));
 reg     needWrBk_Reg;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -511,10 +511,10 @@ wire            axiWrBusy = needWrBk_Reg;
 assign cacheWrValid_o = needWrBk_Reg;
 wire    [31:0]  addrToWrite;
 
-assign addrToWrite = randomBit[0] ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
+assign addrToWrite = randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = addrToWrite;
 
-assign cacheWrData_o = randomBit[0] ? way2Data : way1Data;
+assign cacheWrData_o = randomBit ? way2Data : way1Data;
 assign storeLenth = uncache ? 'd1 : 'd4;
 
 // always @(posedge clk or negedge rst_n) begin
