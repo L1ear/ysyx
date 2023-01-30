@@ -2885,7 +2885,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                        << 0x20U) 
                                                       | (QData)((IData)(
                                                                         vlSelf->top__DOT__Dcache_u__DOT__way2Data[0U]))))))
-                                                : 7ULL)));
+                                                : 0ULL)));
     VL_EXTEND_WI(65,1, __Vtemp12, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
         = ((vlSelf->top__DOT__ex_stage_u__DOT__src1 

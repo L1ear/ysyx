@@ -299,23 +299,22 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                 ? ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                   >> 3U)))
                                     ? 0U : __Vtemp49[0U])
-                                : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[4U])) 
-                          & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                              ? 0xffffffffU : ((1U 
-                                                & (IData)(
-                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                           >> 0x20U)))
-                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
-                                                    ? 
-                                                   ((1U 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                >> 3U)))
-                                                     ? 0U
-                                                     : 
-                                                    __Vtemp59[0U])
-                                                    : 0U)
-                                                : 0xffffffffU))) 
+                                : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                           ? 0xffffffffU
+                                           : ((1U & (IData)(
+                                                            (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                             >> 0x20U)))
+                                               ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
+                                                   ? 
+                                                  ((1U 
+                                                    & (IData)(
+                                                              (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                               >> 3U)))
+                                                    ? 0U
+                                                    : 
+                                                   __Vtemp59[0U])
+                                                   : 0U)
+                                               : 0xffffffffU))) 
                          | (vlSelf->top__DOT__Dcache_u__DOT__iramWay2_2__DOT__ram
                             [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A][0U] 
                             & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -336,23 +335,22 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                 ? ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                   >> 3U)))
                                     ? 0U : __Vtemp49[1U])
-                                : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[5U])) 
-                          & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                              ? 0xffffffffU : ((1U 
-                                                & (IData)(
-                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                           >> 0x20U)))
-                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
-                                                    ? 
-                                                   ((1U 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                >> 3U)))
-                                                     ? 0U
-                                                     : 
-                                                    __Vtemp59[1U])
-                                                    : 0U)
-                                                : 0xffffffffU))) 
+                                : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                           ? 0xffffffffU
+                                           : ((1U & (IData)(
+                                                            (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                             >> 0x20U)))
+                                               ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
+                                                   ? 
+                                                  ((1U 
+                                                    & (IData)(
+                                                              (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                               >> 3U)))
+                                                    ? 0U
+                                                    : 
+                                                   __Vtemp59[1U])
+                                                   : 0U)
+                                               : 0xffffffffU))) 
                          | (vlSelf->top__DOT__Dcache_u__DOT__iramWay2_2__DOT__ram
                             [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A][1U] 
                             & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -374,23 +372,22 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                                   >> 3U)))
                                     ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__storeData)
                                     : __Vtemp49[2U])
-                                : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[6U])) 
-                          & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                              ? 0xffffffffU : ((1U 
-                                                & (IData)(
-                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                           >> 0x20U)))
-                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
-                                                    ? 
-                                                   ((1U 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                >> 3U)))
-                                                     ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
-                                                     : 
-                                                    __Vtemp59[2U])
-                                                    : 0U)
-                                                : 0xffffffffU))) 
+                                : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                           ? 0xffffffffU
+                                           : ((1U & (IData)(
+                                                            (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                             >> 0x20U)))
+                                               ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
+                                                   ? 
+                                                  ((1U 
+                                                    & (IData)(
+                                                              (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                               >> 3U)))
+                                                    ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
+                                                    : 
+                                                   __Vtemp59[2U])
+                                                   : 0U)
+                                               : 0xffffffffU))) 
                          | (vlSelf->top__DOT__Dcache_u__DOT__iramWay2_2__DOT__ram
                             [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A][2U] 
                             & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -413,25 +410,24 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                     ? (IData)((vlSelf->top__DOT__Dcache_u__DOT__storeData 
                                                >> 0x20U))
                                     : __Vtemp49[3U])
-                                : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[7U])) 
-                          & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                              ? 0xffffffffU : ((1U 
-                                                & (IData)(
-                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                           >> 0x20U)))
-                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
-                                                    ? 
-                                                   ((1U 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                >> 3U)))
-                                                     ? (IData)(
-                                                               (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
-                                                                >> 0x20U))
-                                                     : 
-                                                    __Vtemp59[3U])
-                                                    : 0U)
-                                                : 0xffffffffU))) 
+                                : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                           ? 0xffffffffU
+                                           : ((1U & (IData)(
+                                                            (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                             >> 0x20U)))
+                                               ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
+                                                   ? 
+                                                  ((1U 
+                                                    & (IData)(
+                                                              (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                               >> 3U)))
+                                                    ? (IData)(
+                                                              (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
+                                                               >> 0x20U))
+                                                    : 
+                                                   __Vtemp59[3U])
+                                                   : 0U)
+                                               : 0xffffffffU))) 
                          | (vlSelf->top__DOT__Dcache_u__DOT__iramWay2_2__DOT__ram
                             [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A][3U] 
                             & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -501,24 +497,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                  ? ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                    >> 3U)))
                                      ? 0U : __Vtemp92[0U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[0U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? 0U
-                                                   : 
-                                                  __Vtemp102[0U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? 0U
+                                                     : 
+                                                    __Vtemp102[0U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay2_1__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A][0U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -539,24 +534,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                  ? ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                    >> 3U)))
                                      ? 0U : __Vtemp92[1U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[1U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? 0U
-                                                   : 
-                                                  __Vtemp102[1U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? 0U
+                                                     : 
+                                                    __Vtemp102[1U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay2_1__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A][1U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -578,24 +572,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                                    >> 3U)))
                                      ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__storeData)
                                      : __Vtemp92[2U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[2U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
-                                                   : 
-                                                  __Vtemp102[2U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
+                                                     : 
+                                                    __Vtemp102[2U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay2_1__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A][2U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -618,26 +611,25 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                      ? (IData)((vlSelf->top__DOT__Dcache_u__DOT__storeData 
                                                 >> 0x20U))
                                      : __Vtemp92[3U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[3U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
-                                                              >> 0x20U))
-                                                   : 
-                                                  __Vtemp102[3U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
+                                                                >> 0x20U))
+                                                     : 
+                                                    __Vtemp102[3U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay2_1__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A][3U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -707,24 +699,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                  ? ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                    >> 3U)))
                                      ? 0U : __Vtemp135[0U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[4U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? 0U
-                                                   : 
-                                                  __Vtemp145[0U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? 0U
+                                                     : 
+                                                    __Vtemp145[0U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay1_2__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A][0U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -745,24 +736,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                  ? ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                    >> 3U)))
                                      ? 0U : __Vtemp135[1U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[5U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? 0U
-                                                   : 
-                                                  __Vtemp145[1U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? 0U
+                                                     : 
+                                                    __Vtemp145[1U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay1_2__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A][1U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -784,24 +774,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                                    >> 3U)))
                                      ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__storeData)
                                      : __Vtemp135[2U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[6U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
-                                                   : 
-                                                  __Vtemp145[2U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
+                                                     : 
+                                                    __Vtemp145[2U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay1_2__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A][2U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -824,26 +813,25 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                      ? (IData)((vlSelf->top__DOT__Dcache_u__DOT__storeData 
                                                 >> 0x20U))
                                      : __Vtemp135[3U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[7U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
-                                                              >> 0x20U))
-                                                   : 
-                                                  __Vtemp145[3U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
+                                                                >> 0x20U))
+                                                     : 
+                                                    __Vtemp145[3U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay1_2__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A][3U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -913,24 +901,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                  ? ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                    >> 3U)))
                                      ? 0U : __Vtemp178[0U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[0U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? 0U
-                                                   : 
-                                                  __Vtemp188[0U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? 0U
+                                                     : 
+                                                    __Vtemp188[0U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay1_1__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A][0U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -951,24 +938,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                  ? ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                    >> 3U)))
                                      ? 0U : __Vtemp178[1U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[1U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? 0U
-                                                   : 
-                                                  __Vtemp188[1U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? 0U
+                                                     : 
+                                                    __Vtemp188[1U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay1_1__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A][1U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -990,24 +976,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                                    >> 3U)))
                                      ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__storeData)
                                      : __Vtemp178[2U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[2U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
-                                                   : 
-                                                  __Vtemp188[2U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
+                                                     : 
+                                                    __Vtemp188[2U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay1_1__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A][2U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -1030,26 +1015,25 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                      ? (IData)((vlSelf->top__DOT__Dcache_u__DOT__storeData 
                                                 >> 0x20U))
                                      : __Vtemp178[3U])
-                                 : vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[3U])) 
-                           & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                               ? 0xffffffffU : ((1U 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                            >> 0x20U)))
-                                                 ? 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
-                                                  ? 
-                                                 ((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                              >> 3U)))
-                                                   ? (IData)(
-                                                             (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
-                                                              >> 0x20U))
-                                                   : 
-                                                  __Vtemp188[3U])
-                                                  : 0U)
-                                                 : 0xffffffffU))) 
+                                 : 0U)) & ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                            ? 0xffffffffU
+                                            : ((1U 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x20U)))
+                                                ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
+                                                    ? 
+                                                   ((1U 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 3U)))
+                                                     ? (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
+                                                                >> 0x20U))
+                                                     : 
+                                                    __Vtemp188[3U])
+                                                    : 0U)
+                                                : 0xffffffffU))) 
                           | (vlSelf->top__DOT__Dcache_u__DOT__iramWay1_1__DOT__ram
                              [vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A][3U] 
                              & (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -4108,7 +4092,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
                                                        << 0x20U) 
                                                       | (QData)((IData)(
                                                                         vlSelf->top__DOT__Dcache_u__DOT__way2Data[0U]))))))
-                                                : 7ULL)));
+                                                : 0ULL)));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin 
         = (vlSelf->top__DOT__ex_stage_u__DOT__src2 
            ^ (- (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin))));
