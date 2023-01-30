@@ -311,7 +311,7 @@ end
 // always randomBit = $random;
 always @(posedge clk) begin
     if(compareEn) begin
-        randomBit <= $random(1);
+        randomBit <= $random;
     end
     else begin
         randomBit <= randomBit;
@@ -498,7 +498,7 @@ always @(posedge clk or negedge rst_n) begin
     else if(compareEn) begin
         needWrBk_Reg <= needWrBk;
     end
-    else if(axiWrReady && needWrBk_Reg) begin
+    else if(axiWrReady && cacheWrValid_o) begin
         needWrBk_Reg <= 'b0;
     end
 end
