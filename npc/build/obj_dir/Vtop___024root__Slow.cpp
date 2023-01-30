@@ -253,7 +253,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->instr_diff = ((vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[7U] 
                            << 0x1fU) | (vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[6U] 
                                         >> 1U));
-    vlSelf->top__DOT__DcacheWrValid = vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg;
+    vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy = vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg;
     vlSelf->top__DOT__ls_u__DOT__wr_data = (((0U == 
                                               (0x1fU 
                                                & (vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[6U] 
@@ -2718,7 +2718,13 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                        >> 0x20U)))))
                                                       ? 1U
                                                       : 0U)
-                                                     : 2U)
+                                                     : 
+                                                    (((IData)(
+                                                              (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                               >> 0x20U)) 
+                                                      & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))
+                                                      ? 1U
+                                                      : 2U))
                                                     : 
                                                    (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
                                                      & (IData)(vlSelf->top__DOT__ls_stall_n))
@@ -3934,7 +3940,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i = 0;
     vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i = 0;
     vlSelf->top__DOT__DcacheRdValid = 0;
-    vlSelf->top__DOT__DcacheWrValid = 0;
     vlSelf->top__DOT__lsFetchLenth = 0;
     vlSelf->top__DOT__DcacheRdAddr = 0;
     vlSelf->top__DOT__DcacheWrAddr = 0;
@@ -4087,6 +4092,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__Dcache_u__DOT__sramMask = 0;
     vlSelf->top__DOT__Dcache_u__DOT__replaceWay = 0;
     vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg = 0;
+    vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy = 0;
     vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A = 0;
     vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A = 0;
     for (int __Vi0=0; __Vi0<64; ++__Vi0) {

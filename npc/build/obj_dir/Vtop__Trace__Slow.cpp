@@ -1288,6 +1288,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+568,"top Dcache_u needWrBk", false,-1);
         tracep->declBit(c+214,"top Dcache_u needWrBk_Reg", false,-1);
         tracep->declBit(c+805,"top Dcache_u uncache", false,-1);
+        tracep->declBit(c+214,"top Dcache_u axiWrBusy", false,-1);
         tracep->declBus(c+567,"top Dcache_u addrToWrite", false,-1, 31,0);
         tracep->declBus(c+832,"top Dcache_u iramWay1_1 Bits", false,-1, 31,0);
         tracep->declBus(c+795,"top Dcache_u iramWay1_1 Word_Depth", false,-1, 31,0);
@@ -2982,7 +2983,13 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                         >> 0x20U)))))
                                                        ? 1U
                                                        : 0U)
-                                                      : 2U)
+                                                      : 
+                                                     (((IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 0x20U)) 
+                                                       & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))
+                                                       ? 1U
+                                                       : 2U))
                                                      : 
                                                     (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
                                                       & (IData)(vlSelf->top__DOT__ls_stall_n))

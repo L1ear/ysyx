@@ -1678,7 +1678,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc = 0ULL;
     }
     if (vlSelf->rst_n) {
-        if ((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
+        if (((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+             & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy)))) {
             vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg 
                 = (((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                       & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
@@ -1708,7 +1709,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
                                                            (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                             >> 5U)))))))));
         } else if (((0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
-                    & (IData)(vlSelf->top__DOT__DcacheWrValid))) {
+                    & (IData)(vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy))) {
             vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg = 0U;
         }
     } else {
@@ -1895,7 +1896,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[6U] = 0U;
         vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[7U] = 0U;
     }
-    vlSelf->top__DOT__DcacheWrValid = vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg;
+    vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy = vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg;
     vlSelf->top__DOT__axi_ls_u__DOT__w_state = ((IData)(vlSelf->rst_n)
                                                  ? (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state_next)
                                                  : 0U);
@@ -5575,7 +5576,13 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__5(Vtop___024root* vlSelf) {
                                                                        >> 0x20U)))))
                                                       ? 1U
                                                       : 0U)
-                                                     : 2U)
+                                                     : 
+                                                    (((IData)(
+                                                              (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                               >> 0x20U)) 
+                                                      & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))
+                                                      ? 1U
+                                                      : 2U))
                                                     : 
                                                    (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
                                                      & (IData)(vlSelf->top__DOT__ls_stall_n))
