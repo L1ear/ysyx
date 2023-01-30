@@ -447,25 +447,27 @@ assign maskWay2_2 = replaceEn ? 128'hffffffffffffffffffffffffffffffff : reqLatch
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         dirtyArray1 <= 'b0;
-        dirtyArray2 <= 'b0;
     end
-    else if(compareEn && cacheHit && reqLatch[32]) begin
-        if(way1Hit) begin
+    else if(compareEn && way1Hit && reqLatch[32]) begin
             dirtyArray1[index] <= 1'b1;
-        end
-        else begin
-            dirtyArray2[index] <= 1'b1;
-        end
     end
-    else if(getdataEn && rdLast_i) begin
-        if(way1Hit) begin
+    else if(getdataEn && rdLast_i && way1Hit) begin
             dirtyArray1[index] <= 1'b0;
-        end
-        else begin
-            dirtyArray2[index] <= 1'b0;
-        end
     end
 end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        dirtyArray2 <= 'b0;
+    end
+    else if(compareEn && way2Hit && reqLatch[32]) begin
+            dirtyArray2[index] <= 1'b1;
+    end
+    else if(getdataEn && rdLast_i && way2Hit) begin
+            dirtyArray2[index] <= 1'b0;
+    end
+end
+
 
 wire        wrMiss;
 assign wrMiss = compareEn && reqLatch[32] && ~cacheHit;
