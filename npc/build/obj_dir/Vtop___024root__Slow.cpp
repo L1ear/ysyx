@@ -569,8 +569,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__DcacheWrAddr = ((0xffffffff00000000ULL 
                                        & vlSelf->top__DOT__DcacheWrAddr) 
                                       | (IData)((IData)(
-                                                        ((1U 
-                                                          & vlSelf->top__DOT__Dcache_u__DOT__randomBit)
+                                                        ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                                           ? 
                                                          ((vlSelf->top__DOT__Dcache_u__DOT__tagArray2
                                                            [
@@ -2192,16 +2191,15 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                     vlSelf->top__DOT__cache_dut__DOT__way2Data[0U]))))))
                                          : 0ULL)));
     if ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-        vlSelf->top__DOT__Dcache_u__DOT__wenWay2 = 
-            (1U & vlSelf->top__DOT__Dcache_u__DOT__randomBit);
+        vlSelf->top__DOT__Dcache_u__DOT__wenWay2 = vlSelf->top__DOT__Dcache_u__DOT__randomBit;
         vlSelf->top__DOT__Dcache_u__DOT__wenWay1 = 
-            (1U & (~ vlSelf->top__DOT__Dcache_u__DOT__randomBit));
+            (1U & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)));
     } else {
         vlSelf->top__DOT__Dcache_u__DOT__wenWay2 = 
-            (1U & ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                     & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)) 
-                    & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                               >> 0x20U))) & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__way1Hit))));
+            ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+               & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)) 
+              & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                         >> 0x20U))) & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__way1Hit)));
         vlSelf->top__DOT__Dcache_u__DOT__wenWay1 = 
             (1U & ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                      & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)) 
@@ -2319,20 +2317,20 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     if (((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
          & (IData)(vlSelf->top__DOT__ls_axi_r_last_i))) {
         vlSelf->top__DOT__Dcache_u__DOT__tagArray1_d 
-            = (0x1fffffU & ((1U & vlSelf->top__DOT__Dcache_u__DOT__randomBit)
+            = (0x1fffffU & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                              ? vlSelf->top__DOT__Dcache_u__DOT__tagArray1
                             [(0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                >> 5U)))]
                              : (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                         >> 0xbU))));
         vlSelf->top__DOT__Dcache_u__DOT__bitValid2_d 
-            = ((vlSelf->top__DOT__Dcache_u__DOT__randomBit 
+            = (((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit) 
                 | (IData)((vlSelf->top__DOT__Dcache_u__DOT__validArray2 
                            >> (0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                 >> 5U)))))) 
                & 1U);
         vlSelf->top__DOT__Dcache_u__DOT__bitValid1_d 
-            = (((~ vlSelf->top__DOT__Dcache_u__DOT__randomBit) 
+            = (((~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)) 
                 | (IData)((vlSelf->top__DOT__Dcache_u__DOT__validArray1 
                            >> (0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                 >> 5U)))))) 
