@@ -104,6 +104,7 @@ always @(*) begin
                 end
             end
             else begin
+        //如果miss且需要写回，但是axi正写忙，则需要等axi写就绪后再读
                 if(reqLatch[32] && axiWrBusy) begin
                     cacheNexState = compare;
                 end
