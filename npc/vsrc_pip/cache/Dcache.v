@@ -274,7 +274,7 @@ assign rd_data_o = ({64{way1Hit}}&rdDataRegWay1)
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
 wire [63:0] addrToRead = {32'b0,tag,index,5'b0};
-reg [31:0] randomBit;
+reg        randomBit;
 reg        missFlag;
 //由于根据sram模型，写入数据再读出至少需要两个周期，而为了获得更好的性能，在写入后即可读出数据，故需一个信号指示使用rdBUffer里存放的数据而不是sram的
 always @(posedge clk or negedge rst_n) begin
@@ -316,11 +316,8 @@ end
 //根据随机决定替换哪个way
 // always randomBit = $random;
 always @(posedge clk) begin
-    if(compareEn) begin
-        randomBit <= $random;
-    end
-    else begin
-        randomBit <= randomBit;
+    if(compareEn && ~cacheHit) begin
+        randomBit <= ~randomBit;
     end
 end
 always @(*) begin
