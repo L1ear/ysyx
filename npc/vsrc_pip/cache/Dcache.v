@@ -311,7 +311,7 @@ end
 // always randomBit = $random;
 always @(posedge clk) begin
     if(compareEn) begin
-        randomBit <= $random;
+        randomBit <= $random(1);
     end
     else begin
         randomBit <= randomBit;
