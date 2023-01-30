@@ -1250,7 +1250,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
                                            ? 0U : __Vtemp400[0U])
-                                       : 0U) : 0xffffffffU);
+                                       : 0U) : 0U);
                 __Vtemp409[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
@@ -1258,7 +1258,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
                                            ? 0U : __Vtemp400[1U])
-                                       : 0U) : 0xffffffffU);
+                                       : 0U) : 0U);
                 __Vtemp409[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
@@ -1267,7 +1267,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                          >> 3U)))
                                            ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
                                            : __Vtemp400[2U])
-                                       : 0U) : 0xffffffffU);
+                                       : 0U) : 0U);
                 __Vtemp409[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
@@ -1278,7 +1278,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                      (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
                                                       >> 0x20U))
                                            : __Vtemp400[3U])
-                                       : 0U) : 0xffffffffU);
+                                       : 0U) : 0U);
             }
             tracep->chgWData(oldp+502,(__Vtemp409),128);
             VL_EXTEND_WQ(128,64, __Vtemp412, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
@@ -1295,7 +1295,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
                                            ? 0U : __Vtemp412[0U])
-                                       : 0U) : 0xffffffffU);
+                                       : 0U) : 0U);
                 __Vtemp421[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
@@ -1303,7 +1303,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
                                            ? 0U : __Vtemp412[1U])
-                                       : 0U) : 0xffffffffU);
+                                       : 0U) : 0U);
                 __Vtemp421[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
@@ -1312,7 +1312,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                          >> 3U)))
                                            ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
                                            : __Vtemp412[2U])
-                                       : 0U) : 0xffffffffU);
+                                       : 0U) : 0U);
                 __Vtemp421[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
@@ -1323,7 +1323,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                      (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
                                                       >> 0x20U))
                                            : __Vtemp412[3U])
-                                       : 0U) : 0xffffffffU);
+                                       : 0U) : 0U);
             }
             tracep->chgWData(oldp+506,(__Vtemp421),128);
             tracep->chgBit(oldp+510,((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
@@ -1354,7 +1354,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       : 
                                                      __Vtemp424[0U])
                                                      : 0U)
-                                                    : 0xffffffffU)));
+                                                    : 0U)));
             __Vtemp434[1U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
@@ -1372,7 +1372,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       : 
                                                      __Vtemp424[1U])
                                                      : 0U)
-                                                    : 0xffffffffU)));
+                                                    : 0U)));
             __Vtemp434[2U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
@@ -1390,7 +1390,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       : 
                                                      __Vtemp424[2U])
                                                      : 0U)
-                                                    : 0xffffffffU)));
+                                                    : 0U)));
             __Vtemp434[3U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
@@ -1410,7 +1410,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       : 
                                                      __Vtemp424[3U])
                                                      : 0U)
-                                                    : 0xffffffffU)));
+                                                    : 0U)));
             tracep->chgWData(oldp+513,(__Vtemp434),128);
             VL_EXTEND_WQ(128,64, __Vtemp437, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
             __Vtemp447[0U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -1430,7 +1430,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       : 
                                                      __Vtemp437[0U])
                                                      : 0U)
-                                                    : 0xffffffffU)));
+                                                    : 0U)));
             __Vtemp447[1U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
@@ -1448,7 +1448,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       : 
                                                      __Vtemp437[1U])
                                                      : 0U)
-                                                    : 0xffffffffU)));
+                                                    : 0U)));
             __Vtemp447[2U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
@@ -1466,7 +1466,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       : 
                                                      __Vtemp437[2U])
                                                      : 0U)
-                                                    : 0xffffffffU)));
+                                                    : 0U)));
             __Vtemp447[3U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
@@ -1486,7 +1486,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       : 
                                                      __Vtemp437[3U])
                                                      : 0U)
-                                                    : 0xffffffffU)));
+                                                    : 0U)));
             tracep->chgWData(oldp+517,(__Vtemp447),128);
             tracep->chgCData(oldp+521,(vlSelf->top__DOT__axi_ls_u__DOT__w_state),2);
             tracep->chgCData(oldp+522,(vlSelf->top__DOT__axi_ls_u__DOT__wrCnt),2);
