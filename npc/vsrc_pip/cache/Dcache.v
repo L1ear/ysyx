@@ -443,7 +443,7 @@ assign maskWay1_2 = replaceEn ? 128'hffffffffffffffffffffffffffffffff : reqLatch
 assign maskWay2_1 = replaceEn ? 128'hffffffffffffffffffffffffffffffff : reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 128'h0;
 assign maskWay2_2 = replaceEn ? 128'hffffffffffffffffffffffffffffffff : reqLatch[32] ? (wrHigh ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 128'h0;
 
-
+//dirtyBit的维护
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         dirtyArray1 <= 'b0;
@@ -475,8 +475,8 @@ wire        rdMiss;
 assign rdMiss = compareEn && ~reqLatch[32] && ~cacheHit;
 
 //TODO
-reg [31:0] randomBit2 ;
-always randomBit2 = 1;
+// reg [31:0] randomBit2 ;
+// always randomBit2 = 1;
 reg replaceWay;//0就是way1,1就是way2
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -486,6 +486,8 @@ always @(posedge clk or negedge rst_n) begin
         replaceWay <= randomBit[0];
     end
 end
+//需要写回替换的情况：
+//写miss，并且要写入的index数据为脏; 读miss，并且要读的index为脏 
 wire        needWrBk;
 assign needWrBk = (wrMiss && (~randomBit[0] && dirtyArray1[index] || randomBit[0] && dirtyArray2[index])) || (rdMiss && (~randomBit[0] && dirtyArray1[index] || randomBit[0] && dirtyArray2[index]));
 reg     needWrBk_Reg;
@@ -503,7 +505,7 @@ end
 
 wire            uncache = 0;                //TODO
 
-assign cacheWrValid_o = needWrBk_Reg;
+assign cacheWrValid_o = needWrBk;
 wire    [31:0]  addrToWrite;
 
 assign addrToWrite = randomBit[0] ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
