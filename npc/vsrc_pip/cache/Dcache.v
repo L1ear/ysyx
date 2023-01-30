@@ -258,7 +258,7 @@ always @(*) begin
     end
     else begin
         rdDataRegWay1 = 'b0;
-        rdDataRegWay2 = 'b111;
+        rdDataRegWay2 = 'b0;
     end
 end
 
@@ -355,6 +355,7 @@ always @(*) begin
             wenWay2 = 1'b1;
         end
     end
+//这种情况对应写命中
     else if(compareEn && cacheHit && reqLatch[32]) begin
         if(way1Hit) begin
             wenWay1 = 1'b1;
@@ -408,11 +409,13 @@ reg [63:0]   dirtyArray2;
 
 //写入：
 wire        wrLow,wrHigh;
+//reqLatch的第五位决定了向way的高128还是低128位写数据
 assign  wrLow  = reqLatch[32] & ~reqLatch[4];
 assign  wrHigh = reqLatch[32] &  reqLatch[4];
 wire [63:0]    storeData;
 //注意看赋值，目前还是阻塞模式
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//得到写入数据在64位中的具体位置
 assign storeData = wr_data_i << {reqLatch[2:0],3'b0};
 wire  [7:0] storeMask;
 assign storeMask = wr_mask_i << reqLatch[2:0];
@@ -428,11 +431,11 @@ assign sramMask[55:48]    = {8{storeMask[6]}};
 assign sramMask[63:56]    = {8{storeMask[7]}};
 
 //由于流水线字长为64,而一块sram是128,所以还要选择高低位
-
-assign inDataWay1_1 = replaceEn ? rdBuffer[127:0] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[127:0];
-assign inDataWay1_2 = replaceEn ? rdBuffer[255:128] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[255:128];
-assign inDataWay2_1 = replaceEn ? rdBuffer[127:0] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[127:0];
-assign inDataWay2_2 = replaceEn ? rdBuffer[255:128] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : rdBuffer[255:128];
+//如果在replace状态，则使用axi过来的数据，即rdBuffer，否则判断是否为store请求，若是则使用ls模块过来的数据
+assign inDataWay1_1 = replaceEn ? rdBuffer[127:0] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : 127'b0;
+assign inDataWay1_2 = replaceEn ? rdBuffer[255:128] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : 127'b0;
+assign inDataWay2_1 = replaceEn ? rdBuffer[127:0] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : 127'b0;
+assign inDataWay2_2 = replaceEn ? rdBuffer[255:128] : reqLatch[32] ? (reqLatch[3] ? {storeData,64'b0} : {64'b0,storeData}) : 127'b0;
 
 wire    [127:0]     maskWay1_1,maskWay1_2,maskWay2_1,maskWay2_2;
 assign maskWay1_1 = replaceEn ? 128'hffffffffffffffffffffffffffffffff : reqLatch[32] ? (wrLow  ? (reqLatch[3] ? {sramMask,64'b0} : {64'b0,sramMask}) : 'b0) : 128'hffffffffffffffffffffffffffffffff;
