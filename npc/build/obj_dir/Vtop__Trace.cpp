@@ -1737,41 +1737,34 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                      vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[1U])))) 
                                        >> 0x20U)) >> 5U);
             tracep->chgWData(oldp+561,(__Vtemp458),315);
-            tracep->chgIData(oldp+571,((IData)(((8U 
-                                                 != 
-                                                 (0xfU 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                             >> 0x1cU))))
-                                                 ? (QData)((IData)(vlSelf->top__DOT__Dcache_u__DOT__reqLatch))
-                                                 : 
-                                                ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
-                                                  ? (QData)((IData)(
-                                                                    ((vlSelf->top__DOT__Dcache_u__DOT__tagArray2
-                                                                      [
-                                                                      (0x3fU 
-                                                                       & (IData)(
-                                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                                >> 5U)))] 
-                                                                      << 0xbU) 
-                                                                     | (0x7e0U 
-                                                                        & ((IData)(
-                                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                                >> 5U)) 
-                                                                           << 5U)))))
-                                                  : (QData)((IData)(
-                                                                    ((vlSelf->top__DOT__Dcache_u__DOT__tagArray1
-                                                                      [
-                                                                      (0x3fU 
-                                                                       & (IData)(
-                                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                                >> 5U)))] 
-                                                                      << 0xbU) 
-                                                                     | (0x7e0U 
-                                                                        & ((IData)(
-                                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                                >> 5U)) 
-                                                                           << 5U))))))))),32);
+            tracep->chgIData(oldp+571,(((8U != (0xfU 
+                                                & (IData)(
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                           >> 0x1cU))))
+                                         ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__reqLatch)
+                                         : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
+                                             ? ((vlSelf->top__DOT__Dcache_u__DOT__tagArray2
+                                                 [(0x3fU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                              >> 5U)))] 
+                                                 << 0xbU) 
+                                                | (0x7e0U 
+                                                   & ((IData)(
+                                                              (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                               >> 5U)) 
+                                                      << 5U)))
+                                             : ((vlSelf->top__DOT__Dcache_u__DOT__tagArray1
+                                                 [(0x3fU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                              >> 5U)))] 
+                                                 << 0xbU) 
+                                                | (0x7e0U 
+                                                   & ((IData)(
+                                                              (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                               >> 5U)) 
+                                                      << 5U)))))),32);
             tracep->chgBit(oldp+572,((((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                          & (IData)(
                                                    (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
