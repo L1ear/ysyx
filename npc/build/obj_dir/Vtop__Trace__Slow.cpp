@@ -2981,7 +2981,10 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                       ? 
                                                      ((((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
                                                         & (IData)(vlSelf->top__DOT__ls_stall_n)) 
-                                                       | ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i) 
+                                                       | (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i) 
+                                                           & (~ (IData)(
+                                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                         >> 0x20U)))) 
                                                           & (~ (IData)(vlSelf->top__DOT__ls_stall_n))))
                                                        ? 1U
                                                        : 0U)
@@ -2993,8 +2996,14 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                        ? 1U
                                                        : 2U))
                                                      : 
-                                                    (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
-                                                      & (IData)(vlSelf->top__DOT__ls_stall_n))
+                                                    ((((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
+                                                       & (IData)(vlSelf->top__DOT__ls_stall_n)) 
+                                                      & (~ 
+                                                         ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
+                                                          & (8U 
+                                                             != 
+                                                             (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
+                                                              >> 0x1cU)))))
                                                       ? 1U
                                                       : 0U))))),3);
         tracep->fullQData(oldp+554,(((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
