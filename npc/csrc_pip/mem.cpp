@@ -95,6 +95,7 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
     // Log("get time: %08x\n",instrAddr);
     return get_time();
   }
+  //keyboard
   if(addr == 0xa0000060){
     // printf("read key:%x\n",i8042_data_io_handler(0,0,0));
     // if(i8042_data_io_handler(0,0,0) != 0) assert(0);
@@ -106,6 +107,7 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   //   // difftest_skip_ref();
   //   return 0;
   // }
+  //vga_cfg
   if(addr == 0xa0000100){
     printf("get vga_cfg");
     assert(0);
@@ -147,7 +149,6 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
   }
   else if(addr == 0xa0000104){
     vgactl_sync = data;
-    assert(0);
   }
   else if(addr>=0xa1000000&&addr<0xa13A9800){
     // printf("write%x to \nvmem:%016llx\nplus:%016llx\nvmem:%016llx\n\n",data,(uint64_t)vmem+addr-0xa1000000,addr,vmem);
