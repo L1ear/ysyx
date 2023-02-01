@@ -11,8 +11,8 @@ extern axi4_ptr<64,64,4> mem_ptr;
 void device_update();
 void init_screen();
 
-uint64_t nr_cycle = 0;
-uint64_t nr_instr = 0;
+int nr_cycle = 0;
+int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
 static VerilatedVcdC* fp;

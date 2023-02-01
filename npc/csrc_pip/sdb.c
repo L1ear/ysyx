@@ -88,7 +88,7 @@ static int cmd_c(char *args) {
     }
     Log("program has finished,please quit and restart\n");
     Log("after %d instructions and %d clock cycle", nr_instr, nr_cycle);
-    Log("IPC: %f", nr_instr*1.0/(uint64_t)nr_cycle);
+    Log("IPC: %f", nr_instr*1.0/nr_cycle);
   return 0;
 }
 

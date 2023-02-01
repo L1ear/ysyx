@@ -54,7 +54,7 @@ assign  ls_sram_wr_en = wren;// && ~ls_ok;
 assign  ls_sram_wr_mask = wr_mask;
 assign  ls_sram_wr_data = wr_data_i;
 assign  rd_data_base = ls_sram_rd_data;
-assign  ls_not_ok = (rden & ls_sram_rd_data_valid) || (wren & ls_sram_wr_data_ok);
+assign  ls_not_ok = (rden & ~ls_sram_rd_data_valid) || (wren & ~ls_sram_wr_data_ok);
 assign  ls_sram_wr_size = wr_size;
 assign  ls_sram_rd_size = rd_size;
 
@@ -198,7 +198,7 @@ assign  ls_res_o = `XLEN'b0
 //         wr_data_buf <= wr_data;
 //     end
 // end
-reg     [2:0]     wr_size;  //给cache的话，其实只要两位，mask可不要
+reg     [2:0]     wr_size;
 reg     [7:0]     wr_mask;  
 wire                    sb,sh,sw,sd;  
 
@@ -235,3 +235,22 @@ end
        
 endmodule
 
+module ls_ctr (
+    input       [`inst_len-1:0] instr_i,instr_last_i,
+    input       [`XLEN-1:0]     rs2_i,
+    input       [`XLEN-1:0]     wb_data_i,                
+    output                      wren,rden,
+    output      [2      :0]     memop,
+    output      [`XLEN-1:0]     wr_data
+
+);
+    
+assign  memop = instr_i[14      :12];
+assign  wren  = (instr_i[6      :2] == `store);
+assign  rden  = (instr_i[6      :0] == {`load,2'b11});      //同理
+
+wire    ld_st_en;                                           //load-store前递
+assign ld_st_en = (instr_last_i[6:2] == `load) & (instr_i[24:20] == instr_last_i[11:7]);
+assign wr_data = ld_st_en ? wb_data_i : rs2_i;
+
+endmodule

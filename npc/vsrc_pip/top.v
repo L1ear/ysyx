@@ -252,8 +252,6 @@ wire    [`XLEN-1:0]     wbres_fw;
 wire    [1      :0]     rs1_sel,rs2_sel;
 wire    [4      :0]     rs1_idx_ex,rs2_idx_ex;
 wire                    ex_flush;
-wire                    rden_ls,wren_ls;
-wire                    ls_addr_ok_i;
 
 //ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
@@ -317,54 +315,54 @@ axi_crossbar axi_crossbar_u(
     .if_axi_r_id_o      (if_axi_r_id_i     ),
     .if_axi_r_user_o    (if_axi_r_user_i   ),
 //ls interface  id: 1
-    .ls_axi_aw_ready_o  (ls_axi_aw_ready_i ),     //lite         
-    .ls_axi_aw_valid_i  (ls_axi_aw_valid_o ),     //lite
-    .ls_axi_aw_addr_i   (ls_axi_aw_addr_o  ),      //lite
-    .ls_axi_aw_prot_i   (ls_axi_aw_prot_o  ),
-    .ls_axi_aw_id_i     (ls_axi_aw_id_o    ),
-    .ls_axi_aw_user_i   (ls_axi_aw_user_o  ),
-    .ls_axi_aw_len_i    (ls_axi_aw_len_o   ),       
-    .ls_axi_aw_size_i   (ls_axi_aw_size_o  ),
-    .ls_axi_aw_burst_i  (ls_axi_aw_burst_o ),
-    .ls_axi_aw_lock_i   (ls_axi_aw_lock_o  ),
-    .ls_axi_aw_cache_i  (ls_axi_aw_cache_o ),
-    .ls_axi_aw_qos_i    (ls_axi_aw_qos_o   ),
-    .ls_axi_aw_region_i (ls_axi_aw_region_o),
+    .ls_axi_aw_ready_o  (),//ls_axi_aw_ready_i ),     //lite         
+    .ls_axi_aw_valid_i  (),//ls_axi_aw_valid_o ),     //lite
+    .ls_axi_aw_addr_i   (),//ls_axi_aw_addr_o  ),      //lite
+    .ls_axi_aw_prot_i   (),//ls_axi_aw_prot_o  ),
+    .ls_axi_aw_id_i     (),//ls_axi_aw_id_o    ),
+    .ls_axi_aw_user_i   (),//ls_axi_aw_user_o  ),
+    .ls_axi_aw_len_i    (),//ls_axi_aw_len_o   ),       
+    .ls_axi_aw_size_i   (),//ls_axi_aw_size_o  ),
+    .ls_axi_aw_burst_i  (),//ls_axi_aw_burst_o ),
+    .ls_axi_aw_lock_i   (),//ls_axi_aw_lock_o  ),
+    .ls_axi_aw_cache_i  (),//ls_axi_aw_cache_o ),
+    .ls_axi_aw_qos_i    (),//ls_axi_aw_qos_o   ),
+    .ls_axi_aw_region_i (),//ls_axi_aw_region_o),
 
-    .ls_axi_w_ready_o   (ls_axi_w_ready_i  ),      //lite              
-    .ls_axi_w_valid_i   (ls_axi_w_valid_o  ),      //lite
-    .ls_axi_w_data_i    (ls_axi_w_data_o   ),       //lite
-    .ls_axi_w_strb_i    (ls_axi_w_strb_o   ),       //lite
-    .ls_axi_w_last_i    (ls_axi_w_last_o   ),       //lite
-    .ls_axi_w_user_i    (ls_axi_w_user_o   ),
+    .ls_axi_w_ready_o   (),//ls_axi_w_ready_i  ),      //lite              
+    .ls_axi_w_valid_i   (),//ls_axi_w_valid_o  ),      //lite
+    .ls_axi_w_data_i    (),//ls_axi_w_data_o   ),       //lite
+    .ls_axi_w_strb_i    (),//ls_axi_w_strb_o   ),       //lite
+    .ls_axi_w_last_i    (),//ls_axi_w_last_o   ),       //lite
+    .ls_axi_w_user_i    (),//ls_axi_w_user_o   ),
 
-    .ls_axi_b_ready_i   (ls_axi_b_ready_o  ),      //lite           
-    .ls_axi_b_valid_o   (ls_axi_b_valid_i  ),      //lite
-    .ls_axi_b_resp_o    (ls_axi_b_resp_i   ),       //lite            
-    .ls_axi_b_id_o      (ls_axi_b_id_i     ),
-    .ls_axi_b_user_o    (ls_axi_b_user_i   ),
+    .ls_axi_b_ready_i   (),//ls_axi_b_ready_o  ),      //lite           
+    .ls_axi_b_valid_o   (),//ls_axi_b_valid_i  ),      //lite
+    .ls_axi_b_resp_o    (),//ls_axi_b_resp_i   ),       //lite            
+    .ls_axi_b_id_o      (),//ls_axi_b_id_i     ),
+    .ls_axi_b_user_o    (),//ls_axi_b_user_i   ),
 
-    .ls_axi_ar_ready_o  (ls_axi_ar_ready_i ),     //lite              
-    .ls_axi_ar_valid_i  (ls_axi_ar_valid_o ),     //lite
-    .ls_axi_ar_addr_i   (ls_axi_ar_addr_o  ),      //lite
-    .ls_axi_ar_prot_i   (ls_axi_ar_prot_o  ),
-    .ls_axi_ar_id_i     (ls_axi_ar_id_o    ),
-    .ls_axi_ar_user_i   (ls_axi_ar_user_o  ),
-    .ls_axi_ar_len_i    (ls_axi_ar_len_o   ),       //lite
-    .ls_axi_ar_size_i   (ls_axi_ar_size_o  ),      //lite
-    .ls_axi_ar_burst_i  (ls_axi_ar_burst_o ),
-    .ls_axi_ar_lock_i   (ls_axi_ar_lock_o  ),
-    .ls_axi_ar_cache_i  (ls_axi_ar_cache_o ),
-    .ls_axi_ar_qos_i    (ls_axi_ar_qos_o   ),
-    .ls_axi_ar_region_i (ls_axi_ar_region_o),
+    .ls_axi_ar_ready_o  (),//ls_axi_ar_ready_i ),     //lite              
+    .ls_axi_ar_valid_i  (),//ls_axi_ar_valid_o ),     //lite
+    .ls_axi_ar_addr_i   (),//ls_axi_ar_addr_o  ),      //lite
+    .ls_axi_ar_prot_i   (),//ls_axi_ar_prot_o  ),
+    .ls_axi_ar_id_i     (),//ls_axi_ar_id_o    ),
+    .ls_axi_ar_user_i   (),//ls_axi_ar_user_o  ),
+    .ls_axi_ar_len_i    (),//ls_axi_ar_len_o   ),       //lite
+    .ls_axi_ar_size_i   (),//ls_axi_ar_size_o  ),      //lite
+    .ls_axi_ar_burst_i  (),//ls_axi_ar_burst_o ),
+    .ls_axi_ar_lock_i   (),//ls_axi_ar_lock_o  ),
+    .ls_axi_ar_cache_i  (),//ls_axi_ar_cache_o ),
+    .ls_axi_ar_qos_i    (),//ls_axi_ar_qos_o   ),
+    .ls_axi_ar_region_i (),//ls_axi_ar_region_o),
 
-    .ls_axi_r_ready_i   (ls_axi_r_ready_o  ),      //lite            
-    .ls_axi_r_valid_o   (ls_axi_r_valid_i  ),      //lite            
-    .ls_axi_r_resp_o    (ls_axi_r_resp_i   ),
-    .ls_axi_r_data_o    (ls_axi_r_data_i   ),       //lite
-    .ls_axi_r_last_o    (ls_axi_r_last_i   ),
-    .ls_axi_r_id_o      (ls_axi_r_id_i     ),
-    .ls_axi_r_user_o    (ls_axi_r_user_i   ),
+    .ls_axi_r_ready_i   (),//ls_axi_r_ready_o  ),      //lite            
+    .ls_axi_r_valid_o   (),//ls_axi_r_valid_i  ),      //lite            
+    .ls_axi_r_resp_o    (),//ls_axi_r_resp_i   ),
+    .ls_axi_r_data_o    (),//ls_axi_r_data_i   ),       //lite
+    .ls_axi_r_last_o    (),//ls_axi_r_last_i   ),
+    .ls_axi_r_id_o      (),//ls_axi_r_id_i     ),
+    .ls_axi_r_user_o    (),//ls_axi_r_user_i   ),
 //mem
     .axi_aw_ready_i     (axi_aw_ready_i    ),     //lite         
     .axi_aw_valid_o     (axi_aw_valid_o    ),     //lite
@@ -484,7 +482,8 @@ IF_stage IF_u(
     .sram_addr_valid(sram_addr_valid)
 );
 
-Icache cache_dut (
+cache 
+cache_dut (
   .clk (clk ),
   .rst_n (rst_n ),
 
@@ -500,12 +499,12 @@ Icache cache_dut (
   .rd_data_o (sram_rdata ),
 //to AXI
   .cacheRdValid_o   (rw_valid_i ),
-  .axiRdReady       (rw_ready_o ),
-  .fetchLenth       (fetchLenth ),
+//   .axiRdReady       (rw_ready_o ),
+//   .fetchLenth       (fetchLenth ),
   .rdLast_i         (rdLast_o   ),
   .cacheAddr_o      (rw_addr_i  ),
-  .rdData_i         (data_read_o),
-  .dataValid_i      (dataValid_o)
+  .rdData_i         (data_read_o)
+//   .dataValid_i      (dataValid_o)
 );
 wire rw_valid_i ;
 wire rw_ready_o ;
@@ -715,12 +714,7 @@ ex_stage ex_stage_u(
     .rs2_o          (rs2_ex_u_o),
     .alures_o       (alures_ex),
     .pc_next_o      (pc_jump),
-    .is_jump_o      (is_jump),
-
-    .exNotOk        (),
-    .ls_addr_ok_i   (ls_addr_ok_i),
-    .rden_ls        (rden_ls),
-    .wren_ls        (wren_ls)
+    .is_jump_o      (is_jump)
     // .mem_wren_ex_o,
     // .mem_lden_ex_o,
     // .mem_op_ex_o
@@ -787,81 +781,25 @@ ls_stage ls_u(
     .ls_sram_wr_mask        (ls_sram_wr_mask        ),
     .ls_sram_wr_size        (ls_sram_wr_size        ),
     .ls_sram_rd_size        (ls_sram_rd_size        ),
-    .ls_sram_rd_data_valid  (dataNotOk  ),
-    .ls_sram_wr_data_ok     (dataNotOk     ),
+    .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
+    .ls_sram_wr_data_ok     (ls_sram_wr_data_ok     ),
     .ls_sram_rd_data        (ls_sram_rd_data        )
 );
 
-//
-wire    dataNotOk;
-
-Dcache Dcache_u (
-  .clk (clk ),
-  .rst_n (rst_n ),
-  //ex-part
-  .addr_i ((rden_ls || wren_ls) ? alures_ex[31:0] : 'b0 ),
-  .exValid_i ((rden_ls || wren_ls)),
-  .lsValid_i ((ls_sram_wr_en || ls_sram_rd_en) ),
-  .op_i ( ~rden_ls | wren_ls ),
-  .addr_ok_o (ls_addr_ok_i ),
-  //ls-part
-  .wr_data_i        (ls_sram_wr_data ),
-  .wr_mask_i        (ls_sram_wr_mask ),
-    //这个stall可能要改
-  .stall_n          (ls_stall_n ),
-
-  .data_ok_o        ( ),
-  .data_notok_o     (dataNotOk ),
-  .rd_data_o        (ls_sram_rd_data ),
-  //to AXI
-  .cacheRdValid_o   (DcacheRdValid ),
-  .axiRdReady       (lsAxiRdReady ),
-  .fetchLenth       (lsFetchLenth ),
-  .rdLast_i         (lsRdLast ),
-  .cacheRdAddr_o    (DcacheRdAddr[31:0] ),
-  .cacheWrAddr_o    (DcacheWrAddr[31:0] ),
-  .rdData_i         (lsAxiRdData ),
-  .dataValid_i      (lsAxiRdDataVAlid ),
-  .axiWrReady       (lsAxiWrReady ),
-  .cacheWrValid_o   (DcacheWrValid ),
-  .cacheWrData_o    (lsAxiWrData ),
-  .storeLenth       (lsStoreLenth )
-);
-
-wire        DcacheRdValid,DcacheWrValid;
-wire        lsAxiRdReady;
-wire [7:0]  lsFetchLenth;
-wire        lsRdLast;
-wire [63:0] DcacheRdAddr,DcacheWrAddr;
-wire [63:0] lsAxiRdData;  
-wire        lsAxiRdDataVAlid;   
-wire        lsAxiWrReady;   
-wire [255:0]lsAxiWrData;
-wire [7:0]  lsStoreLenth;
-
-axi_dcache axi_ls_u(
+axi_ls axi_ls_u(
     .clock          (clk),
     .reset          (rst_n),
 
-	.rw_valid_i     (DcacheRdValid),//ls_sram_rd_en          ),         //IF&MEM输入信号
-	.rw_ready_o     (lsAxiRdReady),//ls_sram_rd_data_valid  ),         //IF&MEM输入信号
-    .data_read_o    (lsAxiRdData),//ls_sram_rd_data        ),        //IF&MEM输入信号
-    .rw_addr_i      (DcacheRdAddr),//ls_sram_addr           ),          //IF&MEM输入信号
-    .fetchLenth     (lsFetchLenth),
-    .rdLast_o       (lsRdLast),
-    .dataValid_o    (lsAxiRdDataVAlid),
-    .wr_valid_i     (DcacheWrValid),
-    .wr_ready_o     (lsAxiWrReady),
-    .cacheWrData_i  (lsAxiWrData),
-    .storeLenth     (lsStoreLenth),
-    .rw_w_mask_i    ('hff),
-    .cacheWrAddr_i  (DcacheWrAddr),
-    // .wr_valid_i     (DcacheWrValid_o),//ls_sram_wr_en          ),         //写有效
-    // .wr_ok_o        (),//ls_sram_wr_data_ok     ),            //读完成
-    // .rw_w_data_i    (),//ls_sram_wr_data        ),        //写数据
-    // .rw_w_mask_i    (),//ls_sram_wr_mask        ), 
-    // .wr_size_i      (),//ls_sram_wr_size        ),
-    // .rd_size_i      (),//ls_sram_rd_size        ),       
+	.rw_valid_i     (ls_sram_rd_en),         //IF&MEM输入信号
+	.rw_ready_o     (ls_sram_rd_data_valid),         //IF&MEM输入信号
+    .data_read_o    (ls_sram_rd_data),        //IF&MEM输入信号
+    .rw_addr_i      (ls_sram_addr),          //IF&MEM输入信号
+    .wr_valid_i      (ls_sram_wr_en),         //写有效
+    .wr_ok_o         (ls_sram_wr_data_ok),            //读完成
+    .rw_w_data_i     (ls_sram_wr_data),        //写数据
+    .rw_w_mask_i     (ls_sram_wr_mask), 
+    .wr_size_i      (ls_sram_wr_size),
+    .rd_size_i      (ls_sram_rd_size),       
 
 
     .axi_aw_ready_i (ls_axi_aw_ready_i ),     //lite         
@@ -996,36 +934,36 @@ pipline_ctrl pipline_ctrl_u(
 //   .S_AXI_RREADY  ( if_axi_r_ready_o)
 // );
 
-// myip_AXI_Lite_v1_0_S00_AXI 
-// #(
-//   .C_S_AXI_DATA_WIDTH(`XLEN),
-//   .C_S_AXI_ADDR_WIDTH (`XLEN)
-// )
-// lsAxiSlaveRam_u (
-//   .S_AXI_ACLK (clk ),
-//   .S_AXI_ARESETN (rst_n ),
-//   .S_AXI_AWADDR (ls_axi_aw_addr_o ),
-//   .S_AXI_AWPROT (ls_axi_aw_prot_o ),
-//   .S_AXI_AWSIZE (ls_axi_aw_size_o),
-//   .S_AXI_AWVALID (ls_axi_aw_valid_o ),
-//   .S_AXI_AWREADY (ls_axi_aw_ready_i ),
-//   .S_AXI_WDATA (ls_axi_w_data_o ),
-//   .S_AXI_WSTRB (ls_axi_w_strb_o ),
-//   .S_AXI_WVALID (ls_axi_w_valid_o ),
-//   .S_AXI_WREADY (ls_axi_w_ready_i ),
-//   .S_AXI_BRESP (ls_axi_b_resp_i ),
-//   .S_AXI_BVALID (ls_axi_b_valid_i ),
-//   .S_AXI_BREADY (ls_axi_b_ready_o ),
-//   .S_AXI_ARADDR (ls_axi_ar_addr_o ),
-//   .S_AXI_ARPROT (ls_axi_ar_prot_o ),
-//   .S_AXI_ARVALID (ls_axi_ar_valid_o ),
-//   .S_AXI_ARREADY (ls_axi_ar_ready_i ),
-//   .S_AXI_ARSIZE (ls_axi_ar_size_o ),
-//   .S_AXI_RDATA (ls_axi_r_data_i ),
-//   .S_AXI_RRESP (ls_axi_r_resp_i ),
-//   .S_AXI_RVALID (ls_axi_r_valid_i ),
-//   .S_AXI_RREADY  ( ls_axi_r_ready_o)
-// );
+myip_AXI_Lite_v1_0_S00_AXI 
+#(
+  .C_S_AXI_DATA_WIDTH(`XLEN),
+  .C_S_AXI_ADDR_WIDTH (`XLEN)
+)
+lsAxiSlaveRam_u (
+  .S_AXI_ACLK (clk ),
+  .S_AXI_ARESETN (rst_n ),
+  .S_AXI_AWADDR (ls_axi_aw_addr_o ),
+  .S_AXI_AWPROT (ls_axi_aw_prot_o ),
+  .S_AXI_AWSIZE (ls_axi_aw_size_o),
+  .S_AXI_AWVALID (ls_axi_aw_valid_o ),
+  .S_AXI_AWREADY (ls_axi_aw_ready_i ),
+  .S_AXI_WDATA (ls_axi_w_data_o ),
+  .S_AXI_WSTRB (ls_axi_w_strb_o ),
+  .S_AXI_WVALID (ls_axi_w_valid_o ),
+  .S_AXI_WREADY (ls_axi_w_ready_i ),
+  .S_AXI_BRESP (ls_axi_b_resp_i ),
+  .S_AXI_BVALID (ls_axi_b_valid_i ),
+  .S_AXI_BREADY (ls_axi_b_ready_o ),
+  .S_AXI_ARADDR (ls_axi_ar_addr_o ),
+  .S_AXI_ARPROT (ls_axi_ar_prot_o ),
+  .S_AXI_ARVALID (ls_axi_ar_valid_o ),
+  .S_AXI_ARREADY (ls_axi_ar_ready_i ),
+  .S_AXI_ARSIZE (ls_axi_ar_size_o ),
+  .S_AXI_RDATA (ls_axi_r_data_i ),
+  .S_AXI_RRESP (ls_axi_r_resp_i ),
+  .S_AXI_RVALID (ls_axi_r_valid_i ),
+  .S_AXI_RREADY  ( ls_axi_r_ready_o)
+);
 
 endmodule //top
 
