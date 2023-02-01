@@ -102,7 +102,7 @@ always @(*) begin
             if(cacheHit) begin
                 //后面的那个条件是为了防止在stall的条件下，ex阶段的指令已经流到了ls阶段，exValid失效，但这条指
                 //令由于被stall住了，数据并没有被lsu接受，所以必须要呆在compare阶段保证数据输出，等到stall结束后再回到idle
-                if(exValid_i && stall_n || lsValid_i && ~reqLatch[32] && ~stall_n) begin
+                if(exValid_i && stall_n || lsValid_i&& ~stall_n) begin
                     cacheNexState = compare;
                 end
                 else begin
