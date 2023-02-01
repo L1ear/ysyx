@@ -523,7 +523,7 @@ assign addrToWrite = randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[inde
 assign cacheWrAddr_o = addrToWrite;
 
 assign cacheWrData_o = randomBit ? way2Data : way1Data;
-assign storeLenth = uncache ? 'd3 : 'd3;
+assign storeLenth = uncache ? 'd0 : 'd3;
 
 // always @(posedge clk or negedge rst_n) begin
     
