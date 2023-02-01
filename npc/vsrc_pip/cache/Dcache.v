@@ -522,8 +522,8 @@ wire    [31:0]  addrToWrite;
 assign addrToWrite = uncache ? {32'b0,reqLatch[31:0]} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = addrToWrite;
 
-assign cacheWrData_o = uncache ? wr_data_i : randomBit ? way2Data : way1Data;
-assign storeLenth = uncache ? 'd1 : 'd4;
+assign cacheWrData_o = uncache ? {'b0,wr_data_i} : randomBit ? way2Data : way1Data;
+assign storeLenth = uncache ? 'd0 : 'd3;
 
 // always @(posedge clk or negedge rst_n) begin
     
