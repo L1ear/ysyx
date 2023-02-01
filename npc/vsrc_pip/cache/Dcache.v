@@ -91,6 +91,7 @@ end
 always @(*) begin
     case (cacheCurState)
         idle: begin
+            //在uncache请求是不进行cache操作
             if(exValid_i && stall_n && ~uncached) begin       
                 cacheNexState = compare;
             end
@@ -513,15 +514,15 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-wire            uncache = 0;                //TODO
+wire            uncache = ~(reqLatch[31-:4] == 4'b1000);                //TODO
 wire            axiWrBusy = needWrBk_Reg;
-assign cacheWrValid_o = needWrBk_Reg;
+assign cacheWrValid_o = uncache ? 1'b1 : needWrBk_Reg;
 wire    [31:0]  addrToWrite;
 
-assign addrToWrite = randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
+assign addrToWrite = uncache ? {32'b0,reqLatch[31:0]} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = addrToWrite;
 
-assign cacheWrData_o = randomBit ? way2Data : way1Data;
+assign cacheWrData_o = uncache ? wr_data_i : randomBit ? way2Data : way1Data;
 assign storeLenth = uncache ? 'd1 : 'd4;
 
 // always @(posedge clk or negedge rst_n) begin
