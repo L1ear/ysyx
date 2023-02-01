@@ -100,7 +100,8 @@ always @(*) begin
         end
         compare: begin
             if(cacheHit) begin
-                if(exValid_i && stall_n) begin
+                //后面的那个条件是为了防止在stall的条件下，ex阶段的指令已经流到了
+                if(exValid_i && stall_n || lsValid_i && ~reqLatch[32] && ~stall_n) begin
                     cacheNexState = compare;
                 end
                 else begin
