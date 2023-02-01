@@ -59,6 +59,9 @@ wire            way1Hit,way2Hit;
 wire    [127:0] dataWay1_1,dataWay1_2,dataWay2_1,dataWay2_2;
 reg    [127:0] inDataWay1_1,inDataWay1_2,inDataWay2_1,inDataWay2_2;
 reg            wenWay1,wenWay2;
+wire uncached;
+
+assign uncached = addr_i[31-:4];
 
 //这里多虑了，jal后的l/s指令并不会流到ex阶段
 // wire            reqCancel;

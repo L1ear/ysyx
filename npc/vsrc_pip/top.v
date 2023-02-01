@@ -780,12 +780,12 @@ ls_stage ls_u(
     .mtvec_o        (csr_mtvec),
     .mepc_o         (csr_mepc),
 
-    .ls_sram_addr           (ls_sram_addr           ),
-    .ls_sram_rd_en          (ls_sram_rd_en          ),          
-    .ls_sram_wr_en          (ls_sram_wr_en          ),
-    .ls_sram_wr_data        (ls_sram_wr_data        ),
+    .ls_sram_addr           (ls_sram_addr           ), //dont need anymore
+    .ls_sram_rd_en          (ls_sram_rd_en          ), //         
+    .ls_sram_wr_en          (ls_sram_wr_en          ), //
+    .ls_sram_wr_data        (ls_sram_wr_data        ), 
     .ls_sram_wr_mask        (ls_sram_wr_mask        ),
-    .ls_sram_wr_size        (ls_sram_wr_size        ),
+    .ls_sram_wr_size        (ls_sram_wr_size        ), 
     .ls_sram_rd_size        (ls_sram_rd_size        ),
     .ls_sram_rd_data_valid  (dataNotOk  ),
     .ls_sram_wr_data_ok     (dataNotOk     ),
