@@ -91,7 +91,7 @@ end
 always @(*) begin
     case (cacheCurState)
         idle: begin
-            if(exValid_i && stall_n) begin       
+            if(exValid_i && stall_n && ~uncached) begin       
                 cacheNexState = compare;
             end
             else begin
