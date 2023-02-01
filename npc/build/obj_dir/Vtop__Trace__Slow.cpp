@@ -2979,8 +2979,12 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                      ? 
                                                     ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)
                                                       ? 
-                                                     (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
-                                                       & (IData)(vlSelf->top__DOT__ls_stall_n))
+                                                     ((((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
+                                                        & (IData)(vlSelf->top__DOT__ls_stall_n)) 
+                                                       | ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i) 
+                                                          & (~ (IData)(
+                                                                       (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                        >> 0x20U)))))
                                                        ? 1U
                                                        : 0U)
                                                       : 
