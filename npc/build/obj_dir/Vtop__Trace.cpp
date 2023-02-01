@@ -1172,7 +1172,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                    : 0U);
             }
             tracep->chgWData(oldp+451,(__Vtemp394),128);
-            tracep->chgBit(oldp+455,((8U == (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
+            tracep->chgBit(oldp+455,((8U != (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
                                              >> 0x1cU))));
             tracep->chgBit(oldp+456,((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
             tracep->chgQData(oldp+457,(vlSelf->top__DOT__Dcache_u__DOT__reqLatch),33);
