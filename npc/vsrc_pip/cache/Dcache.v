@@ -100,7 +100,7 @@ always @(*) begin
         end
         compare: begin
             if(cacheHit) begin
-                if(exValid_i && stall_n) begin
+                if(exValid_i && stall_n || lsValid_i && ~reqLatch[32]) begin
                     cacheNexState = compare;
                 end
                 else begin
