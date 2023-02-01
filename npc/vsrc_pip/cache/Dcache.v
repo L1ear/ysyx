@@ -514,7 +514,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-// wire            uncache = reqLatch[32] && ~(reqLatch[31-:4] == 4'b1000);                //TODO
+wire            uncache = reqLatch[32] && ~(reqLatch[31-:4] == 4'b1000);                //TODO
 wire            axiWrBusy = needWrBk_Reg;
 assign cacheWrValid_o = needWrBk_Reg;
 wire    [31:0]  addrToWrite;
@@ -523,7 +523,7 @@ assign addrToWrite = randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[inde
 assign cacheWrAddr_o = addrToWrite;
 
 assign cacheWrData_o = randomBit ? way2Data : way1Data;
-assign storeLenth = uncache ? 'd0 : 'd3;
+assign storeLenth = uncache ? 'd3 : 'd3;
 
 // always @(posedge clk or negedge rst_n) begin
     
