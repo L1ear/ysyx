@@ -556,7 +556,7 @@ wire uncacheOpEn = cacheCurState == uncacheOp;
 /**********cacheWrValid_o************/
 wire    uncacheWrValid = uncacheOpEn && reqLatch[32];
 
-wire    uncacheOpOk = uncacheWrValid && axiWrReady;
+wire    uncacheOpOk = cacheWrValid_o && axiWrReady;
 
 /**********cacheWrData_o*************/
 /**********storeLenth****************/
