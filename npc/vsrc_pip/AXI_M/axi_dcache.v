@@ -272,6 +272,7 @@ assign data_read_o = axi_r_data_i;
     assign axi_aw_id_o      = axi_id;                                                                           //初始化信号即可
     assign axi_aw_user_o    = axi_user;                                                                         //初始化信号即可
     assign axi_aw_len_o     = lenthReg;
+    //**********************可能有问题
     assign axi_aw_size_o    = storeSize;
     assign axi_aw_burst_o   = `AXI_BURST_TYPE_INCR;                                                             
     assign axi_aw_lock_o    = 1'b0;                                                                             //初始化信号即可
