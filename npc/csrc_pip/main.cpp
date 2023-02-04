@@ -226,15 +226,15 @@ void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
   //********************************************
-  mmio_sigs.update_input(*mmioref);
-  mem_sigs.update_input(*memref);
-    while (uart.exist_tx()) {
+      while (uart.exist_tx()) {
     // assert(0);
     //             printf("1\r\n");
                 char c = uart.getc();
                 printf("%d",c);
                 fflush(stdout);
             }
+  mmio_sigs.update_input(*mmioref);
+  mem_sigs.update_input(*memref);
   //********************************************
   top->eval();
   //********************************************
