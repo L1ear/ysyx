@@ -1934,7 +1934,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                             | ((QData)((IData)(
                                                                vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[2U])) 
                                                >> 2U))))),64);
-        tracep->fullBit(oldp+128,(((((((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+        tracep->fullBit(oldp+128,((((((((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                        & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheOpOk))) 
                                        | ((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                           & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)))) 
                                       | (3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) 
@@ -2859,8 +2860,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+547,(((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                    & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                               >> 0x20U)))));
-        tracep->fullBit(oldp+548,(((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg) 
-                                   & (0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)))));
+        tracep->fullBit(oldp+548,(vlSelf->top__DOT__Dcache_u__DOT__uncacheOpOk));
         VL_EXTEND_WQ(128,64, __Vtemp327, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
         __Vtemp337[0U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                               ? 0xffffffffU : ((1U 
@@ -3540,9 +3540,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                               ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg)
                                                   ? 7U
                                                   : 1U)
-                                              : (((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg) 
-                                                  & (0U 
-                                                     == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)))
+                                              : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheOpOk)
                                                   ? 0U
                                                   : 6U))
                                           : 0U) : (
