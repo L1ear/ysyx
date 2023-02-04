@@ -173,7 +173,7 @@ int main(int argc, char *argv[])
     
     
     // std::thread uart_input_thread(uart_input,std::ref(uart));
-    assert(mmio.add_dev(0xa00003f8,16,&uart));
+    assert(mmio.add_dev(0xa00003f8,8,&uart));
 
     Log("axi check complete!");
 
@@ -283,7 +283,7 @@ void single_cycle(int i) {
   // else{
   //   top->ls_sram_wr_data_ok = 0;
   // }
-  top->eval();
+  // top->eval();
 #ifdef vcd
   fp ->dump(i);
 #endif
