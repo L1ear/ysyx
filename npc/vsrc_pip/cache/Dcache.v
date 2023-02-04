@@ -43,7 +43,7 @@ module Dcache(
     output          [255:0]                 cacheWrData_o,//
     output          [7:0]                   storeLenth,//
 
-    output          [7:0]                   storeMask
+    // output          [7:0]                   storeMask
 );
 
 
