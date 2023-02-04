@@ -47,11 +47,12 @@ module Dcache(
 
 
 
-localparam  idle    = 3'b000,
-            compare = 3'b001,
-            miss    = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
-            getdata = 3'b011,
-            replace = 3'b111;
+localparam  idle        = 3'b000,
+            compare     = 3'b001,
+            miss        = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
+            getdata     = 3'b011,
+            replace     = 3'b111,
+            uncacheOp   = 3'b110;           //添加uncacheOp用来处理非缓存操作
 
 reg     [2:0]   cacheCurState,cacheNexState;
 wire            cacheHit;
@@ -104,8 +105,8 @@ always @(*) begin
                 //后面的那个条件是为了防止在stall的条件下，ex阶段的指令已经流到了ls阶段，exValid失效，但这条指
                 //令由于被stall住了，数据并没有被lsu接受，所以必须要呆在compare阶段保证数据输出，等到stall结束后再回到idle
                 //但是对于写请求却不需要这样处理，因为写入只要一个周期，写入了就ok了，不需要一直呆在compare
-                if(exValid_i && stall_n && ~uncached || lsValid_i && ~reqLatch[32] && ~stall_n) begin
-                    cacheNexState = compare;
+                if(exValid_i && stall_n || lsValid_i && ~reqLatch[32] && ~stall_n) begin
+                    cacheNexState = uncached ? uncacheOp : compare;     //若触发uncache条件则进入uncacheOp处理
                 end
                 else begin
                     cacheNexState = idle;
@@ -145,6 +146,14 @@ always @(*) begin
             else begin
                 cacheNexState = compare;
             end    
+        end
+        uncacheOp: begin
+            if(uncacheOpOk) begin
+                cacheNexState = compare;
+            end
+            else begin
+                cacheNexState = uncacheOp;
+            end
         end
         default: begin
             cacheNexState = idle;
@@ -408,9 +417,10 @@ always @(posedge clk or negedge rst_n) begin
         wrDataLatch <= 'b0;
         wrMaskLatch <= 'b0;
     end
+    //在compare的末尾锁存data以及mask，且锁存的是处理完成后的，保证数据正确
     else if(compareEn && reqLatch[32]) begin
-        wrDataLatch <= wr_data_i;
-        wrMaskLatch <= wr_mask_i;
+        wrDataLatch <= storeData;
+        wrMaskLatch <= storeMask;
     end
 end
 
@@ -500,13 +510,13 @@ end
 //需要写回替换的情况：
 //写miss，并且要写入的index数据为脏; 读miss，并且要读的index为脏 
 wire        needWrBk;
-assign needWrBk = (wrMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index])) || (rdMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index]));
+assign needWrBk = uncacheWrValid || (wrMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index])) || (rdMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index]));
 reg     needWrBk_Reg;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         needWrBk_Reg <= 'b0;
     end
-    else if(compareEn && ~axiWrBusy) begin
+    else if((compareEn || uncacheOpEn) && ~axiWrBusy) begin
         needWrBk_Reg <= needWrBk;
     end
     else if(axiWrReady && cacheWrValid_o) begin
@@ -519,14 +529,35 @@ always @(posedge clk or negedge rst_n) begin
     uncache <= uncached;
 end
 wire            axiWrBusy = needWrBk_Reg;
-assign cacheWrValid_o = uncache ? 1'b1 : needWrBk_Reg;
+assign cacheWrValid_o = needWrBk_Reg;
 wire    [31:0]  addrToWrite;
 
-assign addrToWrite = uncache ? reqLatch[31:0] : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
+assign addrToWrite = uncacheOpEn ? {reqLatch[31:3],3'b0} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = addrToWrite;
 
-assign cacheWrData_o = uncache ? {192'b0,wr_data_i} : randomBit ? way2Data : way1Data;
-assign storeLenth = uncache ? 'd0 : 'd3;
+assign cacheWrData_o = uncacheOpEn ? {192'b0,storeData} : randomBit ? way2Data : way1Data;
+assign storeLenth = uncacheOpEn ? 'd0 : 'd3;
+
+
+wire uncacheOpEn = cacheCurState == uncacheOp;
+// cacheRdValid_o,//
+// axiRdReady,//
+
+// fetchLenth,//
+// rdLast_i,//
+// cacheRdAddr_o,//
+
+
+
+
+/**********cacheWrValid_o************/
+wire    uncacheWrValid = uncacheOpEn && reqLatch[32];
+
+wire    uncacheOpOk = uncacheWrValid && axiWrReady;
+
+/**********cacheWrData_o*************/
+/**********storeLenth****************/
+
 
 // always @(posedge clk or negedge rst_n) begin
     

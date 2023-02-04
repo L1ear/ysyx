@@ -71,6 +71,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     // Body
     vlSelf->axi_aw_prot_o = 0U;
     vlSelf->axi_aw_user_o = 0U;
+    vlSelf->axi_aw_len_o = 0U;
     vlSelf->axi_aw_size_o = 0U;
     vlSelf->axi_aw_lock_o = 0U;
     vlSelf->axi_aw_qos_o = 0U;
@@ -81,6 +82,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->axi_ar_qos_o = 0U;
     vlSelf->axi_mmio_aw_prot_o = 0U;
     vlSelf->axi_mmio_aw_user_o = 0U;
+    vlSelf->axi_mmio_aw_len_o = 0U;
     vlSelf->axi_mmio_aw_size_o = 0U;
     vlSelf->axi_mmio_aw_lock_o = 0U;
     vlSelf->axi_mmio_aw_qos_o = 0U;
@@ -203,22 +205,16 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     if ((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                        >> 0x1dU)))) {
         vlSelf->axi_aw_valid_o = 0U;
-        vlSelf->axi_aw_len_o = 0U;
         vlSelf->axi_w_valid_o = 0U;
         vlSelf->axi_b_ready_o = 0U;
         vlSelf->axi_mmio_aw_valid_o = (IData)((1U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)));
-        vlSelf->axi_mmio_aw_len_o = ((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncache)
-                                      ? 0U : 3U);
         vlSelf->axi_mmio_w_valid_o = (IData)((3U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)));
         vlSelf->axi_mmio_b_ready_o = (IData)((2U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)));
     } else {
         vlSelf->axi_aw_valid_o = (IData)((1U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)));
-        vlSelf->axi_aw_len_o = ((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncache)
-                                 ? 0U : 3U);
         vlSelf->axi_w_valid_o = (IData)((3U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)));
         vlSelf->axi_b_ready_o = (IData)((2U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)));
         vlSelf->axi_mmio_aw_valid_o = 0U;
-        vlSelf->axi_mmio_aw_len_o = 0U;
         vlSelf->axi_mmio_w_valid_o = 0U;
         vlSelf->axi_mmio_b_ready_o = 0U;
     }
