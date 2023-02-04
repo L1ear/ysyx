@@ -3543,7 +3543,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                               : (((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg) 
                                                   & (0U 
                                                      == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)))
-                                                  ? 1U
+                                                  ? 0U
                                                   : 6U))
                                           : 0U) : (
                                                    (2U 
