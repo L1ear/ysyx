@@ -41,7 +41,7 @@ module Dcache(
     //axi写请求有效信号
     output                                  cacheWrValid_o,//
     output          [255:0]                 cacheWrData_o,//
-    output          [7:0]                   storeLenth,//
+    output          [7:0]                   storeLenth//
 
     // output          [7:0]                   storeMask
 );
