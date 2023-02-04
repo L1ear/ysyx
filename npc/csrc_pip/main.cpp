@@ -193,7 +193,7 @@ int main(int argc, char *argv[])
 
     en = 1;
     sdb_mainloop();
-    // uart_input_thread.join();
+    uart_input_thread.join();
     top->final();
     
     // while(en)
