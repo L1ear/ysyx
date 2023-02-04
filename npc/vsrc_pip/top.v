@@ -854,7 +854,7 @@ axi_dcache axi_ls_u(
     .wr_ready_o     (lsAxiWrReady),
     .cacheWrData_i  (lsAxiWrData),
     .storeLenth     (lsStoreLenth),
-    .rw_w_mask_i    ('hff),
+    .rw_w_mask_i    ('h01),
     .cacheWrAddr_i  (DcacheWrAddr),
     // .wr_valid_i     (DcacheWrValid_o),//ls_sram_wr_en          ),         //写有效
     // .wr_ok_o        (),//ls_sram_wr_data_ok     ),            //读完成
