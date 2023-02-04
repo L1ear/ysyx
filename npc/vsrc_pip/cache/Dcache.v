@@ -235,6 +235,7 @@ assign tagWay1_q = tagArray1[index];
 assign tagWay2_q = tagArray2[index];
 
 wire [20:0] testTag = tagArray1['h3c];
+wire [20:0] tagtest = tagArray2['h23];
 //hit信号产生
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
@@ -350,7 +351,7 @@ always @(*) begin
             bitValid1_d = 1'b1;
             bitValid2_d = validArray2[index];
             tagArray1_d = tag;
-            tagArray2_d = tagArray1[index];
+            tagArray2_d = tagArray2[index];
         end
         else begin
             bitValid1_d = validArray1[index];
@@ -514,7 +515,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-wire [20:0] tagtest = tagArray2['h23];
+
 
 //需要写回替换的情况：
 //写miss，并且要写入的index数据为脏; 读miss，并且要读的index为脏 
