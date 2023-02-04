@@ -314,8 +314,8 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign cacheRdValid_o = missEn && axiRdReady;
-assign cacheRdAddr_o = addrToRead[31:0];
+assign cacheRdValid_o = uncacheOpEn ? uncacheRdValid : missEn && axiRdReady;
+assign cacheRdAddr_o = uncacheOpEn ? uncacheRdAddr : addrToRead[31:0];
 reg [1:0]   rdCnt;
 //这一部分将axi过来的数据保持在buffer中，在一次存入cache的sram
 //icache每次读内存都是固定的读4个64位word，所以使用一个2位的计数器循环计数
@@ -567,7 +567,7 @@ wire    uncacheWrValid = uncacheOpEn && reqLatch[32];
 wire    uncacheOpOk = cacheWrValid_o && axiWrReady || rdLast_i;
 
 wire    uncacheRdValid = uncacheOpEn && ~reqLatch[32];
-wire  [31:0]  uncacheRdAddr  = reqLatch;
+wire  [31:0]  uncacheRdAddr  = reqLatch[31:0];
 
 reg [63:0]  temp;       //后面记得改
 always @(posedge clk or negedge rst_n) begin
