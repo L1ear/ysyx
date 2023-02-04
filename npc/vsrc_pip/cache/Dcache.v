@@ -514,7 +514,10 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-wire            uncache = reqLatch[32] && ~(reqLatch[31-:4] == 4'b1000);                //TODO
+reg            uncache ;//= reqLatch[32] && ~(reqLatch[31-:4] == 4'b1000);                //TODO
+always @(posedge clk or negedge rst_n) begin
+    uncache <= uncached;
+end
 wire            axiWrBusy = needWrBk_Reg;
 assign cacheWrValid_o = uncache ? 1'b1 : needWrBk_Reg;
 wire    [31:0]  addrToWrite;
