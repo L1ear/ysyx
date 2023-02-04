@@ -46,7 +46,7 @@ void uart_input(uartlite &uart) {
     tcsetattr(STDIN_FILENO,TCSANOW,&tmp);
     while (1) {
       // assert(0);
-        char c = getchar();
+        char c = 66;getchar();
         
         if (c == 10) c = 13; // convert lf to cr
         uart.putc(c);
