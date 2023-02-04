@@ -4158,6 +4158,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->__Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0;
     vlSelf->__Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0;
     vlSelf->__Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0 = 0;
+    vlSelf->__Vdly__top__DOT__Dcache_u__DOT__randomBit = 0;
     for (int __Vi0=0; __Vi0<7; ++__Vi0) {
         vlSelf->__Vm_traceActivity[__Vi0] = 0;
     }
