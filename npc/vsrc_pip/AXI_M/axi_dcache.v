@@ -23,7 +23,7 @@ module axi_dcache # (
     input                                   wr_valid_i,         //写有效
     output reg                              wr_ready_o,            //读完成
     input  [255:0]                          cacheWrData_i,
-    output          [7:0]                   storeLenth,
+    input             [7:0]                   storeLenth,
     input  [AXI_STRB_WIDTH-1:0]             rw_w_mask_i,        
     input  [63:0]                           cacheWrAddr_i,          //IF&MEM输入信号
 
@@ -270,7 +270,7 @@ assign data_read_o = axi_r_data_i;
     assign axi_aw_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_aw_id_o      = axi_id;                                                                           //初始化信号即可
     assign axi_aw_user_o    = axi_user;                                                                         //初始化信号即可
-    assign axi_aw_len_o     = 0;
+    assign axi_aw_len_o     = lenthReg;
     assign axi_aw_size_o    = 0;
     assign axi_aw_burst_o   = `AXI_BURST_TYPE_INCR;                                                             
     assign axi_aw_lock_o    = 1'b0;                                                                             //初始化信号即可
