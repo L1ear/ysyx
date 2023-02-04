@@ -163,6 +163,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_w_ready;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_ready;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_valid;
+        CData/*7:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_len;
         CData/*3:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_region;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_r_ready;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_r_valid;
@@ -184,9 +185,9 @@ VL_MODULE(Vtop___024root) {
         CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin;
-        CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow;
     };
     struct {
+        CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__less;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__overflow;
@@ -250,9 +251,9 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_2;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray1_d;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray2_d;
-        VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way1Data;
     };
     struct {
+        VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way1Data;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way2Data;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__rdBuffer;
         VlWide<8>/*255:0*/ top__DOT__axi_ls_u__DOT__wr_data_reg;
@@ -316,6 +317,8 @@ VL_MODULE(Vtop___024root) {
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__Dcache_u__DOT__iramWay1_1__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__Dcache_u__DOT__iramWay1_2__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__Dcache_u__DOT__iramWay2_1__DOT__ram;
+    };
+    struct {
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__Dcache_u__DOT__iramWay2_2__DOT__ram;
     };
 
