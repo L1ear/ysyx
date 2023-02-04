@@ -153,7 +153,7 @@ always @(posedge clock or negedge reset) begin
     else if((w_state == w_state_idle) && wr_valid_i) begin
         wrCnt <= 'b0;        
     end
-    else if((w_state == w_state_dw_wait) && axi_w_ready_i) begin
+    else if((w_state == w_state_dw_wait) && axi_w_ready_i && ~wrLast) begin
         wrCnt <= wrCnt + 'b1;
     end
 end
