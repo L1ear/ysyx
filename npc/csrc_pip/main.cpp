@@ -46,10 +46,10 @@ void uart_input(uartlite &uart) {
     tcsetattr(STDIN_FILENO,TCSANOW,&tmp);
     while (1) {
       // assert(0);
-        char c = 66;getchar();
+        // char c = getchar();
         
-        if (c == 10) c = 13; // convert lf to cr
-        uart.putc(c);
+        // if (c == 10) c = 13; // convert lf to cr
+        uart.putc(66);
         // printf("1\n");
         
     }
