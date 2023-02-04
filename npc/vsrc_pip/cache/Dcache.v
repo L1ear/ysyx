@@ -340,7 +340,7 @@ end
 // always randomBit = $random;
 always @(posedge clk) begin
     if(compareEn && ~cacheHit) begin
-        randomBit <= ~randomBit;
+        randomBit <= 1;
     end
 end
 always @(*) begin
