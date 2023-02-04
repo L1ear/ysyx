@@ -825,7 +825,9 @@ Dcache Dcache_u (
   .axiWrReady       (lsAxiWrReady ),
   .cacheWrValid_o   (DcacheWrValid ),
   .cacheWrData_o    (lsAxiWrData ),
-  .storeLenth       (lsStoreLenth )
+  .storeLenth       (lsStoreLenth ),
+  .cacheWrMask_o,
+  .cacheWrSize_o
 );
 
 wire        DcacheRdValid,DcacheWrValid;
