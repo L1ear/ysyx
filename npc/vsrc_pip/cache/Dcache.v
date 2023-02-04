@@ -339,8 +339,8 @@ end
 //根据随机决定替换哪个way
 // always randomBit = $random;
 always @(posedge clk) begin
-    if(compareEn && ~cacheHit) begin
-        randomBit <= 1;
+    if(replaceEn) begin
+        randomBit <= ~randomBit;
     end
 end
 always @(*) begin
