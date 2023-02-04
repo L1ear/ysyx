@@ -555,7 +555,7 @@ wire uncacheOpEn = cacheCurState == uncacheOp;
 // cacheRdValid_o,//
 // axiRdReady,//
 
-// fetchLenth,//
+assign fetchLenth = uncacheOpEn ? 'b011 : 'b011;    //根据不同请求决定
 // rdLast_i,//
 // cacheRdAddr_o,//
 
@@ -564,12 +564,17 @@ wire uncacheOpEn = cacheCurState == uncacheOp;
 
 /**********cacheWrValid_o************/
 wire    uncacheWrValid = uncacheOpEn && reqLatch[32];
+wire    uncacheOpOk = cacheWrValid_o && axiWrReady || rdLast_i;
 
-wire    uncacheOpOk = cacheWrValid_o && axiWrReady;
+wire    uncacheRdValid = uncacheOpEn && ~reqLatch[32];
+wire  [31:0]  uncacheRdAddr  = reqLatch;
 
-/**********cacheWrData_o*************/
-/**********storeLenth****************/
-
+reg [63:0]  temp;       //后面记得改
+always @(posedge clk or negedge rst_n) begin
+    if(uncacheOpEn && rdLast_i) begin
+        temp <= rdData_i;
+    end
+end
 
 // always @(posedge clk or negedge rst_n) begin
     

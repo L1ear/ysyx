@@ -2,7 +2,7 @@
 
 static inline uint64_t ind(uintptr_t addr) { return *(volatile uint64_t *)addr; }
 
-#define RTC_ADDR 0xa0000048
+#define RTC_ADDR 0xa00003f8 //just for test // 0xa0000048
 static uint32_t origin_time;
 
 void __am_timer_init() {
