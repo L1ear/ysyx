@@ -1356,8 +1356,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
         if (((0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
              & (IData)(vlSelf->top__DOT__DcacheWrValid))) {
             __Vdly__top__DOT__axi_ls_u__DOT__wrCnt = 0U;
-        } else if (((3U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
-                    & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_w_ready))) {
+        } else if ((((3U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)) 
+                     & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_w_ready)) 
+                    & (~ (IData)(vlSelf->top__DOT__axi_ls_u__DOT__wrLast)))) {
             __Vdly__top__DOT__axi_ls_u__DOT__wrCnt 
                 = (3U & ((IData)(1U) + (IData)(vlSelf->top__DOT__axi_ls_u__DOT__wrCnt)));
         }
