@@ -300,13 +300,13 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+110,(vlSelf->top__DOT__Dcache_u__DOT__validArray2),64);
             tracep->chgIData(oldp+112,(vlSelf->top__DOT__Dcache_u__DOT__tagArray1
                                        [0x3cU]),21);
-            tracep->chgBit(oldp+113,(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay));
-            tracep->chgBit(oldp+114,(vlSelf->top__DOT__Dcache_u__DOT__wenDelay1));
-            tracep->chgBit(oldp+115,(vlSelf->top__DOT__Dcache_u__DOT__wenDelay2));
-            tracep->chgCData(oldp+116,(vlSelf->top__DOT__Dcache_u__DOT__wrMaskLatch),8);
-            tracep->chgBit(oldp+117,(vlSelf->top__DOT__Dcache_u__DOT__replaceWay));
-            tracep->chgIData(oldp+118,(vlSelf->top__DOT__Dcache_u__DOT__tagArray2
+            tracep->chgIData(oldp+113,(vlSelf->top__DOT__Dcache_u__DOT__tagArray2
                                        [0x23U]),21);
+            tracep->chgBit(oldp+114,(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay));
+            tracep->chgBit(oldp+115,(vlSelf->top__DOT__Dcache_u__DOT__wenDelay1));
+            tracep->chgBit(oldp+116,(vlSelf->top__DOT__Dcache_u__DOT__wenDelay2));
+            tracep->chgCData(oldp+117,(vlSelf->top__DOT__Dcache_u__DOT__wrMaskLatch),8);
+            tracep->chgBit(oldp+118,(vlSelf->top__DOT__Dcache_u__DOT__replaceWay));
             tracep->chgBit(oldp+119,(vlSelf->top__DOT__Dcache_u__DOT__uncache));
             tracep->chgCData(oldp+120,(vlSelf->top__DOT__axi_ls_u__DOT__wrCnt),2);
             tracep->chgCData(oldp+121,(vlSelf->top__DOT__axi_ls_u__DOT__r_state),2);
@@ -2232,7 +2232,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                           ? (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                      >> 0xbU))
-                                          : vlSelf->top__DOT__Dcache_u__DOT__tagArray1
+                                          : vlSelf->top__DOT__Dcache_u__DOT__tagArray2
                                          [(0x3fU & (IData)(
                                                            (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                             >> 5U)))]))

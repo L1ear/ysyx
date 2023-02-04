@@ -58,8 +58,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__Dcache_u__DOT__rdCnt;
     __Vdlyvset__top__DOT__cache_dut__DOT__tagArray2__v0 = 0U;
     __Vdlyvset__top__DOT__cache_dut__DOT__tagArray1__v0 = 0U;
-    __Vdlyvset__top__DOT__Dcache_u__DOT__tagArray1__v0 = 0U;
     __Vdlyvset__top__DOT__Dcache_u__DOT__tagArray2__v0 = 0U;
+    __Vdlyvset__top__DOT__Dcache_u__DOT__tagArray1__v0 = 0U;
     __Vdly__top__DOT__axi_ls_u__DOT__wrCnt = vlSelf->top__DOT__axi_ls_u__DOT__wrCnt;
     vlSelf->top__DOT__Dcache_u__DOT__uncache = vlSelf->top__DOT__Dcache_u__DOT__uncached;
     if (vlSelf->rst_n) {
@@ -226,27 +226,19 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     }
     if (((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
          & (IData)(vlSelf->top__DOT__ls_axi_r_last_i))) {
-        __Vdlyvval__top__DOT__Dcache_u__DOT__tagArray1__v0 
-            = vlSelf->top__DOT__Dcache_u__DOT__tagArray1_d;
-        __Vdlyvset__top__DOT__Dcache_u__DOT__tagArray1__v0 = 1U;
-        __Vdlyvdim0__top__DOT__Dcache_u__DOT__tagArray1__v0 
+        __Vdlyvval__top__DOT__Dcache_u__DOT__tagArray2__v0 
+            = vlSelf->top__DOT__Dcache_u__DOT__tagArray2_d;
+        __Vdlyvset__top__DOT__Dcache_u__DOT__tagArray2__v0 = 1U;
+        __Vdlyvdim0__top__DOT__Dcache_u__DOT__tagArray2__v0 
             = (0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                 >> 5U)));
     }
     if (((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
          & (IData)(vlSelf->top__DOT__ls_axi_r_last_i))) {
-        __Vdlyvval__top__DOT__Dcache_u__DOT__tagArray2__v0 
-            = (((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                & (IData)(vlSelf->top__DOT__ls_axi_r_last_i))
-                ? (0x1fffffU & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
-                                 ? (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                            >> 0xbU))
-                                 : vlSelf->top__DOT__Dcache_u__DOT__tagArray1
-                                [(0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                   >> 5U)))]))
-                : 0U);
-        __Vdlyvset__top__DOT__Dcache_u__DOT__tagArray2__v0 = 1U;
-        __Vdlyvdim0__top__DOT__Dcache_u__DOT__tagArray2__v0 
+        __Vdlyvval__top__DOT__Dcache_u__DOT__tagArray1__v0 
+            = vlSelf->top__DOT__Dcache_u__DOT__tagArray1_d;
+        __Vdlyvset__top__DOT__Dcache_u__DOT__tagArray1__v0 = 1U;
+        __Vdlyvdim0__top__DOT__Dcache_u__DOT__tagArray1__v0 
             = (0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                 >> 5U)));
     }
@@ -5789,10 +5781,18 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__10(Vtop___024root* vlSelf) {
                            >> (0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                 >> 5U)))))) 
                & 1U);
+        vlSelf->top__DOT__Dcache_u__DOT__tagArray2_d 
+            = (0x1fffffU & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
+                             ? (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                        >> 0xbU)) : 
+                            vlSelf->top__DOT__Dcache_u__DOT__tagArray2
+                            [(0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                               >> 5U)))]));
     } else {
         vlSelf->top__DOT__Dcache_u__DOT__tagArray1_d = 0U;
         vlSelf->top__DOT__Dcache_u__DOT__bitValid2_d = 0U;
         vlSelf->top__DOT__Dcache_u__DOT__bitValid1_d = 0U;
+        vlSelf->top__DOT__Dcache_u__DOT__tagArray2_d = 0U;
     }
 }
 

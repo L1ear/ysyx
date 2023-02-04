@@ -1259,7 +1259,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+861,"top Dcache_u validWay1_q", false,-1);
         tracep->declBit(c+862,"top Dcache_u validWay2_q", false,-1);
         tracep->declBus(c+113,"top Dcache_u testTag", false,-1, 20,0);
-        tracep->declBit(c+114,"top Dcache_u replaceEnDelay", false,-1);
+        tracep->declBus(c+114,"top Dcache_u tagtest", false,-1, 20,0);
+        tracep->declBit(c+115,"top Dcache_u replaceEnDelay", false,-1);
         tracep->declBit(c+509,"top Dcache_u compareEn", false,-1);
         tracep->declArray(c+190,"top Dcache_u way1Data", false,-1, 255,0);
         tracep->declArray(c+198,"top Dcache_u way2Data", false,-1, 255,0);
@@ -1269,14 +1270,14 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+511,"top Dcache_u getdataEn", false,-1);
         tracep->declQuad(c+512,"top Dcache_u addrToRead", false,-1, 63,0);
         tracep->declBit(c+658,"top Dcache_u randomBit", false,-1);
-        tracep->declBit(c+114,"top Dcache_u missFlag", false,-1);
+        tracep->declBit(c+115,"top Dcache_u missFlag", false,-1);
         tracep->declBus(c+514,"top Dcache_u rdCnt", false,-1, 1,0);
         tracep->declArray(c+515,"top Dcache_u rdBuffer", false,-1, 255,0);
         tracep->declBit(c+523,"top Dcache_u replaceEn", false,-1);
-        tracep->declBit(c+115,"top Dcache_u wenDelay1", false,-1);
-        tracep->declBit(c+116,"top Dcache_u wenDelay2", false,-1);
+        tracep->declBit(c+116,"top Dcache_u wenDelay1", false,-1);
+        tracep->declBit(c+117,"top Dcache_u wenDelay2", false,-1);
         tracep->declQuad(c+524,"top Dcache_u wrDataLatch", false,-1, 63,0);
-        tracep->declBus(c+117,"top Dcache_u wrMaskLatch", false,-1, 7,0);
+        tracep->declBus(c+118,"top Dcache_u wrMaskLatch", false,-1, 7,0);
         tracep->declQuad(c+526,"top Dcache_u dirtyArray1", false,-1, 63,0);
         tracep->declQuad(c+528,"top Dcache_u dirtyArray2", false,-1, 63,0);
         tracep->declBit(c+530,"top Dcache_u wrLow", false,-1);
@@ -1290,8 +1291,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declArray(c+541,"top Dcache_u maskWay2_2", false,-1, 127,0);
         tracep->declBit(c+545,"top Dcache_u wrMiss", false,-1);
         tracep->declBit(c+546,"top Dcache_u rdMiss", false,-1);
-        tracep->declBit(c+118,"top Dcache_u replaceWay", false,-1);
-        tracep->declBus(c+119,"top Dcache_u tagtest", false,-1, 20,0);
+        tracep->declBit(c+119,"top Dcache_u replaceWay", false,-1);
         tracep->declBit(c+593,"top Dcache_u needWrBk", false,-1);
         tracep->declBit(c+338,"top Dcache_u needWrBk_Reg", false,-1);
         tracep->declBit(c+120,"top Dcache_u uncache", false,-1);
@@ -1793,13 +1793,13 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+111,(vlSelf->top__DOT__Dcache_u__DOT__validArray2),64);
         tracep->fullIData(oldp+113,(vlSelf->top__DOT__Dcache_u__DOT__tagArray1
                                     [0x3cU]),21);
-        tracep->fullBit(oldp+114,(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay));
-        tracep->fullBit(oldp+115,(vlSelf->top__DOT__Dcache_u__DOT__wenDelay1));
-        tracep->fullBit(oldp+116,(vlSelf->top__DOT__Dcache_u__DOT__wenDelay2));
-        tracep->fullCData(oldp+117,(vlSelf->top__DOT__Dcache_u__DOT__wrMaskLatch),8);
-        tracep->fullBit(oldp+118,(vlSelf->top__DOT__Dcache_u__DOT__replaceWay));
-        tracep->fullIData(oldp+119,(vlSelf->top__DOT__Dcache_u__DOT__tagArray2
+        tracep->fullIData(oldp+114,(vlSelf->top__DOT__Dcache_u__DOT__tagArray2
                                     [0x23U]),21);
+        tracep->fullBit(oldp+115,(vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay));
+        tracep->fullBit(oldp+116,(vlSelf->top__DOT__Dcache_u__DOT__wenDelay1));
+        tracep->fullBit(oldp+117,(vlSelf->top__DOT__Dcache_u__DOT__wenDelay2));
+        tracep->fullCData(oldp+118,(vlSelf->top__DOT__Dcache_u__DOT__wrMaskLatch),8);
+        tracep->fullBit(oldp+119,(vlSelf->top__DOT__Dcache_u__DOT__replaceWay));
         tracep->fullBit(oldp+120,(vlSelf->top__DOT__Dcache_u__DOT__uncache));
         tracep->fullCData(oldp+121,(vlSelf->top__DOT__axi_ls_u__DOT__wrCnt),2);
         tracep->fullCData(oldp+122,(vlSelf->top__DOT__axi_ls_u__DOT__r_state),2);
@@ -3629,7 +3629,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                              ? (IData)(
                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                         >> 0xbU))
-                                             : vlSelf->top__DOT__Dcache_u__DOT__tagArray1
+                                             : vlSelf->top__DOT__Dcache_u__DOT__tagArray2
                                             [(0x3fU 
                                               & (IData)(
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 

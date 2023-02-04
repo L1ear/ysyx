@@ -2374,10 +2374,18 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                            >> (0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                 >> 5U)))))) 
                & 1U);
+        vlSelf->top__DOT__Dcache_u__DOT__tagArray2_d 
+            = (0x1fffffU & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
+                             ? (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                        >> 0xbU)) : 
+                            vlSelf->top__DOT__Dcache_u__DOT__tagArray2
+                            [(0x3fU & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                               >> 5U)))]));
     } else {
         vlSelf->top__DOT__Dcache_u__DOT__tagArray1_d = 0U;
         vlSelf->top__DOT__Dcache_u__DOT__bitValid2_d = 0U;
         vlSelf->top__DOT__Dcache_u__DOT__bitValid1_d = 0U;
+        vlSelf->top__DOT__Dcache_u__DOT__tagArray2_d = 0U;
     }
     __Vtableidx5 = (((IData)(vlSelf->top__DOT__ls_axi_r_last_i) 
                      << 4U) | (((((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
@@ -4102,6 +4110,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__Dcache_u__DOT__tagArray2[__Vi0] = 0;
     }
     vlSelf->top__DOT__Dcache_u__DOT__tagArray1_d = 0;
+    vlSelf->top__DOT__Dcache_u__DOT__tagArray2_d = 0;
     vlSelf->top__DOT__Dcache_u__DOT__validWay1_q = 0;
     vlSelf->top__DOT__Dcache_u__DOT__validWay2_q = 0;
     vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay = 0;
