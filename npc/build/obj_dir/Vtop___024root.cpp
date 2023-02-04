@@ -2831,6 +2831,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                              & (IData)(vlSelf->top__DOT__Dcache_u__DOT__wenDelay1)) 
                                             | ((IData)(vlSelf->top__DOT__Dcache_u__DOT__way2Hit) 
                                                & (IData)(vlSelf->top__DOT__Dcache_u__DOT__wenDelay2))))));
+    vlSelf->top__DOT__Dcache_u__DOT__uncached = ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
+                                                 & (8U 
+                                                    != 
+                                                    (0xfU 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 0x1cU)))));
     vlSelf->top__DOT__ex_stage_u__DOT__rs2 = ((2U & (IData)(vlSelf->top__DOT__rs2_sel))
                                                ? ((1U 
                                                    & (IData)(vlSelf->top__DOT__rs2_sel))
@@ -5473,11 +5480,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                 << 3U) | (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[6U] 
                                           >> 0x1dU)))))
             ? (IData)(vlSelf->top__DOT__alures_ex) : 0U);
-    vlSelf->top__DOT__Dcache_u__DOT__uncached = ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
-                                                 & (8U 
-                                                    != 
-                                                    (vlSelf->top__DOT____Vcellinp__Dcache_u__addr_i 
-                                                     >> 0x1cU)));
 }
 
 extern const VlUnpacked<CData/*1:0*/, 128> Vtop__ConstPool__TABLE_0260afd5_0;
