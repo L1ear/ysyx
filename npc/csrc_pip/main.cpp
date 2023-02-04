@@ -283,7 +283,7 @@ void single_cycle(int i) {
   // else{
   //   top->ls_sram_wr_data_ok = 0;
   // }
-  // top->eval();
+  top->eval();
 #ifdef vcd
   fp ->dump(i);
 #endif
