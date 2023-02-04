@@ -155,7 +155,7 @@ always @(*) begin
         end
         uncacheOp: begin
             if(uncacheOpOk) begin
-                cacheNexState = idle;
+                cacheNexState = compare;
             end
             else begin
                 cacheNexState = uncacheOp;
