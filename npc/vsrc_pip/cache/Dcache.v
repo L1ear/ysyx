@@ -62,7 +62,7 @@ reg    [127:0] inDataWay1_1,inDataWay1_2,inDataWay2_1,inDataWay2_2;
 reg            wenWay1,wenWay2;
 wire uncached;
 
-assign uncached = exValid_i && ~(addr_i[31-:4] == 4'b1000);
+assign uncached = exValid_i && ~(reqLatch[31-:4] == 4'b1000);
 
 //这里多虑了，jal后的l/s指令并不会流到ex阶段
 // wire            reqCancel;
