@@ -620,10 +620,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                  << 5U))))))));
     vlSelf->top__DOT__DcacheRdValid = ((2U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                        & (0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state)));
-    vlSelf->top__DOT__Dcache_u__DOT__uncacheWrValid 
-        = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-           & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                      >> 0x20U)));
     vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i 
         = ((3U == (0x7fU & ((vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U] 
                              << 5U) | (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[6U] 
@@ -2673,7 +2669,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
             ? ((2U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                 ? ((1U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                     ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg)
-                        ? 7U : 1U) : (((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheWrValid) 
+                        ? 7U : 1U) : (((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg) 
                                        & (0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)))
                                        ? 1U : 6U)) : 0U)
             : ((2U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -4072,7 +4068,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg = 0;
     vlSelf->top__DOT__Dcache_u__DOT__uncache = 0;
     vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy = 0;
-    vlSelf->top__DOT__Dcache_u__DOT__uncacheWrValid = 0;
     vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A = 0;
     vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A = 0;
     for (int __Vi0=0; __Vi0<64; ++__Vi0) {

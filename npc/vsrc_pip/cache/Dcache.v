@@ -41,7 +41,9 @@ module Dcache(
     //axi写请求有效信号
     output                                  cacheWrValid_o,//
     output          [255:0]                 cacheWrData_o,//
-    output          [7:0]                   storeLenth//
+    output          [7:0]                   storeLenth,//
+
+    output          [7:0]                   storeMask
 );
 
 
@@ -538,7 +540,7 @@ wire    [31:0]  addrToWrite;
 assign addrToWrite = uncacheOpEn ? {reqLatch[31:3],3'b0} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = addrToWrite;
 
-assign cacheWrData_o = uncacheOpEn ? {192'b0,storeData} : randomBit ? way2Data : way1Data;
+assign cacheWrData_o = uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data : way1Data;
 assign storeLenth = uncacheOpEn ? 'd0 : 'd3;
 
 

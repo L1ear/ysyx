@@ -2845,8 +2845,10 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                   >> 0x20U)))) 
                                    & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit)))));
         tracep->fullBit(oldp+544,((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))));
-        tracep->fullBit(oldp+545,(vlSelf->top__DOT__Dcache_u__DOT__uncacheWrValid));
-        tracep->fullBit(oldp+546,(((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheWrValid) 
+        tracep->fullBit(oldp+545,(((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                   & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                              >> 0x20U)))));
+        tracep->fullBit(oldp+546,(((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg) 
                                    & (0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)))));
         VL_EXTEND_WQ(128,64, __Vtemp327, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
         __Vtemp337[0U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -3101,7 +3103,9 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                                  vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[1U])))) 
                                    >> 0x20U)) >> 5U);
         tracep->fullWData(oldp+580,(__Vtemp355),315);
-        tracep->fullBit(oldp+590,((((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheWrValid) 
+        tracep->fullBit(oldp+590,(((((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                     & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                >> 0x20U))) 
                                     | ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                          & (IData)(
                                                    (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
@@ -3525,7 +3529,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                               ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg)
                                                   ? 7U
                                                   : 1U)
-                                              : (((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheWrValid) 
+                                              : (((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg) 
                                                   & (0U 
                                                      == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)))
                                                   ? 1U
