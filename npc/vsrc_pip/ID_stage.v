@@ -64,7 +64,7 @@ imm_ext imm_ext_u(
     .ext_op_i(ext_op),
     .imm_o(imm)
 );
-regfile regfile_u(
+regfiles regfile_u(
     .clk(clk),
     .rs1_addr_i(rs1_idx),
     .rs1_data_o(rs1),

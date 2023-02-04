@@ -17,7 +17,6 @@ module axi_if # (
     output reg [RW_DATA_WIDTH-1:0]      data_read_o,        //IF&MEM输入信号
     // input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //IF&MEM输入信号
     input  [RW_ADDR_WIDTH-1:0]          rw_addr_i,          //IF&MEM输入信号
-    // input  [7:0]                        fetchLenth,         //cache模块发来的取值长度
     // input  [7:0]                        rw_size_i,          //IF&MEM输入信号
 
     output  reg                         instr_fetching,
@@ -91,7 +90,7 @@ reg     [`XLEN-1:0]     addr_reg;
               else                  r_state_next = r_state_ar_wait;
           end
           r_state_r_wait: begin
-              if(axi_r_last_i)     r_state_next = r_state_trans_ok;
+              if(axi_r_valid_i)     r_state_next = r_state_trans_ok;
               else                  r_state_next = r_state_r_wait;
           end
           r_state_trans_ok: begin
@@ -208,7 +207,7 @@ end
     parameter AXI_SIZE      = $clog2(AXI_DATA_WIDTH / 8);
     wire [AXI_ID_WIDTH-1:0] axi_id              = {AXI_ID_WIDTH{1'b0}};
     wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
-    wire [7:0] axi_len      =  8'd4 ;                           //lenth为长度减1
+    wire [7:0] axi_len      =  8'b0 ;
     wire [2:0] axi_size     = AXI_SIZE[2:0];
     // // 写地址通道  以下没有备注初始化信号的都可能是你需要产生和用到的
     // assign axi_aw_valid_o   = w_state_addr;

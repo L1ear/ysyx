@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module decoder (
     input           [`XLEN-1:0]     pc_i,
     input           [`inst_len-1:0] instr_i,

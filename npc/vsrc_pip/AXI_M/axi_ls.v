@@ -15,7 +15,7 @@ module axi_ls # (
     input                               wr_valid_i,         //写有效
 	input                               rw_valid_i,         //读有效
     output reg                          wr_ok_o,            //读完成
-	output reg                          rw_ready_o,         //读完成
+	output reg                             rw_ready_o,         //读完成
     output reg [RW_DATA_WIDTH-1:0]      data_read_o,        //读数据
     input  [RW_DATA_WIDTH-1:0]          rw_w_data_i,        //写数据
     input  [AXI_STRB_WIDTH-1:0]         rw_w_mask_i,        
@@ -122,6 +122,7 @@ module axi_ls # (
                 end
             end
             w_state_b_wait_trans_ok: begin
+//TODO**************************************************************************************************************
                 if(wr_valid_i) begin
                     // if(trans_ok) begin
                         if((rw_addr_i != addr_reg ||rw_w_data_i != wr_data_reg) && trans_ok) begin
@@ -356,7 +357,7 @@ end
 
     // 写数据通道
     assign axi_w_valid_o    = w_valid;
-    wire    [5:0]      shift = {rw_addr_i[2:0],3'b0};
+    wire    [5:0]      shift = {3'b0,rw_addr_i[2:0]}<<3;
     assign axi_w_data_o     = rw_w_data_i << shift;
     assign axi_w_strb_o     = rw_w_mask_i << rw_addr_i[2:0];
     assign axi_w_last_o     = w_valid;

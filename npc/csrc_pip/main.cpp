@@ -7,12 +7,7 @@
 extern CPU_state cpu;
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
-
-void device_update();
-void init_screen();
-
-uint64_t nr_cycle = 0;
-uint64_t nr_instr = 0;
+int nr_instr = 0;
 /* for vcd */
 #if nvboard == 0
 static VerilatedVcdC* fp;
@@ -98,9 +93,7 @@ int main(int argc, char *argv[])
 
     
     init_monitor(argc, argv);
-    init_screen();
-   
-    //********************************************************************
+
     mem_ptr.arid    = &(top->axi_ar_id_o); 
     mem_ptr.araddr  = &(top->axi_ar_addr_o);  
     mem_ptr.arlen   = &(top->axi_ar_len_o);  
@@ -179,7 +172,7 @@ int main(int argc, char *argv[])
 
     axi4_ref<64,64,4> mem_ref(mem_ptr);
     memref = &mem_ref;
-    //*****************************************************************************************
+
     // assert(&((*memref).awid));
     sim_time = reset(sim_time);
   
@@ -222,28 +215,23 @@ uint64_t pc = 0;
 uint64_t instr_last;
 char  stall;
 void single_cycle(int i) {
-  device_update();
 //上升沿
   top->clk = 1; 
-  //********************************************
   mmio_sigs.update_input(*mmioref);
   mem_sigs.update_input(*memref);
-  //********************************************
   top->eval();
-  //********************************************
+  
   mem.beat(mem_sigs_ref);
   mmio.beat(mmio_sigs_ref);
   while (uart.exist_tx()) {
-    assert(0);
+    // assert(0);
     //             printf("1\r\n");
-    printf("%lx\n",top->axi_mmio_w_data_o);
                 char c = uart.getc();
-                printf("%d\n",c);
+                printf("%c",c);
                 fflush(stdout);
             }
   mmio_sigs.update_output(*mmioref);
   mem_sigs.update_output(*memref);
-  //********************************************
   // assert(!uart.irq());
   // //读指令
   // if(top->sram_ren){
@@ -293,26 +281,25 @@ void single_cycle(int i) {
     for (r = 0; r < 32; r++) {
       cpu.gpr[r] = cpu_gpr[r];
     }
-#endif
     if((cpu.pc != 0x7ffffffc) && (cpu.pc != 0) && (instr_last != 0)&& (instr_last != 0x100073) && (stall == 1)){ 
       // assert(0); 
       if(en == 1 )
         {
-#ifdef  difftest
+
           if(instr_last == 0x3ea78c23 ||instr_last == 0x0487b783){    //跳过printf和读取时间
             difftest_skip_ref();
           }
-          Log("%08lx",instr_last);
+          Log("%lx\n",instr_last);
           difftest_step(cpu.pc);
-#endif          
-        
-          nr_instr++;
+          
+          
+          // nr_instr++;
         }
       start = 0;
     }
-
     instr_last = top->instr_diff;
     stall = top->stall_n_diff;
+#endif
     cpu.pc = top->pc_diff;
     
     
@@ -342,7 +329,7 @@ void ebreak(){
   en = 0;
   if(top->regA0 == 0){
     Log("npc: \33[1;32mHIT GOOD TRAP\33[0m at pc = %08x\n",cpu.pc);
-
+    Log("after %d instructions", nr_instr);
   }
     
   else
@@ -353,88 +340,4 @@ void ebreak(){
   }
 }
 
-extern "C"  void axiSlaveRead(long long raddr, char size, long long* rdata){
-      // printf("addr:%016llx \nsize: %d\ndata: %016llx\n",raddr, 2^size, memread(raddr & ~0x7ull, 8, pc));
-      // assert(0);
-      *rdata = memread(raddr & ~0x7ull, pow(2,(double)size), 0);
-}
-extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char wmask){
-    uint8_t WRdata[8] = {wdata, wdata>>8, wdata>>16, wdata>>24, wdata>>32, wdata>>40, wdata>>48, wdata>>56};
-    // printf("addr:%016llx\n",raddr);
-    // printf("addr:%016llx \nmask:%d\no_data:%016llx\nWRdata:%016llx\n\n",waddr,(uint8_t)wmask, wdata, *(uint8_t*)(WRdata+7));
-    // assert(0);
-    switch (size)
-    {
-    case 0:
-        switch ((uint8_t)wmask)
-        {
-        case 1:
-          memwrite(waddr, 1, WRdata[0], 0);
-          break;
-        case 2:
-          memwrite(waddr, 1, WRdata[1], 0);
-          break;
-        case 4:
-          memwrite(waddr, 1, WRdata[2], 0);
-          break;
-        case 8:
-          memwrite(waddr, 1, WRdata[3], 0);
-          break;
-        case 16:
-          memwrite(waddr, 1, WRdata[4], 0);
-          break;
-        case 32:
-          memwrite(waddr, 1, WRdata[5], 0);
-          break;
-        case 64:
-          memwrite(waddr, 1, WRdata[6], 0);
-          break;
-        case 128:
-          memwrite(waddr, 1, WRdata[7], 0);
-          // printf("**************************\naddr:%016llx \no_data:%016llx\nWRdata:%016llx\n*********************\n",waddr, wdata, *(uint8_t*)(WRdata+7));
-          break;
-        default:
-          break;
-        }
-      break;
-    case 1:
-      switch ((uint8_t)wmask)
-      {
-      case 3:
-      // assert(0);
-        // printf("addr:%016llx \nsize: %d\ndata: %016llx\n",waddr, 2, *(uint16_t *)WRdata);
-        memwrite(waddr, 2, *(uint16_t *)WRdata, 0);
-        break;
-      case 12:
-        memwrite(waddr, 2, *(uint16_t *)(WRdata+2), 0);
-        break;
-      case 48:
-        memwrite(waddr, 2, *(uint16_t *)(WRdata+4), 0);
-        break;
-      case 192:
-        memwrite(waddr, 2, *(uint16_t *)(WRdata+6), 0);
-        break;
-      default:
-        break;
-      }
-      break;
-    case 2:
-      switch ((uint8_t)wmask)
-      {
-      case 15:
-        memwrite(waddr, 4, *(uint32_t *)WRdata, 0);
-        break;
-      case 240:
-        memwrite(waddr, 4, *(uint32_t *)(WRdata+4), 0);
-        break;
-      default:
-        break;
-      }
-    break;
-    case 3:
-      memwrite(waddr, 8, *(uint64_t *)WRdata, 0);
-    break;
-    default:
-      break;
-    }
-}
+
