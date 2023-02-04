@@ -555,7 +555,7 @@ wire uncacheOpEn = cacheCurState == uncacheOp;
 // cacheRdValid_o,//
 // axiRdReady,//
 
-assign fetchLenth = uncacheOpEn ? 'b011 : 'b011;    //根据不同请求决定
+assign fetchLenth = uncacheOpEn ? 'b001 : 'b011;    //根据不同请求决定
 // rdLast_i,//
 // cacheRdAddr_o,//
 
