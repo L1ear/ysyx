@@ -247,7 +247,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+815,"top ls_axi_aw_id_o", false,-1, 3,0);
         tracep->declBus(c+807,"top ls_axi_aw_user_o", false,-1, 0,0);
         tracep->declBus(c+816,"top ls_axi_aw_len_o", false,-1, 7,0);
-        tracep->declBus(c+805,"top ls_axi_aw_size_o", false,-1, 2,0);
+        tracep->declBus(c+809,"top ls_axi_aw_size_o", false,-1, 2,0);
         tracep->declBus(c+810,"top ls_axi_aw_burst_o", false,-1, 1,0);
         tracep->declBit(c+811,"top ls_axi_aw_lock_o", false,-1);
         tracep->declBus(c+817,"top ls_axi_aw_cache_o", false,-1, 3,0);
@@ -434,7 +434,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+815,"top axi_crossbar_u ls_axi_aw_id_i", false,-1, 3,0);
         tracep->declBus(c+807,"top axi_crossbar_u ls_axi_aw_user_i", false,-1, 0,0);
         tracep->declBus(c+816,"top axi_crossbar_u ls_axi_aw_len_i", false,-1, 7,0);
-        tracep->declBus(c+805,"top axi_crossbar_u ls_axi_aw_size_i", false,-1, 2,0);
+        tracep->declBus(c+809,"top axi_crossbar_u ls_axi_aw_size_i", false,-1, 2,0);
         tracep->declBus(c+810,"top axi_crossbar_u ls_axi_aw_burst_i", false,-1, 1,0);
         tracep->declBit(c+811,"top axi_crossbar_u ls_axi_aw_lock_i", false,-1);
         tracep->declBus(c+817,"top axi_crossbar_u ls_axi_aw_cache_i", false,-1, 3,0);
@@ -566,7 +566,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+815,"top axi_crossbar_u axi_aw_id", false,-1, 3,0);
         tracep->declBus(c+807,"top axi_crossbar_u axi_aw_user", false,-1, 0,0);
         tracep->declBus(c+816,"top axi_crossbar_u axi_aw_len", false,-1, 7,0);
-        tracep->declBus(c+805,"top axi_crossbar_u axi_aw_size", false,-1, 2,0);
+        tracep->declBus(c+809,"top axi_crossbar_u axi_aw_size", false,-1, 2,0);
         tracep->declBus(c+810,"top axi_crossbar_u axi_aw_burst", false,-1, 1,0);
         tracep->declBit(c+811,"top axi_crossbar_u axi_aw_lock", false,-1);
         tracep->declBus(c+817,"top axi_crossbar_u axi_aw_cache", false,-1, 3,0);
@@ -1376,7 +1376,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+815,"top axi_ls_u axi_aw_id_o", false,-1, 3,0);
         tracep->declBus(c+807,"top axi_ls_u axi_aw_user_o", false,-1, 0,0);
         tracep->declBus(c+816,"top axi_ls_u axi_aw_len_o", false,-1, 7,0);
-        tracep->declBus(c+805,"top axi_ls_u axi_aw_size_o", false,-1, 2,0);
+        tracep->declBus(c+809,"top axi_ls_u axi_aw_size_o", false,-1, 2,0);
         tracep->declBus(c+810,"top axi_ls_u axi_aw_burst_o", false,-1, 1,0);
         tracep->declBit(c+811,"top axi_ls_u axi_aw_lock_o", false,-1);
         tracep->declBus(c+817,"top axi_ls_u axi_aw_cache_o", false,-1, 3,0);
