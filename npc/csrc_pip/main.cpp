@@ -300,7 +300,7 @@ void single_cycle(int i) {
         {
 #ifdef  difftest
           //               写串口的指令
-          if(instr_last == 0x3ea78e23 ||instr_last == 0x0487b783){    //跳过printf和读取时间
+          if(instr_last == 0x3ea78e23 ||instr_last == 0x3f87b783){    //跳过printf和读取时间
             difftest_skip_ref();
           }
           Log("%08lx",instr_last);
