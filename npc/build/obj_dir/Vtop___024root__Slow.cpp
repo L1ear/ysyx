@@ -70,7 +70,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     // Body
     vlSelf->axi_aw_prot_o = 0U;
     vlSelf->axi_aw_user_o = 0U;
-    vlSelf->axi_aw_len_o = 0U;
     vlSelf->axi_aw_size_o = 0U;
     vlSelf->axi_aw_lock_o = 0U;
     vlSelf->axi_aw_qos_o = 0U;
@@ -81,7 +80,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->axi_ar_qos_o = 0U;
     vlSelf->axi_mmio_aw_prot_o = 0U;
     vlSelf->axi_mmio_aw_user_o = 0U;
-    vlSelf->axi_mmio_aw_len_o = 0U;
     vlSelf->axi_mmio_aw_size_o = 0U;
     vlSelf->axi_mmio_aw_lock_o = 0U;
     vlSelf->axi_mmio_aw_qos_o = 0U;
@@ -103,6 +101,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->axi_mmio_aw_burst_o = 1U;
         vlSelf->axi_mmio_aw_cache_o = 0xfU;
         vlSelf->axi_mmio_w_strb_o = 1U;
+        vlSelf->axi_aw_len_o = 0U;
+        vlSelf->axi_mmio_aw_len_o = (0xffU & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__lenthReg));
     } else {
         vlSelf->axi_aw_addr_o = vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg;
         vlSelf->axi_aw_id_o = 1U;
@@ -114,6 +114,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->axi_mmio_aw_burst_o = 0U;
         vlSelf->axi_mmio_aw_cache_o = 0U;
         vlSelf->axi_mmio_w_strb_o = 0U;
+        vlSelf->axi_aw_len_o = (0xffU & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__lenthReg));
+        vlSelf->axi_mmio_aw_len_o = 0U;
     }
     vlSelf->top__DOT__ls_axi_w_data_o = (((QData)((IData)(
                                                           vlSelf->top__DOT__axi_ls_u__DOT__wr_data_reg[

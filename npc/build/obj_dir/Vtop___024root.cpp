@@ -1989,6 +1989,14 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp253;
     VlWide<3>/*95:0*/ __Vtemp254;
     // Body
+    if ((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                       >> 0x1dU)))) {
+        vlSelf->axi_aw_len_o = 0U;
+        vlSelf->axi_mmio_aw_len_o = (0xffU & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__lenthReg));
+    } else {
+        vlSelf->axi_aw_len_o = (0xffU & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__lenthReg));
+        vlSelf->axi_mmio_aw_len_o = 0U;
+    }
     vlSelf->top__DOT__ls_axi_w_data_o = (((QData)((IData)(
                                                           vlSelf->top__DOT__axi_ls_u__DOT__wr_data_reg[
                                                           (((IData)(0x3fU) 
