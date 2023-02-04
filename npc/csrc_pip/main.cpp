@@ -234,7 +234,7 @@ void single_cycle(int i) {
   mem.beat(mem_sigs_ref);
   mmio.beat(mmio_sigs_ref);
   while (uart.exist_tx()) {
-    // assert(0);
+    assert(0);
     //             printf("1\r\n");
     printf("%lx\n",top->axi_mmio_w_data_o);
                 char c = uart.getc();

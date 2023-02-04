@@ -71,6 +71,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->axi_aw_prot_o = 0U;
     vlSelf->axi_aw_user_o = 0U;
     vlSelf->axi_aw_len_o = 0U;
+    vlSelf->axi_aw_size_o = 0U;
     vlSelf->axi_aw_lock_o = 0U;
     vlSelf->axi_aw_qos_o = 0U;
     vlSelf->axi_aw_region_o = 0U;
@@ -81,6 +82,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->axi_mmio_aw_prot_o = 0U;
     vlSelf->axi_mmio_aw_user_o = 0U;
     vlSelf->axi_mmio_aw_len_o = 0U;
+    vlSelf->axi_mmio_aw_size_o = 0U;
     vlSelf->axi_mmio_aw_lock_o = 0U;
     vlSelf->axi_mmio_aw_qos_o = 0U;
     vlSelf->axi_mmio_aw_region_o = 0U;
@@ -93,23 +95,19 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                        >> 0x1dU)))) {
         vlSelf->axi_aw_addr_o = 0ULL;
         vlSelf->axi_aw_id_o = 0U;
-        vlSelf->axi_aw_size_o = 0U;
         vlSelf->axi_aw_burst_o = 0U;
         vlSelf->axi_aw_cache_o = 0U;
         vlSelf->axi_mmio_aw_addr_o = vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg;
         vlSelf->axi_mmio_aw_id_o = 1U;
-        vlSelf->axi_mmio_aw_size_o = 3U;
         vlSelf->axi_mmio_aw_burst_o = 1U;
         vlSelf->axi_mmio_aw_cache_o = 0xfU;
     } else {
         vlSelf->axi_aw_addr_o = vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg;
         vlSelf->axi_aw_id_o = 1U;
-        vlSelf->axi_aw_size_o = 3U;
         vlSelf->axi_aw_burst_o = 1U;
         vlSelf->axi_aw_cache_o = 0xfU;
         vlSelf->axi_mmio_aw_addr_o = 0ULL;
         vlSelf->axi_mmio_aw_id_o = 0U;
-        vlSelf->axi_mmio_aw_size_o = 0U;
         vlSelf->axi_mmio_aw_burst_o = 0U;
         vlSelf->axi_mmio_aw_cache_o = 0U;
     }
