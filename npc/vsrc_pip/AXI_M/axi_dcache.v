@@ -161,7 +161,7 @@ end
 assign aw_valid = w_state == w_state_aw_wait;
 assign w_valid  = w_state == w_state_dw_wait;
 assign b_ready  = (w_state == w_state_b_wait_trans_ok);
-assign wrLast   = wrCnt == lenthReg[1:0];
+assign wrLast   = w_state == w_state_dw_wait && wrCnt == lenthReg[1:0];
 assign wr_ready_o = w_state == w_state_idle;
     // always @(posedge clock) begin
     //     if((w_state == w_state_b_wait_trans_ok) && axi_b_valid_i) begin
