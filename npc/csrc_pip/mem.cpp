@@ -12,6 +12,9 @@ axi4_ptr<64,64,4> mem_ptr;
 
 uint8_t imem[0x8000000] __attribute((aligned(4096)));
 uint8_t* guest_to_host(uint64_t paddr) { return imem + paddr - 0x80000000; }
+uint32_t i8042_data_io_handler(uint32_t offset, int len, bool is_write);
+extern void *vmem[400*300*32];
+extern int vgactl_sync;
 
 //for diff-test
 static char *diff_so_file = NULL;
@@ -89,15 +92,28 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   if(addr == 0xa0000048){
     // Log("%ld\n",get_time());
     // difftest_skip_ref();
-    Log("get time: %08x\n",instrAddr);
+    // Log("get time: %08x\n",instrAddr);
     return get_time();
   }
-  if(addr == 0xa00003f8){
-    // difftest_skip_ref();
-    return 0;
+  if(addr == 0xa0000060){
+    // printf("read key:%x\n",i8042_data_io_handler(0,0,0));
+    // if(i8042_data_io_handler(0,0,0) != 0) assert(0);
+    return (uint64_t)i8042_data_io_handler(0,0,0);
+    
+    // assert(0);
+  }
+  // if(addr == 0xa00003f8){
+  //   // difftest_skip_ref();
+  //   return 0;
+  // }
+  if(addr == 0xa0000100){
+    printf("get vga_cfg");
+    assert(0);
+    return (400 << 16) | 300;
   }
   else if(addr>0x88000000||addr<0x80000000){
     printf("read %016lx out of boundary!\nPC: %08lx\n",addr,instrAddr);
+    // assert(0);
     return 0;
     }
   else
@@ -124,29 +140,42 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
 
 
 void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
+    uint64_t buf;
+    buf = data;
   if(addr == 0xa00003f8){
     // difftest_skip_ref();
 
     printf("%c",(uint8_t)data);
   }
+  else if(addr == 0xa0000104){
+    vgactl_sync = data;
+  }
+  else if(addr>=0xa1000000&&addr<0xa13A9800){
+    // printf("write%x to \nvmem:%016llx\nplus:%016llx\nvmem:%016llx\n\n",data,(uint64_t)vmem+addr-0xa1000000,addr,vmem);
+    *(uint32_t*)((uint64_t)vmem + addr-0xa1000000) = (uint32_t)data;
+  }
   else if(addr>0x88000000||addr<0x80000000){
-      printf("%08lx: write out of boundary!\nPC: %08lx\n",addr, instrAddr);
+      printf("\n%08lx: write %d bytes out of boundary!\nPC: %08d\n",addr, len, sim_time);
       // assert(0);
       } 
   else 
     switch (len) {
     case 1:
       *(uint8_t  *)(imem + addr - 0x80000000) = data; 
+      mem.write(addr,1,(uint8_t *)(&buf));
       return;
     case 2: 
       *(uint16_t *)(imem + addr - 0x80000000) = data; 
+      mem.write(addr,2,(uint8_t *)(&buf));
       return;
     case 4: 
       *(uint32_t *)(imem + addr - 0x80000000) = data; 
+      mem.write(addr,4,(uint8_t *)(&buf));
       return;
     case 8: 
       // printf("sw:%016llx\n",data);
       *(uint64_t *)(imem + addr - 0x80000000) = data; 
+      mem.write(addr,8,(uint8_t *)(&buf));
       // printf("after:%016llx\n",*(uint64_t *)(imem + addr - 0x80000000));
       return;
     default: break;

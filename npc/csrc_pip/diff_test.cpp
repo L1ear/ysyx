@@ -6,7 +6,7 @@ extern uint8_t imem;
 extern CPU_state cpu;
 extern const char* regs[];
 extern int err;
-extern int nr_instr;
+
 
 void (*ref_difftest_memcpy)(paddr_t addr, void *buf, size_t n, bool direction) = NULL;
 void (*ref_difftest_regcpy)(void *dut, bool direction) = NULL;
@@ -73,7 +73,7 @@ static inline bool difftest_check_reg(const char *name, uint64_t pc, word_t ref,
 
 void difftest_step(long long pc) {
 
-  Log("diff step!!!PC: %08lx",pc);
+  Log("diff step!!!PC: %08lx, time:%d",pc,sim_time);
   CPU_state ref_r;
   // if (skip_dut_nr_inst > 0) {
   //   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);

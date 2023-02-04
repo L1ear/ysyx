@@ -80,12 +80,15 @@ static int cmd_q(char *args) {
 static int cmd_c(char *args) {
     while(en)
     {
+      nr_cycle++;
       single_cycle(sim_time);
         // nvboard_update();
       sim_time = sim_time+2;
         //if(i>=1000) en = 0;
     }
     Log("program has finished,please quit and restart\n");
+    Log("after %d instructions and %d clock cycle", nr_instr, nr_cycle);
+    Log("IPC: %f", nr_instr*1.0/(uint64_t)nr_cycle);
   return 0;
 }
 
@@ -106,6 +109,7 @@ static int cmd_si(char *args) {
     }
   else 
     Log("program has finished,please quit and restart\n");
+        
     return 0;
 }
 

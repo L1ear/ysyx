@@ -21,6 +21,12 @@
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
 extern Vtop* top;
+extern uint64_t nr_instr;
+
+#define CONFIG_HAS_KEYBOARD 1
+#define CONFIG_VGA_SIZE_400x300 1
+#define CONFIG_VGA_SHOW_SCREEN 1
+#define TIMER_HZ 60
 
 #define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
 #define BITMASK(bits) ((1ull << (bits)) - 1)
@@ -36,6 +42,7 @@ extern Vtop* top;
 extern int sim_time;
 extern int en;
 extern uint64_t *cpu_gpr;
+extern uint64_t nr_cycle;
 
 static int cmd_help(char *args);
 void sdb_mainloop();
@@ -85,6 +92,21 @@ typedef riscv64_CPU_state CPU_state;
   do { \
     printf(__VA_ARGS__); \
   } while (0)
+
+
+// macro concatenation
+#define concat_temp(x, y) x ## y
+#define concat(x, y) concat_temp(x, y)
+
+
+#define io_read(reg) \
+  ({ reg##_T __io_param; \
+    ioe_read(reg, &__io_param); \
+    __io_param; })
+
+#define io_write(reg, ...) \
+  ({ reg##_T __io_param = (reg##_T) { __VA_ARGS__ }; \
+    ioe_write(reg, &__io_param); })
 
 
 #endif
