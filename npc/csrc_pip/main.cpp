@@ -165,7 +165,7 @@ int main(int argc, char *argv[])
       
     
     
-    std::thread uart_input_thread(uart_input,std::ref(uart));
+    // std::thread uart_input_thread(uart_input,std::ref(uart));
     assert(mmio.add_dev(0xa00003f8,8,&uart));
 
     Log("axi check complete!");
@@ -224,7 +224,7 @@ void single_cycle(int i) {
   mem.beat(mem_sigs_ref);
   mmio.beat(mmio_sigs_ref);
   while (uart.exist_tx()) {
-    // assert(0);
+    assert(0);
     //             printf("1\r\n");
                 char c = uart.getc();
                 printf("%c",c);
