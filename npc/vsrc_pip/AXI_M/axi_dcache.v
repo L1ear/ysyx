@@ -160,8 +160,8 @@ end
 // //输出逻辑
 assign aw_valid = w_state == w_state_aw_wait;
 assign w_valid  = w_state == w_state_dw_wait;
-assign b_ready  = (w_state == w_state_b_wait_trans_ok) && axi_b_valid_i;
-assign wrLast   = wrCnt == lenthReg[1:0];
+assign b_ready  = (w_state == w_state_b_wait_trans_ok);
+assign wrLast   = w_state == w_state_dw_wait && wrCnt == lenthReg[1:0];
 assign wr_ready_o = w_state == w_state_idle;
     // always @(posedge clock) begin
     //     if((w_state == w_state_b_wait_trans_ok) && axi_b_valid_i) begin
@@ -271,7 +271,7 @@ assign data_read_o = axi_r_data_i;
     assign axi_aw_id_o      = axi_id;                                                                           //初始化信号即可
     assign axi_aw_user_o    = axi_user;                                                                         //初始化信号即可
     assign axi_aw_len_o     = storeLenth;
-    assign axi_aw_size_o    = axi_size;
+    assign axi_aw_size_o    = 0;
     assign axi_aw_burst_o   = `AXI_BURST_TYPE_INCR;                                                             
     assign axi_aw_lock_o    = 1'b0;                                                                             //初始化信号即可
     assign axi_aw_cache_o   = `AXI_AWCACHE_WRITE_BACK_READ_AND_WRITE_ALLOCATE;                                  //初始化信号即可
@@ -281,10 +281,10 @@ assign data_read_o = axi_r_data_i;
     // 写数据通道
     assign axi_w_valid_o    = w_valid;
     wire    [5:0]      shift = {rw_addr_i[2:0],3'b0};
-    // assign axi_w_data_o     = rw_w_data_i << shift;
+    assign axi_w_data_o     = wr_data_reg[63:0] << shift;
+    assign axi_w_strb_o     = rw_w_mask_i << rw_addr_i[2:0];
+    // assign axi_w_data_o     = wr_data_reg[wrCnt*64+:64];
     // assign axi_w_strb_o     = rw_w_mask_i << rw_addr_i[2:0];
-    assign axi_w_data_o     = wr_data_reg[wrCnt*64+:64];
-    assign axi_w_strb_o     = 'hff;//rw_w_mask_i << rw_addr_i[2:0];
     assign axi_w_last_o     = wrLast;
     assign axi_w_user_o     = axi_user;                                                                         //初始化信号即可
 
