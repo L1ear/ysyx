@@ -45,7 +45,7 @@ void uart_input(uartlite &uart) {
     tmp.c_lflag &=(~ICANON & ~ECHO);
     tcsetattr(STDIN_FILENO,TCSANOW,&tmp);
     while (1) {
-      assert(0);
+      // assert(0);
         char c = getchar();
         
         if (c == 10) c = 13; // convert lf to cr
@@ -172,7 +172,7 @@ int main(int argc, char *argv[])
       
     
     
-    std::thread uart_input_thread(uart_input,std::ref(uart));
+    // std::thread uart_input_thread(uart_input,std::ref(uart));
     assert(mmio.add_dev(0xa00003f8,8,&uart));
 
     Log("axi check complete!");
