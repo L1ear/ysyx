@@ -513,6 +513,9 @@ always @(posedge clk or negedge rst_n) begin
         replaceWay <= randomBit;
     end
 end
+
+wire [20:0] tagtest = tagArray2['h23];
+
 //需要写回替换的情况：
 //写miss，并且要写入的index数据为脏; 读miss，并且要读的index为脏 
 wire        needWrBk;
