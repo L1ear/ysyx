@@ -93,7 +93,7 @@ always @(*) begin
     case (cacheCurState)
         idle: begin
             //在uncache请求是不进行cache操作
-            if(exValid_i && stall_n && ~uncached) begin       
+            if(exValid_i && stall_n ) begin       
                 cacheNexState = compare;
             end
             else begin
@@ -101,12 +101,15 @@ always @(*) begin
             end
         end
         compare: begin
-            if(cacheHit) begin
+            if(uncached) begin
+                cacheNexState = uncacheOp;
+            end
+            else if(cacheHit) begin
                 //后面的那个条件是为了防止在stall的条件下，ex阶段的指令已经流到了ls阶段，exValid失效，但这条指
                 //令由于被stall住了，数据并没有被lsu接受，所以必须要呆在compare阶段保证数据输出，等到stall结束后再回到idle
                 //但是对于写请求却不需要这样处理，因为写入只要一个周期，写入了就ok了，不需要一直呆在compare
                 if(exValid_i && stall_n || lsValid_i && ~reqLatch[32] && ~stall_n) begin
-                    cacheNexState = uncached ? uncacheOp : compare;     //若触发uncache条件则进入uncacheOp处理
+                    cacheNexState = compare;     //若触发uncache条件则进入uncacheOp处理
                 end
                 else begin
                     cacheNexState = idle;

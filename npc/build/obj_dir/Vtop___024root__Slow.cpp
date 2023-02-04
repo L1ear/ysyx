@@ -1641,6 +1641,13 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                      << 
                                                      (7U 
                                                       & (IData)(vlSelf->top__DOT__Dcache_u__DOT__reqLatch))));
+    vlSelf->top__DOT__Dcache_u__DOT__uncached = ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i) 
+                                                 & (8U 
+                                                    != 
+                                                    (0xfU 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                >> 0x1cU)))));
     vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc 
         = ((0x341U == (0xfffU & ((vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[5U] 
                                   << 0xaU) | (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
@@ -1753,13 +1760,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         Vtop__ConstPool__TABLE_0260afd5_0[__Vtableidx4];
     vlSelf->top__DOT__Dcache_u__DOT__cacheHit = ((IData)(vlSelf->top__DOT__Dcache_u__DOT__way1Hit) 
                                                  | (IData)(vlSelf->top__DOT__Dcache_u__DOT__way2Hit));
-    vlSelf->top__DOT__Dcache_u__DOT__uncached = ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
-                                                 & (8U 
-                                                    != 
-                                                    (0xfU 
-                                                     & (IData)(
-                                                               (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                >> 0x1cU)))));
     vlSelf->top__DOT__ex_stage_u__DOT__rs2 = ((2U & (IData)(vlSelf->top__DOT__rs2_sel))
                                                ? ((1U 
                                                    & (IData)(vlSelf->top__DOT__rs2_sel))
