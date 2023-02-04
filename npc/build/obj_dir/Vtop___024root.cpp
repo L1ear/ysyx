@@ -2744,7 +2744,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_len 
         = ((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
             ? 3U : ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                     ? 1U : 3U));
+                     ? 0U : 3U));
     if ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
         vlSelf->top__DOT__ls_axi_w_strb_o = (0xffU 
                                              & (IData)(vlSelf->top__DOT__Dcache_u__DOT__storeMask));
