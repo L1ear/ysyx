@@ -284,7 +284,7 @@ assign data_read_o = axi_r_data_i;
     assign axi_w_data_o     = wr_data_reg[63:0] << shift;
     assign axi_w_strb_o     = 'hff;
     // assign axi_w_data_o     = wr_data_reg[wrCnt*64+:64];
-    assign axi_w_strb_o     = rw_w_mask_i << rw_addr_i[2:0];
+    assign axi_w_strb_o     = rw_w_mask_i << wrAddr_reg[2:0];
     assign axi_w_last_o     = wrLast;
     assign axi_w_user_o     = axi_user;                                                                         //初始化信号即可
 
