@@ -236,7 +236,7 @@ void single_cycle(int i) {
   while (uart.exist_tx()) {
     // assert(0);
     //             printf("1\r\n");
-    printf("%lx\n",top->axi_mmio_w_data_o);
+    // printf("%lx\n",top->axi_mmio_w_data_o);
                 char c = uart.getc();
                 printf("%c\n",c);
                 fflush(stdout);
