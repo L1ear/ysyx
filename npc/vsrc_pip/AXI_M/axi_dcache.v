@@ -150,6 +150,9 @@ always @(posedge clock or negedge reset) begin
     if(~reset) begin
         wrCnt <= 'b0;
     end
+    else if((w_state == w_state_idle) && wr_valid_i) begin
+        wrCnt <= 'b0;        
+    end
     else if((w_state == w_state_dw_wait) && axi_w_ready_i) begin
         wrCnt <= wrCnt + 'b1;
     end
@@ -158,7 +161,7 @@ end
 assign aw_valid = w_state == w_state_aw_wait;
 assign w_valid  = w_state == w_state_dw_wait;
 assign b_ready  = (w_state == w_state_b_wait_trans_ok) && axi_b_valid_i;
-assign wrLast   = wrCnt == 2'b11;
+assign wrLast   = wrCnt == lenthReg[1:0];
 assign wr_ready_o = w_state == w_state_idle;
     // always @(posedge clock) begin
     //     if((w_state == w_state_b_wait_trans_ok) && axi_b_valid_i) begin
@@ -169,7 +172,15 @@ assign wr_ready_o = w_state == w_state_idle;
     //     end
     // end
 
-
+reg [7:0]   lenthReg;
+always @(posedge clock or negedge reset) begin
+    if(~reset) begin
+        lenthReg <= 'b0;
+    end
+    else if((w_state == w_state_idle) && wr_valid_i)begin
+        lenthReg <= storeLenth;
+    end
+end
 
 
     // 读通道状态切换
