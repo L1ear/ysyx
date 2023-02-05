@@ -292,8 +292,8 @@ always @(*) begin
     end
 end
 
-assign rd_data_o = ({64{way1Hit}}&rdDataRegWay1)
-                 | ({64{way2Hit}}&rdDataRegWay2);
+assign rd_data_o = uncacheOpEn ? temp : ({64{way1Hit}}&rdDataRegWay1)
+                                      | ({64{way2Hit}}&rdDataRegWay2);
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
