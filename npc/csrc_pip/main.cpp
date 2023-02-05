@@ -46,10 +46,10 @@ void uart_input(uartlite &uart) {
     tcsetattr(STDIN_FILENO,TCSANOW,&tmp);
     while (1) {
       // assert(0);
-        // char c = getchar();
+        char c = getchar();
         
-        // if (c == 10) c = 13; // convert lf to cr
-        uart.putc('a');
+        if (c == 10) c = 13; // convert lf to cr
+        uart.putc(c);
         // printf("1\n");
         
     }
@@ -130,50 +130,50 @@ int main(int argc, char *argv[])
     mem_ptr.bresp   = &(top->axi_b_resp_i);
     mem_ptr.bvalid  = &(top->axi_b_valid_i);
     mem_ptr.bready  = &(top->axi_b_ready_o);
-    mmio_ptr.arid    = &(top->axi_mmio_ar_id_o); 
-    mmio_ptr.araddr  = &(top->axi_mmio_ar_addr_o);  
-    mmio_ptr.arlen   = &(top->axi_mmio_ar_len_o);  
-    mmio_ptr.arsize  = &(top->axi_mmio_ar_size_o);  
-    mmio_ptr.arburst = &(top->axi_mmio_ar_burst_o);  
-    mmio_ptr.arvalid = &(top->axi_mmio_ar_valid_o);  
-    mmio_ptr.arready = &(top->axi_mmio_ar_ready_i);  
-    mmio_ptr.rid     = &(top->axi_mmio_r_id_i);  
-    mmio_ptr.rdata   = &(top->axi_mmio_r_data_i);  
-    mmio_ptr.rresp   = &(top->axi_mmio_r_resp_i);  
-    mmio_ptr.rlast   = &(top->axi_mmio_r_last_i);  
-    mmio_ptr.rvalid  = &(top->axi_mmio_r_valid_i);  
-    mmio_ptr.rready  = &(top->axi_mmio_r_ready_o); 
-    mmio_ptr.awid    = &(top->axi_mmio_aw_id_o);
-    mmio_ptr.awaddr  = &(top->axi_mmio_aw_addr_o);
-    mmio_ptr.awlen   = &(top->axi_mmio_aw_len_o);
-    mmio_ptr.awsize  = &(top->axi_mmio_aw_size_o);
-    mmio_ptr.awburst = &(top->axi_mmio_aw_burst_o);
-    mmio_ptr.awvalid = &(top->axi_mmio_aw_valid_o);
-    mmio_ptr.awready = &(top->axi_mmio_aw_ready_i);
-    mmio_ptr.wdata   = &(top->axi_mmio_w_data_o);
-    mmio_ptr.wstrb   = &(top->axi_mmio_w_strb_o);
-    mmio_ptr.wlast   = &(top->axi_mmio_w_last_o);
-    mmio_ptr.wvalid  = &(top->axi_mmio_w_valid_o);
-    mmio_ptr.wready  = &(top->axi_mmio_w_ready_i);
-    mmio_ptr.bid     = &(top->axi_mmio_b_id_i);
-    mmio_ptr.bresp   = &(top->axi_mmio_b_resp_i);
-    mmio_ptr.bvalid  = &(top->axi_mmio_b_valid_i);
-    mmio_ptr.bready  = &(top->axi_mmio_b_ready_o);
+    // mmio_ptr.arid    = &(top->axi_mmio_ar_id_o); 
+    // mmio_ptr.araddr  = &(top->axi_mmio_ar_addr_o);  
+    // mmio_ptr.arlen   = &(top->axi_mmio_ar_len_o);  
+    // mmio_ptr.arsize  = &(top->axi_mmio_ar_size_o);  
+    // mmio_ptr.arburst = &(top->axi_mmio_ar_burst_o);  
+    // mmio_ptr.arvalid = &(top->axi_mmio_ar_valid_o);  
+    // mmio_ptr.arready = &(top->axi_mmio_ar_ready_i);  
+    // mmio_ptr.rid     = &(top->axi_mmio_r_id_i);  
+    // mmio_ptr.rdata   = &(top->axi_mmio_r_data_i);  
+    // mmio_ptr.rresp   = &(top->axi_mmio_r_resp_i);  
+    // mmio_ptr.rlast   = &(top->axi_mmio_r_last_i);  
+    // mmio_ptr.rvalid  = &(top->axi_mmio_r_valid_i);  
+    // mmio_ptr.rready  = &(top->axi_mmio_r_ready_o); 
+    // mmio_ptr.awid    = &(top->axi_mmio_aw_id_o);
+    // mmio_ptr.awaddr  = &(top->axi_mmio_aw_addr_o);
+    // mmio_ptr.awlen   = &(top->axi_mmio_aw_len_o);
+    // mmio_ptr.awsize  = &(top->axi_mmio_aw_size_o);
+    // mmio_ptr.awburst = &(top->axi_mmio_aw_burst_o);
+    // mmio_ptr.awvalid = &(top->axi_mmio_aw_valid_o);
+    // mmio_ptr.awready = &(top->axi_mmio_aw_ready_i);
+    // mmio_ptr.wdata   = &(top->axi_mmio_w_data_o);
+    // mmio_ptr.wstrb   = &(top->axi_mmio_w_strb_o);
+    // mmio_ptr.wlast   = &(top->axi_mmio_w_last_o);
+    // mmio_ptr.wvalid  = &(top->axi_mmio_w_valid_o);
+    // mmio_ptr.wready  = &(top->axi_mmio_w_ready_i);
+    // mmio_ptr.bid     = &(top->axi_mmio_b_id_i);
+    // mmio_ptr.bresp   = &(top->axi_mmio_b_resp_i);
+    // mmio_ptr.bvalid  = &(top->axi_mmio_b_valid_i);
+    // mmio_ptr.bready  = &(top->axi_mmio_b_ready_o);
 
     
     assert(mem_ptr.check());
-    assert(mmio_ptr.check());
+    // assert(mmio_ptr.check());
 
     
-    axi4_ref <64,64,4> mmio_ref(mmio_ptr);
+    // axi4_ref <64,64,4> mmio_ref(mmio_ptr);
     
-    mmioref = &mmio_ref;
+    // mmioref = &mmio_ref;
   
       
     
     
-    std::thread uart_input_thread(uart_input,std::ref(uart));
-    assert(mmio.add_dev(0xa00003f8,8,&uart));
+    // std::thread uart_input_thread(uart_input,std::ref(uart));
+    // assert(mmio.add_dev(0xa00003f8,8,&uart));
 
     Log("axi check complete!");
 
@@ -226,22 +226,22 @@ void single_cycle(int i) {
 //上升沿
   top->clk = 1; 
   //********************************************
-  mmio_sigs.update_input(*mmioref);
+  // mmio_sigs.update_input(*mmioref);
   mem_sigs.update_input(*memref);
   //********************************************
   top->eval();
   //********************************************
   mem.beat(mem_sigs_ref);
-  mmio.beat(mmio_sigs_ref);
-  while (uart.exist_tx()) {
-    // assert(0);
-    //             printf("1\r\n");
-    // printf("%lx\n",top->axi_mmio_w_data_o);
-                char c = uart.getc();
-                printf("%c",c);
-                fflush(stdout);
-            }
-  mmio_sigs.update_output(*mmioref);
+  // mmio.beat(mmio_sigs_ref);
+  // while (uart.exist_tx()) {
+  //   // assert(0);
+  //   //             printf("1\r\n");
+  //   // printf("%lx\n",top->axi_mmio_w_data_o);
+  //               char c = uart.getc();
+  //               printf("%c",c);
+  //               fflush(stdout);
+  //           }
+  // mmio_sigs.update_output(*mmioref);
   mem_sigs.update_output(*memref);
   //********************************************
   // assert(!uart.irq());
