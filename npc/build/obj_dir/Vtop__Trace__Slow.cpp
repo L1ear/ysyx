@@ -1052,6 +1052,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+349,"top ls_u instr_last_i", false,-1, 31,0);
         tracep->declQuad(c+347,"top ls_u wb_data_i", false,-1, 63,0);
         tracep->declBit(c+28,"top ls_u trap_ls_i", false,-1);
+        tracep->declBit(c+613,"top ls_u stall_n", false,-1);
         tracep->declQuad(c+787,"top ls_u ls_res_o", false,-1, 63,0);
         tracep->declQuad(c+22,"top ls_u csr_data_o", false,-1, 63,0);
         tracep->declQuad(c+24,"top ls_u mtvec_o", false,-1, 63,0);
@@ -1127,6 +1128,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+20,"top ls_u CSR_u instr_i", false,-1, 31,0);
         tracep->declQuad(c+18,"top ls_u CSR_u csr_wr_data", false,-1, 63,0);
         tracep->declBit(c+28,"top ls_u CSR_u trap", false,-1);
+        tracep->declBit(c+613,"top ls_u CSR_u stall_n", false,-1);
         tracep->declQuad(c+22,"top ls_u CSR_u csr_data_o", false,-1, 63,0);
         tracep->declQuad(c+24,"top ls_u CSR_u mtvec_o", false,-1, 63,0);
         tracep->declQuad(c+26,"top ls_u CSR_u mepc_o", false,-1, 63,0);
