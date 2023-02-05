@@ -139,10 +139,12 @@ module axi_dcache # (
     end
 reg     [`XLEN-1:0]     wrAddr_reg;
 reg     [255:0]         wr_data_reg;
+reg     [7:0]           wrMask_reg;
 always @(posedge clock) begin
         if((w_state == w_state_idle) && wr_valid_i) begin
             wrAddr_reg <= cacheWrAddr_i;
             wr_data_reg <= cacheWrData_i;
+            wrMask_reg <= rw_w_mask_i;
         end
 end
 
@@ -286,7 +288,7 @@ assign data_read_o = axi_r_data_i;
     // assign axi_w_data_o     = wr_data_reg[63:0] << shift;
     assign axi_w_strb_o     = 'hff;
     assign axi_w_data_o     = wr_data_reg[wrCnt*64+:64];
-    assign axi_w_strb_o     = rw_w_mask_i;
+    assign axi_w_strb_o     = wrMask_reg;
     assign axi_w_last_o     = wrLast;
     assign axi_w_user_o     = axi_user;                                                                         //初始化信号即可
 
