@@ -373,7 +373,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
     }
     wmask>>1;
   }
-
+  assert(0);
 
     // switch (size)
     // {
