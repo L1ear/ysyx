@@ -563,11 +563,12 @@ assign fetchLenth = uncacheOpEn ? 'b000 : 'b011;    //根据不同请求决定
 
 
 /**********cacheWrValid_o************/
-wire    uncacheWrValid = uncacheOpEn && reqLatch[32];
-wire    uncacheOpOk = cacheWrValid_o && axiWrReady || (uncacheRdOk) || rdLast_i;
+wire    uncacheWrValid = uncacheOpEn && reqLatch[32] && ~uncacheWrOk;
+wire    uncacheOpOk = cacheWrValid_o && axiWrReady || (uncacheRdOk) || rdLast_i || uncacheWrOk;
 
 wire    uncacheRdValid = uncacheOpEn && ~reqLatch[32] && ~uncacheRdOk;
 reg     uncacheRdOk;
+reg     uncacheWrOk;
 wire  [31:0]  uncacheRdAddr  = reqLatch[31:0];
 
 reg [63:0]  temp;       //后面记得改
@@ -586,6 +587,18 @@ always @(posedge clk or negedge rst_n) begin
     end
     else if(~uncacheOpEn) begin
         uncacheRdOk <= 'b0;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        uncacheWrOk <= 'b0;
+    end
+    else if(uncacheOpEn && axiWrReady)begin
+        uncacheWrOk <= 'b1;
+    end
+    else if(~uncacheOpEn) begin
+        uncacheWrOk <= 'b0;
     end
 end
 
