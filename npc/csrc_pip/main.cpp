@@ -364,78 +364,88 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
     // printf("addr:%016llx\n",raddr);
     // printf("addr:%016llx \nmask:%d\no_data:%016llx\nWRdata:%016llx\n\n",waddr,(uint8_t)wmask, wdata, *(uint8_t*)(WRdata+7));
     // assert(0);
-    switch (size)
-    {
-    case 0:
-        switch ((uint8_t)wmask)
-        {
-        case 1:
-          memwrite(waddr, 1, WRdata[0], 0);
-          break;
-        case 2:
-          memwrite(waddr, 1, WRdata[1], 0);
-          break;
-        case 4:
-          memwrite(waddr, 1, WRdata[2], 0);
-          break;
-        case 8:
-          memwrite(waddr, 1, WRdata[3], 0);
-          break;
-        case 16:
-          memwrite(waddr, 1, WRdata[4], 0);
-          break;
-        case 32:
-          memwrite(waddr, 1, WRdata[5], 0);
-          break;
-        case 64:
-          memwrite(waddr, 1, WRdata[6], 0);
-          break;
-        case 128:
-          memwrite(waddr, 1, WRdata[7], 0);
-          // printf("**************************\naddr:%016llx \no_data:%016llx\nWRdata:%016llx\n*********************\n",waddr, wdata, *(uint8_t*)(WRdata+7));
-          break;
-        default:
-          break;
-        }
-      break;
-    case 1:
-      switch ((uint8_t)wmask)
-      {
-      case 3:
-      // assert(0);
-        // printf("addr:%016llx \nsize: %d\ndata: %016llx\n",waddr, 2, *(uint16_t *)WRdata);
-        memwrite(waddr, 2, *(uint16_t *)WRdata, 0);
-        break;
-      case 12:
-        memwrite(waddr, 2, *(uint16_t *)(WRdata+2), 0);
-        break;
-      case 48:
-        memwrite(waddr, 2, *(uint16_t *)(WRdata+4), 0);
-        break;
-      case 192:
-        memwrite(waddr, 2, *(uint16_t *)(WRdata+6), 0);
-        break;
-      default:
-        break;
-      }
-      break;
-    case 2:
-      switch ((uint8_t)wmask)
-      {
-      case 15:
-        memwrite(waddr, 4, *(uint32_t *)WRdata, 0);
-        break;
-      case 240:
-        memwrite(waddr, 4, *(uint32_t *)(WRdata+4), 0);
-        break;
-      default:
-        break;
-      }
-    break;
-    case 3:
-      memwrite(waddr, 8, *(uint64_t *)WRdata, 0);
-    break;
-    default:
-      break;
+
+  int t;
+  for(t=0;t<8;t++){
+    if(wmask & (char)1){
+      memwrite(waddr+1, 1, WRdata[t], 0);
     }
+    wmask>>1;
+  }
+
+
+    // switch (size)
+    // {
+    // case 0:
+    //     switch ((uint8_t)wmask)
+    //     {
+    //     case 1:
+    //       memwrite(waddr, 1, WRdata[0], 0);
+    //       break;
+    //     case 2:
+    //       memwrite(waddr, 1, WRdata[1], 0);
+    //       break;
+    //     case 4:
+    //       memwrite(waddr, 1, WRdata[2], 0);
+    //       break;
+    //     case 8:
+    //       memwrite(waddr, 1, WRdata[3], 0);
+    //       break;
+    //     case 16:
+    //       memwrite(waddr, 1, WRdata[4], 0);
+    //       break;
+    //     case 32:
+    //       memwrite(waddr, 1, WRdata[5], 0);
+    //       break;
+    //     case 64:
+    //       memwrite(waddr, 1, WRdata[6], 0);
+    //       break;
+    //     case 128:
+    //       memwrite(waddr, 1, WRdata[7], 0);
+    //       // printf("**************************\naddr:%016llx \no_data:%016llx\nWRdata:%016llx\n*********************\n",waddr, wdata, *(uint8_t*)(WRdata+7));
+    //       break;
+    //     default:
+    //       break;
+    //     }
+    //   break;
+    // case 1:
+    //   switch ((uint8_t)wmask)
+    //   {
+    //   case 3:
+    //   // assert(0);
+    //     // printf("addr:%016llx \nsize: %d\ndata: %016llx\n",waddr, 2, *(uint16_t *)WRdata);
+    //     memwrite(waddr, 2, *(uint16_t *)WRdata, 0);
+    //     break;
+    //   case 12:
+    //     memwrite(waddr, 2, *(uint16_t *)(WRdata+2), 0);
+    //     break;
+    //   case 48:
+    //     memwrite(waddr, 2, *(uint16_t *)(WRdata+4), 0);
+    //     break;
+    //   case 192:
+    //     memwrite(waddr, 2, *(uint16_t *)(WRdata+6), 0);
+    //     break;
+    //   default:
+    //     break;
+    //   }
+    //   break;
+    // case 2:
+    //   switch ((uint8_t)wmask)
+    //   {
+    //   case 15:
+    //     memwrite(waddr, 4, *(uint32_t *)WRdata, 0);
+    //     break;
+    //   case 240:
+    //     memwrite(waddr, 4, *(uint32_t *)(WRdata+4), 0);
+    //     break;
+    //   default:
+    //     break;
+    //   }
+    // break;
+    // case 3:
+    //   memwrite(waddr, 8, *(uint64_t *)WRdata, 0);
+    // break;
+    // default:
+    //   break;
+    // }
 }
