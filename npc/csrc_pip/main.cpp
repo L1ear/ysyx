@@ -372,7 +372,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
       memwrite(waddr+t, 1, WRdata[t], 0);
     }
     wmask = wmask>>1;
-    printf("mask:%d\n",wmask);
+    // printf("mask:%d\n",wmask);
   }
   
 
