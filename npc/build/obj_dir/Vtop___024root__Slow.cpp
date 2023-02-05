@@ -4063,6 +4063,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__Dcache_u__DOT__uncache = 0;
     vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy = 0;
     vlSelf->top__DOT__Dcache_u__DOT__uncacheOpOk = 0;
+    vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 0;
     vlSelf->top__DOT__Dcache_u__DOT__temp = 0;
     vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A = 0;
     vlSelf->top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A = 0;
