@@ -65,46 +65,6 @@ VL_MODULE(Vtop___024root) {
     VL_IN8(axi_b_resp_i,1,0);
     VL_IN8(axi_b_id_i,3,0);
     VL_IN8(axi_b_user_i,0,0);
-    VL_IN8(axi_mmio_ar_ready_i,0,0);
-    VL_OUT8(axi_mmio_ar_valid_o,0,0);
-    VL_OUT8(axi_mmio_ar_prot_o,2,0);
-    VL_OUT8(axi_mmio_ar_id_o,3,0);
-    VL_OUT8(axi_mmio_ar_user_o,0,0);
-    VL_OUT8(axi_mmio_ar_len_o,7,0);
-    VL_OUT8(axi_mmio_ar_size_o,2,0);
-    VL_OUT8(axi_mmio_ar_burst_o,1,0);
-    VL_OUT8(axi_mmio_ar_lock_o,0,0);
-    VL_OUT8(axi_mmio_ar_cache_o,3,0);
-    VL_OUT8(axi_mmio_ar_qos_o,3,0);
-    VL_OUT8(axi_mmio_ar_region_o,3,0);
-    VL_OUT8(axi_mmio_r_ready_o,0,0);
-    VL_IN8(axi_mmio_r_valid_i,0,0);
-    VL_IN8(axi_mmio_r_resp_i,1,0);
-    VL_IN8(axi_mmio_r_last_i,0,0);
-    VL_IN8(axi_mmio_r_id_i,3,0);
-    VL_IN8(axi_mmio_r_user_i,0,0);
-    VL_IN8(axi_mmio_aw_ready_i,0,0);
-    VL_OUT8(axi_mmio_aw_valid_o,0,0);
-    VL_OUT8(axi_mmio_aw_prot_o,2,0);
-    VL_OUT8(axi_mmio_aw_id_o,3,0);
-    VL_OUT8(axi_mmio_aw_user_o,0,0);
-    VL_OUT8(axi_mmio_aw_len_o,7,0);
-    VL_OUT8(axi_mmio_aw_size_o,2,0);
-    VL_OUT8(axi_mmio_aw_burst_o,1,0);
-    VL_OUT8(axi_mmio_aw_lock_o,0,0);
-    VL_OUT8(axi_mmio_aw_cache_o,3,0);
-    VL_OUT8(axi_mmio_aw_qos_o,3,0);
-    VL_OUT8(axi_mmio_aw_region_o,3,0);
-    VL_IN8(axi_mmio_w_ready_i,0,0);
-    VL_OUT8(axi_mmio_w_valid_o,0,0);
-    VL_OUT8(axi_mmio_w_strb_o,7,0);
-    VL_OUT8(axi_mmio_w_last_o,0,0);
-    VL_OUT8(axi_mmio_w_user_o,0,0);
-    VL_OUT8(axi_mmio_b_ready_o,0,0);
-    VL_IN8(axi_mmio_b_valid_i,0,0);
-    VL_IN8(axi_mmio_b_resp_i,1,0);
-    VL_IN8(axi_mmio_b_id_i,3,0);
-    VL_IN8(axi_mmio_b_user_i,0,0);
     VL_OUT(instr_diff,31,0);
     VL_OUT64(pc_diff,63,0);
     VL_OUT64(pc_decoding,63,0);
@@ -113,14 +73,19 @@ VL_MODULE(Vtop___024root) {
     VL_IN64(axi_r_data_i,63,0);
     VL_OUT64(axi_aw_addr_o,63,0);
     VL_OUT64(axi_w_data_o,63,0);
-    VL_OUT64(axi_mmio_ar_addr_o,63,0);
-    VL_IN64(axi_mmio_r_data_i,63,0);
-    VL_OUT64(axi_mmio_aw_addr_o,63,0);
-    VL_OUT64(axi_mmio_w_data_o,63,0);
 
     // LOCAL SIGNALS
     // Anonymous structures to workaround compiler member-count bugs
     struct {
+        CData/*0:0*/ top__DOT__axi_mmio_ar_valid_o;
+        CData/*0:0*/ top__DOT__axi_mmio_r_last_i;
+        CData/*3:0*/ top__DOT__axi_mmio_r_id_i;
+        CData/*0:0*/ top__DOT__axi_mmio_r_user_i;
+        CData/*0:0*/ top__DOT__axi_mmio_aw_valid_o;
+        CData/*0:0*/ top__DOT__axi_mmio_w_valid_o;
+        CData/*0:0*/ top__DOT__axi_mmio_b_ready_o;
+        CData/*3:0*/ top__DOT__axi_mmio_b_id_i;
+        CData/*0:0*/ top__DOT__axi_mmio_b_user_i;
         CData/*3:0*/ top__DOT__if_axi_ar_region_o;
         CData/*0:0*/ top__DOT__if_axi_r_last_i;
         CData/*0:0*/ top__DOT__if_axi_r_user_i;
@@ -163,8 +128,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_w_ready;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_ready;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_valid;
-        CData/*7:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_len;
-        CData/*3:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_region;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_r_ready;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_r_valid;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_r_last;
@@ -178,6 +141,8 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay1_q;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay2_q;
+    };
+    struct {
         CData/*0:0*/ top__DOT__cache_dut__DOT__missFlag;
         CData/*1:0*/ top__DOT__cache_dut__DOT__rdCnt;
         CData/*1:0*/ top__DOT__axi_icache_dut__DOT__r_state;
@@ -185,8 +150,6 @@ VL_MODULE(Vtop___024root) {
         CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin;
-    };
-    struct {
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__less;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__bcu_u__DOT__carry;
@@ -235,7 +198,17 @@ VL_MODULE(Vtop___024root) {
         CData/*7:0*/ top__DOT__axi_ls_u__DOT__lenthReg;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state_next;
+        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
+        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_wready;
+        CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp;
+        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid;
+        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_arready;
+        CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp;
+        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid;
+        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__aw_en;
         SData/*15:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h;
+    };
+    struct {
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__dataWay1_1;
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__dataWay1_2;
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__dataWay2_1;
@@ -251,12 +224,11 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_2;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray1_d;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray2_d;
-    };
-    struct {
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way1Data;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way2Data;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__rdBuffer;
         VlWide<8>/*255:0*/ top__DOT__axi_ls_u__DOT__wr_data_reg;
+        IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
         QData/*63:0*/ top__DOT__ls_axi_w_data_o;
         QData/*63:0*/ top__DOT__ls_axi_r_data_i;
         QData/*63:0*/ top__DOT__pc_next;
@@ -301,10 +273,20 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__Dcache_u__DOT__dirtyArray1;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__dirtyArray2;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__storeData;
+    };
+    struct {
         QData/*63:0*/ top__DOT__Dcache_u__DOT__sramMask;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__temp;
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__wrAddr_reg;
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__rdAddr_reg;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg0;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg1;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg2;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg3;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out;
         VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray1;
         VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray2;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay1_1__DOT__ram;
@@ -317,8 +299,6 @@ VL_MODULE(Vtop___024root) {
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__Dcache_u__DOT__iramWay1_1__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__Dcache_u__DOT__iramWay1_2__DOT__ram;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__Dcache_u__DOT__iramWay2_1__DOT__ram;
-    };
-    struct {
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__Dcache_u__DOT__iramWay2_2__DOT__ram;
     };
 

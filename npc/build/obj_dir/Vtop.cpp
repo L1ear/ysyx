@@ -62,50 +62,6 @@ Vtop::Vtop(VerilatedContext* _vcontextp__, const char* _vcname__)
     , axi_b_resp_i{vlSymsp->TOP.axi_b_resp_i}
     , axi_b_id_i{vlSymsp->TOP.axi_b_id_i}
     , axi_b_user_i{vlSymsp->TOP.axi_b_user_i}
-    , axi_mmio_ar_ready_i{vlSymsp->TOP.axi_mmio_ar_ready_i}
-    , axi_mmio_ar_valid_o{vlSymsp->TOP.axi_mmio_ar_valid_o}
-    , axi_mmio_ar_addr_o{vlSymsp->TOP.axi_mmio_ar_addr_o}
-    , axi_mmio_ar_prot_o{vlSymsp->TOP.axi_mmio_ar_prot_o}
-    , axi_mmio_ar_id_o{vlSymsp->TOP.axi_mmio_ar_id_o}
-    , axi_mmio_ar_user_o{vlSymsp->TOP.axi_mmio_ar_user_o}
-    , axi_mmio_ar_len_o{vlSymsp->TOP.axi_mmio_ar_len_o}
-    , axi_mmio_ar_size_o{vlSymsp->TOP.axi_mmio_ar_size_o}
-    , axi_mmio_ar_burst_o{vlSymsp->TOP.axi_mmio_ar_burst_o}
-    , axi_mmio_ar_lock_o{vlSymsp->TOP.axi_mmio_ar_lock_o}
-    , axi_mmio_ar_cache_o{vlSymsp->TOP.axi_mmio_ar_cache_o}
-    , axi_mmio_ar_qos_o{vlSymsp->TOP.axi_mmio_ar_qos_o}
-    , axi_mmio_ar_region_o{vlSymsp->TOP.axi_mmio_ar_region_o}
-    , axi_mmio_r_ready_o{vlSymsp->TOP.axi_mmio_r_ready_o}
-    , axi_mmio_r_valid_i{vlSymsp->TOP.axi_mmio_r_valid_i}
-    , axi_mmio_r_resp_i{vlSymsp->TOP.axi_mmio_r_resp_i}
-    , axi_mmio_r_data_i{vlSymsp->TOP.axi_mmio_r_data_i}
-    , axi_mmio_r_last_i{vlSymsp->TOP.axi_mmio_r_last_i}
-    , axi_mmio_r_id_i{vlSymsp->TOP.axi_mmio_r_id_i}
-    , axi_mmio_r_user_i{vlSymsp->TOP.axi_mmio_r_user_i}
-    , axi_mmio_aw_ready_i{vlSymsp->TOP.axi_mmio_aw_ready_i}
-    , axi_mmio_aw_valid_o{vlSymsp->TOP.axi_mmio_aw_valid_o}
-    , axi_mmio_aw_addr_o{vlSymsp->TOP.axi_mmio_aw_addr_o}
-    , axi_mmio_aw_prot_o{vlSymsp->TOP.axi_mmio_aw_prot_o}
-    , axi_mmio_aw_id_o{vlSymsp->TOP.axi_mmio_aw_id_o}
-    , axi_mmio_aw_user_o{vlSymsp->TOP.axi_mmio_aw_user_o}
-    , axi_mmio_aw_len_o{vlSymsp->TOP.axi_mmio_aw_len_o}
-    , axi_mmio_aw_size_o{vlSymsp->TOP.axi_mmio_aw_size_o}
-    , axi_mmio_aw_burst_o{vlSymsp->TOP.axi_mmio_aw_burst_o}
-    , axi_mmio_aw_lock_o{vlSymsp->TOP.axi_mmio_aw_lock_o}
-    , axi_mmio_aw_cache_o{vlSymsp->TOP.axi_mmio_aw_cache_o}
-    , axi_mmio_aw_qos_o{vlSymsp->TOP.axi_mmio_aw_qos_o}
-    , axi_mmio_aw_region_o{vlSymsp->TOP.axi_mmio_aw_region_o}
-    , axi_mmio_w_ready_i{vlSymsp->TOP.axi_mmio_w_ready_i}
-    , axi_mmio_w_valid_o{vlSymsp->TOP.axi_mmio_w_valid_o}
-    , axi_mmio_w_data_o{vlSymsp->TOP.axi_mmio_w_data_o}
-    , axi_mmio_w_strb_o{vlSymsp->TOP.axi_mmio_w_strb_o}
-    , axi_mmio_w_last_o{vlSymsp->TOP.axi_mmio_w_last_o}
-    , axi_mmio_w_user_o{vlSymsp->TOP.axi_mmio_w_user_o}
-    , axi_mmio_b_ready_o{vlSymsp->TOP.axi_mmio_b_ready_o}
-    , axi_mmio_b_valid_i{vlSymsp->TOP.axi_mmio_b_valid_i}
-    , axi_mmio_b_resp_i{vlSymsp->TOP.axi_mmio_b_resp_i}
-    , axi_mmio_b_id_i{vlSymsp->TOP.axi_mmio_b_id_i}
-    , axi_mmio_b_user_i{vlSymsp->TOP.axi_mmio_b_user_i}
     , __PVT____024unit{vlSymsp->TOP.__PVT____024unit}
     , rootp{&(vlSymsp->TOP)}
 {
