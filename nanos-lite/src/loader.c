@@ -55,7 +55,6 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   fd = fs_close(fd);
   assert(fd == 0);
   printf("%s File Loaded\n",filename);
-  assert(0);
   return elfhdr.e_entry;
 }
 
