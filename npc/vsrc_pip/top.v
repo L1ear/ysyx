@@ -70,53 +70,7 @@ module top # (
     input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
     input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
 
-    input                               axi_mmio_ar_ready_i,     //lite              
-    output                              axi_mmio_ar_valid_o,     //lite
-    output [AXI_ADDR_WIDTH-1:0]         axi_mmio_ar_addr_o,      //lite
-    output [2:0]                        axi_mmio_ar_prot_o,
-    output [AXI_ID_WIDTH-1:0]           axi_mmio_ar_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_mmio_ar_user_o,
-    output [7:0]                        axi_mmio_ar_len_o,       //lite
-    output [2:0]                        axi_mmio_ar_size_o,      //lite
-    output [1:0]                        axi_mmio_ar_burst_o,
-    output                              axi_mmio_ar_lock_o,
-    output [3:0]                        axi_mmio_ar_cache_o,
-    output [3:0]                        axi_mmio_ar_qos_o,
-    output [3:0]                        axi_mmio_ar_region_o,
-  
-    output                              axi_mmio_r_ready_o,      //lite            
-    input                               axi_mmio_r_valid_i,      //lite            
-    input  [1:0]                        axi_mmio_r_resp_i,
-    input  [AXI_DATA_WIDTH-1:0]         axi_mmio_r_data_i,       //lite
-    input                               axi_mmio_r_last_i,
-    input  [AXI_ID_WIDTH-1:0]           axi_mmio_r_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_mmio_r_user_i,
 
-    input                               axi_mmio_aw_ready_i,     //lite        
-    output                              axi_mmio_aw_valid_o,     //lite
-    output [AXI_ADDR_WIDTH-1:0]         axi_mmio_aw_addr_o,      //lite
-    output [2:0]                        axi_mmio_aw_prot_o,
-    output [AXI_ID_WIDTH-1:0]           axi_mmio_aw_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_mmio_aw_user_o,
-    output [7:0]                        axi_mmio_aw_len_o,       
-    output [2:0]                        axi_mmio_aw_size_o,
-    output [1:0]                        axi_mmio_aw_burst_o,
-    output                              axi_mmio_aw_lock_o,
-    output [3:0]                        axi_mmio_aw_cache_o,
-    output [3:0]                        axi_mmio_aw_qos_o,
-    output [3:0]                        axi_mmio_aw_region_o,
-    input                               axi_mmio_w_ready_i,      //lite        
-    output                              axi_mmio_w_valid_o,      //lite
-    output [AXI_DATA_WIDTH-1:0]         axi_mmio_w_data_o,       //lite
-    output [AXI_DATA_WIDTH/8-1:0]       axi_mmio_w_strb_o,       //lite
-    output                              axi_mmio_w_last_o,
-    output [AXI_USER_WIDTH-1:0]         axi_mmio_w_user_o,
-        
-    output                              axi_mmio_b_ready_o,      //lite        
-    input                               axi_mmio_b_valid_i,      //lite
-    input  [1:0]                        axi_mmio_b_resp_i,       //lite        
-    input  [AXI_ID_WIDTH-1:0]           axi_mmio_b_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_mmio_b_user_i
 
 // ls sram interface
 //     output          [`XLEN-1:0]     ls_sram_addr,
@@ -129,6 +83,57 @@ module top # (
 //     input           [`XLEN-1:0]     ls_sram_rd_data
 
 );
+
+
+wire                              axi_mmio_ar_ready_i,     //lite              
+wire                              axi_mmio_ar_valid_o,     //lite
+wire [AXI_ADDR_WIDTH-1:0]         axi_mmio_ar_addr_o,      //lite
+wire [2:0]                        axi_mmio_ar_prot_o,
+wire [AXI_ID_WIDTH-1:0]           axi_mmio_ar_id_o,
+wire [AXI_USER_WIDTH-1:0]         axi_mmio_ar_user_o,
+wire [7:0]                        axi_mmio_ar_len_o,       //lite
+wire [2:0]                        axi_mmio_ar_size_o,      //lite
+wire [1:0]                        axi_mmio_ar_burst_o,
+wire                              axi_mmio_ar_lock_o,
+wire [3:0]                        axi_mmio_ar_cache_o,
+wire [3:0]                        axi_mmio_ar_qos_o,
+wire [3:0]                        axi_mmio_ar_region_o,
+wire
+wire                              axi_mmio_r_ready_o,      //lite            
+wire                              axi_mmio_r_valid_i,      //lite            
+wire [1:0]                        axi_mmio_r_resp_i,
+wire [AXI_DATA_WIDTH-1:0]         axi_mmio_r_data_i,       //lite
+wire                              axi_mmio_r_last_i,
+wire [AXI_ID_WIDTH-1:0]           axi_mmio_r_id_i,
+wire [AXI_USER_WIDTH-1:0]         axi_mmio_r_user_i,
+wire
+wire                              axi_mmio_aw_ready_i,     //lite        
+wire                              axi_mmio_aw_valid_o,     //lite
+wire [AXI_ADDR_WIDTH-1:0]         axi_mmio_aw_addr_o,      //lite
+wire [2:0]                        axi_mmio_aw_prot_o,
+wire [AXI_ID_WIDTH-1:0]           axi_mmio_aw_id_o,
+wire [AXI_USER_WIDTH-1:0]         axi_mmio_aw_user_o,
+wire [7:0]                        axi_mmio_aw_len_o,       
+wire [2:0]                        axi_mmio_aw_size_o,
+wire [1:0]                        axi_mmio_aw_burst_o,
+wire                              axi_mmio_aw_lock_o,
+wire [3:0]                        axi_mmio_aw_cache_o,
+wire [3:0]                        axi_mmio_aw_qos_o,
+wire [3:0]                        axi_mmio_aw_region_o,
+wire                              axi_mmio_w_ready_i,      //lite        
+wire                              axi_mmio_w_valid_o,      //lite
+wire [AXI_DATA_WIDTH-1:0]         axi_mmio_w_data_o,       //lite
+wire [AXI_DATA_WIDTH/8-1:0]       axi_mmio_w_strb_o,       //lite
+wire                              axi_mmio_w_last_o,
+wire [AXI_USER_WIDTH-1:0]         axi_mmio_w_user_o,
+wire
+wire                              axi_mmio_b_ready_o,      //lite        
+wire                              axi_mmio_b_valid_i,      //lite
+wire [1:0]                        axi_mmio_b_resp_i,       //lite        
+wire [AXI_ID_WIDTH-1:0]           axi_mmio_b_id_i,
+wire [AXI_USER_WIDTH-1:0]         axi_mmio_b_user_i
+
+
 //axi signal
 wire                              instr_fetching;
 wire                              if_axi_ar_ready_i;     //lite              
