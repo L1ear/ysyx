@@ -1691,51 +1691,53 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                      vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[1U])))) 
                                        >> 0x20U)) >> 5U);
             tracep->chgWData(oldp+587,(__Vtemp457),315);
-            tracep->chgBit(oldp+597,(((((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                        & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                   >> 0x20U))) 
-                                       | ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                            & (IData)(
-                                                      (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                       >> 0x20U))) 
-                                           & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
-                                          & (((~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)) 
-                                              & (IData)(
-                                                        (vlSelf->top__DOT__Dcache_u__DOT__dirtyArray1 
-                                                         >> 
-                                                         (0x3fU 
-                                                          & (IData)(
-                                                                    (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                     >> 5U)))))) 
-                                             | ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit) 
+            tracep->chgBit(oldp+597,((((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                       & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                  >> 0x20U))) 
+                                      | (((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                          & ((((1U 
+                                                == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                               & (IData)(
+                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                          >> 0x20U))) 
+                                              & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
+                                             & (((~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)) 
+                                                 & (IData)(
+                                                           (vlSelf->top__DOT__Dcache_u__DOT__dirtyArray1 
+                                                            >> 
+                                                            (0x3fU 
+                                                             & (IData)(
+                                                                       (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                        >> 5U)))))) 
+                                                | ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit) 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__Dcache_u__DOT__dirtyArray2 
+                                                              >> 
+                                                              (0x3fU 
+                                                               & (IData)(
+                                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                          >> 5U))))))))) 
+                                         | ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                              & (~ (IData)(
+                                                           (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                            >> 0x20U)))) 
+                                             & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
+                                            & (((~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)) 
                                                 & (IData)(
-                                                          (vlSelf->top__DOT__Dcache_u__DOT__dirtyArray2 
+                                                          (vlSelf->top__DOT__Dcache_u__DOT__dirtyArray1 
                                                            >> 
                                                            (0x3fU 
                                                             & (IData)(
                                                                       (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                       >> 5U))))))))) 
-                                      | ((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                           & (~ (IData)(
-                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                         >> 0x20U)))) 
-                                          & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
-                                         & (((~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)) 
-                                             & (IData)(
-                                                       (vlSelf->top__DOT__Dcache_u__DOT__dirtyArray1 
-                                                        >> 
-                                                        (0x3fU 
-                                                         & (IData)(
-                                                                   (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                    >> 5U)))))) 
-                                            | ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit) 
-                                               & (IData)(
-                                                         (vlSelf->top__DOT__Dcache_u__DOT__dirtyArray2 
-                                                          >> 
-                                                          (0x3fU 
-                                                           & (IData)(
-                                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                      >> 5U)))))))))));
+                                                                       >> 5U)))))) 
+                                               | ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit) 
+                                                  & (IData)(
+                                                            (vlSelf->top__DOT__Dcache_u__DOT__dirtyArray2 
+                                                             >> 
+                                                             (0x3fU 
+                                                              & (IData)(
+                                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                         >> 5U))))))))))));
         }
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[4U])) {
             tracep->chgBit(oldp+598,(((1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id))
