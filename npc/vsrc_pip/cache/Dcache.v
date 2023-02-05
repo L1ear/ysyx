@@ -154,7 +154,7 @@ always @(*) begin
             end    
         end
         uncacheOp: begin
-            if(uncacheOpOk) begin
+            if(uncacheOpOk && stall_n) begin
                 cacheNexState = idle;
             end
             else begin
@@ -564,7 +564,7 @@ assign fetchLenth = uncacheOpEn ? 'b000 : 'b011;    //根据不同请求决定
 
 /**********cacheWrValid_o************/
 wire    uncacheWrValid = uncacheOpEn && reqLatch[32];
-wire    uncacheOpOk = cacheWrValid_o && axiWrReady || (uncacheRdOk);
+wire    uncacheOpOk = cacheWrValid_o && axiWrReady || (uncacheRdOk) || rdLast_i;
 
 wire    uncacheRdValid = uncacheOpEn && ~reqLatch[32] && ~uncacheRdOk;
 reg     uncacheRdOk;
