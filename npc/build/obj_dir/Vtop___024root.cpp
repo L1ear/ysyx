@@ -316,17 +316,17 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc = 0ULL;
     }
     if (vlSelf->rst_n) {
-        if ((1U & ((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus) 
-                   | vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U]))) {
+        if ((((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus) 
+              | vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U]) 
+             & (IData)(vlSelf->top__DOT__ls_stall_n))) {
             __Vtemp25 = ((1U & vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U])
-                          ? (((((0x1cU == (0x1fU & 
-                                           (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                            >> 4U))) 
-                                & (~ (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                      >> 0x17U))) & 
-                               (0U == (7U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
-                                             >> 0xeU)))) 
-                              & (IData)(vlSelf->top__DOT__ls_stall_n))
+                          ? ((((0x1cU == (0x1fU & (
+                                                   vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
+                                                   >> 4U))) 
+                               & (~ (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
+                                     >> 0x17U))) & 
+                              (0U == (7U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
+                                            >> 0xeU))))
                               ? ((0xffffffffffffe000ULL 
                                   & vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus) 
                                  | (QData)((IData)(
