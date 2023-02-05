@@ -371,8 +371,8 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
     if((uint8_t)wmask & (uint8_t)1){
       memwrite(waddr+t, 1, WRdata[t], 0);
     }
-    wmask>>1;
-    printf("mask:%d\n",wmask);
+    wmask = wmask>>1;
+    // printf("mask:%d\n",wmask);
   }
   
 
