@@ -366,14 +366,14 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
     // assert(0);
 
   int t;
-  printf("addr:%lx mask:%d\n",waddr, (uint8_t)wmask);
+  // printf("addr:%lx mask:%d\n",waddr, (uint8_t)wmask);
   for(t=0;t<8;t++){
     if(wmask & (char)1){
       memwrite(waddr+t, 1, WRdata[t], 0);
     }
     wmask>>1;
   }
-  assert(0);
+  
 
     // switch (size)
     // {
