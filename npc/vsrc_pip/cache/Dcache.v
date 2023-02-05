@@ -567,6 +567,7 @@ wire    uncacheWrValid = uncacheOpEn && reqLatch[32];
 wire    uncacheOpOk = cacheWrValid_o && axiWrReady || rdLast_i;
 
 wire    uncacheRdValid = uncacheOpEn && ~reqLatch[32];
+reg     uncacheRdOk;
 wire  [31:0]  uncacheRdAddr  = reqLatch[31:0];
 
 reg [63:0]  temp;       //后面记得改
