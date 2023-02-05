@@ -420,11 +420,12 @@ axi_crossbar axi_crossbar_u(
     .axi_r_id_i         (axi_r_id_i    ),
     .axi_r_user_i       (axi_r_user_i  ),
 //mmio
+    //mmio目前只有ls能访问，所以id都是1
     .axi_mmio_aw_ready_i    (axi_mmio_aw_ready_i  ),
     .axi_mmio_aw_valid_o    (axi_mmio_aw_valid_o  ),
     .axi_mmio_aw_addr_o     (axi_mmio_aw_addr_o   ), 
     .axi_mmio_aw_prot_o     (axi_mmio_aw_prot_o   ),
-    .axi_mmio_aw_id_o       (axi_mmio_aw_id_o     ),
+    .axi_mmio_aw_id_o       (axi_mmio_aw_id_o     ),//
     .axi_mmio_aw_user_o     (axi_mmio_aw_user_o   ),
     .axi_mmio_aw_len_o      (axi_mmio_aw_len_o    ),  
     .axi_mmio_aw_size_o     (axi_mmio_aw_size_o   ),
@@ -442,13 +443,13 @@ axi_crossbar axi_crossbar_u(
     .axi_mmio_b_ready_o     (axi_mmio_b_ready_o   ), 
     .axi_mmio_b_valid_i     (axi_mmio_b_valid_i   ), 
     .axi_mmio_b_resp_i      (axi_mmio_b_resp_i    ),  
-    .axi_mmio_b_id_i        (axi_mmio_b_id_i      ),
+    .axi_mmio_b_id_i        ('b1      ),//
     .axi_mmio_b_user_i      (axi_mmio_b_user_i    ),
     .axi_mmio_ar_ready_i    (axi_mmio_ar_ready_i  ),
     .axi_mmio_ar_valid_o    (axi_mmio_ar_valid_o  ),
     .axi_mmio_ar_addr_o     (axi_mmio_ar_addr_o   ), 
     .axi_mmio_ar_prot_o     (axi_mmio_ar_prot_o   ),
-    .axi_mmio_ar_id_o       (axi_mmio_ar_id_o     ),
+    .axi_mmio_ar_id_o       (axi_mmio_ar_id_o     ),//
     .axi_mmio_ar_user_o     (axi_mmio_ar_user_o   ),
     .axi_mmio_ar_len_o      (axi_mmio_ar_len_o    ),  
     .axi_mmio_ar_size_o     (axi_mmio_ar_size_o   ), 
@@ -462,7 +463,7 @@ axi_crossbar axi_crossbar_u(
     .axi_mmio_r_resp_i      (axi_mmio_r_resp_i    ),
     .axi_mmio_r_data_i      (axi_mmio_r_data_i    ),  
     .axi_mmio_r_last_i      (axi_mmio_r_last_i    ),
-    .axi_mmio_r_id_i        (axi_mmio_r_id_i      ),
+    .axi_mmio_r_id_i        ('b1      ),//
     .axi_mmio_r_user_i      (axi_mmio_r_user_i    )
 );
 
