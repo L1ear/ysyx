@@ -319,6 +319,7 @@ VL_MODULE(Vtop___024root) {
     CData/*0:0*/ __Vdly__top__DOT__Dcache_u__DOT__randomBit;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_n;
+    CData/*0:0*/ __Vchglast__TOP__top__DOT__ls_not_ok;
     IData/*31:0*/ top__DOT____Vcellinp__Dcache_u__addr_i;
     VlWide<3>/*95:0*/ top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout;
     VlWide<10>/*314:0*/ top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout;
