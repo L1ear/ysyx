@@ -642,10 +642,11 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                           >> 5U)) 
                                                                  << 5U))))))));
     vlSelf->top__DOT__DcacheRdValid = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                        ? ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                           & (~ (IData)(
-                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                         >> 0x20U))))
+                                        ? (((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                            & (~ (IData)(
+                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                          >> 0x20U)))) 
+                                           & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk)))
                                         : ((2U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                            & (0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state))));
     vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i 

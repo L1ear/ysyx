@@ -106,6 +106,16 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay 
         = ((IData)(vlSelf->rst_n) & (7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)));
+    if (vlSelf->rst_n) {
+        if (((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+             & (IData)(vlSelf->top__DOT__ls_axi_r_last_i))) {
+            vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 1U;
+        } else if ((6U != (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
+            vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 0U;
+        }
+    } else {
+        vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 0U;
+    }
     if (((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
          & (IData)(vlSelf->top__DOT__ls_axi_r_last_i))) {
         vlSelf->top__DOT__Dcache_u__DOT__temp = vlSelf->top__DOT__ls_axi_r_data_i;
@@ -2853,10 +2863,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     if ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
         vlSelf->top__DOT__ls_axi_w_strb_o = (0xffU 
                                              & (IData)(vlSelf->top__DOT__Dcache_u__DOT__storeMask));
-        vlSelf->top__DOT__DcacheRdValid = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                           & (~ (IData)(
-                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                         >> 0x20U))));
+        vlSelf->top__DOT__DcacheRdValid = (((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                            & (~ (IData)(
+                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                          >> 0x20U)))) 
+                                           & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk)));
     } else {
         vlSelf->top__DOT__ls_axi_w_strb_o = 0xffU;
         vlSelf->top__DOT__DcacheRdValid = ((2U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 

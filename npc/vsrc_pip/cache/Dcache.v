@@ -564,7 +564,7 @@ assign fetchLenth = uncacheOpEn ? 'b000 : 'b011;    //根据不同请求决定
 
 /**********cacheWrValid_o************/
 wire    uncacheWrValid = uncacheOpEn && reqLatch[32];
-wire    uncacheOpOk = cacheWrValid_o && axiWrReady || rdLast_i;
+wire    uncacheOpOk = cacheWrValid_o && axiWrReady || (uncacheRdOk && stall_n);
 
 wire    uncacheRdValid = uncacheOpEn && ~reqLatch[32] && ~uncacheRdOk;
 reg     uncacheRdOk;
