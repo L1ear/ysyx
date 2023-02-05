@@ -520,7 +520,7 @@ end
 //需要写回替换的情况：
 //写miss，并且要写入的index数据为脏; 读miss，并且要读的index为脏 
 wire        needWrBk;
-assign needWrBk = uncacheWrValid || (wrMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index])) || (rdMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index]));
+assign needWrBk = uncacheWrValid || (uncacheOpEn && (wrMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index])) || (rdMiss && (~randomBit && dirtyArray1[index] || randomBit && dirtyArray2[index])));
 reg     needWrBk_Reg;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
