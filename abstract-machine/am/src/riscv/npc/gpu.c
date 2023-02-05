@@ -8,6 +8,7 @@
 
 #define SYNC_ADDR (VGACTL_ADDR + 4)
 static inline void outl(uintptr_t addr, uint32_t data) { *(volatile uint32_t *)addr = data; }
+static inline void outb(uintptr_t addr, uint8_t  data) { *(volatile uint8_t  *)addr = data; }
 
 void __am_gpu_init() {
 //   int i;
@@ -39,7 +40,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
     }
   }
   if (ctl->sync) {
-    outl(SYNC_ADDR, 1);
+    outb(SYNC_ADDR, 1);
   }
 }
 
