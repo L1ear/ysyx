@@ -2219,8 +2219,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg 
                 = (((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                     & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                               >> 0x20U))) | (((6U 
-                                                == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                               >> 0x20U))) | (((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncached) 
                                                & ((((1U 
                                                      == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                                     & (IData)(
