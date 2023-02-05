@@ -54,7 +54,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         mepc <= `XLEN'b0;
     end
-    else if(sel_mepc | trap) begin
+    else if((sel_mepc | trap) && stall_n) begin
         mepc[`XLEN-1:2]<= trap ? pc_i[`XLEN-1:2] : wr_data[`XLEN-1:2];
     end
 end
@@ -65,7 +65,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         mtvec <= `XLEN'b0;
     end
-    else if(sel_mtvec) begin
+    else if(sel_mtvec && stall_n) begin
         mtvec[`XLEN-1:2] <= wr_data[`XLEN-1:2];
     end
 end
@@ -94,7 +94,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         mcause <= `XLEN'h0;
     end
-    else if(sel_mcause | trap) begin
+    else if((sel_mcause | trap) && stall_n) begin
         mcause <= trap ? mcause_n:      //此处暂未正确实现  //已实现ecall
                         wr_data;
     end
