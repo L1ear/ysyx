@@ -366,7 +366,7 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
     // assert(0);
 
   int t;
-  if(waddr == 0xa0000100) {printf("?????????????????????\naddr:%lx mask:%d\n",waddr, (uint8_t)wmask); }
+  // if(waddr == 0xa0000100) {printf("?????????????????????\naddr:%lx mask:%d\n",waddr, (uint8_t)wmask); }
   for(t=0;t<8;t++){
     if((uint8_t)wmask & (uint8_t)1){
       memwrite(waddr+t, 1, WRdata[t], 0);
