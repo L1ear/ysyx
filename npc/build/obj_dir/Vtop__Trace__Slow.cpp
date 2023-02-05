@@ -514,7 +514,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+141,"top axi_crossbar_u axi_mmio_r_valid_i", false,-1);
         tracep->declBus(c+142,"top axi_crossbar_u axi_mmio_r_resp_i", false,-1, 1,0);
         tracep->declQuad(c+143,"top axi_crossbar_u axi_mmio_r_data_i", false,-1, 63,0);
-        tracep->declBit(c+819,"top axi_crossbar_u axi_mmio_r_last_i", false,-1);
+        tracep->declBit(c+141,"top axi_crossbar_u axi_mmio_r_last_i", false,-1);
         tracep->declBus(c+830,"top axi_crossbar_u axi_mmio_r_id_i", false,-1, 3,0);
         tracep->declBus(c+821,"top axi_crossbar_u axi_mmio_r_user_i", false,-1, 0,0);
         tracep->declBit(c+775,"top axi_crossbar_u axi_aw_ready", false,-1);
