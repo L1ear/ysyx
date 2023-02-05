@@ -7,6 +7,7 @@ module CSR (
     // input           [11     :0]     csr_idx,   
     input           [`XLEN-1:0]     csr_wr_data,
     input                           trap,
+    input                           stall_n,
 
     output          [`XLEN-1:0]     csr_data_o,
     output          [`XLEN-1:0]     mtvec_o,mepc_o
@@ -77,7 +78,7 @@ always @(posedge clk or negedge rst_n) begin
         mstatus <= `XLEN'ha00001800;
     end
     else if(sel_mstatus | trap) begin
-        mstatus <= trap ? (system & ~instr_i[21] & (instr_i[14:12]==3'b0)) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
+        mstatus <= trap ? (system & ~instr_i[21] & (instr_i[14:12]==3'b0) & stall_n) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
                                                                           : {mstatus[`XLEN-1:8]                     ,1'b1,      mstatus[6:4],mstatus[7],mstatus[2:0]} :      //此处暂未正确实现
                                                                             wr_data;
     end

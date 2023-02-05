@@ -7,6 +7,7 @@ module ls_stage (
     input           [`inst_len-1:0] instr_last_i,
     input           [`XLEN-1:0]     wb_data_i,
     input                           trap_ls_i,
+    input                           stall_n,
 
 
     output          [`XLEN-1:0]     ls_res_o,
@@ -81,6 +82,7 @@ CSR CSR_u(
     .trap(trap_ls_i),
     .csr_data_o(csr_data_o),
     .mtvec_o(mtvec_o),
-    .mepc_o(mepc_o)
+    .mepc_o(mepc_o),
+    .stall_n(stall_n)
 );
 endmodule
