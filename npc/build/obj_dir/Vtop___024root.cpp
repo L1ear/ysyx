@@ -5155,8 +5155,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
             = vlSelf->top__DOT__axi_mmio_r_last_i;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_data 
             = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata;
-        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id 
-            = vlSelf->top__DOT__axi_mmio_r_id_i;
+        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id = 1U;
     } else {
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_valid 
             = vlSelf->axi_r_valid_i;

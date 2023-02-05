@@ -1707,8 +1707,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
             = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_arready;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_last 
             = vlSelf->top__DOT__axi_mmio_r_last_i;
-        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id 
-            = vlSelf->top__DOT__axi_mmio_r_id_i;
+        vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id = 1U;
         vlSelf->axi_ar_len_o = 0U;
     } else {
         vlSelf->axi_ar_addr_o = vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr;

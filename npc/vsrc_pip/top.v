@@ -462,7 +462,8 @@ axi_crossbar axi_crossbar_u(
     .axi_mmio_r_valid_i     (axi_mmio_r_valid_i   ), 
     .axi_mmio_r_resp_i      (axi_mmio_r_resp_i    ),
     .axi_mmio_r_data_i      (axi_mmio_r_data_i    ),  
-    .axi_mmio_r_last_i      (axi_mmio_r_last_i    ),
+    //外设不支持burst读写，r_valid就是last信号
+    .axi_mmio_r_last_i      (axi_mmio_r_valid_i    ),
     .axi_mmio_r_id_i        ('b1      ),//
     .axi_mmio_r_user_i      (axi_mmio_r_user_i    )
 );

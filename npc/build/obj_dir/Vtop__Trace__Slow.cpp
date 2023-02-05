@@ -495,7 +495,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+266,"top axi_crossbar_u axi_mmio_b_ready_o", false,-1);
         tracep->declBit(c+152,"top axi_crossbar_u axi_mmio_b_valid_i", false,-1);
         tracep->declBus(c+153,"top axi_crossbar_u axi_mmio_b_resp_i", false,-1, 1,0);
-        tracep->declBus(c+822,"top axi_crossbar_u axi_mmio_b_id_i", false,-1, 3,0);
+        tracep->declBus(c+830,"top axi_crossbar_u axi_mmio_b_id_i", false,-1, 3,0);
         tracep->declBus(c+823,"top axi_crossbar_u axi_mmio_b_user_i", false,-1, 0,0);
         tracep->declBit(c+140,"top axi_crossbar_u axi_mmio_ar_ready_i", false,-1);
         tracep->declBit(c+257,"top axi_crossbar_u axi_mmio_ar_valid_o", false,-1);
@@ -515,7 +515,7 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBus(c+142,"top axi_crossbar_u axi_mmio_r_resp_i", false,-1, 1,0);
         tracep->declQuad(c+143,"top axi_crossbar_u axi_mmio_r_data_i", false,-1, 63,0);
         tracep->declBit(c+819,"top axi_crossbar_u axi_mmio_r_last_i", false,-1);
-        tracep->declBus(c+820,"top axi_crossbar_u axi_mmio_r_id_i", false,-1, 3,0);
+        tracep->declBus(c+830,"top axi_crossbar_u axi_mmio_r_id_i", false,-1, 3,0);
         tracep->declBus(c+821,"top axi_crossbar_u axi_mmio_r_user_i", false,-1, 0,0);
         tracep->declBit(c+775,"top axi_crossbar_u axi_aw_ready", false,-1);
         tracep->declBit(c+267,"top axi_crossbar_u axi_aw_valid", false,-1);
@@ -3287,8 +3287,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+778,(((1U & (IData)(
                                                    (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                     >> 0x1dU)))
-                                      ? (IData)(vlSelf->top__DOT__axi_mmio_b_id_i)
-                                      : (IData)(vlSelf->axi_b_id_i))),4);
+                                      ? 1U : (IData)(vlSelf->axi_b_id_i))),4);
         tracep->fullBit(oldp+779,(((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                   >> 0x1dU)))
                                     ? (IData)(vlSelf->top__DOT__axi_mmio_b_user_i)
