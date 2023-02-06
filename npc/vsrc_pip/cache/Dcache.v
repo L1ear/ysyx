@@ -582,7 +582,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         uncacheRdOk <= 'b0;
     end
-    else if(uncacheOpEn && rdLast_i)begin
+    else if(uncacheOpEn && rdLast_i && ~reqLatch[32])begin
         uncacheRdOk <= 'b1;
     end
     else if(~uncacheOpEn) begin
@@ -594,7 +594,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         uncacheWrOk <= 'b0;
     end
-    else if(uncacheOpEn && axiWrReady)begin
+    else if(uncacheOpEn && axiWrReady && reqLatch[32])begin
         uncacheWrOk <= 'b1;
     end
     else if(~uncacheOpEn) begin
