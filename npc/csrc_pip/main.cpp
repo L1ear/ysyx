@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 #endif 
 
     printf("%ld\n",(uint64_t)0xFFFFFFFF80000F1C);
-    assert();
+    assert(0);
     init_monitor(argc, argv);
     init_screen();
    
