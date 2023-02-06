@@ -96,8 +96,8 @@ int main(int argc, char *argv[])
     fp ->dump(0);
 #endif 
 
-    printf("%d\n",(uint64_t)0xFFFFFFFF80000F1C);
-    assert(0);
+    // printf("%d\n",(uint64_t)0xFFFFFFFF80000F1C);
+    // assert(0);
     init_monitor(argc, argv);
     init_screen();
    
@@ -286,7 +286,7 @@ void single_cycle(int i) {
   // }
   top->eval();
 #ifdef vcd
-  if(i>=55100000) 
+  if(i>=(uint64_t)0xFFFFFFFF80000F1C) 
     fp ->dump(i);
 #endif
 
@@ -322,7 +322,7 @@ void single_cycle(int i) {
   top->clk = 0;
   top->eval();
 #ifdef vcd
-  if(i>=55100000) 
+  if(i>=(uint64_t)0xFFFFFFFF80000F1C) 
     fp ->dump(i+1);
 #endif
   // pc = top->pc_decoding;
