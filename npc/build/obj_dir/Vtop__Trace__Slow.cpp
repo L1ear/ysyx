@@ -3639,7 +3639,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                   : 1U)
                                               : (((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheOpOk) 
                                                   & (IData)(vlSelf->top__DOT__ls_stall_n))
-                                                  ? 0U
+                                                  ? 1U
                                                   : 6U))
                                           : 0U) : (
                                                    (2U 

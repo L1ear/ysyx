@@ -5299,7 +5299,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
                     ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg)
                         ? 7U : 1U) : (((IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheOpOk) 
                                        & (IData)(vlSelf->top__DOT__ls_stall_n))
-                                       ? 0U : 6U)) : 0U)
+                                       ? 1U : 6U)) : 0U)
             : ((2U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                 ? ((1U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                     ? ((IData)(vlSelf->top__DOT__ls_axi_r_last_i)
