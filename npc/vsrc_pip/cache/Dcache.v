@@ -296,7 +296,7 @@ always @(*) begin
 end
 
 //这里写的很粪
-assign rd_data_o = uncacheOpEn ? rdLast_i ? rdData_i : temp : ({64{way1Hit}}&rdDataRegWay1)
+assign rd_data_o = uncacheOpEn ? (rdLast_i ? rdData_i : temp ): ({64{way1Hit}}&rdDataRegWay1)
                                       | ({64{way2Hit}}&rdDataRegWay2);
 
 wire    missEn = cacheCurState == miss;
