@@ -112,16 +112,6 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__Dcache_u__DOT__temp = vlSelf->top__DOT__ls_axi_r_data_i;
     }
     if (vlSelf->rst_n) {
-        if (((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-             & (IData)(vlSelf->top__DOT__ls_axi_r_last_i))) {
-            vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 1U;
-        } else if ((6U != (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-            vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 0U;
-        }
-    } else {
-        vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 0U;
-    }
-    if (vlSelf->rst_n) {
         if ((3U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) {
             vlSelf->top__DOT__cache_dut__DOT__validArray2 
                 = (((~ (1ULL << (0x3fU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
@@ -210,6 +200,18 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         }
     } else {
         vlSelf->top__DOT__Dcache_u__DOT__wrMaskLatch = 0U;
+    }
+    if (vlSelf->rst_n) {
+        if ((((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+              & (IData)(vlSelf->top__DOT__ls_axi_r_last_i)) 
+             & (~ (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                           >> 0x20U))))) {
+            vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 1U;
+        } else if ((6U != (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
+            vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 0U;
+        }
+    } else {
+        vlSelf->top__DOT__Dcache_u__DOT__uncacheRdOk = 0U;
     }
     if (vlSelf->rst_n) {
         if (((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
@@ -2437,8 +2439,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                            >> 1U))))))));
     vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy = vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg;
     if (vlSelf->rst_n) {
-        if (((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-             & (0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)))) {
+        if ((((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+              & (0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state))) 
+             & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                        >> 0x20U)))) {
             vlSelf->top__DOT__Dcache_u__DOT__uncacheWrOk = 1U;
         } else if ((6U != (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
             vlSelf->top__DOT__Dcache_u__DOT__uncacheWrOk = 0U;
