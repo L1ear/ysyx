@@ -156,7 +156,7 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
   }
   else if(addr>0x88000000||addr<0x80000000){
       printf("\n%08lx: write %d bytes out of boundary!\nPC: %08d\n",addr, len, sim_time);
-      // assert(0);
+      assert(0);
       } 
   else 
     switch (len) {
