@@ -153,6 +153,7 @@ void memwrite(uint64_t addr, uint8_t len, uint64_t data, uint64_t instrAddr){
     // difftest_skip_ref();
 
     printf("%c",(uint8_t)data);
+    assert(0);
   }
   else if(addr == 0xa0000104){
     vgactl_sync = data;
