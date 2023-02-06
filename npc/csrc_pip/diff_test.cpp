@@ -106,7 +106,7 @@ void difftest_step(long long pc) {
     for(int i=0;i<32;i++){
 		if(!difftest_check_reg(regs[i],pc,ref_r.gpr[i],cpu.gpr[i])){
       dump_gpr();
-      Log("Error!! time:%d",pc,sim_time);
+      Log("Error!! time:%d",(uint64_t)sim_time);
 			en = 0;
       err = true;
     }
