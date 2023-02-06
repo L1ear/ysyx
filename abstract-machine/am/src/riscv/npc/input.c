@@ -1,5 +1,5 @@
 #include <am.h>
-#include<stdio.h>
+// #include<stdio.h>
 
 static inline uint32_t inl(uintptr_t addr) { return *(volatile uint32_t *)addr; }
 
@@ -11,7 +11,7 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
   int code = inl(KBD_ADDR);
   kbd->keydown = (code & KEYDOWN_MASK ? true : false);
   kbd->keycode = code & ~KEYDOWN_MASK;
-  printf("%x\n",code);
-  printf("keycode:%d down:%d?\n",kbd->keycode,kbd->keydown);
+  // printf("%x\n",code);
+  // printf("keycode:%d down:%d?\n",kbd->keycode,kbd->keydown);
   
 }

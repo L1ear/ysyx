@@ -5179,9 +5179,6 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
                                               | (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state))))));
     vlSelf->top__DOT__axi_ls_u__DOT__w_state_next = 
         Vtop__ConstPool__TABLE_0260afd5_0[__Vtableidx4];
-    vlSelf->top__DOT__ls_axi_r_data_i = ((1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id))
-                                          ? vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_data
-                                          : 0ULL);
     vlSelf->top__DOT__dataValid_o = (((1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id))
                                        ? 0U : (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_valid)) 
                                      & (3U == (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state)));
@@ -5191,9 +5188,11 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
                                           (3U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state)));
     if ((1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id))) {
         vlSelf->top__DOT__if_axi_r_last_i = 0U;
+        vlSelf->top__DOT__ls_axi_r_data_i = vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_data;
         vlSelf->top__DOT__ls_axi_r_last_i = (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_last));
     } else {
         vlSelf->top__DOT__if_axi_r_last_i = (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_last));
+        vlSelf->top__DOT__ls_axi_r_data_i = 0ULL;
         vlSelf->top__DOT__ls_axi_r_last_i = 0U;
     }
     __Vtableidx2 = (((IData)(vlSelf->top__DOT__if_axi_r_last_i) 
@@ -5459,7 +5458,9 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__9(Vtop___024root* vlSelf) {
                      & (IData)(vlSelf->top__DOT__ls_stall_n))
                      ? 1U : 0U))));
     vlSelf->top__DOT__ls_sram_rd_data = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                          ? vlSelf->top__DOT__Dcache_u__DOT__temp
+                                          ? ((IData)(vlSelf->top__DOT__ls_axi_r_last_i)
+                                              ? vlSelf->top__DOT__ls_axi_r_data_i
+                                              : vlSelf->top__DOT__Dcache_u__DOT__temp)
                                           : (((- (QData)((IData)(vlSelf->top__DOT__Dcache_u__DOT__way1Hit))) 
                                               & ((((((0U 
                                                       == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
