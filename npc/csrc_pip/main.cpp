@@ -292,7 +292,7 @@ void single_cycle(int i) {
   // }
   top->eval();
 #ifdef vcd
-  if(i>=(542923300-40000)) 
+  if((uint64_t)i>=(542923300-40000)) 
     fp ->dump(i);
 #endif
 
@@ -328,7 +328,7 @@ void single_cycle(int i) {
   top->clk = 0;
   top->eval();
 #ifdef vcd
-  if(i>=(542923300-40000)) 
+  if((uint64_t)i>=(542923300-40000)) 
     fp ->dump(i+1);
 #endif
   // pc = top->pc_decoding;
