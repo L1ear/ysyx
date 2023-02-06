@@ -78,7 +78,7 @@ long load_img() {
   uint64_t buf;
   mem.read(0x8009df20+24,8,(uint8_t *)&buf);
   printf("0x8009df20+24:%lx\n", buf);
-  assert(0);
+  // assert(0);
   assert(ret == 1);
 
   fclose(fp);
