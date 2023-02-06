@@ -285,7 +285,7 @@ void single_cycle(int i) {
   // }
   top->eval();
 #ifdef vcd
-  fp ->dump(i);
+  if(i>=5400000) fp ->dump(i);
 #endif
 
 #ifdef  difftest    
@@ -320,7 +320,7 @@ void single_cycle(int i) {
   top->clk = 0;
   top->eval();
 #ifdef vcd
-  fp ->dump(i+1);
+  if(i>=5400000) fp ->dump(i+1);
 #endif
   // pc = top->pc_decoding;
 #ifdef  difftest
