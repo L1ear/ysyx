@@ -224,11 +224,11 @@ uint64_t instr_last;
 char  stall;
 void single_cycle(int i) {
   device_update();
-   uint64_t buf;
-  mem.read(0x81bf2f48,8,(uint8_t *)&buf);
-  if(buf!=0x80000f44){
-    printf("time:%d\n",i);
-    assert(0);
+  //  uint64_t buf;
+  // mem.read(0x81bf2f48,8,(uint8_t *)&buf);
+  // if(buf!=0x80000f44){
+  //   printf("time:%d\n",i);
+  //   assert(0);
   }
 //上升沿
   top->clk = 1; 

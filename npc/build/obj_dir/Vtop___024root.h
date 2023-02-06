@@ -318,7 +318,6 @@ VL_MODULE(Vtop___024root) {
     CData/*1:0*/ __Vdly__top__DOT__Dcache_u__DOT__rdCnt;
     CData/*4:0*/ __Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
-    CData/*0:0*/ __Vdly__top__DOT__Dcache_u__DOT__randomBit;
     CData/*0:0*/ __Vclklast__TOP__clk;
     CData/*0:0*/ __Vclklast__TOP__rst_n;
     IData/*31:0*/ top__DOT____Vcellinp__Dcache_u__addr_i;
