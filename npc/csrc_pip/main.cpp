@@ -96,7 +96,8 @@ int main(int argc, char *argv[])
     fp ->dump(0);
 #endif 
 
-    
+    printf("%ld\n",(uint64_t)0xFFFFFFFF80000F1C);
+    assert();
     init_monitor(argc, argv);
     init_screen();
    
