@@ -619,7 +619,7 @@ end
 S011HD1P_X32Y2D128_BW iramWay1_1 (
   .Q (dataWay1_1 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || wenWay1) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || wenWay1) ),
   .WEN (~wenWay1 ),
   .BWEN (~maskWay1_1 ),
   .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
@@ -629,7 +629,7 @@ S011HD1P_X32Y2D128_BW iramWay1_1 (
 S011HD1P_X32Y2D128_BW iramWay1_2 (
   .Q (dataWay1_2 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || wenWay1) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || wenWay1) ),
   .WEN (~wenWay1 ),
   .BWEN (~maskWay1_2 ),
   .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
@@ -639,7 +639,7 @@ S011HD1P_X32Y2D128_BW iramWay1_2 (
 S011HD1P_X32Y2D128_BW iramWay2_1 (
   .Q (dataWay2_1 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || wenWay2) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || wenWay2) ),
   .WEN (~wenWay2 ),
   .BWEN (~maskWay2_1 ),
   .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
@@ -649,7 +649,7 @@ S011HD1P_X32Y2D128_BW iramWay2_1 (
 S011HD1P_X32Y2D128_BW iramWay2_2 (
   .Q (dataWay2_2 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || wenWay2) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || wenWay2) ),
   .WEN (~wenWay2 ),
   .BWEN (~maskWay2_2 ),
   .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
