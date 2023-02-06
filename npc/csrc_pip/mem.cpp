@@ -74,9 +74,9 @@ long load_img() {
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(0x80000000), size, 1, fp);
-  mem.load_binary(img_file, 0x80000000);
+  // mem.load_binary(img_file, 0x80000000);
   uint64_t buf=0xdeadbeef;
-  mem.write(0x8009df20+24,8,(uint8_t *)&buf);
+  mem.write(0x80000000,size,img_file);
   buf = 0;
   printf("0x8009df20+24:%lx\n", buf);
   mem.read(0x8009df20+24,8,(uint8_t *)&buf);
