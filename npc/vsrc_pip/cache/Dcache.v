@@ -348,7 +348,7 @@ end
 // always randomBit = $random;
 always @(posedge clk) begin
     if(replaceEn) begin
-        randomBit <= 0;//~randomBit;
+        randomBit <= ~randomBit;
     end
 end
 always @(*) begin
