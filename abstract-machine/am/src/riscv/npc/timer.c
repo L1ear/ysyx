@@ -1,5 +1,5 @@
 #include <am.h>
-#include <stdio.h>
+// #include <stdio.h>
 
 
 static inline uint64_t ind(uintptr_t addr) { return *(volatile uint64_t *)addr; }
@@ -9,7 +9,7 @@ static uint32_t origin_time;
 
 void __am_timer_init() {
   origin_time = ind(RTC_ADDR);
-  printf("%d\n",origin_time);
+  // printf("%x\n",origin_time);
 
 }
 
