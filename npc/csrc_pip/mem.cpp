@@ -76,7 +76,7 @@ long load_img() {
   int ret = fread(guest_to_host(0x80000000), size, 1, fp);
   mem.load_binary(img_file, 0x80000000);
   uint64_t buf;
-  mem.read(0x8009df20+24,32,buf);
+  mem.read(0x8009df20+24,32,&buf);
   printf("0x8009df20+24:%lx\n", buf);
   assert(0);
   assert(ret == 1);
