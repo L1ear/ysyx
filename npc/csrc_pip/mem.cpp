@@ -80,8 +80,8 @@ long load_img() {
   // // buf = 0;
   // printf("0x8009df20+24:%lx\n", buf);
   // mem.read(0x81bf2f48,8,(uint8_t *)&buf);
-  printf("0x8009df20+24:%lx\n", buf);
-  assert(0);
+  // printf("0x8009df20+24:%lx\n", buf);
+  // assert(0);
   assert(ret == 1);
 
   fclose(fp);
