@@ -229,7 +229,7 @@ void single_cycle(int i) {
   // if(buf!=0x80000f44){
   //   printf("time:%d\n",i);
   //   assert(0);
-  }
+  // }
 //上升沿
   top->clk = 1; 
   //********************************************
