@@ -76,9 +76,6 @@ void send_key(uint8_t scancode, bool is_keydown) {
 uint32_t i8042_data_io_handler(uint32_t offset, int len, bool is_write) {
   if(flag){
     init_keymap();
-      assert(!is_write);
-      assert(offset == 0);
-      return _KEY_NONE;
     flag = 0;
   }
   assert(!is_write);
