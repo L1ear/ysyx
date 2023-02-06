@@ -105,7 +105,7 @@ uint64_t memread(uint64_t addr, uint8_t len,uint64_t instrAddr){
   if(addr == 0xa0000060){
     // printf("read key:%x\n",i8042_data_io_handler(0,0,0));
     // if(i8042_data_io_handler(0,0,0) != 0) assert(0);
-    printf("npc:%lx\n",(uint64_t)i8042_data_io_handler(0,0,0));
+    printf("npc:%x\n",(uint64_t)i8042_data_io_handler(0,0,0));
     return (uint64_t)i8042_data_io_handler(0,0,0);
     
     // assert(0);
