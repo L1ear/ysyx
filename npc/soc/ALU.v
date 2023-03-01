@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module ALU(
     input       [4:0]           ALUctr,
     input       [`XLEN-1:0]     src1,

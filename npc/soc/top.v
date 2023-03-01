@@ -1,137 +1,221 @@
-`include "defines.v"
-module top # (
-    parameter RW_DATA_WIDTH     = 64,
-    parameter RW_ADDR_WIDTH     = 64,
-    parameter AXI_DATA_WIDTH    = 64,
-    parameter AXI_ADDR_WIDTH    = 64,
-    parameter AXI_ID_WIDTH      = 4,
-    parameter AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8,
-    parameter AXI_USER_WIDTH    = 1
-)(
-    input                           clk,rst_n,
+module ysyx_22040734 (
+    input                           clock,
+    input                           reset,
+    input                           io_interrupt,
 
-    output          [`XLEN-1:0]     pc_diff,pc_decoding,
-    output          [`inst_len-1:0] instr_diff,
-	output	        [`XLEN-1:0]		regA0,
-    output                          stall_n_diff,
-
-//instr sram  interface
-    // input           [`XLEN-1:0]     sram_rdata,
-    // input                           sram_data_valid,
-    // output          [`XLEN-1:0]     sram_addr,
-    // output                          sram_ren,
-    // output                          sram_addr_valid,
-
-    input                               axi_ar_ready_i,     //lite              
-    output                              axi_ar_valid_o,     //lite
-    output [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o,      //lite
-    output [2:0]                        axi_ar_prot_o,
-    output [AXI_ID_WIDTH-1:0]           axi_ar_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
-    output [7:0]                        axi_ar_len_o,       //lite
-    output [2:0]                        axi_ar_size_o,      //lite
-    output [1:0]                        axi_ar_burst_o,
-    output                              axi_ar_lock_o,
-    output [3:0]                        axi_ar_cache_o,
-    output [3:0]                        axi_ar_qos_o,
-    output [3:0]                        axi_ar_region_o,
+    input                               io_master_arready,          
+    output                              io_master_arvalid,    
+    output [31:0]         io_master_araddr,     
+    output [3:0]           io_master_arid,
+    output [7:0]                        io_master_arlen,      
+    output [2:0]                        io_master_arsize,     
+    output [1:0]                        io_master_arburst,
     
-    output                              axi_r_ready_o,      //lite            
-    input                               axi_r_valid_i,      //lite            
-    input  [1:0]                        axi_r_resp_i,
-    input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       //lite
-    input                               axi_r_last_i,
-    input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i,
+    output                              io_master_rready,         
+    input                               io_master_rvalid,         
+    input  [1:0]                        io_master_rresp,
+    input  [63:0]         io_master_rdata,       
+    input                               io_master_rlast,
+    input  [3:0]           io_master_rid,
 
-    input                               axi_aw_ready_i,     //lite        
-    output                              axi_aw_valid_o,     //lite
-    output [AXI_ADDR_WIDTH-1:0]         axi_aw_addr_o,      //lite
-    output [2:0]                        axi_aw_prot_o,
-    output [AXI_ID_WIDTH-1:0]           axi_aw_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_aw_user_o,
-    output [7:0]                        axi_aw_len_o,       
-    output [2:0]                        axi_aw_size_o,
-    output [1:0]                        axi_aw_burst_o,
-    output                              axi_aw_lock_o,
-    output [3:0]                        axi_aw_cache_o,
-    output [3:0]                        axi_aw_qos_o,
-    output [3:0]                        axi_aw_region_o,
-    input                               axi_w_ready_i,      //lite        
-    output                              axi_w_valid_o,      //lite
-    output [AXI_DATA_WIDTH-1:0]         axi_w_data_o,       //lite
-    output [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o,       //lite
-    output                              axi_w_last_o,
-    output [AXI_USER_WIDTH-1:0]         axi_w_user_o,
+    input                               io_master_awready,    
+    output                              io_master_awvalid,    
+    output [31:0]         io_master_awaddr,      
+    output [3:0]           io_master_awid,
+    output [7:0]                        io_master_awlen,       
+    output [2:0]                        io_master_awsize,
+    output [1:0]                        io_master_awburst,
+
+    input                               io_master_wready,             
+    output                              io_master_wvalid,     
+    output [63:0]         io_master_wdata,       
+    output [7:0]       io_master_wstrb,       
+    output                              io_master_wlast,
         
-    output                              axi_b_ready_o,      //lite        
-    input                               axi_b_valid_i,      //lite
-    input  [1:0]                        axi_b_resp_i,       //lite        
-    input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_b_user_i
+    output                              io_master_bready,             
+    input                               io_master_bvalid,     
+    input  [1:0]                        io_master_bresp,              
+    input  [3:0]           io_master_bid,
+
+    output                              io_slave_awready,
+    input                               io_slave_awvalid,
+    input [3:0]                          io_slave_awid,  
+    input   [31:0]                         io_slave_awaddr ,
+    input   [7:0]                          io_slave_awlen  ,
+    input   [2:0]                          io_slave_awsize ,
+    input   [1:0]                          io_slave_awburst,
+    output                              io_slave_wready ,
+    input                               io_slave_wvalid ,
+    input [63:0]                         io_slave_wdata  ,
+    input [7:0]                          io_slave_wstrb  ,
+    input                               io_slave_wlast  ,
+    input                               io_slave_bready ,
+    output                              io_slave_bvalid,
+    output [3:0]                         io_slave_bid ,
+    output [1:0]                         io_slave_bresp,
+    output                              io_slave_arready,
+    input                               io_slave_arvalid,
+    input [3:0]                          io_slave_arid   ,
+    input [31:0]                         io_slave_araddr ,
+    input [7:0]                          io_slave_arlen ,
+    input [2:0]                          io_slave_arsize ,
+    input [1:0]                          io_slave_arburst,
+    input                               io_slave_rready ,
+    output                              io_slave_rvalid ,
+    output [3:0]                         io_slave_rid    ,
+    output [1:0]                         io_slave_rresp  ,
+    output [63:0]                        io_slave_rdata  ,
+    output                              io_slave_rlast  ,
 
 
+    output  [5:0]                         io_sram0_addr,    
+    output                              io_sram0_cen,     
+    output                              io_sram0_wen,     
+    output [127:0]                       io_sram0_wmask,   
+    output [127:0]                       io_sram0_wdata,   
+    input [127:0]                        io_sram0_rdata,   
 
-// ls sram interface
-//     output          [`XLEN-1:0]     ls_sram_addr,
-//     output                          ls_sram_rd_en,          
-//     output                          ls_sram_wr_en,
-//     output          [`XLEN-1:0]     ls_sram_wr_data,
-//     output          [7      :0]     ls_sram_wr_mask,
-//     input                           ls_sram_rd_data_valid,
-//     input                           ls_sram_wr_data_ok,
-//     input           [`XLEN-1:0]     ls_sram_rd_data
+    output [5:0]                         io_sram1_addr,    
+    output                              io_sram1_cen,     
+    output                              io_sram1_wen,     
+    output [127:0]                       io_sram1_wmask,   
+    output [127:0]                       io_sram1_wdata,   
+    input [127:0]                        io_sram1_rdata,  
+
+    output [5:0]                         io_sram2_addr,    
+    output                              io_sram2_cen,     
+    output                              io_sram2_wen,     
+    output [127:0]                       io_sram2_wmask,   
+    output [127:0]                       io_sram2_wdata,   
+    input [127:0]                        io_sram2_rdata,  
+
+    output [5:0]                         io_sram3_addr,    
+    output                              io_sram3_cen,     
+    output                              io_sram3_wen,     
+    output [127:0]                       io_sram3_wmask,   
+    output [127:0]                       io_sram3_wdata,   
+    input [127:0]                        io_sram3_rdata,  
+
+    output [5:0]                         io_sram4_addr,    
+    output                              io_sram4_cen,     
+    output                              io_sram4_wen,     
+    output [127:0]                       io_sram4_wmask,   
+    output [127:0]                       io_sram4_wdata,   
+    input [127:0]                        io_sram4_rdata, 
+
+    output [5:0]                         io_sram5_addr,    
+    output                              io_sram5_cen,     
+    output                              io_sram5_wen,     
+    output [127:0]                       io_sram5_wmask,   
+    output [127:0]                       io_sram5_wdata,   
+    input [127:0]                        io_sram5_rdata,   
+
+    output [5:0]                         io_sram6_addr,    
+    output                              io_sram6_cen,     
+    output                              io_sram6_wen,     
+    output  [127:0]                       io_sram6_wmask,   
+    output  [127:0]                       io_sram6_wdata,   
+    input [127:0]                        io_sram6_rdata,  
+
+    output [5:0]                         io_sram7_addr,    
+    output                              io_sram7_cen,     
+    output                              io_sram7_wen,     
+    output [127:0]                       io_sram7_wmask,   
+    output [127:0]                       io_sram7_wdata,   
+    input [127:0]                        io_sram7_rdata   
 
 );
+localparam  RW_DATA_WIDTH     = 64;
+localparam  RW_ADDR_WIDTH     = 64;
+localparam  AXI_DATA_WIDTH    = 64;
+localparam  AXI_ADDR_WIDTH    = 64;
+localparam  AXI_ID_WIDTH      = 4;
+localparam  AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8;
+localparam  AXI_USER_WIDTH    = 1;
+wire clk = clock;
+wire rst_n = ~reset;
 
+wire                              axi_ar_ready_i = io_master_arready;     //lite              
+wire                              axi_ar_valid_o;     //lite
+wire [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o;      //lite
+wire [2:0]                        axi_ar_prot_o;
+wire [AXI_ID_WIDTH-1:0]           axi_ar_id_o;
+wire [AXI_USER_WIDTH-1:0]         axi_ar_user_o;
+wire [7:0]                        axi_ar_len_o;       //lite
+wire [2:0]                        axi_ar_size_o;      //lite
+wire [1:0]                        axi_ar_burst_o;
+wire                              axi_ar_lock_o;
+wire [3:0]                        axi_ar_cache_o;
+wire [3:0]                        axi_ar_qos_o;
+wire [3:0]                        axi_ar_region_o;
 
-wire                              axi_mmio_ar_ready_i;     //lite              
-wire                              axi_mmio_ar_valid_o;     //lite
-wire [AXI_ADDR_WIDTH-1:0]         axi_mmio_ar_addr_o;     //lite
-wire [2:0]                        axi_mmio_ar_prot_o;
-wire [AXI_ID_WIDTH-1:0]           axi_mmio_ar_id_o;
-wire [AXI_USER_WIDTH-1:0]         axi_mmio_ar_user_o;
-wire [7:0]                        axi_mmio_ar_len_o;       //lite
-wire [2:0]                        axi_mmio_ar_size_o;      //lite
-wire [1:0]                        axi_mmio_ar_burst_o;
-wire                              axi_mmio_ar_lock_o;
-wire [3:0]                        axi_mmio_ar_cache_o;
-wire [3:0]                        axi_mmio_ar_qos_o;
-wire [3:0]                        axi_mmio_ar_region_o;
+wire                              axi_r_ready_o;      //lite            
+wire                              axi_r_valid_i = io_master_rvalid;      //lite            
+wire [1:0]                        axi_r_resp_i = io_master_rresp;
+wire [AXI_DATA_WIDTH-1:0]         axi_r_data_i = io_master_rdata;       //lite
+wire                              axi_r_last_i = io_master_rlast;
+wire [AXI_ID_WIDTH-1:0]           axi_r_id_i = io_master_rid;
+wire [AXI_USER_WIDTH-1:0]         axi_r_user_i = 'b0;
 
-wire                              axi_mmio_r_ready_o;      //lite            
-wire                              axi_mmio_r_valid_i;      //lite            
-wire [1:0]                        axi_mmio_r_resp_i;
-wire [AXI_DATA_WIDTH-1:0]         axi_mmio_r_data_i;       //lite
-wire                              axi_mmio_r_last_i;
-wire [AXI_ID_WIDTH-1:0]           axi_mmio_r_id_i;
-wire [AXI_USER_WIDTH-1:0]         axi_mmio_r_user_i;
+wire                              axi_aw_ready_i = io_master_awready;     //lite        
+wire                              axi_aw_valid_o;     //lite
+wire [AXI_ADDR_WIDTH-1:0]         axi_aw_addr_o;      //lite
+wire [2:0]                        axi_aw_prot_o;
+wire [AXI_ID_WIDTH-1:0]           axi_aw_id_o;
+wire [AXI_USER_WIDTH-1:0]         axi_aw_user_o;
+wire [7:0]                        axi_aw_len_o;       
+wire [2:0]                        axi_aw_size_o;
+wire [1:0]                        axi_aw_burst_o;
+wire                              axi_aw_lock_o;
+wire [3:0]                        axi_aw_cache_o;
+wire [3:0]                        axi_aw_qos_o;
+wire [3:0]                        axi_aw_region_o;
+wire                              axi_w_ready_i = io_master_wready;      //lite        
+wire                              axi_w_valid_o;      //lite
+wire [AXI_DATA_WIDTH-1:0]         axi_w_data_o;       //lite
+wire [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o;       //lite
+wire                              axi_w_last_o;
+wire [AXI_USER_WIDTH-1:0]         axi_w_user_o;
 
-wire                              axi_mmio_aw_ready_i;     //lite        
-wire                              axi_mmio_aw_valid_o;     //lite
-wire [AXI_ADDR_WIDTH-1:0]         axi_mmio_aw_addr_o;      //lite
-wire [2:0]                        axi_mmio_aw_prot_o;
-wire [AXI_ID_WIDTH-1:0]           axi_mmio_aw_id_o;
-wire [AXI_USER_WIDTH-1:0]         axi_mmio_aw_user_o;
-wire [7:0]                        axi_mmio_aw_len_o;       
-wire [2:0]                        axi_mmio_aw_size_o;
-wire [1:0]                        axi_mmio_aw_burst_o;
-wire                              axi_mmio_aw_lock_o;
-wire [3:0]                        axi_mmio_aw_cache_o;
-wire [3:0]                        axi_mmio_aw_qos_o;
-wire [3:0]                        axi_mmio_aw_region_o;
-wire                              axi_mmio_w_ready_i;      //lite        
-wire                              axi_mmio_w_valid_o;      //lite
-wire [AXI_DATA_WIDTH-1:0]         axi_mmio_w_data_o;       //lite
-wire [AXI_DATA_WIDTH/8-1:0]       axi_mmio_w_strb_o;       //lite
-wire                              axi_mmio_w_last_o;
-wire [AXI_USER_WIDTH-1:0]         axi_mmio_w_user_o;
+wire                              axi_b_ready_o;      //lite        
+wire                              axi_b_valid_i = io_master_bvalid;      //lite
+wire [1:0]                        axi_b_resp_i = io_master_bresp;       //lite        
+wire [AXI_ID_WIDTH-1:0]           axi_b_id_i = io_master_bid;
+wire [AXI_USER_WIDTH-1:0]         axi_b_user_i = 'b0;
 
-wire                              axi_mmio_b_ready_o;      //lite        
-wire                              axi_mmio_b_valid_i;      //lite
-wire [1:0]                        axi_mmio_b_resp_i;       //lite        
-wire [AXI_ID_WIDTH-1:0]           axi_mmio_b_id_i;
-wire [AXI_USER_WIDTH-1:0]         axi_mmio_b_user_i;
+assign io_master_arvalid =        axi_ar_valid_o;     //lite
+assign io_master_araddr =         axi_ar_addr_o[31:0];      //lite
+assign io_master_arid  =          axi_ar_id_o;
+assign io_master_arlen =          axi_ar_len_o;       //lite
+assign io_master_arsize =         axi_ar_size_o;      //lite
+assign io_master_arburst =        axi_ar_burst_o;
+
+assign io_master_rready =         axi_r_ready_o;
+
+assign io_master_awvalid =        axi_aw_valid_o;
+assign io_master_awid =           axi_aw_id_o;
+assign io_master_awaddr =         axi_aw_addr_o[31:0];
+assign io_master_awlen =          axi_aw_len_o;
+assign io_master_awsize =         axi_aw_size_o;
+assign io_master_awburst =        axi_aw_burst_o;
+
+assign io_master_wvalid =         axi_w_valid_o;
+assign io_master_wdata =          axi_w_data_o;
+assign io_master_wstrb =          axi_w_strb_o;
+assign io_master_wlast =          axi_w_last_o;
+assign io_master_bready =         axi_b_ready_o;
+
+assign io_slave_awready = 'b0;
+assign io_slave_wready  = 'b0;
+assign io_slave_bvalid  = 'b0;
+assign io_slave_bid     = 'b0;
+assign io_slave_bresp   = 'b0;
+assign io_slave_arready = 'b0;
+assign io_slave_rvalid  = 'b0;
+assign io_slave_rid     = 'b0;
+assign io_slave_rresp   = 'b0;
+assign io_slave_rdata   = 'b0;
+assign io_slave_rlast   = 'b0;
 
 
 //axi signal
@@ -210,7 +294,7 @@ wire    [`XLEN-1:0]     pc_jump;
 wire                    pc_stall_n;
 wire                    if_stall_n;
 wire                    if_instr_valid;
-wire                    sram_data_valid;
+
 wire    [`XLEN-1:0]     sram_rdata;
 wire    [`XLEN-1:0]     sram_addr;
 wire                    sram_ren;
@@ -291,13 +375,13 @@ wire                    wben_wb;
 wire    [`XLEN-1:0]     csrdata_wb;
 wire                    wb_stall_n;
 
-//for verilator
-assign  pc_diff = pc_wb;
-assign  pc_decoding = pc_id;
-assign  instr_diff = instr_wb;
-assign  stall_n_diff = wb_stall_n;
+// //for verilator
+// assign  pc_diff = pc_wb;
+// assign  pc_decoding = pc_id;
+// assign  instr_diff = instr_wb;
+// assign  stall_n_diff = wb_stall_n;
 
-axi_crossbar axi_crossbar_u(
+axi_arbiter axi_arbiter_u(
 //if interface  id: 0
     .instr_fetching (instr_fetching),
     .if_axi_ar_ready_o  (if_axi_ar_ready_i ),     //lite              
@@ -418,54 +502,7 @@ axi_crossbar axi_crossbar_u(
     .axi_r_data_i       (axi_r_data_i  ),       //lite
     .axi_r_last_i       (axi_r_last_i  ),
     .axi_r_id_i         (axi_r_id_i    ),
-    .axi_r_user_i       (axi_r_user_i  ),
-//mmio
-    //mmio目前只有ls能访问，所以id都是1
-    .axi_mmio_aw_ready_i    (axi_mmio_aw_ready_i  ),
-    .axi_mmio_aw_valid_o    (axi_mmio_aw_valid_o  ),
-    .axi_mmio_aw_addr_o     (axi_mmio_aw_addr_o   ), 
-    .axi_mmio_aw_prot_o     (axi_mmio_aw_prot_o   ),
-    .axi_mmio_aw_id_o       (axi_mmio_aw_id_o     ),//
-    .axi_mmio_aw_user_o     (axi_mmio_aw_user_o   ),
-    .axi_mmio_aw_len_o      (axi_mmio_aw_len_o    ),  
-    .axi_mmio_aw_size_o     (axi_mmio_aw_size_o   ),
-    .axi_mmio_aw_burst_o    (axi_mmio_aw_burst_o  ),
-    .axi_mmio_aw_lock_o     (axi_mmio_aw_lock_o   ),
-    .axi_mmio_aw_cache_o    (axi_mmio_aw_cache_o  ),
-    .axi_mmio_aw_qos_o      (axi_mmio_aw_qos_o    ),
-    .axi_mmio_aw_region_o   (axi_mmio_aw_region_o ),
-    .axi_mmio_w_ready_i     (axi_mmio_w_ready_i   ), 
-    .axi_mmio_w_valid_o     (axi_mmio_w_valid_o   ), 
-    .axi_mmio_w_data_o      (axi_mmio_w_data_o    ),  
-    .axi_mmio_w_strb_o      (axi_mmio_w_strb_o    ),  
-    .axi_mmio_w_last_o      (axi_mmio_w_last_o    ),  
-    .axi_mmio_w_user_o      (axi_mmio_w_user_o    ),
-    .axi_mmio_b_ready_o     (axi_mmio_b_ready_o   ), 
-    .axi_mmio_b_valid_i     (axi_mmio_b_valid_i   ), 
-    .axi_mmio_b_resp_i      (axi_mmio_b_resp_i    ),  
-    .axi_mmio_b_id_i        ('b1      ),//
-    .axi_mmio_b_user_i      (axi_mmio_b_user_i    ),
-    .axi_mmio_ar_ready_i    (axi_mmio_ar_ready_i  ),
-    .axi_mmio_ar_valid_o    (axi_mmio_ar_valid_o  ),
-    .axi_mmio_ar_addr_o     (axi_mmio_ar_addr_o   ), 
-    .axi_mmio_ar_prot_o     (axi_mmio_ar_prot_o   ),
-    .axi_mmio_ar_id_o       (axi_mmio_ar_id_o     ),//
-    .axi_mmio_ar_user_o     (axi_mmio_ar_user_o   ),
-    .axi_mmio_ar_len_o      (axi_mmio_ar_len_o    ),  
-    .axi_mmio_ar_size_o     (axi_mmio_ar_size_o   ), 
-    .axi_mmio_ar_burst_o    (axi_mmio_ar_burst_o  ),
-    .axi_mmio_ar_lock_o     (axi_mmio_ar_lock_o   ),
-    .axi_mmio_ar_cache_o    (axi_mmio_ar_cache_o  ),
-    .axi_mmio_ar_qos_o      (axi_mmio_ar_qos_o    ),
-    .axi_mmio_ar_region_o   (axi_mmio_ar_region_o ),
-    .axi_mmio_r_ready_o     (axi_mmio_r_ready_o   ), 
-    .axi_mmio_r_valid_i     (axi_mmio_r_valid_i   ), 
-    .axi_mmio_r_resp_i      (axi_mmio_r_resp_i    ),
-    .axi_mmio_r_data_i      (axi_mmio_r_data_i    ),  
-    //外设不支持burst读写，r_valid就是last信号
-    .axi_mmio_r_last_i      (axi_mmio_r_valid_i    ),
-    .axi_mmio_r_id_i        ('b1      ),//
-    .axi_mmio_r_user_i      (axi_mmio_r_user_i    )
+    .axi_r_user_i       (axi_r_user_i  )
 );
 
 IF_stage IF_u(
@@ -483,13 +520,14 @@ IF_stage IF_u(
     .instr_o        (instr_if_id_reg),
     .if_instr_valid (if_instr_valid),
     .sram_rdata     (sram_rdata),
-    .sram_data_valid(sram_data_valid),
     .cacheAddrOk_i  (cacheAddrOk_i),
     .cacheDataOk_i  (cacheDataOk_i),
     .sram_addr      (sram_addr),
     .sram_ren       (sram_ren),
     .sram_addr_valid(sram_addr_valid)
 );
+
+wire unused1;
 
 Icache cache_dut (
   .clk (clk ),
@@ -502,7 +540,7 @@ Icache cache_dut (
   .wr_data_i (0 ),
   .wr_mask_i (0 ),
   .addr_ok_o (cacheAddrOk_i ),
-  .data_ok_o ( ),
+  .data_ok_o (unused1 ),
   .data_notok_o(cacheDataOk_i),
   .rd_data_o (sram_rdata ),
 //to AXI
@@ -512,7 +550,32 @@ Icache cache_dut (
   .rdLast_i         (rdLast_o   ),
   .cacheAddr_o      (rw_addr_i  ),
   .rdData_i         (data_read_o),
-  .dataValid_i      (dataValid_o)
+  .dataValid_i      (dataValid_o),
+
+  .io_sram0_addr    (io_sram0_addr   ),   
+  .io_sram0_cen     (io_sram0_cen    ),    
+  .io_sram0_wen     (io_sram0_wen    ),    
+  .io_sram0_wmask   (io_sram0_wmask  ),  
+  .io_sram0_wdata   (io_sram0_wdata  ),  
+  .io_sram0_rdata   (io_sram0_rdata  ),  
+  .io_sram1_addr    (io_sram1_addr   ),   
+  .io_sram1_cen     (io_sram1_cen    ),    
+  .io_sram1_wen     (io_sram1_wen    ),    
+  .io_sram1_wmask   (io_sram1_wmask  ),  
+  .io_sram1_wdata   (io_sram1_wdata  ),  
+  .io_sram1_rdata   (io_sram1_rdata  ),  
+  .io_sram2_addr    (io_sram2_addr   ),   
+  .io_sram2_cen     (io_sram2_cen    ),    
+  .io_sram2_wen     (io_sram2_wen    ),    
+  .io_sram2_wmask   (io_sram2_wmask  ),  
+  .io_sram2_wdata   (io_sram2_wdata  ),  
+  .io_sram2_rdata   (io_sram2_rdata  ),  
+  .io_sram3_addr    (io_sram3_addr   ),   
+  .io_sram3_cen     (io_sram3_cen    ),    
+  .io_sram3_wen     (io_sram3_wen    ),    
+  .io_sram3_wmask   (io_sram3_wmask  ),  
+  .io_sram3_wdata   (io_sram3_wdata  ),  
+  .io_sram3_rdata   (io_sram3_rdata)
 );
 wire rw_valid_i ;
 wire rw_ready_o ;
@@ -558,38 +621,7 @@ axi_icache axi_icache_dut (
 );
 
 
-// axi_if axi_if_u(
-//     .clock          (clk),
-//     .reset          (rst_n),
 
-// 	.rw_valid_i     (sram_addr_valid),         //IF&MEM输入信号
-// 	.rw_ready_o     (sram_data_valid),         //IF&MEM输入信号
-//     .data_read_o    (),//sram_rdata),        //IF&MEM输入信号
-//     .rw_addr_i      (sram_addr),          //IF&MEM输入信号
-//     .instr_fetching (instr_fetching),
-
-//     .axi_ar_ready_i (if_axi_ar_ready_i),     //lite              
-//     .axi_ar_valid_o (if_axi_ar_valid_o),     //lite
-//     .axi_ar_addr_o  (if_axi_ar_addr_o  ),      //lite
-//     .axi_ar_prot_o  (if_axi_ar_prot_o  ),
-//     .axi_ar_id_o    (if_axi_ar_id_o    ),
-//     .axi_ar_user_o  (if_axi_ar_user_o  ),
-//     .axi_ar_len_o   (if_axi_ar_len_o   ),       //lite
-//     .axi_ar_size_o  (if_axi_ar_size_o  ),     //lite
-//     .axi_ar_burst_o (if_axi_ar_burst_o ),
-//     .axi_ar_lock_o  (if_axi_ar_lock_o  ),
-//     .axi_ar_cache_o (if_axi_ar_cache_o ),
-//     .axi_ar_qos_o   (if_axi_ar_qos_o   ),
-//     .axi_ar_region_o(if_axi_ar_region_o),
-
-//     .axi_r_ready_o  (if_axi_r_ready_o ),      //lite            
-//     .axi_r_valid_i  (if_axi_r_valid_i ),      //lite            
-//     .axi_r_resp_i   (if_axi_r_resp_i  ),
-//     .axi_r_data_i   (if_axi_r_data_i  ),       //lite
-//     .axi_r_last_i   (if_axi_r_last_i  ),
-//     .axi_r_id_i     (if_axi_r_id_i    ),
-//     .axi_r_user_i   (if_axi_r_user_i  )
-// );
 
 ID_reg ID_reg_u(
     .clk            (clk),
@@ -628,7 +660,7 @@ ID_stage ID_u(
     .wben_id_o      (wben_id),
     .rs1_idx        (rs1_idx_id),
     .rs2_idx        (rs2_idx_id),
-    .regA0          (regA0),
+
     .trap_id_o      (trap_id),
     .in_trap_id     (in_trap_id),
     .out_trap_id    (out_trap_id)
@@ -687,6 +719,8 @@ EX_reg EX_reg_u(
     .trap_ex_reg_o  (trap_ex)
 );
 
+wire unused2;
+
 ex_stage ex_stage_u(
     // .PC_ex_i,
     // .instr_ex_i,
@@ -724,7 +758,7 @@ ex_stage ex_stage_u(
     .pc_next_o      (pc_jump),
     .is_jump_o      (is_jump),
 
-    .exNotOk        (),
+    .exNotOk        (unused2),
     .ls_addr_ok_i   (ls_addr_ok_i),
     .rden_ls        (rden_ls),
     .wren_ls        (wren_ls)
@@ -802,6 +836,7 @@ ls_stage ls_u(
 
 //
 wire    dataNotOk;
+wire    unused3;
 
 Dcache Dcache_u (
   .clk (clk ),
@@ -818,7 +853,7 @@ Dcache Dcache_u (
     //这个stall可能要改
   .stall_n          (ls_stall_n ),
 
-  .data_ok_o        ( ),
+  .data_ok_o        (unused3 ),
   .data_notok_o     (dataNotOk ),
   .rd_data_o        (ls_sram_rd_data ),
   //to AXI
@@ -835,7 +870,32 @@ Dcache Dcache_u (
   .cacheWrData_o    (lsAxiWrData ),
   .storeLenth       (lsStoreLenth ),
   .cacheWrMask_o    (lsStoreMask),
-  .cacheWrSize_o    (lsStoreSize)
+  .cacheWrSize_o    (lsStoreSize),
+
+  .io_sram4_addr    (io_sram4_addr    ),    
+  .io_sram4_cen     (io_sram4_cen     ),     
+  .io_sram4_wen     (io_sram4_wen     ),     
+  .io_sram4_wmask   (io_sram4_wmask   ),   
+  .io_sram4_wdata   (io_sram4_wdata   ),   
+  .io_sram4_rdata   (io_sram4_rdata ), 
+  .io_sram5_addr    (io_sram5_addr    ),       
+  .io_sram5_cen     (io_sram5_cen     ),     
+  .io_sram5_wen     (io_sram5_wen     ),     
+  .io_sram5_wmask   (io_sram5_wmask   ),   
+  .io_sram5_wdata   (io_sram5_wdata   ),   
+  .io_sram5_rdata   (io_sram5_rdata   ),   
+  .io_sram6_addr    (io_sram6_addr    ),    
+  .io_sram6_cen     (io_sram6_cen     ),     
+  .io_sram6_wen     (io_sram6_wen     ),     
+  .io_sram6_wmask   (io_sram6_wmask   ),   
+  .io_sram6_wdata   (io_sram6_wdata   ),   
+  .io_sram6_rdata   (io_sram6_rdata  ),  
+  .io_sram7_addr    (io_sram7_addr    ),    
+  .io_sram7_cen     (io_sram7_cen     ),     
+  .io_sram7_wen     (io_sram7_wen     ),     
+  .io_sram7_wmask   (io_sram7_wmask   ),   
+  .io_sram7_wdata   (io_sram7_wdata   ),   
+  .io_sram7_rdata   (io_sram7_rdata)
 );
 
 wire        DcacheRdValid,DcacheWrValid;
@@ -850,6 +910,9 @@ wire [255:0]lsAxiWrData;
 wire [7:0]  lsStoreLenth;
 wire [7:0]  lsStoreMask;
 wire [2:0]  lsStoreSize;
+
+assign DcacheRdAddr[63:32] = 'b0;
+assign DcacheWrAddr[63:32] = 'b0;
 
 axi_dcache axi_ls_u(
     .clock          (clk),
@@ -978,74 +1041,7 @@ pipline_ctrl pipline_ctrl_u(
     .ex_flush           (ex_flush)
 );
 
-// myip_AXI_Lite_v1_0_S00_AXI 
-// #(
-//   .C_S_AXI_DATA_WIDTH(`XLEN),
-//   .C_S_AXI_ADDR_WIDTH (`XLEN)
-// )
-// ifAxiSlaveRam_u (
-//   .S_AXI_ACLK (clk ),
-//   .S_AXI_ARESETN (rst_n ),
-//   .S_AXI_AWADDR ( ),
-//   .S_AXI_AWSIZE (),
-//   .S_AXI_AWPROT ( ),
-//   .S_AXI_AWVALID ( ),
-//   .S_AXI_AWREADY ( ),
-//   .S_AXI_WDATA ( ),
-//   .S_AXI_WSTRB ( ),
-//   .S_AXI_WVALID ( ),
-//   .S_AXI_WREADY ( ),
-//   .S_AXI_BRESP ( ),
-//   .S_AXI_BVALID ( ),
-//   .S_AXI_BREADY ( ),
-//   .S_AXI_ARADDR (if_axi_ar_addr_o ),
-//   .S_AXI_ARPROT (if_axi_ar_prot_o ),
-//   .S_AXI_ARVALID (if_axi_ar_valid_o ),
-//   .S_AXI_ARREADY (if_axi_ar_ready_i ),
-//   .S_AXI_ARSIZE (if_axi_ar_size_o ),
-//   .S_AXI_RDATA (if_axi_r_data_i ),
-//   .S_AXI_RRESP (if_axi_r_resp_i ),
-//   .S_AXI_RVALID (if_axi_r_valid_i ),
-//   .S_AXI_RREADY  ( if_axi_r_ready_o)
-// );
 
-myip_AXI_Lite_v1_0_S00_AXI 
-#(
-  .C_S_AXI_DATA_WIDTH(`XLEN),
-  .C_S_AXI_ADDR_WIDTH (`XLEN)
-)
-lsAxiSlaveRam_u (
-  .S_AXI_ACLK (clk ),
-  .S_AXI_ARESETN (rst_n ),
-  .S_AXI_AWADDR     (axi_mmio_aw_addr_o ),
-  .S_AXI_AWPROT     (axi_mmio_aw_prot_o ),
-  .S_AXI_AWSIZE     (axi_mmio_aw_size_o),
-  .S_AXI_AWVALID    (axi_mmio_aw_valid_o ),
-  .S_AXI_AWREADY    (axi_mmio_aw_ready_i ),
-
-  .S_AXI_WDATA      (axi_mmio_w_data_o ),
-  .S_AXI_WSTRB      (axi_mmio_w_strb_o ),
-  .S_AXI_WVALID     (axi_mmio_w_valid_o ),
-  .S_AXI_WREADY     (axi_mmio_w_ready_i ),
-
-  .S_AXI_BRESP      (axi_mmio_b_resp_i ),
-  .S_AXI_BVALID     (axi_mmio_b_valid_i ),
-  .S_AXI_BREADY     (axi_mmio_b_ready_o ),
-
-  .S_AXI_ARADDR     (axi_mmio_ar_addr_o ),
-  .S_AXI_ARPROT     (axi_mmio_ar_prot_o ),
-  .S_AXI_ARVALID    (axi_mmio_ar_valid_o ),
-  .S_AXI_ARREADY    (axi_mmio_ar_ready_i ),
-  .S_AXI_ARSIZE     (axi_mmio_ar_size_o ),
-
-  .S_AXI_RDATA      (axi_mmio_r_data_i ),
-  .S_AXI_RRESP      (axi_mmio_r_resp_i ),
-  .S_AXI_RVALID     (axi_mmio_r_valid_i ),
-  .S_AXI_RREADY     (axi_mmio_r_ready_o)
-);
-
-  
 
 
 endmodule //top
-

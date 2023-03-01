@@ -1,4 +1,4 @@
-`include "defines.v"
+
 
 module axi_icache # (
     parameter RW_DATA_WIDTH     = 64,
@@ -47,7 +47,7 @@ module axi_icache # (
     input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
     input  [AXI_USER_WIDTH-1:0]         axi_r_user_i
 );
-    
+assign  axi_ar_region_o = 'b0;
     // ------------------State Machine------------------TODO
 
     // 写通道状态切换

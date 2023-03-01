@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module regfile(
 	input							clk,
 	input	[`XLEN-1:0]				pc_wb,					//for diff-test
@@ -13,20 +13,26 @@ module regfile(
 	
 	input	[`reg_addr_width-1:0]	wr_addr_i,
 	input	[`XLEN-1:0]				wr_data_i,
-	input							wr_en,
+	input							wr_en
 
 //for varilator dbug
-	output	[`XLEN-1:0]				regA0
+
 );
 
-import "DPI-C" function void ebreak();
-import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
-initial set_gpr_ptr(regfiles);  // rf为通用寄存器的二维数组变量
+/***DPI-C***/
+// import "DPI-C" function void ebreak();
+// import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
+// initial set_gpr_ptr(regfiles);  // rf为通用寄存器的二维数组变量
+// always @(posedge clk) begin
+// 	if(instr_wb_i == 32'h100073) begin
+// 		ebreak();	
+// 	end
+// end
 
 
 //regfiles
 reg		[`XLEN-1:0]	regfiles[0:31];
-assign	regA0 = regfiles[10];
+
 //write		引入cg的写法
 always @(posedge clk) begin
 	if(wr_en) begin
@@ -37,11 +43,7 @@ always @(posedge clk) begin
 	// end
 end
 
-always @(posedge clk) begin
-	if(instr_wb_i == 32'h100073) begin
-		ebreak();	
-	end
-end
+
 
 //read
 assign	rs1_data_o = (rs1_addr_i == 5'b0)?`XLEN'b0 : regfiles[rs1_addr_i];

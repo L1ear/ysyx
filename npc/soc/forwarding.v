@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module forwarding (
     input                                     clk,rst_n,
     input           [`reg_addr_width-1:0]     rs1_ido_idx,rs2_ido_idx,

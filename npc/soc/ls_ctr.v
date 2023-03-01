@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module ls_ctr (
     input       [`inst_len-1:0] instr_i,instr_last_i,
     input       [`XLEN-1:0]     rs2_i,

@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module bcu (
     input           [`XLEN-1:0]     rs1_i,rs2_i,
     input                           is_jalr_i,

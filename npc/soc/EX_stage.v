@@ -1,4 +1,4 @@
-`include "defines.v"
+
 // //fw_src_sel
 // `define     rf          2'b0
 // `define     ex          2'd1
@@ -78,6 +78,7 @@ assign src1 = src1sel_ex_i ? pc_ex_i : rs1;
 assign src2 = src2sel_ex_i[1] ? (src2sel_ex_i[0] ? `XLEN'd4 : `XLEN'b0) :
                                 src2sel_ex_i[0] ? imm_ex_i : rs2;
 
+wire less,zero;
 
 ALU  u_ALU (
     .ALUctr                  ( aluctr   ),
@@ -87,8 +88,8 @@ ALU  u_ALU (
     .DivSel                  ( DivSel_i ),
 
     .ALUres                  ( alures_o ),
-    .less                    (          ),
-    .zero                    (          )
+    .less                    ( less),
+    .zero                    (    zero)
 );
 
 bcu bcu_u(

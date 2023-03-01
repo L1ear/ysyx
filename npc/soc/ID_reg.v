@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module ID_reg (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_id_reg_i,

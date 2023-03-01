@@ -1,4 +1,4 @@
-`include "defines.v"   
+
 module IF_stage (
     input                           clk,rst_n,
     input                           is_jump_i,
@@ -13,7 +13,7 @@ module IF_stage (
 
 //sram interface
     input           [`XLEN-1:0]     sram_rdata,
-    input                           sram_data_valid,
+
     input                           cacheAddrOk_i,
     input                           cacheDataOk_i,
     output          [`XLEN-1:0]     sram_addr,

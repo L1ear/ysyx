@@ -1,4 +1,4 @@
-`include "defines.v"
+
 //未实现uncache
 //uncache map: 0x80000000~0x8fffffff(高四位为1000，为cache片段，其他全部uncache)
 module Dcache(
@@ -44,10 +44,66 @@ module Dcache(
     output          [7:0]                   storeLenth,//
 
     output          [7:0]                   cacheWrMask_o,
-    output          [2:0]                   cacheWrSize_o
+    output          [2:0]                   cacheWrSize_o,
+
+    output[5:0]                         io_sram4_addr,    
+    output                              io_sram4_cen,     
+    output                              io_sram4_wen,     
+    output[127:0]                       io_sram4_wmask,   
+    output[127:0]                       io_sram4_wdata,   
+    input[127:0]                        io_sram4_rdata, 
+
+    output[5:0]                         io_sram5_addr,    
+    output                              io_sram5_cen,     
+    output                              io_sram5_wen,     
+    output[127:0]                       io_sram5_wmask,   
+    output[127:0]                       io_sram5_wdata,   
+    input[127:0]                        io_sram5_rdata,   
+
+    output[5:0]                         io_sram6_addr,    
+    output                              io_sram6_cen,     
+    output                              io_sram6_wen,     
+    output[127:0]                       io_sram6_wmask,   
+    output[127:0]                       io_sram6_wdata,   
+    input[127:0]                        io_sram6_rdata,  
+     
+    output[5:0]                         io_sram7_addr,    
+    output                              io_sram7_cen,     
+    output                              io_sram7_wen,     
+    output[127:0]                       io_sram7_wmask,   
+    output[127:0]                       io_sram7_wdata,   
+    input[127:0]                        io_sram7_rdata
 );
 
+//片选信号仅在idle且读有效、compare且命中且读有效、写使能有效这三种情况拉高
+//关于地址信号：在需要写入数据时，无论如何都要使用latch住的地址，在读的时候若stall了也要使用latch的，而在正常执行的时候要使用cache模块输入的地址
+assign io_sram4_addr = wenWay1 ? index : stall_n ? addr_i[10:5] : index;    
+assign io_sram4_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1) ;     
+assign io_sram4_wen = ~wenWay1;     
+assign io_sram4_wmask = ~maskWay1_1 ;   
+assign io_sram4_wdata = inDataWay1_1;   
+assign dataWay1_1 = io_sram4_rdata; 
 
+assign io_sram5_addr = wenWay2 ? index : stall_n ? addr_i[10:5] : index;    
+assign io_sram5_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1);     
+assign io_sram5_wen = ~wenWay1 ;     
+assign io_sram5_wmask = ~maskWay1_2 ;   
+assign io_sram5_wdata = inDataWay1_2;   
+assign dataWay1_2 = io_sram5_rdata;   
+
+assign io_sram6_addr = wenWay2 ? index : stall_n ? addr_i[10:5] : index;    
+assign io_sram6_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2);     
+assign io_sram6_wen = ~wenWay2 ;     
+assign io_sram6_wmask = ~maskWay2_1;   
+assign io_sram6_wdata = inDataWay2_1;   
+assign dataWay2_1 = io_sram6_rdata;  
+
+assign io_sram7_addr = wenWay2 ? index : stall_n ? addr_i[10:5] : index ;    
+assign io_sram7_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2);     
+assign io_sram7_wen = ~wenWay2 ;     
+assign io_sram7_wmask = ~maskWay2_2 ;   
+assign io_sram7_wdata = inDataWay2_2;   
+assign dataWay2_2 = io_sram7_rdata;
 
 
 localparam  idle        = 3'b000,
@@ -614,47 +670,7 @@ end
 // end
 
 
-//片选信号仅在idle且读有效、compare且命中且读有效、写使能有效这三种情况拉高
-//关于地址信号：在需要写入数据时，无论如何都要使用latch住的地址，在读的时候若stall了也要使用latch的，而在正常执行的时候要使用cache模块输入的地址
-S011HD1P_X32Y2D128_BW iramWay1_1 (
-  .Q (dataWay1_1 ),
-  .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1) ),
-  .WEN (~wenWay1 ),
-  .BWEN (~maskWay1_1 ),
-  .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
-  .D  (inDataWay1_1)
-);
 
-S011HD1P_X32Y2D128_BW iramWay1_2 (
-  .Q (dataWay1_2 ),
-  .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1) ),
-  .WEN (~wenWay1 ),
-  .BWEN (~maskWay1_2 ),
-  .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
-  .D  ( inDataWay1_2)
-);
-
-S011HD1P_X32Y2D128_BW iramWay2_1 (
-  .Q (dataWay2_1 ),
-  .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2) ),
-  .WEN (~wenWay2 ),
-  .BWEN (~maskWay2_1 ),
-  .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
-  .D  ( inDataWay2_1)
-);
-
-S011HD1P_X32Y2D128_BW iramWay2_2 (
-  .Q (dataWay2_2 ),
-  .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2) ),
-  .WEN (~wenWay2 ),
-  .BWEN (~maskWay2_2 ),
-  .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
-  .D  ( inDataWay2_2)
-);
 
 
 

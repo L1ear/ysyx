@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module ls_stage (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc,alures_i,rs2_i,

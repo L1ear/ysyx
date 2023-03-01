@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module WB_reg (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_wb_reg_i,

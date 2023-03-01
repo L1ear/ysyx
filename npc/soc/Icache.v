@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module Icache(
     input                                   clk,rst_n,
 //from PIPLINE
@@ -30,10 +30,68 @@ module Icache(
     output          [`addr_width-1:0]       cacheAddr_o,
     input           [`XLEN-1:0]             rdData_i,
     //数据有效信号
-    input                                   dataValid_i
+    input                                   dataValid_i,
+
+    output[5:0]                         io_sram0_addr,    
+    output                              io_sram0_cen,     
+    output                              io_sram0_wen,     
+    output[127:0]                       io_sram0_wmask,   
+    output[127:0]                       io_sram0_wdata,   
+    input[127:0]                        io_sram0_rdata,   
+
+    output[5:0]                         io_sram1_addr,    
+    output                              io_sram1_cen,     
+    output                              io_sram1_wen,     
+    output[127:0]                       io_sram1_wmask,   
+    output[127:0]                       io_sram1_wdata,   
+    input[127:0]                        io_sram1_rdata,  
+
+    output[5:0]                         io_sram2_addr,    
+    output                              io_sram2_cen,     
+    output                              io_sram2_wen,     
+    output[127:0]                       io_sram2_wmask,   
+    output[127:0]                       io_sram2_wdata,   
+    input[127:0]                        io_sram2_rdata,  
+
+    output[5:0]                         io_sram3_addr,    
+    output                              io_sram3_cen,     
+    output                              io_sram3_wen,     
+    output[127:0]                       io_sram3_wmask,   
+    output[127:0]                       io_sram3_wdata,   
+    input[127:0]                        io_sram3_rdata
 );
 
+assign fetchLenth = 'd3;
+//片选信号仅在idle且读有效、compare且命中且读有效、写使能有效这三种情况拉高
+//关于地址信号：在需要写入数据时，无论如何都要使用latch住的地址，在读的时候若stall了也要使用latch的，而在正常执行的时候要使用cache模块输入的地址
 
+assign io_sram0_addr = wenWay1 ? index : stall_n ? addr_i[10:5] : index; 
+assign io_sram0_cen = ~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ;  
+assign io_sram0_wen = ~wenWay1;  
+assign io_sram0_wmask = 'b0;
+assign io_sram0_wdata = inDataWay1_1;
+assign dataWay1_1 = io_sram0_rdata;
+
+assign io_sram1_addr = wenWay1 ? index : stall_n ? addr_i[10:5] : index; 
+assign io_sram1_cen = ~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ;   
+assign io_sram1_wen = ~wenWay1 ;   
+assign io_sram1_wmask = 'b0; 
+assign io_sram1_wdata = inDataWay1_2; 
+assign dataWay1_2 = io_sram1_rdata; 
+
+assign io_sram2_addr = wenWay2 ? index : stall_n ? addr_i[10:5] : index; 
+assign io_sram2_cen = ~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ;   
+assign io_sram2_wen = ~wenWay2 ;   
+assign io_sram2_wmask = 'b0; 
+assign io_sram2_wdata = inDataWay2_1; 
+assign dataWay2_1 = io_sram2_rdata; 
+
+assign io_sram3_addr = wenWay2 ? index : stall_n ? addr_i[10:5] : index; 
+assign io_sram3_cen = ~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ;   
+assign io_sram3_wen = ~wenWay2 ;   
+assign io_sram3_wmask = 'b0; 
+assign io_sram3_wdata = inDataWay2_2; 
+assign dataWay2_2 = io_sram3_rdata; 
 
 
 localparam  idle    = 3'b000,
@@ -305,47 +363,7 @@ always @(*) begin
 end
 
 
-//片选信号仅在idle且读有效、compare且命中且读有效、写使能有效这三种情况拉高
-//关于地址信号：在需要写入数据时，无论如何都要使用latch住的地址，在读的时候若stall了也要使用latch的，而在正常执行的时候要使用cache模块输入的地址
-S011HD1P_X32Y2D128_BW iramWay1_1 (
-  .Q (dataWay1_1 ),
-  .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ),
-  .WEN (~wenWay1 ),
-  .BWEN (0 ),
-  .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
-  .D  (inDataWay1_1)
-);
 
-S011HD1P_X32Y2D128_BW iramWay1_2 (
-  .Q (dataWay1_2 ),
-  .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay1) ),
-  .WEN (~wenWay1 ),
-  .BWEN (0 ),
-  .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
-  .D  ( inDataWay1_2)
-);
-
-S011HD1P_X32Y2D128_BW iramWay2_1 (
-  .Q (dataWay2_1 ),
-  .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ),
-  .WEN (~wenWay2 ),
-  .BWEN (0 ),
-  .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
-  .D  ( inDataWay2_1)
-);
-
-S011HD1P_X32Y2D128_BW iramWay2_2 (
-  .Q (dataWay2_2 ),
-  .CLK (clk ),
-  .CEN (~((idleEn && valid_i) || (compareEn && valid_i && cacheHit) || wenWay2) ),
-  .WEN (~wenWay2 ),
-  .BWEN (0 ),
-  .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
-  .D  ( inDataWay2_2)
-);
 
 
 

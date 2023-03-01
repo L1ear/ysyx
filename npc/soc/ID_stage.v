@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module ID_stage (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
@@ -17,7 +17,7 @@ module ID_stage (
     output                          is_jalr_id_o,is_jal_id_o,is_brc_id_o,
     output                          wben_id_o,
     output          [4      :0]     rs1_idx,rs2_idx,
-    output	[`XLEN-1:0]				regA0,
+
     output                          DivEn,
     output          [2:0]           DivSel    ,
     output                          trap_id_o,in_trap_id,out_trap_id
@@ -74,7 +74,7 @@ regfile regfile_u(
     .wr_data_i(wb_data_i),
     .wr_en(wb_wren_i),
     .pc_wb(pc_wb_i),
-    .regA0(regA0),
+
     .instr_wb_i(instr_wb_i)
 );
 // bcu bcu_u(

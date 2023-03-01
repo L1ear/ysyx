@@ -1,4 +1,4 @@
-module axi_crossbar # (
+module axi_arbiter # (
     parameter RW_DATA_WIDTH     = 64,
     parameter RW_ADDR_WIDTH     = 64,
     parameter AXI_DATA_WIDTH    = 64,
@@ -127,57 +127,57 @@ module axi_crossbar # (
     input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       //lite
     input                               axi_r_last_i,
     input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i,
+    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i
 
-//mmio
-    input                               axi_mmio_aw_ready_i,     //lite         
-    output                              axi_mmio_aw_valid_o,     //lite
-    output [AXI_ADDR_WIDTH-1:0]         axi_mmio_aw_addr_o,      //lite
-    output [2:0]                        axi_mmio_aw_prot_o,
-    output [AXI_ID_WIDTH-1:0]           axi_mmio_aw_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_mmio_aw_user_o,
-    output [7:0]                        axi_mmio_aw_len_o,       
-    output [2:0]                        axi_mmio_aw_size_o,
-    output [1:0]                        axi_mmio_aw_burst_o,
-    output                              axi_mmio_aw_lock_o,
-    output [3:0]                        axi_mmio_aw_cache_o,
-    output [3:0]                        axi_mmio_aw_qos_o,
-    output [3:0]                        axi_mmio_aw_region_o,
+// //mmio
+//     input                               axi_mmio_aw_ready_i,     //lite         
+//     output                              axi_mmio_aw_valid_o,     //lite
+//     output [AXI_ADDR_WIDTH-1:0]         axi_mmio_aw_addr_o,      //lite
+//     output [2:0]                        axi_mmio_aw_prot_o,
+//     output [AXI_ID_WIDTH-1:0]           axi_mmio_aw_id_o,
+//     output [AXI_USER_WIDTH-1:0]         axi_mmio_aw_user_o,
+//     output [7:0]                        axi_mmio_aw_len_o,       
+//     output [2:0]                        axi_mmio_aw_size_o,
+//     output [1:0]                        axi_mmio_aw_burst_o,
+//     output                              axi_mmio_aw_lock_o,
+//     output [3:0]                        axi_mmio_aw_cache_o,
+//     output [3:0]                        axi_mmio_aw_qos_o,
+//     output [3:0]                        axi_mmio_aw_region_o,
 
-    input                               axi_mmio_w_ready_i,      //lite              
-    output                              axi_mmio_w_valid_o,      //lite
-    output [AXI_DATA_WIDTH-1:0]         axi_mmio_w_data_o,       //lite
-    output [AXI_DATA_WIDTH/8-1:0]       axi_mmio_w_strb_o,       //lite
-    output                              axi_mmio_w_last_o,       //lite
-    output [AXI_USER_WIDTH-1:0]         axi_mmio_w_user_o,
+//     input                               axi_mmio_w_ready_i,      //lite              
+//     output                              axi_mmio_w_valid_o,      //lite
+//     output [AXI_DATA_WIDTH-1:0]         axi_mmio_w_data_o,       //lite
+//     output [AXI_DATA_WIDTH/8-1:0]       axi_mmio_w_strb_o,       //lite
+//     output                              axi_mmio_w_last_o,       //lite
+//     output [AXI_USER_WIDTH-1:0]         axi_mmio_w_user_o,
   
-    output                              axi_mmio_b_ready_o,      //lite           
-    input                               axi_mmio_b_valid_i,      //lite
-    input  [1:0]                        axi_mmio_b_resp_i,       //lite            
-    input  [AXI_ID_WIDTH-1:0]           axi_mmio_b_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_mmio_b_user_i,
+//     output                              axi_mmio_b_ready_o,      //lite           
+//     input                               axi_mmio_b_valid_i,      //lite
+//     input  [1:0]                        axi_mmio_b_resp_i,       //lite            
+//     input  [AXI_ID_WIDTH-1:0]           axi_mmio_b_id_i,
+//     input  [AXI_USER_WIDTH-1:0]         axi_mmio_b_user_i,
 
-    input                               axi_mmio_ar_ready_i,     //lite              
-    output                              axi_mmio_ar_valid_o,     //lite
-    output [AXI_ADDR_WIDTH-1:0]         axi_mmio_ar_addr_o,      //lite
-    output [2:0]                        axi_mmio_ar_prot_o,
-    output [AXI_ID_WIDTH-1:0]           axi_mmio_ar_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_mmio_ar_user_o,
-    output [7:0]                        axi_mmio_ar_len_o,       //lite
-    output [2:0]                        axi_mmio_ar_size_o,      //lite
-    output [1:0]                        axi_mmio_ar_burst_o,
-    output                              axi_mmio_ar_lock_o,
-    output [3:0]                        axi_mmio_ar_cache_o,
-    output [3:0]                        axi_mmio_ar_qos_o,
-    output [3:0]                        axi_mmio_ar_region_o,
+//     input                               axi_mmio_ar_ready_i,     //lite              
+//     output                              axi_mmio_ar_valid_o,     //lite
+//     output [AXI_ADDR_WIDTH-1:0]         axi_mmio_ar_addr_o,      //lite
+//     output [2:0]                        axi_mmio_ar_prot_o,
+//     output [AXI_ID_WIDTH-1:0]           axi_mmio_ar_id_o,
+//     output [AXI_USER_WIDTH-1:0]         axi_mmio_ar_user_o,
+//     output [7:0]                        axi_mmio_ar_len_o,       //lite
+//     output [2:0]                        axi_mmio_ar_size_o,      //lite
+//     output [1:0]                        axi_mmio_ar_burst_o,
+//     output                              axi_mmio_ar_lock_o,
+//     output [3:0]                        axi_mmio_ar_cache_o,
+//     output [3:0]                        axi_mmio_ar_qos_o,
+//     output [3:0]                        axi_mmio_ar_region_o,
    
-    output                              axi_mmio_r_ready_o,      //lite            
-    input                               axi_mmio_r_valid_i,      //lite            
-    input  [1:0]                        axi_mmio_r_resp_i,
-    input  [AXI_DATA_WIDTH-1:0]         axi_mmio_r_data_i,       //lite
-    input                               axi_mmio_r_last_i,
-    input  [AXI_ID_WIDTH-1:0]           axi_mmio_r_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_mmio_r_user_i
+//     output                              axi_mmio_r_ready_o,      //lite            
+//     input                               axi_mmio_r_valid_i,      //lite            
+//     input  [1:0]                        axi_mmio_r_resp_i,
+//     input  [AXI_DATA_WIDTH-1:0]         axi_mmio_r_data_i,       //lite
+//     input                               axi_mmio_r_last_i,
+//     input  [AXI_ID_WIDTH-1:0]           axi_mmio_r_id_i,
+//     input  [AXI_USER_WIDTH-1:0]         axi_mmio_r_user_i
 );
 
 wire                              axi_aw_ready;  
@@ -284,81 +284,52 @@ assign ls_axi_r_id_o       = axi_r_id;
 // assign if_axi_r_user_o     =   
 
 
-assign axi_aw_ready = (axi_aw_addr[29]) ? axi_mmio_aw_ready_i : axi_aw_ready_i;   
-assign axi_aw_valid_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_valid;
-assign axi_aw_addr_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_addr;    
-assign axi_aw_prot_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_prot;
-assign axi_aw_id_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_id;
-assign axi_aw_user_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_user;
-assign axi_aw_len_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_len;     
-assign axi_aw_size_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_size;
-assign axi_aw_burst_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_burst;
-assign axi_aw_lock_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_lock;
-assign axi_aw_cache_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_cache;
-assign axi_aw_qos_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_qos;
-assign axi_aw_region_o = (axi_aw_addr[29]) ? 'b0 : axi_aw_region;
-assign axi_w_ready = (axi_aw_addr[29]) ? axi_mmio_w_ready_i : axi_w_ready_i;    
-assign axi_w_valid_o = (axi_aw_addr[29]) ? 'b0 : axi_w_valid;   
-assign axi_w_data_o = (axi_aw_addr[29]) ? 'b0 : axi_w_data;     
-assign axi_w_strb_o = (axi_aw_addr[29]) ? 'b0 : axi_w_strb;     
-assign axi_w_last_o = (axi_aw_addr[29]) ? 'b0 : axi_w_last;     
-assign axi_w_user_o = (axi_aw_addr[29]) ? 'b0 : axi_w_user;
-assign axi_b_ready_o = (axi_aw_addr[29]) ? 'b0 : axi_b_ready;    
-assign axi_b_valid = (axi_aw_addr[29]) ? axi_mmio_b_valid_i : axi_b_valid_i;    
-assign axi_b_resp = (axi_aw_addr[29]) ? axi_mmio_b_resp_i : axi_b_resp_i;     
-assign axi_b_id = (axi_aw_addr[29]) ? axi_mmio_b_id_i : axi_b_id_i;
-assign axi_b_user = (axi_aw_addr[29]) ? axi_mmio_b_user_i : axi_b_user_i;
-assign axi_ar_ready = (axi_ar_addr[29]) ? axi_mmio_ar_ready_i : axi_ar_ready_i;   
-assign axi_ar_valid_o = (axi_ar_addr[29]) ? 'b0 : axi_ar_valid;   
-assign axi_ar_addr_o  = (axi_ar_addr[29]) ? 'b0 : axi_ar_addr;    
-assign axi_ar_prot_o  = (axi_ar_addr[29]) ? 'b0 : axi_ar_prot;
-assign axi_ar_id_o  = (axi_ar_addr[29]) ? 'b0 : axi_ar_id;
-assign axi_ar_user_o = (axi_ar_addr[29]) ? 'b0 : axi_ar_user;
-assign axi_ar_len_o = (axi_ar_addr[29]) ? 'b0 : axi_ar_len;
-assign axi_ar_size_o = (axi_ar_addr[29]) ? 'b0 : axi_ar_size;
-assign axi_ar_burst_o = (axi_ar_addr[29]) ? 'b0 : axi_ar_burst;
-assign axi_ar_lock_o = (axi_ar_addr[29]) ? 'b0 : axi_ar_lock;
-assign axi_ar_cache_o = (axi_ar_addr[29]) ? 'b0 : axi_ar_cache;
-assign axi_ar_qos_o = (axi_ar_addr[29]) ? 'b0 : axi_ar_qos;
-assign axi_ar_region_o = (axi_ar_addr[29]) ? 'b0 : axi_ar_region;
-assign axi_r_ready_o = (axi_ar_addr[29]) ? 'b0 : axi_r_ready;
-assign axi_r_valid = (axi_ar_addr[29]) ? axi_mmio_r_valid_i : axi_r_valid_i;    
-assign axi_r_resp = (axi_ar_addr[29]) ? axi_mmio_r_resp_i : axi_r_resp_i;
-assign axi_r_data = (axi_ar_addr[29]) ? axi_mmio_r_data_i : axi_r_data_i;     
-assign axi_r_last = (axi_ar_addr[29]) ? axi_mmio_r_last_i : axi_r_last_i;
-assign axi_r_id = (axi_ar_addr[29]) ? axi_mmio_r_id_i : axi_r_id_i;
-assign axi_r_user = (axi_ar_addr[29]) ? axi_mmio_r_user_i : axi_r_user_i;
+assign axi_aw_ready = axi_aw_ready_i;   
+assign axi_aw_valid_o = axi_aw_valid;
+assign axi_aw_addr_o = axi_aw_addr;    
+assign axi_aw_prot_o = axi_aw_prot;
+assign axi_aw_id_o = axi_aw_id;
+assign axi_aw_user_o = axi_aw_user;
+assign axi_aw_len_o = axi_aw_len;     
+assign axi_aw_size_o = axi_aw_size;
+assign axi_aw_burst_o = axi_aw_burst;
+assign axi_aw_lock_o = axi_aw_lock;
+assign axi_aw_cache_o = axi_aw_cache;
+assign axi_aw_qos_o = axi_aw_qos;
+assign axi_aw_region_o = axi_aw_region;
+assign axi_w_ready = axi_w_ready_i;    
+assign axi_w_valid_o = axi_w_valid;   
+assign axi_w_data_o = axi_w_data;     
+assign axi_w_strb_o = axi_w_strb;     
+assign axi_w_last_o = axi_w_last;     
+assign axi_w_user_o = axi_w_user;
+assign axi_b_ready_o = axi_b_ready;    
+assign axi_b_valid = axi_b_valid_i;    
+assign axi_b_resp = axi_b_resp_i;     
+assign axi_b_id = axi_b_id_i;
+assign axi_b_user = axi_b_user_i;
+assign axi_ar_ready = axi_ar_ready_i;   
+assign axi_ar_valid_o =  axi_ar_valid;   
+assign axi_ar_addr_o  =  axi_ar_addr;    
+assign axi_ar_prot_o  =  axi_ar_prot;
+assign axi_ar_id_o  =  axi_ar_id;
+assign axi_ar_user_o =  axi_ar_user;
+assign axi_ar_len_o =  axi_ar_len;
+assign axi_ar_size_o =  axi_ar_size;
+assign axi_ar_burst_o =  axi_ar_burst;
+assign axi_ar_lock_o =  axi_ar_lock;
+assign axi_ar_cache_o =  axi_ar_cache;
+assign axi_ar_qos_o =  axi_ar_qos;
+assign axi_ar_region_o =  axi_ar_region;
+assign axi_r_ready_o =  axi_r_ready;
+assign axi_r_valid = axi_r_valid_i;    
+assign axi_r_resp = axi_r_resp_i;
+assign axi_r_data = axi_r_data_i;     
+assign axi_r_last = axi_r_last_i;
+assign axi_r_id = axi_r_id_i;
+assign axi_r_user = axi_r_user_i;
 
-assign axi_mmio_aw_valid_o =    (~axi_aw_addr[29]) ? 'b0 : axi_aw_valid;
-assign axi_mmio_aw_addr_o =     (~axi_aw_addr[29]) ? 'b0 : axi_aw_addr;    
-assign axi_mmio_aw_prot_o =     (~axi_aw_addr[29]) ? 'b0 : axi_aw_prot;
-assign axi_mmio_aw_id_o =       (~axi_aw_addr[29]) ? 'b0 : axi_aw_id;
-assign axi_mmio_aw_user_o =     (~axi_aw_addr[29]) ? 'b0 : axi_aw_user;
-assign axi_mmio_aw_len_o =      (~axi_aw_addr[29]) ? 'b0 : axi_aw_len;     
-assign axi_mmio_aw_size_o =     (~axi_aw_addr[29]) ? 'b0 : axi_aw_size;
-assign axi_mmio_aw_burst_o =    (~axi_aw_addr[29]) ? 'b0 : axi_aw_burst;
-assign axi_mmio_aw_lock_o =     (~axi_aw_addr[29]) ? 'b0 : axi_aw_lock;
-assign axi_mmio_aw_cache_o =    (~axi_aw_addr[29]) ? 'b0 : axi_aw_cache;
-assign axi_mmio_aw_qos_o =      (~axi_aw_addr[29]) ? 'b0 : axi_aw_qos;
-assign axi_mmio_aw_region_o =   (~axi_aw_addr[29]) ? 'b0 : axi_aw_region;
-assign axi_mmio_w_valid_o =     (~axi_aw_addr[29]) ? 'b0 : axi_w_valid;   
-assign axi_mmio_w_data_o =      (~axi_aw_addr[29]) ? 'b0 : axi_w_data;     
-assign axi_mmio_w_strb_o =      (~axi_aw_addr[29]) ? 'b0 : axi_w_strb;     
-assign axi_mmio_w_last_o =      (~axi_aw_addr[29]) ? 'b0 : axi_w_last;     
-assign axi_mmio_w_user_o =      (~axi_aw_addr[29]) ? 'b0 : axi_w_user;
-assign axi_mmio_b_ready_o =     (~axi_aw_addr[29]) ? 'b0 : axi_b_ready;  
-assign axi_mmio_ar_valid_o =    (~axi_ar_addr[29]) ? 'b0 : axi_ar_valid;   
-assign axi_mmio_ar_addr_o  =    (~axi_ar_addr[29]) ? 'b0 : axi_ar_addr;    
-assign axi_mmio_ar_prot_o  =    (~axi_ar_addr[29]) ? 'b0 : axi_ar_prot;
-assign axi_mmio_ar_id_o  =      (~axi_ar_addr[29]) ? 'b0 : axi_ar_id;
-assign axi_mmio_ar_user_o =     (~axi_ar_addr[29]) ? 'b0 : axi_ar_user;
-assign axi_mmio_ar_len_o =      (~axi_ar_addr[29]) ? 'b0 : axi_ar_len;
-assign axi_mmio_ar_size_o =     (~axi_ar_addr[29]) ? 'b0 : axi_ar_size;
-assign axi_mmio_ar_burst_o =    (~axi_ar_addr[29]) ? 'b0 : axi_ar_burst;
-assign axi_mmio_ar_lock_o =     (~axi_ar_addr[29]) ? 'b0 : axi_ar_lock;
-assign axi_mmio_ar_cache_o =    (~axi_ar_addr[29]) ? 'b0 : axi_ar_cache;
-assign axi_mmio_ar_qos_o =      (~axi_ar_addr[29]) ? 'b0 : axi_ar_qos;
-assign axi_mmio_ar_region_o =   (~axi_ar_addr[29]) ? 'b0 : axi_ar_region;
-assign axi_mmio_r_ready_o =     (~axi_ar_addr[29]) ? 'b0 : axi_r_ready;
-
+assign ls_axi_r_user_o = 'b0;
+assign if_axi_r_user_o = 'b0;
+assign axi_ar_region_o = 'b0;
 endmodule //axi_crossbar

@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module EX_reg (
     input                           clk,rst_n, 
     input                           stall_n,flush,

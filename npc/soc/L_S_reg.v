@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module L_S_reg (
     input                           clk,rstn,
     input           [`XLEN-1:0]     PC_ls_reg_i,rs2_ls_reg_i,
