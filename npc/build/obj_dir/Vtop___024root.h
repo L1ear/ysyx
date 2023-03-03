@@ -124,6 +124,7 @@ VL_MODULE(Vtop___024root) {
         CData/*7:0*/ top__DOT__fetchLenth;
         CData/*0:0*/ top__DOT__dataValid_o;
         CData/*0:0*/ top__DOT__DcacheRdValid;
+        CData/*0:0*/ top__DOT__DcacheWrValid;
         CData/*0:0*/ top__DOT__lsAxiRdDataVAlid;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_w_ready;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_ready;
@@ -140,9 +141,9 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay1;
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay1_q;
-        CData/*0:0*/ top__DOT__cache_dut__DOT__validWay2_q;
     };
     struct {
+        CData/*0:0*/ top__DOT__cache_dut__DOT__validWay2_q;
         CData/*0:0*/ top__DOT__cache_dut__DOT__missFlag;
         CData/*1:0*/ top__DOT__cache_dut__DOT__rdCnt;
         CData/*1:0*/ top__DOT__axi_icache_dut__DOT__r_state;
@@ -206,9 +207,9 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_arready;
-        CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp;
     };
     struct {
+        CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__aw_en;
         SData/*15:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_h;
@@ -272,9 +273,9 @@ VL_MODULE(Vtop___024root) {
         QData/*32:0*/ top__DOT__Dcache_u__DOT__reqLatch;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__validArray1;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__validArray2;
-        QData/*63:0*/ top__DOT__Dcache_u__DOT__wrDataLatch;
     };
     struct {
+        QData/*63:0*/ top__DOT__Dcache_u__DOT__wrDataLatch;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__dirtyArray1;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__dirtyArray2;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__storeData;
