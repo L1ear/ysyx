@@ -16,7 +16,7 @@ module Dcache(
     input                                   stall_n,
     //回给if模块的地址接收有效信号，为高时表示可以处理新的请求的地址
     output  reg                             addr_ok_o,
-    output                                  data_ok_o,  //reserve
+    // output                                  data_ok_o,  //reserve
     //数据无效信号，为高时表示此时输出的数据无效
     output                                  data_notok_o,
     output          [`XLEN-1:0]             rd_data_o,
@@ -249,8 +249,8 @@ wire [20:0] tagtest = tagArray2['h23];
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
 assign  cacheHit = way1Hit || way2Hit;
-//dataOk信号仅在compare阶段并且命中的情况下为高，
-assign data_ok_o = compareEn && cacheHit;
+// //dataOk信号仅在compare阶段并且命中的情况下为高，
+// assign data_ok_o = compareEn && cacheHit;
 
 //notok信号在idle阶段不置高
 /*NotOk置高条件
