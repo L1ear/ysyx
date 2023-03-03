@@ -3146,10 +3146,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                   & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))
                                                   ? 1U
                                                   : 2U)
-                                                 : 
-                                                ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)
-                                                  ? 1U
-                                                  : 0U))))
+                                                 : 0U)))
                  : (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
                      & (IData)(vlSelf->top__DOT__ls_stall_n))
                      ? 1U : 0U))));
