@@ -5472,15 +5472,12 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__9(Vtop___024root* vlSelf) {
                                                    (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                     >> 0x20U)))) 
                                      & (~ (IData)(vlSelf->top__DOT__ls_stall_n))))
-                                  ? 1U : 0U) : ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i)
-                                                 ? 
-                                                (((IData)(
-                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                           >> 0x20U)) 
-                                                  & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))
-                                                  ? 1U
-                                                  : 2U)
-                                                 : 0U)))
+                                  ? 1U : 0U) : (((IData)(
+                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                          >> 0x20U)) 
+                                                 & (IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg))
+                                                 ? 1U
+                                                 : 2U)))
                  : (((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
                      & (IData)(vlSelf->top__DOT__ls_stall_n))
                      ? 1U : 0U))));
