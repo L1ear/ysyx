@@ -3084,8 +3084,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+667,(vlSelf->top__DOT__DcacheRdAddr),64);
         tracep->fullQData(oldp+669,(vlSelf->top__DOT__DcacheWrAddr),64);
         tracep->fullCData(oldp+671,(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState),3);
-        tracep->fullWData(oldp+672,(vlSelf->top__DOT__Dcache_u__DOT__inDataWay1_1),128);
-        tracep->fullWData(oldp+676,(vlSelf->top__DOT__Dcache_u__DOT__inDataWay1_2),128);
+        tracep->fullWData(oldp+672,(vlSelf->top__DOT__Dcache_u__DOT__inDataWay2_1),128);
+        tracep->fullWData(oldp+676,(vlSelf->top__DOT__Dcache_u__DOT__inDataWay2_2),128);
         tracep->fullBit(oldp+680,(vlSelf->top__DOT__Dcache_u__DOT__wenWay1));
         tracep->fullBit(oldp+681,(vlSelf->top__DOT__Dcache_u__DOT__wenWay2));
         tracep->fullBit(oldp+682,(vlSelf->top__DOT__Dcache_u__DOT__uncached));

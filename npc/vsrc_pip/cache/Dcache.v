@@ -261,7 +261,7 @@ assign  cacheHit = way1Hit || way2Hit;
 **  防止读出错误数据，本质上是read after write冲突，本应该使用流水线前递解决，整理完代码再改吧
 **
 */
-assign data_notok_o = (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn ;
+assign data_notok_o = (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
 
 reg     replaceEnDelay;
 always @(posedge clk or negedge rst_n) begin
@@ -276,8 +276,8 @@ end
 
 wire    compareEn = cacheCurState == compare;
 
-wire [255:0]    way1Data = (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)))? {inDataWay2_1,inDataWay2_2} : {dataWay1_2,dataWay1_1};
-wire [255:0]    way2Data = (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)))? {inDataWay1_1,inDataWay1_2} : {dataWay2_2,dataWay2_1};
+wire [255:0]    way1Data = (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)))? {inDataWay1_1,inDataWay1_2} : {dataWay1_2,dataWay1_1};
+wire [255:0]    way2Data = (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)))? {inDataWay2_1,inDataWay2_2} : {dataWay2_2,dataWay2_1};
 // wire test = (idleEn && valid_i) || (compareEn && valid_i && cacheHit);
 reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(*) begin

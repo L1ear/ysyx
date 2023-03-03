@@ -227,8 +227,8 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay1_2;
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_1;
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_2;
-        VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__inDataWay1_1;
-        VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__inDataWay1_2;
+        VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__inDataWay2_1;
+        VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__inDataWay2_2;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray1_d;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray2_d;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way1Data;
