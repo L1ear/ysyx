@@ -195,7 +195,7 @@ end
 
 //addrOk信号仅在idle或者compare且上一拍pc命中的情况下为高，表示新的pc可以被接收
 always @(*) begin
-    if(idleEn || (compareEn && cacheHit) || (uncacheOpEn && uncacheOpOk)) begin
+    if(idleEn || (compareEn && (cacheHit||~cacheHit && ~lsValid_i)) || (uncacheOpEn && uncacheOpOk)) begin
         addr_ok_o = 1'b1;
     end
     else begin
