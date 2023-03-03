@@ -127,9 +127,9 @@ always @(*) begin
                     cacheNexState = miss;
                 end
             end
-            else if(exValid_i) begin
-                cacheNexState = compare;
-            end
+            // else if(exValid_i) begin
+            //     cacheNexState = compare;
+            // end
             else begin
                 cacheNexState = idle;
             end

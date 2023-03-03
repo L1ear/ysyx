@@ -3143,7 +3143,7 @@ wire    [`XLEN-1:0] pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec :
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-        pc_new_o <= `XLEN'h8000_0000-4;
+        pc_new_o <= `XLEN'h3000_0000-4;
     end
     else if(stall_n) begin
         pc_new_o <= pc_next_o;
