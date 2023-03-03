@@ -194,14 +194,17 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 //addrOk信号仅在idle或者compare且上一拍pc命中的情况下为高，表示新的pc可以被接收
-always @(*) begin
-    if(idleEn || (compareEn && (cacheHit||~cacheHit && ~lsValid_i)) || (uncacheOpEn && uncacheOpOk)) begin
-        addr_ok_o = 1'b1;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        addr_ok_o <= 'b0;
+    end
+    else if(((idleEn && exValid_i && stall_n) || ((compareEn && ((exValid_i && (cacheHit||~cacheHit && ~lsValid_i)))) && stall_n) || (uncacheOpEn && exValid_i && stall_n))) begin
+        addr_ok_o <= 'b1;
     end
     else begin
-        addr_ok_o = 1'b0;
+        addr_ok_o <= 'b0;
     end
-end       
+end    
 
 reg [63:0]   validArray1;
 reg [63:0]   validArray2;    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
