@@ -178,8 +178,8 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__Dcache_u__DOT__bitValid2_d;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay1_q;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay2_q;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__replaceEnDelay;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__randomBit;
-        CData/*0:0*/ top__DOT__Dcache_u__DOT__missFlag;
         CData/*1:0*/ top__DOT__Dcache_u__DOT__rdCnt;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenDelay1;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenDelay2;
@@ -227,8 +227,6 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay1_2;
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_1;
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_2;
-        VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__inDataWay1_1;
-        VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__inDataWay1_2;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray1_d;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray2_d;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way1Data;
@@ -273,10 +271,10 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mtvec;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mstatus;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mcause;
-    };
-    struct {
         QData/*32:0*/ top__DOT__Dcache_u__DOT__reqLatch;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__validArray1;
+    };
+    struct {
         QData/*63:0*/ top__DOT__Dcache_u__DOT__validArray2;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__wrDataLatch;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__dirtyArray1;
@@ -319,6 +317,7 @@ VL_MODULE(Vtop___024root) {
     CData/*5:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay1_2__A;
     CData/*5:0*/ top__DOT__Dcache_u__DOT____Vcellinp__iramWay2_2__A;
     CData/*1:0*/ __Vdly__top__DOT__cache_dut__DOT__rdCnt;
+    CData/*1:0*/ __Vdly__top__DOT__Dcache_u__DOT__rdCnt;
     CData/*4:0*/ __Vdlyvdim0__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vdlyvset__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
     CData/*0:0*/ __Vclklast__TOP__clk;
