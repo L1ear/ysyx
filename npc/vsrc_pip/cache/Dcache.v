@@ -276,8 +276,8 @@ end
 
 wire    compareEn = cacheCurState == compare;
 
-wire [255:0]    way1Data = (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)))? {inDataWay1_1,inDataWay1_2} : {dataWay1_2,dataWay1_1};
-wire [255:0]    way2Data = (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)))? {inDataWay2_1,inDataWay2_2} : {dataWay2_2,dataWay2_1};
+wire [255:0]    way1Data = (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)))? {inDataWay2_1,inDataWay2_2} : {dataWay1_2,dataWay1_1};
+wire [255:0]    way2Data = (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)))? {inDataWay1_1,inDataWay1_2} : {dataWay2_2,dataWay2_1};
 // wire test = (idleEn && valid_i) || (compareEn && valid_i && cacheHit);
 reg [`XLEN-1:0] rdDataRegWay1,rdDataRegWay2;
 always @(*) begin
