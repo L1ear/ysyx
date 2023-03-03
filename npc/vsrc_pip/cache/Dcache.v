@@ -118,6 +118,8 @@ always @(*) begin
                     cacheNexState = idle;
                 end
             end
+            //miss:有两种情况会进入这种情况，一种是正常请求得到miss
+            //     一种是从uncache操作回来后不命中
             else if(lsValid_i) begin
         //如果miss且需要写回，但是axi正写忙，则需要等axi写就绪后再读
                 if(reqLatch[32] && axiWrBusy) begin
@@ -127,9 +129,9 @@ always @(*) begin
                     cacheNexState = miss;
                 end
             end
-            //// else if(exValid_i) begin
-            ////     cacheNexState = compare;
-            //// end
+            else if(exValid_i) begin
+                cacheNexState = compare;
+            end
             else begin
                 cacheNexState = idle;
             end
@@ -152,12 +154,12 @@ always @(*) begin
         end 
         //此处须添加一个replace的阶段，为了防止在完成替换后，下一个pc命中，但是读数据的时候与在同一way上的写入操作产生冲突（即读取与写入的地址不一样）
         replace: begin
-            if(needWrBk_Reg) begin
-                cacheNexState = replace;
-            end
-            else begin
+            // if(needWrBk_Reg) begin
+            //     cacheNexState = replace;
+            // end
+            // else begin
                 cacheNexState = compare;
-            end    
+            // end    
         end
         uncacheOp: begin
             if(uncacheOpOk && stall_n) begin
