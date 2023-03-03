@@ -1811,7 +1811,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                            | (IData)(vlSelf->top__DOT__ls_not_ok))))));
         tracep->chgBit(oldp+771,((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                    | ((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                      & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
+                                      & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit) 
+                                         | (~ (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i))))) 
                                   | ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                      & (IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheOpOk)))));
         tracep->chgQData(oldp+772,(((((((((- (QData)((IData)(
@@ -2136,7 +2137,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         tracep->chgBit(oldp+794,((1U & (~ (((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                             | ((1U 
                                                 == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-                                               & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit))) 
+                                               & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit) 
+                                                  | (~ (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i))))) 
                                            | ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                               & (IData)(vlSelf->top__DOT__Dcache_u__DOT__uncacheOpOk)))))));
         tracep->chgIData(oldp+795,(((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
