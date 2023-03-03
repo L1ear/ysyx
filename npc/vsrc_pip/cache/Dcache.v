@@ -118,7 +118,7 @@ always @(*) begin
                     cacheNexState = idle;
                 end
             end
-            else if(lsValid_i) begin
+            else 
         //如果miss且需要写回，但是axi正写忙，则需要等axi写就绪后再读
                 if(reqLatch[32] && axiWrBusy) begin
                     cacheNexState = compare;
@@ -126,7 +126,7 @@ always @(*) begin
                 else begin
                     cacheNexState = miss;
                 end
-            end
+           
             //// else if(exValid_i) begin
             ////     cacheNexState = compare;
             //// end
