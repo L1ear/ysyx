@@ -260,6 +260,8 @@ wire                    ex_flush;
 wire                    rden_ls,wren_ls;
 wire                    ls_addr_ok_i;
 
+wire                    ex_not_ok;
+
 //ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
 wire    [`inst_len-1:0] instr_ls;
@@ -724,7 +726,7 @@ ex_stage ex_stage_u(
     .pc_next_o      (pc_jump),
     .is_jump_o      (is_jump),
 
-    .exNotOk        (),
+    .exNotOk        (ex_not_ok),
     .ls_addr_ok_i   (ls_addr_ok_i),
     .rden_ls        (rden_ls),
     .wren_ls        (wren_ls)
@@ -966,6 +968,7 @@ pipline_ctrl pipline_ctrl_u(
     .in_trap_id         (in_trap_id),
     .out_trap_id        (out_trap_id),
     .if_instr_valid     (if_instr_valid),
+    .ex_not_ok          (ex_not_ok),
     .ls_not_ok          (ls_not_ok),
     
     .pc_stall_n         (pc_stall_n),
