@@ -818,7 +818,7 @@ Dcache Dcache_u (
     //这个stall可能要改
   .stall_n          (ls_stall_n ),
 
-//   .data_ok_o        ( ),
+  .data_ok_o        ( ),
   .data_notok_o     (dataNotOk ),
   .rd_data_o        (ls_sram_rd_data ),
   //to AXI
