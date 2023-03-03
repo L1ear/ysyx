@@ -154,12 +154,13 @@ always @(*) begin
         end 
         //此处须添加一个replace的阶段，为了防止在完成替换后，下一个pc命中，但是读数据的时候与在同一way上的写入操作产生冲突（即读取与写入的地址不一样）
         replace: begin
-            // if(needWrBk_Reg) begin
-            //     cacheNexState = replace;
-            // end
-            // else begin
+            if(needWrBk_Reg) begin
+                cacheNexState = replace;
+                $finish();
+            end
+            else begin
                 cacheNexState = compare;
-            // end    
+            end    
         end
         uncacheOp: begin
             if(uncacheOpOk && stall_n) begin
