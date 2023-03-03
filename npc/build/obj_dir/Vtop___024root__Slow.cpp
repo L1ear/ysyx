@@ -3925,6 +3925,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__rs1_sel = 0;
     vlSelf->top__DOT__rs2_sel = 0;
     vlSelf->top__DOT__ex_flush = 0;
+    vlSelf->top__DOT__ls_addr_ok_i = 0;
     vlSelf->top__DOT__csrdata_ls = 0;
     vlSelf->top__DOT__ls_stall_n = 0;
     vlSelf->top__DOT__ls_not_ok = 0;

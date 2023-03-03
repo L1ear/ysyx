@@ -99,6 +99,16 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     }
     vlSelf->top__DOT__Dcache_u__DOT__replaceEnDelay 
         = ((IData)(vlSelf->rst_n) & (7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)));
+    vlSelf->top__DOT__ls_addr_ok_i = ((IData)(vlSelf->rst_n) 
+                                      & (((((0U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                            & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i)) 
+                                           | ((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                              & ((IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i) 
+                                                 & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheHit) 
+                                                    | (~ (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__lsValid_i)))))) 
+                                          | ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                             & (IData)(vlSelf->top__DOT____Vcellinp__Dcache_u__exValid_i))) 
+                                         & (IData)(vlSelf->top__DOT__ls_stall_n)));
     if (vlSelf->rst_n) {
         if ((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
             vlSelf->top__DOT__Dcache_u__DOT__replaceWay 
