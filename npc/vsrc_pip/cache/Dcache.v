@@ -15,7 +15,7 @@ module Dcache(
     //流水线stall信号，低有效
     input                                   stall_n,
     //回给if模块的地址接收有效信号，为高时表示可以处理新的请求的地址
-    output  reg                             addr_ok_o,
+    // output  reg                             addr_ok_o,
     output                                  data_ok_o,  //reserve
     //数据无效信号，为高时表示此时输出的数据无效
     output                                  data_notok_o,
@@ -193,15 +193,15 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-//addrOk信号仅在idle或者compare且上一拍pc命中的情况下为高，表示新的pc可以被接收
-always @(*) begin
-    if(idleEn || (compareEn && cacheHit) || (uncacheOpEn && uncacheOpOk)) begin
-        addr_ok_o = 1'b1;
-    end
-    else begin
-        addr_ok_o = 1'b0;
-    end
-end       
+// //addrOk信号仅在idle或者compare且上一拍pc命中的情况下为高，表示新的pc可以被接收
+// always @(*) begin
+//     if(idleEn || (compareEn && cacheHit) || (uncacheOpEn && uncacheOpOk)) begin
+//         addr_ok_o = 1'b1;
+//     end
+//     else begin
+//         addr_ok_o = 1'b0;
+//     end
+// end       
 
 reg [63:0]   validArray1;
 reg [63:0]   validArray2;    //共2way，每way有64行，每行256bit，用两个sram拼接，每两个sram共用一个validbit
