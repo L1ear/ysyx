@@ -233,35 +233,12 @@ always @(posedge clock or negedge reset) begin
     end
 end
 
-reg  dataValid_reg;
-always @(posedge clock or negedge reset) begin
-    if(~reset) begin
-        dataValid_reg <= 'b0;
-    end
-    else if(axi_r_valid_i && axi_r_ready_o) begin
-        dataValid_reg <= 'b1;
-    end   
-    else begin
-        dataValid_reg <= 'b0;
-    end
-end
-
-reg [63:0] data_read_reg;
-always @(posedge clock or negedge reset) begin
-    if(~reset) begin
-        data_read_reg <= 'b0;
-    end
-    else if(axi_r_valid_i && axi_r_ready_o) begin
-        data_read_reg <= axi_r_data_i;
-    end   
-end
-
 assign rw_ready_o = r_state == r_state_idle;
 assign rdLast_o = axi_r_last_i;
-assign dataValid_o = dataValid_reg;
+assign dataValid_o = axi_r_valid_i && axi_r_ready_o;
 assign ar_valid = r_state == r_state_ar_wait;
 assign r_ready = r_state == r_state_r_wait;
-assign data_read_o = data_read_reg;
+assign data_read_o = axi_r_data_i;
 // assign instr_fetching = ~(r_state == r_state_idle);
     // assign rw_ready_o = instr_valid_reg;
     // assign data_read_o = rd_data_reg;

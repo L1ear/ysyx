@@ -91,6 +91,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__if_axi_r_user_i;
         CData/*7:0*/ top__DOT__ls_axi_w_strb_o;
         CData/*3:0*/ top__DOT__ls_axi_ar_region_o;
+        CData/*0:0*/ top__DOT__ls_axi_r_valid_i;
         CData/*0:0*/ top__DOT__ls_axi_r_last_i;
         CData/*0:0*/ top__DOT__ls_axi_r_user_i;
         CData/*0:0*/ top__DOT__is_jump;
@@ -126,7 +127,6 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__dataValid_o;
         CData/*0:0*/ top__DOT__DcacheRdValid;
         CData/*0:0*/ top__DOT__DcacheWrValid;
-        CData/*0:0*/ top__DOT__lsAxiRdDataVAlid;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_w_ready;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_ready;
         CData/*0:0*/ top__DOT__axi_crossbar_u__DOT__axi_ar_valid;
@@ -203,12 +203,13 @@ VL_MODULE(Vtop___024root) {
         CData/*7:0*/ top__DOT__axi_ls_u__DOT__lenthReg;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state_next;
+        CData/*0:0*/ top__DOT__axi_ls_u__DOT__dataValid_reg;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_wready;
         CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp;
-        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid;
     };
     struct {
+        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_arready;
         CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid;
@@ -235,7 +236,6 @@ VL_MODULE(Vtop___024root) {
         VlWide<8>/*255:0*/ top__DOT__axi_ls_u__DOT__wr_data_reg;
         IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
         QData/*63:0*/ top__DOT__ls_axi_w_data_o;
-        QData/*63:0*/ top__DOT__ls_axi_r_data_i;
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__sram_rdata;
@@ -284,6 +284,7 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__Dcache_u__DOT__temp;
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__wrAddr_reg;
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__rdAddr_reg;
+        QData/*63:0*/ top__DOT__axi_ls_u__DOT__data_read_reg;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata;
