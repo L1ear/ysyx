@@ -5515,9 +5515,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__9(Vtop___024root* vlSelf) {
                                                      ? 1U
                                                      : 0U))));
     vlSelf->top__DOT__ls_sram_rd_data = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                          ? ((IData)(vlSelf->top__DOT__ls_axi_r_last_i)
-                                              ? vlSelf->top__DOT__ls_axi_r_data_i
-                                              : vlSelf->top__DOT__Dcache_u__DOT__temp)
+                                          ? vlSelf->top__DOT__ls_axi_r_data_i
                                           : (((- (QData)((IData)(vlSelf->top__DOT__Dcache_u__DOT__way1Hit))) 
                                               & ((((((0U 
                                                       == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
