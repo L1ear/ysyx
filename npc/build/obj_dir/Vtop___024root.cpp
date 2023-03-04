@@ -863,10 +863,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
     __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_wready 
         = ((IData)(vlSelf->rst_n) & ((~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready)) 
                                      & (IData)(vlSelf->top__DOT__axi_mmio_w_valid_o)));
-    if ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-        vlSelf->__Vdly__top__DOT__Dcache_u__DOT__randomBit 
-            = (1U & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)));
-    }
+    vlSelf->__Vdly__top__DOT__Dcache_u__DOT__randomBit 
+        = (1U & ((IData)(1U) + (IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)));
     if (((~ (IData)(vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay2_2__CEN)) 
          & (IData)(vlSelf->top__DOT__cache_dut__DOT__wenWay2))) {
         __Vdlyvval__top__DOT__cache_dut__DOT__iramWay2_2__DOT__ram__v0[0U] 
