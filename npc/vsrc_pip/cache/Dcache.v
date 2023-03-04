@@ -351,7 +351,7 @@ end
 //根据随机决定替换哪个way
 // always randomBit = $random;
 always @(posedge clk) begin
-    if(idleEn) begin
+    if(replaceEn) begin
         randomBit <= ~randomBit;
     end
 end
