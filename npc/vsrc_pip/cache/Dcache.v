@@ -259,7 +259,7 @@ assign  cacheHit = way1Hit || way2Hit;
 **3、compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)):
 **  这种情况对应上一拍是store命令并且命中，而这一拍是load命令并且命中的情况，由于sram模型的写、读分别需要一拍，故写入后需要等待一拍在读，
 **  防止读出错误数据，本质上是read after write冲突，本应该使用流水线前递解决，整理完代码再改吧
-**
+**  后续：并不是raw，因为地址可能不同
 */
 assign data_notok_o = (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
 
@@ -302,7 +302,7 @@ always @(*) begin
 end
 
 //这里写的很粪
-assign rd_data_o = uncacheOpEn ? (rdLast_i ? rdData_i : temp ): ({64{way1Hit}}&rdDataRegWay1)
+assign rd_data_o = uncacheOpEn ? (rdData_i ): ({64{way1Hit}}&rdDataRegWay1)
                                                               | ({64{way2Hit}}&rdDataRegWay2);
 
 wire    missEn = cacheCurState == miss;
