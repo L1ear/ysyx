@@ -12,7 +12,7 @@ module CSR (
     output          [`XLEN-1:0]     csr_data_o,
     output          [`XLEN-1:0]     mtvec_o,mepc_o
 );
-
+// mtvec,mepc,mcause,mstatus//mie,mip,mscratch,mtval
 assign  mtvec_o = mtvec;
 assign  mepc_o = mepc;
 

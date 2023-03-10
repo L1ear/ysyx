@@ -260,7 +260,12 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 //根据随机决定替换哪个way
-always randomBit = $random;
+always @(posedge clk) begin
+    if(replaceEn) begin
+        randomBit <= ~randomBit;
+    end
+end
+
 always @(*) begin
     if(getdataEn && rdLast_i) begin
         //TODO 真‘伪随机
