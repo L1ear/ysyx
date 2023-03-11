@@ -36,11 +36,12 @@ module Icache(
 
 
 
-localparam  idle    = 3'b000,
-            compare = 3'b001,
-            miss    = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
-            getdata = 3'b011,
-            replace = 3'b111;
+localparam  idle        = 3'b000,
+            compare     = 3'b001,
+            miss        = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
+            getdata     = 3'b011,
+            replace     = 3'b111,
+            unCacheOp   = 3'b110;
 
 reg     [2:0]   cacheCurState,cacheNexState;
 wire            cacheHit;
@@ -48,6 +49,10 @@ wire            way1Hit,way2Hit;
 wire    [127:0] dataWay1_1,dataWay1_2,dataWay2_1,dataWay2_2;
 reg    [127:0] inDataWay1_1,inDataWay1_2,inDataWay2_1,inDataWay2_2;
 reg            wenWay1,wenWay2;
+wire            uncached;
+reg             uncachedOk;
+
+assign uncached = (~uncachedOk) && compareEn && valid_i && ~(reqLatch[31-:4] == 4'b1000);
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -69,7 +74,10 @@ always @(*) begin
             end
         end
         compare: begin
-            if(cacheHit) begin
+            if(uncached) begin
+                cacheNexState = miss;
+            end
+            else if(cacheHit) begin
                 if(valid_i) begin
                     cacheNexState = compare;
                 end
@@ -91,7 +99,12 @@ always @(*) begin
         end
         getdata: begin
             if(rdLast_i) begin
-                cacheNexState = replace;       //有问题，要该（validbit的问题）
+                if(~uncached)begin
+                    cacheNexState = replace;       //有问题，要该（validbit的问题）
+                end
+                else begin
+                    cacheNexState = compare;
+                end
             end
             else begin
                 cacheNexState = getdata;
@@ -145,7 +158,7 @@ always @(posedge clk or negedge rst_n) begin
         validArray1 <= 'b0;
         validArray2 <= 'b0;
     end
-    else if(getdataEn) begin
+    else if(getdataEn && ~uncached) begin
         validArray1[index] <= bitValid1_d;
         validArray2[index] <= bitValid2_d;
     end
@@ -165,7 +178,7 @@ reg        validWay1_q,validWay2_q;
 //tag的写入同样在getdata的末尾写入
 //此处是否能优化呢，即将tagArray1_d和tagArray2_d用一个信号表示，使用信号控制写入tagarray1还是2
 always @(posedge clk or negedge rst_n) begin
-    if(getdataEn) begin
+    if(getdataEn && ~uncached) begin
         tagArray1[index] <= tagArray1_d;
         tagArray2[index] <= tagArray2_d;
     end
@@ -177,7 +190,7 @@ assign tagWay2_q = tagArray2[index];
 //hit信号产生
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
-assign  cacheHit = way1Hit || way2Hit;
+assign  cacheHit = (way1Hit || way2Hit || uncachedOk) && ~uncached;
 //dataOk信号仅在compare阶段并且命中的情况下为高，
 assign data_ok_o = compareEn && cacheHit;
 //notok信号在idle阶段不置高
@@ -210,8 +223,22 @@ always @(*) begin
     end
 end
 
-assign rd_data_o = ({64{way1Hit}}&rdDataRegWay1)
-                 | ({64{way2Hit}}&rdDataRegWay2);
+assign rd_data_o = ({64{uncached}}&rdBuffer[63:0])
+                 | ({64{way1Hit }}&rdDataRegWay1 )
+                 | ({64{way2Hit }}&rdDataRegWay2 );
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        uncachedOk <= 'b0;
+    end
+    else if(getdataEn && rdLast_i) begin
+        uncachedOk <= 'b1;
+    end
+    else begin
+        uncachedOk <= 'b0;
+    end
+end
+
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
@@ -246,7 +273,12 @@ always @(posedge clk or negedge rst_n) begin
         rdCnt <= 'b0;
     end
     else if(getdataEn && dataValid_i) begin
-        rdCnt <= rdCnt + 'b1;
+        if(~rdLast_i) begin
+            rdCnt <= rdCnt + 'b1;
+        end
+        else begin
+            rdCnt <= 'b0;
+        end
     end
 end
 reg [255:0] rdBuffer;
@@ -293,7 +325,7 @@ end
 wire    replaceEn = cacheCurState == replace;
 //这里延后一个周期将写是能拉高写入，防止高位无法写入（即最后64位数据）
 always @(*) begin
-    if(replaceEn) begin
+    if(replaceEn && ~uncached) begin
         if(randomBit[0]) begin
             wenWay1 = 1'b1;
             wenWay2 = 1'b0;
