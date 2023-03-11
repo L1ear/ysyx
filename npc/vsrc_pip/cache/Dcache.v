@@ -20,8 +20,8 @@ module Dcache(
     //数据无效信号，为高时表示此时输出的数据无效
     output                                  data_notok_o,
     output          [`XLEN-1:0]             rd_data_o,
-    output          [2      :0]             ls_sram_wr_size,
-    output          [2      :0]             ls_sram_rd_size,
+    input          [2      :0]             ls_sram_wr_size,
+    input          [2      :0]             ls_sram_rd_size,
 
 
 //to AXI
@@ -46,8 +46,8 @@ module Dcache(
     output          [255:0]                 cacheWrData_o,//
     output          [7:0]                   storeLenth,//
 
-    input          [7:0]                   cacheWrMask_o,
-    input          [2:0]                   cacheWrSize_o
+    output          [7:0]                   cacheWrMask_o,
+    output          [2:0]                   cacheWrSize_o
 );
 
 
