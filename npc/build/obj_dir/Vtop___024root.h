@@ -143,6 +143,8 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__cache_dut__DOT__wenWay2;
     };
     struct {
+        CData/*0:0*/ top__DOT__cache_dut__DOT__uncached;
+        CData/*0:0*/ top__DOT__cache_dut__DOT__uncachedOk;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay1_q;
         CData/*0:0*/ top__DOT__cache_dut__DOT__validWay2_q;
         CData/*0:0*/ top__DOT__cache_dut__DOT__missFlag;
@@ -205,10 +207,10 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state_next;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_wready;
-        CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp;
-        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid;
     };
     struct {
+        CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp;
+        CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_arready;
         CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid;
@@ -271,10 +273,10 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mtvec;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mstatus;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mcause;
-        QData/*32:0*/ top__DOT__Dcache_u__DOT__reqLatch;
-        QData/*63:0*/ top__DOT__Dcache_u__DOT__validArray1;
     };
     struct {
+        QData/*32:0*/ top__DOT__Dcache_u__DOT__reqLatch;
+        QData/*63:0*/ top__DOT__Dcache_u__DOT__validArray1;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__validArray2;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__wrDataLatch;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__dirtyArray1;
