@@ -4504,7 +4504,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                    & (0ULL 
                                                       != vlSelf->top__DOT__pc_new)) 
                                                   & (3U 
-                                                     != 
+                                                     == 
                                                      (0xfU 
                                                       & (IData)(
                                                                 (vlSelf->top__DOT__cache_dut__DOT__reqLatch 
