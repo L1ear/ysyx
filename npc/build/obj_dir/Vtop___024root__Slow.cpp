@@ -1650,7 +1650,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                        == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
                                                    & (0ULL 
                                                       != vlSelf->top__DOT__pc_new)) 
-                                                  & (8U 
+                                                  & (3U 
                                                      != 
                                                      (0xfU 
                                                       & (IData)(

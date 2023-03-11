@@ -4016,7 +4016,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
             vlSelf->top__DOT__pc_new = vlSelf->top__DOT__IF_u__DOT__pc_next_o;
         }
     } else {
-        vlSelf->top__DOT__pc_new = 0x7ffffffcULL;
+        vlSelf->top__DOT__pc_new = 0x2ffffffcULL;
     }
     vlSelf->top__DOT__ex_stage_u__DOT__src2 = ((0x20000U 
                                                 & vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])
@@ -4503,7 +4503,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                        == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
                                                    & (0ULL 
                                                       != vlSelf->top__DOT__pc_new)) 
-                                                  & (8U 
+                                                  & (3U 
                                                      != 
                                                      (0xfU 
                                                       & (IData)(
