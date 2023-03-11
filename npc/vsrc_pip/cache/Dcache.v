@@ -46,8 +46,8 @@ module Dcache(
     output          [255:0]                 cacheWrData_o,//
     output          [7:0]                   storeLenth,//
 
-    output          [7:0]                   cacheWrMask_o,
-    output          [2:0]                   cacheWrSize_o
+    input          [7:0]                   cacheWrMask_o,
+    input          [2:0]                   cacheWrSize_o
 );
 
 

@@ -85,7 +85,7 @@ module axi_dcache # (
 
     // 写通道状态切换
 
-    parameter       w_state_idle = 2'b00,
+    localparam        w_state_idle = 2'b00,
                     w_state_aw_wait = 2'b01,
                     w_state_dw_wait = 2'b11,
                     w_state_b_wait_trans_ok = 2'b10;

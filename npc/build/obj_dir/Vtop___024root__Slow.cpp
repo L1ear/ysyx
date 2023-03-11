@@ -438,12 +438,14 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                        >> 0x1dU)))) {
         vlSelf->axi_aw_addr_o = 0ULL;
         vlSelf->axi_aw_id_o = 0U;
+        vlSelf->axi_aw_size_o = 0U;
         vlSelf->axi_aw_burst_o = 0U;
         vlSelf->axi_aw_cache_o = 0U;
         vlSelf->axi_aw_len_o = 0U;
     } else {
         vlSelf->axi_aw_addr_o = vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg;
         vlSelf->axi_aw_id_o = 1U;
+        vlSelf->axi_aw_size_o = 3U;
         vlSelf->axi_aw_burst_o = 1U;
         vlSelf->axi_aw_cache_o = 0xfU;
         vlSelf->axi_aw_len_o = (0xffU & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__lenthReg));
@@ -600,10 +602,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                                          >> 5U)) 
                                                                 << 5U)))))));
-    vlSelf->axi_aw_size_o = ((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                            >> 0x1dU)))
-                              ? 0U : ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                       ? 0U : 3U));
     vlSelf->top__DOT__DcacheWrAddr = ((0xffffffff00000000ULL 
                                        & vlSelf->top__DOT__DcacheWrAddr) 
                                       | (IData)((IData)(
@@ -1930,9 +1928,12 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                    ? 0U
                                                    : 3U))));
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size 
-        = ((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
-            ? ((0U == ((IData)(vlSelf->top__DOT__cache_dut__DOT__uncached)
-                        ? 0U : 3U)) ? 2U : 3U) : 3U);
+        = (7U & ((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
+                  ? ((0U == ((IData)(vlSelf->top__DOT__cache_dut__DOT__uncached)
+                              ? 0U : 3U)) ? 2U : 3U)
+                  : ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                      ? (IData)(vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__wr_size)
+                      : 3U)));
     vlSelf->top__DOT__cache_dut__DOT__wenWay1 = (((7U 
                                                    == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                                   & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__uncached))) 

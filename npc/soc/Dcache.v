@@ -16,10 +16,12 @@ module Dcache(
     input                                   stall_n,
     //回给if模块的地址接收有效信号，为高时表示可以处理新的请求的地址
     output  reg                             addr_ok_o,
-    output                                  data_ok_o,  //reserve
+    // output                                  data_ok_o,  //reserve
     //数据无效信号，为高时表示此时输出的数据无效
     output                                  data_notok_o,
     output          [`XLEN-1:0]             rd_data_o,
+    input          [2      :0]             ls_sram_wr_size,
+    input          [2      :0]             ls_sram_rd_size,
 
 
 //to AXI
@@ -33,6 +35,7 @@ module Dcache(
     input                                   rdLast_i,//
     output          [`addr_width-1:0]       cacheRdAddr_o,//
     output          [`addr_width-1:0]       cacheWrAddr_o,//
+    output          [2:0]                   cacheRdSize_o,
     input           [`XLEN-1:0]             rdData_i,//
     //数据有效信号
     input                                   dataValid_i,
@@ -174,6 +177,8 @@ always @(*) begin
                     cacheNexState = idle;
                 end
             end
+            //miss:有两种情况会进入这种情况，一种是正常请求得到miss
+            //     一种是从uncache操作回来后不命中
             else if(lsValid_i) begin
         //如果miss且需要写回，但是axi正写忙，则需要等axi写就绪后再读
                 if(reqLatch[32] && axiWrBusy) begin
@@ -208,12 +213,13 @@ always @(*) begin
         end 
         //此处须添加一个replace的阶段，为了防止在完成替换后，下一个pc命中，但是读数据的时候与在同一way上的写入操作产生冲突（即读取与写入的地址不一样）
         replace: begin
-            if(needWrBk_Reg) begin
-                cacheNexState = replace;
-            end
-            else begin
+            // if(needWrBk_Reg) begin
+            //     cacheNexState = replace;
+            //     $finish();
+            // end
+            // else begin
                 cacheNexState = compare;
-            end    
+            // end    
         end
         uncacheOp: begin
             if(uncacheOpOk && stall_n) begin
@@ -241,14 +247,14 @@ always @(posedge clk or negedge rst_n) begin
     //在compare到compare锁存地址信息时，要保证上一个请求是hit的，否则下一拍会进入miss，而保存的数据失效
     //同时要保证在stall时不锁存，因为1、stall有可能是由cache缺失或其他自身原因造成，此时不能锁存其他数据
     //2、有可能由其他阶段造成如ls部分stall等，此时也不能锁存，否则会锁存下一拍的地址，但是pc还没有变化，导致取得的指令出错
-    else if(((idleEn && exValid_i && stall_n) || ((compareEn && ((exValid_i && cacheHit) || (exValid_i && ~cacheHit && ~lsValid_i))) && stall_n) || (uncacheOpEn && exValid_i && stall_n))) begin
+    else if(((idleEn && exValid_i && stall_n) || ((compareEn && ((exValid_i && (cacheHit||~cacheHit && ~lsValid_i)))) && stall_n) || (uncacheOpEn && exValid_i && stall_n))) begin
         reqLatch <= {op_i,addr_i};
     end
 end
 
 //addrOk信号仅在idle或者compare且上一拍pc命中的情况下为高，表示新的pc可以被接收
 always @(*) begin
-    if(idleEn || (compareEn && cacheHit) || (uncacheOpEn && uncacheOpOk)) begin
+    if(idleEn || (compareEn && (cacheHit||~cacheHit && ~lsValid_i)) || (uncacheOpEn && uncacheOpOk)) begin
         addr_ok_o = 1'b1;
     end
     else begin
@@ -302,8 +308,8 @@ wire [20:0] tagtest = tagArray2['h23];
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
 assign  cacheHit = way1Hit || way2Hit;
-//dataOk信号仅在compare阶段并且命中的情况下为高，
-assign data_ok_o = compareEn && cacheHit;
+// //dataOk信号仅在compare阶段并且命中的情况下为高，
+// assign data_ok_o = compareEn && cacheHit;
 
 //notok信号在idle阶段不置高
 /*NotOk置高条件
@@ -312,7 +318,7 @@ assign data_ok_o = compareEn && cacheHit;
 **3、compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)):
 **  这种情况对应上一拍是store命令并且命中，而这一拍是load命令并且命中的情况，由于sram模型的写、读分别需要一拍，故写入后需要等待一拍在读，
 **  防止读出错误数据，本质上是read after write冲突，本应该使用流水线前递解决，整理完代码再改吧
-**
+**  后续：并不是raw，因为地址可能不同
 */
 assign data_notok_o = (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
 
@@ -355,14 +361,15 @@ always @(*) begin
 end
 
 //这里写的很粪
-assign rd_data_o = uncacheOpEn ? (rdLast_i ? rdData_i : temp ): ({64{way1Hit}}&rdDataRegWay1)
-                                      | ({64{way2Hit}}&rdDataRegWay2);
+//(后续：不但烂，而且该不动ww)
+assign rd_data_o = uncacheOpEn ? (rdData_i ): ({64{way1Hit}}&rdDataRegWay1)
+                                                              | ({64{way2Hit}}&rdDataRegWay2);
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
 wire [63:0] addrToRead = {32'b0,tag,index,5'b0};
 reg        randomBit;
-reg        missFlag;
+reg        missFlag;//或者叫replacedFlag？
 //由于根据sram模型，写入数据再读出至少需要两个周期，而为了获得更好的性能，在写入后即可读出数据，故需一个信号指示使用rdBUffer里存放的数据而不是sram的
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n)begin
@@ -404,7 +411,7 @@ end
 // always randomBit = $random;
 always @(posedge clk) begin
     if(replaceEn) begin
-        randomBit <= 0;//~randomBit;
+        randomBit <= ~randomBit;
     end
 end
 always @(*) begin
@@ -612,7 +619,8 @@ assign cacheWrData_o = uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data
 assign storeLenth = uncacheOpEn ? 'd0 : 'd3;
 
 assign cacheWrMask_o = uncacheOpEn ? storeMask : 'hff;;
-assign cacheWrSize_o = uncacheOpEn ? 'b0 : 'b011;
+assign cacheWrSize_o = uncacheOpEn ? ls_sram_rd_size : 'b011;
+assign cacheRdSize_o = uncacheOpEn ? ls_sram_wr_size : 'b011;
 
 wire uncacheOpEn = cacheCurState == uncacheOp;
 // cacheRdValid_o,//
