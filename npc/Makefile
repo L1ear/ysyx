@@ -99,7 +99,7 @@ wave:
 	gtkwave ./vlt.vcd
 
 cat:
-	cat $(VSRCS_SOC) > ysyx_22040734.v
+	cat /home/qw/ysyx-workbench/npc/soc/defines.v /home/qw/ysyx-workbench/npc/soc/top.v /home/qw/ysyx-workbench/npc/soc/ID_stage.v  /home/qw/ysyx-workbench/npc/soc/CSR.v /home/qw/ysyx-workbench/npc/soc/WB_stage.v /home/qw/ysyx-workbench/npc/soc/EX_stage.v /home/qw/ysyx-workbench/npc/soc/imm_ext.v /home/qw/ysyx-workbench/npc/soc/lsu.v /home/qw/ysyx-workbench/npc/soc/forwarding.v /home/qw/ysyx-workbench/npc/soc/Dcache.v /home/qw/ysyx-workbench/npc/soc/Icache.v /home/qw/ysyx-workbench/npc/soc/decoder.v /home/qw/ysyx-workbench/npc/soc/rst_sync.v /home/qw/ysyx-workbench/npc/soc/IF_stage.v /home/qw/ysyx-workbench/npc/soc/WB_reg.v /home/qw/ysyx-workbench/npc/soc/L_S_stage.v \/home/qw/ysyx-workbench/npc/soc/ID_reg.v /home/qw/ysyx-workbench/npc/soc/axi_dcache.v  /home/qw/ysyx-workbench/npc/soc/pipline_ctrl.v /home/qw/ysyx-workbench/npc/soc/axi_icache.v /home/qw/ysyx-workbench/npc/soc/L_S_reg.v /home/qw/ysyx-workbench/npc/soc/hazard_detect.v /home/qw/ysyx-workbench/npc/soc/bcu.v /home/qw/ysyx-workbench/npc/soc/ls_ctr.v /home/qw/ysyx-workbench/npc/soc/axi_arbiter.v /home/qw/ysyx-workbench/npc/soc/EX_reg.v /home/qw/ysyx-workbench/npc/soc/regfile.v /home/qw/ysyx-workbench/npc/soc/ALU.v /home/qw/ysyx-workbench/npc/soc/dff.v  > ysyx_22040734.v
 	cp ysyx_22040734.v /home/qw/ysyxSoC/ysyx/soc/
 clean:
 	rm -rf $(BUILD_DIR)

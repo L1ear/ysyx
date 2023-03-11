@@ -52,7 +52,7 @@ reg            wenWay1,wenWay2;
 wire            uncached;
 reg             uncachedOk;
 
-assign uncached = (~uncachedOk) && compareEn && valid_i && ~(reqLatch[31-:4] == 4'b1000);
+assign uncached = (~uncachedOk) && compareEn && valid_i && ~(reqLatch[31-:4] == 4'b0011);
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
