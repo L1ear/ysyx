@@ -2746,7 +2746,7 @@ reg            wenWay1,wenWay2;
 wire            uncached;
 reg             uncachedOk;
 
-assign uncached = (~uncachedOk) && compareEn && valid_i && ~(reqLatch[31-:4] == 4'b0011);
+assign uncached = valid_i && reqLatch[31-:4] == 4'b0011;
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -2768,7 +2768,7 @@ always @(*) begin
             end
         end
         compare: begin
-            if(uncached) begin
+            if((~uncachedOk) && uncached) begin
                 cacheNexState = miss;
             end
             else if(cacheHit) begin
@@ -2884,7 +2884,7 @@ assign tagWay2_q = tagArray2[index];
 //hit信号产生
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
-assign  cacheHit = (way1Hit || way2Hit || uncachedOk) && ~uncached;
+assign  cacheHit = ((way1Hit || way2Hit ) && ~uncached)|| uncachedOk;
 //dataOk信号仅在compare阶段并且命中的情况下为高，
 assign data_ok_o = compareEn && cacheHit;
 //notok信号在idle阶段不置高
@@ -2945,7 +2945,7 @@ always @(posedge clk or negedge rst_n) begin
         missFlag <= 'b0;
     end
     //将missFlag延后写入sram一个周期，防止读出错误数据
-    else if(replaceEn) begin        //在接入AXI后要加上LAST作为判断条件
+    else if(getdataEn || replaceEn) begin        //在接入AXI后要加上LAST作为判断条件
         missFlag <= 'b1;
     end
     else begin
@@ -3037,8 +3037,6 @@ always @(*) begin
         wenWay1 = 1'b0;
     end
 end
-
-
 
 
 
@@ -4010,7 +4008,7 @@ assign instr_fetching = ~(r_state == r_state_idle);
     wire [AXI_ID_WIDTH-1:0] axi_id              = {AXI_ID_WIDTH{1'b0}};
     wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
     wire [7:0] axi_len      =  fetchLenth ;                           //lenth为长度减1
-    wire [2:0] axi_size     = AXI_SIZE[2:0];
+    wire [2:0] axi_size     =  fetchLenth=='b0 ? 'd2 : AXI_SIZE[2:0];
     // // 写地址通道  以下没有备注初始化信号的都可能是你需要产生和用到的
     // assign axi_aw_valid_o   = w_state_addr;
     // assign axi_aw_addr_o    = rw_addr_i;

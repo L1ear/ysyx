@@ -1645,9 +1645,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         }
     }
     vlSelf->top__DOT__cache_dut__DOT__uncached = ((
-                                                   ((~ (IData)(vlSelf->top__DOT__cache_dut__DOT__uncachedOk)) 
-                                                    & (1U 
-                                                       == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))) 
+                                                   (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__uncachedOk)) 
                                                    & (0ULL 
                                                       != vlSelf->top__DOT__pc_new)) 
                                                   & (3U 
