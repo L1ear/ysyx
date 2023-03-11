@@ -43,18 +43,18 @@ extern const VlUnpacked<CData/*7:0*/, 16> Vtop__ConstPool__TABLE_b95eb736_0;
 extern const VlUnpacked<CData/*2:0*/, 16> Vtop__ConstPool__TABLE_0ca066a7_0;
 extern const VlUnpacked<CData/*1:0*/, 128> Vtop__ConstPool__TABLE_0260afd5_0;
 extern const VlUnpacked<CData/*1:0*/, 32> Vtop__ConstPool__TABLE_b1b41ba9_0;
-extern const VlUnpacked<CData/*2:0*/, 256> Vtop__ConstPool__TABLE_78f77e56_0;
+extern const VlUnpacked<CData/*2:0*/, 512> Vtop__ConstPool__TABLE_0feec8f7_0;
 
 void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    Vtop___024root___settle__TOP__2\n"); );
     // Variables
-    CData/*7:0*/ __Vtableidx1;
     CData/*4:0*/ __Vtableidx2;
     CData/*3:0*/ __Vtableidx3;
     CData/*6:0*/ __Vtableidx4;
     CData/*4:0*/ __Vtableidx5;
+    SData/*8:0*/ __Vtableidx1;
     VlWide<3>/*95:0*/ __Vtemp6;
     VlWide<3>/*95:0*/ __Vtemp7;
     VlWide<3>/*95:0*/ __Vtemp8;
@@ -1644,10 +1644,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
             }
         }
     }
-    vlSelf->top__DOT__cache_dut__DOT__uncached = ((
-                                                   (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__uncachedOk)) 
-                                                   & (0ULL 
-                                                      != vlSelf->top__DOT__pc_new)) 
+    vlSelf->top__DOT__cache_dut__DOT__uncached = ((0ULL 
+                                                   != vlSelf->top__DOT__pc_new) 
                                                   & (3U 
                                                      == 
                                                      (0xfU 
@@ -1690,7 +1688,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     if ((1U & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                        >> 0x1dU)))) {
         vlSelf->axi_ar_addr_o = 0ULL;
-        vlSelf->axi_ar_size_o = 0U;
         vlSelf->axi_ar_burst_o = 0U;
         vlSelf->axi_ar_cache_o = 0U;
         vlSelf->axi_ar_valid_o = 0U;
@@ -1710,7 +1707,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id = 1U;
     } else {
         vlSelf->axi_ar_addr_o = vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr;
-        vlSelf->axi_ar_size_o = 3U;
         vlSelf->axi_ar_burst_o = 1U;
         vlSelf->axi_ar_cache_o = 2U;
         vlSelf->axi_ar_valid_o = (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_valid));
@@ -1933,6 +1929,10 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                    == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                                    ? 0U
                                                    : 3U))));
+    vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size 
+        = ((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
+            ? ((0U == ((IData)(vlSelf->top__DOT__cache_dut__DOT__uncached)
+                        ? 0U : 3U)) ? 2U : 3U) : 3U);
     vlSelf->top__DOT__cache_dut__DOT__wenWay1 = (((7U 
                                                    == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                                   & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__uncached))) 
@@ -1944,8 +1944,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__cache_dut__DOT__cacheHit = ((
                                                    ((IData)(vlSelf->top__DOT__cache_dut__DOT__way1Hit) 
                                                     | (IData)(vlSelf->top__DOT__cache_dut__DOT__way2Hit)) 
-                                                   | (IData)(vlSelf->top__DOT__cache_dut__DOT__uncachedOk)) 
-                                                  & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__uncached)));
+                                                   & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__uncached))) 
+                                                  | (IData)(vlSelf->top__DOT__cache_dut__DOT__uncachedOk));
     vlSelf->top__DOT__Dcache_u__DOT__sramMask = ((0xffffffffffff0000ULL 
                                                   & vlSelf->top__DOT__Dcache_u__DOT__sramMask) 
                                                  | (IData)((IData)(
@@ -2090,6 +2090,9 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                                          vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U])) 
                                                          >> 0x1bU)))
                                                 : vlSelf->top__DOT__ex_stage_u__DOT__rs1);
+    vlSelf->axi_ar_size_o = ((1U & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                            >> 0x1dU)))
+                              ? 0U : (7U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size)));
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__CEN 
         = (1U & (~ ((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                       & (0ULL != vlSelf->top__DOT__pc_new)) 
@@ -2313,16 +2316,18 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi_icache_dut__DOT__r_state_next 
         = Vtop__ConstPool__TABLE_b1b41ba9_0[__Vtableidx2];
     __Vtableidx1 = (((0ULL != vlSelf->top__DOT__pc_new) 
-                     << 7U) | (((IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit) 
-                                << 6U) | (((0U == (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state)) 
-                                           << 5U) | 
-                                          (((IData)(vlSelf->top__DOT__cache_dut__DOT__uncached) 
-                                            << 4U) 
-                                           | (((IData)(vlSelf->top__DOT__if_axi_r_last_i) 
-                                               << 3U) 
-                                              | (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState))))));
+                     << 8U) | (((IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit) 
+                                << 7U) | (((IData)(vlSelf->top__DOT__cache_dut__DOT__uncachedOk) 
+                                           << 6U) | 
+                                          (((0U == (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state)) 
+                                            << 5U) 
+                                           | (((IData)(vlSelf->top__DOT__cache_dut__DOT__uncached) 
+                                               << 4U) 
+                                              | (((IData)(vlSelf->top__DOT__if_axi_r_last_i) 
+                                                  << 3U) 
+                                                 | (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)))))));
     vlSelf->top__DOT__cache_dut__DOT__cacheNexState 
-        = Vtop__ConstPool__TABLE_78f77e56_0[__Vtableidx1];
+        = Vtop__ConstPool__TABLE_0feec8f7_0[__Vtableidx1];
     vlSelf->top__DOT__Dcache_u__DOT__uncacheOpOk = 
         (((((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg) 
             & (0U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state))) 
@@ -3988,6 +3993,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_ready = 0;
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_valid = 0;
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr = 0;
+    vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size = 0;
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready = 0;
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_valid = 0;
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_data = 0;
