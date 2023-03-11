@@ -556,7 +556,7 @@ wire            axiWrBusy = needWrBk_Reg;
 assign cacheWrValid_o = needWrBk_Reg;
 wire    [31:0]  addrToWrite;
 
-assign addrToWrite = uncacheOpEn ? {reqLatch[31:3],3'b0} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
+assign addrToWrite = uncacheOpEn ? {reqLatch[31:0]} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = addrToWrite;
 
 assign cacheWrData_o = uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data : way1Data;
