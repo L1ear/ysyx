@@ -20,6 +20,8 @@ module Dcache(
     //数据无效信号，为高时表示此时输出的数据无效
     output                                  data_notok_o,
     output          [`XLEN-1:0]             rd_data_o,
+    output          [2      :0]             ls_sram_wr_size,
+    output          [2      :0]             ls_sram_rd_size,
 
 
 //to AXI
@@ -33,6 +35,7 @@ module Dcache(
     input                                   rdLast_i,//
     output          [`addr_width-1:0]       cacheRdAddr_o,//
     output          [`addr_width-1:0]       cacheWrAddr_o,//
+    output          [2:0]                   cacheRdSize_o,
     input           [`XLEN-1:0]             rdData_i,//
     //数据有效信号
     input                                   dataValid_i,
@@ -560,7 +563,8 @@ assign cacheWrData_o = uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data
 assign storeLenth = uncacheOpEn ? 'd0 : 'd3;
 
 assign cacheWrMask_o = uncacheOpEn ? storeMask : 'hff;;
-assign cacheWrSize_o = uncacheOpEn ? 'b0 : 'b011;
+assign cacheWrSize_o = uncacheOpEn ? ls_sram_rd_size : 'b011;
+assign cacheRdSize_o = uncacheOpEn ? ls_sram_wr_size : 'b011;
 
 wire uncacheOpEn = cacheCurState == uncacheOp;
 // cacheRdValid_o,//

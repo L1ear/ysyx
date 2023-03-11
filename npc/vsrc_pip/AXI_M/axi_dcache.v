@@ -24,7 +24,7 @@ module axi_dcache # (
     output reg                              wr_ready_o,            //读完成
     input  [255:0]                          cacheWrData_i,
     input             [7:0]                   storeLenth,
-    input   [2:0]                           storeSize,
+    input   [2:0]                           storeSize,loadSize,
     input  [AXI_STRB_WIDTH-1:0]             rw_w_mask_i,        
     input  [63:0]                           cacheWrAddr_i,          //IF&MEM输入信号
 
@@ -252,7 +252,7 @@ assign data_read_o = axi_r_data_i;
     assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
     assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
     assign axi_ar_len_o     = fetchLenth;                                                                          
-    assign axi_ar_size_o    = axi_size;
+    assign axi_ar_size_o    = loadSize;
     assign axi_ar_burst_o   = `AXI_BURST_TYPE_INCR;
     assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
     assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可

@@ -824,6 +824,8 @@ Dcache Dcache_u (
   .data_notok_o     (dataNotOk ),
   .rd_data_o        (ls_sram_rd_data ),
   //to AXI
+  .ls_sram_wr_size        (ls_sram_wr_size        ), 
+  .ls_sram_rd_size        (ls_sram_rd_size        ),
   .cacheRdValid_o   (DcacheRdValid ),
   .axiRdReady       (lsAxiRdReady ),
   .fetchLenth       (lsFetchLenth ),
@@ -837,7 +839,8 @@ Dcache Dcache_u (
   .cacheWrData_o    (lsAxiWrData ),
   .storeLenth       (lsStoreLenth ),
   .cacheWrMask_o    (lsStoreMask),
-  .cacheWrSize_o    (lsStoreSize)
+  .cacheWrSize_o    (lsStoreSize),
+  .cacheRdSize_o    (lsLoadSize)
 );
 
 wire        DcacheRdValid,DcacheWrValid;
@@ -851,7 +854,7 @@ wire        lsAxiWrReady;
 wire [255:0]lsAxiWrData;
 wire [7:0]  lsStoreLenth;
 wire [7:0]  lsStoreMask;
-wire [2:0]  lsStoreSize;
+wire [2:0]  lsStoreSize,lsLoadSize;
 
 axi_dcache axi_ls_u(
     .clock          (clk),
@@ -869,6 +872,7 @@ axi_dcache axi_ls_u(
     .cacheWrData_i  (lsAxiWrData),
     .storeLenth     (lsStoreLenth),
     .storeSize      (lsStoreSize),
+    .loadSize      (lsLoadSize),
     .rw_w_mask_i    (lsStoreMask),
     .cacheWrAddr_i  (DcacheWrAddr),
     // .wr_valid_i     (DcacheWrValid_o),//ls_sram_wr_en          ),         //写有效
