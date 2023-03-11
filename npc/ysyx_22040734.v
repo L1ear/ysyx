@@ -1984,8 +1984,8 @@ module Dcache(
     //数据无效信号，为高时表示此时输出的数据无效
     output                                  data_notok_o,
     output          [`XLEN-1:0]             rd_data_o,
-    output          [2      :0]             ls_sram_wr_size,
-    output          [2      :0]             ls_sram_rd_size,
+    input          [2      :0]             ls_sram_wr_size,
+    input          [2      :0]             ls_sram_rd_size,
 
 
 //to AXI
@@ -2583,8 +2583,8 @@ assign cacheWrData_o = uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data
 assign storeLenth = uncacheOpEn ? 'd0 : 'd3;
 
 assign cacheWrMask_o = uncacheOpEn ? storeMask : 'hff;;
-assign cacheWrSize_o = uncacheOpEn ? ls_sram_rd_size : 'b011;
-assign cacheRdSize_o = uncacheOpEn ? ls_sram_wr_size : 'b011;
+assign cacheWrSize_o = uncacheOpEn ? ls_sram_wr_size : 'b011;
+assign cacheRdSize_o = uncacheOpEn ? ls_sram_rd_size : 'b011;
 
 wire uncacheOpEn = cacheCurState == uncacheOp;
 // cacheRdValid_o,//
@@ -2780,8 +2780,8 @@ always @(*) begin
             end
         end
         compare: begin
-            if((~uncachedOk) && uncached) begin
-                cacheNexState = miss;
+            if(uncached && ~uncachedOk) begin
+                    cacheNexState = miss;
             end
             else if(cacheHit) begin
                 if(valid_i) begin
@@ -2940,7 +2940,7 @@ always @(posedge clk or negedge rst_n) begin
     else if(getdataEn && rdLast_i) begin
         uncachedOk <= 'b1;
     end
-    else begin
+    else if(stall_n) begin
         uncachedOk <= 'b0;
     end
 end
@@ -3049,7 +3049,6 @@ always @(*) begin
         wenWay1 = 1'b0;
     end
 end
-
 
 
 endmodule

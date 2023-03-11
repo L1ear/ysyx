@@ -619,8 +619,8 @@ assign cacheWrData_o = uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data
 assign storeLenth = uncacheOpEn ? 'd0 : 'd3;
 
 assign cacheWrMask_o = uncacheOpEn ? storeMask : 'hff;;
-assign cacheWrSize_o = uncacheOpEn ? ls_sram_rd_size : 'b011;
-assign cacheRdSize_o = uncacheOpEn ? ls_sram_wr_size : 'b011;
+assign cacheWrSize_o = uncacheOpEn ? ls_sram_wr_size : 'b011;
+assign cacheRdSize_o = uncacheOpEn ? ls_sram_rd_size : 'b011;
 
 wire uncacheOpEn = cacheCurState == uncacheOp;
 // cacheRdValid_o,//

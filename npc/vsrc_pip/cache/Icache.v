@@ -74,8 +74,8 @@ always @(*) begin
             end
         end
         compare: begin
-            if((~uncachedOk) && uncached) begin
-                cacheNexState = miss;
+            if(uncached && ~uncachedOk) begin
+                    cacheNexState = miss;
             end
             else if(cacheHit) begin
                 if(valid_i) begin
@@ -234,7 +234,7 @@ always @(posedge clk or negedge rst_n) begin
     else if(getdataEn && rdLast_i) begin
         uncachedOk <= 'b1;
     end
-    else begin
+    else if(stall_n) begin
         uncachedOk <= 'b0;
     end
 end
