@@ -260,7 +260,10 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 assign cacheRdValid_o = missEn && axiRdReady;
-assign cacheAddr_o = addrToRead[31:0];
+assign cacheAddr_o = uncached ? reqLatch[31:0] : addrToRead[31:0];
+
+assign fetchLenth = uncached ? 'b000 : 'b011;
+
 assign inDataWay1_1 = rdBuffer[127:0];
 assign inDataWay1_2 = rdBuffer[255:128];
 assign inDataWay2_1 = rdBuffer[127:0];
