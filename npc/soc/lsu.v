@@ -72,7 +72,13 @@ assign  ld  = rden & (memop == `ld);
 
 wire   [2:0]     rd_size;
 
-assign  rd_size = 3'd3;
+assign  rd_size = ({3{lb}}      & 3'b000)
+                |({3{lbu}}    & 3'b000)
+                |({3{lh}}     & 3'b001)
+                |({3{lhu}}    & 3'b001)
+                |({3{lw}}     & 3'b010)
+                |({3{lwu}}    & 3'b010)
+                |({3{ld}}     & 3'b011);
 
 // //仅支持对齐的访问，否则出错
 reg     [7      :0]     rd_data_b;

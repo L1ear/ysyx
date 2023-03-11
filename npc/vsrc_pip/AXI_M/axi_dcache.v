@@ -140,11 +140,15 @@ module axi_dcache # (
 reg     [`XLEN-1:0]     wrAddr_reg;
 reg     [255:0]         wr_data_reg;
 reg     [7:0]           wrMask_reg;
+reg     [2:0]           wrSize_reg;
+reg     [7:0]           storeLenth_reg;
 always @(posedge clock) begin
         if((w_state == w_state_idle) && wr_valid_i) begin
             wrAddr_reg <= cacheWrAddr_i;
             wr_data_reg <= cacheWrData_i;
             wrMask_reg <= rw_w_mask_i;
+            wrSize_reg <= storeSize;
+            storeLenth_reg <= storeLenth;
         end
 end
 
@@ -164,7 +168,7 @@ end
 assign aw_valid = w_state == w_state_aw_wait;
 assign w_valid  = w_state == w_state_dw_wait;
 assign b_ready  = (w_state == w_state_b_wait_trans_ok);
-assign wrLast   = w_state == w_state_dw_wait && wrCnt == lenthReg[1:0];
+assign wrLast   = w_state == w_state_dw_wait && wrCnt == storeLenth_reg[1:0];
 assign wr_ready_o = w_state == w_state_idle;
     // always @(posedge clock) begin
     //     if((w_state == w_state_b_wait_trans_ok) && axi_b_valid_i) begin
@@ -175,15 +179,15 @@ assign wr_ready_o = w_state == w_state_idle;
     //     end
     // end
 
-reg [7:0]   lenthReg;
-always @(posedge clock or negedge reset) begin
-    if(~reset) begin
-        lenthReg <= 'b0;
-    end
-    else if((w_state == w_state_idle) && wr_valid_i)begin
-        lenthReg <= storeLenth;
-    end
-end
+// reg [7:0]   lenthReg;
+// always @(posedge clock or negedge reset) begin
+//     if(~reset) begin
+//         lenthReg <= 'b0;
+//     end
+//     else if((w_state == w_state_idle) && wr_valid_i)begin
+//         lenthReg <= storeLenth;
+//     end
+// end
 
 
     // 读通道状态切换
@@ -195,6 +199,7 @@ end
     wire            ar_valid,r_ready;
     // reg             instr_valid;
     reg     [`XLEN-1:0]     rdAddr_reg;
+         
     always @(posedge clock or negedge reset) begin
         if(~reset) begin
             r_state <= r_state_idle;
@@ -273,9 +278,9 @@ assign data_read_o = axi_r_data_i;
     assign axi_aw_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_aw_id_o      = axi_id;                                                                           //初始化信号即可
     assign axi_aw_user_o    = axi_user;                                                                         //初始化信号即可
-    assign axi_aw_len_o     = lenthReg;
+    assign axi_aw_len_o     = storeLenth;
     //**********************可能有问题
-    assign axi_aw_size_o    = storeSize;
+    assign axi_aw_size_o    = wrSize_reg;
     assign axi_aw_burst_o   = `AXI_BURST_TYPE_INCR;                                                             
     assign axi_aw_lock_o    = 1'b0;                                                                             //初始化信号即可
     assign axi_aw_cache_o   = `AXI_AWCACHE_WRITE_BACK_READ_AND_WRITE_ALLOCATE;                                  //初始化信号即可
