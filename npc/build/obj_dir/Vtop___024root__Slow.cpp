@@ -652,7 +652,11 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                       | (IData)((IData)(
                                                         ((6U 
                                                           == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                                          ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__reqLatch)
+                                                          ? 
+                                                         ((IData)(
+                                                                  (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                   >> 3U)) 
+                                                          << 3U)
                                                           : 
                                                          ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                                            ? 
@@ -1351,7 +1355,11 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                          >> 3U)))) {
         if ((1U & (~ (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                       >> 2U)))) {
-            vlSelf->top__DOT__wben_id = 1U;
+            vlSelf->top__DOT__wben_id = (1U & (~ (IData)(
+                                                         (0U 
+                                                          != 
+                                                          (3U 
+                                                           & vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U])))));
         }
     }
     vlSelf->top__DOT__rs1_idx_id = 0U;
