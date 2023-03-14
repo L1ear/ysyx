@@ -1355,7 +1355,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                          >> 3U)))) {
         if ((1U & (~ (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                       >> 2U)))) {
-            vlSelf->top__DOT__wben_id = 1U;
+            vlSelf->top__DOT__wben_id = (0U != (3U 
+                                                & vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U]));
         }
     }
     vlSelf->top__DOT__rs1_idx_id = 0U;

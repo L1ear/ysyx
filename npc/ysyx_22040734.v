@@ -2057,7 +2057,7 @@ assign io_sram4_wmask = ~maskWay1_1 ;
 assign io_sram4_wdata = inDataWay1_1;   
 assign dataWay1_1 = io_sram4_rdata; 
 
-assign io_sram5_addr = wenWay2 ? index : stall_n ? addr_i[10:5] : index;    
+assign io_sram5_addr = wenWay1 ? index : stall_n ? addr_i[10:5] : index;    
 assign io_sram5_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1);     
 assign io_sram5_wen = ~wenWay1 ;     
 assign io_sram5_wmask = ~maskWay1_2 ;   
@@ -3201,7 +3201,7 @@ always @(*) begin
             aluctr_o = `AluAdd_64;                      
             src1sel_o = `Rs1;                       
             src2sel_o = `imm; 
-            wb_en_o = 1'b1 && ~(|instr_i[1:0]); 
+            wb_en_o = 1'b1 && (|instr_i[1:0]); 
             rs1_idx_o = instr_i[19:15];
             rs2_idx_o = 5'b0;                      
             DivEn = 1'b0;

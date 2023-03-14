@@ -87,7 +87,7 @@ assign io_sram4_wmask = ~maskWay1_1 ;
 assign io_sram4_wdata = inDataWay1_1;   
 assign dataWay1_1 = io_sram4_rdata; 
 
-assign io_sram5_addr = wenWay2 ? index : stall_n ? addr_i[10:5] : index;    
+assign io_sram5_addr = wenWay1 ? index : stall_n ? addr_i[10:5] : index;    
 assign io_sram5_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1);     
 assign io_sram5_wen = ~wenWay1 ;     
 assign io_sram5_wmask = ~maskWay1_2 ;   
