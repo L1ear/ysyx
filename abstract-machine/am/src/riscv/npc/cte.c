@@ -7,15 +7,17 @@ Context* __am_irq_handle(Context *c) {
   if (user_handler) {
     Event ev = {0};
     switch (c->mcause) {
+      case 0x8000000000000007:
+        printf("fixme!");
+        break;
       case 11: 
+        c -> mepc += 4;
         if(c->GPR1 == -1){
           ev.event = EVENT_YIELD; 
-          c -> mepc += 4;
           break;
         }    
         else {
           ev.event = EVENT_SYSCALL; 
-          c -> mepc += 4;
           break;
         }
       default: printf("%x\n",c->GPR1);ev.event = EVENT_ERROR; break;
