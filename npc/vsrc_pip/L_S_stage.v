@@ -83,6 +83,7 @@ CSR CSR_u(
     .csr_data_o(csr_data_o),
     .mtvec_o(mtvec_o),
     .mepc_o(mepc_o),
-    .stall_n(stall_n)
+    .stall_n(stall_n),
+    .timer_int_i()
 );
 endmodule
