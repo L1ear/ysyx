@@ -23,7 +23,8 @@ module L_S_reg (
 
 );
 
-assign {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i} = flush_i ? 'b0 : {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i};
+wire [3*`XLEN + `inst_len + 2-1:0] bundle;
+assign bundle = flush_i ? 'b0 : {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i};
 
 stl_reg #(
   .WIDTH     (3*`XLEN + `inst_len + 2),
@@ -32,7 +33,7 @@ stl_reg #(
   .i_clk   (clk),
   .i_rst_n (rstn),
   .i_wen   (stall_n),
-  .i_din   ({PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i}),
+  .i_din   (bundle),
   .o_dout  ({PC_ls_reg_o, instr_ls_reg_o, rs2_ls_reg_o, alures_ls_reg_o, wben_ls_reg_o, trap_ls_reg_o})
 );
 
