@@ -158,11 +158,6 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[2U];
     vlSelf->top__DOT__cache_dut__DOT__way2Data[7U] 
         = vlSelf->top__DOT__cache_dut__DOT__dataWay2_2[3U];
-    vlSelf->top__DOT__in_intr_ls = (1U & ((IData)((vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mip 
-                                                   >> 7U)) 
-                                          & (IData)(
-                                                    (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
-                                                     >> 3U))));
     vlSelf->top__DOT__Dcache_u__DOT__way1Data[0U] = 
         vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[0U];
     vlSelf->top__DOT__Dcache_u__DOT__way1Data[1U] = 
@@ -402,6 +397,11 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         = ((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
             ? vlSelf->top__DOT__axi_icache_dut__DOT__addr_reg
             : vlSelf->top__DOT__axi_ls_u__DOT__rdAddr_reg);
+    vlSelf->top__DOT__in_intr_ls = (1U & ((IData)((vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mip 
+                                                   >> 7U)) 
+                                          & (IData)(
+                                                    (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
+                                                     >> 3U))));
     if ((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                        >> 0x1dU)))) {
         vlSelf->axi_aw_addr_o = 0ULL;
@@ -2864,10 +2864,10 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ls_stall_n = (1U & (~ (((~ (IData)(vlSelf->top__DOT__if_instr_valid)) 
                                               | (IData)(vlSelf->top__DOT__ls_not_ok)) 
                                              | (~ (IData)(vlSelf->top__DOT__ls_addr_ok_i)))));
-    vlSelf->top__DOT__ex_flush = (((IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__in_intr_ls) 
+    vlSelf->top__DOT__ex_flush = (((IData)(vlSelf->top__DOT__in_intr_ls) 
                                    | (IData)(vlSelf->top__DOT__ld_use_hazard)) 
                                   | (IData)(vlSelf->top__DOT__is_jump));
-    vlSelf->top__DOT__id_flush = ((((IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__in_intr_ls) 
+    vlSelf->top__DOT__id_flush = ((((IData)(vlSelf->top__DOT__in_intr_ls) 
                                     | (IData)(vlSelf->top__DOT__is_jump)) 
                                    | (IData)(vlSelf->top__DOT__in_trap_id)) 
                                   | (IData)(vlSelf->top__DOT__out_trap_id));
@@ -4185,7 +4185,6 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__axi_ls_u__DOT__rdAddr_reg = 0;
     VL_ZERO_RESET_W(289, vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout);
     VL_ZERO_RESET_W(289, vlSelf->top__DOT__wb_reg_u__DOT____Vcellinp__wb_reg__i_din);
-    vlSelf->top__DOT__pipline_ctrl_u__DOT__in_intr_ls = 0;
     vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr = 0;
     vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready = 0;
     vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready = 0;

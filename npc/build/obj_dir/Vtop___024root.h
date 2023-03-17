@@ -244,7 +244,6 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__wrCnt;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__r_state_next;
-        CData/*0:0*/ top__DOT__pipline_ctrl_u__DOT__in_intr_ls;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awready;
         CData/*0:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_wready;
         CData/*1:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp;
@@ -273,9 +272,9 @@ VL_MODULE(Vtop___024root) {
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way1Data;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way2Data;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__rdBuffer;
+        VlWide<8>/*255:0*/ top__DOT__axi_ls_u__DOT__wr_data_reg;
     };
     struct {
-        VlWide<8>/*255:0*/ top__DOT__axi_ls_u__DOT__wr_data_reg;
         IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
         QData/*63:0*/ top__DOT__ls_axi_w_data_o;
         QData/*63:0*/ top__DOT__ls_axi_r_data_i;
@@ -339,9 +338,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg0;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg1;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg2;
     };
     struct {
-        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg2;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg3;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out;
         VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray1;

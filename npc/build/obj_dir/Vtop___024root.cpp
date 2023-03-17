@@ -632,16 +632,16 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     } else {
         vlSelf->top__DOT__cache_dut__DOT__reqLatch = 0ULL;
     }
-    vlSelf->top__DOT__axi_icache_dut__DOT__r_state 
-        = ((IData)(vlSelf->rst_n) ? (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state_next)
-            : 0U);
-    vlSelf->top__DOT__in_intr_ls = (1U & ((IData)((vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mip 
-                                                   >> 7U)) 
-                                          & (IData)(
-                                                    (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
-                                                     >> 3U))));
-    vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__time_int_intern_1 
-        = ((IData)(vlSelf->rst_n) & (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__time_int_intern_0));
+    if (vlSelf->rst_n) {
+        vlSelf->top__DOT__axi_icache_dut__DOT__r_state 
+            = vlSelf->top__DOT__axi_icache_dut__DOT__r_state_next;
+        vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__time_int_intern_1 
+            = ((IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__time_int_intern_0) 
+               & 1U);
+    } else {
+        vlSelf->top__DOT__axi_icache_dut__DOT__r_state = 0U;
+        vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__time_int_intern_1 = 0U;
+    }
     if (vlSelf->rst_n) {
         if ((((0x304U == (0xfffU & ((vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[5U] 
                                      << 0xaU) | (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
@@ -709,7 +709,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                      >= vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp));
     if (vlSelf->rst_n) {
         if (vlSelf->top__DOT__ls_stall_n) {
-            if (vlSelf->top__DOT__pipline_ctrl_u__DOT__in_intr_ls) {
+            if (vlSelf->top__DOT__in_intr_ls) {
                 vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
                     = Vtop__ConstPool__CONST_1e22d3d3_0[0U];
                 vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[1U] 
@@ -786,6 +786,11 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         = __Vdly__top__DOT__ls_u__DOT__clint_u__DOT__mtime;
     vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp 
         = __Vdly__top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp;
+    vlSelf->top__DOT__in_intr_ls = (1U & ((IData)((vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mip 
+                                                   >> 7U)) 
+                                          & (IData)(
+                                                    (vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
+                                                     >> 3U))));
     __Vtableidx3 = ((((8U == (0x1fU & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                                        >> 4U))) & (3U 
                                                    == 
@@ -5006,10 +5011,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                     | (IData)(vlSelf->top__DOT__cache_dut__DOT__way2Hit)) 
                                                    & (~ (IData)(vlSelf->top__DOT__cache_dut__DOT__uncached))) 
                                                   | (IData)(vlSelf->top__DOT__cache_dut__DOT__uncachedOk));
-    vlSelf->top__DOT__ex_flush = (((IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__in_intr_ls) 
+    vlSelf->top__DOT__ex_flush = (((IData)(vlSelf->top__DOT__in_intr_ls) 
                                    | (IData)(vlSelf->top__DOT__ld_use_hazard)) 
                                   | (IData)(vlSelf->top__DOT__is_jump));
-    vlSelf->top__DOT__id_flush = ((((IData)(vlSelf->top__DOT__pipline_ctrl_u__DOT__in_intr_ls) 
+    vlSelf->top__DOT__id_flush = ((((IData)(vlSelf->top__DOT__in_intr_ls) 
                                     | (IData)(vlSelf->top__DOT__is_jump)) 
                                    | (IData)(vlSelf->top__DOT__in_trap_id)) 
                                   | (IData)(vlSelf->top__DOT__out_trap_id));
