@@ -88,7 +88,7 @@ CSR CSR_u(
     .timer_int_i(timr_int),
     .in_intr_ls(in_intr_ls)
 );
-wire    in_intr_ls;
+// wire    in_intr_ls;
 wire    timr_int;
 clint clint_u(
         .clk                (clk),
