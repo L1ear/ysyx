@@ -4,9 +4,10 @@
 static Context* (*user_handler)(Event, Context*) = NULL;
 
 Context* __am_irq_handle(Context *c) {
+  printf("%lx\n",c->mcause);
   if (user_handler) {
     Event ev = {0};
-    printf("%lx\n",c->mcause);
+    
     switch (c->mcause) {
       case 0x8000000000000007:
         printf("fixme!");
