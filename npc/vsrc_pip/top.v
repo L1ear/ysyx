@@ -979,6 +979,7 @@ pipline_ctrl pipline_ctrl_u(
     .if_instr_valid     (if_instr_valid),
     .ex_not_ok          (ex_not_ok),
     .ls_not_ok          (ls_not_ok),
+    .in_intr_ls         (in_intr_ls),
     
     .pc_stall_n         (pc_stall_n),
     .if_stall_n         (if_stall_n),
