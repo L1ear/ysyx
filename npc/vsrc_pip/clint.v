@@ -216,7 +216,7 @@ always @( posedge clk )
 	end  
 
 	wire	 slv_reg_rden;
-    assign slv_reg_rden = axi_arready & S_AXI_ARVALID & ~axi_rvalid;
+    assign slv_reg_rden = axi_arready & clint_axi_arvalid & ~axi_rvalid;
 always @(*) begin
     if (slv_reg_rden)
     case(axi_awaddr[15:0])
