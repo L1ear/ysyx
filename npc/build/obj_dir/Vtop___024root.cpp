@@ -154,7 +154,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                 = vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp;
         }
     } else {
-        __Vdly__top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp = 4ULL;
+        __Vdly__top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp = 0x20ULL;
     }
     if (vlSelf->rst_n) {
         if (vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtimeWrEn) {
