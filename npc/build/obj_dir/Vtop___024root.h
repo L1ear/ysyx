@@ -321,7 +321,6 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ls_u__DOT__clint_u__DOT__clint_axi_wdata;
         QData/*63:0*/ top__DOT__ls_u__DOT__clint_u__DOT__axi_awaddr;
         QData/*63:0*/ top__DOT__ls_u__DOT__clint_u__DOT__axi_araddr;
-        QData/*63:0*/ top__DOT__ls_u__DOT__clint_u__DOT__reg_data_out;
         QData/*63:0*/ top__DOT__ls_u__DOT__clint_u__DOT__mtime;
         QData/*63:0*/ top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp;
         QData/*32:0*/ top__DOT__Dcache_u__DOT__reqLatch;
@@ -339,9 +338,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg0;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg1;
     };
     struct {
-        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg1;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg2;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg3;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out;

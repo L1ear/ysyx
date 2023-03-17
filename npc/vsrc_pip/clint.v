@@ -123,22 +123,22 @@ always @(*) begin
     if (slv_reg_wren) begin
         case(axi_awaddr[15:0])
             16'h4000: begin
-                mtimeWrEn       <= 'b0;
-                mtimecmpWrEn    <= 'b1;
+                mtimeWrEn       = 'b0;
+                mtimecmpWrEn    = 'b1;
             end
             16'hbff8: begin
-                mtimeWrEn       <= 'b1;
-                mtimecmpWrEn    <= 'b0;
+                mtimeWrEn       = 'b1;
+                mtimecmpWrEn    = 'b0;
             end
             default:begin
-                mtimeWrEn       <= 'b0;
-                mtimecmpWrEn    <= 'b0;
+                mtimeWrEn       = 'b0;
+                mtimecmpWrEn    = 'b0;
             end
         endcase
       end
       else begin
-        mtimeWrEn       <= 'b0;
-        mtimecmpWrEn    <= 'b0;        
+        mtimeWrEn       = 'b0;
+        mtimecmpWrEn    = 'b0;        
       end  
 end   
 
