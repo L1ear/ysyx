@@ -82,7 +82,7 @@ reg     [`XLEN-1:0]     mstatus;
 wire                    mstatus_MIE = mstatus[3];
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-        mstatus <= `XLEN'ha00001800;
+        mstatus <= `XLEN'ha00001804;
     end
     else if((sel_mstatus | trap) && stall_n) begin
         mstatus <= (trap || in_intr_ls) ? (system & ~instr_i[21] & (instr_i[14:12]==3'b0)) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}

@@ -257,7 +257,7 @@ end
 //mtimecmp
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-        mtimecmp <= 'b0;
+        mtimecmp <= 'b100;
     end
     else begin
         if(mtimecmpWrEn) begin
