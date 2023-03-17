@@ -231,7 +231,7 @@ always @(*) begin
         end
     endcase
     else
-        reg_data_out <= 'b0;        
+        reg_data_out = 'b0;        
 end
 
 integer	 byte_index;

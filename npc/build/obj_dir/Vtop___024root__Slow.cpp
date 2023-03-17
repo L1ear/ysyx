@@ -416,6 +416,15 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
         vlSelf->axi_aw_cache_o = 0xfU;
         vlSelf->axi_aw_size_o = (7U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__wrSize_reg));
     }
+    vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__reg_data_out 
+        = ((((IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_arready) 
+             & (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__clint_axi_arvalid)) 
+            & (~ (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_rvalid)))
+            ? ((0x4000U == (0xffffU & (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_awaddr)))
+                ? vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtime
+                : ((0xbff8U == (0xffffU & (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_awaddr)))
+                    ? vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp
+                    : 0ULL)) : 0ULL);
     vlSelf->top__DOT__rw_valid_i = ((2U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
                                     & (0U == (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state)));
     vlSelf->top__DOT__ls_u__DOT__lsu_u__DOT__lh = (
@@ -4096,6 +4105,7 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_rresp = 0;
     vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_rvalid = 0;
     vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__aw_en = 0;
+    vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__reg_data_out = 0;
     vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtime = 0;
     vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp = 0;
     vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtimeWrEn = 0;
