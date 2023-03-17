@@ -215,9 +215,10 @@ always @( posedge clk )
 	    end
 	end  
 
-
+	wire	 slv_reg_rden;
     assign slv_reg_rden = axi_arready & S_AXI_ARVALID & ~axi_rvalid;
 always @(*) begin
+    if (slv_reg_rden)
     case(axi_awaddr[15:0])
         16'h4000: begin
             reg_data_out       <= mtime;
@@ -229,6 +230,9 @@ always @(*) begin
             reg_data_out       <= 'b0;
         end
     endcase
+    else
+        reg_data_out <= 'b0;        
+    end
 end
 
 integer	 byte_index;
