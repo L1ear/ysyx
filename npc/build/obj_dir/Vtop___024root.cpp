@@ -476,8 +476,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx = 0U;
     }
     if (vlSelf->rst_n) {
-        if ((((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause) 
-              | vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U]) 
+        if (((((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mcause) 
+               | vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U]) 
+              | (IData)(vlSelf->top__DOT__in_intr_ls)) 
              & (IData)(vlSelf->top__DOT__ls_stall_n))) {
             vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause 
                 = ((1U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
@@ -492,8 +493,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mcause = 0ULL;
     }
     if (vlSelf->rst_n) {
-        if ((((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc) 
-              | vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U]) 
+        if (((((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mepc) 
+               | vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U]) 
+              | (IData)(vlSelf->top__DOT__in_intr_ls)) 
              & (IData)(vlSelf->top__DOT__ls_stall_n))) {
             vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc 
                 = ((3ULL & vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc) 
@@ -513,8 +515,9 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc = 0ULL;
     }
     if (vlSelf->rst_n) {
-        if ((((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus) 
-              | vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U]) 
+        if (((((IData)(vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__sel_mstatus) 
+               | vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U]) 
+              | (IData)(vlSelf->top__DOT__in_intr_ls)) 
              & (IData)(vlSelf->top__DOT__ls_stall_n))) {
             __Vdly__top__DOT__ls_u__DOT__CSR_u__DOT__mstatus 
                 = ((1U & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[0U] 
