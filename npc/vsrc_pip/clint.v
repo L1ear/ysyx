@@ -214,7 +214,7 @@ always @( posedge clk )
 	        end                
 	    end
 	end  
-
+    wire	 slv_reg_wren;
 	wire	 slv_reg_rden;
     assign slv_reg_rden = axi_arready & clint_axi_arvalid & ~axi_rvalid;
 always @(*) begin
