@@ -480,6 +480,7 @@ IF_stage IF_u(
     .in_trap_id     (in_trap_id),
     .out_trap_id    (out_trap_id),
     .stall_n        (if_stall_n),
+    .in_intr_ls     (in_intr_ls),
 
     .pc_new_o       (pc_new),
     .instr_o        (instr_if_id_reg),
@@ -752,6 +753,7 @@ forwarding  forwarding_u(
     .wb_data_o      (wbres_fw)
 );
 
+wire ls_flush;
 L_S_reg L_S_reg_u(
     .clk            (clk),
     .rstn           (rst_n),
@@ -762,6 +764,7 @@ L_S_reg L_S_reg_u(
     .wben_ls_reg_i  (wben_ex),
     .trap_ls_reg_i  (trap_ex),
     .stall_n        (ls_stall_n),
+    .flush_i        (ls_flush),
 
     .PC_ls_reg_o    (pc_ls),
     .instr_ls_reg_o (instr_ls),
@@ -771,6 +774,7 @@ L_S_reg L_S_reg_u(
     .trap_ls_reg_o  (trap_ls)
 );
 
+wire    in_intr_ls;
 ls_stage ls_u(
     .clk            (clk),
     .rst_n          (rst_n),
@@ -789,6 +793,7 @@ ls_stage ls_u(
     .csr_data_o     (csrdata_ls),
     .mtvec_o        (csr_mtvec),
     .mepc_o         (csr_mepc),
+    .in_intr_ls     (in_intr_ls),
 
     .ls_sram_addr           (ls_sram_addr           ), //dont need anymore
     .ls_sram_rd_en          (ls_sram_rd_en          ), //         
@@ -982,7 +987,8 @@ pipline_ctrl pipline_ctrl_u(
     .ls_stall_n         (ls_stall_n),
     .wb_stall_n         (wb_stall_n),
     .id_flush           (id_flush),
-    .ex_flush           (ex_flush)
+    .ex_flush           (ex_flush),
+    .ls_flush           (ls_flush)
 );
 
 // myip_AXI_Lite_v1_0_S00_AXI 

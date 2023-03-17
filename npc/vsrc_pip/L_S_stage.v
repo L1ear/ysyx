@@ -14,6 +14,7 @@ module ls_stage (
     output          [`XLEN-1:0]     csr_data_o,
     output          [`XLEN-1:0]     mtvec_o,mepc_o,
     output                          ls_not_ok,    
+    output                          in_intr_ls,
 
 
 //sram interface
@@ -84,6 +85,42 @@ CSR CSR_u(
     .mtvec_o(mtvec_o),
     .mepc_o(mepc_o),
     .stall_n(stall_n),
-    .timer_int_i()
+    .timer_int_i(timr_int),
+    .in_intr_ls(in_intr_ls)
 );
+wire    in_intr_ls;
+wire    timr_int;
+module clint (
+        .clk                (clk),
+        .rst_n              (rst_n),
+
+		.clint_axi_araddr   (),
+		.clint_axi_arprot   (),
+		.clint_axi_arvalid  (),
+		.clint_axi_arready  (),
+		.clint_axi_arsize   (),
+
+		.clint_axi_rdata    (),
+		.clint_axi_rresp    (),
+		.clint_axi_rvalid   (),
+		.clint_axi_rready   (),   
+
+		.clint_axi_awsize   (),
+		.clint_axi_awaddr   (),
+		.clint_axi_awprot   (),
+		.clint_axi_awvalid  (),
+		.clint_axi_awready  (),
+
+		.clint_axi_wdata    (),
+		.clint_axi_wstrb    (),
+		.clint_axi_wvalid   (),  
+		.clint_axi_wready   (),
+
+		.clint_axi_bresp    (),
+		.clint_axi_bvalid   (),
+		.clint_axi_bready   (),
+
+        .hart0_time_int_o   (timr_int)
+);
+
 endmodule

@@ -7,6 +7,7 @@ module L_S_reg (
     input                           wben_ls_reg_i,
     input                           trap_ls_reg_i,
     input                           stall_n,
+    input                           flush_i,
 
     // input                           mem_wren_ls_reg_i,
     // input                           mem_lden_ls_reg_i,
@@ -22,6 +23,7 @@ module L_S_reg (
 
 );
 
+assign {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i} = flush_i ? 'b0 : {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i};
 
 stl_reg #(
   .WIDTH     (3*`XLEN + `inst_len + 2),

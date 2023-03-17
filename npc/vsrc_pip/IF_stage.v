@@ -10,6 +10,7 @@ module IF_stage (
     output   reg    [`XLEN-1:0]     pc_new_o,
     output          [`inst_len-1:0] instr_o,
     output                          if_instr_valid,
+    input                           in_intr_ls,
 
 //sram interface
     input           [`XLEN-1:0]     sram_rdata,
@@ -45,7 +46,7 @@ assign  instr_o = pc_new_o[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 // end
 
 
-wire    [`XLEN-1:0] pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
+wire    [`XLEN-1:0] pc_next_o = is_jump_i ? pc_jump_i : ((in_trap_id || in_intr_ls)? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin

@@ -2,25 +2,25 @@
 module clint (
         input                                   clk,rst_n,
 
-		input  [C_S_AXI_ADDR_WIDTH-1 : 0]       clint_axi_araddr,
+		input  [63 : 0]       clint_axi_araddr,
 		input  [2 : 0]                          clint_axi_arprot,
 		input                                   clint_axi_arvalid,
 		output                                  clint_axi_arready,
 		input  [2:0]                            clint_axi_arsize,
 
-		output  [C_S_AXI_DATA_WIDTH-1 : 0]      clint_axi_rdata,
+		output  [63 : 0]      clint_axi_rdata,
 		output  [1 : 0]                         clint_axi_rresp,
 		output                                  clint_axi_rvalid,
 		input                                   clint_axi_rready,   
 
 		input  [2:0]                            clint_axi_awsize,
-		input  [C_S_AXI_ADDR_WIDTH-1 : 0]       clint_axi_awaddr,
+		input  [63 : 0]       clint_axi_awaddr,
 		input  [2 : 0]                          clint_axi_awprot,
 		input                                   clint_axi_awvalid,
 		output                                  clint_axi_awready,
 
-		input  [C_S_AXI_DATA_WIDTH-1 : 0]       clint_axi_wdata,
-		input  [(C_S_AXI_DATA_WIDTH/8)-1 : 0]   clint_axi_wstrb,
+		input  [63 : 0]       clint_axi_wdata,
+		input  [7 : 0]   clint_axi_wstrb,
 		input                                   clint_axi_wvalid,
 		output                                  clint_axi_wready,
 

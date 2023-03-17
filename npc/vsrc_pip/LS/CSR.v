@@ -10,6 +10,7 @@ module CSR (
     input                           stall_n,
 
     input                           timer_int_i,
+    output                          in_intr_ls,
 
     output          [`XLEN-1:0]     csr_data_o,
     output          [`XLEN-1:0]     mtvec_o,mepc_o
@@ -59,7 +60,7 @@ always @(posedge clk or negedge rst_n) begin
         mepc <= `XLEN'b0;
     end
     else if((sel_mepc | trap ) && stall_n) begin
-        mepc[`XLEN-1:2]<= trap ? pc_i[`XLEN-1:2] : wr_data[`XLEN-1:2];
+        mepc[`XLEN-1:2]<= (trap || in_intr_ls) ? pc_i[`XLEN-1:2] : wr_data[`XLEN-1:2];
         //interupt时pc+4
     end
 end
@@ -84,14 +85,15 @@ always @(posedge clk or negedge rst_n) begin
         mstatus <= `XLEN'ha00001800;
     end
     else if((sel_mstatus | trap) && stall_n) begin
-        mstatus <= trap ? (system & ~instr_i[21] & (instr_i[14:12]==3'b0)) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
+        mstatus <= (trap || in_intr_ls) ? (system & ~instr_i[21] & (instr_i[14:12]==3'b0)) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
                                                                           : {mstatus[`XLEN-1:8]                     ,1'b1,      mstatus[6:4],mstatus[7],mstatus[2:0]} :      //此处暂未正确实现
                                                                             wr_data;
     end
 end
 //mcause更新策略
 wire [`XLEN-1:0]    mcause_n;
-assign  mcause_n = system ? `XLEN'd11 : `XLEN'b0;   //支持ecall，暂时
+assign  mcause_n = system ? `XLEN'd11 : in_intr_ls ? `XLEN'h8000000000000007
+                                                     : `XLEN'b0;   //支持ecall，暂时
                                                     //时钟中断为0x8000000000000007
 
 
@@ -102,7 +104,7 @@ always @(posedge clk or negedge rst_n) begin
         mcause <= `XLEN'h0;
     end
     else if((sel_mcause | trap) && stall_n) begin
-        mcause <= trap ? mcause_n:      //此处暂未正确实现  //已实现ecall
+        mcause <= (trap || in_intr_ls) ? mcause_n:      //此处暂未正确实现  //已实现ecall
                         wr_data;
     end
 end
@@ -136,4 +138,15 @@ always @(posedge clk or negedge rst_n) begin
         mip[7] <= 1'b1;
     end
 end
+
+assign in_intr_ls = mie_MTIP && mstatus_MIE;
+//timer_int_i是一个上升沿触发的信号（也就是说只持续一个周期），其一旦拉高，即设置MTIP位（使能的情况下），同时
+//拉高in_intr的信号（在mstatus.mie为高时），然后，在非stall的情况下，pc_new变成mtvec，wb阶段前的流水线被
+//全部flush，mstatus更新（关闭中断，mie置低），mepc更新，mcause更新，然后进入trap处理程序
+
+//注意：当ecall指令后跟着load-use的指令序列时，将会发生严重错误，导致程序有可能无法进入中断，虽然目前程序不会出现这种情况
+//解决方法：in_trap拉高后，直接flush wb前所有流水线,同时flush all时ld-use hazard无效，这时，所有流水级的stall信号相同，
+//然面出来与上面相同
+
+
 endmodule

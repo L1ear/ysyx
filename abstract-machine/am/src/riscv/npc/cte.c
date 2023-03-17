@@ -9,6 +9,7 @@ Context* __am_irq_handle(Context *c) {
     switch (c->mcause) {
       case 0x8000000000000007:
         printf("fixme!");
+        asm volatile("csrw mip, %0" : : "r"(0));
         break;
       case 11: 
         c -> mepc += 4;
