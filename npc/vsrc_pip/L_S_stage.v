@@ -90,7 +90,7 @@ CSR CSR_u(
 );
 wire    in_intr_ls;
 wire    timr_int;
-module clint (
+clint clint_u(
         .clk                (clk),
         .rst_n              (rst_n),
 
