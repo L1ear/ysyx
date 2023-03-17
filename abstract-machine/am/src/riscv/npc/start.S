@@ -6,5 +6,5 @@ _start:
   mv s0, zero
   la sp, _stack_pointer
   li t0,128
-  csrw mip,t0
+  csrw mie,t0
   jal _trm_init
