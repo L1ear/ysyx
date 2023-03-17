@@ -221,13 +221,13 @@ always @(*) begin
     if (slv_reg_rden)
     case(axi_awaddr[15:0])
         16'h4000: begin
-            reg_data_out       <= mtime;
+            reg_data_out       = mtime;
         end
         16'hbff8: begin
-            reg_data_out       <= mtimecmp;
+            reg_data_out       = mtimecmp;
         end
         default:begin
-            reg_data_out       <= 'b0;
+            reg_data_out       = 'b0;
         end
     endcase
     else
