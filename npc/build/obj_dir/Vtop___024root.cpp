@@ -154,7 +154,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                 = vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp;
         }
     } else {
-        __Vdly__top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp = 0ULL;
+        __Vdly__top__DOT__ls_u__DOT__clint_u__DOT__mtimecmp = 4ULL;
     }
     if (vlSelf->rst_n) {
         if (vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__mtimeWrEn) {
@@ -562,7 +562,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                     : vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__wr_data);
         }
     } else {
-        __Vdly__top__DOT__ls_u__DOT__CSR_u__DOT__mstatus = 0xa00001800ULL;
+        __Vdly__top__DOT__ls_u__DOT__CSR_u__DOT__mstatus = 0xa00001804ULL;
     }
     if (vlSelf->rst_n) {
         if ((((0x344U == (0xfffU & ((vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[5U] 
