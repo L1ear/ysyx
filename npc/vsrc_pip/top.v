@@ -496,11 +496,11 @@ axi_crossbar axi_crossbar_u(
     .axi_mmio_r_id_i        ('b1      ),//
     .axi_mmio_r_user_i      (axi_mmio_r_user_i    ),
 //clint
-    .clint_axi_araddr   (clint_axi_araddr),
-    .clint_axi_arprot   (clint_axi_arprot),
-    .clint_axi_arvalid  (clint_axi_arprot),
-    .clint_axi_arready  (clint_axi_arprot),
-    .clint_axi_arsize   (clint_axi_arprot),
+    .clint_axi_araddr   (clint_axi_araddr ),
+    .clint_axi_arprot   (clint_axi_arprot ),
+    .clint_axi_arvalid  (clint_axi_arvalid),
+    .clint_axi_arready  (clint_axi_arready),
+    .clint_axi_arsize   (clint_axi_arsize ),
 
     .clint_axi_rdata    (clint_axi_rdata ),
     .clint_axi_rresp    (clint_axi_rresp ),
@@ -848,11 +848,11 @@ ls_stage ls_u(
     .mepc_o         (csr_mepc),
     .in_intr_ls     (in_intr_ls),
 
-    .clint_axi_araddr   (clint_axi_araddr),
-    .clint_axi_arprot   (clint_axi_arprot),
-    .clint_axi_arvalid  (clint_axi_arprot),
-    .clint_axi_arready  (clint_axi_arprot),
-    .clint_axi_arsize   (clint_axi_arprot),
+    .clint_axi_araddr   (clint_axi_araddr ),
+    .clint_axi_arprot   (clint_axi_arprot ),
+    .clint_axi_arvalid  (clint_axi_arvalid),
+    .clint_axi_arready  (clint_axi_arready),
+    .clint_axi_arsize   (clint_axi_arsize ),
 
     .clint_axi_rdata    (clint_axi_rdata ),
     .clint_axi_rresp    (clint_axi_rresp ),

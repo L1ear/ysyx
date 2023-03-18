@@ -122,9 +122,9 @@ clint clint_u(
 
 		.clint_axi_araddr   (clint_axi_araddr),
 		.clint_axi_arprot   (clint_axi_arprot),
-		.clint_axi_arvalid  (clint_axi_arprot),
-		.clint_axi_arready  (clint_axi_arprot),
-		.clint_axi_arsize   (clint_axi_arprot),
+		.clint_axi_arvalid  (clint_axi_arvalid),
+		.clint_axi_arready  (clint_axi_arready),
+		.clint_axi_arsize   (clint_axi_arsize),
 
 		.clint_axi_rdata    (clint_axi_rdata ),
 		.clint_axi_rresp    (clint_axi_rresp ),
