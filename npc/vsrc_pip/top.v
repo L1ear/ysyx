@@ -520,7 +520,7 @@ axi_crossbar axi_crossbar_u(
 
     .clint_axi_bresp    (clint_axi_bresp  ),
     .clint_axi_bvalid   (clint_axi_bvalid ),
-    .clint_axi_bready   (clint_axi_bready ),
+    .clint_axi_bready   (clint_axi_bready )
 );
 
 IF_stage IF_u(
