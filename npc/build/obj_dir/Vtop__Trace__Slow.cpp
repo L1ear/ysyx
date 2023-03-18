@@ -3669,7 +3669,8 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x1cU))))
                                                ? 1U
-                                               : (IData)(vlSelf->axi_b_id_i)))),4);
+                                               : (0xfU 
+                                                  & (IData)(vlSelf->axi_b_id_i))))),4);
         tracep->fullBit(oldp+840,((1U & ((1U & (IData)(
                                                        (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                         >> 0x1dU)))
