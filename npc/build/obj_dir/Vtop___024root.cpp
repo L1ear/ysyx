@@ -987,16 +987,18 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
             Vtop___024unit____Vdpiimwrap_axiSlaveRead_TOP____024unit(
                                                                      (0xfffffffffffffff8ULL 
                                                                       & vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr), 
-                                                                     ((1U 
-                                                                       & ((~ (IData)(
+                                                                     (((0xaU 
+                                                                        != 
+                                                                        (0xfU 
+                                                                         & (IData)(
                                                                                 (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                                                >> 0x1dU))) 
-                                                                          | (2U 
-                                                                             == 
-                                                                             (0xfU 
-                                                                              & (IData)(
+                                                                                >> 0x1cU)))) 
+                                                                       | (2U 
+                                                                          == 
+                                                                          (0xfU 
+                                                                           & (IData)(
                                                                                 (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                                                >> 0x1cU))))))
+                                                                                >> 0x1cU)))))
                                                                        ? 0U
                                                                        : 
                                                                       (7U 
@@ -1265,11 +1267,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
             __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid = 1U;
             vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp = 0U;
         } else if (((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid) 
-                    & ((1U & ((~ (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                          >> 0x1dU))) 
-                              | (2U == (0xfU & (IData)(
-                                                       (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                        >> 0x1cU))))))
+                    & (((0xaU != (0xfU & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                  >> 0x1cU)))) 
+                        | (2U == (0xfU & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                  >> 0x1cU)))))
                         ? 0U : (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready)))) {
             __Vdly__top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid = 0U;
         }
@@ -2232,42 +2233,48 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
         if (((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready) 
              & (IData)(vlSelf->top__DOT__axi_mmio_w_valid_o))) {
             Vtop___024unit____Vdpiimwrap_axiSlaveWrite_TOP____024unit(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr, 
-                                                                      ((1U 
-                                                                        & ((~ (IData)(
+                                                                      (((0xaU 
+                                                                         != 
+                                                                         (0xfU 
+                                                                          & (IData)(
                                                                                 (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                                                >> 0x1dU))) 
-                                                                           | (2U 
-                                                                              == 
-                                                                              (0xfU 
-                                                                               & (IData)(
+                                                                                >> 0x1cU)))) 
+                                                                        | (2U 
+                                                                           == 
+                                                                           (0xfU 
+                                                                            & (IData)(
                                                                                 (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                                                >> 0x1cU))))))
+                                                                                >> 0x1cU)))))
                                                                         ? 0U
                                                                         : 
                                                                        (7U 
                                                                         & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__wrSize_reg))), 
-                                                                      ((1U 
-                                                                        & ((~ (IData)(
+                                                                      (((0xaU 
+                                                                         != 
+                                                                         (0xfU 
+                                                                          & (IData)(
                                                                                 (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                                                >> 0x1dU))) 
-                                                                           | (2U 
-                                                                              == 
-                                                                              (0xfU 
-                                                                               & (IData)(
+                                                                                >> 0x1cU)))) 
+                                                                        | (2U 
+                                                                           == 
+                                                                           (0xfU 
+                                                                            & (IData)(
                                                                                 (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                                                >> 0x1cU))))))
+                                                                                >> 0x1cU)))))
                                                                         ? 0ULL
                                                                         : vlSelf->top__DOT__ls_axi_w_data_o), 
-                                                                      ((1U 
-                                                                        & ((~ (IData)(
+                                                                      (((0xaU 
+                                                                         != 
+                                                                         (0xfU 
+                                                                          & (IData)(
                                                                                 (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                                                >> 0x1dU))) 
-                                                                           | (2U 
-                                                                              == 
-                                                                              (0xfU 
-                                                                               & (IData)(
+                                                                                >> 0x1cU)))) 
+                                                                        | (2U 
+                                                                           == 
+                                                                           (0xfU 
+                                                                            & (IData)(
                                                                                 (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                                                >> 0x1cU))))))
+                                                                                >> 0x1cU)))))
                                                                         ? 0U
                                                                         : 
                                                                        (0xffU 
@@ -2380,10 +2387,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
              & (IData)(vlSelf->top__DOT__axi_mmio_ar_valid_o))) {
             vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_arready = 1U;
             vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr 
-                = ((1U & ((~ (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                      >> 0x1dU))) | 
-                          (2U == (0xfU & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                  >> 0x1cU))))))
+                = (((0xaU != (0xfU & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                              >> 0x1cU)))) 
+                    | (2U == (0xfU & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                              >> 0x1cU)))))
                     ? 0ULL : vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr);
         } else {
             vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_arready = 0U;
@@ -2462,10 +2469,10 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
               & (IData)(vlSelf->top__DOT__axi_mmio_aw_valid_o)) 
              & (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__aw_en))) {
             vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr 
-                = ((1U & ((~ (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                      >> 0x1dU))) | 
-                          (2U == (0xfU & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                  >> 0x1cU))))))
+                = (((0xaU != (0xfU & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                              >> 0x1cU)))) 
+                    | (2U == (0xfU & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                              >> 0x1cU)))))
                     ? 0ULL : vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg);
         }
     } else {
@@ -2490,10 +2497,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__4(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
             = vlSelf->top__DOT__DcacheWrAddr;
     }
-    if ((1U & ((IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                        >> 0x1dU)) | (2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                             >> 0x1cU))))))) {
+    if (((0xaU == (0xfU & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                   >> 0x1cU)))) | (2U 
+                                                   == 
+                                                   (0xfU 
+                                                    & (IData)(
+                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                               >> 0x1cU)))))) {
         vlSelf->axi_aw_addr_o = 0ULL;
         vlSelf->axi_aw_id_o = 0U;
         vlSelf->axi_aw_burst_o = 0U;
@@ -2710,11 +2720,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     } else {
         vlSelf->top__DOT__Dcache_u__DOT__wrDataLatch = 0ULL;
     }
-    vlSelf->axi_w_data_o = ((1U & ((IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                            >> 0x1dU)) 
-                                   | (2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                             >> 0x1cU))))))
+    vlSelf->axi_w_data_o = (((0xaU == (0xfU & (IData)(
+                                                      (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                       >> 0x1cU)))) 
+                             | (2U == (0xfU & (IData)(
+                                                      (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                       >> 0x1cU)))))
                              ? 0ULL : vlSelf->top__DOT__ls_axi_w_data_o);
     vlSelf->top__DOT__clint_axi_wdata = ((2U == (0xfU 
                                                  & (IData)(
@@ -2722,10 +2733,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                             >> 0x1cU))))
                                           ? vlSelf->top__DOT__ls_axi_w_data_o
                                           : 0ULL);
-    if ((1U & ((IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                        >> 0x1dU)) | (2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                             >> 0x1cU))))))) {
+    if (((0xaU == (0xfU & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                   >> 0x1cU)))) | (2U 
+                                                   == 
+                                                   (0xfU 
+                                                    & (IData)(
+                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                               >> 0x1cU)))))) {
         vlSelf->axi_ar_addr_o = 0ULL;
         vlSelf->axi_ar_burst_o = 0U;
         vlSelf->axi_ar_cache_o = 0U;
@@ -2741,24 +2755,25 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                 ? 0U : 1U);
         vlSelf->axi_r_ready_o = (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready));
     }
-    vlSelf->top__DOT__axi_mmio_ar_valid_o = ((1U & 
-                                              ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+    vlSelf->top__DOT__axi_mmio_ar_valid_o = (((0xaU 
+                                               != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                              | (2U 
+                                                 == 
+                                                 (0xfU 
+                                                  & (IData)(
+                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                             >> 0x1cU)))))
                                               ? 0U : 
                                              (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_valid)));
-    vlSelf->axi_ar_region_o = ((1U & ((IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                               >> 0x1dU)) 
-                                      | (2U == (0xfU 
-                                                & (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x1cU))))))
+    vlSelf->axi_ar_region_o = (((0xaU == (0xfU & (IData)(
+                                                         (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                          >> 0x1cU)))) 
+                                | (2U == (0xfU & (IData)(
+                                                         (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                          >> 0x1cU)))))
                                 ? 0U : (0xfU & ((0U 
                                                  != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
                                                  ? (IData)(vlSelf->top__DOT__if_axi_ar_region_o)
@@ -3065,10 +3080,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                             >> 4U))) | (3U == (0x7fU 
                                                & (vlSelf->top__DOT__L_S_reg_u__DOT____Vcellout__ls_reg__o_dout[4U] 
                                                   >> 2U))));
-    if ((1U & ((IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                        >> 0x1dU)) | (2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                             >> 0x1cU))))))) {
+    if (((0xaU == (0xfU & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                   >> 0x1cU)))) | (2U 
+                                                   == 
+                                                   (0xfU 
+                                                    & (IData)(
+                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                               >> 0x1cU)))))) {
         vlSelf->axi_aw_valid_o = 0U;
         vlSelf->axi_w_valid_o = 0U;
         vlSelf->axi_b_ready_o = 0U;
@@ -3077,11 +3095,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
         vlSelf->axi_w_valid_o = (IData)((3U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)));
         vlSelf->axi_b_ready_o = (IData)((2U == (IData)(vlSelf->top__DOT__axi_ls_u__DOT__w_state)));
     }
-    if ((1U & ((~ (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                           >> 0x1dU))) | (2U == (0xfU 
-                                                 & (IData)(
-                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                            >> 0x1cU))))))) {
+    if (((0xaU != (0xfU & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                   >> 0x1cU)))) | (2U 
+                                                   == 
+                                                   (0xfU 
+                                                    & (IData)(
+                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                               >> 0x1cU)))))) {
         vlSelf->top__DOT__axi_mmio_aw_valid_o = 0U;
         vlSelf->top__DOT__axi_mmio_w_valid_o = 0U;
         vlSelf->top__DOT__axi_mmio_b_ready_o = 0U;
@@ -3355,11 +3375,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
         vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[8U] = 0U;
         vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[9U] = 0U;
     }
-    vlSelf->axi_w_last_o = ((1U & ((IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                            >> 0x1dU)) 
-                                   | (2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                             >> 0x1cU))))))
+    vlSelf->axi_w_last_o = (((0xaU == (0xfU & (IData)(
+                                                      (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                       >> 0x1cU)))) 
+                             | (2U == (0xfU & (IData)(
+                                                      (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                       >> 0x1cU)))))
                              ? 0U : (1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__wrLast)));
     vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__slv_reg_wren 
         = ((IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_wready) 
@@ -3447,11 +3468,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                                          >> 5U)) 
                                                                 << 5U)))))));
-    vlSelf->axi_aw_len_o = ((1U & ((IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                            >> 0x1dU)) 
-                                   | (2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                             >> 0x1cU))))))
+    vlSelf->axi_aw_len_o = (((0xaU == (0xfU & (IData)(
+                                                      (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                       >> 0x1cU)))) 
+                             | (2U == (0xfU & (IData)(
+                                                      (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                       >> 0x1cU)))))
                              ? 0U : ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                       ? 0U : 3U));
     vlSelf->top__DOT__DcacheRdValid = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
@@ -5100,11 +5122,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
         = (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src 
            >> (0x3fU & (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)));
-    vlSelf->axi_ar_len_o = ((1U & ((IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                            >> 0x1dU)) 
-                                   | (2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                             >> 0x1cU))))))
+    vlSelf->axi_ar_len_o = (((0xaU == (0xfU & (IData)(
+                                                      (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                       >> 0x1cU)))) 
+                             | (2U == (0xfU & (IData)(
+                                                      (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                       >> 0x1cU)))))
                              ? 0U : (0xffU & ((0U != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
                                                ? ((IData)(vlSelf->top__DOT__cache_dut__DOT__uncached)
                                                    ? 0U
@@ -5497,12 +5520,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__5(Vtop___024root* vlSelf) {
                                                                                 & (IData)(
                                                                                 (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
                                                                                 >> 0x3fU)))))))))))))))))))))))))))))))))))));
-    vlSelf->axi_ar_size_o = ((1U & ((IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                             >> 0x1dU)) 
-                                    | (2U == (0xfU 
-                                              & (IData)(
-                                                        (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                         >> 0x1cU))))))
+    vlSelf->axi_ar_size_o = (((0xaU == (0xfU & (IData)(
+                                                       (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                        >> 0x1cU)))) 
+                              | (2U == (0xfU & (IData)(
+                                                       (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                        >> 0x1cU)))))
                               ? 0U : (7U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size)));
     vlSelf->top__DOT__cache_dut__DOT____Vcellinp__iramWay1_2__CEN 
         = (1U & (~ ((((0U == (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheCurState)) 
@@ -5814,18 +5837,17 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
     VlWide<7>/*223:0*/ __Vtemp255;
     // Body
     vlSelf->top__DOT__axi_crossbar_u__DOT__axi_w_ready 
-        = ((1U & ((IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                           >> 0x1dU)) | (2U == (0xfU 
-                                                & (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1cU))))))
+        = (((0xaU == (0xfU & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                      >> 0x1cU)))) 
+            | (2U == (0xfU & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                      >> 0x1cU)))))
             ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready)
             : ((2U == (0xfU & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                        >> 0x1cU))))
                 ? (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_wready)
                 : (IData)(vlSelf->axi_w_ready_i)));
-    if ((1U & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                       >> 0x1dU)))) {
+    if ((0xaU == (0xfU & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                  >> 0x1cU))))) {
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_valid 
             = vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid;
         vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_ready 
@@ -5868,17 +5890,20 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__6(Vtop___024root* vlSelf) {
                             : 0ULL)) : 0ULL) : vlSelf->axi_r_data_i);
     }
     __Vtableidx4 = (((IData)(vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg) 
-                     << 6U) | ((((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                >> 0x1dU)))
+                     << 6U) | ((((0xaU == (0xfU & (IData)(
+                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                           >> 0x1cU))))
                                   ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready)
                                   : ((2U == (0xfU & (IData)(
                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                              >> 0x1cU))))
                                       ? (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_awready)
                                       : (IData)(vlSelf->axi_aw_ready_i))) 
-                                << 5U) | ((((1U & (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1dU)))
+                                << 5U) | ((((0xaU == 
+                                             (0xfU 
+                                              & (IData)(
+                                                        (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                         >> 0x1cU))))
                                              ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid)
                                              : ((2U 
                                                  == 

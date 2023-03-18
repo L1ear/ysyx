@@ -301,28 +301,26 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         if (VL_UNLIKELY((vlSelf->__Vm_traceActivity
                          [1U] | vlSelf->__Vm_traceActivity
                          [3U]))) {
-            tracep->chgCData(oldp+130,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+130,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                              >> 0x1cU)))))
                                          ? 0U : ((0U 
                                                   != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
                                                   ? 0U
                                                   : 1U))),4);
-            tracep->chgCData(oldp+131,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+131,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                              >> 0x1cU)))))
                                          ? 0U : (0xffU 
                                                  & ((0U 
                                                      != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
@@ -335,15 +333,14 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                       == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                                       ? 0U
                                                       : 3U))))),8);
-            tracep->chgCData(oldp+132,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+132,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                              >> 0x1cU)))))
                                          ? 0U : (0xfU 
                                                  & ((0U 
                                                      != (IData)(vlSelf->top__DOT__axi_icache_dut__DOT__r_state))
@@ -544,67 +541,61 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgCData(oldp+160,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp),2);
             tracep->chgQData(oldp+161,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata),64);
             tracep->chgBit(oldp+163,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready));
-            tracep->chgQData(oldp+164,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgQData(oldp+164,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                              >> 0x1cU)))))
                                          ? 0ULL : vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg)),64);
-            tracep->chgCData(oldp+166,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+166,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                              >> 0x1cU)))))
                                          ? 0U : 1U)),4);
-            tracep->chgCData(oldp+167,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+167,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                              >> 0x1cU)))))
                                          ? 0U : (7U 
                                                  & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__wrSize_reg)))),3);
-            tracep->chgCData(oldp+168,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+168,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                              >> 0x1cU)))))
                                          ? 0U : 1U)),2);
-            tracep->chgCData(oldp+169,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+169,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                              >> 0x1cU)))))
                                          ? 0U : 0xfU)),4);
             tracep->chgBit(oldp+170,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_wready));
-            tracep->chgCData(oldp+171,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+171,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                              >> 0x1cU)))))
                                          ? 0U : (0xffU 
                                                  & (IData)(vlSelf->top__DOT__ls_axi_w_strb_o)))),8);
             tracep->chgBit(oldp+172,(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid));
@@ -671,38 +662,35 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         if (VL_UNLIKELY((vlSelf->__Vm_traceActivity
                          [2U] | vlSelf->__Vm_traceActivity
                          [3U]))) {
-            tracep->chgCData(oldp+285,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+285,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                              >> 0x1cU)))))
                                          ? 0U : ((6U 
                                                   == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                                   ? 0U
                                                   : 3U))),8);
-            tracep->chgQData(oldp+286,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgQData(oldp+286,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                              >> 0x1cU)))))
                                          ? 0ULL : vlSelf->top__DOT__ls_axi_w_data_o)),64);
-            tracep->chgBit(oldp+288,(((1U & ((~ (IData)(
-                                                        (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                         >> 0x1dU))) 
-                                             | (2U 
-                                                == 
-                                                (0xfU 
+            tracep->chgBit(oldp+288,((((0xaU != (0xfU 
                                                  & (IData)(
                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                            >> 0x1cU))))))
+                                                            >> 0x1cU)))) 
+                                       | (2U == (0xfU 
+                                                 & (IData)(
+                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                            >> 0x1cU)))))
                                        ? 0U : (1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__wrLast)))));
             tracep->chgBit(oldp+289,((((IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_arready) 
                                        & (IData)(vlSelf->top__DOT__clint_axi_arvalid)) 
@@ -757,56 +745,51 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
         }
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[3U])) {
             tracep->chgBit(oldp+300,(vlSelf->top__DOT__axi_mmio_ar_valid_o));
-            tracep->chgQData(oldp+301,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgQData(oldp+301,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                              >> 0x1cU)))))
                                          ? 0ULL : vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr)),64);
-            tracep->chgCData(oldp+303,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+303,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                              >> 0x1cU)))))
                                          ? 0U : (7U 
                                                  & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size)))),3);
-            tracep->chgCData(oldp+304,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+304,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                              >> 0x1cU)))))
                                          ? 0U : 1U)),2);
-            tracep->chgCData(oldp+305,(((1U & ((~ (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x1dU))) 
-                                               | (2U 
-                                                  == 
-                                                  (0xfU 
+            tracep->chgCData(oldp+305,((((0xaU != (0xfU 
                                                    & (IData)(
                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                              >> 0x1cU))))))
+                                                              >> 0x1cU)))) 
+                                         | (2U == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                              >> 0x1cU)))))
                                          ? 0U : 2U)),4);
-            tracep->chgBit(oldp+306,(((1U & ((~ (IData)(
-                                                        (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                         >> 0x1dU))) 
-                                             | (2U 
-                                                == 
-                                                (0xfU 
+            tracep->chgBit(oldp+306,((((0xaU != (0xfU 
                                                  & (IData)(
                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                            >> 0x1cU))))))
+                                                            >> 0x1cU)))) 
+                                       | (2U == (0xfU 
+                                                 & (IData)(
+                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                            >> 0x1cU)))))
                                        ? 0U : (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready)))));
             tracep->chgBit(oldp+307,(vlSelf->top__DOT__axi_mmio_aw_valid_o));
             tracep->chgBit(oldp+308,(vlSelf->top__DOT__axi_mmio_w_valid_o));
@@ -2115,10 +2098,12 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                    : (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_ready)))));
         tracep->chgCData(oldp+836,(((1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id))
                                      ? 0U : (3U & (
-                                                   (1U 
-                                                    & (IData)(
-                                                              (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                               >> 0x1dU)))
+                                                   (0xaU 
+                                                    == 
+                                                    (0xfU 
+                                                     & (IData)(
+                                                               (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                                >> 0x1cU))))
                                                     ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp)
                                                     : 
                                                    ((2U 
@@ -2129,8 +2114,9 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                  >> 0x1cU))))
                                                      ? (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_rresp)
                                                      : (IData)(vlSelf->axi_r_resp_i)))))),2);
-        tracep->chgBit(oldp+837,(((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                 >> 0x1dU)))
+        tracep->chgBit(oldp+837,(((0xaU == (0xfU & (IData)(
+                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                            >> 0x1cU))))
                                    ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready)
                                    : ((2U == (0xfU 
                                               & (IData)(
@@ -2138,8 +2124,9 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                          >> 0x1cU))))
                                        ? (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_awready)
                                        : (IData)(vlSelf->axi_aw_ready_i)))));
-        tracep->chgBit(oldp+838,(((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                 >> 0x1dU)))
+        tracep->chgBit(oldp+838,(((0xaU == (0xfU & (IData)(
+                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                            >> 0x1cU))))
                                    ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid)
                                    : ((2U == (0xfU 
                                               & (IData)(
@@ -2147,8 +2134,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                          >> 0x1cU))))
                                        ? (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_bvalid)
                                        : (IData)(vlSelf->axi_b_valid_i)))));
-        tracep->chgCData(oldp+839,(((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                   >> 0x1dU)))
+        tracep->chgCData(oldp+839,(((0xaU == (0xfU 
+                                              & (IData)(
+                                                        (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                         >> 0x1cU))))
                                      ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp)
                                      : ((2U == (0xfU 
                                                 & (IData)(
@@ -2156,8 +2145,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                            >> 0x1cU))))
                                          ? (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_rresp)
                                          : (IData)(vlSelf->axi_b_resp_i)))),2);
-        tracep->chgCData(oldp+840,(((1U & (IData)((vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                   >> 0x1dU)))
+        tracep->chgCData(oldp+840,(((0xaU == (0xfU 
+                                              & (IData)(
+                                                        (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                         >> 0x1cU))))
                                      ? 1U : ((2U == 
                                               (0xfU 
                                                & (IData)(
@@ -2166,9 +2157,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                               ? 1U : 
                                              (0xfU 
                                               & (IData)(vlSelf->axi_b_id_i))))),4);
-        tracep->chgBit(oldp+841,((1U & ((1U & (IData)(
-                                                      (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                       >> 0x1dU)))
+        tracep->chgBit(oldp+841,((1U & ((0xaU == (0xfU 
+                                                  & (IData)(
+                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                             >> 0x1cU))))
                                          ? (IData)(vlSelf->top__DOT__axi_mmio_b_user_i)
                                          : ((2U == 
                                              (0xfU 
@@ -2181,9 +2173,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                   & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_ready))
                                    : 0U)));
         tracep->chgCData(oldp+843,(((1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id))
-                                     ? (3U & ((1U & (IData)(
-                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                             >> 0x1dU)))
+                                     ? (3U & ((0xaU 
+                                               == (0xfU 
+                                                   & (IData)(
+                                                             (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                              >> 0x1cU))))
                                                ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp)
                                                : ((2U 
                                                    == 
@@ -2278,8 +2272,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                          & (IData)(vlSelf->top__DOT__Dcache_u__DOT__wenDelay1)) 
                                         | ((IData)(vlSelf->top__DOT__Dcache_u__DOT__way2Hit) 
                                            & (IData)(vlSelf->top__DOT__Dcache_u__DOT__wenDelay2)))))));
-        tracep->chgCData(oldp+851,(((1U & (IData)((vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                   >> 0x1dU)))
+        tracep->chgCData(oldp+851,(((0xaU == (0xfU 
+                                              & (IData)(
+                                                        (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                         >> 0x1cU))))
                                      ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp)
                                      : ((2U == (0xfU 
                                                 & (IData)(
@@ -2287,9 +2283,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                            >> 0x1cU))))
                                          ? (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_rresp)
                                          : (IData)(vlSelf->axi_r_resp_i)))),2);
-        tracep->chgBit(oldp+852,((1U & ((1U & (IData)(
-                                                      (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                       >> 0x1dU)))
+        tracep->chgBit(oldp+852,((1U & ((0xaU == (0xfU 
+                                                  & (IData)(
+                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                             >> 0x1cU))))
                                          ? (IData)(vlSelf->top__DOT__axi_mmio_r_user_i)
                                          : ((2U == 
                                              (0xfU 
