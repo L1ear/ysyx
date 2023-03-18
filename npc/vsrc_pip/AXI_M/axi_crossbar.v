@@ -390,6 +390,8 @@ assign axi_mmio_r_ready_o =     (~axi_ar_addr[29] || clint_r_trans) ? 'b0 : axi_
 
 wire clint_r_trans = axi_ar_addr[31:28] == 4'h2;
 wire clint_w_trans = axi_aw_addr[31:28] == 4'h2;
+wire perip_r_trans = axi_ar_addr[31:28] == 4'ha;
+wire perip_w_trans = axi_aw_addr[31:28] == 4'ha;
 
 assign clint_axi_araddr = (~clint_r_trans) ? 'b0 : axi_ar_addr;
 assign clint_axi_arprot = (~clint_r_trans) ? 'b0 : axi_ar_prot;
