@@ -299,6 +299,33 @@ assign  pc_decoding = pc_id;
 assign  instr_diff = instr_wb;
 assign  stall_n_diff = wb_stall_n;
 
+
+wire [63 : 0]                         clint_axi_araddr;
+wire [2 : 0]                          clint_axi_arprot;
+wire                                  clint_axi_arvalid;
+wire                                  clint_axi_arready;
+wire [2:0]                            clint_axi_arsize;
+
+wire  [63 : 0]                        clint_axi_rdata;
+wire  [1 : 0]                         clint_axi_rresp;
+wire                                  clint_axi_rvalid;
+wire                                  clint_axi_rready;   
+
+wire [2:0]                            clint_axi_awsize;
+wire [63 : 0]                         clint_axi_awaddr;
+wire [2 : 0]                          clint_axi_awprot;
+wire                                  clint_axi_awvalid;
+wire                                  clint_axi_awready;
+
+wire [63 : 0]                         clint_axi_wdata;
+wire [7 : 0]                          clint_axi_wstrb;
+wire                                  clint_axi_wvalid;
+wire                                  clint_axi_wready;
+
+wire  [1 : 0]                         clint_axi_bresp;
+wire                                  clint_axi_bvalid;
+wire                                  clint_axi_bready;
+
 axi_crossbar axi_crossbar_u(
 //if interface  id: 0
     .instr_fetching (instr_fetching),
@@ -467,7 +494,33 @@ axi_crossbar axi_crossbar_u(
     //外设不支持burst读写，r_valid就是last信号
     .axi_mmio_r_last_i      (axi_mmio_r_valid_i    ),
     .axi_mmio_r_id_i        ('b1      ),//
-    .axi_mmio_r_user_i      (axi_mmio_r_user_i    )
+    .axi_mmio_r_user_i      (axi_mmio_r_user_i    ),
+//clint
+    .clint_axi_araddr   (clint_axi_araddr),
+    .clint_axi_arprot   (clint_axi_arprot),
+    .clint_axi_arvalid  (clint_axi_arprot),
+    .clint_axi_arready  (clint_axi_arprot),
+    .clint_axi_arsize   (clint_axi_arprot),
+
+    .clint_axi_rdata    (clint_axi_rdata ),
+    .clint_axi_rresp    (clint_axi_rresp ),
+    .clint_axi_rvalid   (clint_axi_rvalid),
+    .clint_axi_rready   (clint_axi_rready),   
+
+    .clint_axi_awsize   (clint_axi_awsize ),
+    .clint_axi_awaddr   (clint_axi_awaddr ),
+    .clint_axi_awprot   (clint_axi_awprot ),
+    .clint_axi_awvalid  (clint_axi_awvalid),
+    .clint_axi_awready  (clint_axi_awready),
+
+    .clint_axi_wdata    (clint_axi_wdata ),
+    .clint_axi_wstrb    (clint_axi_wstrb ),
+    .clint_axi_wvalid   (clint_axi_wvalid),  
+    .clint_axi_wready   (clint_axi_wready),
+
+    .clint_axi_bresp    (clint_axi_bresp  ),
+    .clint_axi_bvalid   (clint_axi_bvalid ),
+    .clint_axi_bready   (clint_axi_bready ),
 );
 
 IF_stage IF_u(
@@ -794,7 +847,7 @@ ls_stage ls_u(
     .mtvec_o        (csr_mtvec),
     .mepc_o         (csr_mepc),
     .in_intr_ls     (in_intr_ls),
-    
+
     .clint_axi_araddr   (clint_axi_araddr),
     .clint_axi_arprot   (clint_axi_arprot),
     .clint_axi_arvalid  (clint_axi_arprot),
