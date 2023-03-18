@@ -794,6 +794,32 @@ ls_stage ls_u(
     .mtvec_o        (csr_mtvec),
     .mepc_o         (csr_mepc),
     .in_intr_ls     (in_intr_ls),
+    
+    .clint_axi_araddr   (clint_axi_araddr),
+    .clint_axi_arprot   (clint_axi_arprot),
+    .clint_axi_arvalid  (clint_axi_arprot),
+    .clint_axi_arready  (clint_axi_arprot),
+    .clint_axi_arsize   (clint_axi_arprot),
+
+    .clint_axi_rdata    (clint_axi_rdata ),
+    .clint_axi_rresp    (clint_axi_rresp ),
+    .clint_axi_rvalid   (clint_axi_rvalid),
+    .clint_axi_rready   (clint_axi_rready),   
+
+    .clint_axi_awsize   (clint_axi_awsize ),
+    .clint_axi_awaddr   (clint_axi_awaddr ),
+    .clint_axi_awprot   (clint_axi_awprot ),
+    .clint_axi_awvalid  (clint_axi_awvalid),
+    .clint_axi_awready  (clint_axi_awready),
+
+    .clint_axi_wdata    (clint_axi_wdata ),
+    .clint_axi_wstrb    (clint_axi_wstrb ),
+    .clint_axi_wvalid   (clint_axi_wvalid),  
+    .clint_axi_wready   (clint_axi_wready),
+
+    .clint_axi_bresp    (clint_axi_bresp  ),
+    .clint_axi_bvalid   (clint_axi_bvalid ),
+    .clint_axi_bready   (clint_axi_bready ),
 
     .ls_sram_addr           (ls_sram_addr           ), //dont need anymore
     .ls_sram_rd_en          (ls_sram_rd_en          ), //         
