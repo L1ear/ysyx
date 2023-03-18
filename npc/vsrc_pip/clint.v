@@ -47,6 +47,14 @@ reg [63:0]      mtime;
 reg [63:0]      mtimecmp;
 reg             mtimeWrEn,mtimecmpWrEn;
 
+assign clint_axi_awready = axi_awready;
+assign clint_axi_wready = axi_wready;
+assign clint_axi_bresp = axi_rresp;
+assign clint_axi_bvalid = axi_bvalid;
+assign clint_axi_arready = axi_arready;
+assign clint_axi_rresp = axi_rresp;
+assign clint_axi_rvalid = axi_rvalid;
+
 assign clint_axi_rdata = reg_data_out;
 
 always @( posedge clk ) begin
