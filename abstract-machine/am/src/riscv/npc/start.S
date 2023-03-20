@@ -9,6 +9,9 @@ _start:
   csrrs t0,mstatus,t0
   li t0,128
   csrw mie,t0
+  li t0,0x2004000
+  li t1,3
+  sd t1,0(t0)
   # li t0,0x20004000
   # li t1,0x1000
   # sw t1,0(t0)
