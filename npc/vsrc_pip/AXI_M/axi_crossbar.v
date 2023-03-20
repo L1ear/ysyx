@@ -388,8 +388,8 @@ assign axi_mmio_ar_qos_o =      (~perip_r_trans || clint_r_trans) ? 'b0 : axi_ar
 assign axi_mmio_ar_region_o =   (~perip_r_trans || clint_r_trans) ? 'b0 : axi_ar_region;
 assign axi_mmio_r_ready_o =     (~perip_r_trans || clint_r_trans) ? 'b0 : axi_r_ready;
 
-wire clint_r_trans = axi_ar_addr[31:28] == 4'h2;
-wire clint_w_trans = axi_aw_addr[31:28] == 4'h2;
+wire clint_r_trans = axi_ar_addr[27:24] == 4'h2;
+wire clint_w_trans = axi_aw_addr[27:24] == 4'h2;
 wire perip_r_trans = axi_ar_addr[31:28] == 4'ha;
 wire perip_w_trans = axi_aw_addr[31:28] == 4'ha;
 

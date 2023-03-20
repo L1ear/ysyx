@@ -1,4 +1,4 @@
-`include "defines.v"
+
 module clint (
         input                                   clk,rst_n,
 

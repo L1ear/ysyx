@@ -245,18 +245,33 @@ always @(*) begin
                         out_trap_id = 1'b1;                             //mret
                     end
                 end
-                `csrrw: begin
-        //             //TODO
-                    wb_en_o = 1'b1;
-                    // ALUctr = `AluSrc2;
-                    // csr_op = 2'b10;         //直接写
-                end
-                `csrrs: begin
-                    //TODO
-                    wb_en_o = 1'b1;
-                    // ALUctr = `AluSrc2;
-                    // csr_op = 2'b11;         //或后写
-                end
+            `csrrw: begin
+                wb_en_o = 1'b1;
+            end
+            `csrrwi: begin
+                wb_en_o = 1'b1;
+                ext_op_o = `immZI; 
+                src2sel_o = `imm;
+                aluctr_o = `AluSrc2;
+            end
+            `csrrs: begin
+                wb_en_o = 1'b1;
+            end
+            `csrrsi: begin
+                wb_en_o = 1'b1;
+                ext_op_o = `immZI;
+                src2sel_o = `imm;
+                aluctr_o = `AluSrc2;
+            end
+            `csrrc: begin
+                wb_en_o = 1'b1;
+            end
+            `csrrci: begin
+                wb_en_o = 1'b1;
+                ext_op_o = `immZI;
+                src2sel_o = `imm;
+                aluctr_o = `AluSrc2;
+            end
                 default: begin
 
                 end

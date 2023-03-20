@@ -28,6 +28,7 @@
 `define     immS                5'b00100
 `define     immJ                5'b01000
 `define     immB                5'b10000
+`define     immZI               5'b10001
 
 //OpCode defines
 `define     system              5'b11100
@@ -94,7 +95,11 @@
 //syscall
 `define     env                 3'b000
 `define     csrrw               3'b001
+`define     csrrwi              3'b101
 `define     csrrs               3'b010
+`define     csrrsi               3'b110
+`define     csrrc               3'b011
+`define     csrrci              3'b111
 
 //ALU out sel
 `define     out_64              1'b0
@@ -550,6 +555,8 @@ wire                    ex_flush;
 wire                    rden_ls,wren_ls;
 wire                    ls_addr_ok_i;
 
+wire                    ex_not_ok;
+
 //ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
 wire    [`inst_len-1:0] instr_ls;
@@ -586,7 +593,31 @@ wire                    wb_stall_n;
 // assign  pc_decoding = pc_id;
 // assign  instr_diff = instr_wb;
 // assign  stall_n_diff = wb_stall_n;
+wire [63 : 0]                         clint_axi_araddr;
+wire [2 : 0]                          clint_axi_arprot;
+wire                                  clint_axi_arvalid;
+wire                                  clint_axi_arready;
+wire [2:0]                            clint_axi_arsize;
 
+wire  [63 : 0]                        clint_axi_rdata;
+wire  [1 : 0]                         clint_axi_rresp;
+wire                                  clint_axi_rvalid;
+wire                                  clint_axi_rready;   
+
+wire [2:0]                            clint_axi_awsize;
+wire [63 : 0]                         clint_axi_awaddr;
+wire [2 : 0]                          clint_axi_awprot;
+wire                                  clint_axi_awvalid;
+wire                                  clint_axi_awready;
+
+wire [63 : 0]                         clint_axi_wdata;
+wire [7 : 0]                          clint_axi_wstrb;
+wire                                  clint_axi_wvalid;
+wire                                  clint_axi_wready;
+
+wire  [1 : 0]                         clint_axi_bresp;
+wire                                  clint_axi_bvalid;
+wire                                  clint_axi_bready;
 axi_arbiter axi_arbiter_u(
 //if interface  id: 0
     .instr_fetching (instr_fetching),
@@ -708,7 +739,32 @@ axi_arbiter axi_arbiter_u(
     .axi_r_data_i       (axi_r_data_i  ),       //lite
     .axi_r_last_i       (axi_r_last_i  ),
     .axi_r_id_i         (axi_r_id_i    ),
-    .axi_r_user_i       (axi_r_user_i  )
+    .axi_r_user_i       (axi_r_user_i  ),
+    .clint_axi_araddr   (clint_axi_araddr ),
+    .clint_axi_arprot   (clint_axi_arprot ),
+    .clint_axi_arvalid  (clint_axi_arvalid),
+    .clint_axi_arready  (clint_axi_arready),
+    .clint_axi_arsize   (clint_axi_arsize ),
+
+    .clint_axi_rdata    (clint_axi_rdata ),
+    .clint_axi_rresp    (clint_axi_rresp ),
+    .clint_axi_rvalid   (clint_axi_rvalid),
+    .clint_axi_rready   (clint_axi_rready),   
+
+    .clint_axi_awsize   (clint_axi_awsize ),
+    .clint_axi_awaddr   (clint_axi_awaddr ),
+    .clint_axi_awprot   (clint_axi_awprot ),
+    .clint_axi_awvalid  (clint_axi_awvalid),
+    .clint_axi_awready  (clint_axi_awready),
+
+    .clint_axi_wdata    (clint_axi_wdata ),
+    .clint_axi_wstrb    (clint_axi_wstrb ),
+    .clint_axi_wvalid   (clint_axi_wvalid),  
+    .clint_axi_wready   (clint_axi_wready),
+
+    .clint_axi_bresp    (clint_axi_bresp  ),
+    .clint_axi_bvalid   (clint_axi_bvalid ),
+    .clint_axi_bready   (clint_axi_bready )
 );
 
 IF_stage IF_u(
@@ -721,6 +777,7 @@ IF_stage IF_u(
     .in_trap_id     (in_trap_id),
     .out_trap_id    (out_trap_id),
     .stall_n        (if_stall_n),
+    .in_intr_ls     (in_intr_ls),
 
     .pc_new_o       (pc_new),
     .instr_o        (instr_if_id_reg),
@@ -872,10 +929,15 @@ ID_stage ID_u(
     .out_trap_id    (out_trap_id)
 );
 
+wire    ld_csr_hazard;
 hazard_detect hazard_detect_u(
     .instr_id_i     (instr_id),
     .instr_ex_i     (instr_ex),
-    .hazard         (ld_use_hazard)
+    .instr_ls_i     (instr_ls),
+    .instr_wb_i     (instr_wb),
+    
+    .ld_use_hazard  (ld_use_hazard),
+    .ld_csr_hazard  (ld_csr_hazard)
 );
 
 EX_reg EX_reg_u(
@@ -964,7 +1026,7 @@ ex_stage ex_stage_u(
     .pc_next_o      (pc_jump),
     .is_jump_o      (is_jump),
 
-    .exNotOk        (unused2),
+    .exNotOk        (ex_not_ok),
     .ls_addr_ok_i   (ls_addr_ok_i),
     .rden_ls        (rden_ls),
     .wren_ls        (wren_ls)
@@ -990,6 +1052,7 @@ forwarding  forwarding_u(
     .wb_data_o      (wbres_fw)
 );
 
+wire ls_flush;
 L_S_reg L_S_reg_u(
     .clk            (clk),
     .rstn           (rst_n),
@@ -1000,6 +1063,7 @@ L_S_reg L_S_reg_u(
     .wben_ls_reg_i  (wben_ex),
     .trap_ls_reg_i  (trap_ex),
     .stall_n        (ls_stall_n),
+    .flush_i        (ls_flush),
 
     .PC_ls_reg_o    (pc_ls),
     .instr_ls_reg_o (instr_ls),
@@ -1009,6 +1073,7 @@ L_S_reg L_S_reg_u(
     .trap_ls_reg_o  (trap_ls)
 );
 
+wire    in_intr_ls;
 ls_stage ls_u(
     .clk            (clk),
     .rst_n          (rst_n),
@@ -1019,6 +1084,7 @@ ls_stage ls_u(
     .alures_last_i  (alures_wb),
     .instr_last_i   (instr_wb),
     .wb_data_i      (lsres_wb),
+    .wb_csr_data_i  (csrdata_wb),
     .trap_ls_i      (trap_ls),
     .ls_not_ok      (ls_not_ok),
     .stall_n        (ls_stall_n),
@@ -1027,6 +1093,38 @@ ls_stage ls_u(
     .csr_data_o     (csrdata_ls),
     .mtvec_o        (csr_mtvec),
     .mepc_o         (csr_mepc),
+    .in_intr_ls     (in_intr_ls),
+    .ld_csr_hazard  (ld_csr_hazard),
+
+    .wb_pc          (pc_wb),
+    .ex_pc          (pc_ex),
+    .id_pc          (pc_id),
+
+    .clint_axi_araddr   (clint_axi_araddr ),
+    .clint_axi_arprot   (clint_axi_arprot ),
+    .clint_axi_arvalid  (clint_axi_arvalid),
+    .clint_axi_arready  (clint_axi_arready),
+    .clint_axi_arsize   (clint_axi_arsize ),
+
+    .clint_axi_rdata    (clint_axi_rdata ),
+    .clint_axi_rresp    (clint_axi_rresp ),
+    .clint_axi_rvalid   (clint_axi_rvalid),
+    .clint_axi_rready   (clint_axi_rready),   
+
+    .clint_axi_awsize   (clint_axi_awsize ),
+    .clint_axi_awaddr   (clint_axi_awaddr ),
+    .clint_axi_awprot   (clint_axi_awprot ),
+    .clint_axi_awvalid  (clint_axi_awvalid),
+    .clint_axi_awready  (clint_axi_awready),
+
+    .clint_axi_wdata    (clint_axi_wdata ),
+    .clint_axi_wstrb    (clint_axi_wstrb ),
+    .clint_axi_wvalid   (clint_axi_wvalid),  
+    .clint_axi_wready   (clint_axi_wready),
+
+    .clint_axi_bresp    (clint_axi_bresp  ),
+    .clint_axi_bvalid   (clint_axi_bvalid ),
+    .clint_axi_bready   (clint_axi_bready ),
 
     .ls_sram_addr           (ls_sram_addr           ), //dont need anymore
     .ls_sram_rd_en          (ls_sram_rd_en          ), //         
@@ -1239,7 +1337,9 @@ pipline_ctrl pipline_ctrl_u(
     .in_trap_id         (in_trap_id),
     .out_trap_id        (out_trap_id),
     .if_instr_valid     (if_instr_valid),
+    .ex_not_ok          (ex_not_ok),
     .ls_not_ok          (ls_not_ok),
+    .in_intr_ls         (in_intr_ls),
     
     .pc_stall_n         (pc_stall_n),
     .if_stall_n         (if_stall_n),
@@ -1248,7 +1348,8 @@ pipline_ctrl pipline_ctrl_u(
     .ls_stall_n         (ls_stall_n),
     .wb_stall_n         (wb_stall_n),
     .id_flush           (id_flush),
-    .ex_flush           (ex_flush)
+    .ex_flush           (ex_flush),
+    .ls_flush           (ls_flush)
 );
 
 
@@ -1354,6 +1455,8 @@ endmodule
 module CSR (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
+    input           [63:0]          wb_pc,
+    input           [63:0]          ex_pc,id_pc,
     input           [`inst_len-1:0] instr_i,
     // input                           csr_wr_en,
     // input           [11     :0]     csr_idx,   
@@ -1361,16 +1464,31 @@ module CSR (
     input                           trap,
     input                           stall_n,
 
+    input                           timer_int_i,
+    output                          in_intr_ls,
+
     output          [`XLEN-1:0]     csr_data_o,
     output          [`XLEN-1:0]     mtvec_o,mepc_o
 );
-
+// mtvec,mepc,mcause,mstatus//mie,mip,mscratch,mtval
 assign  mtvec_o = mtvec;
 assign  mepc_o = mepc;
 
-wire    csrrw = (instr_i[14:12] == `csrrw);
-wire    csrrs = (instr_i[14:12] == `csrrs);
-wire    csrrc = (instr_i[14:12] == `csrrc);
+
+//commitPC:保存最后提交的一条质量pc
+reg [63:0]  commitPC;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        commitPC <= 'b0;
+    end
+    else if((|wb_pc)) begin
+        commitPC <= wb_pc;
+    end
+end
+
+wire    csrrw = (instr_i[14:12] == `csrrw) || (instr_i[14:12] == `csrrwi);
+wire    csrrs = (instr_i[14:12] == `csrrs) || (instr_i[14:12] == `csrrsi);
+wire    csrrc = (instr_i[14:12] == `csrrc) || (instr_i[14:12] == `csrrci);
 
 wire    system = (instr_i[6:2] == `system);
 // wire    trap = (instr_i[14:12] == 3'b0) & system;
@@ -1379,10 +1497,12 @@ assign  csr_wr_en = (csrrw | csrrs | csrrc) & system;
 
 //有例外发生时，在这里添加使能条件
 
-wire sel_mepc = (instr_i[31:20] == 12'h341) & csr_wr_en;
-wire sel_mtvec = (instr_i[31:20] == 12'h305) & csr_wr_en;
-wire sel_mstatus = (instr_i[31:20] == 12'h300) & csr_wr_en;
-wire sel_mcause = (instr_i[31:20] == 12'h342) & csr_wr_en;
+wire sel_mepc       = (instr_i[31:20] == 12'h341) & csr_wr_en;
+wire sel_mtvec      = (instr_i[31:20] == 12'h305) & csr_wr_en;
+wire sel_mstatus    = (instr_i[31:20] == 12'h300) & csr_wr_en;
+wire sel_mcause     = (instr_i[31:20] == 12'h342) & csr_wr_en;
+wire sel_mie        = (instr_i[31:20] == 12'h304) & csr_wr_en;
+wire sel_mip        = (instr_i[31:20] == 12'h344) & csr_wr_en;
 
 assign  csr_data_o = `XLEN'b0                             //在各个csr未被选中使能时不发生翻转，降低功耗
                         |({`XLEN{sel_mepc}} & mepc)
@@ -1406,8 +1526,9 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         mepc <= `XLEN'b0;
     end
-    else if((sel_mepc | trap) && stall_n) begin
-        mepc[`XLEN-1:2]<= trap ? pc_i[`XLEN-1:2] : wr_data[`XLEN-1:2];
+    else if((sel_mepc | trap | in_intr_ls) && stall_n) begin
+        mepc[`XLEN-1:2]<= (trap ) ? pc_i[`XLEN-1:2] : in_intr_ls ? |(pc_i[`XLEN-1:2]) ? pc_i[`XLEN-1:2] : |(ex_pc[`XLEN-1:2]) ? ex_pc[`XLEN-1:2] : id_pc[`XLEN-1:2] : wr_data[`XLEN-1:2];
+        //interupt时pc+4
     end
 end
 
@@ -1425,19 +1546,22 @@ end
 //0x300 R&W mstatus
 //We only use MIE,MPIE
 reg     [`XLEN-1:0]     mstatus;
+wire                    mstatus_MIE = mstatus[3];
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         mstatus <= `XLEN'ha00001800;
     end
-    else if((sel_mstatus | trap) && stall_n) begin
-        mstatus <= trap ? (system & ~instr_i[21] & (instr_i[14:12]==3'b0)) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
+    else if((sel_mstatus | trap | in_intr_ls) && stall_n) begin
+        mstatus <= (trap || in_intr_ls) ? ((system & ~instr_i[21] & (instr_i[14:12]==3'b0))||in_intr_ls) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
                                                                           : {mstatus[`XLEN-1:8]                     ,1'b1,      mstatus[6:4],mstatus[7],mstatus[2:0]} :      //此处暂未正确实现
                                                                             wr_data;
     end
 end
 //mcause更新策略
 wire [`XLEN-1:0]    mcause_n;
-assign  mcause_n = system ? `XLEN'd11 : `XLEN'b0;   //支持ecall，暂时
+assign  mcause_n = system ? `XLEN'd11 : in_intr_ls ? `XLEN'h8000000000000007
+                                                     : `XLEN'b0;   //支持ecall，暂时
+                                                    //时钟中断为0x8000000000000007
 
 
 //0x342 R&W mcause
@@ -1446,11 +1570,50 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         mcause <= `XLEN'h0;
     end
-    else if((sel_mcause | trap) && stall_n) begin
-        mcause <= trap ? mcause_n:      //此处暂未正确实现  //已实现ecall
+    else if((sel_mcause | trap |in_intr_ls) && stall_n) begin
+        mcause <= (trap || in_intr_ls) ? mcause_n:      //此处暂未正确实现  //已实现ecall
                         wr_data;
     end
 end
+
+
+//0x304 R&W mie
+reg     [`XLEN-1:0]     mie;
+wire                    mie_MTIE = mie[7];
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        mie <= `XLEN'h0;
+    end
+    else if((sel_mie) && stall_n) begin
+        mie <= wr_data;
+    end
+end
+
+//0x344 R&W mip
+reg     [`XLEN-1:0]     mip;
+wire                    mie_MTIP = mip[7];
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        mip <= `XLEN'h0;
+    end
+    else if((sel_mip) && stall_n) begin
+        mip <= wr_data;
+    end
+    else if(timer_int_i && mie_MTIE && mstatus_MIE) begin
+        mip[7] <= 1'b1;
+    end
+end
+
+assign in_intr_ls = mie_MTIP && mstatus_MIE;
+//timer_int_i是一个上升沿触发的信号（也就是说只持续一个周期），其一旦拉高，即设置MTIP位（使能的情况下），同时
+//拉高in_intr的信号（在mstatus.mie为高时），然后，在非stall的情况下，pc_new变成mtvec，wb阶段前的流水线被
+//全部flush，mstatus更新（关闭中断，mie置低），mepc更新，mcause更新，然后进入trap处理程序
+
+//注意：当ecall指令后跟着load-use的指令序列时，将会发生严重错误，导致程序有可能无法进入中断，虽然目前程序不会出现这种情况
+//解决方法：in_trap拉高后，直接flush wb前所有流水线,同时flush all时ld-use hazard无效，这时，所有流水级的stall信号相同，
+//然面出来与上面相同
 
 
 endmodule
@@ -1658,6 +1821,8 @@ always @(*) begin
             imm_o = {{44{instr_imm_i[31]}},instr_imm_i[19:12],instr_imm_i[20],instr_imm_i[30:21],1'h0};
         `immB:
             imm_o = {{52{instr_imm_i[31]}},instr_imm_i[7],instr_imm_i[30:25],instr_imm_i[11:8],1'h0};
+        `immZI:
+            imm_o = {{59{1'b0}},instr_imm_i[19:15]};
         default: 
             imm_o = `XLEN'h0;
     endcase 
@@ -3305,18 +3470,33 @@ always @(*) begin
                         out_trap_id = 1'b1;                             //mret
                     end
                 end
-                `csrrw: begin
-        //             //TODO
-                    wb_en_o = 1'b1;
-                    // ALUctr = `AluSrc2;
-                    // csr_op = 2'b10;         //直接写
-                end
-                `csrrs: begin
-                    //TODO
-                    wb_en_o = 1'b1;
-                    // ALUctr = `AluSrc2;
-                    // csr_op = 2'b11;         //或后写
-                end
+            `csrrw: begin
+                wb_en_o = 1'b1;
+            end
+            `csrrwi: begin
+                wb_en_o = 1'b1;
+                ext_op_o = `immZI; 
+                src2sel_o = `imm;
+                aluctr_o = `AluSrc2;
+            end
+            `csrrs: begin
+                wb_en_o = 1'b1;
+            end
+            `csrrsi: begin
+                wb_en_o = 1'b1;
+                ext_op_o = `immZI;
+                src2sel_o = `imm;
+                aluctr_o = `AluSrc2;
+            end
+            `csrrc: begin
+                wb_en_o = 1'b1;
+            end
+            `csrrci: begin
+                wb_en_o = 1'b1;
+                ext_op_o = `immZI;
+                src2sel_o = `imm;
+                aluctr_o = `AluSrc2;
+            end
                 default: begin
 
                 end
@@ -3363,10 +3543,11 @@ module IF_stage (
     output   reg    [`XLEN-1:0]     pc_new_o,
     output          [`inst_len-1:0] instr_o,
     output                          if_instr_valid,
+    input                           in_intr_ls,
 
 //sram interface
     input           [`XLEN-1:0]     sram_rdata,
-
+    // input                           sram_data_valid,
     input                           cacheAddrOk_i,
     input                           cacheDataOk_i,
     output          [`XLEN-1:0]     sram_addr,
@@ -3398,7 +3579,7 @@ assign  instr_o = pc_new_o[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 // end
 
 
-wire    [`XLEN-1:0] pc_next_o = is_jump_i ? pc_jump_i : (in_trap_id? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
+wire    [`XLEN-1:0] pc_next_o = is_jump_i ? pc_jump_i : ((in_trap_id || in_intr_ls)? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -3450,6 +3631,7 @@ module ls_stage (
     input           [`XLEN-1:0]     alures_last_i,
     input           [`inst_len-1:0] instr_last_i,
     input           [`XLEN-1:0]     wb_data_i,
+    input           [`XLEN-1:0]     wb_csr_data_i,
     input                           trap_ls_i,
     input                           stall_n,
 
@@ -3458,6 +3640,38 @@ module ls_stage (
     output          [`XLEN-1:0]     csr_data_o,
     output          [`XLEN-1:0]     mtvec_o,mepc_o,
     output                          ls_not_ok,    
+    output                          in_intr_ls,
+
+    input                           ld_csr_hazard,
+    input  [63:0]                   wb_pc,
+    input  [63:0]                   ex_pc,id_pc,
+               
+
+    input           [63:0]          clint_axi_araddr   ,
+    input           [2:0]           clint_axi_arprot   ,
+    input                           clint_axi_arvalid  ,
+    output                          clint_axi_arready  ,
+    input           [2:0]           clint_axi_arsize   ,
+
+    output          [63:0]          clint_axi_rdata    ,
+    output          [1:0]           clint_axi_rresp    ,
+    output                          clint_axi_rvalid   ,
+    input                           clint_axi_rready   ,  
+
+    input           [2:0]           clint_axi_awsize   ,
+    input  [63 : 0]                 clint_axi_awaddr,
+    input  [2 : 0]                  clint_axi_awprot,
+    input                           clint_axi_awvalid,
+    output                          clint_axi_awready,
+
+    input  [63 : 0]                 clint_axi_wdata,
+    input  [7 : 0]                  clint_axi_wstrb,
+    input                           clint_axi_wvalid,
+    output                          clint_axi_wready,
+
+    output  [1 : 0]                 clint_axi_bresp,
+    output                          clint_axi_bvalid,
+    input                           clint_axi_bready,
 
 
 //sram interface
@@ -3509,6 +3723,7 @@ ls_ctr  ls_ctr_u(
     .instr_last_i(instr_last_i),
     .rs2_i(rs2_i),
     .wb_data_i(wb_data_i),
+    .wb_csr_data_i(wb_csr_data_i),
 
     .wren(wren),
     .rden(rden),
@@ -3517,18 +3732,62 @@ ls_ctr  ls_ctr_u(
     
 );
 
+//when load-csr happen,we need use wb-stage data instead of regfiles
+wire    [63:0]  csr_wr_data;
+assign csr_wr_data = ld_csr_hazard ? wb_data_i : alures_i;
+
 CSR CSR_u(
     .clk(clk),
     .rst_n(rst_n),
     .pc_i(pc),
     .instr_i(instr_i),
-    .csr_wr_data(alures_i),
+    .csr_wr_data(csr_wr_data),
     .trap(trap_ls_i),
     .csr_data_o(csr_data_o),
     .mtvec_o(mtvec_o),
     .mepc_o(mepc_o),
-    .stall_n(stall_n)
+    .stall_n(stall_n),
+    .timer_int_i(timr_int),
+    .in_intr_ls(in_intr_ls),
+    .wb_pc(wb_pc),
+    .ex_pc(ex_pc),
+    .id_pc(id_pc)
 );
+// wire    in_intr_ls;
+wire    timr_int;
+clint clint_u(
+        .clk                (clk),
+        .rst_n              (rst_n),
+
+		.clint_axi_araddr   (clint_axi_araddr),
+		.clint_axi_arprot   (clint_axi_arprot),
+		.clint_axi_arvalid  (clint_axi_arvalid),
+		.clint_axi_arready  (clint_axi_arready),
+		.clint_axi_arsize   (clint_axi_arsize),
+
+		.clint_axi_rdata    (clint_axi_rdata ),
+		.clint_axi_rresp    (clint_axi_rresp ),
+		.clint_axi_rvalid   (clint_axi_rvalid),
+		.clint_axi_rready   (clint_axi_rready),   
+
+		.clint_axi_awsize   (clint_axi_awsize ),
+		.clint_axi_awaddr   (clint_axi_awaddr ),
+		.clint_axi_awprot   (clint_axi_awprot ),
+		.clint_axi_awvalid  (clint_axi_awvalid),
+		.clint_axi_awready  (clint_axi_awready),
+
+		.clint_axi_wdata    (clint_axi_wdata ),
+		.clint_axi_wstrb    (clint_axi_wstrb ),
+		.clint_axi_wvalid   (clint_axi_wvalid),  
+		.clint_axi_wready   (clint_axi_wready),
+
+		.clint_axi_bresp    (clint_axi_bresp  ),
+		.clint_axi_bvalid   (clint_axi_bvalid ),
+		.clint_axi_bready   (clint_axi_bready ),
+
+        .hart0_time_int_o   (timr_int)
+);
+
 endmodule
 
 module ID_reg (
@@ -3860,7 +4119,9 @@ module pipline_ctrl (
     input               is_jump,
     input               in_trap_id,out_trap_id,
     input               if_instr_valid,
+    input               ex_not_ok,
     input               ls_not_ok,
+    input               in_intr_ls,
 
     output              if_stall_n,
     output              pc_stall_n,
@@ -3870,21 +4131,25 @@ module pipline_ctrl (
     output              wb_stall_n,
 
     output              id_flush,
-    output              ex_flush
+    output              ex_flush,
+    output              ls_flush
 );
     
+//unused
+assign  pc_stall_n = (ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
+///
 
-assign  pc_stall_n = (ld_use_hazard || (~if_instr_valid) || ls_not_ok) ? 1'b0 : 1'b1;
-assign  if_stall_n = (ld_use_hazard || (~if_instr_valid) || ls_not_ok) ? 1'b0 : 1'b1;
-assign  id_stall_n = (ld_use_hazard || (~if_instr_valid) || ls_not_ok) ? 1'b0 : 1'b1;
-assign  ex_stall_n = (~if_instr_valid || ls_not_ok) ? 1'b0 : 1'b1;
-assign  ls_stall_n = (~if_instr_valid || ls_not_ok) ? 1'b0 : 1'b1;
-assign  wb_stall_n = (~if_instr_valid || ls_not_ok) ? 1'b0 : 1'b1;
+assign  if_stall_n = (ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
+assign  id_stall_n = (ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
+assign  ex_stall_n = (~if_instr_valid || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
+assign  ls_stall_n = (~if_instr_valid || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
+assign  wb_stall_n = (~if_instr_valid || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
 
-assign  ex_flush   = (ld_use_hazard || is_jump) ? 1'b1 : 1'b0;
-assign  id_flush   = (is_jump || in_trap_id || out_trap_id) ? 1'b1 : 1'b0;
-
+assign  ex_flush   = (in_intr_ls || ld_use_hazard || is_jump) ? 1'b1 : 1'b0;
+assign  id_flush   = (in_intr_ls || is_jump || in_trap_id || out_trap_id) ? 1'b1 : 1'b0;
+assign  ls_flush   = in_intr_ls;
 endmodule
+
 
 module axi_icache # (
     parameter RW_DATA_WIDTH     = 64,
@@ -4050,50 +4315,57 @@ assign instr_fetching = ~(r_state == r_state_idle);
 endmodule
 
 module L_S_reg (
-    input                           clk,rstn,
-    input           [`XLEN-1:0]     PC_ls_reg_i,rs2_ls_reg_i,
-    input           [`inst_len-1:0] instr_ls_reg_i,
-    input           [`XLEN-1:0]     alures_ls_reg_i,
-    input                           wben_ls_reg_i,
-    input                           trap_ls_reg_i,
-    input                           stall_n,
+  input                           clk,rstn,
+  input           [`XLEN-1:0]     PC_ls_reg_i,rs2_ls_reg_i,
+  input           [`inst_len-1:0] instr_ls_reg_i,
+  input           [`XLEN-1:0]     alures_ls_reg_i,
+  input                           wben_ls_reg_i,
+  input                           trap_ls_reg_i,
+  input                           stall_n,
+  input                           flush_i,
 
-    // input                           mem_wren_ls_reg_i,
-    // input                           mem_lden_ls_reg_i,
-    // input           [2      :0]     mem_op_ls_reg_i,
-    // output   reg                    mem_wren_ls_reg_o,
-    // output   reg                    mem_lden_ls_reg_o,
-    // output   reg    [2      :0]     mem_op_ls_reg_o,
-    output   reg    [`XLEN-1:0]     PC_ls_reg_o,rs2_ls_reg_o,
-    output   reg    [`inst_len-1:0] instr_ls_reg_o,
-    output   reg    [`XLEN-1:0]     alures_ls_reg_o,
-    output   reg                    wben_ls_reg_o,
-    output   reg                    trap_ls_reg_o
+  // input                           mem_wren_ls_reg_i,
+  // input                           mem_lden_ls_reg_i,
+  // input           [2      :0]     mem_op_ls_reg_i,
+  // output   reg                    mem_wren_ls_reg_o,
+  // output   reg                    mem_lden_ls_reg_o,
+  // output   reg    [2      :0]     mem_op_ls_reg_o,
+  output   reg    [`XLEN-1:0]     PC_ls_reg_o,rs2_ls_reg_o,
+  output   reg    [`inst_len-1:0] instr_ls_reg_o,
+  output   reg    [`XLEN-1:0]     alures_ls_reg_o,
+  output   reg                    wben_ls_reg_o,
+  output   reg                    trap_ls_reg_o
 
 );
 
+wire [3*`XLEN + `inst_len + 2-1:0] bundle;
+assign bundle = flush_i ? 'b0 : {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i};
 
 stl_reg #(
-  .WIDTH     (3*`XLEN + `inst_len + 2),
-  .RESET_VAL (0)
+.WIDTH     (3*`XLEN + `inst_len + 2),
+.RESET_VAL (0)
 )ls_reg(
-  .i_clk   (clk),
-  .i_rst_n (rstn),
-  .i_wen   (stall_n),
-  .i_din   ({PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i}),
-  .o_dout  ({PC_ls_reg_o, instr_ls_reg_o, rs2_ls_reg_o, alures_ls_reg_o, wben_ls_reg_o, trap_ls_reg_o})
+.i_clk   (clk),
+.i_rst_n (rstn),
+.i_wen   (stall_n),
+.i_din   (bundle),
+.o_dout  ({PC_ls_reg_o, instr_ls_reg_o, rs2_ls_reg_o, alures_ls_reg_o, wben_ls_reg_o, trap_ls_reg_o})
 );
 
 
 endmodule
 module hazard_detect (
     input           [`inst_len-1:0] instr_id_i,instr_ex_i,
+    input           [`inst_len-1:0] instr_ls_i,instr_wb_i,
     
-    output                          hazard
+    output                          ld_use_hazard,
+    output                          ld_csr_hazard
     // output                          stalln_pc,stalln_id,flush_ex
 );
 
-assign  hazard = ((instr_ex_i[6:0] == {`load,2'b11}) &   //此处不加两比特1就会卡在开头，麻
+
+
+assign  ld_use_hazard = ((instr_ex_i[6:0] == {`load,2'b11}) &   //此处不加两比特1就会卡在开头，麻
                  (instr_id_i[6:2] == `jalr || 
                  instr_id_i[6:2] == `branch || 
                  instr_id_i[6:2] == `OP_IMM || 
@@ -4108,6 +4380,12 @@ assign  hazard = ((instr_ex_i[6:0] == {`load,2'b11}) &   //此处不加两比特
 // assign stalln_pc = ~hazard;
 // assign stalln_id = ~hazard;
 // assign flush_ex  = hazard;
+
+wire wb_is_load = (instr_wb_i[6:0] == {`load,2'b11});
+wire ls_is_csropi = (instr_ls_i[6:0] == {`system,2'b11}) && (instr_ls_i[14:12] == `csrrw || instr_ls_i[14:12] == `csrrc || instr_ls_i[14:12] == `csrrs);
+
+assign ld_csr_hazard = wb_is_load && ls_is_csropi &&
+                        instr_wb_i[11:7] == instr_ls_i[19:15];
 
 endmodule
 module bcu (
@@ -4174,7 +4452,7 @@ endmodule
 module ls_ctr (
     input       [`inst_len-1:0] instr_i,instr_last_i,
     input       [`XLEN-1:0]     rs2_i,
-    input       [`XLEN-1:0]     wb_data_i,                
+    input       [`XLEN-1:0]     wb_data_i,wb_csr_data_i,                
     output                      wren,rden,
     output      [2      :0]     memop,
     output      [`XLEN-1:0]     wr_data
@@ -4186,8 +4464,11 @@ assign  wren  = (instr_i[6      :2] == `store);
 assign  rden  = (instr_i[6      :0] == {`load,2'b11});      //同理
 
 wire    ld_st_en;                                           //load-store前递
+wire    csr_st_en;
+assign csr_st_en = (instr_last_i[6:0] == {`system,2'b11}) && (instr_last_i[14:12] == `csrrw || instr_last_i[14:12] == `csrrc || instr_last_i[14:12] == `csrrs)
+                    && (instr_i[24:20] == instr_last_i[11:7]);
 assign ld_st_en = (instr_last_i[6:2] == `load) & (instr_i[24:20] == instr_last_i[11:7]);
-assign wr_data = ld_st_en ? wb_data_i : rs2_i;
+assign wr_data = (ld_st_en ) ? wb_data_i :  csr_st_en ? wb_csr_data_i : rs2_i;
 
 endmodule
 module axi_arbiter # (
@@ -4319,7 +4600,33 @@ module axi_arbiter # (
     input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       //lite
     input                               axi_r_last_i,
     input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i
+    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i,
+
+    output   [63 : 0]                       clint_axi_araddr,
+    output   [2 : 0]                         clint_axi_arprot,
+    output                                   clint_axi_arvalid,
+    input                                  clint_axi_arready,
+    output  [2:0]                            clint_axi_arsize,
+
+    input  [63 : 0]                        clint_axi_rdata,
+    input  [1 : 0]                         clint_axi_rresp,
+    input                                  clint_axi_rvalid,
+    output                                   clint_axi_rready,   
+
+    output  [2:0]                            clint_axi_awsize,
+    output  [63 : 0]                         clint_axi_awaddr,
+    output  [2 : 0]                          clint_axi_awprot,
+    output                                   clint_axi_awvalid,
+    input                                  clint_axi_awready,
+
+    output  [63 : 0]                         clint_axi_wdata,
+    output  [7 : 0]                          clint_axi_wstrb,
+    output                                   clint_axi_wvalid,
+    input                                  clint_axi_wready,
+
+    input  [1 : 0]                         clint_axi_bresp,
+    input                                  clint_axi_bvalid,
+    output                                   clint_axi_bready
 
 // //mmio
 //     input                               axi_mmio_aw_ready_i,     //lite         
@@ -4476,55 +4783,80 @@ assign ls_axi_r_id_o       = axi_r_id;
 // assign if_axi_r_user_o     =   
 
 
-assign axi_aw_ready = axi_aw_ready_i;   
-assign axi_aw_valid_o = axi_aw_valid;
-assign axi_aw_addr_o = axi_aw_addr;    
-assign axi_aw_prot_o = axi_aw_prot;
-assign axi_aw_id_o = axi_aw_id;
-assign axi_aw_user_o = axi_aw_user;
-assign axi_aw_len_o = axi_aw_len;     
-assign axi_aw_size_o = axi_aw_size;
-assign axi_aw_burst_o = axi_aw_burst;
-assign axi_aw_lock_o = axi_aw_lock;
-assign axi_aw_cache_o = axi_aw_cache;
-assign axi_aw_qos_o = axi_aw_qos;
-assign axi_aw_region_o = axi_aw_region;
-assign axi_w_ready = axi_w_ready_i;    
-assign axi_w_valid_o = axi_w_valid;   
-assign axi_w_data_o = axi_w_data;     
-assign axi_w_strb_o = axi_w_strb;     
-assign axi_w_last_o = axi_w_last;     
-assign axi_w_user_o = axi_w_user;
-assign axi_b_ready_o = axi_b_ready;    
-assign axi_b_valid = axi_b_valid_i;    
-assign axi_b_resp = axi_b_resp_i;     
-assign axi_b_id = axi_b_id_i;
-assign axi_b_user = axi_b_user_i;
-assign axi_ar_ready = axi_ar_ready_i;   
-assign axi_ar_valid_o =  axi_ar_valid;   
-assign axi_ar_addr_o  =  axi_ar_addr;    
-assign axi_ar_prot_o  =  axi_ar_prot;
-assign axi_ar_id_o  =  axi_ar_id;
-assign axi_ar_user_o =  axi_ar_user;
-assign axi_ar_len_o =  axi_ar_len;
-assign axi_ar_size_o =  axi_ar_size;
-assign axi_ar_burst_o =  axi_ar_burst;
-assign axi_ar_lock_o =  axi_ar_lock;
-assign axi_ar_cache_o =  axi_ar_cache;
-assign axi_ar_qos_o =  axi_ar_qos;
-assign axi_ar_region_o =  axi_ar_region;
-assign axi_r_ready_o =  axi_r_ready;
-assign axi_r_valid = axi_r_valid_i;    
-assign axi_r_resp = axi_r_resp_i;
-assign axi_r_data = axi_r_data_i;     
-assign axi_r_last = axi_r_last_i;
-assign axi_r_id = axi_r_id_i;
-assign axi_r_user = axi_r_user_i;
+assign axi_aw_ready = clint_w_trans ? clint_axi_awready : axi_aw_ready_i;   
+assign axi_aw_valid_o = (clint_w_trans) ? 'b0 : axi_aw_valid;
+assign axi_aw_addr_o = (clint_w_trans) ? 'b0 : axi_aw_addr;    
+assign axi_aw_prot_o = (clint_w_trans) ? 'b0 : axi_aw_prot;
+assign axi_aw_id_o = (clint_w_trans) ? 'b0 : axi_aw_id;
+assign axi_aw_user_o = (clint_w_trans) ? 'b0 : axi_aw_user;
+assign axi_aw_len_o = (clint_w_trans) ? 'b0 : axi_aw_len;     
+assign axi_aw_size_o = (clint_w_trans) ? 'b0 : axi_aw_size;
+assign axi_aw_burst_o = (clint_w_trans) ? 'b0 : axi_aw_burst;
+assign axi_aw_lock_o = (clint_w_trans) ? 'b0 : axi_aw_lock;
+assign axi_aw_cache_o = (clint_w_trans) ? 'b0 : axi_aw_cache;
+assign axi_aw_qos_o = (clint_w_trans) ? 'b0 : axi_aw_qos;
+assign axi_aw_region_o = (clint_w_trans) ? 'b0 : axi_aw_region;
+assign axi_w_ready = clint_w_trans ? clint_axi_wready : axi_w_ready_i;    
+assign axi_w_valid_o = (clint_w_trans) ? 'b0 : axi_w_valid;   
+assign axi_w_data_o = (clint_w_trans) ? 'b0 : axi_w_data;     
+assign axi_w_strb_o = (clint_w_trans) ? 'b0 : axi_w_strb;     
+assign axi_w_last_o = (clint_w_trans) ? 'b0 : axi_w_last;     
+assign axi_w_user_o = (clint_w_trans) ? 'b0 : axi_w_user;
+assign axi_b_ready_o = (clint_w_trans) ? 'b0 : axi_b_ready;    
+assign axi_b_valid = clint_w_trans ? clint_axi_bvalid : axi_b_valid_i;    
+assign axi_b_resp = clint_w_trans ? clint_axi_bresp : axi_b_resp_i;     
+assign axi_b_id = clint_w_trans ? 'b01 : axi_b_id_i;
+assign axi_b_user = clint_w_trans ? 'b0 : axi_b_user_i;
+assign axi_ar_ready = clint_r_trans ? clint_axi_arready : axi_ar_ready_i;   
+assign axi_ar_valid_o = (clint_r_trans) ? 'b0 : axi_ar_valid;   
+assign axi_ar_addr_o  = (clint_r_trans) ? 'b0 : axi_ar_addr;    
+assign axi_ar_prot_o  = (clint_r_trans) ? 'b0 : axi_ar_prot;
+assign axi_ar_id_o  = (clint_r_trans) ? 'b0 : axi_ar_id;
+assign axi_ar_user_o = (clint_r_trans) ? 'b0 : axi_ar_user;
+assign axi_ar_len_o = (clint_r_trans) ? 'b0 : axi_ar_len;
+assign axi_ar_size_o = (clint_r_trans) ? 'b0 : axi_ar_size;
+assign axi_ar_burst_o = (clint_r_trans) ? 'b0 : axi_ar_burst;
+assign axi_ar_lock_o = (clint_r_trans) ? 'b0 : axi_ar_lock;
+assign axi_ar_cache_o = (clint_r_trans) ? 'b0 : axi_ar_cache;
+assign axi_ar_qos_o = (clint_r_trans) ? 'b0 : axi_ar_qos;
+assign axi_ar_region_o = (clint_r_trans) ? 'b0 : axi_ar_region;
+assign axi_r_ready_o = (clint_r_trans) ? 'b0 : axi_r_ready;
+assign axi_r_valid = clint_r_trans ? clint_axi_rvalid : axi_r_valid_i;    
+assign axi_r_resp = clint_r_trans ? clint_axi_rresp : axi_r_resp_i;
+assign axi_r_data = clint_r_trans ? clint_axi_rdata : axi_r_data_i;     
+assign axi_r_last = clint_r_trans ? clint_axi_rvalid : axi_r_last_i;
+assign axi_r_id = clint_r_trans ? 'b01 : axi_r_id_i;
+assign axi_r_user = clint_r_trans ? 'b0 : axi_r_user_i;
 
 assign ls_axi_r_user_o = 'b0;
 assign if_axi_r_user_o = 'b0;
 assign axi_ar_region_o = 'b0;
+
+wire clint_r_trans = axi_ar_addr[27:24] == 4'h2;
+wire clint_w_trans = axi_aw_addr[27:24] == 4'h2;
+
+
+assign clint_axi_araddr = (~clint_r_trans) ? 'b0 : axi_ar_addr;
+assign clint_axi_arprot = (~clint_r_trans) ? 'b0 : axi_ar_prot;
+assign clint_axi_arvalid = (~clint_r_trans) ? 'b0 : axi_ar_valid; 
+assign clint_axi_arsize = (~clint_r_trans) ? 'b0 : axi_ar_size;
+
+assign clint_axi_rready = (~clint_r_trans) ? 'b0 : axi_r_ready;
+
+assign clint_axi_awsize = (~clint_w_trans) ? 'b0 : axi_aw_size;
+assign clint_axi_awaddr = (~clint_w_trans) ? 'b0 : axi_aw_addr;   
+assign clint_axi_awprot = (~clint_w_trans) ? 'b0 : axi_aw_prot;
+assign clint_axi_awvalid = (~clint_w_trans) ? 'b0 : axi_aw_valid;
+
+assign clint_axi_wdata = (~clint_w_trans) ? 'b0 : axi_w_data;
+assign clint_axi_wstrb = (~clint_w_trans) ? 'b0 : axi_w_strb;  
+assign clint_axi_wvalid = (~clint_w_trans) ? 'b0 : axi_w_valid; 
+
+
+assign clint_axi_bready = (~clint_w_trans) ? 'b0 : axi_b_ready;
+
 endmodule //axi_crossbar
+
 module EX_reg (
     input                           clk,rst_n, 
     input                           stall_n,flush,
@@ -4919,6 +5251,310 @@ always @(*) begin
 end
 endmodule //DIVIDER
 
+
+module clint (
+        input                                   clk,rst_n,
+
+		input  [63 : 0]                         clint_axi_araddr,
+		input  [2 : 0]                          clint_axi_arprot,
+		input                                   clint_axi_arvalid,
+		output                                  clint_axi_arready,
+		input  [2:0]                            clint_axi_arsize,
+
+		output  [63 : 0]                        clint_axi_rdata,
+		output  [1 : 0]                         clint_axi_rresp,
+		output                                  clint_axi_rvalid,
+		input                                   clint_axi_rready,   
+
+		input  [2:0]                            clint_axi_awsize,
+		input  [63 : 0]                         clint_axi_awaddr,
+		input  [2 : 0]                          clint_axi_awprot,
+		input                                   clint_axi_awvalid,
+		output                                  clint_axi_awready,
+
+		input  [63 : 0]                         clint_axi_wdata,
+		input  [7 : 0]                          clint_axi_wstrb,
+		input                                   clint_axi_wvalid,
+		output                                  clint_axi_wready,
+
+		output  [1 : 0]                         clint_axi_bresp,
+		output                                  clint_axi_bvalid,
+		input                                   clint_axi_bready,
+
+        output                                  hart0_time_int_o
+);
+
+reg [63 : 0] 	axi_awaddr;
+reg  	        axi_awready;
+reg  	        axi_wready;
+reg [1 : 0] 	axi_bresp;
+reg  	        axi_bvalid;
+reg [63 : 0] 	axi_araddr;
+reg  	        axi_arready;
+reg [1 : 0] 	axi_rresp;
+reg  	        axi_rvalid;
+reg	            aw_en;
+reg [63:0]	    reg_data_out;
+
+reg [63:0]      mtime;
+reg [63:0]      mtimecmp;
+reg             mtimeWrEn,mtimecmpWrEn;
+
+assign clint_axi_awready = axi_awready;
+assign clint_axi_wready = axi_wready;
+assign clint_axi_bresp = axi_rresp;
+assign clint_axi_bvalid = axi_bvalid;
+assign clint_axi_arready = axi_arready;
+assign clint_axi_rresp = axi_rresp;
+assign clint_axi_rvalid = axi_rvalid;
+
+assign clint_axi_rdata = reg_data_out;
+
+always @( posedge clk ) begin
+	  if (~rst_n)
+	    begin
+	      axi_awready <= 1'b0;
+	      aw_en <= 1'b1;
+	    end 
+	  else
+	    begin    
+	      if (~axi_awready && clint_axi_awvalid && aw_en)
+	        begin
+	          // slave is ready to accept write address when 
+	          // there is a valid write address and write data
+	          // on the write address and data bus. This design 
+	          // expects no outstanding transactions. 
+	          axi_awready <= 1'b1;
+	          aw_en <= 1'b0;
+	        end
+	        else if (clint_axi_bready && axi_bvalid)
+	            begin
+	              aw_en <= 1'b1;
+	              axi_awready <= 1'b0;
+	            end
+	      else           
+	        begin
+	          axi_awready <= 1'b0;
+	        end
+	    end 
+end   
+
+always @( posedge clk )
+begin
+  if (~rst_n)
+    begin
+      axi_awaddr <= 'b0;
+    end 
+  else
+    begin    
+      if (~axi_awready && clint_axi_awvalid && aw_en)
+        begin
+          // Write Address latching 
+          axi_awaddr <= clint_axi_awaddr;
+        end
+    end 
+end  
+
+always @( posedge clk )
+begin
+  if (~rst_n)
+    begin
+      axi_wready <= 1'b0;
+    end 
+  else
+    begin    
+      if (~axi_wready && clint_axi_wvalid )
+        begin
+          // slave is ready to accept write data when 
+          // there is a valid write address and write data
+          // on the write address and data bus. This design 
+          // expects no outstanding transactions. 
+          axi_wready <= 1'b1;
+        end
+      else
+        begin
+          axi_wready <= 1'b0;
+        end
+    end 
+end  
+
+assign slv_reg_wren = axi_wready && clint_axi_wvalid ;
+
+always @(*) begin
+    if (slv_reg_wren) begin
+        case(axi_awaddr[15:0])
+            16'h4000: begin
+                mtimeWrEn       = 'b0;
+                mtimecmpWrEn    = 'b1;
+            end
+            16'hbff8: begin
+                mtimeWrEn       = 'b1;
+                mtimecmpWrEn    = 'b0;
+            end
+            default:begin
+                mtimeWrEn       = 'b0;
+                mtimecmpWrEn    = 'b0;
+            end
+        endcase
+      end
+      else begin
+        mtimeWrEn       = 'b0;
+        mtimecmpWrEn    = 'b0;        
+      end  
+end   
+
+always @( posedge clk )
+	begin
+	  if (~rst_n)
+	    begin
+	      axi_bvalid  <= 0;
+	      axi_bresp   <= 2'b0;
+	    end 
+	  else
+	    begin    
+	      if (axi_wready && clint_axi_wvalid)
+	        begin
+	          // indicates a valid write response is available
+	          axi_bvalid <= 1'b1;
+	          axi_bresp  <= 2'b0; // 'OKAY' response 
+	        end                   // work error responses in future
+	      else
+	        begin
+	          if (clint_axi_bready && axi_bvalid) 
+	            //check if bready is asserted while bvalid is high) 
+	            //(there is a possibility that bready is always asserted high)   
+	            begin
+	              axi_bvalid <= 1'b0; 
+	            end  
+	        end
+	    end
+	end
+
+always @( posedge clk )
+	begin
+	  if (~rst_n)
+	    begin
+	      axi_arready <= 1'b0;
+	      axi_araddr  <= 64'b0;
+	    end 
+	  else
+	    begin    
+	      if (~axi_arready && clint_axi_arvalid)
+	        begin
+	          // indicates that the slave has acceped the valid read address
+	          axi_arready <= 1'b1;
+	          // Read address latching
+	          axi_araddr  <= clint_axi_araddr;
+	        end
+	      else
+	        begin
+	          axi_arready <= 1'b0;
+	        end
+	    end 
+	end
+
+always @( posedge clk )
+	begin
+	  if (~rst_n)
+	    begin
+	      axi_rvalid <= 0;
+	      axi_rresp  <= 0;
+	    end 
+	  else
+	    begin    
+	      if (axi_arready && clint_axi_arvalid && ~axi_rvalid)
+	        begin
+	          // Valid read data is available at the read data bus
+	          axi_rvalid <= 1'b1;
+	          axi_rresp  <= 2'b0; // 'OKAY' response
+	        end   
+	      else if (axi_rvalid && clint_axi_rready)
+	        begin
+	          // Read data is accepted by the master
+	          axi_rvalid <= 1'b0;
+	        end                
+	    end
+	end  
+    wire	 slv_reg_wren;
+	wire	 slv_reg_rden;
+    assign slv_reg_rden = axi_arready & clint_axi_arvalid & ~axi_rvalid;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+		reg_data_out = 'b0;   
+	end
+	else if (slv_reg_rden)
+    case(axi_araddr[15:0])
+        16'h4000: begin
+            reg_data_out       = mtimecmp;
+        end
+        16'hbff8: begin
+            reg_data_out       = mtime;
+        end
+        default:begin
+            reg_data_out       = 'b0;
+        end
+    endcase
+    else
+        reg_data_out = 'b0;        
+end
+
+integer	 byte_index;
+//mtime
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        mtime <= 'b0;
+    end
+    else begin
+        if(mtimeWrEn) begin
+            for ( byte_index = 0; byte_index <= 8; byte_index = byte_index+1 )
+                if ( clint_axi_wstrb[byte_index] == 1 ) begin
+                // Respective byte enables are asserted as per write strobes 
+                // Slave register 0
+                mtime[(byte_index*8) +: 8] <= clint_axi_wdata[(byte_index*8) +: 8];
+                end  
+        end
+        else begin
+            mtime <= mtime + 'b1;
+        end
+    end
+end
+//mtimecmp
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        mtimecmp <= 'b0;
+    end
+    else begin
+        if(mtimecmpWrEn) begin
+            for ( byte_index = 0; byte_index <= 8; byte_index = byte_index+1 )
+                if ( clint_axi_wstrb[byte_index] == 1 ) begin
+                // Respective byte enables are asserted as per write strobes 
+                // Slave register 0
+                    mtimecmp[(byte_index*8) +: 8] <= clint_axi_wdata[(byte_index*8) +: 8];
+                end  
+        end
+        else begin
+            mtimecmp <= mtimecmp;
+        end
+    end    
+end
+
+wire    time_int_intern;
+assign time_int_intern = (mtime >= mtimecmp);
+//上升沿检测
+reg time_int_intern_0,time_int_intern_1;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n)begin
+        time_int_intern_0 <= 'b0;
+        time_int_intern_1 <= 'b0;
+    end
+    else begin
+        time_int_intern_0 <= time_int_intern;
+        time_int_intern_1 <= time_int_intern_0;
+    end
+end
+assign hart0_time_int_o = time_int_intern_0 && ~time_int_intern_1;
+
+endmodule //clint
 module stl_reg #(
   parameter WIDTH = 1,
   parameter RESET_VAL = 0

@@ -690,10 +690,15 @@ ID_stage ID_u(
     .out_trap_id    (out_trap_id)
 );
 
+wire    ld_csr_hazard;
 hazard_detect hazard_detect_u(
     .instr_id_i     (instr_id),
     .instr_ex_i     (instr_ex),
-    .hazard         (ld_use_hazard)
+    .instr_ls_i     (instr_ls),
+    .instr_wb_i     (instr_wb),
+    
+    .ld_use_hazard  (ld_use_hazard),
+    .ld_csr_hazard  (ld_csr_hazard)
 );
 
 EX_reg EX_reg_u(
@@ -838,6 +843,7 @@ ls_stage ls_u(
     .alures_last_i  (alures_wb),
     .instr_last_i   (instr_wb),
     .wb_data_i      (lsres_wb),
+    .wb_csr_data_i  (csrdata_wb),
     .trap_ls_i      (trap_ls),
     .ls_not_ok      (ls_not_ok),
     .stall_n        (ls_stall_n),
@@ -847,6 +853,11 @@ ls_stage ls_u(
     .mtvec_o        (csr_mtvec),
     .mepc_o         (csr_mepc),
     .in_intr_ls     (in_intr_ls),
+    .ld_csr_hazard  (ld_csr_hazard),
+
+    .wb_pc          (pc_wb),
+    .ex_pc          (pc_ex),
+    .id_pc          (pc_id),
 
     .clint_axi_araddr   (clint_axi_araddr ),
     .clint_axi_arprot   (clint_axi_arprot ),

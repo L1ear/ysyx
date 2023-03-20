@@ -344,6 +344,8 @@ wire                    ex_flush;
 wire                    rden_ls,wren_ls;
 wire                    ls_addr_ok_i;
 
+wire                    ex_not_ok;
+
 //ls signal------------------------------------------------------
 wire    [`XLEN-1:0]     pc_ls,rs2_ls,alures_ls;  
 wire    [`inst_len-1:0] instr_ls;
@@ -380,7 +382,31 @@ wire                    wb_stall_n;
 // assign  pc_decoding = pc_id;
 // assign  instr_diff = instr_wb;
 // assign  stall_n_diff = wb_stall_n;
+wire [63 : 0]                         clint_axi_araddr;
+wire [2 : 0]                          clint_axi_arprot;
+wire                                  clint_axi_arvalid;
+wire                                  clint_axi_arready;
+wire [2:0]                            clint_axi_arsize;
 
+wire  [63 : 0]                        clint_axi_rdata;
+wire  [1 : 0]                         clint_axi_rresp;
+wire                                  clint_axi_rvalid;
+wire                                  clint_axi_rready;   
+
+wire [2:0]                            clint_axi_awsize;
+wire [63 : 0]                         clint_axi_awaddr;
+wire [2 : 0]                          clint_axi_awprot;
+wire                                  clint_axi_awvalid;
+wire                                  clint_axi_awready;
+
+wire [63 : 0]                         clint_axi_wdata;
+wire [7 : 0]                          clint_axi_wstrb;
+wire                                  clint_axi_wvalid;
+wire                                  clint_axi_wready;
+
+wire  [1 : 0]                         clint_axi_bresp;
+wire                                  clint_axi_bvalid;
+wire                                  clint_axi_bready;
 axi_arbiter axi_arbiter_u(
 //if interface  id: 0
     .instr_fetching (instr_fetching),
@@ -502,7 +528,32 @@ axi_arbiter axi_arbiter_u(
     .axi_r_data_i       (axi_r_data_i  ),       //lite
     .axi_r_last_i       (axi_r_last_i  ),
     .axi_r_id_i         (axi_r_id_i    ),
-    .axi_r_user_i       (axi_r_user_i  )
+    .axi_r_user_i       (axi_r_user_i  ),
+    .clint_axi_araddr   (clint_axi_araddr ),
+    .clint_axi_arprot   (clint_axi_arprot ),
+    .clint_axi_arvalid  (clint_axi_arvalid),
+    .clint_axi_arready  (clint_axi_arready),
+    .clint_axi_arsize   (clint_axi_arsize ),
+
+    .clint_axi_rdata    (clint_axi_rdata ),
+    .clint_axi_rresp    (clint_axi_rresp ),
+    .clint_axi_rvalid   (clint_axi_rvalid),
+    .clint_axi_rready   (clint_axi_rready),   
+
+    .clint_axi_awsize   (clint_axi_awsize ),
+    .clint_axi_awaddr   (clint_axi_awaddr ),
+    .clint_axi_awprot   (clint_axi_awprot ),
+    .clint_axi_awvalid  (clint_axi_awvalid),
+    .clint_axi_awready  (clint_axi_awready),
+
+    .clint_axi_wdata    (clint_axi_wdata ),
+    .clint_axi_wstrb    (clint_axi_wstrb ),
+    .clint_axi_wvalid   (clint_axi_wvalid),  
+    .clint_axi_wready   (clint_axi_wready),
+
+    .clint_axi_bresp    (clint_axi_bresp  ),
+    .clint_axi_bvalid   (clint_axi_bvalid ),
+    .clint_axi_bready   (clint_axi_bready )
 );
 
 IF_stage IF_u(
@@ -515,6 +566,7 @@ IF_stage IF_u(
     .in_trap_id     (in_trap_id),
     .out_trap_id    (out_trap_id),
     .stall_n        (if_stall_n),
+    .in_intr_ls     (in_intr_ls),
 
     .pc_new_o       (pc_new),
     .instr_o        (instr_if_id_reg),
@@ -666,10 +718,15 @@ ID_stage ID_u(
     .out_trap_id    (out_trap_id)
 );
 
+wire    ld_csr_hazard;
 hazard_detect hazard_detect_u(
     .instr_id_i     (instr_id),
     .instr_ex_i     (instr_ex),
-    .hazard         (ld_use_hazard)
+    .instr_ls_i     (instr_ls),
+    .instr_wb_i     (instr_wb),
+    
+    .ld_use_hazard  (ld_use_hazard),
+    .ld_csr_hazard  (ld_csr_hazard)
 );
 
 EX_reg EX_reg_u(
@@ -758,7 +815,7 @@ ex_stage ex_stage_u(
     .pc_next_o      (pc_jump),
     .is_jump_o      (is_jump),
 
-    .exNotOk        (unused2),
+    .exNotOk        (ex_not_ok),
     .ls_addr_ok_i   (ls_addr_ok_i),
     .rden_ls        (rden_ls),
     .wren_ls        (wren_ls)
@@ -784,6 +841,7 @@ forwarding  forwarding_u(
     .wb_data_o      (wbres_fw)
 );
 
+wire ls_flush;
 L_S_reg L_S_reg_u(
     .clk            (clk),
     .rstn           (rst_n),
@@ -794,6 +852,7 @@ L_S_reg L_S_reg_u(
     .wben_ls_reg_i  (wben_ex),
     .trap_ls_reg_i  (trap_ex),
     .stall_n        (ls_stall_n),
+    .flush_i        (ls_flush),
 
     .PC_ls_reg_o    (pc_ls),
     .instr_ls_reg_o (instr_ls),
@@ -803,6 +862,7 @@ L_S_reg L_S_reg_u(
     .trap_ls_reg_o  (trap_ls)
 );
 
+wire    in_intr_ls;
 ls_stage ls_u(
     .clk            (clk),
     .rst_n          (rst_n),
@@ -813,6 +873,7 @@ ls_stage ls_u(
     .alures_last_i  (alures_wb),
     .instr_last_i   (instr_wb),
     .wb_data_i      (lsres_wb),
+    .wb_csr_data_i  (csrdata_wb),
     .trap_ls_i      (trap_ls),
     .ls_not_ok      (ls_not_ok),
     .stall_n        (ls_stall_n),
@@ -821,6 +882,38 @@ ls_stage ls_u(
     .csr_data_o     (csrdata_ls),
     .mtvec_o        (csr_mtvec),
     .mepc_o         (csr_mepc),
+    .in_intr_ls     (in_intr_ls),
+    .ld_csr_hazard  (ld_csr_hazard),
+
+    .wb_pc          (pc_wb),
+    .ex_pc          (pc_ex),
+    .id_pc          (pc_id),
+
+    .clint_axi_araddr   (clint_axi_araddr ),
+    .clint_axi_arprot   (clint_axi_arprot ),
+    .clint_axi_arvalid  (clint_axi_arvalid),
+    .clint_axi_arready  (clint_axi_arready),
+    .clint_axi_arsize   (clint_axi_arsize ),
+
+    .clint_axi_rdata    (clint_axi_rdata ),
+    .clint_axi_rresp    (clint_axi_rresp ),
+    .clint_axi_rvalid   (clint_axi_rvalid),
+    .clint_axi_rready   (clint_axi_rready),   
+
+    .clint_axi_awsize   (clint_axi_awsize ),
+    .clint_axi_awaddr   (clint_axi_awaddr ),
+    .clint_axi_awprot   (clint_axi_awprot ),
+    .clint_axi_awvalid  (clint_axi_awvalid),
+    .clint_axi_awready  (clint_axi_awready),
+
+    .clint_axi_wdata    (clint_axi_wdata ),
+    .clint_axi_wstrb    (clint_axi_wstrb ),
+    .clint_axi_wvalid   (clint_axi_wvalid),  
+    .clint_axi_wready   (clint_axi_wready),
+
+    .clint_axi_bresp    (clint_axi_bresp  ),
+    .clint_axi_bvalid   (clint_axi_bvalid ),
+    .clint_axi_bready   (clint_axi_bready ),
 
     .ls_sram_addr           (ls_sram_addr           ), //dont need anymore
     .ls_sram_rd_en          (ls_sram_rd_en          ), //         
@@ -1033,7 +1126,9 @@ pipline_ctrl pipline_ctrl_u(
     .in_trap_id         (in_trap_id),
     .out_trap_id        (out_trap_id),
     .if_instr_valid     (if_instr_valid),
+    .ex_not_ok          (ex_not_ok),
     .ls_not_ok          (ls_not_ok),
+    .in_intr_ls         (in_intr_ls),
     
     .pc_stall_n         (pc_stall_n),
     .if_stall_n         (if_stall_n),
@@ -1042,7 +1137,8 @@ pipline_ctrl pipline_ctrl_u(
     .ls_stall_n         (ls_stall_n),
     .wb_stall_n         (wb_stall_n),
     .id_flush           (id_flush),
-    .ex_flush           (ex_flush)
+    .ex_flush           (ex_flush),
+    .ls_flush           (ls_flush)
 );
 
 

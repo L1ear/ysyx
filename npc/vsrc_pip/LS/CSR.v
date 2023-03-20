@@ -2,12 +2,14 @@
 module CSR (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
+    input           [63:0]          wb_pc,
+    input           [63:0]          ex_pc,id_pc,
     input           [`inst_len-1:0] instr_i,
     // input                           csr_wr_en,
     // input           [11     :0]     csr_idx,   
     input           [`XLEN-1:0]     csr_wr_data,
     input                           trap,
-    input                           stall_n,
+    input                           stall_n,                         
 
     input                           timer_int_i,
     output                          in_intr_ls,
@@ -19,9 +21,21 @@ module CSR (
 assign  mtvec_o = mtvec;
 assign  mepc_o = mepc;
 
-wire    csrrw = (instr_i[14:12] == `csrrw);
-wire    csrrs = (instr_i[14:12] == `csrrs);
-wire    csrrc = (instr_i[14:12] == `csrrc);
+
+//commitPC:保存最后提交的一条质量pc
+reg [63:0]  commitPC;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        commitPC <= 'b0;
+    end
+    else if((|wb_pc)) begin
+        commitPC <= wb_pc;
+    end
+end
+
+wire    csrrw = (instr_i[14:12] == `csrrw) || (instr_i[14:12] == `csrrwi);
+wire    csrrs = (instr_i[14:12] == `csrrs) || (instr_i[14:12] == `csrrsi);
+wire    csrrc = (instr_i[14:12] == `csrrc) || (instr_i[14:12] == `csrrci);
 
 wire    system = (instr_i[6:2] == `system);
 // wire    trap = (instr_i[14:12] == 3'b0) & system;
@@ -60,7 +74,7 @@ always @(posedge clk or negedge rst_n) begin
         mepc <= `XLEN'b0;
     end
     else if((sel_mepc | trap | in_intr_ls) && stall_n) begin
-        mepc[`XLEN-1:2]<= (trap || in_intr_ls) ? pc_i[`XLEN-1:2] : wr_data[`XLEN-1:2];
+        mepc[`XLEN-1:2]<= (trap ) ? pc_i[`XLEN-1:2] : in_intr_ls ? |(pc_i[`XLEN-1:2]) ? pc_i[`XLEN-1:2] : |(ex_pc[`XLEN-1:2]) ? ex_pc[`XLEN-1:2] : id_pc[`XLEN-1:2] : wr_data[`XLEN-1:2];
         //interupt时pc+4
     end
 end
@@ -82,10 +96,10 @@ reg     [`XLEN-1:0]     mstatus;
 wire                    mstatus_MIE = mstatus[3];
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-        mstatus <= `XLEN'ha00001808;
+        mstatus <= `XLEN'ha00001800;
     end
     else if((sel_mstatus | trap | in_intr_ls) && stall_n) begin
-        mstatus <= (trap || in_intr_ls) ? (system & ~instr_i[21] & (instr_i[14:12]==3'b0)) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
+        mstatus <= (trap || in_intr_ls) ? ((system & ~instr_i[21] & (instr_i[14:12]==3'b0))||in_intr_ls) ? {mstatus[`XLEN-1:13],2'b11,mstatus[10:8],mstatus[3],mstatus[6:4],1'b0,      mstatus[2:0]}
                                                                           : {mstatus[`XLEN-1:8]                     ,1'b1,      mstatus[6:4],mstatus[7],mstatus[2:0]} :      //此处暂未正确实现
                                                                             wr_data;
     end

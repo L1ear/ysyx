@@ -28,6 +28,7 @@
 `define     immS                5'b00100
 `define     immJ                5'b01000
 `define     immB                5'b10000
+`define     immZI               5'b10001
 
 //OpCode defines
 `define     system              5'b11100
@@ -94,7 +95,11 @@
 //syscall
 `define     env                 3'b000
 `define     csrrw               3'b001
+`define     csrrwi              3'b101
 `define     csrrs               3'b010
+`define     csrrsi               3'b110
+`define     csrrc               3'b011
+`define     csrrci              3'b111
 
 //ALU out sel
 `define     out_64              1'b0

@@ -6,6 +6,7 @@ module ls_stage (
     input           [`XLEN-1:0]     alures_last_i,
     input           [`inst_len-1:0] instr_last_i,
     input           [`XLEN-1:0]     wb_data_i,
+    input           [`XLEN-1:0]     wb_csr_data_i,
     input                           trap_ls_i,
     input                           stall_n,
 
@@ -15,6 +16,11 @@ module ls_stage (
     output          [`XLEN-1:0]     mtvec_o,mepc_o,
     output                          ls_not_ok,    
     output                          in_intr_ls,
+
+    input                           ld_csr_hazard,
+    input  [63:0]                   wb_pc,
+    input  [63:0]                   ex_pc,id_pc,
+               
 
     input           [63:0]          clint_axi_araddr   ,
     input           [2:0]           clint_axi_arprot   ,
@@ -41,6 +47,7 @@ module ls_stage (
     output  [1 : 0]                 clint_axi_bresp,
     output                          clint_axi_bvalid,
     input                           clint_axi_bready,
+
 
 
 //sram interface
@@ -92,6 +99,7 @@ ls_ctr  ls_ctr_u(
     .instr_last_i(instr_last_i),
     .rs2_i(rs2_i),
     .wb_data_i(wb_data_i),
+    .wb_csr_data_i(wb_csr_data_i),
 
     .wren(wren),
     .rden(rden),
@@ -100,19 +108,26 @@ ls_ctr  ls_ctr_u(
     
 );
 
+//when load-csr happen,we need use wb-stage data instead of regfiles
+wire    [63:0]  csr_wr_data;
+assign csr_wr_data = ld_csr_hazard ? wb_data_i : alures_i;
+
 CSR CSR_u(
     .clk(clk),
     .rst_n(rst_n),
     .pc_i(pc),
     .instr_i(instr_i),
-    .csr_wr_data(alures_i),
+    .csr_wr_data(csr_wr_data),
     .trap(trap_ls_i),
     .csr_data_o(csr_data_o),
     .mtvec_o(mtvec_o),
     .mepc_o(mepc_o),
     .stall_n(stall_n),
     .timer_int_i(timr_int),
-    .in_intr_ls(in_intr_ls)
+    .in_intr_ls(in_intr_ls),
+    .wb_pc(wb_pc),
+    .ex_pc(ex_pc),
+    .id_pc(id_pc)
 );
 // wire    in_intr_ls;
 wire    timr_int;
