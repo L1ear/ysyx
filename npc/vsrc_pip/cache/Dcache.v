@@ -651,7 +651,7 @@ end
 assign clean_OK = cleanCnt=='d127 && (cleanWrValid && axiWrReady || ~cleanWrValid);
 assign clear_Icache = clean_OK;
 reg cleanWrValid;
-reg [32:0]  cleanWrAddr;
+reg [31:0]  cleanWrAddr;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         cleanWrValid = 'b0;
