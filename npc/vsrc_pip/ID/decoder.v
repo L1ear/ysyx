@@ -51,7 +51,7 @@ always @(*) begin
     DivEn = 1'b0;                          //默认不使能DIV
     DivSel = `DivMul;
 
-    fence_id = 1'b1;
+    fence_id = 1'b0;
 //TODO: 补全！！！！！！！！！！！！
     case(opcode)
         `OP_REG,`OP_REG_32: begin

@@ -4,11 +4,6 @@
 
 #include "verilated_heavy.h"
 
-extern const VlWide<8>/*255:0*/ Vtop__ConstPool__CONST_5b979003_0 = {{
-    0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff,
-    0xffffffff, 0xffffffff, 0xffffffff, 0x00000003
-}};
-
 extern const VlWide<8>/*255:0*/ Vtop__ConstPool__CONST_d5724acc_0 = {{
     0x00000000, 0x00000000, 0x00000000, 0x00000000,
     0x00000000, 0x00000000, 0x00000000, 0x00000000
