@@ -662,7 +662,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~cleanCnt[5]) begin
         if(validArray1[cleanCnt] && dirtyArray1[cleanCnt]) begin
             cleanWrValid = 'b1;
-            cleanWrAddr = {tagArray1[cleanCnt],cleanCnt[5:0],5'b0};
+            cleanWrAddr = {tagArray1[cleanCnt[5:0]],cleanCnt[5:0],5'b0};
         end
         else begin
             cleanWrValid = 'b0;
@@ -673,7 +673,7 @@ always @(posedge clk or negedge rst_n) begin
     else begin
         if(validArray2[cleanCnt] && dirtyArray2[cleanCnt]) begin
             cleanWrValid = 'b1;
-            cleanWrAddr = {tagArray2[cleanCnt],cleanCnt[5:0],5'b0};
+            cleanWrAddr = {tagArray2[cleanCnt[5:0]],cleanCnt[5:0],5'b0};
         end
         else begin
             cleanWrValid = 'b0;

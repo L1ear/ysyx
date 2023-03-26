@@ -874,42 +874,42 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                         ((4U 
                                                           == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                                           ? vlSelf->top__DOT__Dcache_u__DOT__cleanWrAddr
-                                                          : (QData)((IData)(
-                                                                            ((6U 
-                                                                              == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                                                              ? 
-                                                                             ((IData)(
-                                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                                >> 3U)) 
-                                                                              << 3U)
-                                                                              : 
-                                                                             ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
-                                                                               ? 
-                                                                              ((vlSelf->top__DOT__Dcache_u__DOT__tagArray2
-                                                                                [
-                                                                                (0x3fU 
-                                                                                & (IData)(
-                                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                                >> 5U)))] 
-                                                                                << 0xbU) 
-                                                                               | (0x7e0U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                                >> 5U)) 
-                                                                                << 5U)))
-                                                                               : 
-                                                                              ((vlSelf->top__DOT__Dcache_u__DOT__tagArray1
-                                                                                [
-                                                                                (0x3fU 
-                                                                                & (IData)(
-                                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                                >> 5U)))] 
-                                                                                << 0xbU) 
-                                                                               | (0x7e0U 
-                                                                                & ((IData)(
-                                                                                (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
-                                                                                >> 5U)) 
-                                                                                << 5U)))))))))));
+                                                          : 
+                                                         ((6U 
+                                                           == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                                           ? 
+                                                          ((IData)(
+                                                                   (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                    >> 3U)) 
+                                                           << 3U)
+                                                           : 
+                                                          ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
+                                                            ? 
+                                                           ((vlSelf->top__DOT__Dcache_u__DOT__tagArray2
+                                                             [
+                                                             (0x3fU 
+                                                              & (IData)(
+                                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                         >> 5U)))] 
+                                                             << 0xbU) 
+                                                            | (0x7e0U 
+                                                               & ((IData)(
+                                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                           >> 5U)) 
+                                                                  << 5U)))
+                                                            : 
+                                                           ((vlSelf->top__DOT__Dcache_u__DOT__tagArray1
+                                                             [
+                                                             (0x3fU 
+                                                              & (IData)(
+                                                                        (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                         >> 5U)))] 
+                                                             << 0xbU) 
+                                                            | (0x7e0U 
+                                                               & ((IData)(
+                                                                          (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                                                                           >> 5U)) 
+                                                                  << 5U)))))))));
     vlSelf->top__DOT__DcacheRdValid = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                         ? (((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                             & (~ (IData)(
