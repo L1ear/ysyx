@@ -749,7 +749,7 @@ EX_reg EX_reg_u(
     .DivEn_ex_reg_o (DivEn_ex),
     .DivSel_ex_reg_o(DivSel_ex),
     .trap_ex_reg_o  (trap_ex),
-    .fence_ex_o     (fence_ex)
+    .fence_ex_reg_o     (fence_ex)
 );
 
 ex_stage ex_stage_u(

@@ -30,7 +30,7 @@ module EX_reg (
     output   reg                    DivEn_ex_reg_o,
     output   reg    [2      :0]     DivSel_ex_reg_o,
     output   reg                    trap_ex_reg_o,
-    output                          fence_ex
+    output                          fence_ex_reg_o
 );
 
 //只对关键控制信号清零
@@ -64,7 +64,7 @@ stl_reg #(
              DivSel_ex_reg_i, trap_ex_reg, fence_ex_reg}),
   .o_dout  ({pc_ex_reg_o, instr_ex_reg_o, rs2_ex_reg_o, rs1_ex_reg_o, imm_ex_reg_o, aluctr_ex_reg_o, is_jalr_ex_reg_o, is_jal_ex_reg_o,
              is_brc_ex_reg_o, src1sel_ex_reg_o, src2sel_ex_reg_o, wben_ex_reg_o, rs1_idx_ex_reg_o, rs2_idx_ex_reg_o, DivEn_ex_reg_o,
-             DivSel_ex_reg_o, trap_ex_reg_o, fence_ex})
+             DivSel_ex_reg_o, trap_ex_reg_o, fence_ex_reg_o})
 );
 
 endmodule
