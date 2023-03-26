@@ -29,7 +29,7 @@ wire [3*`XLEN + `inst_len + 2 +1-1:0] bundle;
 assign bundle = flush_i ? 'b0 : {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i, fence_ls_reg_i};
 
 stl_reg #(
-  .WIDTH     (3*`XLEN + `inst_len + 2),
+  .WIDTH     (3*`XLEN + `inst_len + 2 +1),
   .RESET_VAL (0)
 )ls_reg(
   .i_clk   (clk),
