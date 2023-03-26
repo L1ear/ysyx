@@ -1834,7 +1834,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                              == (0x1fU 
                                                  & (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                                                     >> 0xfU)))));
-    vlSelf->top__DOT__fence_id = 1U;
+    vlSelf->top__DOT__fence_id = 0U;
     if ((1U & (~ (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
                   >> 6U)))) {
         if ((1U & (~ (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
