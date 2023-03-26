@@ -660,7 +660,7 @@ always @(posedge clk or negedge rst_n) begin
     else begin
     //way1
     if(~cleanCnt[5]) begin
-        if(validArray1[cleanCnt] && dirtyArray1[cleanCnt]) begin
+        if(validArray1[cleanCnt[5:0]] && dirtyArray1[cleanCnt[5:0]]) begin
             cleanWrValid = 'b1;
             cleanWrAddr = {tagArray1[cleanCnt[5:0]],cleanCnt[5:0],5'b0};
         end
