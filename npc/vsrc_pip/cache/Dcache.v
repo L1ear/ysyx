@@ -644,7 +644,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         cleanCnt <= 'b0;
     end
-    else if(cleanWrValid && axiWrReady || ~cleanWrValid) begin
+    else if(cleanEn && (cleanWrValid && axiWrReady || ~cleanWrValid)) begin
         cleanCnt <= cleanCnt + 'b1;
     end
 end
@@ -657,7 +657,7 @@ always @(posedge clk or negedge rst_n) begin
         cleanWrValid = 'b0;
         cleanWrAddr = 'b0;
     end
-    else begin
+    else if(cleanEn) begin
     //way1
     if(~cleanCnt[5]) begin
         if(validArray1[cleanCnt[5:0]] && dirtyArray1[cleanCnt[5:0]]) begin
