@@ -142,16 +142,23 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                    >> (0x3fU & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt)))) 
                           & (IData)((vlSelf->top__DOT__Dcache_u__DOT__dirtyArray2 
                                      >> (0x3fU & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))))))
-                    ? vlSelf->top__DOT__Dcache_u__DOT__tagArray2
-                   [(0x3fU & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))]
+                    ? ((0x1ff800U & (vlSelf->top__DOT__Dcache_u__DOT__tagArray2
+                                     [(0x3fU & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))] 
+                                     << 0xbU)) | (0x7e0U 
+                                                  & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt) 
+                                                     << 5U)))
                     : 0U) : ((1U & ((IData)((vlSelf->top__DOT__Dcache_u__DOT__validArray1 
                                              >> (0x3fU 
                                                  & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt)))) 
                                     & (IData)((vlSelf->top__DOT__Dcache_u__DOT__dirtyArray1 
                                                >> (0x3fU 
                                                    & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))))))
-                              ? vlSelf->top__DOT__Dcache_u__DOT__tagArray1
-                             [(0x3fU & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))]
+                              ? ((0x1ff800U & (vlSelf->top__DOT__Dcache_u__DOT__tagArray1
+                                               [(0x3fU 
+                                                 & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))] 
+                                               << 0xbU)) 
+                                 | (0x7e0U & ((IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt) 
+                                              << 5U)))
                               : 0U));
     } else {
         vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__reg_data_out = 0ULL;
