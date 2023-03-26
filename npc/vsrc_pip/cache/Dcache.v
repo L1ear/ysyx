@@ -671,7 +671,7 @@ always @(posedge clk or negedge rst_n) begin
     end
     //way2
     else begin
-        if(validArray2[cleanCnt] && dirtyArray2[cleanCnt]) begin
+        if(validArray2[cleanCnt[5:0]] && dirtyArray2[cleanCnt[5:0]]) begin
             cleanWrValid = 'b1;
             cleanWrAddr = {tagArray2[cleanCnt[5:0]],cleanCnt[5:0],5'b0};
         end
