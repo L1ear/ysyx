@@ -43,6 +43,7 @@
 `define     branch              5'b11000
 `define     load                5'b00000
 `define     store               5'b01000
+`define     fence               5'b00011
 
 //src1 select defines
 `define     Rs1                 1'b0

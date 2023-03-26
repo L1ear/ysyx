@@ -22,6 +22,8 @@ module Dcache(
     output          [`XLEN-1:0]             rd_data_o,
     input          [2      :0]             ls_sram_wr_size,
     input          [2      :0]             ls_sram_rd_size,
+    input                                   fence_clean,
+    output                                  clear_Icache,
 
 
 //to AXI
@@ -58,7 +60,8 @@ localparam  idle        = 3'b000,
             miss        = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
             getdata     = 3'b011,
             replace     = 3'b111,
-            uncacheOp   = 3'b110;           //添加uncacheOp用来处理非缓存操作
+            uncacheOp   = 3'b110,           //添加uncacheOp用来处理非缓存操作
+            clean       = 3'b100;           //添加clean来支持fence.i
 
 reg     [2:0]   cacheCurState,cacheNexState;
 wire            cacheHit;
@@ -98,8 +101,10 @@ end
 always @(*) begin
     case (cacheCurState)
         idle: begin
-            //在uncache请求是不进行cache操作
-            if(exValid_i && stall_n ) begin       
+            if(fence_clean) begin
+                cacheNexState = clean;
+            end
+            else if(exValid_i && stall_n ) begin       
                 cacheNexState = compare;
             end
             else begin
@@ -107,7 +112,10 @@ always @(*) begin
             end
         end
         compare: begin
-            if(uncached) begin
+            if(fence_clean) begin
+                cacheNexState = clean;
+            end
+            else if(uncached) begin
                 cacheNexState = uncacheOp;//若触发uncache条件则进入uncacheOp处理
             end
             else if(cacheHit) begin
@@ -171,6 +179,14 @@ always @(*) begin
             end
             else begin
                 cacheNexState = uncacheOp;
+            end
+        end
+        clean: begin
+            if(clean_OK) begin
+                cacheNexState = idle;
+            end
+            else begin
+                cacheNexState = clean;
             end
         end
         default: begin
@@ -264,7 +280,7 @@ assign  cacheHit = way1Hit || way2Hit;
 **  防止读出错误数据，本质上是read after write冲突，本应该使用流水线前递解决，整理完代码再改吧
 **  后续：并不是raw，因为地址可能不同
 */
-assign data_notok_o = (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
+assign data_notok_o = (cleanEn) || (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit && lsValid_i) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
 
 reg     replaceEnDelay;
 always @(posedge clk or negedge rst_n) begin
@@ -553,13 +569,13 @@ always @(posedge clk or negedge rst_n) begin
     uncache <= uncached;
 end
 wire            axiWrBusy = needWrBk_Reg;
-assign cacheWrValid_o = needWrBk_Reg;
+assign cacheWrValid_o = cleanEn ? cleanWrValid : needWrBk_Reg;
 wire    [31:0]  addrToWrite;
 
 assign addrToWrite = uncacheOpEn ? {reqLatch[31:3],3'b0} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
-assign cacheWrAddr_o = addrToWrite;
+assign cacheWrAddr_o = cleanEn ? cleanWrAddr : addrToWrite;
 
-assign cacheWrData_o = uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data : way1Data;
+assign cacheWrData_o = cleanEn ? cleanData : uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data : way1Data;
 assign storeLenth = uncacheOpEn ? 'd0 : 'd3;
 
 assign cacheWrMask_o = uncacheOpEn ? storeMask : 'hff;;
@@ -621,46 +637,95 @@ end
     
 // end
 
+wire        cleanEn = cacheCurState == clean;
+wire        clean_OK;
+reg [6:0]   cleanCnt;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        cleanCnt <= 'b0;
+    end
+    else if(cleanWrValid && axiWrReady || ~cleanWrValid) begin
+        cleanCnt <= cleanCnt + 'b1;
+    end
+end
+assign clean_OK = cleanCnt=='d127 && (cleanWrValid && axiWrReady || ~cleanWrValid);
+assign clear_Icache = clean_OK;
+reg cleanWrValid;
+reg [20:0]  cleanWrAddr;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        cleanWrValid = 'b0;
+        cleanWrAddr = 'b0;
+    end
+    else begin
+    //way1
+    if(~cleanCnt[5]) begin
+        if(validArray1[cleanCnt] && dirtyArray1[cleanCnt]) begin
+            cleanWrValid = 'b1;
+            cleanWrAddr = tagArray1[cleanCnt];
+        end
+        else begin
+            cleanWrValid = 'b0;
+            cleanWrAddr = 'b0;
+        end
+    end
+    //way2
+    else begin
+        if(validArray2[cleanCnt] && dirtyArray2[cleanCnt]) begin
+            cleanWrValid = 'b1;
+            cleanWrAddr = tagArray2[cleanCnt];
+        end
+        else begin
+            cleanWrValid = 'b0;
+            cleanWrAddr = 'b0;
+        end
+    end
+    end
+    
+end
+
+wire [255:0]    cleanData = cleanCnt[6] ? {dataWay2_1, dataWay2_2} : {dataWay1_1, dataWay1_2};
+
 
 //片选信号仅在idle且读有效、compare且命中且读有效、写使能有效这三种情况拉高
 //关于地址信号：在需要写入数据时，无论如何都要使用latch住的地址，在读的时候若stall了也要使用latch的，而在正常执行的时候要使用cache模块输入的地址
 S011HD1P_X32Y2D128_BW iramWay1_1 (
   .Q (dataWay1_1 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1 || cleanEn) ),
   .WEN (~wenWay1 ),
   .BWEN (~maskWay1_1 ),
-  .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
+  .A (cleanEn ? cleanCnt[5:0] : wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
   .D  (inDataWay1_1)
 );
 
 S011HD1P_X32Y2D128_BW iramWay1_2 (
   .Q (dataWay1_2 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1 || cleanEn) ),
   .WEN (~wenWay1 ),
   .BWEN (~maskWay1_2 ),
-  .A (wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
+  .A (cleanEn ? cleanCnt[5:0] : wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay1_2)
 );
 
 S011HD1P_X32Y2D128_BW iramWay2_1 (
   .Q (dataWay2_1 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2 || cleanEn) ),
   .WEN (~wenWay2 ),
   .BWEN (~maskWay2_1 ),
-  .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
+  .A (cleanEn ? cleanCnt[5:0] : wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay2_1)
 );
 
 S011HD1P_X32Y2D128_BW iramWay2_2 (
   .Q (dataWay2_2 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2 || cleanEn) ),
   .WEN (~wenWay2 ),
   .BWEN (~maskWay2_2 ),
-  .A (wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
+  .A (cleanEn ? cleanCnt[5:0] : wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
   .D  ( inDataWay2_2)
 );
 

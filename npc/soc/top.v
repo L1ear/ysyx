@@ -877,6 +877,7 @@ ls_stage ls_u(
     .trap_ls_i      (trap_ls),
     .ls_not_ok      (ls_not_ok),
     .stall_n        (ls_stall_n),
+    .if_stall_n     (if_stall_n),
 
     .ls_res_o       (lsres_ls),
     .csr_data_o     (csrdata_ls),
@@ -888,6 +889,7 @@ ls_stage ls_u(
     .wb_pc          (pc_wb),
     .ex_pc          (pc_ex),
     .id_pc          (pc_id),
+    .if_pc          (pc_new),
 
     .clint_axi_araddr   (clint_axi_araddr ),
     .clint_axi_arprot   (clint_axi_arprot ),

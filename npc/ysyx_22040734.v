@@ -1088,6 +1088,7 @@ ls_stage ls_u(
     .trap_ls_i      (trap_ls),
     .ls_not_ok      (ls_not_ok),
     .stall_n        (ls_stall_n),
+    .if_stall_n     (if_stall_n),
 
     .ls_res_o       (lsres_ls),
     .csr_data_o     (csrdata_ls),
@@ -1099,6 +1100,7 @@ ls_stage ls_u(
     .wb_pc          (pc_wb),
     .ex_pc          (pc_ex),
     .id_pc          (pc_id),
+    .if_pc          (pc_new),
 
     .clint_axi_araddr   (clint_axi_araddr ),
     .clint_axi_arprot   (clint_axi_arprot ),
@@ -1456,7 +1458,7 @@ module CSR (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
     input           [63:0]          wb_pc,
-    input           [63:0]          ex_pc,id_pc,
+    input           [63:0]          ex_pc,id_pc,if_pc,
     input           [`inst_len-1:0] instr_i,
     // input                           csr_wr_en,
     // input           [11     :0]     csr_idx,   
@@ -1527,7 +1529,7 @@ always @(posedge clk or negedge rst_n) begin
         mepc <= `XLEN'b0;
     end
     else if((sel_mepc | trap | in_intr_ls) && stall_n) begin
-        mepc[`XLEN-1:2]<= (trap ) ? pc_i[`XLEN-1:2] : in_intr_ls ? |(pc_i[`XLEN-1:2]) ? pc_i[`XLEN-1:2] : |(ex_pc[`XLEN-1:2]) ? ex_pc[`XLEN-1:2] : id_pc[`XLEN-1:2] : wr_data[`XLEN-1:2];
+        mepc[`XLEN-1:2]<= (trap ) ? pc_i[`XLEN-1:2] : in_intr_ls ? |(ex_pc[`XLEN-1:2]) ? ex_pc[`XLEN-1:2] : |(id_pc[`XLEN-1:2]) ? id_pc[`XLEN-1:2] : if_pc[`XLEN-1:2] : wr_data[`XLEN-1:2];
         //interupt时pc+4
     end
 end
@@ -1592,7 +1594,7 @@ end
 
 //0x344 R&W mip
 reg     [`XLEN-1:0]     mip;
-wire                    mie_MTIP = mip[7];
+wire                    mip_MTIP = mip[7];
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -1604,9 +1606,12 @@ always @(posedge clk or negedge rst_n) begin
     else if(timer_int_i && mie_MTIE && mstatus_MIE) begin
         mip[7] <= 1'b1;
     end
+    else if(~timer_int_i) begin
+            mip[7] <= 1'b0;   
+    end
 end
 
-assign in_intr_ls = mie_MTIP && mstatus_MIE;
+assign in_intr_ls = mip_MTIP && mstatus_MIE;
 //timer_int_i是一个上升沿触发的信号（也就是说只持续一个周期），其一旦拉高，即设置MTIP位（使能的情况下），同时
 //拉高in_intr的信号（在mstatus.mie为高时），然后，在非stall的情况下，pc_new变成mtvec，wb阶段前的流水线被
 //全部flush，mstatus更新（关闭中断，mie置低），mepc更新，mcause更新，然后进入trap处理程序
@@ -1885,7 +1890,7 @@ assign  ls_sram_wr_en = wren;// && ~ls_ok;
 assign  ls_sram_wr_mask = wr_mask;
 assign  ls_sram_wr_data = wr_data_i;
 assign  rd_data_base = ls_sram_rd_data;
-assign  ls_not_ok = (rden & ls_sram_rd_data_valid) || (wren & ls_sram_wr_data_ok);
+assign  ls_not_ok = ls_sram_wr_data_ok;
 assign  ls_sram_wr_size = wr_size;
 assign  ls_sram_rd_size = rd_size;
 
@@ -2455,7 +2460,7 @@ assign  cacheHit = way1Hit || way2Hit;
 **  防止读出错误数据，本质上是read after write冲突，本应该使用流水线前递解决，整理完代码再改吧
 **  后续：并不是raw，因为地址可能不同
 */
-assign data_notok_o = (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
+assign data_notok_o = (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit && lsValid_i) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
 
 reg     replaceEnDelay;
 always @(posedge clk or negedge rst_n) begin
@@ -2940,10 +2945,12 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
+wire diffAddr = addr_i != reqLatch[31:0];
+
 always @(*) begin
     case (cacheCurState)
         idle: begin
-            if(valid_i) begin
+            if(valid_i && diffAddr) begin
                 cacheNexState = compare;
             end
             else begin
@@ -2955,7 +2962,7 @@ always @(*) begin
                     cacheNexState = miss;
             end
             else if(cacheHit) begin
-                if(valid_i) begin
+                if(valid_i && diffAddr) begin
                     cacheNexState = compare;
                 end
                 else begin
@@ -3009,7 +3016,7 @@ always @(posedge clk or negedge rst_n) begin
     //在compare到compare锁存地址信息时，要保证上一个请求是hit的，否则下一拍会进入miss，而保存的数据失效
     //同时要保证在stall时不锁存，因为1、stall有可能是由cache缺失或其他自身原因造成，此时不能锁存其他数据
     //2、有可能由其他阶段造成如ls部分stall等，此时也不能锁存，否则会锁存下一拍的地址，但是pc还没有变化，导致取得的指令出错
-    else if(((idleEn && valid_i) || (compareEn && valid_i && cacheHit) && stall_n)) begin
+    else if(((idleEn && valid_i && diffAddr) || (compareEn && valid_i && cacheHit && diffAddr) && stall_n)) begin
         reqLatch <= {op_i,addr_i};
     end
 end
@@ -3579,7 +3586,7 @@ assign  instr_o = pc_new_o[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 // end
 
 
-wire    [`XLEN-1:0] pc_next_o = is_jump_i ? pc_jump_i : ((in_trap_id || in_intr_ls)? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
+wire    [`XLEN-1:0] pc_next_o =  in_intr_ls ? csr_mtvec : is_jump_i ? pc_jump_i : ((in_trap_id)? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -3633,7 +3640,7 @@ module ls_stage (
     input           [`XLEN-1:0]     wb_data_i,
     input           [`XLEN-1:0]     wb_csr_data_i,
     input                           trap_ls_i,
-    input                           stall_n,
+    input                           stall_n,if_stall_n,
 
 
     output          [`XLEN-1:0]     ls_res_o,
@@ -3644,7 +3651,7 @@ module ls_stage (
 
     input                           ld_csr_hazard,
     input  [63:0]                   wb_pc,
-    input  [63:0]                   ex_pc,id_pc,
+    input  [63:0]                   ex_pc,id_pc,if_pc,
                
 
     input           [63:0]          clint_axi_araddr   ,
@@ -3735,6 +3742,8 @@ ls_ctr  ls_ctr_u(
 //when load-csr happen,we need use wb-stage data instead of regfiles
 wire    [63:0]  csr_wr_data;
 assign csr_wr_data = ld_csr_hazard ? wb_data_i : alures_i;
+//when both load-use and interruption happen,we need use if/id_stall_n, 
+wire csr_stall_n = in_intr_ls ? if_stall_n : stall_n;
 
 CSR CSR_u(
     .clk(clk),
@@ -3746,12 +3755,13 @@ CSR CSR_u(
     .csr_data_o(csr_data_o),
     .mtvec_o(mtvec_o),
     .mepc_o(mepc_o),
-    .stall_n(stall_n),
+    .stall_n(csr_stall_n),
     .timer_int_i(timr_int),
     .in_intr_ls(in_intr_ls),
     .wb_pc(wb_pc),
     .ex_pc(ex_pc),
-    .id_pc(id_pc)
+    .id_pc(id_pc),
+    .if_pc(if_pc)
 );
 // wire    in_intr_ls;
 wire    timr_int;
@@ -5538,21 +5548,21 @@ always @(posedge clk or negedge rst_n) begin
     end    
 end
 
-wire    time_int_intern;
-assign time_int_intern = (mtime >= mtimecmp);
-//上升沿检测
-reg time_int_intern_0,time_int_intern_1;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n)begin
-        time_int_intern_0 <= 'b0;
-        time_int_intern_1 <= 'b0;
-    end
-    else begin
-        time_int_intern_0 <= time_int_intern;
-        time_int_intern_1 <= time_int_intern_0;
-    end
-end
-assign hart0_time_int_o = time_int_intern_0 && ~time_int_intern_1;
+// wire    time_int_intern;
+// assign time_int_intern = (mtime >= mtimecmp);
+// //上升沿检测
+// reg time_int_intern_0,time_int_intern_1;
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n)begin
+//         time_int_intern_0 <= 'b0;
+//         time_int_intern_1 <= 'b0;
+//     end
+//     else begin
+//         time_int_intern_0 <= time_int_intern;
+//         time_int_intern_1 <= time_int_intern_0;
+//     end
+// end
+assign hart0_time_int_o = (mtime >= mtimecmp);
 
 endmodule //clint
 module stl_reg #(

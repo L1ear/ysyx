@@ -8,7 +8,7 @@ module ls_stage (
     input           [`XLEN-1:0]     wb_data_i,
     input           [`XLEN-1:0]     wb_csr_data_i,
     input                           trap_ls_i,
-    input                           stall_n,
+    input                           stall_n,if_stall_n,
 
 
     output          [`XLEN-1:0]     ls_res_o,
@@ -19,7 +19,7 @@ module ls_stage (
 
     input                           ld_csr_hazard,
     input  [63:0]                   wb_pc,
-    input  [63:0]                   ex_pc,id_pc,
+    input  [63:0]                   ex_pc,id_pc,if_pc,
                
 
     input           [63:0]          clint_axi_araddr   ,
@@ -87,7 +87,7 @@ lsu lsu_u(
     .ls_sram_wr_en          (ls_sram_wr_en          ),
     .ls_sram_wr_data        (ls_sram_wr_data        ),
     .ls_sram_wr_mask        (ls_sram_wr_mask        ),
-    .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
+    .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),//这两代表notok
     .ls_sram_wr_data_ok     (ls_sram_wr_data_ok     ),
     .ls_sram_rd_data        (ls_sram_rd_data        ),
     .ls_sram_wr_size        (ls_sram_wr_size        ),
@@ -111,6 +111,8 @@ ls_ctr  ls_ctr_u(
 //when load-csr happen,we need use wb-stage data instead of regfiles
 wire    [63:0]  csr_wr_data;
 assign csr_wr_data = ld_csr_hazard ? wb_data_i : alures_i;
+//when both load-use and interruption happen,we need use if/id_stall_n, 
+wire csr_stall_n = in_intr_ls ? if_stall_n : stall_n;
 
 CSR CSR_u(
     .clk(clk),
@@ -122,12 +124,13 @@ CSR CSR_u(
     .csr_data_o(csr_data_o),
     .mtvec_o(mtvec_o),
     .mepc_o(mepc_o),
-    .stall_n(stall_n),
+    .stall_n(csr_stall_n),
     .timer_int_i(timr_int),
     .in_intr_ls(in_intr_ls),
     .wb_pc(wb_pc),
     .ex_pc(ex_pc),
-    .id_pc(id_pc)
+    .id_pc(id_pc),
+    .if_pc(if_pc)
 );
 // wire    in_intr_ls;
 wire    timr_int;

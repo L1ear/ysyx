@@ -3,7 +3,7 @@ module CSR (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
     input           [63:0]          wb_pc,
-    input           [63:0]          ex_pc,id_pc,
+    input           [63:0]          ex_pc,id_pc,if_pc,
     input           [`inst_len-1:0] instr_i,
     // input                           csr_wr_en,
     // input           [11     :0]     csr_idx,   
@@ -74,7 +74,7 @@ always @(posedge clk or negedge rst_n) begin
         mepc <= `XLEN'b0;
     end
     else if((sel_mepc | trap | in_intr_ls) && stall_n) begin
-        mepc[`XLEN-1:2]<= (trap ) ? pc_i[`XLEN-1:2] : in_intr_ls ? |(pc_i[`XLEN-1:2]) ? pc_i[`XLEN-1:2] : |(ex_pc[`XLEN-1:2]) ? ex_pc[`XLEN-1:2] : id_pc[`XLEN-1:2] : wr_data[`XLEN-1:2];
+        mepc[`XLEN-1:2]<= (trap ) ? pc_i[`XLEN-1:2] : in_intr_ls ? |(ex_pc[`XLEN-1:2]) ? ex_pc[`XLEN-1:2] : |(id_pc[`XLEN-1:2]) ? id_pc[`XLEN-1:2] : if_pc[`XLEN-1:2] : wr_data[`XLEN-1:2];
         //interupt时pc+4
     end
 end
@@ -139,7 +139,7 @@ end
 
 //0x344 R&W mip
 reg     [`XLEN-1:0]     mip;
-wire                    mie_MTIP = mip[7];
+wire                    mip_MTIP = mip[7];
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -151,9 +151,12 @@ always @(posedge clk or negedge rst_n) begin
     else if(timer_int_i && mie_MTIE && mstatus_MIE) begin
         mip[7] <= 1'b1;
     end
+    else if(~timer_int_i) begin
+            mip[7] <= 1'b0;   
+    end
 end
 
-assign in_intr_ls = mie_MTIP && mstatus_MIE;
+assign in_intr_ls = mip_MTIP && mstatus_MIE;
 //timer_int_i是一个上升沿触发的信号（也就是说只持续一个周期），其一旦拉高，即设置MTIP位（使能的情况下），同时
 //拉高in_intr的信号（在mstatus.mie为高时），然后，在非stall的情况下，pc_new变成mtvec，wb阶段前的流水线被
 //全部flush，mstatus更新（关闭中断，mie置低），mepc更新，mcause更新，然后进入trap处理程序

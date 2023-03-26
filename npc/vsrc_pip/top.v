@@ -561,6 +561,7 @@ Icache cache_dut (
   .data_ok_o ( ),
   .data_notok_o(cacheDataOk_i),
   .rd_data_o (sram_rdata ),
+  .clrValid     (clear_Icache),
 //to AXI
   .cacheRdValid_o   (rw_valid_i ),
   .axiRdReady       (rw_ready_o ),
@@ -658,7 +659,7 @@ ID_reg ID_reg_u(
     .pc_id_reg_o    (pc_id),
     .instr_id_reg_o (instr_id)
 );
-
+wire fence_id,fence_ex;
 ID_stage ID_u(
     .clk            (clk),
     .rst_n          (rst_n),
@@ -687,7 +688,8 @@ ID_stage ID_u(
     .regA0          (regA0),
     .trap_id_o      (trap_id),
     .in_trap_id     (in_trap_id),
-    .out_trap_id    (out_trap_id)
+    .out_trap_id    (out_trap_id),
+    .fence_id       (fence_id)
 );
 
 wire    ld_csr_hazard;
@@ -725,6 +727,7 @@ EX_reg EX_reg_u(
     .DivEn_ex_reg_i (DivEn_id),
     .DivSel_ex_reg_i(DivSel_id),
     .trap_ex_reg_i  (trap_id),
+    .fence_ex_reg_i (fence_id),
 
 
     .pc_ex_reg_o    (pc_ex),
@@ -745,7 +748,8 @@ EX_reg EX_reg_u(
     .rs2_idx_ex_reg_o(rs2_idx_ex) ,
     .DivEn_ex_reg_o (DivEn_ex),
     .DivSel_ex_reg_o(DivSel_ex),
-    .trap_ex_reg_o  (trap_ex)
+    .trap_ex_reg_o  (trap_ex),
+    .fence_ex_o     (fence_ex)
 );
 
 ex_stage ex_stage_u(
@@ -823,13 +827,15 @@ L_S_reg L_S_reg_u(
     .trap_ls_reg_i  (trap_ex),
     .stall_n        (ls_stall_n),
     .flush_i        (ls_flush),
+    .fence_ls_reg_i (fence_ex),
 
     .PC_ls_reg_o    (pc_ls),
     .instr_ls_reg_o (instr_ls),
     .rs2_ls_reg_o   (rs2_ls),
     .alures_ls_reg_o(alures_ls),
     .wben_ls_reg_o  (wben_ls),
-    .trap_ls_reg_o  (trap_ls)
+    .trap_ls_reg_o  (trap_ls),
+    .fence_ls_reg_o (fence_ls)
 );
 
 wire    in_intr_ls;
@@ -847,6 +853,7 @@ ls_stage ls_u(
     .trap_ls_i      (trap_ls),
     .ls_not_ok      (ls_not_ok),
     .stall_n        (ls_stall_n),
+    .if_stall_n     (if_stall_n),
 
     .ls_res_o       (lsres_ls),
     .csr_data_o     (csrdata_ls),
@@ -858,6 +865,7 @@ ls_stage ls_u(
     .wb_pc          (pc_wb),
     .ex_pc          (pc_ex),
     .id_pc          (pc_id),
+    .if_pc          (pc_new),
 
     .clint_axi_araddr   (clint_axi_araddr ),
     .clint_axi_arprot   (clint_axi_arprot ),
@@ -900,6 +908,8 @@ ls_stage ls_u(
 //
 wire    dataNotOk;
 
+wire    fence_ls;
+wire    clear_Icache;
 Dcache Dcache_u (
   .clk (clk ),
   .rst_n (rst_n ),
@@ -914,6 +924,8 @@ Dcache Dcache_u (
   .wr_mask_i        (ls_sram_wr_mask ),
     //这个stall可能要改
   .stall_n          (ls_stall_n ),
+  .fence_clean      (fence_ls),
+  .clear_Icache     (clear_Icache),
 
 //   .data_ok_o        ( ),
   .data_notok_o     (dataNotOk ),
@@ -1070,6 +1082,9 @@ pipline_ctrl pipline_ctrl_u(
     .ex_not_ok          (ex_not_ok),
     .ls_not_ok          (ls_not_ok),
     .in_intr_ls         (in_intr_ls),
+    .fence_ex           (fence_ex),
+    .fence_id           (fence_id),
+    .fence_ls           (fence_ls),
     
     .pc_stall_n         (pc_stall_n),
     .if_stall_n         (if_stall_n),

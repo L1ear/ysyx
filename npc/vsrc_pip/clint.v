@@ -285,20 +285,20 @@ always @(posedge clk or negedge rst_n) begin
     end    
 end
 
-wire    time_int_intern;
-assign time_int_intern = (mtime >= mtimecmp);
-//上升沿检测
-reg time_int_intern_0,time_int_intern_1;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n)begin
-        time_int_intern_0 <= 'b0;
-        time_int_intern_1 <= 'b0;
-    end
-    else begin
-        time_int_intern_0 <= time_int_intern;
-        time_int_intern_1 <= time_int_intern_0;
-    end
-end
-assign hart0_time_int_o = time_int_intern_0 && ~time_int_intern_1;
+// wire    time_int_intern;
+// assign time_int_intern = (mtime >= mtimecmp);
+// //上升沿检测
+// reg time_int_intern_0,time_int_intern_1;
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n)begin
+//         time_int_intern_0 <= 'b0;
+//         time_int_intern_1 <= 'b0;
+//     end
+//     else begin
+//         time_int_intern_0 <= time_int_intern;
+//         time_int_intern_1 <= time_int_intern_0;
+//     end
+// end
+assign hart0_time_int_o = (mtime >= mtimecmp);
 
 endmodule //clint
