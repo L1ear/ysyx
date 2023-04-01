@@ -1074,7 +1074,6 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declQuad(c+64,"top ex_stage_u u_ALU multiplier result_hi", false,-1, 63,0);
         tracep->declQuad(c+66,"top ex_stage_u u_ALU multiplier result_lo", false,-1, 63,0);
         tracep->declBit(c+634,"top ex_stage_u u_ALU multiplier interValid", false,-1);
-        tracep->declBit(c+635,"top ex_stage_u u_ALU multiplier mul_ready", false,-1);
         tracep->declBus(c+1012,"top ex_stage_u u_ALU multiplier resultValidReg WIDTH", false,-1, 31,0);
         tracep->declBus(c+1062,"top ex_stage_u u_ALU multiplier resultValidReg RESET_VAL", false,-1, 31,0);
         tracep->declBit(c+914,"top ex_stage_u u_ALU multiplier resultValidReg i_clk", false,-1);
