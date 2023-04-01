@@ -68,7 +68,7 @@ mul64 mul64_u (
   .mul_signed (mul_signed ),
   .multiplicand (multiplicand ),
   .multiplier (multiplier ),
-  .mul_ready (mul_ready ),
+  .mul_ready ( ),
   .out_valid (interValid ),
   .result_hi (result_hi ),
   .result_lo  ( result_lo)
