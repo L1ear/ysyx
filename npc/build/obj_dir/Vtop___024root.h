@@ -116,7 +116,7 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__rs1_sel;
         CData/*1:0*/ top__DOT__rs2_sel;
         CData/*0:0*/ top__DOT__ex_flush;
-        CData/*0:0*/ top__DOT__ls_addr_ok_i;
+        CData/*0:0*/ top__DOT__ex_not_ok;
         CData/*0:0*/ top__DOT__ls_stall_n;
         CData/*0:0*/ top__DOT__ls_sram_rd_data_valid;
         CData/*0:0*/ top__DOT__ls_sram_wr_data_ok;
@@ -160,6 +160,7 @@ VL_MODULE(Vtop___024root) {
         CData/*1:0*/ top__DOT__axi_icache_dut__DOT__r_state;
         CData/*1:0*/ top__DOT__axi_icache_dut__DOT__r_state_next;
         CData/*4:0*/ top__DOT__ID_u__DOT__ext_op;
+        CData/*0:0*/ top__DOT__ex_stage_u__DOT__aluNotOk;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__zero;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin;
         CData/*0:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow;
@@ -206,9 +207,9 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenWay2;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__uncached;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__bitValid1_d;
-        CData/*0:0*/ top__DOT__Dcache_u__DOT__bitValid2_d;
     };
     struct {
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__bitValid2_d;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay1_q;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay2_q;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__replaceEnDelay;
@@ -230,6 +231,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__Dcache_u__DOT__clean_OK;
         CData/*6:0*/ top__DOT__Dcache_u__DOT__cleanCnt;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__cleanWrValid;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__oneCycleDelay;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__w_state;
         CData/*1:0*/ top__DOT__axi_ls_u__DOT__w_state_next;
         CData/*0:0*/ top__DOT__axi_ls_u__DOT__trans_ok;
@@ -268,13 +270,12 @@ VL_MODULE(Vtop___024root) {
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way1Data;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way2Data;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__rdBuffer;
-        IData/*31:0*/ top__DOT__Dcache_u__DOT__cleanWrAddr;
         VlWide<8>/*255:0*/ top__DOT__axi_ls_u__DOT__wr_data_reg;
         IData/*31:0*/ top__DOT__lsAxiSlaveRam_u__DOT__byte_index;
         QData/*63:0*/ top__DOT__ls_axi_w_data_o;
-        QData/*63:0*/ top__DOT__ls_axi_r_data_i;
     };
     struct {
+        QData/*63:0*/ top__DOT__ls_axi_r_data_i;
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__sram_rdata;
@@ -338,9 +339,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg1;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg2;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg3;
-        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out;
     };
     struct {
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__reg_data_out;
         VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray1;
         VlUnpacked<IData/*20:0*/, 64> top__DOT__cache_dut__DOT__tagArray2;
         VlUnpacked<VlWide<4>/*127:0*/, 64> top__DOT__cache_dut__DOT__iramWay1_1__DOT__ram;
