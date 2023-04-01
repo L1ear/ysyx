@@ -34,7 +34,7 @@ stl_reg #(
   .RESET_VAL (0)
 )resultValidReg(
   .i_clk   (clk),
-  .i_rst_n (rst_n || ~mul_valid),
+  .i_rst_n (rst_n && ~mul_valid),
   .i_wen   (1'b1),
   .i_din   (resultValidReg_d),
   .o_dout  (resultValidReg_q)

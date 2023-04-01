@@ -6564,7 +6564,7 @@ VL_INLINE_OPT void Vtop___024root___combo__TOP__7(Vtop___024root* vlSelf) {
                 ? 1U : (0xfU & (IData)(vlSelf->axi_r_id_i)));
     }
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT____Vcellinp__resultValidReg__i_rst_n 
-        = ((IData)(vlSelf->rst_n) | (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__mul_valid));
+        = (1U & ((IData)(vlSelf->rst_n) | (~ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__mul_valid))));
     __Vtableidx4 = (((IData)(vlSelf->top__DOT__DcacheWrValid) 
                      << 6U) | ((((0xaU == (0xfU & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
