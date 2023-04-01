@@ -101,7 +101,7 @@ mul_top multiplier (
   .result       (DivOut )
 );
 
-// wire    [`XLEN-1:0]     DivOut;
+wire    [`XLEN-1:0]     DivOut;
 // DIVIDER  divider(
 //     .src1(src1),
 //     .src2(src2),
