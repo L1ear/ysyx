@@ -1068,29 +1068,29 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+994,"top ex_stage_u u_ALU multiplier out_valid", false,-1);
         tracep->declQuad(c+204,"top ex_stage_u u_ALU multiplier result", false,-1, 63,0);
         tracep->declBit(c+631,"top ex_stage_u u_ALU multiplier stateReg", false,-1);
-        tracep->declBit(c+632,"top ex_stage_u u_ALU multiplier resultValidReg_d", false,-1);
+        tracep->declBit(c+632,"top ex_stage_u u_ALU multiplier interValid", false,-1);
+        tracep->declBit(c+633,"top ex_stage_u u_ALU multiplier resultValidReg_d", false,-1);
         tracep->declBit(c+995,"top ex_stage_u u_ALU multiplier resultValidReg_q", false,-1);
-        tracep->declBus(c+633,"top ex_stage_u u_ALU multiplier mul_signed", false,-1, 1,0);
+        tracep->declBus(c+634,"top ex_stage_u u_ALU multiplier mul_signed", false,-1, 1,0);
         tracep->declQuad(c+64,"top ex_stage_u u_ALU multiplier result_hi", false,-1, 63,0);
         tracep->declQuad(c+66,"top ex_stage_u u_ALU multiplier result_lo", false,-1, 63,0);
-        tracep->declBit(c+634,"top ex_stage_u u_ALU multiplier interValid", false,-1);
         tracep->declBus(c+1012,"top ex_stage_u u_ALU multiplier resultValidReg WIDTH", false,-1, 31,0);
         tracep->declBus(c+1062,"top ex_stage_u u_ALU multiplier resultValidReg RESET_VAL", false,-1, 31,0);
         tracep->declBit(c+914,"top ex_stage_u u_ALU multiplier resultValidReg i_clk", false,-1);
         tracep->declBit(c+829,"top ex_stage_u u_ALU multiplier resultValidReg i_rst_n", false,-1);
         tracep->declBit(c+1033,"top ex_stage_u u_ALU multiplier resultValidReg i_wen", false,-1);
-        tracep->declBus(c+632,"top ex_stage_u u_ALU multiplier resultValidReg i_din", false,-1, 0,0);
+        tracep->declBus(c+633,"top ex_stage_u u_ALU multiplier resultValidReg i_din", false,-1, 0,0);
         tracep->declBus(c+995,"top ex_stage_u u_ALU multiplier resultValidReg o_dout", false,-1, 0,0);
         tracep->declBit(c+914,"top ex_stage_u u_ALU multiplier mul64_u clk", false,-1);
         tracep->declBit(c+915,"top ex_stage_u u_ALU multiplier mul64_u rst_n", false,-1);
         tracep->declBit(c+994,"top ex_stage_u u_ALU multiplier mul64_u mul_valid", false,-1);
         tracep->declBit(c+463,"top ex_stage_u u_ALU multiplier mul64_u flush", false,-1);
         tracep->declBit(c+1015,"top ex_stage_u u_ALU multiplier mul64_u mulw", false,-1);
-        tracep->declBus(c+633,"top ex_stage_u u_ALU multiplier mul64_u mul_signed", false,-1, 1,0);
+        tracep->declBus(c+634,"top ex_stage_u u_ALU multiplier mul64_u mul_signed", false,-1, 1,0);
         tracep->declQuad(c+584,"top ex_stage_u u_ALU multiplier mul64_u multiplicand", false,-1, 63,0);
         tracep->declQuad(c+586,"top ex_stage_u u_ALU multiplier mul64_u multiplier", false,-1, 63,0);
         tracep->declBit(c+635,"top ex_stage_u u_ALU multiplier mul64_u mul_ready", false,-1);
-        tracep->declBit(c+634,"top ex_stage_u u_ALU multiplier mul64_u out_valid", false,-1);
+        tracep->declBit(c+632,"top ex_stage_u u_ALU multiplier mul64_u out_valid", false,-1);
         tracep->declQuad(c+64,"top ex_stage_u u_ALU multiplier mul64_u result_hi", false,-1, 63,0);
         tracep->declQuad(c+66,"top ex_stage_u u_ALU multiplier mul64_u result_lo", false,-1, 63,0);
         tracep->declBit(c+636,"top ex_stage_u u_ALU multiplier mul64_u src1_is_signed", false,-1);
@@ -1115,8 +1115,8 @@ void Vtop___024root__traceInitSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->declBit(c+996,"top ex_stage_u u_ALU multiplier mul64_u mul_stg1_vld_set", false,-1);
         tracep->declBit(c+658,"top ex_stage_u u_ALU multiplier mul64_u mul_stg1_vld_clr", false,-1);
         tracep->declBit(c+997,"top ex_stage_u u_ALU multiplier mul64_u mul_stg1_vld_d", false,-1);
-        tracep->declBit(c+634,"top ex_stage_u u_ALU multiplier mul64_u mul_stg1_vld_q", false,-1);
-        tracep->declBit(c+634,"top ex_stage_u u_ALU multiplier mul64_u int_reg_wr_ready_fin", false,-1);
+        tracep->declBit(c+632,"top ex_stage_u u_ALU multiplier mul64_u mul_stg1_vld_q", false,-1);
+        tracep->declBit(c+632,"top ex_stage_u u_ALU multiplier mul64_u int_reg_wr_ready_fin", false,-1);
         tracep->declBus(c+1064,"top ex_stage_u u_ALU multiplier mul64_u id_reg WIDTH", false,-1, 31,0);
         tracep->declBus(c+1062,"top ex_stage_u u_ALU multiplier mul64_u id_reg RESET_VAL", false,-1, 31,0);
         tracep->declBit(c+914,"top ex_stage_u u_ALU multiplier mul64_u id_reg i_clk", false,-1);
@@ -3312,11 +3312,11 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullCData(oldp+630,((3U & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
                                            >> 2U))),2);
         tracep->fullBit(oldp+631,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__stateReg));
-        tracep->fullBit(oldp+632,((1U & ((~ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__stateReg)) 
+        tracep->fullBit(oldp+632,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__mul64_u__DOT__mul_stg1_vld_q));
+        tracep->fullBit(oldp+633,((1U & ((~ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__stateReg)) 
                                          | ((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__stateReg) 
                                             & (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__mul64_u__DOT__mul_stg1_vld_q))))));
-        tracep->fullCData(oldp+633,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__mul_signed),2);
-        tracep->fullBit(oldp+634,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__mul64_u__DOT__mul_stg1_vld_q));
+        tracep->fullCData(oldp+634,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__mul_signed),2);
         tracep->fullBit(oldp+635,(1U));
         tracep->fullBit(oldp+636,((1U & ((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__multiplier__DOT__mul_signed) 
                                          >> 1U))));
