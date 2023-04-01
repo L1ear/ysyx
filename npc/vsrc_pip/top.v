@@ -781,6 +781,7 @@ ex_stage ex_stage_u(
     .rs2_sel_i      (rs2_sel),
     .DivEn_i        (DivEn_ex),
     .DivSel_i       (DivSel_ex),
+    .flush_ex_i     (ex_flush),
 
 
     // .PC_ex_o,

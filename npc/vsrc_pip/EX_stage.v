@@ -22,6 +22,7 @@ module ex_stage (
     input           [`XLEN-1:0]     alures_fw_i,lsres_fw_i,wbres_fw_i,
     input                           DivEn_i,
     input       [2:0]               DivSel_i,
+    input                           flush_ex_i,
 
     // output          [`XLEN-1:0]     PC_ex_o,instr_ex_o,rs2_ex_o,
     output          [`XLEN-1:0]     alures_o,
@@ -92,7 +93,8 @@ ALU  u_ALU (
     .ALUres                  ( alures_o ),
     .less                    (          ),
     .zero                    (          ),
-    .aluNotOk                (aluNotOk)
+    .aluNotOk                (aluNotOk),
+    .flush_alu               (flush_ex_i)
 );
 
 bcu bcu_u(
