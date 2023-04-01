@@ -58,6 +58,7 @@ wire [1:0] mul_signed;
 assign mul_signed[1] = ~mul_type[0] || mul_type[0] && ~mul_type[1];
 assign mul_signed[0] = ~mul_type[1];
 
+wire  [63:0] result_hi,result_lo;
 mul64 mul64_u (
   .clk (clk ),
   .rst_n (rst_n ),
