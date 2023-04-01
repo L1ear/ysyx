@@ -20,7 +20,8 @@ module ID_stage (
 
     output                          DivEn,
     output          [2:0]           DivSel    ,
-    output                          trap_id_o,in_trap_id,out_trap_id
+    output                          trap_id_o,in_trap_id,out_trap_id,
+    output                          fence_id
     // output          [`XLEN-1:0]     pc_next_o,
     // output                          is_jump_o
 );
@@ -57,7 +58,8 @@ decoder decoder_u(
     .DivSel(DivSel),
     .trap_id_o(trap_id_o),
     .in_trap_id(in_trap_id),
-    .out_trap_id(out_trap_id)
+    .out_trap_id(out_trap_id),
+    .fence_id(fence_id)
 );
 imm_ext imm_ext_u(
     .instr_imm_i(instr_i[31:7]),

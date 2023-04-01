@@ -12,7 +12,9 @@ module decoder (
     output   reg                    wb_en_o,
     output   reg                    DivEn,
     output   reg    [2      :0]     DivSel,
-    output   reg                    trap_id_o,in_trap_id,out_trap_id
+    output   reg                    trap_id_o,in_trap_id,out_trap_id,
+
+    output   reg                    fence_id
     // output   reg                    csrWrEn,
     // output   reg    [11     :0]     csr_idx_o
 );
@@ -48,6 +50,8 @@ always @(*) begin
 //64/32
     DivEn = 1'b0;                          //默认不使能DIV
     DivSel = `DivMul;
+
+    fence_id = 1'b0;
 //TODO: 补全！！！！！！！！！！！！
     case(opcode)
         `OP_REG,`OP_REG_32: begin
@@ -276,6 +280,14 @@ always @(*) begin
 
                 end
             endcase
+        end
+        `fence: begin
+            if(fun_3 == 3'b001) begin
+                fence_id = 1'b1;
+            end
+            else begin
+                fence_id = 1'b0;
+            end
         end
         default: begin
             //TODO

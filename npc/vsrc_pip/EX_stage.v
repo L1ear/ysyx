@@ -8,6 +8,7 @@ module ex_stage (
     // input                           mem_wren_ex_i,
     // input                           mem_lden_ex_i,
     // input           [2      :0]     mem_op_ex_i,
+    input                           clk,rst_n,
     input           [4      :0]     aluctr,
     // input           [`XLEN-1:0]     src1,
     // input           [`XLEN-1:0]     src2,
@@ -78,8 +79,10 @@ assign src1 = src1sel_ex_i ? pc_ex_i : rs1;
 assign src2 = src2sel_ex_i[1] ? (src2sel_ex_i[0] ? `XLEN'd4 : `XLEN'b0) :
                                 src2sel_ex_i[0] ? imm_ex_i : rs2;
 
-
+wire    aluNotOk;
 ALU  u_ALU (
+    .clk                     ( clk      ),
+    .rst_n                   ( rst_n    ),
     .ALUctr                  ( aluctr   ),
     .src1                    ( src1     ),
     .src2                    ( src2     ),
@@ -88,7 +91,8 @@ ALU  u_ALU (
 
     .ALUres                  ( alures_o ),
     .less                    (          ),
-    .zero                    (          )
+    .zero                    (          ),
+    .aluNotOk                (aluNotOk)
 );
 
 bcu bcu_u(
@@ -107,7 +111,7 @@ bcu bcu_u(
 
 assign  wren_ls  = (instr_ex_i[6      :2] == `store);
 assign  rden_ls  = (instr_ex_i[6      :0] == {`load,2'b11});      //同理
-assign  exNotOk = ~ls_addr_ok_i;
+assign  exNotOk = ~ls_addr_ok_i | aluNotOk;
 // assign PC_ex_o = PC_ex_i;
 // assign instr_ex_o = instr_ex_i;
 // assign rs2_ex_o = rs2_ex_i;

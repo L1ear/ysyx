@@ -15,6 +15,7 @@ module EX_reg (
     input                           DivEn_ex_reg_i,
     input           [2      :0]     DivSel_ex_reg_i,
     input                           trap_ex_reg_i,
+    input                           fence_ex_reg_i,
 
     output   reg    [`XLEN-1:0]     pc_ex_reg_o,
     output   reg    [`inst_len-1:0]     instr_ex_reg_o,
@@ -28,7 +29,8 @@ module EX_reg (
     output   reg    [4      :0]     rs1_idx_ex_reg_o,rs2_idx_ex_reg_o,
     output   reg                    DivEn_ex_reg_o,
     output   reg    [2      :0]     DivSel_ex_reg_o,
-    output   reg                    trap_ex_reg_o
+    output   reg                    trap_ex_reg_o,
+    output                          fence_ex_reg_o
 );
 
 //只对关键控制信号清零
@@ -39,6 +41,7 @@ wire                        is_jal_ex_reg;
 wire                        is_brc_ex_reg;
 wire                        wben_ex_reg;
 wire                        trap_ex_reg;
+wire                        fence_ex_reg;
 
 assign  pc_ex_reg       = flush ? `XLEN'b0      : pc_ex_reg_i;
 assign  instr_ex_reg    = flush ? `inst_len'b0  : instr_ex_reg_i;
@@ -47,9 +50,10 @@ assign  is_jal_ex_reg   = flush ? 1'b0          : is_jal_ex_reg_i;
 assign  is_brc_ex_reg   = flush ? 1'b0          : is_brc_ex_reg_i;
 assign  wben_ex_reg     = flush ? 1'b0          : wben_ex_reg_i;
 assign  trap_ex_reg     = flush ? 1'b0          : trap_ex_reg_i;
+assign fence_ex_reg     = flush ? 1'B0          : fence_ex_reg_i;
 
 stl_reg #(
-  .WIDTH     (4*`XLEN + `inst_len + 27),
+  .WIDTH     (4*`XLEN + `inst_len + 27+1),
   .RESET_VAL (0)
 )ex_reg(
   .i_clk   (clk),
@@ -57,10 +61,10 @@ stl_reg #(
   .i_wen   (stall_n),
   .i_din   ({pc_ex_reg, instr_ex_reg, rs2_ex_reg_i, rs1_ex_reg_i, imm_ex_reg_i, aluctr_ex_reg_i, is_jalr_ex_reg, is_jal_ex_reg,
              is_brc_ex_reg, src1sel_ex_reg_i, src2sel_ex_reg_i, wben_ex_reg, rs1_idx_ex_reg_i, rs2_idx_ex_reg_i, DivEn_ex_reg_i,
-             DivSel_ex_reg_i, trap_ex_reg}),
+             DivSel_ex_reg_i, trap_ex_reg, fence_ex_reg}),
   .o_dout  ({pc_ex_reg_o, instr_ex_reg_o, rs2_ex_reg_o, rs1_ex_reg_o, imm_ex_reg_o, aluctr_ex_reg_o, is_jalr_ex_reg_o, is_jal_ex_reg_o,
              is_brc_ex_reg_o, src1sel_ex_reg_o, src2sel_ex_reg_o, wben_ex_reg_o, rs1_idx_ex_reg_o, rs2_idx_ex_reg_o, DivEn_ex_reg_o,
-             DivSel_ex_reg_o, trap_ex_reg_o})
+             DivSel_ex_reg_o, trap_ex_reg_o, fence_ex_reg_o})
 );
 
 endmodule

@@ -43,6 +43,7 @@
 `define     branch              5'b11000
 `define     load                5'b00000
 `define     store               5'b01000
+`define     fence               5'b00011
 
 //src1 select defines
 `define     Rs1                 1'b0
@@ -806,6 +807,7 @@ Icache cache_dut (
   .data_ok_o (unused1 ),
   .data_notok_o(cacheDataOk_i),
   .rd_data_o (sram_rdata ),
+  .clrValid     (clear_Icache),
 //to AXI
   .cacheRdValid_o   (rw_valid_i ),
   .axiRdReady       (rw_ready_o ),
@@ -897,7 +899,7 @@ ID_reg ID_reg_u(
     .pc_id_reg_o    (pc_id),
     .instr_id_reg_o (instr_id)
 );
-
+wire fence_id,fence_ex;
 ID_stage ID_u(
     .clk            (clk),
     .rst_n          (rst_n),
@@ -926,7 +928,8 @@ ID_stage ID_u(
 
     .trap_id_o      (trap_id),
     .in_trap_id     (in_trap_id),
-    .out_trap_id    (out_trap_id)
+    .out_trap_id    (out_trap_id),
+    .fence_id       (fence_id)
 );
 
 wire    ld_csr_hazard;
@@ -964,6 +967,7 @@ EX_reg EX_reg_u(
     .DivEn_ex_reg_i (DivEn_id),
     .DivSel_ex_reg_i(DivSel_id),
     .trap_ex_reg_i  (trap_id),
+    .fence_ex_reg_i (fence_id),
 
 
     .pc_ex_reg_o    (pc_ex),
@@ -984,7 +988,8 @@ EX_reg EX_reg_u(
     .rs2_idx_ex_reg_o(rs2_idx_ex) ,
     .DivEn_ex_reg_o (DivEn_ex),
     .DivSel_ex_reg_o(DivSel_ex),
-    .trap_ex_reg_o  (trap_ex)
+    .trap_ex_reg_o  (trap_ex),
+    .fence_ex_reg_o     (fence_ex)
 );
 
 wire unused2;
@@ -1064,13 +1069,15 @@ L_S_reg L_S_reg_u(
     .trap_ls_reg_i  (trap_ex),
     .stall_n        (ls_stall_n),
     .flush_i        (ls_flush),
+    .fence_ls_reg_i (fence_ex),
 
     .PC_ls_reg_o    (pc_ls),
     .instr_ls_reg_o (instr_ls),
     .rs2_ls_reg_o   (rs2_ls),
     .alures_ls_reg_o(alures_ls),
     .wben_ls_reg_o  (wben_ls),
-    .trap_ls_reg_o  (trap_ls)
+    .trap_ls_reg_o  (trap_ls),
+    .fence_ls_reg_o (fence_ls)
 );
 
 wire    in_intr_ls;
@@ -1142,8 +1149,9 @@ ls_stage ls_u(
 
 //
 wire    dataNotOk;
-wire    unused3;
 
+wire    fence_ls;
+wire    clear_Icache;
 Dcache Dcache_u (
   .clk (clk ),
   .rst_n (rst_n ),
@@ -1158,6 +1166,8 @@ Dcache Dcache_u (
   .wr_mask_i        (ls_sram_wr_mask ),
     //这个stall可能要改
   .stall_n          (ls_stall_n ),
+  .fence_clean      (fence_ex),
+  .clear_Icache     (clear_Icache),
 
 //   .data_ok_o        (unused3 ),
   .data_notok_o     (dataNotOk ),
@@ -1342,6 +1352,9 @@ pipline_ctrl pipline_ctrl_u(
     .ex_not_ok          (ex_not_ok),
     .ls_not_ok          (ls_not_ok),
     .in_intr_ls         (in_intr_ls),
+    .fence_ex           (fence_ex),
+    .fence_id           (fence_id),
+    .fence_ls           (fence_ls),
     
     .pc_stall_n         (pc_stall_n),
     .if_stall_n         (if_stall_n),
@@ -1379,7 +1392,8 @@ module ID_stage (
 
     output                          DivEn,
     output          [2:0]           DivSel    ,
-    output                          trap_id_o,in_trap_id,out_trap_id
+    output                          trap_id_o,in_trap_id,out_trap_id,
+    output                          fence_id
     // output          [`XLEN-1:0]     pc_next_o,
     // output                          is_jump_o
 );
@@ -1416,7 +1430,8 @@ decoder decoder_u(
     .DivSel(DivSel),
     .trap_id_o(trap_id_o),
     .in_trap_id(in_trap_id),
-    .out_trap_id(out_trap_id)
+    .out_trap_id(out_trap_id),
+    .fence_id(fence_id)
 );
 imm_ext imm_ext_u(
     .instr_imm_i(instr_i[31:7]),
@@ -2162,6 +2177,8 @@ module Dcache(
     output          [`XLEN-1:0]             rd_data_o,
     input          [2      :0]             ls_sram_wr_size,
     input          [2      :0]             ls_sram_rd_size,
+    input                                   fence_clean,
+    output                                  clear_Icache,
 
 
 //to AXI
@@ -2220,29 +2237,29 @@ module Dcache(
 
 //片选信号仅在idle且读有效、compare且命中且读有效、写使能有效这三种情况拉高
 //关于地址信号：在需要写入数据时，无论如何都要使用latch住的地址，在读的时候若stall了也要使用latch的，而在正常执行的时候要使用cache模块输入的地址
-assign io_sram4_addr = wenWay1 ? index : stall_n ? addr_i[10:5] : index;    
-assign io_sram4_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1) ;     
+assign io_sram4_addr = cleanEn ? cleanCnt[5:0] : wenWay1 ? index : stall_n ? addr_i[10:5] : index;    
+assign io_sram4_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1 || cleanEn || fence_clean) ;     
 assign io_sram4_wen = ~wenWay1;     
 assign io_sram4_wmask = ~maskWay1_1 ;   
 assign io_sram4_wdata = inDataWay1_1;   
 assign dataWay1_1 = io_sram4_rdata; 
 
-assign io_sram5_addr = wenWay1 ? index : stall_n ? addr_i[10:5] : index;    
-assign io_sram5_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1);     
+assign io_sram5_addr = cleanEn ? cleanCnt[5:0] : wenWay1 ? index : stall_n ? addr_i[10:5] : index;    
+assign io_sram5_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1 || cleanEn || fence_clean);     
 assign io_sram5_wen = ~wenWay1 ;     
 assign io_sram5_wmask = ~maskWay1_2 ;   
 assign io_sram5_wdata = inDataWay1_2;   
 assign dataWay1_2 = io_sram5_rdata;   
 
-assign io_sram6_addr = wenWay2 ? index : stall_n ? addr_i[10:5] : index;    
-assign io_sram6_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2);     
+assign io_sram6_addr = cleanEn ? cleanCnt[5:0] : wenWay2 ? index : stall_n ? addr_i[10:5] : index;    
+assign io_sram6_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2 || cleanEn || fence_clean);     
 assign io_sram6_wen = ~wenWay2 ;     
 assign io_sram6_wmask = ~maskWay2_1;   
 assign io_sram6_wdata = inDataWay2_1;   
 assign dataWay2_1 = io_sram6_rdata;  
 
-assign io_sram7_addr = wenWay2 ? index : stall_n ? addr_i[10:5] : index ;    
-assign io_sram7_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2);     
+assign io_sram7_addr = cleanEn ? cleanCnt[5:0] : wenWay2 ? index : stall_n ? addr_i[10:5] : index ;    
+assign io_sram7_cen = ~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2 || cleanEn || fence_clean);     
 assign io_sram7_wen = ~wenWay2 ;     
 assign io_sram7_wmask = ~maskWay2_2 ;   
 assign io_sram7_wdata = inDataWay2_2;   
@@ -2254,7 +2271,8 @@ localparam  idle        = 3'b000,
             miss        = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
             getdata     = 3'b011,
             replace     = 3'b111,
-            uncacheOp   = 3'b110;           //添加uncacheOp用来处理非缓存操作
+            uncacheOp   = 3'b110,           //添加uncacheOp用来处理非缓存操作
+            clean       = 3'b100;           //添加clean来支持fence.i
 
 reg     [2:0]   cacheCurState,cacheNexState;
 wire            cacheHit;
@@ -2294,8 +2312,10 @@ end
 always @(*) begin
     case (cacheCurState)
         idle: begin
-            //在uncache请求是不进行cache操作
-            if(exValid_i && stall_n ) begin       
+            if(fence_clean) begin
+                cacheNexState = clean;
+            end
+            else if(exValid_i && stall_n ) begin       
                 cacheNexState = compare;
             end
             else begin
@@ -2303,7 +2323,10 @@ always @(*) begin
             end
         end
         compare: begin
-            if(uncached) begin
+            if(fence_clean) begin
+                cacheNexState = clean;
+            end
+            else if(uncached) begin
                 cacheNexState = uncacheOp;//若触发uncache条件则进入uncacheOp处理
             end
             else if(cacheHit) begin
@@ -2367,6 +2390,14 @@ always @(*) begin
             end
             else begin
                 cacheNexState = uncacheOp;
+            end
+        end
+        clean: begin
+            if(clean_OK) begin
+                cacheNexState = idle;
+            end
+            else begin
+                cacheNexState = clean;
             end
         end
         default: begin
@@ -2460,7 +2491,7 @@ assign  cacheHit = way1Hit || way2Hit;
 **  防止读出错误数据，本质上是read after write冲突，本应该使用流水线前递解决，整理完代码再改吧
 **  后续：并不是raw，因为地址可能不同
 */
-assign data_notok_o = (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit && lsValid_i) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
+assign data_notok_o = (cleanEn) || (uncacheOpEn && ~uncacheOpOk) || (compareEn && ~cacheHit && lsValid_i) || getdataEn || missEn || replaceEn || (compareEn && ~reqLatch[32] && ~replaceEnDelay && ((way1Hit && wenDelay1) || (way2Hit && wenDelay2)));
 
 reg     replaceEnDelay;
 always @(posedge clk or negedge rst_n) begin
@@ -2749,13 +2780,13 @@ always @(posedge clk or negedge rst_n) begin
     uncache <= uncached;
 end
 wire            axiWrBusy = needWrBk_Reg;
-assign cacheWrValid_o = needWrBk_Reg;
+assign cacheWrValid_o = cleanEn ? cleanWrValid : needWrBk_Reg;
 wire    [31:0]  addrToWrite;
 
 assign addrToWrite = uncacheOpEn ? {reqLatch[31:0]} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
-assign cacheWrAddr_o = addrToWrite;
+assign cacheWrAddr_o = cleanEn ? cleanWrAddr : addrToWrite;
 
-assign cacheWrData_o = uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data : way1Data;
+assign cacheWrData_o = cleanEn ? cleanData : uncacheOpEn ? {192'b0,wrDataLatch} : randomBit ? way2Data : way1Data;
 assign storeLenth = uncacheOpEn ? 'd0 : 'd3;
 
 assign cacheWrMask_o = uncacheOpEn ? storeMask : 'hff;;
@@ -2817,6 +2848,69 @@ end
     
 // end
 
+wire        cleanEn = cacheCurState == clean;
+wire        clean_OK;
+reg [6:0]   cleanCnt;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        cleanCnt <= 'b0;
+    end
+    else if(cleanEn && (cleanWrValid && axiWrReady || ~cleanWrValid && ~(~cleanCnt[6] && validArray1[cleanCnt[5:0]] && dirtyArray1[cleanCnt[5:0]] || cleanCnt[6] && validArray2[cleanCnt[5:0]] && dirtyArray2[cleanCnt[5:0]]))) begin
+        cleanCnt <= cleanCnt + 'b1;
+    end
+end
+assign clean_OK = cleanCnt=='d127 && (cleanWrValid && axiWrReady || ~cleanWrValid);
+assign clear_Icache = clean_OK;
+reg cleanWrValid;
+reg [31:0]  cleanWrAddr;
+
+reg oneCycleDelay;
+always @(*) begin
+    if(cleanEn) begin
+    //way1
+    if(~cleanCnt[6]) begin
+        if(validArray1[cleanCnt[5:0]] && dirtyArray1[cleanCnt[5:0]] && oneCycleDelay) begin
+            cleanWrValid = 'b1;
+            cleanWrAddr = {tagArray1[cleanCnt[5:0]],cleanCnt[5:0],5'b0};
+        end
+        else begin
+            cleanWrValid = 'b0;
+            cleanWrAddr = 'b0;
+        end
+    end
+    //way2
+    else begin
+        if(validArray2[cleanCnt[5:0]] && dirtyArray2[cleanCnt[5:0]] && oneCycleDelay) begin
+            cleanWrValid = 'b1;
+            cleanWrAddr = {tagArray2[cleanCnt[5:0]],cleanCnt[5:0],5'b0};
+        end
+        else begin
+            cleanWrValid = 'b0;
+            cleanWrAddr = 'b0;
+        end
+    end
+    end
+    else begin
+        cleanWrValid = 'b0;
+        cleanWrAddr = 'b0;
+    end
+end
+    
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        oneCycleDelay <= 'b0;
+    end
+    else if(cleanEn && (~cleanCnt[6] && validArray1[cleanCnt[5:0]] && dirtyArray1[cleanCnt[5:0]] || cleanCnt[6] && validArray2[cleanCnt[5:0]] && dirtyArray2[cleanCnt[5:0]])) begin
+        oneCycleDelay <= 'b1;
+    end
+    if(oneCycleDelay && axiWrReady) begin
+        oneCycleDelay <= 'b0;
+    end
+end
+
+wire [255:0]    cleanData = cleanCnt[6] ? {dataWay2_2, dataWay2_1} : {dataWay1_2, dataWay1_1};
+
+
 
 
 
@@ -2842,6 +2936,7 @@ module Icache(
     output                                  data_notok_o,
     output          [`XLEN-1:0]             rd_data_o,
 
+    input                                   clrValid,
 
 //to AXI
     //cache发出读请求有效信号
@@ -3038,7 +3133,7 @@ reg        bitValid1_d,bitValid2_d;
 
 //valid Bit的写入在getdata的末尾写入
 always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
+    if(~rst_n || clrValid) begin
         validArray1 <= 'b0;
         validArray2 <= 'b0;
     end
@@ -3244,7 +3339,9 @@ module decoder (
     output   reg                    wb_en_o,
     output   reg                    DivEn,
     output   reg    [2      :0]     DivSel,
-    output   reg                    trap_id_o,in_trap_id,out_trap_id
+    output   reg                    trap_id_o,in_trap_id,out_trap_id,
+
+    output   reg                    fence_id
     // output   reg                    csrWrEn,
     // output   reg    [11     :0]     csr_idx_o
 );
@@ -3280,6 +3377,8 @@ always @(*) begin
 //64/32
     DivEn = 1'b0;                          //默认不使能DIV
     DivSel = `DivMul;
+
+    fence_id = 1'b0;
 //TODO: 补全！！！！！！！！！！！！
     case(opcode)
         `OP_REG,`OP_REG_32: begin
@@ -3508,6 +3607,14 @@ always @(*) begin
 
                 end
             endcase
+        end
+        `fence: begin
+            if(fun_3 == 3'b001) begin
+                fence_id = 1'b1;
+            end
+            else begin
+                fence_id = 1'b0;
+            end
         end
         default: begin
             //TODO
@@ -4132,6 +4239,7 @@ module pipline_ctrl (
     input               ex_not_ok,
     input               ls_not_ok,
     input               in_intr_ls,
+    input               fence_id,fence_ex,fence_ls,
 
     output              if_stall_n,
     output              pc_stall_n,
@@ -4145,18 +4253,19 @@ module pipline_ctrl (
     output              ls_flush
 );
     
+wire    fenceInPip = fence_id||fence_ex;
 //unused
-assign  pc_stall_n = (ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
+assign  pc_stall_n = ((fenceInPip && ~is_jump) ||ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
 ///
 
-assign  if_stall_n = (ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
+assign  if_stall_n = ((fenceInPip && ~is_jump) ||ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
 assign  id_stall_n = (ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
 assign  ex_stall_n = (~if_instr_valid || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
 assign  ls_stall_n = (~if_instr_valid || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
 assign  wb_stall_n = (~if_instr_valid || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
 
-assign  ex_flush   = (in_intr_ls || ld_use_hazard || is_jump) ? 1'b1 : 1'b0;
-assign  id_flush   = (in_intr_ls || is_jump || in_trap_id || out_trap_id) ? 1'b1 : 1'b0;
+assign  ex_flush   = (fence_ex || in_intr_ls || ld_use_hazard || is_jump) ? 1'b1 : 1'b0;
+assign  id_flush   = (fence_ex || fence_id || in_intr_ls || is_jump || in_trap_id || out_trap_id) ? 1'b1 : 1'b0;
 assign  ls_flush   = in_intr_ls;
 endmodule
 
@@ -4333,6 +4442,7 @@ module L_S_reg (
   input                           trap_ls_reg_i,
   input                           stall_n,
   input                           flush_i,
+    input                           fence_ls_reg_i,
 
   // input                           mem_wren_ls_reg_i,
   // input                           mem_lden_ls_reg_i,
@@ -4344,22 +4454,23 @@ module L_S_reg (
   output   reg    [`inst_len-1:0] instr_ls_reg_o,
   output   reg    [`XLEN-1:0]     alures_ls_reg_o,
   output   reg                    wben_ls_reg_o,
-  output   reg                    trap_ls_reg_o
+    output   reg                    trap_ls_reg_o,
+    output                          fence_ls_reg_o
 
 );
 
-wire [3*`XLEN + `inst_len + 2-1:0] bundle;
-assign bundle = flush_i ? 'b0 : {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i};
+wire [3*`XLEN + `inst_len + 2 +1-1:0] bundle;
+assign bundle = flush_i ? 'b0 : {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i, fence_ls_reg_i};
 
 stl_reg #(
-.WIDTH     (3*`XLEN + `inst_len + 2),
+  .WIDTH     (3*`XLEN + `inst_len + 2 +1),
 .RESET_VAL (0)
 )ls_reg(
 .i_clk   (clk),
 .i_rst_n (rstn),
 .i_wen   (stall_n),
 .i_din   (bundle),
-.o_dout  ({PC_ls_reg_o, instr_ls_reg_o, rs2_ls_reg_o, alures_ls_reg_o, wben_ls_reg_o, trap_ls_reg_o})
+  .o_dout  ({PC_ls_reg_o, instr_ls_reg_o, rs2_ls_reg_o, alures_ls_reg_o, wben_ls_reg_o, trap_ls_reg_o, fence_ls_reg_o})
 );
 
 
@@ -4883,6 +4994,7 @@ module EX_reg (
     input                           DivEn_ex_reg_i,
     input           [2      :0]     DivSel_ex_reg_i,
     input                           trap_ex_reg_i,
+    input                           fence_ex_reg_i,
 
     output   reg    [`XLEN-1:0]     pc_ex_reg_o,
     output   reg    [`inst_len-1:0]     instr_ex_reg_o,
@@ -4896,7 +5008,8 @@ module EX_reg (
     output   reg    [4      :0]     rs1_idx_ex_reg_o,rs2_idx_ex_reg_o,
     output   reg                    DivEn_ex_reg_o,
     output   reg    [2      :0]     DivSel_ex_reg_o,
-    output   reg                    trap_ex_reg_o
+    output   reg                    trap_ex_reg_o,
+    output                          fence_ex_reg_o
 );
 
 //只对关键控制信号清零
@@ -4907,6 +5020,7 @@ wire                        is_jal_ex_reg;
 wire                        is_brc_ex_reg;
 wire                        wben_ex_reg;
 wire                        trap_ex_reg;
+wire                        fence_ex_reg;
 
 assign  pc_ex_reg       = flush ? `XLEN'b0      : pc_ex_reg_i;
 assign  instr_ex_reg    = flush ? `inst_len'b0  : instr_ex_reg_i;
@@ -4915,9 +5029,10 @@ assign  is_jal_ex_reg   = flush ? 1'b0          : is_jal_ex_reg_i;
 assign  is_brc_ex_reg   = flush ? 1'b0          : is_brc_ex_reg_i;
 assign  wben_ex_reg     = flush ? 1'b0          : wben_ex_reg_i;
 assign  trap_ex_reg     = flush ? 1'b0          : trap_ex_reg_i;
+assign fence_ex_reg     = flush ? 1'B0          : fence_ex_reg_i;
 
 stl_reg #(
-  .WIDTH     (4*`XLEN + `inst_len + 27),
+  .WIDTH     (4*`XLEN + `inst_len + 27+1),
   .RESET_VAL (0)
 )ex_reg(
   .i_clk   (clk),
@@ -4925,10 +5040,10 @@ stl_reg #(
   .i_wen   (stall_n),
   .i_din   ({pc_ex_reg, instr_ex_reg, rs2_ex_reg_i, rs1_ex_reg_i, imm_ex_reg_i, aluctr_ex_reg_i, is_jalr_ex_reg, is_jal_ex_reg,
              is_brc_ex_reg, src1sel_ex_reg_i, src2sel_ex_reg_i, wben_ex_reg, rs1_idx_ex_reg_i, rs2_idx_ex_reg_i, DivEn_ex_reg_i,
-             DivSel_ex_reg_i, trap_ex_reg}),
+             DivSel_ex_reg_i, trap_ex_reg, fence_ex_reg}),
   .o_dout  ({pc_ex_reg_o, instr_ex_reg_o, rs2_ex_reg_o, rs1_ex_reg_o, imm_ex_reg_o, aluctr_ex_reg_o, is_jalr_ex_reg_o, is_jal_ex_reg_o,
              is_brc_ex_reg_o, src1sel_ex_reg_o, src2sel_ex_reg_o, wben_ex_reg_o, rs1_idx_ex_reg_o, rs2_idx_ex_reg_o, DivEn_ex_reg_o,
-             DivSel_ex_reg_o, trap_ex_reg_o})
+             DivSel_ex_reg_o, trap_ex_reg_o, fence_ex_reg_o})
 );
 
 endmodule

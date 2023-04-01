@@ -579,8 +579,8 @@ assign cacheWrData_o = cleanEn ? cleanData : uncacheOpEn ? {192'b0,wrDataLatch} 
 assign storeLenth = uncacheOpEn ? 'd0 : 'd3;
 
 assign cacheWrMask_o = uncacheOpEn ? storeMask : 'hff;;
-assign cacheWrSize_o = uncacheOpEn ? ls_sram_rd_size : 'b011;
-assign cacheRdSize_o = uncacheOpEn ? ls_sram_wr_size : 'b011;
+assign cacheWrSize_o = uncacheOpEn ? ls_sram_wr_size : 'b011;
+assign cacheRdSize_o = uncacheOpEn ? ls_sram_rd_size : 'b011;
 
 wire uncacheOpEn = cacheCurState == uncacheOp;
 // cacheRdValid_o,//
@@ -644,7 +644,7 @@ always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         cleanCnt <= 'b0;
     end
-    else if(cleanEn && (cleanWrValid && axiWrReady || ~cleanWrValid)) begin
+    else if(cleanEn && (cleanWrValid && axiWrReady || ~cleanWrValid && ~(~cleanCnt[6] && validArray1[cleanCnt[5:0]] && dirtyArray1[cleanCnt[5:0]] || cleanCnt[6] && validArray2[cleanCnt[5:0]] && dirtyArray2[cleanCnt[5:0]]))) begin
         cleanCnt <= cleanCnt + 'b1;
     end
 end
@@ -652,15 +652,13 @@ assign clean_OK = cleanCnt=='d127 && (cleanWrValid && axiWrReady || ~cleanWrVali
 assign clear_Icache = clean_OK;
 reg cleanWrValid;
 reg [31:0]  cleanWrAddr;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        cleanWrValid = 'b0;
-        cleanWrAddr = 'b0;
-    end
-    else if(cleanEn) begin
+
+reg oneCycleDelay;
+always @(*) begin
+    if(cleanEn) begin
     //way1
-    if(~cleanCnt[5]) begin
-        if(validArray1[cleanCnt[5:0]] && dirtyArray1[cleanCnt[5:0]]) begin
+    if(~cleanCnt[6]) begin
+        if(validArray1[cleanCnt[5:0]] && dirtyArray1[cleanCnt[5:0]] && oneCycleDelay) begin
             cleanWrValid = 'b1;
             cleanWrAddr = {tagArray1[cleanCnt[5:0]],cleanCnt[5:0],5'b0};
         end
@@ -671,7 +669,7 @@ always @(posedge clk or negedge rst_n) begin
     end
     //way2
     else begin
-        if(validArray2[cleanCnt[5:0]] && dirtyArray2[cleanCnt[5:0]]) begin
+        if(validArray2[cleanCnt[5:0]] && dirtyArray2[cleanCnt[5:0]] && oneCycleDelay) begin
             cleanWrValid = 'b1;
             cleanWrAddr = {tagArray2[cleanCnt[5:0]],cleanCnt[5:0],5'b0};
         end
@@ -681,10 +679,26 @@ always @(posedge clk or negedge rst_n) begin
         end
     end
     end
-    
+    else begin
+        cleanWrValid = 'b0;
+        cleanWrAddr = 'b0;
+    end
 end
 
-wire [255:0]    cleanData = cleanCnt[6] ? {dataWay2_1, dataWay2_2} : {dataWay1_1, dataWay1_2};
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        oneCycleDelay <= 'b0;
+    end
+    else if(cleanEn && (~cleanCnt[6] && validArray1[cleanCnt[5:0]] && dirtyArray1[cleanCnt[5:0]] || cleanCnt[6] && validArray2[cleanCnt[5:0]] && dirtyArray2[cleanCnt[5:0]])) begin
+        oneCycleDelay <= 'b1;
+    end
+    if(oneCycleDelay && axiWrReady) begin
+        oneCycleDelay <= 'b0;
+    end
+end
+
+
+wire [255:0]    cleanData = cleanCnt[6] ? {dataWay2_2, dataWay2_1} : {dataWay1_2, dataWay1_1};
 
 
 //片选信号仅在idle且读有效、compare且命中且读有效、写使能有效这三种情况拉高
@@ -692,7 +706,7 @@ wire [255:0]    cleanData = cleanCnt[6] ? {dataWay2_1, dataWay2_2} : {dataWay1_1
 S011HD1P_X32Y2D128_BW iramWay1_1 (
   .Q (dataWay1_1 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1 || cleanEn) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1 || cleanEn || fence_clean) ),
   .WEN (~wenWay1 ),
   .BWEN (~maskWay1_1 ),
   .A (cleanEn ? cleanCnt[5:0] : wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
@@ -702,7 +716,7 @@ S011HD1P_X32Y2D128_BW iramWay1_1 (
 S011HD1P_X32Y2D128_BW iramWay1_2 (
   .Q (dataWay1_2 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1 || cleanEn) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay1 || cleanEn || fence_clean) ),
   .WEN (~wenWay1 ),
   .BWEN (~maskWay1_2 ),
   .A (cleanEn ? cleanCnt[5:0] : wenWay1 ? index : stall_n ? addr_i[10:5] : index ),
@@ -712,7 +726,7 @@ S011HD1P_X32Y2D128_BW iramWay1_2 (
 S011HD1P_X32Y2D128_BW iramWay2_1 (
   .Q (dataWay2_1 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2 || cleanEn) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2 || cleanEn || fence_clean) ),
   .WEN (~wenWay2 ),
   .BWEN (~maskWay2_1 ),
   .A (cleanEn ? cleanCnt[5:0] : wenWay2 ? index : stall_n ? addr_i[10:5] : index ),
@@ -722,7 +736,7 @@ S011HD1P_X32Y2D128_BW iramWay2_1 (
 S011HD1P_X32Y2D128_BW iramWay2_2 (
   .Q (dataWay2_2 ),
   .CLK (clk ),
-  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2 || cleanEn) ),
+  .CEN (~(((idleEn || (uncacheOpEn && uncacheOpOk)) && exValid_i) || (compareEn) || missEn || replaceEn || getdataEn || wenWay2 || cleanEn || fence_clean) ),
   .WEN (~wenWay2 ),
   .BWEN (~maskWay2_2 ),
   .A (cleanEn ? cleanCnt[5:0] : wenWay2 ? index : stall_n ? addr_i[10:5] : index ),

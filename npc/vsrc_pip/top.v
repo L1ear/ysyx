@@ -759,6 +759,8 @@ ex_stage ex_stage_u(
     // .mem_wren_ex_i,
     // .mem_lden_ex_i,
     // .mem_op_ex_i,
+    .clk            (clk),
+    .rst_n          (rst_n),
     .aluctr         (aluctr_ex),
     // .src1           (src1_ex),
     // .src2           (src2_ex),
@@ -924,7 +926,7 @@ Dcache Dcache_u (
   .wr_mask_i        (ls_sram_wr_mask ),
     //这个stall可能要改
   .stall_n          (ls_stall_n ),
-  .fence_clean      (fence_ls),
+  .fence_clean      (fence_ex),
   .clear_Icache     (clear_Icache),
 
 //   .data_ok_o        ( ),

@@ -17,6 +17,7 @@ module Icache(
     output                                  data_notok_o,
     output          [`XLEN-1:0]             rd_data_o,
 
+    input                                   clrValid,
 
 //to AXI
     //cache发出读请求有效信号
@@ -213,7 +214,7 @@ reg        bitValid1_d,bitValid2_d;
 
 //valid Bit的写入在getdata的末尾写入
 always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
+    if(~rst_n || clrValid) begin
         validArray1 <= 'b0;
         validArray2 <= 'b0;
     end

@@ -63,7 +63,7 @@ always @(*) begin
             DivEn = fun_7[0];
             DivSel = fun_3;
             case(fun_3)
-                `add_sub: begin                                          
+                `add_sub: begin     
                     if(fun_7[5]) begin      //Sub
                         aluctr_o = opcode[1] ? `AluSub_32 : `AluSub_64;
                     end

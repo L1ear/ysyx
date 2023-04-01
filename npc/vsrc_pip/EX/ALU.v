@@ -1,5 +1,6 @@
 `include "defines.v"
 module ALU(
+    input                       clk,rst_n,
     input       [4:0]           ALUctr,
     input       [`XLEN-1:0]     src1,
     input       [`XLEN-1:0]     src2,
@@ -8,7 +9,8 @@ module ALU(
 
     output      [`XLEN-1:0]     ALUres,
     output  reg                 less,
-    output                      zero
+    output                      zero,
+    output                      aluNotOk
 );
 
 /*
@@ -242,13 +244,13 @@ always @(*) begin
                 DivOut = (src1 * src2);
         end
         `DivMulh: begin
-            DivOut = $signed(src1) * $signed(src2);
+            DivOut = ($signed(src1) * $signed(src2))>>64;
         end
         `DivMulhsu: begin
-            DivOut = $signed(src1) * $unsigned(src2);
+            DivOut = ($signed(src1) * $unsigned(src2))>>64;
         end
         `DivMulhu: begin
-            DivOut = $unsigned(src1) * $unsigned(src2);
+            DivOut = ($unsigned(src1) * $unsigned(src2))>>64;
         end
         `DivDiv: begin
                 DivOut = $signed(src1) / $signed(src2);
