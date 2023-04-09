@@ -89,7 +89,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 wire mul_valid;
 assign mul_valid = diffIn && DivEn && ~DivSel[2];  //with diffIn, valid will only last for 1 cycle
-wire mul_resValid;
+wire mul_resValid,mul_resValid2;
 mul_top multiplier (
   .clk          (clk ),
   .rst_n        (rst_n ),
@@ -101,11 +101,22 @@ mul_top multiplier (
   .out_valid    (mul_resValid ),
   .result       (mulOut )
 );
+mul_top multiplier2 (
+  .clk          (clk ),
+  .rst_n        (rst_n ),
+  .mul_valid    (mul_valid ),
+  .flush        (flush_alu ),
+  .mul_type     (DivSel[1:0] ),
+  .multiplicand (src1 ),
+  .multiplier   (src2 ),
+  .out_valid    (mul_resValid2 ),
+  .result       (mulOut2 )
+);
 
 assign aluNotOk = mul_valid && ~mul_resValid;
 
 wire    [`XLEN-1:0]     DivOut;
-wire    [`XLEN-1:0]     mulOut;
+wire    [`XLEN-1:0]     mulOut,mulOut2;
 wire    [`XLEN-1:0]     divOut;
 wire div_valid;
 assign div_valid = diffIn && DivEn && DivSel[2];  //with diffIn, valid will only last for 1 cycle
