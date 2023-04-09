@@ -136,7 +136,7 @@ assign div_ready = ~div_busy;
 assign out_valid = ~div_busy;
 assign quotient = dividend_sign^divisor_sign ? ~dividendReg[63:0]+'b1: dividendReg[63:0];
 wire [63:0]     remainder_s;
-assign remainder_s = dividendReg[127] ? restore_remainder : dividendReg[127:63];
+assign remainder_s = dividendReg[127] ? restore_remainder : dividendReg[127:64];
 assign remainder = dividend_sign ? ~remainder_s+'b1 : remainder_s;
 
 assign result = div_type_r[1] ? remainder : quotient;
