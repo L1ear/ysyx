@@ -7,7 +7,7 @@ module divTop (
 
     output          div_ready,
     output          out_valid,
-    output [63:0]   result,
+    output [63:0]   result
 );
     
 // div_type:0---------------unsign

@@ -368,7 +368,6 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__src1Reg;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2Reg;
-        QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__DivOut;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res;
         QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__sll_res;
@@ -405,9 +404,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__Dcache_u__DOT__storeData;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__sramMask;
         QData/*63:0*/ top__DOT__Dcache_u__DOT__temp;
+        QData/*63:0*/ top__DOT__axi_ls_u__DOT__wrAddr_reg;
     };
     struct {
-        QData/*63:0*/ top__DOT__axi_ls_u__DOT__wrAddr_reg;
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__rdAddr_reg;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr;
@@ -482,7 +481,6 @@ VL_MODULE(Vtop___024root) {
     QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT____Vcellinp__cla_64_u1__g_64;
     QData/*63:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT____Vcellinp__cla_64_u1__p_64;
     QData/*63:0*/ __Vdlyvval__top__DOT__ID_u__DOT__regfile_u__DOT__regfiles__v0;
-    QData/*63:0*/ __Vchglast__TOP__top__DOT__ex_stage_u__DOT__u_ALU__DOT__DivOut;
     VlUnpacked<CData/*0:0*/, 6> __Vm_traceActivity;
 
     // INTERNAL VARIABLES
