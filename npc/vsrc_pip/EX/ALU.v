@@ -99,7 +99,7 @@ wire mul_resValid;
 //   .multiplicand (src1 ),
 //   .multiplier   (src2 ),
 //   .out_valid    (mul_resValid ),
-//   .result       (mulOut )
+  .result       (mulOut )
 // );
 
 assign aluNotOk = mul_valid && ~mul_resValid;
