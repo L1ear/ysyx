@@ -121,7 +121,7 @@ divTop divider (
   .result (divOut )
 );
 
-assign DivOut = DivSel[2] ? DivOut : mulOut;
+assign DivOut = DivSel[2] ? divOut : mulOut;
 
 // DIVIDER  divider(
 //     .src1(src1),
