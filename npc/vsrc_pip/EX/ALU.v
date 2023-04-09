@@ -108,7 +108,8 @@ wire    [`XLEN-1:0]     DivOut,mulOut,divOut;
 wire div_valid;
 assign div_valid = diffIn && DivEn && DivSel[2];  //with diffIn, valid will only last for 1 cycle
 wire div_resValid;
-divTop divider (
+
+divTop divider_u (
   .clk (clk ),
   .rst_n (rst_n ),
   .dividend (src1 ),
