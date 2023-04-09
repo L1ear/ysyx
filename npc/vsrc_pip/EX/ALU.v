@@ -104,7 +104,7 @@ mul_top multiplier (
 
 assign aluNotOk = mul_valid && ~mul_resValid;
 
-wire    [`XLEN-1:0]     DivOut,mulOut,DivOut;
+wire    [`XLEN-1:0]     DivOut,mulOut,divOut;
 wire div_valid;
 assign div_valid = diffIn && DivEn && DivSel[2];  //with diffIn, valid will only last for 1 cycle
 wire div_resValid;
@@ -118,7 +118,7 @@ divTop divider (
   .flush (flush_alu ),
   .div_ready ( ),
   .out_valid (div_resValid ),
-  .result (DivOut )
+  .result (divOut )
 );
 
 assign DivOut = DivSel[2] ? DivOut : mulOut;
