@@ -109,7 +109,7 @@ wire div_valid;
 assign div_valid = diffIn && DivEn && DivSel[2];  //with diffIn, valid will only last for 1 cycle
 wire div_resValid;
 
-divTop divider_ fdg (
+divTop divider(
   .clk (clk ),
   .rst_n (rst_n ),
   .dividend (src1 ),
@@ -117,7 +117,6 @@ divTop divider_ fdg (
   .div_valid (div_valid ),
   .div_type (DivSel[1:0] ),
   .flush (flush_alu ),
-  .div_ready ( ),
   .out_valid (div_resValid ),
   .result (divOut )
 );

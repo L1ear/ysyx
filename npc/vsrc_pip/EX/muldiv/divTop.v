@@ -5,7 +5,6 @@ module divTop (
     input  [1:0]    div_type,
     input           flush,
 
-    output          div_ready,
     output          out_valid,
     output [63:0]   result
 );
@@ -132,7 +131,7 @@ assign partial_q = r_64[63] ? 'b0 : 'b1;
 
 wire    [63:0]      quotient,remainder;
 
-assign div_ready = ~div_busy;
+// assign div_ready = ~div_busy;
 assign out_valid = ~div_busy;
 assign quotient = dividend_sign^divisor_sign ? ~dividendReg[63:0]+'b1: dividendReg[63:0];
 wire [63:0]     remainder_s;
