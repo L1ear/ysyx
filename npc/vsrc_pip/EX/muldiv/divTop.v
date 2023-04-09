@@ -62,7 +62,7 @@ always @(posedge clk or negedge rst_n) begin
     end
     else if(div_busy)begin
         dividendReg <= {r_64,dividendReg[62:0],partial_q};
-        restore_remainder <= dividendReg[126:63];
+        restore_remainder <= dividendReg[127:64];
     end
 end
 
