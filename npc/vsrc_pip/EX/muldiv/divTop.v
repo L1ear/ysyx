@@ -35,7 +35,7 @@ reg     [63:0]      divisor_N_r,divisor_P_r;
 assign divisor_N = ~divisor + 'b1;
 
 reg     [127:0]     dividendReg;
-reg     [63:0]      restore_remainder;
+// reg     [63:0]      restore_remainder;
 reg     [5:0]       div_cnt;
 reg                 div_busy;
 
@@ -55,14 +55,14 @@ end
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         dividendReg <= 'b0;
-        restore_remainder <= 'b0;
+        // restore_remainder <= 'b0;
     end
     else if(div_valid) begin
         dividendReg <= div_type[0] && dividend[63] ? {{64{dividend_N[63]}},dividend_N} :{{64{dividend[63]}},dividend};
     end
     else if(div_busy)begin
         dividendReg <= {r_64,dividendReg[62:0],partial_q};
-        restore_remainder <= dividendReg[126:63];
+        // restore_remainder <= dividendReg[126:63];
     end
 end
 
@@ -135,7 +135,7 @@ wire    [63:0]      quotient,remainder;
 assign out_valid = ~(div_busy || div_valid) ;
 assign quotient = dividend_sign^divisor_sign ? ~dividendReg[63:0]+'b1: dividendReg[63:0];
 wire [63:0]     remainder_s;
-assign remainder_s = dividendReg[127] ? restore_remainder : dividendReg[127:64];
+assign remainder_s = dividendReg[127] ? dividendReg[127:64] + divisor_P_r : dividendReg[127:64];
 assign remainder = dividend_sign ? ~remainder_s+'b1 : remainder_s;
 
 assign result = div_type_r[1] ? remainder : quotient;
