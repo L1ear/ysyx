@@ -104,7 +104,9 @@ mul_top multiplier (
 
 assign aluNotOk = mul_valid && ~mul_resValid;
 
-wire    [`XLEN-1:0]     DivOut,mulOut,divOut;
+wire    [`XLEN-1:0]     DivOut;
+wire    [`XLEN-1:0]     mulOut;
+wire    [`XLEN-1:0]     divOut;
 wire div_valid;
 assign div_valid = diffIn && DivEn && DivSel[2];  //with diffIn, valid will only last for 1 cycle
 wire div_resValid;
@@ -123,12 +125,6 @@ divTop divider(
 
 assign DivOut = DivSel[2] ? divOut : mulOut;
 
-// DIVIDER  divider(
-//     .src1(src1),
-//     .src2(src2),
-//     .DivSel(DivSel),
-//     .DivOut(DivOut)
-// );
 
 //Less
 // assign less = (u_s_mux)? carry^cin : ALUout[`XLEN-1]^overflow;
