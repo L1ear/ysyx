@@ -103,7 +103,7 @@ mul_top multiplier (
 );
 
 
-assign aluNotOk = mul_valid && ~mul_resValid || div_valid && ~div_resValid;
+assign aluNotOk = DivEn && ~mul_resValid || DivEn && ~div_resValid;
 
 wire    [`XLEN-1:0]     DivOut;
 wire    [`XLEN-1:0]     mulOut;
