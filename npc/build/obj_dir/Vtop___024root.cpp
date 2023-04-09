@@ -7540,16 +7540,16 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_res 
         = (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shifter__DOT__shft_src 
            >> (0x3fU & (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)));
-    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__div_valid 
-        = (((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__diffIn) 
-            & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
-               >> 5U)) & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
-                          >> 4U));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__mul_valid 
         = (((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__diffIn) 
             & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
                >> 5U)) & (~ (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
                              >> 4U)));
+    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__div_valid 
+        = (((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__diffIn) 
+            & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
+               >> 5U)) & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
+                          >> 4U));
     vlSelf->axi_ar_len_o = (((0xaU == (0xfU & (IData)(
                                                       (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                        >> 0x1cU)))) 
