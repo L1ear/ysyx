@@ -99,12 +99,30 @@ mul_top multiplier (
   .multiplicand (src1 ),
   .multiplier   (src2 ),
   .out_valid    (mul_resValid ),
-  .result       (DivOut )
+  .result       (mulOut )
 );
 
 assign aluNotOk = mul_valid && ~mul_resValid;
 
-wire    [`XLEN-1:0]     DivOut;
+wire    [`XLEN-1:0]     DivOut,mulOut,DivOut;
+wire div_valid;
+assign div_valid = diffIn && DivEn && DivSel[2];  //with diffIn, valid will only last for 1 cycle
+wire div_resValid;
+divTop divider (
+  .clk (clk ),
+  .rst_n (rst_n ),
+  .dividend (src1 ),
+  .divisor (src2 ),
+  .div_valid (div_valid ),
+  .div_type (DivSel[1:0] ),
+  .flush (flush_alu ),
+  .div_ready ( ),
+  .out_valid (div_resValid ),
+  .result (DivOut )
+);
+
+assign DivOut = DivSel[2] ? DivOut : mulOut;
+
 // DIVIDER  divider(
 //     .src1(src1),
 //     .src2(src2),
