@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
     Verilated::traceEverOn(true);
     fp = new VerilatedVcdC;
     top->trace(fp, 99); 
-    fp ->open("vlt.vcd");
+    fp ->open("npc.vcd");
     fp ->dump(0);
 #endif 
 
