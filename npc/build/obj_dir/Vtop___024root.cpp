@@ -69,6 +69,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     VlWide<3>/*95:0*/ __Vtemp76;
     VlWide<3>/*95:0*/ __Vtemp77;
     VlWide<3>/*95:0*/ __Vtemp78;
+    VlWide<4>/*127:0*/ __Vtemp84;
     VlWide<3>/*95:0*/ __Vtemp91;
     VlWide<5>/*159:0*/ __Vtemp92;
     VlWide<5>/*159:0*/ __Vtemp97;
@@ -942,6 +943,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
     }
     if (vlSelf->rst_n) {
         if (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__div_valid) {
+            VL_EXTEND_WQ(128,64, __Vtemp84, vlSelf->top__DOT__ex_stage_u__DOT__src1);
             if ((1U & ((vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
                         >> 2U) & (IData)((vlSelf->top__DOT__ex_stage_u__DOT__src1 
                                           >> 0x3fU))))) {
@@ -967,21 +969,13 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                                >> 0x20U));
             } else {
                 __Vdly__top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividendReg[0U] 
-                    = (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1);
+                    = __Vtemp84[0U];
                 __Vdly__top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividendReg[1U] 
-                    = (IData)((vlSelf->top__DOT__ex_stage_u__DOT__src1 
-                               >> 0x20U));
+                    = __Vtemp84[1U];
                 __Vdly__top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividendReg[2U] 
-                    = (IData)((- (QData)((IData)((1U 
-                                                  & (IData)(
-                                                            (vlSelf->top__DOT__ex_stage_u__DOT__src1 
-                                                             >> 0x3fU)))))));
+                    = __Vtemp84[2U];
                 __Vdly__top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividendReg[3U] 
-                    = (IData)(((- (QData)((IData)((1U 
-                                                   & (IData)(
-                                                             (vlSelf->top__DOT__ex_stage_u__DOT__src1 
-                                                              >> 0x3fU)))))) 
-                               >> 0x20U));
+                    = __Vtemp84[3U];
             }
         } else if (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__div_busy) {
             __Vdly__top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividendReg[0U] 
