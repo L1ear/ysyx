@@ -47,8 +47,8 @@ always @(posedge clk or negedge rst_n) begin
         divisor_sign <= 'b0;
     end
     else if(div_valid) begin
-        dividend_sign <= div_type[0] ? dividend[63] : 'b0;
-        divisor_sign <= div_type[0] ? divisor[63] : 'b0;
+        dividend_sign <= ~div_type[0] ? dividend[63] : 'b0;
+        divisor_sign <= ~div_type[0] ? divisor[63] : 'b0;
     end
 end
 
@@ -72,8 +72,8 @@ always @(posedge clk or negedge rst_n) begin
         divisor_P_r <= 'b0;
     end
     else if(div_valid) begin
-        divisor_P_r <= div_type[0] && divisor[63] ? divisor_N : divisor;
-        divisor_N_r <= div_type[0] && divisor[63] ? divisor : divisor_N;
+        divisor_P_r <= ~div_type[0] && divisor[63] ? divisor_N : divisor;
+        divisor_N_r <= ~div_type[0] && divisor[63] ? divisor : divisor_N;
     end
 end
 
