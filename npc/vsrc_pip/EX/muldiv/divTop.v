@@ -58,7 +58,7 @@ always @(posedge clk or negedge rst_n) begin
         // restore_remainder <= 'b0;
     end
     else if(div_valid) begin
-        dividendReg <= div_type[0] && dividend[63] ? {{64{dividend_N[63]}},dividend_N} :{{64{dividend[63]}},dividend};
+        dividendReg <= div_type[0] && dividend[63] ? {{64{dividend_N[63]}},dividend_N} :{{64{1'b0}},dividend};
     end
     else if(div_busy)begin
         dividendReg <= {r_64,dividendReg[62:0],partial_q};
