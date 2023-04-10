@@ -9,8 +9,8 @@ module divTop (
     output [63:0]   result
 );
     
-// div_type:0---------------unsign
-//          1---------------signed
+// div_type:1---------------unsign
+//          0---------------signed
 
 
     // input  [63:0]   divisor_P,divisor_N,
@@ -58,7 +58,7 @@ always @(posedge clk or negedge rst_n) begin
         // restore_remainder <= 'b0;
     end
     else if(div_valid) begin
-        dividendReg <= div_type[0] && dividend[63] ? {{64{dividend_N[63]}},dividend_N} :{{64{1'b0}},dividend};
+        dividendReg <= (~div_type[0]) && dividend[63] ? {{64{dividend_N[63]}},dividend_N} :{{64{1'b0}},dividend};
     end
     else if(div_busy)begin
         dividendReg <= {r_64,dividendReg[62:0],partial_q};
