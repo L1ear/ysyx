@@ -138,6 +138,6 @@ wire [63:0]     remainder_s;
 assign remainder_s = dividendReg[127] ? dividendReg[127:64] + divisor_P_r : dividendReg[127:64];
 assign remainder = dividend_sign ? ~remainder_s+'b1 : remainder_s;
 
-assign result = div_type_r[1] ? remainder : quotient;
+assign result = div_type[1] ? remainder : quotient;
 
 endmodule
