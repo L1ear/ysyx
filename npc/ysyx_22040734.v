@@ -1637,6 +1637,519 @@ assign in_intr_ls = mip_MTIP && mstatus_MIE;
 
 
 endmodule
+module divTop (
+    input           clk,rst_n,
+    input  [63:0]   dividend,divisor,
+    input           div_valid,
+    input  [1:0]    div_type,
+    input           flush,
+
+    output          out_valid,
+    output [63:0]   result
+);
+    
+// div_type:1---------------unsign
+//          0---------------signed
+
+
+    // input  [63:0]   divisor_P,divisor_N,
+    // input           div_cin_P,div_cin_N,
+    // input  [127:0]  dividend128,
+
+reg [1:0]  div_type_r;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        div_type_r <= 'b0;
+    end
+    else if(div_valid) begin
+        div_type_r <= div_type;
+    end
+end
+
+wire    [63:0]      dividend_N;
+assign dividend_N = ~dividend + 'b1;
+
+wire    [63:0]      divisor_N;
+reg     [63:0]      divisor_N_r,divisor_P_r;
+assign divisor_N = ~divisor + 'b1;
+
+reg     [127:0]     dividendReg;
+// reg     [63:0]      restore_remainder;
+reg     [5:0]       div_cnt;
+reg                 div_busy;
+
+reg                 dividend_sign,divisor_sign;
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        dividend_sign <= 'b0;
+        divisor_sign <= 'b0;
+    end
+    else if(div_valid) begin
+        dividend_sign <= ~div_type[0] ? dividend[63] : 'b0;
+        divisor_sign <= ~div_type[0] ? divisor[63] : 'b0;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        dividendReg <= 'b0;
+        // restore_remainder <= 'b0;
+    end
+    else if(div_valid) begin
+        dividendReg <= (~div_type[0]) && dividend[63] ? {{64{dividend_N[63]}},dividend_N} :{{64{1'b0}},dividend};
+    end
+    else if(div_busy)begin
+        dividendReg <= {r_64,dividendReg[62:0],partial_q};
+        // restore_remainder <= dividendReg[126:63];
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        divisor_N_r <= 'b0;
+        divisor_P_r <= 'b0;
+    end
+    else if(div_valid) begin
+        divisor_P_r <= ~div_type[0] && divisor[63] ? divisor_N : divisor;
+        divisor_N_r <= ~div_type[0] && divisor[63] ? divisor : divisor_N;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        div_cnt <= 'b0;
+    end
+    else if(div_valid && ~flush) begin
+        div_cnt <= 6'b111111;
+    end
+    else if(|div_cnt && ~flush) begin
+        div_cnt <= div_cnt - 'b1;
+    end
+    else if(flush) begin
+        div_cnt <= 'b0;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        div_busy <= 'b0;
+    end
+    else if(div_valid && ~flush) begin
+        div_busy <= 1'b1;
+    end
+    else if(~|div_cnt && ~flush) begin
+        div_busy <= 1'b0;
+    end
+    else if(flush) begin
+        div_busy <= 1'b0;
+    end
+end
+
+//if (div_busy)
+
+wire    [63:0]   x2;
+assign x2 = dividendReg[126] ? divisor_P_r : divisor_N_r;
+
+wire    [63:0]  r_64;
+
+cla_64 cla_64_u1 (
+  .a_64 (dividendReg[126-:64] ),
+  .b_64 (x2 ),
+  .cin_64 (0 ),
+  .p_64 (dividendReg[126-:64] | x2 ),
+  .g_64 (dividendReg[126-:64] & x2 ),
+
+  .s_64 (r_64 ),
+  .gx_64 ( ),
+  .px_64  ( )
+);
+
+wire        partial_q;
+assign partial_q = r_64[63] ? 'b0 : 'b1;
+
+wire    [63:0]      quotient,remainder;
+
+// assign div_ready = ~div_busy;
+assign out_valid = ~(div_busy || div_valid) ;
+assign quotient = dividend_sign^divisor_sign ? ~dividendReg[63:0]+'b1: dividendReg[63:0];
+wire [63:0]     remainder_s;
+assign remainder_s = dividendReg[127] ? dividendReg[127:64] + divisor_P_r : dividendReg[127:64];
+assign remainder = dividend_sign ? ~remainder_s+'b1 : remainder_s;
+
+assign result = div_type[1] ? remainder : quotient;
+
+endmodule
+module mul64 (
+    input           clk,rst_n,
+    
+    input           mul_valid,
+    input           flush,
+    input           mulw,
+    input   [1:0]   mul_signed,
+    input   [63:0]  multiplicand,
+    input   [63:0]  multiplier,
+
+    output          mul_ready,
+    output          out_valid,
+    output  [63:0]  result_hi,
+    output  [63:0]  result_lo
+);
+//mul_signed[1:0]:    
+//2'b11(signed x signed);
+//2'b10(signed x unsigned);
+//2'b00(unsigned x unsigned);
+
+
+
+wire               src1_is_signed;
+wire               src2_is_signed;
+wire [32:0]        mul_lo_src1;
+wire [32:0]        mul_hi_src1;
+wire [32:0]        mul_lo_src2;
+wire [32:0]        mul_hi_src2;
+wire [65:0]        mul_ll_rslt;//mul_lo_src1 x mul_lo_src2
+wire [65:0]        mul_lh_rslt;//mul_lo_src1 x mul_hi_src2
+wire [65:0]        mul_hl_rslt;//mul_hi_src1 x mul_lo_src2
+wire [65:0]        mul_hh_rslt;//mul_hi_src1 x mul_hi_src2
+
+wire [65:0]        mul_ll_rslt_ex2;//mul_lo_src1 x mul_lo_src2
+wire [65:0]        mul_lh_rslt_ex2;//mul_lo_src1 x mul_hi_src2
+wire [65:0]        mul_hl_rslt_ex2;//mul_hi_src1 x mul_lo_src2
+wire [65:0]        mul_hh_rslt_ex2;//mul_hi_src1 x mul_hi_src2
+
+wire[129:0]                        mul_ll_rslt_ext_ex2;
+wire[129:0]                        mul_lh_rslt_ext_ex2;
+wire[129:0]                        mul_hl_rslt_ext_ex2;
+wire[129:0]                        mul_hh_rslt_ext_ex2;
+wire[129:0]                        mul_rslt_stg2_ex2;
+
+wire                               mul_stg1_vld_set;
+wire                               mul_stg1_vld_clr;
+wire                               mul_stg1_vld_d;
+reg                                mul_stg1_vld_q;
+wire                               int_reg_wr_ready_fin;
+
+//1st stage
+assign src1_is_signed   = mul_signed[1];
+assign src2_is_signed   = mul_signed[0];
+
+
+assign mul_lo_src1      = {1'b0,multiplicand[31:0]};
+assign mul_hi_src1      = {src1_is_signed & multiplicand[63],multiplicand[63:32]};
+assign mul_lo_src2      = {1'b0,multiplier[31:0]};
+assign mul_hi_src2      = {src2_is_signed & multiplier[63],multiplier[63:32]};
+
+assign mul_ll_rslt      = mul_lo_src1 * mul_lo_src2;
+assign mul_lh_rslt      = $signed(mul_lo_src1) * $signed(mul_hi_src2);
+assign mul_hl_rslt      = $signed(mul_hi_src1) * $signed(mul_lo_src2);
+assign mul_hh_rslt      = $signed(mul_hi_src1) * $signed(mul_hi_src2);
+
+assign mul_ready        = ~mul_stg1_vld_q | int_reg_wr_ready_fin;
+assign mul_stg1_vld_set = mul_valid & mul_ready & ~flush;
+assign mul_stg1_vld_clr = int_reg_wr_ready_fin | flush;
+assign mul_stg1_vld_d   = mul_stg1_vld_set | mul_stg1_vld_q & ~mul_stg1_vld_clr & ~flush;
+
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        mul_stg1_vld_q <= 'b0;
+    end
+    else
+        mul_stg1_vld_q <= mul_stg1_vld_d;
+end
+stl_reg #(
+  .WIDTH     (66*4),
+  .RESET_VAL (0)
+)id_reg(
+  .i_clk   (clk),
+  .i_rst_n (rst_n),
+  .i_wen   (mul_stg1_vld_set),
+  .i_din   ({mul_ll_rslt, mul_lh_rslt, mul_hl_rslt, mul_hh_rslt}),
+  .o_dout  ({mul_ll_rslt_ex2, mul_lh_rslt_ex2, mul_hl_rslt_ex2, mul_hh_rslt_ex2})
+);
+
+assign mul_ll_rslt_ext_ex2  = {{130-66{1'b0}},mul_ll_rslt_ex2};
+assign mul_lh_rslt_ext_ex2  = {{32{mul_lh_rslt_ex2[65]}},mul_lh_rslt_ex2,32'h0};
+assign mul_hl_rslt_ext_ex2  = {{32{mul_hl_rslt_ex2[65]}},mul_hl_rslt_ex2,32'h0};
+assign mul_hh_rslt_ext_ex2  = {mul_hh_rslt_ex2,64'h0};
+
+assign int_reg_wr_ready_fin = mul_stg1_vld_q;
+
+assign mul_rslt_stg2_ex2    = $signed(mul_ll_rslt_ext_ex2) + $signed(mul_lh_rslt_ext_ex2) + $signed(mul_hl_rslt_ext_ex2) + $signed(mul_hh_rslt_ext_ex2);
+
+assign result_hi = mul_rslt_stg2_ex2[127:64];
+assign result_lo = mulw ? {{32{mul_rslt_stg2_ex2[31]}}, mul_rslt_stg2_ex2[31:0]} : mul_rslt_stg2_ex2[63:0];
+
+assign out_valid = mul_stg1_vld_q;
+endmodule
+
+module mul_top (
+  input             clk          ,
+  input             rst_n        ,
+  input             mul_valid    ,
+  input             flush        ,
+  input   [1:0]     mul_type     ,
+  input   [63:0]    multiplicand ,
+  input   [63:0]    multiplier   ,
+  output            out_valid    ,
+  output  [63:0]    result       
+);
+
+
+reg   stateReg;
+wire interValid;
+
+always @(posedge clk or negedge rst_n) begin
+  if(~rst_n) begin
+    stateReg <= 'b0;
+  end
+  else if(mul_valid) begin
+    stateReg <= 'b1;
+  end
+  else if(interValid) begin
+    stateReg <= 'b0;
+  end
+end
+
+wire resultValidReg_d;
+wire resultValidReg_q;
+assign resultValidReg_d = stateReg == 1'b0 || stateReg == 1'b1 && interValid;
+stl_reg #(
+  .WIDTH     (1),
+  .RESET_VAL (0)
+)resultValidReg(
+  .i_clk   (clk),
+  .i_rst_n (rst_n && ~mul_valid),
+  .i_wen   (1'b1),
+  .i_din   (resultValidReg_d),
+  .o_dout  (resultValidReg_q)
+);
+
+assign out_valid = resultValidReg_q || interValid;
+
+//此处时序见4月2笔记！！！！！！！！！！！！！
+
+//mul_type[1:0]:    
+// Mul              2'b00
+// Mulh             2'b01
+// Mulhsu           2'b10
+// Mulhu            2'b11
+
+//mul_signed[1:0]:    
+//2'b11(signed x signed);
+//2'b10(signed x unsigned);
+//2'b00(unsigned x unsigned);
+
+wire [1:0] mul_signed;
+assign mul_signed[1] = ~mul_type[0] || mul_type[0] && ~mul_type[1];
+assign mul_signed[0] = ~mul_type[1];
+
+wire  [63:0] result_hi,result_lo;
+mul64 mul64_u (
+  .clk (clk ),
+  .rst_n (rst_n ),
+  .mul_valid (mul_valid ),
+  .flush (flush ),
+  .mulw (0 ),
+  .mul_signed (mul_signed ),
+  .multiplicand (multiplicand ),
+  .multiplier (multiplier ),
+  .mul_ready ( ),
+  .out_valid (interValid ),
+  .result_hi (result_hi ),
+  .result_lo  ( result_lo)
+);
+
+assign result = mul_type == 2'b00 ? result_lo : result_hi;
+
+endmodule
+
+module cla_4(
+    input  [3:0] a_4,
+    input  [3:0] b_4,
+    input        cin_4,
+    input  [3:0] p_4,
+    input  [3:0] g_4,
+    output [3:0] s_4,
+    output  px_4,gx_4 
+);
+//genera_4te ca_4rry bits
+    wire[3:0]    c_int;
+    assign c_int[0]=g_4[0] | (cin_4&p_4[0]);
+    assign c_int[1]=g_4[1] | (p_4[1]&g_4[0]) | (p_4[1]&p_4[0]&cin_4);
+    assign c_int[2]=g_4[2] | (p_4[2]&g_4[1]) | (p_4[2]&p_4[1]&g_4[0]) | (p_4[2]&p_4[1]&p_4[0]&cin_4);
+    //assign c_int[3]=g_4[3] | (p_4[3]&g_4[2]) | (p_4[3]&p_4[2]&g_4[1]) | (p_4[3]&p_4[2]&p_4[1]&g_4[0]) | (p_4[3]&p_4[2]&p_4[1]&p_4[0]&cin_4);
+//genera_4te sum bits
+    assign s_4[0]=a_4[0]^b_4[0]^cin_4;
+    assign s_4[1]=a_4[1]^b_4[1]^c_int[0];
+    assign s_4[2]=a_4[2]^b_4[2]^c_int[1];
+    assign s_4[3]=a_4[3]^b_4[3]^c_int[2];
+//generate total pg signals
+    assign px_4 = &p_4;
+    assign gx_4 = g_4[3] | (p_4[3]&g_4[2]) | (p_4[3]&p_4[2]&g_4[1]) | (p_4[3]&p_4[2]&p_4[1]&g_4[0]);
+
+endmodule
+module cla_6(
+    input  [5:0] a_6,
+    input  [5:0] b_6,
+    input        cin_6,
+    input  [5:0] p_6,
+    input  [5:0] g_6,
+    output [5:0] s_6,
+    output  px_6,gx_6
+);
+//genera_6te ca_6rry bits
+    wire[5:0]    c_int;
+    assign c_int[0]=g_6[0] | (cin_6&p_6[0]);
+    assign c_int[1]=g_6[1] | (p_6[1]&g_6[0]) | (p_6[1]&p_6[0]&cin_6);
+    assign c_int[2]=g_6[2] | (p_6[2]&g_6[1]) | (p_6[2]&p_6[1]&g_6[0]) | (p_6[2]&p_6[1]&p_6[0]&cin_6);
+    assign c_int[3]=g_6[3] | (p_6[3]&g_6[2]) | (p_6[3]&p_6[2]&g_6[1]) | (p_6[3]&p_6[2]&p_6[1]&g_6[0]) | (p_6[3]&p_6[2]&p_6[1]&p_6[0]&cin_6);
+    assign c_int[4]=g_6[4] | (p_6[4]&g_6[3]) | (p_6[4]&p_6[3]&g_6[2]) | (p_6[4]&p_6[3]&p_6[2]&g_6[1]) | (p_6[4]&p_6[3]&p_6[2]&p_6[1]&g_6[0]) | (p_6[4]&p_6[3]&p_6[2]&p_6[1]&p_6[0]&cin_6);
+//genera_6te sum bits
+    assign s_6[0]=a_6[0]^b_6[0]^cin_6;
+    assign s_6[1]=a_6[1]^b_6[1]^c_int[0];
+    assign s_6[2]=a_6[2]^b_6[2]^c_int[1];
+    assign s_6[3]=a_6[3]^b_6[3]^c_int[2];
+    assign s_6[4]=a_6[4]^b_6[4]^c_int[3];
+    assign s_6[5]=a_6[5]^b_6[5]^c_int[4];
+//genera_6te tota_6l pg signa_6ls
+    assign px_6 = &p_6;
+    assign gx_6 = g_6[5] | (p_6[5]&g_6[4]) | (p_6[5]&p_6[4]&g_6[3]) | (p_6[5]&p_6[4]&p_6[3]&g_6[2]) | (p_6[5]&p_6[4]&p_6[3]&p_6[2]&g_6[1]) | (p_6[5]&p_6[4]&p_6[3]&p_6[2]&p_6[1]&g_6[0]) | (p_6[5]&p_6[4]&p_6[3]&p_6[2]&p_6[1]&p_6[0]&cin_6);
+endmodule
+module cla_16 (
+    input[15:0] a_16,
+    input[15:0] b_16,
+    input   cin_16,
+    input[15:0] p_16,
+    input[15:0] g_16,
+    output[15:0] s_16,
+    output gx_16,px_16
+);
+//define internal carry bits and pg signals
+    wire c3,c7,c11;
+    wire px1,px2,px3,px4,gx1,gx2,gx3,gx4;
+//adders
+    cla_4 u1(
+            .a_4(a_16[3:0]),
+            .b_4(b_16[3:0]),
+            .cin_4(cin_16),
+            .p_4(p_16[3:0]),
+            .g_4(g_16[3:0]),
+            .s_4(s_16[3:0]),
+            .px_4(px1),
+            .gx_4(gx1)
+    );
+
+
+    cla_4 u2(
+            .a_4(a_16[7:4]),
+            .b_4(b_16[7:4]),
+            .cin_4(c3),
+            .p_4(p_16[7:4]),
+            .g_4(g_16[7:4]),
+            .s_4(s_16[7:4]),
+            .px_4(px2),
+            .gx_4(gx2)
+    );
+
+    cla_4 u3(
+            .a_4(a_16[11:8]),
+            .b_4(b_16[11:8]),
+            .cin_4(c7),
+            .p_4(p_16[11:8]),
+            .g_4(g_16[11:8]),
+            .s_4(s_16[11:8]),
+            .px_4(px3),
+            .gx_4(gx3)
+    );
+
+    cla_4 u4(
+            .a_4(a_16[15:12]),
+            .b_4(b_16[15:12]),
+            .cin_4(c11),
+            .p_4(p_16[15:12]),
+            .g_4(g_16[15:12]),
+            .s_4(s_16[15:12]),
+            .px_4(px4),
+            .gx_4(gx4)
+    );
+
+//generate internal carry bits and pg signals
+    assign c3 =  gx1 | (px1&cin_16);
+    assign c7 =  gx2 | (px2&gx1) | (px2&px1&cin_16);
+    assign c11=  gx3 | (px3&gx2) | (px3&px2&gx1) |(px3&px2&px1&cin_16);
+
+    assign px_16 = px1 & px2 & px3 & px4;
+    assign gx_16 = gx4 | (px4&gx3) | (px4&px3&gx2) | (px4&px3&px2&gx1);
+
+
+endmodule
+module cla_64 (
+    input[63:0] a_64,
+    input[63:0] b_64,
+    input   cin_64,
+    input[63:0] p_64,
+    input[63:0] g_64,
+    output[63:0] s_64,
+    output gx_64,px_64
+);
+    wire px1,px2,px3,px4,gx1,gx2,gx3,gx4;
+    wire c15,c31,c47;
+
+    //adders
+    cla_16 u1(
+            .a_16(a_64[15:0]),
+            .b_16(b_64[15:0]),
+            .cin_16(cin_64),
+            .p_16(p_64[15:0]),
+            .g_16(g_64[15:0]),
+            .s_16(s_64[15:0]),
+            .px_16(px1),
+            .gx_16(gx1)
+    );
+
+
+    cla_16 u2(
+            .a_16(a_64[31:16]),
+            .b_16(b_64[31:16]),
+            .cin_16(c15),
+            .p_16(p_64[31:16]),
+            .g_16(g_64[31:16]),
+            .s_16(s_64[31:16]),
+            .px_16(px2),
+            .gx_16(gx2)
+    );
+
+    cla_16 u3(
+            .a_16(a_64[47:32]),
+            .b_16(b_64[47:32]),
+            .cin_16(c31),
+            .p_16(p_64[47:32]),
+            .g_16(g_64[47:32]),
+            .s_16(s_64[47:32]),
+            .px_16(px3),
+            .gx_16(gx3)
+    );
+
+    cla_16 u4(
+            .a_16(a_64[63:48]),
+            .b_16(b_64[63:48]),
+            .cin_16(c47),
+            .p_16(p_64[63:48]),
+            .g_16(g_64[63:48]),
+            .s_16(s_64[63:48]),
+            .px_16(px4),
+            .gx_16(gx4)
+    );
+
+//generate internal carry bits and pg signals
+    assign c15 =  gx1 | (px1&cin_64);
+    assign c31 =  gx2 | (px2&gx1) | (px2&px1&cin_64);
+    assign c47 =  gx3 | (px3&gx2) | (px3&px2&gx1) |(px3&px2&px1&cin_64);
+
+    assign px_64 = px1 & px2 & px3 & px4;
+    assign gx_64 = gx4 | (px4&gx3) | (px4&px3&gx2) | (px4&px3&px2&gx1);
+endmodule //cla_64
 
 module WB_stage (
     input           [`XLEN-1:0]     pc_i,
