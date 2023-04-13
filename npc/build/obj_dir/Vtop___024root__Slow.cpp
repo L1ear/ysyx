@@ -4285,8 +4285,7 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                          | (IData)(vlSelf->top__DOT__ld_use_hazard)) 
                                         | (IData)(vlSelf->top__DOT__is_jump)));
     vlSelf->top__DOT__IF_u__DOT__pc_next_o = ((IData)(vlSelf->top__DOT__in_intr_ls)
-                                               ? (4ULL 
-                                                  + vlSelf->top__DOT__pc_new)
+                                               ? vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mtvec
                                                : ((IData)(vlSelf->top__DOT__is_jump)
                                                    ? 
                                                   (4ULL 
