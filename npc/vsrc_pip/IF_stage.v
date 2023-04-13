@@ -50,7 +50,7 @@ reg    [`XLEN-1:0] pc_next_o;// =  in_intr_ls ? csr_mtvec : is_jump_i ? pc_jump_
 
 always @( *) begin
     case({in_intr_ls, is_jump_i, in_trap_id, out_trap_id})
-        4'b1???:
+        4'b1000,4'b1001,4'b1010,4'b1011,4'b1100,4'b1101,4'b1110,4'b1111:
             pc_next_o = csr_mtvec;
         4'b01??:
             pc_next_o = pc_jump_i;
