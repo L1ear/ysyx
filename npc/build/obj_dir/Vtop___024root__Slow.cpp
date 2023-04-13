@@ -4288,8 +4288,40 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
                                                ? vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mtvec
                                                : ((IData)(vlSelf->top__DOT__is_jump)
                                                    ? 
-                                                  (4ULL 
-                                                   + vlSelf->top__DOT__pc_new)
+                                                  ((0x400000U 
+                                                    & vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])
+                                                    ? 
+                                                   (vlSelf->top__DOT__ex_stage_u__DOT__rs1 
+                                                    + 
+                                                    (((QData)((IData)(
+                                                                      vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[2U])) 
+                                                      << 0x24U) 
+                                                     | (((QData)((IData)(
+                                                                         vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[1U])) 
+                                                         << 4U) 
+                                                        | ((QData)((IData)(
+                                                                           vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])) 
+                                                           >> 0x1cU))))
+                                                    : 
+                                                   ((((QData)((IData)(
+                                                                      vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[9U])) 
+                                                      << 0x24U) 
+                                                     | (((QData)((IData)(
+                                                                         vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[8U])) 
+                                                         << 4U) 
+                                                        | ((QData)((IData)(
+                                                                           vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U])) 
+                                                           >> 0x1cU))) 
+                                                    + 
+                                                    (((QData)((IData)(
+                                                                      vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[2U])) 
+                                                      << 0x24U) 
+                                                     | (((QData)((IData)(
+                                                                         vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[1U])) 
+                                                         << 4U) 
+                                                        | ((QData)((IData)(
+                                                                           vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])) 
+                                                           >> 0x1cU)))))
                                                    : 
                                                   ((IData)(vlSelf->top__DOT__in_trap_id)
                                                     ? 
