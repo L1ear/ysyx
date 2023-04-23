@@ -124,7 +124,7 @@ divTop divider(
   .result (divOut )
 );
 
-assign DivOut = DivSel[2] ? divOut : 0;//mulOut;
+assign DivOut = DivSel[2] ? divOut : mulOut;
 
 
 //Less

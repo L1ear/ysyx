@@ -319,7 +319,6 @@ VL_MODULE(Vtop___024root) {
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__way2Data;
         IData/*31:0*/ top__DOT__cache_dut__DOT__randomBit;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__rdBuffer;
-        VlWide<5>/*129:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2;
         VlWide<4>/*127:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividendReg;
         IData/*31:0*/ top__DOT__ls_u__DOT__lsu_u__DOT__rd_data_w;
         IData/*31:0*/ top__DOT__ls_u__DOT__clint_u__DOT__byte_index;
@@ -339,9 +338,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__pc_next;
         QData/*63:0*/ top__DOT__pc_new;
         QData/*63:0*/ top__DOT__sram_rdata;
+        QData/*63:0*/ top__DOT__alures_ex;
     };
     struct {
-        QData/*63:0*/ top__DOT__alures_ex;
         QData/*63:0*/ top__DOT__csrdata_ls;
         QData/*63:0*/ top__DOT__ls_sram_rd_data;
         QData/*63:0*/ top__DOT__wb_data;
@@ -405,9 +404,9 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__axi_ls_u__DOT__rdAddr_reg;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_awaddr;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_araddr;
+        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata;
     };
     struct {
-        QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__axi_rdata;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg0;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg1;
         QData/*63:0*/ top__DOT__lsAxiSlaveRam_u__DOT__slv_reg2;
