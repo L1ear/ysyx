@@ -16,7 +16,7 @@ module IF_stage (
     input           [`XLEN-1:0]     sram_rdata,
     input                           sram_data_valid,
     input                           cacheAddrOk_i,
-    input                           cacheDataOk_i,  //这玩意代表notok
+    input                           cacheDataNotOk_i,  //这玩意代表notok
     output          [`XLEN-1:0]     sram_addr,
     output                          sram_ren,
     output                          sram_addr_valid
@@ -29,7 +29,7 @@ assign  sram_ren = 1'b1;
 assign  sram_addr = pc_next_o;
 assign  sram_addr_valid = pc_new_o !='b0;
 // assign  if_instr_valid = sram_data_valid;
-assign  if_instr_valid = cacheAddrOk_i && ~cacheDataOk_i;
+assign  if_instr_valid = cacheAddrOk_i && ~cacheDataNotOk_i;
 
 
 
@@ -48,7 +48,7 @@ assign  instr_o = pc_new_o[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 
 reg    [`XLEN-1:0] pc_next_o;// =  in_intr_ls ? csr_mtvec : is_jump_i ? pc_jump_i : ((in_trap_id)? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
 
-always @( *) begin
+always @( *) begin 
     case({in_intr_ls, is_jump_i, in_trap_id, out_trap_id})
         4'b1000,4'b1001,4'b1010,4'b1011,4'b1100,4'b1101,4'b1110,4'b1111:
             pc_next_o = csr_mtvec;

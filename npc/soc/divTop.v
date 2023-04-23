@@ -17,15 +17,15 @@ module divTop (
     // input           div_cin_P,div_cin_N,
     // input  [127:0]  dividend128,
 
-reg [1:0]  div_type_r;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        div_type_r <= 'b0;
-    end
-    else if(div_valid) begin
-        div_type_r <= div_type;
-    end
-end
+// reg [1:0]  div_type_r;
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n) begin
+//         div_type_r <= 'b0;
+//     end
+//     else if(div_valid) begin
+//         div_type_r <= div_type;
+//     end
+// end
 
 wire    [63:0]      dividend_N;
 assign dividend_N = ~dividend + 'b1;

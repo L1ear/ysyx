@@ -60,7 +60,7 @@ assign mul_signed[1] = ~mul_type[0] || mul_type[0] && ~mul_type[1];
 assign mul_signed[0] = ~mul_type[1];
 
 wire  [63:0] result_hi,result_lo;
-wire          mul_ready;
+// wire          mul_ready;
 mul64 mul64_u (
   .clk (clk ),
   .rst_n (rst_n ),
@@ -70,7 +70,7 @@ mul64 mul64_u (
   .mul_signed (mul_signed ),
   .multiplicand (multiplicand ),
   .multiplier (multiplier ),
-  .mul_ready (mul_ready ),
+  // .mul_ready (mul_ready ),
   .out_valid (interValid ),
   .result_hi (result_hi ),
   .result_lo  ( result_lo)

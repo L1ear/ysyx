@@ -1,14 +1,15 @@
 
 module ALU(
+    input                       clk,rst_n,
     input       [4:0]           ALUctr,
     input       [`XLEN-1:0]     src1,
     input       [`XLEN-1:0]     src2,
     input                       DivEn,
     input       [2:0]           DivSel,
+    input                       flush_alu,
 
     output      [`XLEN-1:0]     ALUres,
-    output  reg                 less,
-    output                      zero
+    output                      aluNotOk
 );
 
 /*
@@ -26,6 +27,8 @@ ALUctr[3]|[2:0]
        x | 111:   and
 */
 
+reg                 less;
+// wire                zero;
 reg [`XLEN-1:0]     ALUout;
 wire                    cin;
 wire    [`XLEN-1:0]     src2_cin = src2 ^ {`XLEN{cin}};
@@ -49,7 +52,7 @@ Adder   Adder_main(
     .cin(cin),
     .Adder_o(Adder_o),
     .carry(carry),
-    .zero(zero),
+    // .zero(zero),
     .overflow(overflow)
 );
 
@@ -70,14 +73,59 @@ shifter64 shifter(
     .sft_a_l(sft_a_l), 
     .shift(shift)  
 );
+//lock src1&ssrc2 
+reg [63:0]  src1Reg,src2Reg;
+wire        diffIn;
+assign diffIn = ~(src1Reg == src1) || ~(src2Reg == src2);
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        src1Reg <= 'b0;
+        src2Reg <= 'b0;
+    end
+    else if(DivEn && diffIn) begin
+        src1Reg <= src1;
+        src2Reg <= src2;
+    end
+end
+wire mul_valid;
+assign mul_valid = diffIn && DivEn && ~DivSel[2];  //with diffIn, valid will only last for 1 cycle
+wire mul_resValid;
+mul_top Multiplier (
+  .clk          (clk ),
+  .rst_n        (rst_n ),
+  .mul_valid    (mul_valid ),
+  .flush        (flush_alu ),
+  .mul_type     (DivSel[1:0] ),
+  .multiplicand (src1 ),
+  .multiplier   (src2 ),
+  .out_valid    (mul_resValid ),
+  .result       (mulOut )
+);
+
+
+assign aluNotOk = DivEn && ~mul_resValid || DivEn && ~div_resValid;
 
 wire    [`XLEN-1:0]     DivOut;
-DIVIDER  divider(
-    .src1(src1),
-    .src2(src2),
-    .DivSel(DivSel),
-    .DivOut(DivOut)
+wire    [`XLEN-1:0]     mulOut;
+wire    [`XLEN-1:0]     divOut;
+wire div_valid;
+assign div_valid = diffIn && DivEn && DivSel[2];  //with diffIn, valid will only last for 1 cycle
+wire div_resValid;
+
+divTop divider(
+  .clk (clk ),
+  .rst_n (rst_n ),
+  .dividend (src1 ),
+  .divisor (src2 ),
+  .div_valid (div_valid ),
+  .div_type (DivSel[1:0] ),
+  .flush (flush_alu ),
+  .out_valid (div_resValid ),
+  .result (divOut )
 );
+
+assign DivOut = DivSel[2] ? divOut : mulOut;
+
 
 //Less
 // assign less = (u_s_mux)? carry^cin : ALUout[`XLEN-1]^overflow;
@@ -132,13 +180,13 @@ module Adder(
     input                       cin,
     output  reg [`XLEN-1:0]     Adder_o,
     output  reg                 carry,
-    output  reg                 zero,
+    // output  reg                 zero,
     output  reg                 overflow
 );
 always @(*) begin
     {carry,Adder_o} = src1 + src2 +{63'b000,cin};
     overflow = (src1[`XLEN-1] == src2[`XLEN-1]) && (Adder_o[`XLEN-1] != src1[`XLEN-1]);
-    zero = ~(|Adder_o);
+    // zero = ~(|Adder_o);
 end
 
 endmodule
@@ -242,13 +290,13 @@ always @(*) begin
                 DivOut = (src1 * src2);
         end
         `DivMulh: begin
-            DivOut = $signed(src1) * $signed(src2);
+            DivOut = ($signed(src1) * $signed(src2))>>64;
         end
         `DivMulhsu: begin
-            DivOut = $signed(src1) * $unsigned(src2);
+            DivOut = ($signed(src1) * $unsigned(src2))>>64;
         end
         `DivMulhu: begin
-            DivOut = $unsigned(src1) * $unsigned(src2);
+            DivOut = ($unsigned(src1) * $unsigned(src2))>>64;
         end
         `DivDiv: begin
                 DivOut = $signed(src1) / $signed(src2);

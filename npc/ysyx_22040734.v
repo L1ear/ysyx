@@ -217,8 +217,8 @@ module ysyx_22040734 (
 
     input                               io_master_arready,          
     output                              io_master_arvalid,    
-    output [31:0]         io_master_araddr,     
-    output [3:0]           io_master_arid,
+    output [31:0]                       io_master_araddr,     
+    output [3:0]                        io_master_arid,
     output [7:0]                        io_master_arlen,      
     output [2:0]                        io_master_arsize,     
     output [1:0]                        io_master_arburst,
@@ -226,140 +226,137 @@ module ysyx_22040734 (
     output                              io_master_rready,         
     input                               io_master_rvalid,         
     input  [1:0]                        io_master_rresp,
-    input  [63:0]         io_master_rdata,       
+    input  [63:0]                       io_master_rdata,       
     input                               io_master_rlast,
-    input  [3:0]           io_master_rid,
+    input  [3:0]                        io_master_rid,
 
     input                               io_master_awready,    
     output                              io_master_awvalid,    
-    output [31:0]         io_master_awaddr,      
-    output [3:0]           io_master_awid,
+    output [31:0]                       io_master_awaddr,      
+    output [3:0]                        io_master_awid,
     output [7:0]                        io_master_awlen,       
     output [2:0]                        io_master_awsize,
     output [1:0]                        io_master_awburst,
 
     input                               io_master_wready,             
     output                              io_master_wvalid,     
-    output [63:0]         io_master_wdata,       
-    output [7:0]       io_master_wstrb,       
+    output [63:0]                       io_master_wdata,       
+    output [7:0]                        io_master_wstrb,       
     output                              io_master_wlast,
         
     output                              io_master_bready,             
     input                               io_master_bvalid,     
     input  [1:0]                        io_master_bresp,              
-    input  [3:0]           io_master_bid,
+    input  [3:0]                        io_master_bid,
 
     output                              io_slave_awready,
     input                               io_slave_awvalid,
-    input [3:0]                          io_slave_awid,  
-    input   [31:0]                         io_slave_awaddr ,
-    input   [7:0]                          io_slave_awlen  ,
-    input   [2:0]                          io_slave_awsize ,
-    input   [1:0]                          io_slave_awburst,
+    input [3:0]                         io_slave_awid,  
+    input   [31:0]                      io_slave_awaddr ,
+    input   [7:0]                       io_slave_awlen  ,
+    input   [2:0]                       io_slave_awsize ,
+    input   [1:0]                       io_slave_awburst,
     output                              io_slave_wready ,
     input                               io_slave_wvalid ,
-    input [63:0]                         io_slave_wdata  ,
-    input [7:0]                          io_slave_wstrb  ,
+    input [63:0]                        io_slave_wdata  ,
+    input [7:0]                         io_slave_wstrb  ,
     input                               io_slave_wlast  ,
     input                               io_slave_bready ,
     output                              io_slave_bvalid,
-    output [3:0]                         io_slave_bid ,
-    output [1:0]                         io_slave_bresp,
+    output [3:0]                        io_slave_bid ,
+    output [1:0]                        io_slave_bresp,
     output                              io_slave_arready,
     input                               io_slave_arvalid,
-    input [3:0]                          io_slave_arid   ,
-    input [31:0]                         io_slave_araddr ,
-    input [7:0]                          io_slave_arlen ,
-    input [2:0]                          io_slave_arsize ,
-    input [1:0]                          io_slave_arburst,
+    input [3:0]                         io_slave_arid   ,
+    input [31:0]                        io_slave_araddr ,
+    input [7:0]                         io_slave_arlen ,
+    input [2:0]                         io_slave_arsize ,
+    input [1:0]                         io_slave_arburst,
     input                               io_slave_rready ,
     output                              io_slave_rvalid ,
-    output [3:0]                         io_slave_rid    ,
-    output [1:0]                         io_slave_rresp  ,
-    output [63:0]                        io_slave_rdata  ,
+    output [3:0]                        io_slave_rid    ,
+    output [1:0]                        io_slave_rresp  ,
+    output [63:0]                       io_slave_rdata  ,
     output                              io_slave_rlast  ,
 
 
-    output  [5:0]                         io_sram0_addr,    
+    output  [5:0]                       io_sram0_addr,    
     output                              io_sram0_cen,     
     output                              io_sram0_wen,     
-    output [127:0]                       io_sram0_wmask,   
-    output [127:0]                       io_sram0_wdata,   
-    input [127:0]                        io_sram0_rdata,   
+    output [127:0]                      io_sram0_wmask,   
+    output [127:0]                      io_sram0_wdata,   
+    input [127:0]                       io_sram0_rdata,   
 
-    output [5:0]                         io_sram1_addr,    
+    output [5:0]                        io_sram1_addr,    
     output                              io_sram1_cen,     
     output                              io_sram1_wen,     
-    output [127:0]                       io_sram1_wmask,   
-    output [127:0]                       io_sram1_wdata,   
-    input [127:0]                        io_sram1_rdata,  
+    output [127:0]                      io_sram1_wmask,   
+    output [127:0]                      io_sram1_wdata,   
+    input [127:0]                       io_sram1_rdata,  
 
-    output [5:0]                         io_sram2_addr,    
+    output [5:0]                        io_sram2_addr,    
     output                              io_sram2_cen,     
     output                              io_sram2_wen,     
-    output [127:0]                       io_sram2_wmask,   
-    output [127:0]                       io_sram2_wdata,   
-    input [127:0]                        io_sram2_rdata,  
+    output [127:0]                      io_sram2_wmask,   
+    output [127:0]                      io_sram2_wdata,   
+    input [127:0]                       io_sram2_rdata,  
 
-    output [5:0]                         io_sram3_addr,    
+    output [5:0]                        io_sram3_addr,    
     output                              io_sram3_cen,     
     output                              io_sram3_wen,     
-    output [127:0]                       io_sram3_wmask,   
-    output [127:0]                       io_sram3_wdata,   
-    input [127:0]                        io_sram3_rdata,  
+    output [127:0]                      io_sram3_wmask,   
+    output [127:0]                      io_sram3_wdata,   
+    input [127:0]                       io_sram3_rdata,  
 
-    output [5:0]                         io_sram4_addr,    
+    output [5:0]                        io_sram4_addr,    
     output                              io_sram4_cen,     
     output                              io_sram4_wen,     
-    output [127:0]                       io_sram4_wmask,   
-    output [127:0]                       io_sram4_wdata,   
-    input [127:0]                        io_sram4_rdata, 
+    output [127:0]                      io_sram4_wmask,   
+    output [127:0]                      io_sram4_wdata,   
+    input [127:0]                       io_sram4_rdata, 
 
-    output [5:0]                         io_sram5_addr,    
+    output [5:0]                        io_sram5_addr,    
     output                              io_sram5_cen,     
     output                              io_sram5_wen,     
-    output [127:0]                       io_sram5_wmask,   
-    output [127:0]                       io_sram5_wdata,   
-    input [127:0]                        io_sram5_rdata,   
+    output [127:0]                      io_sram5_wmask,   
+    output [127:0]                      io_sram5_wdata,   
+    input [127:0]                       io_sram5_rdata,   
 
-    output [5:0]                         io_sram6_addr,    
+    output [5:0]                        io_sram6_addr,    
     output                              io_sram6_cen,     
     output                              io_sram6_wen,     
-    output  [127:0]                       io_sram6_wmask,   
-    output  [127:0]                       io_sram6_wdata,   
-    input [127:0]                        io_sram6_rdata,  
+    output  [127:0]                     io_sram6_wmask,   
+    output  [127:0]                     io_sram6_wdata,   
+    input [127:0]                       io_sram6_rdata,  
 
-    output [5:0]                         io_sram7_addr,    
+    output [5:0]                        io_sram7_addr,    
     output                              io_sram7_cen,     
     output                              io_sram7_wen,     
-    output [127:0]                       io_sram7_wmask,   
-    output [127:0]                       io_sram7_wdata,   
-    input [127:0]                        io_sram7_rdata   
+    output [127:0]                      io_sram7_wmask,   
+    output [127:0]                      io_sram7_wdata,   
+    input [127:0]                       io_sram7_rdata   
 
 );
-localparam  RW_DATA_WIDTH     = 64;
-localparam  RW_ADDR_WIDTH     = 64;
 localparam  AXI_DATA_WIDTH    = 64;
-localparam  AXI_ADDR_WIDTH    = 64;
+localparam  AXI_ADDR_WIDTH    = 32;
 localparam  AXI_ID_WIDTH      = 4;
-localparam  AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8;
-localparam  AXI_USER_WIDTH    = 1;
+// localparam  AXI_USER_WIDTH    = 1;
 wire clk = clock;
 wire rst_n = ~reset;
 
 wire                              axi_ar_ready_i = io_master_arready;     //lite              
 wire                              axi_ar_valid_o;     //lite
 wire [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o;      //lite
-wire [2:0]                        axi_ar_prot_o;
+// wire [2:0]                        axi_ar_prot_o;
 wire [AXI_ID_WIDTH-1:0]           axi_ar_id_o;
-wire [AXI_USER_WIDTH-1:0]         axi_ar_user_o;
+// wire [AXI_USER_WIDTH-1:0]         axi_ar_user_o;
 wire [7:0]                        axi_ar_len_o;       //lite
 wire [2:0]                        axi_ar_size_o;      //lite
 wire [1:0]                        axi_ar_burst_o;
-wire                              axi_ar_lock_o;
-wire [3:0]                        axi_ar_cache_o;
-wire [3:0]                        axi_ar_qos_o;
-wire [3:0]                        axi_ar_region_o;
+// wire                              axi_ar_lock_o;
+// wire [3:0]                        axi_ar_cache_o;
+// wire [3:0]                        axi_ar_qos_o;
+// wire [3:0]                        axi_ar_region_o;
 
 wire                              axi_r_ready_o;      //lite            
 wire                              axi_r_valid_i = io_master_rvalid;      //lite            
@@ -367,33 +364,33 @@ wire [1:0]                        axi_r_resp_i = io_master_rresp;
 wire [AXI_DATA_WIDTH-1:0]         axi_r_data_i = io_master_rdata;       //lite
 wire                              axi_r_last_i = io_master_rlast;
 wire [AXI_ID_WIDTH-1:0]           axi_r_id_i = io_master_rid;
-wire [AXI_USER_WIDTH-1:0]         axi_r_user_i = 'b0;
+// wire [AXI_USER_WIDTH-1:0]         axi_r_user_i = 'b0;
 
 wire                              axi_aw_ready_i = io_master_awready;     //lite        
 wire                              axi_aw_valid_o;     //lite
 wire [AXI_ADDR_WIDTH-1:0]         axi_aw_addr_o;      //lite
-wire [2:0]                        axi_aw_prot_o;
+// wire [2:0]                        axi_aw_prot_o;
 wire [AXI_ID_WIDTH-1:0]           axi_aw_id_o;
-wire [AXI_USER_WIDTH-1:0]         axi_aw_user_o;
+// wire [AXI_USER_WIDTH-1:0]         axi_aw_user_o;
 wire [7:0]                        axi_aw_len_o;       
 wire [2:0]                        axi_aw_size_o;
 wire [1:0]                        axi_aw_burst_o;
-wire                              axi_aw_lock_o;
-wire [3:0]                        axi_aw_cache_o;
-wire [3:0]                        axi_aw_qos_o;
-wire [3:0]                        axi_aw_region_o;
+// wire                              axi_aw_lock_o;
+// wire [3:0]                        axi_aw_cache_o;
+// wire [3:0]                        axi_aw_qos_o;
+// wire [3:0]                        axi_aw_region_o;
 wire                              axi_w_ready_i = io_master_wready;      //lite        
 wire                              axi_w_valid_o;      //lite
 wire [AXI_DATA_WIDTH-1:0]         axi_w_data_o;       //lite
 wire [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o;       //lite
 wire                              axi_w_last_o;
-wire [AXI_USER_WIDTH-1:0]         axi_w_user_o;
+// wire [AXI_USER_WIDTH-1:0]         axi_w_user_o;
 
 wire                              axi_b_ready_o;      //lite        
 wire                              axi_b_valid_i = io_master_bvalid;      //lite
 wire [1:0]                        axi_b_resp_i = io_master_bresp;       //lite        
 wire [AXI_ID_WIDTH-1:0]           axi_b_id_i = io_master_bid;
-wire [AXI_USER_WIDTH-1:0]         axi_b_user_i = 'b0;
+// wire [AXI_USER_WIDTH-1:0]         axi_b_user_i = 'b0;
 
 assign io_master_arvalid =        axi_ar_valid_o;     //lite
 assign io_master_araddr =         axi_ar_addr_o[31:0];      //lite
@@ -435,84 +432,83 @@ wire                              instr_fetching;
 wire                              if_axi_ar_ready_i;     //lite              
 wire                              if_axi_ar_valid_o;     //lite
 wire [AXI_ADDR_WIDTH-1:0]         if_axi_ar_addr_o;      //lite
-wire [2:0]                        if_axi_ar_prot_o;
+// wire [2:0]                        if_axi_ar_prot_o;
 wire [AXI_ID_WIDTH-1:0]           if_axi_ar_id_o;
-wire [AXI_USER_WIDTH-1:0]         if_axi_ar_user_o;
+// wire [AXI_USER_WIDTH-1:0]         if_axi_ar_user_o;
 wire [7:0]                        if_axi_ar_len_o;       //lite
 wire [2:0]                        if_axi_ar_size_o;      //lite
 wire [1:0]                        if_axi_ar_burst_o;
-wire                              if_axi_ar_lock_o;
-wire [3:0]                        if_axi_ar_cache_o;
-wire [3:0]                        if_axi_ar_qos_o;
-wire [3:0]                        if_axi_ar_region_o;
+// wire                              if_axi_ar_lock_o;
+// wire [3:0]                        if_axi_ar_cache_o;
+// wire [3:0]                        if_axi_ar_qos_o;
+// wire [3:0]                        if_axi_ar_region_o;
 wire                              if_axi_r_ready_o;      //lite            
 wire                              if_axi_r_valid_i;      //lite            
 wire [1:0]                        if_axi_r_resp_i;
 wire [AXI_DATA_WIDTH-1:0]         if_axi_r_data_i;       //lite
 wire                              if_axi_r_last_i;
 wire [AXI_ID_WIDTH-1:0]           if_axi_r_id_i;
-wire [AXI_USER_WIDTH-1:0]         if_axi_r_user_i;
+// wire [AXI_USER_WIDTH-1:0]         if_axi_r_user_i;
 
 wire                              ls_axi_aw_ready_i;     //lite         
 wire                              ls_axi_aw_valid_o;     //lite
 wire [AXI_ADDR_WIDTH-1:0]         ls_axi_aw_addr_o;      //lite
-wire [2:0]                        ls_axi_aw_prot_o;
+// wire [2:0]                        ls_axi_aw_prot_o;
 wire [AXI_ID_WIDTH-1:0]           ls_axi_aw_id_o;
-wire [AXI_USER_WIDTH-1:0]         ls_axi_aw_user_o;
+// wire [AXI_USER_WIDTH-1:0]         ls_axi_aw_user_o;
 wire [7:0]                        ls_axi_aw_len_o;       
 wire [2:0]                        ls_axi_aw_size_o;
 wire [1:0]                        ls_axi_aw_burst_o;
-wire                              ls_axi_aw_lock_o;
-wire [3:0]                        ls_axi_aw_cache_o;
-wire [3:0]                        ls_axi_aw_qos_o;
-wire [3:0]                        ls_axi_aw_region_o;
+// wire                              ls_axi_aw_lock_o;
+// wire [3:0]                        ls_axi_aw_cache_o;
+// wire [3:0]                        ls_axi_aw_qos_o;
+// wire [3:0]                        ls_axi_aw_region_o;
 wire                              ls_axi_w_ready_i;      //lite              
 wire                              ls_axi_w_valid_o;      //lite
 wire [AXI_DATA_WIDTH-1:0]         ls_axi_w_data_o;       //lite
 wire [AXI_DATA_WIDTH/8-1:0]       ls_axi_w_strb_o;       //lite
 wire                              ls_axi_w_last_o;       //lite
-wire [AXI_USER_WIDTH-1:0]         ls_axi_w_user_o;
+// wire [AXI_USER_WIDTH-1:0]         ls_axi_w_user_o;
 wire                              ls_axi_b_ready_o;      //lite           
 wire                              ls_axi_b_valid_i;      //lite
 wire [1:0]                        ls_axi_b_resp_i;       //lite            
 wire [AXI_ID_WIDTH-1:0]           ls_axi_b_id_i;
-wire [AXI_USER_WIDTH-1:0]         ls_axi_b_user_i;
+// wire [AXI_USER_WIDTH-1:0]         ls_axi_b_user_i;
 wire                              ls_axi_ar_ready_i;     //lite              
 wire                              ls_axi_ar_valid_o;     //lite
 wire [AXI_ADDR_WIDTH-1:0]         ls_axi_ar_addr_o;      //lite
-wire [2:0]                        ls_axi_ar_prot_o;
+// wire [2:0]                        ls_axi_ar_prot_o;
 wire [AXI_ID_WIDTH-1:0]           ls_axi_ar_id_o;
-wire [AXI_USER_WIDTH-1:0]         ls_axi_ar_user_o;
+// wire [AXI_USER_WIDTH-1:0]         ls_axi_ar_user_o;
 wire [7:0]                        ls_axi_ar_len_o;       //lite
 wire [2:0]                        ls_axi_ar_size_o;      //lite
 wire [1:0]                        ls_axi_ar_burst_o;
-wire                              ls_axi_ar_lock_o;
-wire [3:0]                        ls_axi_ar_cache_o;
-wire [3:0]                        ls_axi_ar_qos_o;
-wire [3:0]                        ls_axi_ar_region_o;
+// wire                              ls_axi_ar_lock_o;
+// wire [3:0]                        ls_axi_ar_cache_o;
+// wire [3:0]                        ls_axi_ar_qos_o;
+// wire [3:0]                        ls_axi_ar_region_o;
 wire                              ls_axi_r_ready_o;      //lite            
 wire                              ls_axi_r_valid_i;      //lite            
 wire [1:0]                        ls_axi_r_resp_i;
 wire [AXI_DATA_WIDTH-1:0]         ls_axi_r_data_i;       //lite
 wire                              ls_axi_r_last_i;
 wire [AXI_ID_WIDTH-1:0]           ls_axi_r_id_i;
-wire [AXI_USER_WIDTH-1:0]         ls_axi_r_user_i;
+// wire [AXI_USER_WIDTH-1:0]         ls_axi_r_user_i;
 
 //if signal
-wire    [`XLEN-1:0]     pc_next;
 wire    [`XLEN-1:0]     pc_new;
 wire                    is_jump;
 wire    [`XLEN-1:0]     pc_jump;
-wire                    pc_stall_n;
+// wire                    pc_stall_n;
 wire                    if_stall_n;
 wire                    if_instr_valid;
 
 wire    [`XLEN-1:0]     sram_rdata;
-wire    [`XLEN-1:0]     sram_addr;
-wire                    sram_ren;
+wire    [32-1:0]     sram_addr;
+// wire                    sram_ren;
 wire                    sram_addr_valid;
 wire                    cacheAddrOk_i;
-wire                    cacheDataOk_i;
+wire                    cacheDataNotOk_i;
 
 //id signal-----------------------------------------------------
 wire    [`inst_len-1:0] instr_if_id_reg;
@@ -568,19 +564,19 @@ wire    [`XLEN-1:0]     csr_mtvec,csr_mepc;
 wire                    trap_ls;
 wire                    ls_stall_n;
 wire                    ls_not_ok;
-wire    [`XLEN-1:0]     ls_sram_addr;           
+// wire    [`XLEN-1:0]     ls_sram_addr;           
 wire                    ls_sram_rd_en;          
 wire                    ls_sram_wr_en;          
 wire    [`XLEN-1:0]     ls_sram_wr_data;        
 wire    [7      :0]     ls_sram_wr_mask;        
-wire                    ls_sram_rd_data_valid;  
-wire                    ls_sram_wr_data_ok;     
+// wire                    ls_sram_rd_data_valid;  
+// wire                    ls_sram_wr_data_ok;     
 wire    [`XLEN-1:0]     ls_sram_rd_data;  
 wire    [2      :0]     ls_sram_wr_size;
 wire    [2      :0]     ls_sram_rd_size;      
 
 //wb signal------------------------------------------------------
-wire    [`XLEN-1:0]     pc_wb,alures_wb,lsres_wb;  
+wire    [`XLEN-1:0]     alures_wb,lsres_wb;  
 wire    [`inst_len-1:0] instr_wb;
 wire    [`XLEN-1:0]     wb_data;
 wire    [4      :0]     wb_rdid;
@@ -594,20 +590,20 @@ wire                    wb_stall_n;
 // assign  pc_decoding = pc_id;
 // assign  instr_diff = instr_wb;
 // assign  stall_n_diff = wb_stall_n;
-wire [63 : 0]                         clint_axi_araddr;
-wire [2 : 0]                          clint_axi_arprot;
+wire [AXI_ADDR_WIDTH-1: 0]            clint_axi_araddr;
+// wire [2 : 0]                          clint_axi_arprot;
 wire                                  clint_axi_arvalid;
 wire                                  clint_axi_arready;
-wire [2:0]                            clint_axi_arsize;
+// wire [2:0]                            clint_axi_arsize;
 
 wire  [63 : 0]                        clint_axi_rdata;
 wire  [1 : 0]                         clint_axi_rresp;
 wire                                  clint_axi_rvalid;
 wire                                  clint_axi_rready;   
 
-wire [2:0]                            clint_axi_awsize;
-wire [63 : 0]                         clint_axi_awaddr;
-wire [2 : 0]                          clint_axi_awprot;
+// wire [2:0]                            clint_axi_awsize;
+wire [AXI_ADDR_WIDTH-1 : 0]           clint_axi_awaddr;
+// wire [2 : 0]                          clint_axi_awprot;
 wire                                  clint_axi_awvalid;
 wire                                  clint_axi_awready;
 
@@ -625,16 +621,16 @@ axi_arbiter axi_arbiter_u(
     .if_axi_ar_ready_o  (if_axi_ar_ready_i ),     //lite              
     .if_axi_ar_valid_i  (if_axi_ar_valid_o ),     //lite
     .if_axi_ar_addr_i   (if_axi_ar_addr_o  ),      //lite
-    .if_axi_ar_prot_i   (if_axi_ar_prot_o  ),
+    // .if_axi_ar_prot_i   (if_axi_ar_prot_o  ),
     .if_axi_ar_id_i     (if_axi_ar_id_o    ),
-    .if_axi_ar_user_i   (if_axi_ar_user_o  ),
+    // .if_axi_ar_user_i   (if_axi_ar_user_o  ),
     .if_axi_ar_len_i    (if_axi_ar_len_o   ),       //lite
     .if_axi_ar_size_i   (if_axi_ar_size_o  ),      //lite
     .if_axi_ar_burst_i  (if_axi_ar_burst_o ),
-    .if_axi_ar_lock_i   (if_axi_ar_lock_o  ),
-    .if_axi_ar_cache_i  (if_axi_ar_cache_o ),
-    .if_axi_ar_qos_i    (if_axi_ar_qos_o   ),
-    .if_axi_ar_region_i (if_axi_ar_region_o),
+    // .if_axi_ar_lock_i   (if_axi_ar_lock_o  ),
+    // .if_axi_ar_cache_i  (if_axi_ar_cache_o ),
+    // .if_axi_ar_qos_i    (if_axi_ar_qos_o   ),
+    // .if_axi_ar_region_i (if_axi_ar_region_o),
 
     .if_axi_r_ready_i   (if_axi_r_ready_o  ),      //lite            
     .if_axi_r_valid_o   (if_axi_r_valid_i  ),      //lite            
@@ -642,48 +638,48 @@ axi_arbiter axi_arbiter_u(
     .if_axi_r_data_o    (if_axi_r_data_i   ),       //lite
     .if_axi_r_last_o    (if_axi_r_last_i   ),
     .if_axi_r_id_o      (if_axi_r_id_i     ),
-    .if_axi_r_user_o    (if_axi_r_user_i   ),
+    // .if_axi_r_user_o    (if_axi_r_user_i   ),
 //ls interface  id: 1
     .ls_axi_aw_ready_o  (ls_axi_aw_ready_i ),     //lite         
     .ls_axi_aw_valid_i  (ls_axi_aw_valid_o ),     //lite
     .ls_axi_aw_addr_i   (ls_axi_aw_addr_o  ),      //lite
-    .ls_axi_aw_prot_i   (ls_axi_aw_prot_o  ),
+    // .ls_axi_aw_prot_i   (ls_axi_aw_prot_o  ),
     .ls_axi_aw_id_i     (ls_axi_aw_id_o    ),
-    .ls_axi_aw_user_i   (ls_axi_aw_user_o  ),
+    // .ls_axi_aw_user_i   (ls_axi_aw_user_o  ),
     .ls_axi_aw_len_i    (ls_axi_aw_len_o   ),       
     .ls_axi_aw_size_i   (ls_axi_aw_size_o  ),
     .ls_axi_aw_burst_i  (ls_axi_aw_burst_o ),
-    .ls_axi_aw_lock_i   (ls_axi_aw_lock_o  ),
-    .ls_axi_aw_cache_i  (ls_axi_aw_cache_o ),
-    .ls_axi_aw_qos_i    (ls_axi_aw_qos_o   ),
-    .ls_axi_aw_region_i (ls_axi_aw_region_o),
+    // .ls_axi_aw_lock_i   (ls_axi_aw_lock_o  ),
+    // .ls_axi_aw_cache_i  (ls_axi_aw_cache_o ),
+    // .ls_axi_aw_qos_i    (ls_axi_aw_qos_o   ),
+    // .ls_axi_aw_region_i (ls_axi_aw_region_o),
 
     .ls_axi_w_ready_o   (ls_axi_w_ready_i  ),      //lite              
     .ls_axi_w_valid_i   (ls_axi_w_valid_o  ),      //lite
     .ls_axi_w_data_i    (ls_axi_w_data_o   ),       //lite
     .ls_axi_w_strb_i    (ls_axi_w_strb_o   ),       //lite
     .ls_axi_w_last_i    (ls_axi_w_last_o   ),       //lite
-    .ls_axi_w_user_i    (ls_axi_w_user_o   ),
+    // .ls_axi_w_user_i    (ls_axi_w_user_o   ),
 
     .ls_axi_b_ready_i   (ls_axi_b_ready_o  ),      //lite           
     .ls_axi_b_valid_o   (ls_axi_b_valid_i  ),      //lite
     .ls_axi_b_resp_o    (ls_axi_b_resp_i   ),       //lite            
     .ls_axi_b_id_o      (ls_axi_b_id_i     ),
-    .ls_axi_b_user_o    (ls_axi_b_user_i   ),
+    // .ls_axi_b_user_o    (ls_axi_b_user_i   ),
 
     .ls_axi_ar_ready_o  (ls_axi_ar_ready_i ),     //lite              
     .ls_axi_ar_valid_i  (ls_axi_ar_valid_o ),     //lite
     .ls_axi_ar_addr_i   (ls_axi_ar_addr_o  ),      //lite
-    .ls_axi_ar_prot_i   (ls_axi_ar_prot_o  ),
+    // .ls_axi_ar_prot_i   (ls_axi_ar_prot_o  ),
     .ls_axi_ar_id_i     (ls_axi_ar_id_o    ),
-    .ls_axi_ar_user_i   (ls_axi_ar_user_o  ),
+    // .ls_axi_ar_user_i   (ls_axi_ar_user_o  ),
     .ls_axi_ar_len_i    (ls_axi_ar_len_o   ),       //lite
     .ls_axi_ar_size_i   (ls_axi_ar_size_o  ),      //lite
     .ls_axi_ar_burst_i  (ls_axi_ar_burst_o ),
-    .ls_axi_ar_lock_i   (ls_axi_ar_lock_o  ),
-    .ls_axi_ar_cache_i  (ls_axi_ar_cache_o ),
-    .ls_axi_ar_qos_i    (ls_axi_ar_qos_o   ),
-    .ls_axi_ar_region_i (ls_axi_ar_region_o),
+    // .ls_axi_ar_lock_i   (ls_axi_ar_lock_o  ),
+    // .ls_axi_ar_cache_i  (ls_axi_ar_cache_o ),
+    // .ls_axi_ar_qos_i    (ls_axi_ar_qos_o   ),
+    // .ls_axi_ar_region_i (ls_axi_ar_region_o),
 
     .ls_axi_r_ready_i   (ls_axi_r_ready_o  ),      //lite            
     .ls_axi_r_valid_o   (ls_axi_r_valid_i  ),      //lite            
@@ -691,70 +687,70 @@ axi_arbiter axi_arbiter_u(
     .ls_axi_r_data_o    (ls_axi_r_data_i   ),       //lite
     .ls_axi_r_last_o    (ls_axi_r_last_i   ),
     .ls_axi_r_id_o      (ls_axi_r_id_i     ),
-    .ls_axi_r_user_o    (ls_axi_r_user_i   ),
+    // .ls_axi_r_user_o    (ls_axi_r_user_i   ),
 //mem
-    .axi_aw_ready_i     (axi_aw_ready_i    ),     //lite         
-    .axi_aw_valid_o     (axi_aw_valid_o    ),     //lite
-    .axi_aw_addr_o      (axi_aw_addr_o     ),      //lite
-    .axi_aw_prot_o      (axi_aw_prot_o     ),
+    .axi_aw_ready_i     (axi_aw_ready_i    ),             
+    .axi_aw_valid_o     (axi_aw_valid_o    ),     
+    .axi_aw_addr_o      (axi_aw_addr_o     ),     
+    // .axi_aw_prot_o      (axi_aw_prot_o     ),//
     .axi_aw_id_o        (axi_aw_id_o       ),
-    .axi_aw_user_o      (axi_aw_user_o     ),
+    // .axi_aw_user_o      (axi_aw_user_o     ),//
     .axi_aw_len_o       (axi_aw_len_o      ),       
     .axi_aw_size_o      (axi_aw_size_o     ),
     .axi_aw_burst_o     (axi_aw_burst_o    ),
-    .axi_aw_lock_o      (axi_aw_lock_o     ),
-    .axi_aw_cache_o     (axi_aw_cache_o    ),
-    .axi_aw_qos_o       (axi_aw_qos_o      ),
-    .axi_aw_region_o    (axi_aw_region_o   ),
+    // .axi_aw_lock_o      (axi_aw_lock_o     ),//
+    // .axi_aw_cache_o     (axi_aw_cache_o    ),//
+    // .axi_aw_qos_o       (axi_aw_qos_o      ),//
+    // .axi_aw_region_o    (axi_aw_region_o   ),//
 
-    .axi_w_ready_i      (axi_w_ready_i     ),      //lite              
-    .axi_w_valid_o      (axi_w_valid_o     ),      //lite
-    .axi_w_data_o       (axi_w_data_o      ),       //lite
-    .axi_w_strb_o       (axi_w_strb_o      ),       //lite
-    .axi_w_last_o       (axi_w_last_o      ),       //lite
-    .axi_w_user_o       (axi_w_user_o      ),
+    .axi_w_ready_i      (axi_w_ready_i     ),                
+    .axi_w_valid_o      (axi_w_valid_o     ),   
+    .axi_w_data_o       (axi_w_data_o      ),   
+    .axi_w_strb_o       (axi_w_strb_o      ),   
+    .axi_w_last_o       (axi_w_last_o      ),   
+    // .axi_w_user_o       (axi_w_user_o      ),//
     
-    .axi_b_ready_o      (axi_b_ready_o),      //lite           
-    .axi_b_valid_i      (axi_b_valid_i),      //lite
-    .axi_b_resp_i       (axi_b_resp_i ),       //lite            
+    .axi_b_ready_o      (axi_b_ready_o),             
+    .axi_b_valid_i      (axi_b_valid_i),    
+    .axi_b_resp_i       (axi_b_resp_i ),               
     .axi_b_id_i         (axi_b_id_i   ),
-    .axi_b_user_i       (axi_b_user_i ),
+    // .axi_b_user_i       (axi_b_user_i ),//
 
-    .axi_ar_ready_i     (axi_ar_ready_i  ),     //lite              
-    .axi_ar_valid_o     (axi_ar_valid_o  ),     //lite
-    .axi_ar_addr_o      (axi_ar_addr_o   ),      //lite
-    .axi_ar_prot_o      (axi_ar_prot_o   ),
+    .axi_ar_ready_i     (axi_ar_ready_i  ),                
+    .axi_ar_valid_o     (axi_ar_valid_o  ),   
+    .axi_ar_addr_o      (axi_ar_addr_o   ),   
+    // .axi_ar_prot_o      (axi_ar_prot_o   ),//
     .axi_ar_id_o        (axi_ar_id_o     ),
-    .axi_ar_user_o      (axi_ar_user_o   ),
-    .axi_ar_len_o       (axi_ar_len_o    ),       //lite
-    .axi_ar_size_o      (axi_ar_size_o   ),      //lite
+    // .axi_ar_user_o      (axi_ar_user_o   ),//
+    .axi_ar_len_o       (axi_ar_len_o    ),      
+    .axi_ar_size_o      (axi_ar_size_o   ),      
     .axi_ar_burst_o     (axi_ar_burst_o  ),
-    .axi_ar_lock_o      (axi_ar_lock_o   ),
-    .axi_ar_cache_o     (axi_ar_cache_o  ),
-    .axi_ar_qos_o       (axi_ar_qos_o    ),
-    .axi_ar_region_o    (axi_ar_region_o ),
+    // .axi_ar_lock_o      (axi_ar_lock_o   ),//
+    // .axi_ar_cache_o     (axi_ar_cache_o  ),//
+    // .axi_ar_qos_o       (axi_ar_qos_o    ),//
+    // .axi_ar_region_o    (axi_ar_region_o ),//
     
-    .axi_r_ready_o      (axi_r_ready_o ),      //lite            
-    .axi_r_valid_i      (axi_r_valid_i ),      //lite            
+    .axi_r_ready_o      (axi_r_ready_o ),          
+    .axi_r_valid_i      (axi_r_valid_i ),               
     .axi_r_resp_i       (axi_r_resp_i  ),
-    .axi_r_data_i       (axi_r_data_i  ),       //lite
+    .axi_r_data_i       (axi_r_data_i  ),    
     .axi_r_last_i       (axi_r_last_i  ),
     .axi_r_id_i         (axi_r_id_i    ),
-    .axi_r_user_i       (axi_r_user_i  ),
+    // .axi_r_user_i       (axi_r_user_i  ),//
     .clint_axi_araddr   (clint_axi_araddr ),
-    .clint_axi_arprot   (clint_axi_arprot ),
+    // .clint_axi_arprot   (clint_axi_arprot ),
     .clint_axi_arvalid  (clint_axi_arvalid),
     .clint_axi_arready  (clint_axi_arready),
-    .clint_axi_arsize   (clint_axi_arsize ),
+    // .clint_axi_arsize   (clint_axi_arsize ),
 
     .clint_axi_rdata    (clint_axi_rdata ),
     .clint_axi_rresp    (clint_axi_rresp ),
     .clint_axi_rvalid   (clint_axi_rvalid),
     .clint_axi_rready   (clint_axi_rready),   
 
-    .clint_axi_awsize   (clint_axi_awsize ),
+    // .clint_axi_awsize   (clint_axi_awsize ),
     .clint_axi_awaddr   (clint_axi_awaddr ),
-    .clint_axi_awprot   (clint_axi_awprot ),
+    // .clint_axi_awprot   (clint_axi_awprot ),
     .clint_axi_awvalid  (clint_axi_awvalid),
     .clint_axi_awready  (clint_axi_awready),
 
@@ -785,9 +781,9 @@ IF_stage IF_u(
     .if_instr_valid (if_instr_valid),
     .sram_rdata     (sram_rdata),
     .cacheAddrOk_i  (cacheAddrOk_i),
-    .cacheDataOk_i  (cacheDataOk_i),
+    .cacheDataNotOk_i  (cacheDataNotOk_i),
     .sram_addr      (sram_addr),
-    .sram_ren       (sram_ren),
+    // .sram_ren       (sram_ren),
     .sram_addr_valid(sram_addr_valid)
 );
 
@@ -801,11 +797,11 @@ Icache cache_dut (
   .valid_i (sram_addr_valid ),
   .stall_n (if_stall_n),
   .op_i (0 ),
-  .wr_data_i (0 ),
-  .wr_mask_i (0 ),
+//   .wr_data_i (0 ),
+//   .wr_mask_i (0 ),
   .addr_ok_o (cacheAddrOk_i ),
   .data_ok_o (unused1 ),
-  .data_notok_o(cacheDataOk_i),
+  .data_notok_o(cacheDataNotOk_i),
   .rd_data_o (sram_rdata ),
   .clrValid     (clear_Icache),
 //to AXI
@@ -855,7 +851,7 @@ axi_icache axi_icache_dut (
   .rw_valid_i (rw_valid_i ),
   .rw_ready_o (rw_ready_o ),
   .data_read_o (data_read_o ),
-  .rw_addr_i ({32'b0,rw_addr_i} ),
+  .rw_addr_i (rw_addr_i ),
   .fetchLenth (fetchLenth ),
   .rdLast_o (rdLast_o ),
   .dataValid_o (dataValid_o ),
@@ -865,24 +861,24 @@ axi_icache axi_icache_dut (
   .axi_ar_ready_i (if_axi_ar_ready_i ),
   .axi_ar_valid_o (if_axi_ar_valid_o ),
   .axi_ar_addr_o (if_axi_ar_addr_o ),
-  .axi_ar_prot_o (if_axi_ar_prot_o ),
+//   .axi_ar_prot_o (if_axi_ar_prot_o ),
   .axi_ar_id_o (if_axi_ar_id_o ),
-  .axi_ar_user_o (if_axi_ar_user_o ),
+//   .axi_ar_user_o (if_axi_ar_user_o ),
   .axi_ar_len_o (if_axi_ar_len_o ),
   .axi_ar_size_o (if_axi_ar_size_o ),
   .axi_ar_burst_o (if_axi_ar_burst_o ),
-  .axi_ar_lock_o (if_axi_ar_lock_o ),
-  .axi_ar_cache_o (if_axi_ar_cache_o ),
-  .axi_ar_qos_o (if_axi_ar_qos_o ),
-  .axi_ar_region_o (if_axi_ar_region_o ),
+//   .axi_ar_lock_o (if_axi_ar_lock_o ),
+//   .axi_ar_cache_o (if_axi_ar_cache_o ),
+//   .axi_ar_qos_o (if_axi_ar_qos_o ),
+//   .axi_ar_region_o (if_axi_ar_region_o ),
 
   .axi_r_ready_o (if_axi_r_ready_o ),
   .axi_r_valid_i (if_axi_r_valid_i ),
   .axi_r_resp_i (if_axi_r_resp_i ),
   .axi_r_data_i (if_axi_r_data_i ),
   .axi_r_last_i (if_axi_r_last_i ),
-  .axi_r_id_i (if_axi_r_id_i ),
-  .axi_r_user_i  ( if_axi_r_user_i)
+  .axi_r_id_i (if_axi_r_id_i )
+//   .axi_r_user_i  ( if_axi_r_user_i)
 );
 
 
@@ -903,13 +899,11 @@ wire fence_id,fence_ex;
 ID_stage ID_u(
     .clk            (clk),
     .rst_n          (rst_n),
-    .pc_i           (pc_id),
+    // .pc_i           (pc_id),
     .instr_i        (instr_id),
     .wb_data_i      (wb_data),
     .wb_rdid_i      (wb_rdid),
     .wb_wren_i      (wben_wb), 
-    .pc_wb_i        (pc_wb),
-    .instr_wb_i     (instr_wb),
     .DivEn          (DivEn_id),
     .DivSel         (DivSel_id),  
 
@@ -1001,6 +995,8 @@ ex_stage ex_stage_u(
     // .mem_wren_ex_i,
     // .mem_lden_ex_i,
     // .mem_op_ex_i,
+    .clk            (clk),
+    .rst_n          (rst_n),
     .aluctr         (aluctr_ex),
     // .src1           (src1_ex),
     // .src2           (src2_ex),
@@ -1021,6 +1017,7 @@ ex_stage ex_stage_u(
     .rs2_sel_i      (rs2_sel),
     .DivEn_i        (DivEn_ex),
     .DivSel_i       (DivSel_ex),
+    .flush_ex_i     (ex_flush),
 
 
     // .PC_ex_o,
@@ -1069,15 +1066,15 @@ L_S_reg L_S_reg_u(
     .trap_ls_reg_i  (trap_ex),
     .stall_n        (ls_stall_n),
     .flush_i        (ls_flush),
-    .fence_ls_reg_i (fence_ex),
+    // .fence_ls_reg_i (fence_ex),
 
     .PC_ls_reg_o    (pc_ls),
     .instr_ls_reg_o (instr_ls),
     .rs2_ls_reg_o   (rs2_ls),
     .alures_ls_reg_o(alures_ls),
     .wben_ls_reg_o  (wben_ls),
-    .trap_ls_reg_o  (trap_ls),
-    .fence_ls_reg_o (fence_ls)
+    .trap_ls_reg_o  (trap_ls)
+    // .fence_ls_reg_o (fence_ls)
 );
 
 wire    in_intr_ls;
@@ -1088,8 +1085,8 @@ ls_stage ls_u(
     .instr_i        (instr_ls),
     .alures_i       (alures_ls),
     .rs2_i          (rs2_ls),
-    .alures_last_i  (alures_wb),
-    .instr_last_i   (instr_wb),
+    // .alures_last_i  (alures_wb),
+    .instr_last_i   (instr_wb[14:0]),
     .wb_data_i      (lsres_wb),
     .wb_csr_data_i  (csrdata_wb),
     .trap_ls_i      (trap_ls),
@@ -1104,25 +1101,25 @@ ls_stage ls_u(
     .in_intr_ls     (in_intr_ls),
     .ld_csr_hazard  (ld_csr_hazard),
 
-    .wb_pc          (pc_wb),
+    // .wb_pc          (pc_wb),
     .ex_pc          (pc_ex),
     .id_pc          (pc_id),
     .if_pc          (pc_new),
 
     .clint_axi_araddr   (clint_axi_araddr ),
-    .clint_axi_arprot   (clint_axi_arprot ),
+    // .clint_axi_arprot   (clint_axi_arprot ),
     .clint_axi_arvalid  (clint_axi_arvalid),
     .clint_axi_arready  (clint_axi_arready),
-    .clint_axi_arsize   (clint_axi_arsize ),
+    // .clint_axi_arsize   (clint_axi_arsize ),
 
     .clint_axi_rdata    (clint_axi_rdata ),
     .clint_axi_rresp    (clint_axi_rresp ),
     .clint_axi_rvalid   (clint_axi_rvalid),
     .clint_axi_rready   (clint_axi_rready),   
 
-    .clint_axi_awsize   (clint_axi_awsize ),
+    // .clint_axi_awsize   (clint_axi_awsize ),
     .clint_axi_awaddr   (clint_axi_awaddr ),
-    .clint_axi_awprot   (clint_axi_awprot ),
+    // .clint_axi_awprot   (clint_axi_awprot ),
     .clint_axi_awvalid  (clint_axi_awvalid),
     .clint_axi_awready  (clint_axi_awready),
 
@@ -1135,22 +1132,22 @@ ls_stage ls_u(
     .clint_axi_bvalid   (clint_axi_bvalid ),
     .clint_axi_bready   (clint_axi_bready ),
 
-    .ls_sram_addr           (ls_sram_addr           ), //dont need anymore
+    // .ls_sram_addr           (ls_sram_addr           ), //dont need anymore
     .ls_sram_rd_en          (ls_sram_rd_en          ), //         
     .ls_sram_wr_en          (ls_sram_wr_en          ), //
     .ls_sram_wr_data        (ls_sram_wr_data        ), 
     .ls_sram_wr_mask        (ls_sram_wr_mask        ),
     .ls_sram_wr_size        (ls_sram_wr_size        ), 
     .ls_sram_rd_size        (ls_sram_rd_size        ),
-    .ls_sram_rd_data_valid  (dataNotOk  ),
-    .ls_sram_wr_data_ok     (dataNotOk     ),
+    // .ls_sram_rd_data_valid  (dataNotOk  ),
+    .ls_sram_data_not_ok     (dataNotOk     ),
     .ls_sram_rd_data        (ls_sram_rd_data        )
 );
 
 //
 wire    dataNotOk;
 
-wire    fence_ls;
+// wire    fence_ls;
 wire    clear_Icache;
 Dcache Dcache_u (
   .clk (clk ),
@@ -1217,21 +1214,20 @@ Dcache Dcache_u (
   .io_sram7_rdata   (io_sram7_rdata)
 );
 
-wire        DcacheRdValid,DcacheWrValid;
-wire        lsAxiRdReady;
-wire [7:0]  lsFetchLenth;
-wire        lsRdLast;
-wire [63:0] DcacheRdAddr,DcacheWrAddr;
-wire [63:0] lsAxiRdData;  
-wire        lsAxiRdDataVAlid;   
-wire        lsAxiWrReady;   
-wire [255:0]lsAxiWrData;
-wire [7:0]  lsStoreLenth;
-wire [7:0]  lsStoreMask;
-wire [2:0]  lsStoreSize,lsLoadSize;
+wire                        DcacheRdValid,DcacheWrValid;
+wire                        lsAxiRdReady;
+wire [7:0]                  lsFetchLenth;
+wire                        lsRdLast;
+wire [AXI_ADDR_WIDTH-1:0]   DcacheRdAddr,DcacheWrAddr;
+wire [63:0]                 lsAxiRdData;  
+wire                        lsAxiRdDataVAlid;   
+wire                        lsAxiWrReady;   
+wire [255:0]                lsAxiWrData;
+wire [7:0]                  lsStoreLenth;
+wire [7:0]                  lsStoreMask;
+wire [2:0]                  lsStoreSize,lsLoadSize;
 
-assign DcacheRdAddr[63:32] = 'b0;
-assign DcacheWrAddr[63:32] = 'b0;
+
 
 axi_dcache axi_ls_u(
     .clock          (clk),
@@ -1263,57 +1259,57 @@ axi_dcache axi_ls_u(
     .axi_aw_ready_i (ls_axi_aw_ready_i ),     //lite         
     .axi_aw_valid_o (ls_axi_aw_valid_o ),     //lite
     .axi_aw_addr_o  (ls_axi_aw_addr_o  ),      //lite
-    .axi_aw_prot_o  (ls_axi_aw_prot_o  ),
+    // .axi_aw_prot_o  (ls_axi_aw_prot_o  ),
     .axi_aw_id_o    (ls_axi_aw_id_o    ),
-    .axi_aw_user_o  (ls_axi_aw_user_o  ),
+    // .axi_aw_user_o  (ls_axi_aw_user_o  ),
     .axi_aw_len_o   (ls_axi_aw_len_o   ),       
     .axi_aw_size_o  (ls_axi_aw_size_o  ),
     .axi_aw_burst_o (ls_axi_aw_burst_o ),
-    .axi_aw_lock_o  (ls_axi_aw_lock_o  ),
-    .axi_aw_cache_o (ls_axi_aw_cache_o ),
-    .axi_aw_qos_o   (ls_axi_aw_qos_o   ),
-    .axi_aw_region_o(ls_axi_aw_region_o),
+    // .axi_aw_lock_o  (ls_axi_aw_lock_o  ),
+    // .axi_aw_cache_o (ls_axi_aw_cache_o ),
+    // .axi_aw_qos_o   (ls_axi_aw_qos_o   ),
+    // .axi_aw_region_o(ls_axi_aw_region_o),
 
     .axi_w_ready_i  (ls_axi_w_ready_i),      //lite              
     .axi_w_valid_o  (ls_axi_w_valid_o),      //lite
     .axi_w_data_o   (ls_axi_w_data_o ),       //lite
     .axi_w_strb_o   (ls_axi_w_strb_o ),       //lite
     .axi_w_last_o   (ls_axi_w_last_o ),  
-    .axi_w_user_o   (ls_axi_w_user_o ),
+    // .axi_w_user_o   (ls_axi_w_user_o ),
 
     .axi_b_ready_o  (ls_axi_b_ready_o),      //lite           
     .axi_b_valid_i  (ls_axi_b_valid_i),      //lite
     .axi_b_resp_i   (ls_axi_b_resp_i ),       //lite            
     .axi_b_id_i     (ls_axi_b_id_i   ),
-    .axi_b_user_i   (ls_axi_b_user_i ),
+    // .axi_b_user_i   (ls_axi_b_user_i ),
 
     .axi_ar_ready_i (ls_axi_ar_ready_i),     //lite              
     .axi_ar_valid_o (ls_axi_ar_valid_o),     //lite
     .axi_ar_addr_o  (ls_axi_ar_addr_o  ),      //lite
-    .axi_ar_prot_o  (ls_axi_ar_prot_o  ),
+    // .axi_ar_prot_o  (ls_axi_ar_prot_o  ),
     .axi_ar_id_o    (ls_axi_ar_id_o    ),
-    .axi_ar_user_o  (ls_axi_ar_user_o  ),
+    // .axi_ar_user_o  (ls_axi_ar_user_o  ),
     .axi_ar_len_o   (ls_axi_ar_len_o   ),       //lite
     .axi_ar_size_o  (ls_axi_ar_size_o  ),     //lite
     .axi_ar_burst_o (ls_axi_ar_burst_o ),
-    .axi_ar_lock_o  (ls_axi_ar_lock_o  ),
-    .axi_ar_cache_o (ls_axi_ar_cache_o ),
-    .axi_ar_qos_o   (ls_axi_ar_qos_o   ),
-    .axi_ar_region_o(ls_axi_ar_region_o),
+    // .axi_ar_lock_o  (ls_axi_ar_lock_o  ),
+    // .axi_ar_cache_o (ls_axi_ar_cache_o ),
+    // .axi_ar_qos_o   (ls_axi_ar_qos_o   ),
+    // .axi_ar_region_o(ls_axi_ar_region_o),
 
     .axi_r_ready_o  (ls_axi_r_ready_o ),      //lite            
     .axi_r_valid_i  (ls_axi_r_valid_i ),      //lite            
     .axi_r_resp_i   (ls_axi_r_resp_i  ),
     .axi_r_data_i   (ls_axi_r_data_i  ),       //lite
     .axi_r_last_i   (ls_axi_r_last_i  ),
-    .axi_r_id_i     (ls_axi_r_id_i    ),
-    .axi_r_user_i   (ls_axi_r_user_i  )
+    .axi_r_id_i     (ls_axi_r_id_i    )
+    // .axi_r_user_i   (ls_axi_r_user_i  )
 );
 
 WB_reg wb_reg_u(
     .clk            (clk),
     .rst_n          (rst_n),
-    .pc_wb_reg_i    (pc_ls),
+    // .pc_wb_reg_i    (pc_ls),
     .instr_wb_reg_i (instr_ls),
     .alures_wb_reg_i(alures_ls),
     .lsres_wb_reg_i (lsres_ls),
@@ -1321,7 +1317,7 @@ WB_reg wb_reg_u(
     .csrdata_wb_reg_i(csrdata_ls),
     .stall_n        (wb_stall_n),
 
-    .pc_wb_reg_o    (pc_wb),
+    // .pc_wb_reg_o    (pc_wb),
     .instr_wb_reg_o (instr_wb),
     .alures_wb_reg_o(alures_wb),
     .lsres_wb_reg_o (lsres_wb),
@@ -1330,7 +1326,7 @@ WB_reg wb_reg_u(
 );
 
 WB_stage wb_stage_u(
-    .pc_i           (pc_wb),
+    // .pc_i           (pc_wb),
     .instr_i        (instr_wb),
     .alures_i       (alures_wb),
     .lsres_i        (lsres_wb),
@@ -1342,8 +1338,8 @@ WB_stage wb_stage_u(
 );
 
 pipline_ctrl pipline_ctrl_u(
-    .clk                (clk),
-    .rst_n              (rst_n),
+    // .clk                (clk),
+    // .rst_n              (rst_n),
     .ld_use_hazard      (ld_use_hazard),
     .is_jump            (is_jump),
     .in_trap_id         (in_trap_id),
@@ -1354,9 +1350,9 @@ pipline_ctrl pipline_ctrl_u(
     .in_intr_ls         (in_intr_ls),
     .fence_ex           (fence_ex),
     .fence_id           (fence_id),
-    .fence_ls           (fence_ls),
+    // .fence_ls           (fence_ls),
     
-    .pc_stall_n         (pc_stall_n),
+    // .pc_stall_n         (pc_stall_n),
     .if_stall_n         (if_stall_n),
     .id_stall_n         (id_stall_n),
     .ex_stall_n         (ex_stall_n),
@@ -1373,10 +1369,9 @@ pipline_ctrl pipline_ctrl_u(
 endmodule //top
 module ID_stage (
     input                           clk,rst_n,
-    input           [`XLEN-1:0]     pc_i,
-    input           [`XLEN-1:0]     pc_wb_i,                    //for diff-test
-    input           [`inst_len-1:0] instr_wb_i,                 //for ebreak
+    // input           [`XLEN-1:0]     pc_i,
     input           [`inst_len-1:0] instr_i,
+
     input           [`XLEN-1:0]     wb_data_i,
     input           [4      :0]     wb_rdid_i,
     input                           wb_wren_i,                
@@ -1399,22 +1394,16 @@ module ID_stage (
 );
 
 wire    [4      :0]     ext_op;
-// wire                    is_jalr,is_jal,is_brc;
 wire    [`XLEN-1:0]     imm;
 wire    [`XLEN-1:0]     rs1,rs2;
-// wire    [`4     :0]     rs1_idx,rs2_idx;
-// wire                    src1sel;
-// wire    [1      :0]     src2sel;
+
 
 assign rs2_o = rs2;
 assign rs1_o = rs1;
 assign imm_o = imm;
 
-// assign src1_o = src1sel ? pc_i : rs1;
-// assign src2_o = src2sel[1] ? `XLEN'd4 :
-//                             src2sel[0] ? imm : rs2;
 decoder decoder_u(
-    .pc_i(pc_i),
+    // .pc_i(pc_i),
     .instr_i(instr_i),
     .ext_op_o(ext_op),
     .src1sel_o(src1sel),
@@ -1440,29 +1429,15 @@ imm_ext imm_ext_u(
 );
 regfile regfile_u(
     .clk(clk),
+    .rst_n(rst_n),
     .rs1_addr_i(rs1_idx),
     .rs1_data_o(rs1),
     .rs2_addr_i(rs2_idx),
     .rs2_data_o(rs2),
     .wr_addr_i(wb_rdid_i),
     .wr_data_i(wb_data_i),
-    .wr_en(wb_wren_i),
-    .pc_wb(pc_wb_i),
-
-    .instr_wb_i(instr_wb_i)
+    .wr_en(wb_wren_i)
 );
-// bcu bcu_u(
-//     .rs1_i(rs1),
-//     .rs2_i(rs2),
-//     .is_jalr_i(is_jalr),
-//     .is_jal_i(is_jal),
-//     .is_brc_i(is_brc),
-//     .fun_3(instr_i[14:12]),
-//     .imm_i(imm),
-//     .pc_i(pc_i),
-//     .brc_pc_o(pc_next_o),
-//     .is_jump_o(is_jump_o)
-// );
 
 endmodule
 
@@ -1472,7 +1447,7 @@ endmodule
 module CSR (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
-    input           [63:0]          wb_pc,
+    // input           [63:0]          wb_pc,
     input           [63:0]          ex_pc,id_pc,if_pc,
     input           [`inst_len-1:0] instr_i,
     // input                           csr_wr_en,
@@ -1492,16 +1467,6 @@ assign  mtvec_o = mtvec;
 assign  mepc_o = mepc;
 
 
-//commitPC:保存最后提交的一条质量pc
-reg [63:0]  commitPC;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        commitPC <= 'b0;
-    end
-    else if((|wb_pc)) begin
-        commitPC <= wb_pc;
-    end
-end
 
 wire    csrrw = (instr_i[14:12] == `csrrw) || (instr_i[14:12] == `csrrwi);
 wire    csrrs = (instr_i[14:12] == `csrrs) || (instr_i[14:12] == `csrrsi);
@@ -1576,7 +1541,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 //mcause更新策略
 wire [`XLEN-1:0]    mcause_n;
-assign  mcause_n = system ? `XLEN'd11 : in_intr_ls ? `XLEN'h8000000000000007
+assign  mcause_n = (system && trap) ? `XLEN'd11 : in_intr_ls ? `XLEN'h8000000000000007
                                                      : `XLEN'b0;   //支持ecall，暂时
                                                     //时钟中断为0x8000000000000007
 
@@ -1634,6 +1599,7 @@ assign in_intr_ls = mip_MTIP && mstatus_MIE;
 //注意：当ecall指令后跟着load-use的指令序列时，将会发生严重错误，导致程序有可能无法进入中断，虽然目前程序不会出现这种情况
 //解决方法：in_trap拉高后，直接flush wb前所有流水线,同时flush all时ld-use hazard无效，这时，所有流水级的stall信号相同，
 //然面出来与上面相同
+//*******已解决*********
 
 
 endmodule
@@ -1656,15 +1622,15 @@ module divTop (
     // input           div_cin_P,div_cin_N,
     // input  [127:0]  dividend128,
 
-reg [1:0]  div_type_r;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        div_type_r <= 'b0;
-    end
-    else if(div_valid) begin
-        div_type_r <= div_type;
-    end
-end
+// reg [1:0]  div_type_r;
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n) begin
+//         div_type_r <= 'b0;
+//     end
+//     else if(div_valid) begin
+//         div_type_r <= div_type;
+//     end
+// end
 
 wire    [63:0]      dividend_N;
 assign dividend_N = ~dividend + 'b1;
@@ -1753,6 +1719,7 @@ assign x2 = dividendReg[126] ? divisor_P_r : divisor_N_r;
 
 wire    [63:0]  r_64;
 
+wire        unused1,unused2;
 cla_64 cla_64_u1 (
   .a_64 (dividendReg[126-:64] ),
   .b_64 (x2 ),
@@ -1761,8 +1728,8 @@ cla_64 cla_64_u1 (
   .g_64 (dividendReg[126-:64] & x2 ),
 
   .s_64 (r_64 ),
-  .gx_64 ( ),
-  .px_64  ( )
+  .gx_64 (unused1 ),
+  .px_64  (unused2 )
 );
 
 wire        partial_q;
@@ -1790,7 +1757,7 @@ module mul64 (
     input   [63:0]  multiplicand,
     input   [63:0]  multiplier,
 
-    output          mul_ready,
+    // output          mul_ready,
     output          out_valid,
     output  [63:0]  result_hi,
     output  [63:0]  result_lo
@@ -1801,7 +1768,7 @@ module mul64 (
 //2'b00(unsigned x unsigned);
 
 
-
+wire               mul_ready;
 wire               src1_is_signed;
 wire               src2_is_signed;
 wire [32:0]        mul_lo_src1;
@@ -1945,6 +1912,7 @@ assign mul_signed[1] = ~mul_type[0] || mul_type[0] && ~mul_type[1];
 assign mul_signed[0] = ~mul_type[1];
 
 wire  [63:0] result_hi,result_lo;
+// wire          mul_ready;
 mul64 mul64_u (
   .clk (clk ),
   .rst_n (rst_n ),
@@ -1954,7 +1922,7 @@ mul64 mul64_u (
   .mul_signed (mul_signed ),
   .multiplicand (multiplicand ),
   .multiplier (multiplier ),
-  .mul_ready ( ),
+  // .mul_ready (mul_ready ),
   .out_valid (interValid ),
   .result_hi (result_hi ),
   .result_lo  ( result_lo)
@@ -1974,7 +1942,7 @@ module cla_4(
     output  px_4,gx_4 
 );
 //genera_4te ca_4rry bits
-    wire[3:0]    c_int;
+    wire[2:0]    c_int;
     assign c_int[0]=g_4[0] | (cin_4&p_4[0]);
     assign c_int[1]=g_4[1] | (p_4[1]&g_4[0]) | (p_4[1]&p_4[0]&cin_4);
     assign c_int[2]=g_4[2] | (p_4[2]&g_4[1]) | (p_4[2]&p_4[1]&g_4[0]) | (p_4[2]&p_4[1]&p_4[0]&cin_4);
@@ -2152,7 +2120,7 @@ module cla_64 (
 endmodule //cla_64
 
 module WB_stage (
-    input           [`XLEN-1:0]     pc_i,
+    // input           [`XLEN-1:0]     pc_i,
     input           [`inst_len-1:0] instr_i,
     input           [`XLEN-1:0]     alures_i,lsres_i,
     input           [`XLEN-1:0]     csrdata_i,
@@ -2222,6 +2190,7 @@ module ex_stage (
     // input                           mem_wren_ex_i,
     // input                           mem_lden_ex_i,
     // input           [2      :0]     mem_op_ex_i,
+    input                           clk,rst_n,
     input           [4      :0]     aluctr,
     // input           [`XLEN-1:0]     src1,
     // input           [`XLEN-1:0]     src2,
@@ -2235,6 +2204,7 @@ module ex_stage (
     input           [`XLEN-1:0]     alures_fw_i,lsres_fw_i,wbres_fw_i,
     input                           DivEn_i,
     input       [2:0]               DivSel_i,
+    input                           flush_ex_i,
 
     // output          [`XLEN-1:0]     PC_ex_o,instr_ex_o,rs2_ex_o,
     output          [`XLEN-1:0]     alures_o,
@@ -2292,9 +2262,10 @@ assign src1 = src1sel_ex_i ? pc_ex_i : rs1;
 assign src2 = src2sel_ex_i[1] ? (src2sel_ex_i[0] ? `XLEN'd4 : `XLEN'b0) :
                                 src2sel_ex_i[0] ? imm_ex_i : rs2;
 
-wire less,zero;
-
+wire    aluNotOk;
 ALU  u_ALU (
+    .clk                     ( clk      ),
+    .rst_n                   ( rst_n    ),
     .ALUctr                  ( aluctr   ),
     .src1                    ( src1     ),
     .src2                    ( src2     ),
@@ -2302,8 +2273,8 @@ ALU  u_ALU (
     .DivSel                  ( DivSel_i ),
 
     .ALUres                  ( alures_o ),
-    .less                    ( less),
-    .zero                    (    zero)
+    .aluNotOk                (aluNotOk),
+    .flush_alu               (flush_ex_i)
 );
 
 bcu bcu_u(
@@ -2322,7 +2293,7 @@ bcu bcu_u(
 
 assign  wren_ls  = (instr_ex_i[6      :2] == `store);
 assign  rden_ls  = (instr_ex_i[6      :0] == {`load,2'b11});      //同理
-assign  exNotOk = ~ls_addr_ok_i;
+assign  exNotOk = ~ls_addr_ok_i | aluNotOk;
 // assign PC_ex_o = PC_ex_i;
 // assign instr_ex_o = instr_ex_i;
 // assign rs2_ex_o = rs2_ex_i;
@@ -2364,61 +2335,39 @@ end
 endmodule //imm_exp
 
 module lsu (
-    input                           clk,rstn,
     input                           wren,rden,
     input           [2      :0]     memop,    
     input           [`XLEN-1:0]     wr_data_i,
-    input           [`XLEN-1:0]     addr_i,
-    input           [`XLEN-1:0]     pc_ls_i,
-    input           [`XLEN-1:0]     addr_last_i,
-    input                           wren_last_i,
+    input           [32-1:0]     addr_i,
 
     output          [`XLEN-1:0]     ls_res_o,
     output                          ls_not_ok,    
 
 //sram interface
-    output          [`XLEN-1:0]     ls_sram_addr,
+    // output          [`XLEN-1:0]     ls_sram_addr,
     output                          ls_sram_rd_en,              //这里不再需要addr_valid信号了，而是有两个en信号代替，一个时钟周期内要么读要么写，不会有歧义
     output                          ls_sram_wr_en,
     output          [`XLEN-1:0]     ls_sram_wr_data,
     output          [7      :0]     ls_sram_wr_mask,
     output          [2      :0]     ls_sram_wr_size,
     output          [2      :0]     ls_sram_rd_size,
-    input                           ls_sram_rd_data_valid,
-    input                           ls_sram_wr_data_ok,
+    // input                           ls_sram_rd_data_valid,
+    input                           ls_sram_data_not_ok,
     input           [`XLEN-1:0]     ls_sram_rd_data
 );
 
 
 
 wire    [`XLEN-1:0]     rd_data_base;
-// wire    [`XLEN-1:0]     dpi_addr = addr_i & ~`XLEN'h7;
-// always @(negedge clk) begin                     //这里使用了下降沿，是为了避免verilator的时序问题，在加入cache后应修改
-//     if(rden)
-//         vmemread(addr_i, 8, rd_data_base, pc_ls_i);
-// end
-// reg     ls_ok;
-// always @(posedge clk or negedge rstn) begin
-//     if(~rstn) begin
-//         ls_ok <= 1'b0;
-//     end 
-//     else begin
-//         if((rden & ls_sram_rd_data_valid) || (wren & ls_sram_wr_data_ok)) begin
-//             ls_ok <= 1'b1;
-//         end
-//         else begin
-//             ls_ok <= 1'b0;
-//         end
-//     end
-// end
 
-assign  ls_sram_addr = addr_i;
+
+// assign  ls_sram_addr = addr_i;
 assign  ls_sram_rd_en = rden;// && ~ls_ok;
 assign  ls_sram_wr_en = wren;// && ~ls_ok;
 assign  ls_sram_wr_mask = wr_mask;
 assign  ls_sram_wr_data = wr_data_i;
 assign  rd_data_base = ls_sram_rd_data;
-assign  ls_not_ok = ls_sram_wr_data_ok;
+assign  ls_not_ok = ls_sram_data_not_ok;
 assign  ls_sram_wr_size = wr_size;
 assign  ls_sram_rd_size = rd_size;
 
@@ -2518,56 +2467,6 @@ assign  ls_res_o = `XLEN'b0
 //写mem-------------------------------------------------------------------
 
 
-// wire    [`XLEN-1:0]     wr_mask;  
-// wire                    sb,sh,sw,sd;  
-
-// assign  sb = wren & (memop == `sb);
-// assign  sh = wren & (memop == `sh);
-// assign  sw = wren & (memop == `sw);
-// assign  sd = wren & (memop == `sd);
-
-
-// reg     [`XLEN-1:0]     wr_data_b;
-// reg     [`XLEN-1:0]     wr_data_h;
-// reg     [`XLEN-1:0]     wr_data_w;
-// always@(*)begin
-// 		case(addr_i[2:0])
-// 			3'b000:wr_data_b={rd_data_base[63:8],wr_data_i[7:0]};
-// 			3'b001:wr_data_b={rd_data_base[63:16],wr_data_i[7:0],rd_data_base[7:0]};
-// 			3'b010:wr_data_b={rd_data_base[63:24],wr_data_i[7:0],rd_data_base[15:0]};
-// 			3'b011:wr_data_b={rd_data_base[63:32],wr_data_i[7:0],rd_data_base[23:0]};
-//             3'b100:wr_data_b={rd_data_base[63:40],wr_data_i[7:0],rd_data_base[31:0]};
-// 			3'b101:wr_data_b={rd_data_base[63:48],wr_data_i[7:0],rd_data_base[39:0]};
-// 			3'b110:wr_data_b={rd_data_base[63:56],wr_data_i[7:0],rd_data_base[47:0]};
-// 			3'b111:wr_data_b={wr_data_i[7:0],rd_data_base[55:0]};
-// 		endcase
-//         case(addr_i[2:1])
-//             2'b00:wr_data_h={rd_data_base[63:16],wr_data_i[15:0]};
-// 			2'b01:wr_data_h={rd_data_base[63:32],wr_data_i[15:0],rd_data_base[15:0]};
-// 			2'b10:wr_data_h={rd_data_base[63:48],wr_data_i[15:0],rd_data_base[31:0]};
-// 			2'b11:wr_data_h={wr_data_i[15:0],rd_data_base[47:0]};
-//         endcase
-//         case(addr_i[2])
-//             1'b0:wr_data_w={rd_data_base[63:32],wr_data_i[31:0]};
-// 			1'b1:wr_data_w={wr_data_i[31:0],rd_data_base[31:0]};
-//         endcase
-// end
-
-// wire    [`XLEN-1:0] wr_data;
-// assign  wr_data = `XLEN'b0
-//                   |({`XLEN{sb}} & (wr_data_b))
-//                   |({`XLEN{sh}} & (wr_data_h))
-//                   |({`XLEN{sw}} & (wr_data_w))
-//                   |({`XLEN{sd}} & (wr_data_i));
-
-
-// reg     [`XLEN-1:0] wr_data_buf;
-// always @(posedge clk) begin
-//     if(wren) begin
-//         vmemwrite(dpi_addr, wr_data, pc_ls_i);
-//         wr_data_buf <= wr_data;
-//     end
-// end
 reg     [2:0]     wr_size;  //给cache的话，其实只要两位，mask可不要
 reg     [7:0]     wr_mask;  
 wire                    sb,sh,sw,sd;  
@@ -2972,7 +2871,7 @@ reg [20:0]  tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
 wire [20:0] tagWay1_q,tagWay2_q;
-reg        validWay1_q,validWay2_q;
+// reg        validWay1_q,validWay2_q;
 
 //tag的写入同样在getdata的末尾写入
 //此处是否能优化呢，即将tagArray1_d和tagArray2_d用一个信号表示，使用信号控制写入tagarray1还是2
@@ -2986,8 +2885,8 @@ end
 assign tagWay1_q = tagArray1[index];
 assign tagWay2_q = tagArray2[index];
 
-wire [20:0] testTag = tagArray1['h3c];
-wire [20:0] tagtest = tagArray2['h23];
+// wire [20:0] testTag = tagArray1['h3c];
+// wire [20:0] tagtest = tagArray2['h23];
 //hit信号产生
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
@@ -3051,7 +2950,7 @@ assign rd_data_o = uncacheOpEn ? (rdData_i ): ({64{way1Hit}}&rdDataRegWay1)
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
-wire [63:0] addrToRead = {32'b0,tag,index,5'b0};
+wire [31:0] addrToRead = {tag,index,5'b0};
 reg        randomBit;
 reg        missFlag;//或者叫replacedFlag？
 //由于根据sram模型，写入数据再读出至少需要两个周期，而为了获得更好的性能，在写入后即可读出数据，故需一个信号指示使用rdBUffer里存放的数据而不是sram的
@@ -3172,16 +3071,16 @@ end
 
 //在compare阶段锁存要写入的数据、mask
 reg [63:0]  wrDataLatch;
-reg [7:0]   wrMaskLatch;
+// reg [7:0]   wrMaskLatch;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         wrDataLatch <= 'b0;
-        wrMaskLatch <= 'b0;
+        // wrMaskLatch <= 'b0;
     end
     //在compare的末尾锁存data以及mask，且锁存的是处理完成后的，保证数据正确
     else if(compareEn && reqLatch[32]) begin
         wrDataLatch <= storeData;
-        wrMaskLatch <= storeMask;
+        // wrMaskLatch <= storeMask;
     end
 end
 
@@ -3256,18 +3155,18 @@ assign wrMiss = compareEn && reqLatch[32] && ~cacheHit;
 wire        rdMiss;
 assign rdMiss = compareEn && ~reqLatch[32] && ~cacheHit;
 
-//TODO
+
 // reg [31:0] randomBit2 ;
 // always randomBit2 = 1;
-reg replaceWay;//0就是way1,1就是way2
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        replaceWay <= 'b0;
-    end
-    else if(compareEn)begin
-        replaceWay <= randomBit;
-    end
-end
+// reg replaceWay;//0就是way1,1就是way2
+// always @(posedge clk or negedge rst_n) begin
+//     if(~rst_n) begin
+//         replaceWay <= 'b0;
+//     end
+//     else if(compareEn)begin
+//         replaceWay <= randomBit;
+//     end
+// end
 
 
 
@@ -3288,10 +3187,10 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-reg            uncache ;//= reqLatch[32] && ~(reqLatch[31-:4] == 4'b1000);                //TODO
-always @(posedge clk or negedge rst_n) begin
-    uncache <= uncached;
-end
+// reg            uncache ;//= reqLatch[32] && ~(reqLatch[31-:4] == 4'b1000);                //TODO
+// always @(posedge clk or negedge rst_n) begin
+//     uncache <= uncached;
+// end
 wire            axiWrBusy = needWrBk_Reg;
 assign cacheWrValid_o = cleanEn ? cleanWrValid : needWrBk_Reg;
 wire    [31:0]  addrToWrite;
@@ -3326,12 +3225,12 @@ reg     uncacheRdOk;
 reg     uncacheWrOk;
 wire  [31:0]  uncacheRdAddr  = reqLatch[31:0];
 
-reg [63:0]  temp;       //后面记得改
-always @(posedge clk or negedge rst_n) begin
-    if(uncacheOpEn && rdLast_i) begin
-        temp <= rdData_i;
-    end
-end
+// reg [63:0]  temp;       //后面记得改
+// always @(posedge clk or negedge rst_n) begin
+//     if(uncacheOpEn && rdLast_i) begin
+//         temp <= rdData_i;
+//     end
+// end
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -3438,8 +3337,8 @@ module Icache(
     //valid表示有效的读取请求，op表示操作类型，icache恒为0,表示读
     input                                   valid_i,op_i,
     //写数据以及mask，icache无效
-    input           [`XLEN-1:0]             wr_data_i,
-    input           [7:0]                   wr_mask_i,
+    // input           [`XLEN-1:0]             wr_data_i,
+    // input           [7:0]                   wr_mask_i,
     //流水线stall信号，低有效
     input                                   stall_n,
     //回给if模块的地址接收有效信号，为高时表示可以处理新的请求的地址
@@ -3530,8 +3429,8 @@ localparam  idle        = 3'b000,
             compare     = 3'b001,
             miss        = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
             getdata     = 3'b011,
-            replace     = 3'b111,
-            unCacheOp   = 3'b110;
+            replace     = 3'b111;
+            // unCacheOp   = 3'b110;
 
 reg     [2:0]   cacheCurState,cacheNexState;
 wire            cacheHit;
@@ -3613,7 +3512,7 @@ always @(*) begin
 end
 
 wire                    idleEn = cacheCurState == idle;
-reg [`addr_width:0]     reqLatch;
+reg [`addr_width-1:0]     reqLatch;
 wire    [4:0]           offset = reqLatch[4:0];
 wire    [5:0]           index = reqLatch[10:5];
 wire    [20:0]          tag = reqLatch[31:11];
@@ -3625,7 +3524,7 @@ always @(posedge clk or negedge rst_n) begin
     //同时要保证在stall时不锁存，因为1、stall有可能是由cache缺失或其他自身原因造成，此时不能锁存其他数据
     //2、有可能由其他阶段造成如ls部分stall等，此时也不能锁存，否则会锁存下一拍的地址，但是pc还没有变化，导致取得的指令出错
     else if(((idleEn && valid_i && diffAddr) || (compareEn && valid_i && cacheHit && diffAddr) && stall_n)) begin
-        reqLatch <= {op_i,addr_i};
+        reqLatch <= addr_i;
     end
 end
 
@@ -3665,7 +3564,7 @@ reg [20:0]  tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
 wire [20:0] tagWay1_q,tagWay2_q;
-reg        validWay1_q,validWay2_q;
+// reg        validWay1_q,validWay2_q;
 
 //tag的写入同样在getdata的末尾写入
 //此处是否能优化呢，即将tagArray1_d和tagArray2_d用一个信号表示，使用信号控制写入tagarray1还是2
@@ -3734,7 +3633,7 @@ end
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
-wire [63:0] addrToRead = {32'b0,tag,index,5'b0};
+wire [31:0] addrToRead = {tag,index,5'b0};
 reg [31:0] randomBit;
 reg        missFlag;
 //由于根据sram模型，写入数据再读出至少需要两个周期，而为了获得更好的性能，在写入后即可读出数据，故需一个信号指示使用rdBUffer里存放的数据而不是sram的
@@ -3840,7 +3739,7 @@ end
 endmodule
 
 module decoder (
-    input           [`XLEN-1:0]     pc_i,
+    // input           [`XLEN-1:0]     pc_i,
     input           [`inst_len-1:0] instr_i,
 
     output   reg    [4      :0]     rs1_idx_o,rs2_idx_o,
@@ -4176,20 +4075,20 @@ module IF_stage (
     input           [`XLEN-1:0]     sram_rdata,
     // input                           sram_data_valid,
     input                           cacheAddrOk_i,
-    input                           cacheDataOk_i,
-    output          [`XLEN-1:0]     sram_addr,
-    output                          sram_ren,
+    input                           cacheDataNotOk_i,  //这玩意代表notok
+    output          [32-1:0]     sram_addr,
+    // output                          sram_ren,
     output                          sram_addr_valid
 );
 
 
 
 
-assign  sram_ren = 1'b1;
-assign  sram_addr = pc_next_o;
+// assign  sram_ren = 1'b1;
+assign  sram_addr = pc_next_o[31:0];
 assign  sram_addr_valid = pc_new_o !='b0;
 // assign  if_instr_valid = sram_data_valid;
-assign  if_instr_valid = cacheAddrOk_i && ~cacheDataOk_i;
+assign  if_instr_valid = cacheAddrOk_i && ~cacheDataNotOk_i;
 
 
 
@@ -4206,7 +4105,23 @@ assign  instr_o = pc_new_o[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 // end
 
 
-wire    [`XLEN-1:0] pc_next_o =  in_intr_ls ? csr_mtvec : is_jump_i ? pc_jump_i : ((in_trap_id)? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
+reg    [`XLEN-1:0] pc_next_o;// =  in_intr_ls ? csr_mtvec : is_jump_i ? pc_jump_i : ((in_trap_id)? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
+
+always @( *) begin
+    case({in_intr_ls, is_jump_i, in_trap_id, out_trap_id})
+        4'b1000,4'b1001,4'b1010,4'b1011,4'b1100,4'b1101,4'b1110,4'b1111:
+            pc_next_o = csr_mtvec;
+        4'b0100,4'b0101,4'b0110,4'b0111:
+            pc_next_o = pc_jump_i;
+        4'b0010:
+            pc_next_o = csr_mtvec;
+        4'b0001:
+            pc_next_o = csr_mepc;
+        default :
+            pc_next_o = pc_new_o+`XLEN'd4;
+    endcase
+end
+
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
@@ -4223,7 +4138,7 @@ endmodule //IF_stage
 
 module WB_reg (
     input                           clk,rst_n,
-    input           [`XLEN-1:0]     pc_wb_reg_i,
+    // input           [`XLEN-1:0]     pc_wb_reg_i,
     input           [`inst_len-1:0] instr_wb_reg_i,
     input           [`XLEN-1:0]     alures_wb_reg_i,
     input           [`XLEN-1:0]     lsres_wb_reg_i,
@@ -4231,7 +4146,7 @@ module WB_reg (
     input           [`XLEN-1:0]     csrdata_wb_reg_i,
     input                           stall_n,
 
-    output   reg    [`XLEN-1:0]     pc_wb_reg_o,
+    // output   reg    [`XLEN-1:0]     pc_wb_reg_o,
     output   reg    [`inst_len-1:0] instr_wb_reg_o,
     output   reg    [`XLEN-1:0]     alures_wb_reg_o,lsres_wb_reg_o,
     output   reg                    wben_wb_reg_o,
@@ -4240,23 +4155,23 @@ module WB_reg (
 
 
 stl_reg #(
-  .WIDTH     (4*`XLEN + `inst_len + 1),
+  .WIDTH     (3*`XLEN  + 33),
   .RESET_VAL (0)
 )wb_reg(
   .i_clk   (clk),
   .i_rst_n (rst_n),
   .i_wen   (stall_n),
-  .i_din   ({pc_wb_reg_i, instr_wb_reg_i, alures_wb_reg_i, lsres_wb_reg_i, wben_wb_reg_i, csrdata_wb_reg_i}),
-  .o_dout  ({pc_wb_reg_o, instr_wb_reg_o, alures_wb_reg_o, lsres_wb_reg_o, wben_wb_reg_o, csrdata_wb_reg_o})
+  .i_din   ({ instr_wb_reg_i, alures_wb_reg_i, lsres_wb_reg_i, wben_wb_reg_i, csrdata_wb_reg_i}),
+  .o_dout  ({ instr_wb_reg_o, alures_wb_reg_o, lsres_wb_reg_o, wben_wb_reg_o, csrdata_wb_reg_o})
 );
 
 endmodule //WB_reg
 module ls_stage (
     input                           clk,rst_n,
-    input           [`XLEN-1:0]     pc,alures_i,rs2_i,
+    input           [`XLEN-1:0]     pc,rs2_i,alures_i,
     input           [`inst_len-1:0] instr_i,
-    input           [`XLEN-1:0]     alures_last_i,
-    input           [`inst_len-1:0] instr_last_i,
+    // input           [`XLEN-1:0]     alures_last_i,
+    input           [14:0] instr_last_i,
     input           [`XLEN-1:0]     wb_data_i,
     input           [`XLEN-1:0]     wb_csr_data_i,
     input                           trap_ls_i,
@@ -4270,24 +4185,24 @@ module ls_stage (
     output                          in_intr_ls,
 
     input                           ld_csr_hazard,
-    input  [63:0]                   wb_pc,
+    // input  [63:0]                   wb_pc,
     input  [63:0]                   ex_pc,id_pc,if_pc,
                
 
-    input           [63:0]          clint_axi_araddr   ,
-    input           [2:0]           clint_axi_arprot   ,
+    input           [31:0]          clint_axi_araddr   ,
+    // input           [2:0]           clint_axi_arprot   ,
     input                           clint_axi_arvalid  ,
     output                          clint_axi_arready  ,
-    input           [2:0]           clint_axi_arsize   ,
+    // input           [2:0]           clint_axi_arsize   ,
 
     output          [63:0]          clint_axi_rdata    ,
     output          [1:0]           clint_axi_rresp    ,
     output                          clint_axi_rvalid   ,
     input                           clint_axi_rready   ,  
 
-    input           [2:0]           clint_axi_awsize   ,
-    input  [63 : 0]                 clint_axi_awaddr,
-    input  [2 : 0]                  clint_axi_awprot,
+    // input           [2:0]           clint_axi_awsize   ,
+    input  [31 : 0]                 clint_axi_awaddr,
+    // input  [2 : 0]                  clint_axi_awprot,
     input                           clint_axi_awvalid,
     output                          clint_axi_awready,
 
@@ -4302,15 +4217,15 @@ module ls_stage (
 
 
 //sram interface
-    output          [`XLEN-1:0]     ls_sram_addr,
+    // output          [`XLEN-1:0]     ls_sram_addr,
     output                          ls_sram_rd_en,              
     output                          ls_sram_wr_en,
     output          [`XLEN-1:0]     ls_sram_wr_data,
     output          [7      :0]     ls_sram_wr_mask,
     output          [2      :0]     ls_sram_wr_size,
     output          [2      :0]     ls_sram_rd_size,
-    input                           ls_sram_rd_data_valid,
-    input                           ls_sram_wr_data_ok,
+    // input                           ls_sram_rd_data_valid,
+    input                           ls_sram_data_not_ok,
     input           [`XLEN-1:0]     ls_sram_rd_data
 );
 
@@ -4318,28 +4233,24 @@ wire                wren,rden;
 wire    [2:0]       memop;
 wire    [`XLEN-1:0] wr_data;
  
-wire            wren_last;
-assign wren_last = (instr_last_i[6:2] == `store);
+// wire            wren_last;
+// assign wren_last = (instr_last_i[6:2] == `store);
 lsu lsu_u(
-    .clk(clk),
-    .rstn(rst_n),
     .wren(wren),
     .rden(rden),
     .memop(memop),    
     .wr_data_i(wr_data),
-    .addr_i(alures_i),
-    .pc_ls_i(pc),               //for sim
-    .addr_last_i(alures_last_i),
-    .wren_last_i(wren_last),
+    .addr_i(alures_i[31:0]),
+
     .ls_res_o(ls_res_o)    ,
     .ls_not_ok      (ls_not_ok),
-    .ls_sram_addr           (ls_sram_addr           ),
+    // .ls_sram_addr           (ls_sram_addr           ),
     .ls_sram_rd_en          (ls_sram_rd_en          ),          
     .ls_sram_wr_en          (ls_sram_wr_en          ),
     .ls_sram_wr_data        (ls_sram_wr_data        ),
     .ls_sram_wr_mask        (ls_sram_wr_mask        ),
-    .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
-    .ls_sram_wr_data_ok     (ls_sram_wr_data_ok     ),
+    // .ls_sram_rd_data_valid  (ls_sram_rd_data_valid  ),
+    .ls_sram_data_not_ok     (ls_sram_data_not_ok     ),
     .ls_sram_rd_data        (ls_sram_rd_data        ),
     .ls_sram_wr_size        (ls_sram_wr_size        ),
     .ls_sram_rd_size        (ls_sram_rd_size        )
@@ -4347,7 +4258,7 @@ lsu lsu_u(
 
 ls_ctr  ls_ctr_u(
     .instr_i(instr_i),
-    .instr_last_i(instr_last_i),
+    .instr_last_i(instr_last_i[14:0]),
     .rs2_i(rs2_i),
     .wb_data_i(wb_data_i),
     .wb_csr_data_i(wb_csr_data_i),
@@ -4378,7 +4289,7 @@ CSR CSR_u(
     .stall_n(csr_stall_n),
     .timer_int_i(timr_int),
     .in_intr_ls(in_intr_ls),
-    .wb_pc(wb_pc),
+    // .wb_pc(wb_pc),
     .ex_pc(ex_pc),
     .id_pc(id_pc),
     .if_pc(if_pc)
@@ -4390,19 +4301,19 @@ clint clint_u(
         .rst_n              (rst_n),
 
 		.clint_axi_araddr   (clint_axi_araddr),
-		.clint_axi_arprot   (clint_axi_arprot),
+		// .clint_axi_arprot   (clint_axi_arprot),
 		.clint_axi_arvalid  (clint_axi_arvalid),
 		.clint_axi_arready  (clint_axi_arready),
-		.clint_axi_arsize   (clint_axi_arsize),
+		// .clint_axi_arsize   (clint_axi_arsize),
 
 		.clint_axi_rdata    (clint_axi_rdata ),
 		.clint_axi_rresp    (clint_axi_rresp ),
 		.clint_axi_rvalid   (clint_axi_rvalid),
 		.clint_axi_rready   (clint_axi_rready),   
 
-		.clint_axi_awsize   (clint_axi_awsize ),
+		// .clint_axi_awsize   (clint_axi_awsize ),
 		.clint_axi_awaddr   (clint_axi_awaddr ),
-		.clint_axi_awprot   (clint_axi_awprot ),
+		// .clint_axi_awprot   (clint_axi_awprot ),
 		.clint_axi_awvalid  (clint_axi_awvalid),
 		.clint_axi_awready  (clint_axi_awready),
 
@@ -4452,9 +4363,9 @@ endmodule
 
 module axi_dcache # (
     parameter RW_DATA_WIDTH     = 64,
-    parameter RW_ADDR_WIDTH     = 64,
+    parameter RW_ADDR_WIDTH     = 32,
     parameter AXI_DATA_WIDTH    = 64,
-    parameter AXI_ADDR_WIDTH    = 64,
+    parameter AXI_ADDR_WIDTH    = 32,
     parameter AXI_ID_WIDTH      = 4,
     parameter AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8,
     parameter AXI_USER_WIDTH    = 1
@@ -4476,7 +4387,7 @@ module axi_dcache # (
     input             [7:0]                   storeLenth,
     input   [2:0]                           storeSize,loadSize,
     input  [AXI_STRB_WIDTH-1:0]             rw_w_mask_i,        
-    input  [63:0]                           cacheWrAddr_i,          //IF&MEM输入信号
+    input  [RW_ADDR_WIDTH-1:0]              cacheWrAddr_i,          //IF&MEM输入信号
 
 
 
@@ -4484,53 +4395,53 @@ module axi_dcache # (
     input                               axi_aw_ready_i,     //lite         
     output                              axi_aw_valid_o,     //lite
     output [AXI_ADDR_WIDTH-1:0]         axi_aw_addr_o,      //lite
-    output [2:0]                        axi_aw_prot_o,
+    // output [2:0]                        axi_aw_prot_o,
     output [AXI_ID_WIDTH-1:0]           axi_aw_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_aw_user_o,
+    // output [AXI_USER_WIDTH-1:0]         axi_aw_user_o,
     output [7:0]                        axi_aw_len_o,       
     output [2:0]                        axi_aw_size_o,
     output [1:0]                        axi_aw_burst_o,
-    output                              axi_aw_lock_o,
-    output [3:0]                        axi_aw_cache_o,
-    output [3:0]                        axi_aw_qos_o,
-    output [3:0]                        axi_aw_region_o,
+    // output                              axi_aw_lock_o,
+    // output [3:0]                        axi_aw_cache_o,
+    // output [3:0]                        axi_aw_qos_o,
+    // output [3:0]                        axi_aw_region_o,
 
     input                               axi_w_ready_i,      //lite              
     output                              axi_w_valid_o,      //lite
     output [AXI_DATA_WIDTH-1:0]         axi_w_data_o,       //lite
     output [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o,       //lite
     output                              axi_w_last_o,       //lite
-    output [AXI_USER_WIDTH-1:0]         axi_w_user_o,
+    // output [AXI_USER_WIDTH-1:0]         axi_w_user_o,
     
     output                              axi_b_ready_o,      //lite           
     input                               axi_b_valid_i,      //lite
     input  [1:0]                        axi_b_resp_i,       //lite            
     input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
+    // input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
 
     input                               axi_ar_ready_i,     //lite              
     output                              axi_ar_valid_o,     //lite
     output [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o,      //lite
-    output [2:0]                        axi_ar_prot_o,
+    // output [2:0]                        axi_ar_prot_o,
     output [AXI_ID_WIDTH-1:0]           axi_ar_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
+    // output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
     output [7:0]                        axi_ar_len_o,       //lite
     output [2:0]                        axi_ar_size_o,      //lite
     output [1:0]                        axi_ar_burst_o,
-    output                              axi_ar_lock_o,
-    output [3:0]                        axi_ar_cache_o,
-    output [3:0]                        axi_ar_qos_o,
-    output [3:0]                        axi_ar_region_o,
+    // output                              axi_ar_lock_o,
+    // output [3:0]                        axi_ar_cache_o,
+    // output [3:0]                        axi_ar_qos_o,
+    // output [3:0]                        axi_ar_region_o,
     
     output                              axi_r_ready_o,      //lite            
     input                               axi_r_valid_i,      //lite            
     input  [1:0]                        axi_r_resp_i,
     input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       //lite
     input                               axi_r_last_i,
-    input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i
+    input  [AXI_ID_WIDTH-1:0]           axi_r_id_i
+    // input  [AXI_USER_WIDTH-1:0]         axi_r_user_i
 );
-    assign  axi_ar_region_o = 'b0;
+    // assign  axi_ar_region_o = 'b0;
     // ------------------State Machine------------------TODO
 
     // 写通道状态切换
@@ -4540,7 +4451,7 @@ module axi_dcache # (
                     w_state_dw_wait = 2'b11,
                     w_state_b_wait_trans_ok = 2'b10;
     reg     [1:0]   w_state,w_state_next;
-    reg             aw_valid,w_valid,b_ready,trans_ok;
+    reg             aw_valid,w_valid,b_ready;//trans_ok;
     wire            wrLast;
     always @(posedge clock or negedge reset) begin
         if(~reset) begin
@@ -4587,7 +4498,7 @@ module axi_dcache # (
             end
         endcase
     end
-    reg     [`XLEN-1:0]     wrAddr_reg;
+    reg     [AXI_ADDR_WIDTH-1:0]     wrAddr_reg;
     reg     [255:0]         wr_data_reg;
     reg     [7:0]           wrMask_reg;
     reg     [2:0]           wrSize_reg;
@@ -4634,12 +4545,12 @@ assign wr_ready_o = w_state == w_state_idle;
     // 读通道状态切换
     parameter       r_state_idle = 2'b00,
                     r_state_ar_wait = 2'b01,
-                    r_state_r_wait = 2'b11,
-                    r_state_trans_ok = 2'b10;    
+                    r_state_r_wait = 2'b11;
+                    // r_state_trans_ok = 2'b10;    
     reg     [1:0]   r_state,r_state_next;
     wire            ar_valid,r_ready;
     // reg             instr_valid;
-    reg     [`XLEN-1:0]     rdAddr_reg;
+    reg     [RW_ADDR_WIDTH-1:0]     rdAddr_reg;
     always @(posedge clock or negedge reset) begin
         if(~reset) begin
             r_state <= r_state_idle;
@@ -4693,49 +4604,49 @@ assign data_read_o = axi_r_data_i;
     // Read address channel signals
     assign axi_ar_valid_o   = ar_valid;
     assign axi_ar_addr_o    = rdAddr_reg;
-    assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
+    // assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
-    assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
+    // assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
     assign axi_ar_len_o     = fetchLenth;                                                                          
     assign axi_ar_size_o    = loadSize;
     assign axi_ar_burst_o   = `AXI_BURST_TYPE_INCR;
-    assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
-    assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可
-    assign axi_ar_qos_o     = 4'h0;                                                                             //初始化信号即可
+    // assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
+    // assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可
+    // assign axi_ar_qos_o     = 4'h0;                                                                             //初始化信号即可
 
     // Read data channel signals
     assign axi_r_ready_o    = r_ready;
 
     // // ------------------Write Transaction------------------
-    parameter AXI_SIZE      = $clog2(AXI_DATA_WIDTH / 8);
+    // parameter AXI_SIZE      = $clog2(AXI_DATA_WIDTH / 8);
     wire [AXI_ID_WIDTH-1:0] axi_id              = 'b1;
-    wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
-    wire [7:0] axi_len      =  8'd3 ;
-    wire [2:0] axi_size     = AXI_SIZE[2:0];
+    // wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
+    // wire [7:0] axi_len      =  8'd3 ;
+    // wire [2:0] axi_size     = AXI_SIZE[2:0];
     // 写地址通道  以下没有备注初始化信号的都可能是你需要产生和用到的
     assign axi_aw_valid_o   = aw_valid;
     assign axi_aw_addr_o    = wrAddr_reg;
-    assign axi_aw_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
+    // assign axi_aw_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_aw_id_o      = axi_id;                                                                           //初始化信号即可
-    assign axi_aw_user_o    = axi_user;                                                                         //初始化信号即可
+    // assign axi_aw_user_o    = axi_user;                                                                         //初始化信号即可
     assign axi_aw_len_o     = storeLenth_reg;
     //**********************可能有问题
     assign axi_aw_size_o    = wrSize_reg;
     assign axi_aw_burst_o   = `AXI_BURST_TYPE_INCR;                                                             
-    assign axi_aw_lock_o    = 1'b0;                                                                             //初始化信号即可
-    assign axi_aw_cache_o   = `AXI_AWCACHE_WRITE_BACK_READ_AND_WRITE_ALLOCATE;                                  //初始化信号即可
-    assign axi_aw_qos_o     = 4'h0;                                                                             //初始化信号即可
-    assign axi_aw_region_o  = 4'h0;                                                                             //初始化信号即可
+    // assign axi_aw_lock_o    = 1'b0;                                                                             //初始化信号即可
+    // assign axi_aw_cache_o   = `AXI_AWCACHE_WRITE_BACK_READ_AND_WRITE_ALLOCATE;                                  //初始化信号即可
+    // assign axi_aw_qos_o     = 4'h0;                                                                             //初始化信号即可
+    // assign axi_aw_region_o  = 4'h0;                                                                             //初始化信号即可
 
     // 写数据通道
     assign axi_w_valid_o    = w_valid;
-    wire    [5:0]      shift = {wrAddr_reg[2:0],3'b0};
+    // wire    [5:0]      shift = {wrAddr_reg[2:0],3'b0};
     // assign axi_w_data_o     = wr_data_reg[63:0] << shift;
     assign axi_w_strb_o     = 'hff;
     assign axi_w_data_o     = wr_data_reg[wrCnt*64+:64];
     assign axi_w_strb_o     = wrMask_reg;
     assign axi_w_last_o     = wrLast;
-    assign axi_w_user_o     = axi_user;                                                                         //初始化信号即可
+    // assign axi_w_user_o     = axi_user;                                                                         //初始化信号即可
 
     // 写应答通道
     assign axi_b_ready_o    = b_ready;
@@ -4744,7 +4655,7 @@ assign data_read_o = axi_r_data_i;
 
 endmodule
 module pipline_ctrl (
-    input               clk,rst_n,
+    // input               clk,rst_n,
     input               ld_use_hazard,
     input               is_jump,
     input               in_trap_id,out_trap_id,
@@ -4752,10 +4663,10 @@ module pipline_ctrl (
     input               ex_not_ok,
     input               ls_not_ok,
     input               in_intr_ls,
-    input               fence_id,fence_ex,fence_ls,
+    input               fence_id,fence_ex,
 
     output              if_stall_n,
-    output              pc_stall_n,
+    // output              pc_stall_n,
     output              id_stall_n,
     output              ex_stall_n,
     output              ls_stall_n,
@@ -4768,7 +4679,7 @@ module pipline_ctrl (
     
 wire    fenceInPip = fence_id||fence_ex;
 //unused
-assign  pc_stall_n = ((fenceInPip && ~is_jump) ||ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
+// assign  pc_stall_n = ((fenceInPip && ~is_jump) ||ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
 ///
 
 assign  if_stall_n = ((fenceInPip && ~is_jump) ||ld_use_hazard || (~if_instr_valid) || ls_not_ok || ex_not_ok) ? 1'b0 : 1'b1;
@@ -4785,12 +4696,12 @@ endmodule
 
 module axi_icache # (
     parameter RW_DATA_WIDTH     = 64,
-    parameter RW_ADDR_WIDTH     = 64,
+    parameter RW_ADDR_WIDTH     = 32,
     parameter AXI_DATA_WIDTH    = 64,
-    parameter AXI_ADDR_WIDTH    = 64,
-    parameter AXI_ID_WIDTH      = 4,
-    parameter AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8,
-    parameter AXI_USER_WIDTH    = 1
+    parameter AXI_ADDR_WIDTH    = 32,
+    parameter AXI_ID_WIDTH      = 4
+    // parameter AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8,
+    // parameter AXI_USER_WIDTH    = 1
 )(
     input                               clock,
     input                               reset,
@@ -4811,26 +4722,26 @@ module axi_icache # (
     input                               axi_ar_ready_i,     //lite              
     output                              axi_ar_valid_o,     //lite
     output [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o,      //lite
-    output [2:0]                        axi_ar_prot_o,
+    // output [2:0]                        axi_ar_prot_o,
     output [AXI_ID_WIDTH-1:0]           axi_ar_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
+    // output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
     output [7:0]                        axi_ar_len_o,       //lite
     output [2:0]                        axi_ar_size_o,      //lite
     output [1:0]                        axi_ar_burst_o,
-    output                              axi_ar_lock_o,
-    output [3:0]                        axi_ar_cache_o,
-    output [3:0]                        axi_ar_qos_o,
-    output [3:0]                        axi_ar_region_o,
+    // output                              axi_ar_lock_o,
+    // output [3:0]                        axi_ar_cache_o,
+    // output [3:0]                        axi_ar_qos_o,
+    // output [3:0]                        axi_ar_region_o,
     
     output                              axi_r_ready_o,      //lite            
     input                               axi_r_valid_i,      //lite            
     input  [1:0]                        axi_r_resp_i,
     input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       //lite
     input                               axi_r_last_i,
-    input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i
+    input  [AXI_ID_WIDTH-1:0]           axi_r_id_i
+    // input  [AXI_USER_WIDTH-1:0]         axi_r_user_i
 );
-assign  axi_ar_region_o = 'b0;
+// assign  axi_ar_region_o = 'b0;
     // ------------------State Machine------------------TODO
 
     // 写通道状态切换
@@ -4839,12 +4750,12 @@ assign  axi_ar_region_o = 'b0;
     // 读通道状态切换
     parameter       r_state_idle = 2'b00,
                     r_state_ar_wait = 2'b01,
-                    r_state_r_wait = 2'b11,
-                    r_state_trans_ok = 2'b10;    
+                    r_state_r_wait = 2'b11;
+                    // r_state_trans_ok = 2'b10;    
     reg     [1:0]   r_state,r_state_next;
     wire            ar_valid,r_ready;
     // reg             instr_valid;
-    reg     [`XLEN-1:0]     addr_reg;
+    reg     [AXI_ADDR_WIDTH-1:0]     addr_reg;
     always @(posedge clock or negedge reset) begin
         if(~reset) begin
             r_state <= r_state_idle;
@@ -4899,15 +4810,15 @@ assign instr_fetching = ~(r_state == r_state_idle);
     // Read address channel signals
     assign axi_ar_valid_o   = ar_valid;
     assign axi_ar_addr_o    = addr_reg;
-    assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
+    // assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
-    assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
+    // assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
     assign axi_ar_len_o     = axi_len;                                                                          
     assign axi_ar_size_o    = axi_size;
     assign axi_ar_burst_o   = `AXI_BURST_TYPE_INCR;
-    assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
-    assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可
-    assign axi_ar_qos_o     = 4'h0;                                                                             //初始化信号即可
+    // assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
+    // assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可
+    // assign axi_ar_qos_o     = 4'h0;                                                                             //初始化信号即可
 
     // Read data channel signals
     assign axi_r_ready_o    = r_ready;
@@ -4915,7 +4826,7 @@ assign instr_fetching = ~(r_state == r_state_idle);
     // // ------------------Write Transaction------------------
     parameter AXI_SIZE      = $clog2(AXI_DATA_WIDTH / 8);
     wire [AXI_ID_WIDTH-1:0] axi_id              = {AXI_ID_WIDTH{1'b0}};
-    wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
+    // wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
     wire [7:0] axi_len      =  fetchLenth ;                           //lenth为长度减1
     wire [2:0] axi_size     =  fetchLenth=='b0 ? 'd2 : AXI_SIZE[2:0];
     // // 写地址通道  以下没有备注初始化信号的都可能是你需要产生和用到的
@@ -4955,7 +4866,7 @@ module L_S_reg (
   input                           trap_ls_reg_i,
   input                           stall_n,
   input                           flush_i,
-    input                           fence_ls_reg_i,
+    // input                           fence_ls_reg_i,
 
   // input                           mem_wren_ls_reg_i,
   // input                           mem_lden_ls_reg_i,
@@ -4967,23 +4878,23 @@ module L_S_reg (
   output   reg    [`inst_len-1:0] instr_ls_reg_o,
   output   reg    [`XLEN-1:0]     alures_ls_reg_o,
   output   reg                    wben_ls_reg_o,
-    output   reg                    trap_ls_reg_o,
-    output                          fence_ls_reg_o
+    output   reg                    trap_ls_reg_o
+    // output                          fence_ls_reg_o
 
 );
 
-wire [3*`XLEN + `inst_len + 2 +1-1:0] bundle;
-assign bundle = flush_i ? 'b0 : {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i, fence_ls_reg_i};
+wire [3*`XLEN + `inst_len + 2 -1:0] bundle;
+assign bundle = flush_i ? 'b0 : {PC_ls_reg_i, instr_ls_reg_i, rs2_ls_reg_i, alures_ls_reg_i, wben_ls_reg_i, trap_ls_reg_i};
 
 stl_reg #(
-  .WIDTH     (3*`XLEN + `inst_len + 2 +1),
+  .WIDTH     (3*`XLEN + `inst_len + 2 ),
 .RESET_VAL (0)
 )ls_reg(
 .i_clk   (clk),
 .i_rst_n (rstn),
 .i_wen   (stall_n),
 .i_din   (bundle),
-  .o_dout  ({PC_ls_reg_o, instr_ls_reg_o, rs2_ls_reg_o, alures_ls_reg_o, wben_ls_reg_o, trap_ls_reg_o, fence_ls_reg_o})
+  .o_dout  ({PC_ls_reg_o, instr_ls_reg_o, rs2_ls_reg_o, alures_ls_reg_o, wben_ls_reg_o, trap_ls_reg_o})
 );
 
 
@@ -5043,7 +4954,7 @@ assign pc_imm_res = pc_i + imm_i;
 assign rs1_imm_res = rs1_i + imm_i;
 
 //is_jump_o = jal | jalr | branch(with condition)
-wire                    less,zero;
+wire                    zero;
 wire                    carry,overflow;
 wire    [`XLEN-1:0]     subres;
 wire    [`XLEN-1:0]     rs2_2s;
@@ -5084,7 +4995,8 @@ assign is_jump_o = is_jal_i | is_jalr_i | (is_brc_i & branch);
 endmodule
 
 module ls_ctr (
-    input       [`inst_len-1:0] instr_i,instr_last_i,
+    input       [`inst_len-1:0] instr_i,
+    input       [14:0]          instr_last_i,
     input       [`XLEN-1:0]     rs2_i,
     input       [`XLEN-1:0]     wb_data_i,wb_csr_data_i,                
     output                      wren,rden,
@@ -5106,29 +5018,25 @@ assign wr_data = (ld_st_en ) ? wb_data_i :  csr_st_en ? wb_csr_data_i : rs2_i;
 
 endmodule
 module axi_arbiter # (
-    parameter RW_DATA_WIDTH     = 64,
-    parameter RW_ADDR_WIDTH     = 64,
     parameter AXI_DATA_WIDTH    = 64,
-    parameter AXI_ADDR_WIDTH    = 64,
-    parameter AXI_ID_WIDTH      = 4,
-    parameter AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8,
-    parameter AXI_USER_WIDTH    = 1
+    parameter AXI_ADDR_WIDTH    = 32,
+    parameter AXI_ID_WIDTH      = 4
 )(
 //if interface  id: 0
     input                               instr_fetching,
     output                              if_axi_ar_ready_o,     //lite              
     input                               if_axi_ar_valid_i,     //lite
     input [AXI_ADDR_WIDTH-1:0]          if_axi_ar_addr_i,      //lite
-    input [2:0]                         if_axi_ar_prot_i,
+    // input [2:0]                         if_axi_ar_prot_i,
     input [AXI_ID_WIDTH-1:0]            if_axi_ar_id_i,
-    input [AXI_USER_WIDTH-1:0]          if_axi_ar_user_i,
+    // input [AXI_USER_WIDTH-1:0]          if_axi_ar_user_i,
     input [7:0]                         if_axi_ar_len_i,       //lite
     input [2:0]                         if_axi_ar_size_i,      //lite
     input [1:0]                         if_axi_ar_burst_i,
-    input                               if_axi_ar_lock_i,
-    input [3:0]                         if_axi_ar_cache_i,
-    input [3:0]                         if_axi_ar_qos_i,
-    input [3:0]                         if_axi_ar_region_i,
+    // input                               if_axi_ar_lock_i,
+    // input [3:0]                         if_axi_ar_cache_i,
+    // input [3:0]                         if_axi_ar_qos_i,
+    // input [3:0]                         if_axi_ar_region_i,
     
     input                               if_axi_r_ready_i,      //lite            
     output                              if_axi_r_valid_o,      //lite            
@@ -5136,48 +5044,48 @@ module axi_arbiter # (
     output  [AXI_DATA_WIDTH-1:0]        if_axi_r_data_o,       //lite
     output                              if_axi_r_last_o,
     output  [AXI_ID_WIDTH-1:0]          if_axi_r_id_o,
-    output  [AXI_USER_WIDTH-1:0]        if_axi_r_user_o,
+    // output  [AXI_USER_WIDTH-1:0]        if_axi_r_user_o,
 //ls interface  id: 1
     output                              ls_axi_aw_ready_o,     //lite         
     input                               ls_axi_aw_valid_i,     //lite
     input [AXI_ADDR_WIDTH-1:0]          ls_axi_aw_addr_i,      //lite
-    input [2:0]                         ls_axi_aw_prot_i,
+    // input [2:0]                         ls_axi_aw_prot_i,
     input [AXI_ID_WIDTH-1:0]            ls_axi_aw_id_i,
-    input [AXI_USER_WIDTH-1:0]          ls_axi_aw_user_i,
+    // input [AXI_USER_WIDTH-1:0]          ls_axi_aw_user_i,
     input [7:0]                         ls_axi_aw_len_i,       
     input [2:0]                         ls_axi_aw_size_i,
     input [1:0]                         ls_axi_aw_burst_i,
-    input                               ls_axi_aw_lock_i,
-    input [3:0]                         ls_axi_aw_cache_i,
-    input [3:0]                         ls_axi_aw_qos_i,
-    input [3:0]                         ls_axi_aw_region_i,
+    // input                               ls_axi_aw_lock_i,
+    // input [3:0]                         ls_axi_aw_cache_i,
+    // input [3:0]                         ls_axi_aw_qos_i,
+    // input [3:0]                         ls_axi_aw_region_i,
 
     output                              ls_axi_w_ready_o,      //lite              
     input                               ls_axi_w_valid_i,      //lite
     input [AXI_DATA_WIDTH-1:0]          ls_axi_w_data_i,       //lite
     input [AXI_DATA_WIDTH/8-1:0]        ls_axi_w_strb_i,       //lite
     input                               ls_axi_w_last_i,       //lite
-    input [AXI_USER_WIDTH-1:0]          ls_axi_w_user_i,
+    // input [AXI_USER_WIDTH-1:0]          ls_axi_w_user_i,
     
     input                               ls_axi_b_ready_i,      //lite           
     output                              ls_axi_b_valid_o,      //lite
     output  [1:0]                       ls_axi_b_resp_o,       //lite            
     output  [AXI_ID_WIDTH-1:0]          ls_axi_b_id_o,
-    output  [AXI_USER_WIDTH-1:0]        ls_axi_b_user_o,
+    // output  [AXI_USER_WIDTH-1:0]        ls_axi_b_user_o,
 
     output                              ls_axi_ar_ready_o,     //lite              
     input                               ls_axi_ar_valid_i,     //lite
     input [AXI_ADDR_WIDTH-1:0]          ls_axi_ar_addr_i,      //lite
-    input [2:0]                         ls_axi_ar_prot_i,
+    // input [2:0]                         ls_axi_ar_prot_i,
     input [AXI_ID_WIDTH-1:0]            ls_axi_ar_id_i,
-    input [AXI_USER_WIDTH-1:0]          ls_axi_ar_user_i,
+    // input [AXI_USER_WIDTH-1:0]          ls_axi_ar_user_i,
     input [7:0]                         ls_axi_ar_len_i,       //lite
     input [2:0]                         ls_axi_ar_size_i,      //lite
     input [1:0]                         ls_axi_ar_burst_i,
-    input                               ls_axi_ar_lock_i,
-    input [3:0]                         ls_axi_ar_cache_i,
-    input [3:0]                         ls_axi_ar_qos_i,
-    input [3:0]                         ls_axi_ar_region_i,
+    // input                               ls_axi_ar_lock_i,
+    // input [3:0]                         ls_axi_ar_cache_i,
+    // input [3:0]                         ls_axi_ar_qos_i,
+    // input [3:0]                         ls_axi_ar_region_i,
     
     input                               ls_axi_r_ready_i,      //lite            
     output                              ls_axi_r_valid_o,      //lite            
@@ -5185,71 +5093,71 @@ module axi_arbiter # (
     output  [AXI_DATA_WIDTH-1:0]        ls_axi_r_data_o,       //lite
     output                              ls_axi_r_last_o,
     output  [AXI_ID_WIDTH-1:0]          ls_axi_r_id_o,
-    output  [AXI_USER_WIDTH-1:0]        ls_axi_r_user_o,
+    // output  [AXI_USER_WIDTH-1:0]        ls_axi_r_user_o,
 
-    input                               axi_aw_ready_i,     //lite         
-    output                              axi_aw_valid_o,     //lite
-    output [AXI_ADDR_WIDTH-1:0]         axi_aw_addr_o,      //lite
-    output [2:0]                        axi_aw_prot_o,
+    input                               axi_aw_ready_i,            
+    output                              axi_aw_valid_o,     
+    output [AXI_ADDR_WIDTH-1:0]         axi_aw_addr_o,      
+    // output [2:0]                        axi_aw_prot_o,
     output [AXI_ID_WIDTH-1:0]           axi_aw_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_aw_user_o,
-    output [7:0]                        axi_aw_len_o,       
+    // output [AXI_USER_WIDTH-1:0]         axi_aw_user_o,
+    output [7:0]                        axi_aw_len_o,      
     output [2:0]                        axi_aw_size_o,
     output [1:0]                        axi_aw_burst_o,
-    output                              axi_aw_lock_o,
-    output [3:0]                        axi_aw_cache_o,
-    output [3:0]                        axi_aw_qos_o,
-    output [3:0]                        axi_aw_region_o,
+    // output                              axi_aw_lock_o,
+    // output [3:0]                        axi_aw_cache_o,
+    // output [3:0]                        axi_aw_qos_o,
+    // output [3:0]                        axi_aw_region_o,
 
-    input                               axi_w_ready_i,      //lite              
-    output                              axi_w_valid_o,      //lite
-    output [AXI_DATA_WIDTH-1:0]         axi_w_data_o,       //lite
-    output [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o,       //lite
-    output                              axi_w_last_o,       //lite
-    output [AXI_USER_WIDTH-1:0]         axi_w_user_o,
+    input                               axi_w_ready_i,                  
+    output                              axi_w_valid_o,      
+    output [AXI_DATA_WIDTH-1:0]         axi_w_data_o,       
+    output [AXI_DATA_WIDTH/8-1:0]       axi_w_strb_o,       
+    output                              axi_w_last_o,       
+    // output [AXI_USER_WIDTH-1:0]         axi_w_user_o,
     
-    output                              axi_b_ready_o,      //lite           
-    input                               axi_b_valid_i,      //lite
-    input  [1:0]                        axi_b_resp_i,       //lite            
+    output                              axi_b_ready_o,               
+    input                               axi_b_valid_i,      
+    input  [1:0]                        axi_b_resp_i,                 
     input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
+    // input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
 
-    input                               axi_ar_ready_i,     //lite              
-    output                              axi_ar_valid_o,     //lite
-    output [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o,      //lite
-    output [2:0]                        axi_ar_prot_o,
+    input                               axi_ar_ready_i,                 
+    output                              axi_ar_valid_o,     
+    output [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o,      
+    // output [2:0]                        axi_ar_prot_o,
     output [AXI_ID_WIDTH-1:0]           axi_ar_id_o,
-    output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
-    output [7:0]                        axi_ar_len_o,       //lite
-    output [2:0]                        axi_ar_size_o,      //lite
+    // output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
+    output [7:0]                        axi_ar_len_o,       
+    output [2:0]                        axi_ar_size_o,      
     output [1:0]                        axi_ar_burst_o,
-    output                              axi_ar_lock_o,
-    output [3:0]                        axi_ar_cache_o,
-    output [3:0]                        axi_ar_qos_o,
-    output [3:0]                        axi_ar_region_o,
+    // output                              axi_ar_lock_o,
+    // output [3:0]                        axi_ar_cache_o,
+    // output [3:0]                        axi_ar_qos_o,
+    // output [3:0]                        axi_ar_region_o,
     
-    output                              axi_r_ready_o,      //lite            
-    input                               axi_r_valid_i,      //lite            
+    output                              axi_r_ready_o,                 
+    input                               axi_r_valid_i,                 
     input  [1:0]                        axi_r_resp_i,
-    input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       //lite
+    input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       
     input                               axi_r_last_i,
     input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i,
+    // input  [AXI_USER_WIDTH-1:0]         axi_r_user_i,
 
-    output   [63 : 0]                       clint_axi_araddr,
-    output   [2 : 0]                         clint_axi_arprot,
+    output   [AXI_ADDR_WIDTH-1 : 0]          clint_axi_araddr,
+    // output   [2 : 0]                         clint_axi_arprot,
     output                                   clint_axi_arvalid,
     input                                  clint_axi_arready,
-    output  [2:0]                            clint_axi_arsize,
+    // output  [2:0]                            clint_axi_arsize,
 
     input  [63 : 0]                        clint_axi_rdata,
     input  [1 : 0]                         clint_axi_rresp,
     input                                  clint_axi_rvalid,
     output                                   clint_axi_rready,   
 
-    output  [2:0]                            clint_axi_awsize,
-    output  [63 : 0]                         clint_axi_awaddr,
-    output  [2 : 0]                          clint_axi_awprot,
+    // output  [2:0]                            clint_axi_awsize,
+    output  [AXI_ADDR_WIDTH-1 : 0]                         clint_axi_awaddr,
+    // output  [2 : 0]                          clint_axi_awprot,
     output                                   clint_axi_awvalid,
     input                                  clint_axi_awready,
 
@@ -5316,42 +5224,42 @@ module axi_arbiter # (
 wire                              axi_aw_ready;  
 wire                              axi_aw_valid;  
 wire [AXI_ADDR_WIDTH-1:0]         axi_aw_addr;   
-wire [2:0]                        axi_aw_prot;
+// wire [2:0]                        axi_aw_prot;
 wire [AXI_ID_WIDTH-1:0]           axi_aw_id;
-wire [AXI_USER_WIDTH-1:0]         axi_aw_user;
+// wire [AXI_USER_WIDTH-1:0]         axi_aw_user;
 wire [7:0]                        axi_aw_len;    
 wire [2:0]                        axi_aw_size;
 wire [1:0]                        axi_aw_burst;
-wire                              axi_aw_lock;
-wire [3:0]                        axi_aw_cache;
-wire [3:0]                        axi_aw_qos;
-wire [3:0]                        axi_aw_region;
+// wire                              axi_aw_lock;
+// wire [3:0]                        axi_aw_cache;
+// wire [3:0]                        axi_aw_qos;
+// wire [3:0]                        axi_aw_region;
 wire                              axi_w_ready;   
 wire                              axi_w_valid;   
 wire [AXI_DATA_WIDTH-1:0]         axi_w_data;    
 wire [AXI_DATA_WIDTH/8-1:0]       axi_w_strb;    
 wire                              axi_w_last;    
-wire [AXI_USER_WIDTH-1:0]         axi_w_user;
+// wire [AXI_USER_WIDTH-1:0]         axi_w_user;
 
 wire                              axi_b_ready;   
 wire                              axi_b_valid;   
 wire [1:0]                        axi_b_resp;    
 wire [AXI_ID_WIDTH-1:0]           axi_b_id;
-wire [AXI_USER_WIDTH-1:0]         axi_b_user;
+// wire [AXI_USER_WIDTH-1:0]         axi_b_user;
 
 wire                              axi_ar_ready;  
 wire                              axi_ar_valid;  
 wire [AXI_ADDR_WIDTH-1:0]         axi_ar_addr;   
-wire [2:0]                        axi_ar_prot;
+// wire [2:0]                        axi_ar_prot;
 wire [AXI_ID_WIDTH-1:0]           axi_ar_id;
-wire [AXI_USER_WIDTH-1:0]         axi_ar_user;
+// wire [AXI_USER_WIDTH-1:0]         axi_ar_user;
 wire [7:0]                        axi_ar_len;    
 wire [2:0]                        axi_ar_size;   
 wire [1:0]                        axi_ar_burst;
-wire                              axi_ar_lock;
-wire [3:0]                        axi_ar_cache;
-wire [3:0]                        axi_ar_qos;
-wire [3:0]                        axi_ar_region;
+// wire                              axi_ar_lock;
+// wire [3:0]                        axi_ar_cache;
+// wire [3:0]                        axi_ar_qos;
+// wire [3:0]                        axi_ar_region;
 
 wire                              axi_r_ready;   
 wire                              axi_r_valid;   
@@ -5359,46 +5267,46 @@ wire [1:0]                        axi_r_resp;
 wire [AXI_DATA_WIDTH-1:0]         axi_r_data;    
 wire                              axi_r_last;
 wire [AXI_ID_WIDTH-1:0]           axi_r_id;
-wire [AXI_USER_WIDTH-1:0]         axi_r_user;
+// wire [AXI_USER_WIDTH-1:0]         axi_r_user;
 
 assign ls_axi_aw_ready_o   = axi_aw_ready   ;   
 assign axi_aw_valid   = ls_axi_aw_valid_i   ;  
 assign axi_aw_addr    = ls_axi_aw_addr_i    ;   
-assign axi_aw_prot    = ls_axi_aw_prot_i    ; 
+// assign axi_aw_prot    = ls_axi_aw_prot_i    ; 
 assign axi_aw_id      = ls_axi_aw_id_i      ;
-assign axi_aw_user    = ls_axi_aw_user_i    ; 
+// assign axi_aw_user    = ls_axi_aw_user_i    ; 
 assign axi_aw_len     = ls_axi_aw_len_i     ;  
 assign axi_aw_size    = ls_axi_aw_size_i    ; 
 assign axi_aw_burst   = ls_axi_aw_burst_i   ;  
-assign axi_aw_lock    = ls_axi_aw_lock_i    ; 
-assign axi_aw_cache   = ls_axi_aw_cache_i   ;  
-assign axi_aw_qos     = ls_axi_aw_qos_i     ;
-assign axi_aw_region  = ls_axi_aw_region_i  ;   
+// assign axi_aw_lock    = ls_axi_aw_lock_i    ; 
+// assign axi_aw_cache   = ls_axi_aw_cache_i   ;  
+// assign axi_aw_qos     = ls_axi_aw_qos_i     ;
+// assign axi_aw_region  = ls_axi_aw_region_i  ;   
 assign ls_axi_w_ready_o = axi_w_ready       ;   
 assign axi_w_valid    = ls_axi_w_valid_i    ; 
 assign axi_w_data     = ls_axi_w_data_i     ;  
 assign axi_w_strb     = ls_axi_w_strb_i     ;   
 assign axi_w_last     = ls_axi_w_last_i     ;   
-assign axi_w_user     = ls_axi_w_user_i     ;
+// assign axi_w_user     = ls_axi_w_user_i     ;
 assign axi_b_ready    = ls_axi_b_ready_i    ;   
 assign ls_axi_b_valid_o    = axi_b_valid    ;  
 assign ls_axi_b_resp_o     =  axi_b_resp    ;  
 assign ls_axi_b_id_o       =  axi_b_id      ;
-assign ls_axi_b_user_o     =  axi_b_user    ;
+// assign ls_axi_b_user_o     =  axi_b_user    ;
 
  
 assign axi_ar_valid   =   instr_fetching ? if_axi_ar_valid_i  : ls_axi_ar_valid_i  ;    
 assign axi_ar_addr    =   instr_fetching ? if_axi_ar_addr_i   : ls_axi_ar_addr_i   ;    
-assign axi_ar_prot    =   instr_fetching ? if_axi_ar_prot_i   : ls_axi_ar_prot_i   ;    
+// assign axi_ar_prot    =   instr_fetching ? if_axi_ar_prot_i   : ls_axi_ar_prot_i   ;    
 assign axi_ar_id      =   instr_fetching ? if_axi_ar_id_i     : ls_axi_ar_id_i     ;
-assign axi_ar_user    =   instr_fetching ? if_axi_ar_user_i   : ls_axi_ar_user_i   ;    
+// assign axi_ar_user    =   instr_fetching ? if_axi_ar_user_i   : ls_axi_ar_user_i   ;    
 assign axi_ar_len     =   instr_fetching ? if_axi_ar_len_i    : ls_axi_ar_len_i    ;  
 assign axi_ar_size    =   instr_fetching ? if_axi_ar_size_i   : ls_axi_ar_size_i   ;      
 assign axi_ar_burst   =   instr_fetching ? if_axi_ar_burst_i  : ls_axi_ar_burst_i  ;     
-assign axi_ar_lock    =   instr_fetching ? if_axi_ar_lock_i   : ls_axi_ar_lock_i   ;    
-assign axi_ar_cache   =   instr_fetching ? if_axi_ar_cache_i  : ls_axi_ar_cache_i  ;     
-assign axi_ar_qos     =   instr_fetching ? if_axi_ar_qos_i    : ls_axi_ar_qos_i    ;
-assign axi_ar_region  =   instr_fetching ? if_axi_ar_region_i : ls_axi_ar_region_i ;
+// assign axi_ar_lock    =   instr_fetching ? if_axi_ar_lock_i   : ls_axi_ar_lock_i   ;    
+// assign axi_ar_cache   =   instr_fetching ? if_axi_ar_cache_i  : ls_axi_ar_cache_i  ;     
+// assign axi_ar_qos     =   instr_fetching ? if_axi_ar_qos_i    : ls_axi_ar_qos_i    ;
+// assign axi_ar_region  =   instr_fetching ? if_axi_ar_region_i : ls_axi_ar_region_i ;
 assign axi_r_ready    =   instr_fetching ? if_axi_r_ready_i   : ls_axi_r_ready_i   ;     
 
 assign if_axi_ar_ready_o   =  axi_ar_id[0] ? 0 : axi_ar_ready;
@@ -5420,66 +5328,66 @@ assign ls_axi_r_id_o       = axi_r_id;
 assign axi_aw_ready = clint_w_trans ? clint_axi_awready : axi_aw_ready_i;   
 assign axi_aw_valid_o = (clint_w_trans) ? 'b0 : axi_aw_valid;
 assign axi_aw_addr_o = (clint_w_trans) ? 'b0 : axi_aw_addr;    
-assign axi_aw_prot_o = (clint_w_trans) ? 'b0 : axi_aw_prot;
+// assign axi_aw_prot_o = (clint_w_trans) ? 'b0 : axi_aw_prot;
 assign axi_aw_id_o = (clint_w_trans) ? 'b0 : axi_aw_id;
-assign axi_aw_user_o = (clint_w_trans) ? 'b0 : axi_aw_user;
+// assign axi_aw_user_o = (clint_w_trans) ? 'b0 : axi_aw_user;
 assign axi_aw_len_o = (clint_w_trans) ? 'b0 : axi_aw_len;     
 assign axi_aw_size_o = (clint_w_trans) ? 'b0 : axi_aw_size;
 assign axi_aw_burst_o = (clint_w_trans) ? 'b0 : axi_aw_burst;
-assign axi_aw_lock_o = (clint_w_trans) ? 'b0 : axi_aw_lock;
-assign axi_aw_cache_o = (clint_w_trans) ? 'b0 : axi_aw_cache;
-assign axi_aw_qos_o = (clint_w_trans) ? 'b0 : axi_aw_qos;
-assign axi_aw_region_o = (clint_w_trans) ? 'b0 : axi_aw_region;
+// assign axi_aw_lock_o = (clint_w_trans) ? 'b0 : axi_aw_lock;
+// assign axi_aw_cache_o = (clint_w_trans) ? 'b0 : axi_aw_cache;
+// assign axi_aw_qos_o = (clint_w_trans) ? 'b0 : axi_aw_qos;
+// assign axi_aw_region_o = (clint_w_trans) ? 'b0 : axi_aw_region;
 assign axi_w_ready = clint_w_trans ? clint_axi_wready : axi_w_ready_i;    
 assign axi_w_valid_o = (clint_w_trans) ? 'b0 : axi_w_valid;   
 assign axi_w_data_o = (clint_w_trans) ? 'b0 : axi_w_data;     
 assign axi_w_strb_o = (clint_w_trans) ? 'b0 : axi_w_strb;     
 assign axi_w_last_o = (clint_w_trans) ? 'b0 : axi_w_last;     
-assign axi_w_user_o = (clint_w_trans) ? 'b0 : axi_w_user;
+// assign axi_w_user_o = (clint_w_trans) ? 'b0 : axi_w_user;
 assign axi_b_ready_o = (clint_w_trans) ? 'b0 : axi_b_ready;    
 assign axi_b_valid = clint_w_trans ? clint_axi_bvalid : axi_b_valid_i;    
 assign axi_b_resp = clint_w_trans ? clint_axi_bresp : axi_b_resp_i;     
 assign axi_b_id = clint_w_trans ? 'b01 : axi_b_id_i;
-assign axi_b_user = clint_w_trans ? 'b0 : axi_b_user_i;
+// assign axi_b_user = clint_w_trans ? 'b0 : axi_b_user_i;
 assign axi_ar_ready = clint_r_trans ? clint_axi_arready : axi_ar_ready_i;   
 assign axi_ar_valid_o = (clint_r_trans) ? 'b0 : axi_ar_valid;   
 assign axi_ar_addr_o  = (clint_r_trans) ? 'b0 : axi_ar_addr;    
-assign axi_ar_prot_o  = (clint_r_trans) ? 'b0 : axi_ar_prot;
+// assign axi_ar_prot_o  = (clint_r_trans) ? 'b0 : axi_ar_prot;
 assign axi_ar_id_o  = (clint_r_trans) ? 'b0 : axi_ar_id;
-assign axi_ar_user_o = (clint_r_trans) ? 'b0 : axi_ar_user;
+// assign axi_ar_user_o = (clint_r_trans) ? 'b0 : axi_ar_user;
 assign axi_ar_len_o = (clint_r_trans) ? 'b0 : axi_ar_len;
 assign axi_ar_size_o = (clint_r_trans) ? 'b0 : axi_ar_size;
 assign axi_ar_burst_o = (clint_r_trans) ? 'b0 : axi_ar_burst;
-assign axi_ar_lock_o = (clint_r_trans) ? 'b0 : axi_ar_lock;
-assign axi_ar_cache_o = (clint_r_trans) ? 'b0 : axi_ar_cache;
-assign axi_ar_qos_o = (clint_r_trans) ? 'b0 : axi_ar_qos;
-assign axi_ar_region_o = (clint_r_trans) ? 'b0 : axi_ar_region;
+// assign axi_ar_lock_o = (clint_r_trans) ? 'b0 : axi_ar_lock;
+// assign axi_ar_cache_o = (clint_r_trans) ? 'b0 : axi_ar_cache;
+// assign axi_ar_qos_o = (clint_r_trans) ? 'b0 : axi_ar_qos;
+// assign axi_ar_region_o = (clint_r_trans) ? 'b0 : axi_ar_region;
 assign axi_r_ready_o = (clint_r_trans) ? 'b0 : axi_r_ready;
 assign axi_r_valid = clint_r_trans ? clint_axi_rvalid : axi_r_valid_i;    
 assign axi_r_resp = clint_r_trans ? clint_axi_rresp : axi_r_resp_i;
 assign axi_r_data = clint_r_trans ? clint_axi_rdata : axi_r_data_i;     
 assign axi_r_last = clint_r_trans ? clint_axi_rvalid : axi_r_last_i;
 assign axi_r_id = clint_r_trans ? 'b01 : axi_r_id_i;
-assign axi_r_user = clint_r_trans ? 'b0 : axi_r_user_i;
+// assign axi_r_user = clint_r_trans ? 'b0 : axi_r_user_i;
 
-assign ls_axi_r_user_o = 'b0;
-assign if_axi_r_user_o = 'b0;
-assign axi_ar_region_o = 'b0;
+// assign ls_axi_r_user_o = 'b0;
+// assign if_axi_r_user_o = 'b0;
+// assign axi_ar_region_o = 'b0;
 
 wire clint_r_trans = axi_ar_addr[27:24] == 4'h2;
 wire clint_w_trans = axi_aw_addr[27:24] == 4'h2;
 
 
 assign clint_axi_araddr = (~clint_r_trans) ? 'b0 : axi_ar_addr;
-assign clint_axi_arprot = (~clint_r_trans) ? 'b0 : axi_ar_prot;
+// assign clint_axi_arprot = (~clint_r_trans) ? 'b0 : axi_ar_prot;
 assign clint_axi_arvalid = (~clint_r_trans) ? 'b0 : axi_ar_valid; 
-assign clint_axi_arsize = (~clint_r_trans) ? 'b0 : axi_ar_size;
+// assign clint_axi_arsize = (~clint_r_trans) ? 'b0 : axi_ar_size;
 
 assign clint_axi_rready = (~clint_r_trans) ? 'b0 : axi_r_ready;
 
-assign clint_axi_awsize = (~clint_w_trans) ? 'b0 : axi_aw_size;
+// assign clint_axi_awsize = (~clint_w_trans) ? 'b0 : axi_aw_size;
 assign clint_axi_awaddr = (~clint_w_trans) ? 'b0 : axi_aw_addr;   
-assign clint_axi_awprot = (~clint_w_trans) ? 'b0 : axi_aw_prot;
+// assign clint_axi_awprot = (~clint_w_trans) ? 'b0 : axi_aw_prot;
 assign clint_axi_awvalid = (~clint_w_trans) ? 'b0 : axi_aw_valid;
 
 assign clint_axi_wdata = (~clint_w_trans) ? 'b0 : axi_w_data;
@@ -5534,6 +5442,7 @@ wire                        is_brc_ex_reg;
 wire                        wben_ex_reg;
 wire                        trap_ex_reg;
 wire                        fence_ex_reg;
+wire                        diven_ex_reg;
 
 assign  pc_ex_reg       = flush ? `XLEN'b0      : pc_ex_reg_i;
 assign  instr_ex_reg    = flush ? `inst_len'b0  : instr_ex_reg_i;
@@ -5543,6 +5452,7 @@ assign  is_brc_ex_reg   = flush ? 1'b0          : is_brc_ex_reg_i;
 assign  wben_ex_reg     = flush ? 1'b0          : wben_ex_reg_i;
 assign  trap_ex_reg     = flush ? 1'b0          : trap_ex_reg_i;
 assign fence_ex_reg     = flush ? 1'B0          : fence_ex_reg_i;
+assign diven_ex_reg     = flush ? 1'b0          : DivEn_ex_reg_i;
 
 stl_reg #(
   .WIDTH     (4*`XLEN + `inst_len + 27+1),
@@ -5552,7 +5462,7 @@ stl_reg #(
   .i_rst_n (rst_n),
   .i_wen   (stall_n),
   .i_din   ({pc_ex_reg, instr_ex_reg, rs2_ex_reg_i, rs1_ex_reg_i, imm_ex_reg_i, aluctr_ex_reg_i, is_jalr_ex_reg, is_jal_ex_reg,
-             is_brc_ex_reg, src1sel_ex_reg_i, src2sel_ex_reg_i, wben_ex_reg, rs1_idx_ex_reg_i, rs2_idx_ex_reg_i, DivEn_ex_reg_i,
+             is_brc_ex_reg, src1sel_ex_reg_i, src2sel_ex_reg_i, wben_ex_reg, rs1_idx_ex_reg_i, rs2_idx_ex_reg_i, diven_ex_reg,
              DivSel_ex_reg_i, trap_ex_reg, fence_ex_reg}),
   .o_dout  ({pc_ex_reg_o, instr_ex_reg_o, rs2_ex_reg_o, rs1_ex_reg_o, imm_ex_reg_o, aluctr_ex_reg_o, is_jalr_ex_reg_o, is_jal_ex_reg_o,
              is_brc_ex_reg_o, src1sel_ex_reg_o, src2sel_ex_reg_o, wben_ex_reg_o, rs1_idx_ex_reg_o, rs2_idx_ex_reg_o, DivEn_ex_reg_o,
@@ -5561,10 +5471,10 @@ stl_reg #(
 
 endmodule
 module regfile(
-	input							clk,
-	input	[`XLEN-1:0]				pc_wb,					//for diff-test
+	input							clk,rst_n,
+	// input	[`XLEN-1:0]				pc_wb,					//for diff-test
 				
-	input	[`inst_len-1:0]			instr_wb_i,
+	// input	[`inst_len-1:0]			instr_wb_i,
 
 	input	[`reg_addr_width-1:0]	rs1_addr_i,
 	output	[`XLEN-1:0]				rs1_data_o,
@@ -5576,32 +5486,25 @@ module regfile(
 	input	[`XLEN-1:0]				wr_data_i,
 	input							wr_en
 
-//for varilator dbug
 
 );
 
-/***DPI-C***/
-// import "DPI-C" function void ebreak();
-// import "DPI-C" function void set_gpr_ptr(input logic [63:0] a []);
-// initial set_gpr_ptr(regfiles);  // rf为通用寄存器的二维数组变量
-// always @(posedge clk) begin
-// 	if(instr_wb_i == 32'h100073) begin
-// 		ebreak();	
-// 	end
-// end
 
 
 //regfiles
 reg		[`XLEN-1:0]	regfiles[0:31];
 
+integer i;
 //write		引入cg的写法
-always @(posedge clk) begin
-	if(wr_en) begin
+always @(posedge clk or negedge rst_n) begin
+	if(~rst_n) begin
+		for(i=0;i<32;i=i+1) begin
+			regfiles[i] <= 'b0;
+		end
+	end
+	else if(wr_en) begin
 		regfiles[wr_addr_i] <= (wr_addr_i == `reg_addr_width'b0)?`XLEN'b0 : wr_data_i;	
 	end
-	// else begin
-	// 	regfiles[wr_addr_i] <= regfiles[wr_addr_i];
-	// end
 end
 
 
@@ -5610,25 +5513,22 @@ end
 assign	rs1_data_o = (rs1_addr_i == 5'b0)?`XLEN'b0 : regfiles[rs1_addr_i];
 assign	rs2_data_o = (rs2_addr_i == 5'b0)?`XLEN'b0 : regfiles[rs2_addr_i];
 
-// always @(posedge clk) begin
-// 	if(pc_wb != `XLEN'b0) begin
-// 		difftest_step(pc_wb);
-// 	end
-// end
+
 
 
 endmodule
 
 module ALU(
+    input                       clk,rst_n,
     input       [4:0]           ALUctr,
     input       [`XLEN-1:0]     src1,
     input       [`XLEN-1:0]     src2,
     input                       DivEn,
     input       [2:0]           DivSel,
+    input                       flush_alu,
 
     output      [`XLEN-1:0]     ALUres,
-    output  reg                 less,
-    output                      zero
+    output                      aluNotOk
 );
 
 /*
@@ -5646,6 +5546,8 @@ ALUctr[3]|[2:0]
        x | 111:   and
 */
 
+reg                 less;
+// wire                zero;
 reg [`XLEN-1:0]     ALUout;
 wire                    cin;
 wire    [`XLEN-1:0]     src2_cin = src2 ^ {`XLEN{cin}};
@@ -5669,7 +5571,7 @@ Adder   Adder_main(
     .cin(cin),
     .Adder_o(Adder_o),
     .carry(carry),
-    .zero(zero),
+    // .zero(zero),
     .overflow(overflow)
 );
 
@@ -5690,14 +5592,59 @@ shifter64 shifter(
     .sft_a_l(sft_a_l), 
     .shift(shift)  
 );
+//lock src1&ssrc2 
+reg [63:0]  src1Reg,src2Reg;
+wire        diffIn;
+assign diffIn = ~(src1Reg == src1) || ~(src2Reg == src2);
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        src1Reg <= 'b0;
+        src2Reg <= 'b0;
+    end
+    else if(DivEn && diffIn) begin
+        src1Reg <= src1;
+        src2Reg <= src2;
+    end
+end
+wire mul_valid;
+assign mul_valid = diffIn && DivEn && ~DivSel[2];  //with diffIn, valid will only last for 1 cycle
+wire mul_resValid;
+mul_top Multiplier (
+  .clk          (clk ),
+  .rst_n        (rst_n ),
+  .mul_valid    (mul_valid ),
+  .flush        (flush_alu ),
+  .mul_type     (DivSel[1:0] ),
+  .multiplicand (src1 ),
+  .multiplier   (src2 ),
+  .out_valid    (mul_resValid ),
+  .result       (mulOut )
+);
+
+
+assign aluNotOk = DivEn && ~mul_resValid || DivEn && ~div_resValid;
 
 wire    [`XLEN-1:0]     DivOut;
-DIVIDER  divider(
-    .src1(src1),
-    .src2(src2),
-    .DivSel(DivSel),
-    .DivOut(DivOut)
+wire    [`XLEN-1:0]     mulOut;
+wire    [`XLEN-1:0]     divOut;
+wire div_valid;
+assign div_valid = diffIn && DivEn && DivSel[2];  //with diffIn, valid will only last for 1 cycle
+wire div_resValid;
+
+divTop divider(
+  .clk (clk ),
+  .rst_n (rst_n ),
+  .dividend (src1 ),
+  .divisor (src2 ),
+  .div_valid (div_valid ),
+  .div_type (DivSel[1:0] ),
+  .flush (flush_alu ),
+  .out_valid (div_resValid ),
+  .result (divOut )
 );
+
+assign DivOut = DivSel[2] ? divOut : mulOut;
+
 
 //Less
 // assign less = (u_s_mux)? carry^cin : ALUout[`XLEN-1]^overflow;
@@ -5752,13 +5699,13 @@ module Adder(
     input                       cin,
     output  reg [`XLEN-1:0]     Adder_o,
     output  reg                 carry,
-    output  reg                 zero,
+    // output  reg                 zero,
     output  reg                 overflow
 );
 always @(*) begin
     {carry,Adder_o} = src1 + src2 +{63'b000,cin};
     overflow = (src1[`XLEN-1] == src2[`XLEN-1]) && (Adder_o[`XLEN-1] != src1[`XLEN-1]);
-    zero = ~(|Adder_o);
+    // zero = ~(|Adder_o);
 end
 
 endmodule
@@ -5862,13 +5809,13 @@ always @(*) begin
                 DivOut = (src1 * src2);
         end
         `DivMulh: begin
-            DivOut = $signed(src1) * $signed(src2);
+            DivOut = ($signed(src1) * $signed(src2))>>64;
         end
         `DivMulhsu: begin
-            DivOut = $signed(src1) * $unsigned(src2);
+            DivOut = ($signed(src1) * $unsigned(src2))>>64;
         end
         `DivMulhu: begin
-            DivOut = $unsigned(src1) * $unsigned(src2);
+            DivOut = ($unsigned(src1) * $unsigned(src2))>>64;
         end
         `DivDiv: begin
                 DivOut = $signed(src1) / $signed(src2);
@@ -5893,20 +5840,20 @@ endmodule //DIVIDER
 module clint (
         input                                   clk,rst_n,
 
-		input  [63 : 0]                         clint_axi_araddr,
-		input  [2 : 0]                          clint_axi_arprot,
+		input  [31 : 0]                         clint_axi_araddr,
+		// input  [2 : 0]                          clint_axi_arprot,
 		input                                   clint_axi_arvalid,
 		output                                  clint_axi_arready,
-		input  [2:0]                            clint_axi_arsize,
+		// input  [2:0]                            clint_axi_arsize,
 
 		output  [63 : 0]                        clint_axi_rdata,
 		output  [1 : 0]                         clint_axi_rresp,
 		output                                  clint_axi_rvalid,
 		input                                   clint_axi_rready,   
 
-		input  [2:0]                            clint_axi_awsize,
-		input  [63 : 0]                         clint_axi_awaddr,
-		input  [2 : 0]                          clint_axi_awprot,
+		// input  [2:0]                            clint_axi_awsize,
+		input  [31 : 0]                         clint_axi_awaddr,
+		// input  [2 : 0]                          clint_axi_awprot,
 		input                                   clint_axi_awvalid,
 		output                                  clint_axi_awready,
 
@@ -5922,12 +5869,12 @@ module clint (
         output                                  hart0_time_int_o
 );
 
-reg [63 : 0] 	axi_awaddr;
+reg [15 : 0] 	axi_awaddr;
 reg  	        axi_awready;
 reg  	        axi_wready;
 reg [1 : 0] 	axi_bresp;
 reg  	        axi_bvalid;
-reg [63 : 0] 	axi_araddr;
+reg [15 : 0] 	axi_araddr;
 reg  	        axi_arready;
 reg [1 : 0] 	axi_rresp;
 reg  	        axi_rvalid;
@@ -5940,7 +5887,7 @@ reg             mtimeWrEn,mtimecmpWrEn;
 
 assign clint_axi_awready = axi_awready;
 assign clint_axi_wready = axi_wready;
-assign clint_axi_bresp = axi_rresp;
+assign clint_axi_bresp = axi_bresp;
 assign clint_axi_bvalid = axi_bvalid;
 assign clint_axi_arready = axi_arready;
 assign clint_axi_rresp = axi_rresp;
@@ -5948,7 +5895,7 @@ assign clint_axi_rvalid = axi_rvalid;
 
 assign clint_axi_rdata = reg_data_out;
 
-always @( posedge clk ) begin
+always @( posedge clk or negedge rst_n) begin
 	  if (~rst_n)
 	    begin
 	      axi_awready <= 1'b0;
@@ -5977,7 +5924,7 @@ always @( posedge clk ) begin
 	    end 
 end   
 
-always @( posedge clk )
+always @( posedge clk or negedge rst_n)
 begin
   if (~rst_n)
     begin
@@ -5988,12 +5935,12 @@ begin
       if (~axi_awready && clint_axi_awvalid && aw_en)
         begin
           // Write Address latching 
-          axi_awaddr <= clint_axi_awaddr;
+          axi_awaddr <= clint_axi_awaddr[15:0];
         end
     end 
 end  
 
-always @( posedge clk )
+always @( posedge clk or negedge rst_n)
 begin
   if (~rst_n)
     begin
@@ -6041,7 +5988,7 @@ always @(*) begin
       end  
 end   
 
-always @( posedge clk )
+always @( posedge clk or negedge rst_n)
 	begin
 	  if (~rst_n)
 	    begin
@@ -6068,12 +6015,12 @@ always @( posedge clk )
 	    end
 	end
 
-always @( posedge clk )
+always @( posedge clk or negedge rst_n)
 	begin
 	  if (~rst_n)
 	    begin
 	      axi_arready <= 1'b0;
-	      axi_araddr  <= 64'b0;
+	      axi_araddr  <= 'b0;
 	    end 
 	  else
 	    begin    
@@ -6082,7 +6029,7 @@ always @( posedge clk )
 	          // indicates that the slave has acceped the valid read address
 	          axi_arready <= 1'b1;
 	          // Read address latching
-	          axi_araddr  <= clint_axi_araddr;
+	          axi_araddr  <= clint_axi_araddr[15:0];
 	        end
 	      else
 	        begin
@@ -6091,7 +6038,7 @@ always @( posedge clk )
 	    end 
 	end
 
-always @( posedge clk )
+always @( posedge clk or negedge rst_n)
 	begin
 	  if (~rst_n)
 	    begin
@@ -6118,22 +6065,22 @@ always @( posedge clk )
     assign slv_reg_rden = axi_arready & clint_axi_arvalid & ~axi_rvalid;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-		reg_data_out = 'b0;   
+		reg_data_out <= 'b0;   
 	end
 	else if (slv_reg_rden)
     case(axi_araddr[15:0])
         16'h4000: begin
-            reg_data_out       = mtimecmp;
+            reg_data_out       <= mtimecmp;
         end
         16'hbff8: begin
-            reg_data_out       = mtime;
+            reg_data_out       <= mtime;
         end
         default:begin
-            reg_data_out       = 'b0;
+            reg_data_out       <= 'b0;
         end
     endcase
     else
-        reg_data_out = 'b0;        
+        reg_data_out <= 'b0;        
 end
 
 integer	 byte_index;

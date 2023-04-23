@@ -571,7 +571,7 @@ end
 wire            axiWrBusy = needWrBk_Reg;
 assign cacheWrValid_o = cleanEn ? cleanWrValid : needWrBk_Reg;
 wire    [31:0]  addrToWrite;
-
+//  这里vsrc_pip有问题
 assign addrToWrite = uncacheOpEn ? {reqLatch[31:3],3'b0} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = cleanEn ? cleanWrAddr : addrToWrite;
 

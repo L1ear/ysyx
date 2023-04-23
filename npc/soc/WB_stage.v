@@ -1,6 +1,6 @@
 
 module WB_stage (
-    input           [`XLEN-1:0]     pc_i,
+    // input           [`XLEN-1:0]     pc_i,
     input           [`inst_len-1:0] instr_i,
     input           [`XLEN-1:0]     alures_i,lsres_i,
     input           [`XLEN-1:0]     csrdata_i,
