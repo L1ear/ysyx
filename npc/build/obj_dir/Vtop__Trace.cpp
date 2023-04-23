@@ -21,115 +21,86 @@ extern const VlWide<8>/*255:0*/ Vtop__ConstPool__CONST_d5724acc_0;
 void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) {
     if (false && vlSelf) {}  // Prevent unused
     Vtop__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VlWide<3>/*95:0*/ __Vtemp594;
-    VlWide<5>/*159:0*/ __Vtemp595;
-    VlWide<5>/*159:0*/ __Vtemp600;
-    VlWide<5>/*159:0*/ __Vtemp601;
-    VlWide<5>/*159:0*/ __Vtemp606;
-    VlWide<5>/*159:0*/ __Vtemp607;
-    VlWide<5>/*159:0*/ __Vtemp611;
-    VlWide<5>/*159:0*/ __Vtemp612;
+    VlWide<3>/*95:0*/ __Vtemp562;
+    VlWide<3>/*95:0*/ __Vtemp565;
+    VlWide<3>/*95:0*/ __Vtemp568;
+    VlWide<3>/*95:0*/ __Vtemp571;
+    VlWide<3>/*95:0*/ __Vtemp574;
+    VlWide<5>/*159:0*/ __Vtemp575;
+    VlWide<5>/*159:0*/ __Vtemp580;
+    VlWide<5>/*159:0*/ __Vtemp585;
+    VlWide<5>/*159:0*/ __Vtemp589;
+    VlWide<8>/*255:0*/ __Vtemp594;
+    VlWide<8>/*255:0*/ __Vtemp599;
+    VlWide<8>/*255:0*/ __Vtemp604;
+    VlWide<8>/*255:0*/ __Vtemp608;
+    VlWide<4>/*127:0*/ __Vtemp609;
+    VlWide<4>/*127:0*/ __Vtemp610;
+    VlWide<3>/*95:0*/ __Vtemp611;
+    VlWide<3>/*95:0*/ __Vtemp613;
+    VlWide<3>/*95:0*/ __Vtemp614;
+    VlWide<3>/*95:0*/ __Vtemp615;
     VlWide<3>/*95:0*/ __Vtemp616;
-    VlWide<5>/*159:0*/ __Vtemp617;
+    VlWide<3>/*95:0*/ __Vtemp617;
     VlWide<3>/*95:0*/ __Vtemp620;
+    VlWide<3>/*95:0*/ __Vtemp621;
+    VlWide<3>/*95:0*/ __Vtemp622;
     VlWide<3>/*95:0*/ __Vtemp623;
-    VlWide<3>/*95:0*/ __Vtemp626;
+    VlWide<3>/*95:0*/ __Vtemp624;
+    VlWide<3>/*95:0*/ __Vtemp627;
+    VlWide<3>/*95:0*/ __Vtemp628;
     VlWide<3>/*95:0*/ __Vtemp629;
-    VlWide<3>/*95:0*/ __Vtemp632;
-    VlWide<5>/*159:0*/ __Vtemp633;
-    VlWide<5>/*159:0*/ __Vtemp638;
-    VlWide<5>/*159:0*/ __Vtemp643;
-    VlWide<5>/*159:0*/ __Vtemp647;
+    VlWide<3>/*95:0*/ __Vtemp630;
+    VlWide<3>/*95:0*/ __Vtemp633;
+    VlWide<3>/*95:0*/ __Vtemp634;
+    VlWide<3>/*95:0*/ __Vtemp636;
+    VlWide<3>/*95:0*/ __Vtemp637;
+    VlWide<3>/*95:0*/ __Vtemp638;
+    VlWide<3>/*95:0*/ __Vtemp639;
+    VlWide<3>/*95:0*/ __Vtemp642;
+    VlWide<3>/*95:0*/ __Vtemp643;
+    VlWide<3>/*95:0*/ __Vtemp645;
+    VlWide<3>/*95:0*/ __Vtemp646;
+    VlWide<3>/*95:0*/ __Vtemp647;
+    VlWide<3>/*95:0*/ __Vtemp648;
     VlWide<3>/*95:0*/ __Vtemp651;
-    VlWide<5>/*159:0*/ __Vtemp652;
-    VlWide<5>/*159:0*/ __Vtemp657;
-    VlWide<5>/*159:0*/ __Vtemp658;
-    VlWide<5>/*159:0*/ __Vtemp663;
-    VlWide<5>/*159:0*/ __Vtemp664;
-    VlWide<5>/*159:0*/ __Vtemp668;
-    VlWide<5>/*159:0*/ __Vtemp669;
-    VlWide<5>/*159:0*/ __Vtemp670;
-    VlWide<3>/*95:0*/ __Vtemp673;
-    VlWide<5>/*159:0*/ __Vtemp674;
+    VlWide<3>/*95:0*/ __Vtemp652;
+    VlWide<3>/*95:0*/ __Vtemp654;
+    VlWide<3>/*95:0*/ __Vtemp655;
+    VlWide<3>/*95:0*/ __Vtemp656;
+    VlWide<3>/*95:0*/ __Vtemp657;
+    VlWide<3>/*95:0*/ __Vtemp659;
+    VlWide<3>/*95:0*/ __Vtemp660;
+    VlWide<3>/*95:0*/ __Vtemp661;
+    VlWide<3>/*95:0*/ __Vtemp665;
+    VlWide<3>/*95:0*/ __Vtemp666;
+    VlWide<3>/*95:0*/ __Vtemp668;
+    VlWide<3>/*95:0*/ __Vtemp669;
+    VlWide<3>/*95:0*/ __Vtemp670;
+    VlWide<3>/*95:0*/ __Vtemp674;
+    VlWide<3>/*95:0*/ __Vtemp675;
+    VlWide<3>/*95:0*/ __Vtemp677;
     VlWide<3>/*95:0*/ __Vtemp678;
-    VlWide<5>/*159:0*/ __Vtemp679;
-    VlWide<5>/*159:0*/ __Vtemp684;
-    VlWide<5>/*159:0*/ __Vtemp685;
-    VlWide<5>/*159:0*/ __Vtemp690;
-    VlWide<5>/*159:0*/ __Vtemp691;
-    VlWide<5>/*159:0*/ __Vtemp695;
-    VlWide<5>/*159:0*/ __Vtemp696;
-    VlWide<8>/*255:0*/ __Vtemp702;
-    VlWide<8>/*255:0*/ __Vtemp707;
-    VlWide<8>/*255:0*/ __Vtemp712;
-    VlWide<8>/*255:0*/ __Vtemp716;
-    VlWide<4>/*127:0*/ __Vtemp717;
-    VlWide<4>/*127:0*/ __Vtemp718;
-    VlWide<3>/*95:0*/ __Vtemp719;
-    VlWide<3>/*95:0*/ __Vtemp721;
-    VlWide<3>/*95:0*/ __Vtemp722;
-    VlWide<3>/*95:0*/ __Vtemp723;
-    VlWide<3>/*95:0*/ __Vtemp724;
-    VlWide<3>/*95:0*/ __Vtemp725;
-    VlWide<3>/*95:0*/ __Vtemp728;
-    VlWide<3>/*95:0*/ __Vtemp729;
-    VlWide<3>/*95:0*/ __Vtemp730;
-    VlWide<3>/*95:0*/ __Vtemp731;
-    VlWide<3>/*95:0*/ __Vtemp732;
-    VlWide<3>/*95:0*/ __Vtemp735;
-    VlWide<3>/*95:0*/ __Vtemp736;
-    VlWide<3>/*95:0*/ __Vtemp737;
-    VlWide<3>/*95:0*/ __Vtemp738;
-    VlWide<3>/*95:0*/ __Vtemp741;
-    VlWide<3>/*95:0*/ __Vtemp742;
-    VlWide<3>/*95:0*/ __Vtemp744;
-    VlWide<3>/*95:0*/ __Vtemp745;
-    VlWide<3>/*95:0*/ __Vtemp746;
-    VlWide<3>/*95:0*/ __Vtemp747;
-    VlWide<3>/*95:0*/ __Vtemp750;
-    VlWide<3>/*95:0*/ __Vtemp751;
-    VlWide<3>/*95:0*/ __Vtemp753;
-    VlWide<3>/*95:0*/ __Vtemp754;
-    VlWide<3>/*95:0*/ __Vtemp755;
-    VlWide<3>/*95:0*/ __Vtemp756;
-    VlWide<3>/*95:0*/ __Vtemp759;
-    VlWide<3>/*95:0*/ __Vtemp760;
-    VlWide<3>/*95:0*/ __Vtemp762;
-    VlWide<3>/*95:0*/ __Vtemp763;
-    VlWide<3>/*95:0*/ __Vtemp764;
-    VlWide<3>/*95:0*/ __Vtemp765;
-    VlWide<3>/*95:0*/ __Vtemp767;
-    VlWide<3>/*95:0*/ __Vtemp768;
-    VlWide<3>/*95:0*/ __Vtemp769;
-    VlWide<3>/*95:0*/ __Vtemp773;
-    VlWide<3>/*95:0*/ __Vtemp774;
-    VlWide<3>/*95:0*/ __Vtemp776;
-    VlWide<3>/*95:0*/ __Vtemp777;
-    VlWide<3>/*95:0*/ __Vtemp778;
-    VlWide<3>/*95:0*/ __Vtemp782;
-    VlWide<3>/*95:0*/ __Vtemp783;
-    VlWide<3>/*95:0*/ __Vtemp785;
-    VlWide<3>/*95:0*/ __Vtemp786;
-    VlWide<3>/*95:0*/ __Vtemp787;
-    VlWide<3>/*95:0*/ __Vtemp791;
-    VlWide<3>/*95:0*/ __Vtemp792;
-    VlWide<3>/*95:0*/ __Vtemp794;
-    VlWide<3>/*95:0*/ __Vtemp795;
-    VlWide<3>/*95:0*/ __Vtemp796;
-    VlWide<9>/*287:0*/ __Vtemp800;
-    VlWide<4>/*127:0*/ __Vtemp803;
-    VlWide<4>/*127:0*/ __Vtemp810;
-    VlWide<4>/*127:0*/ __Vtemp813;
-    VlWide<4>/*127:0*/ __Vtemp820;
-    VlWide<4>/*127:0*/ __Vtemp823;
-    VlWide<4>/*127:0*/ __Vtemp832;
-    VlWide<4>/*127:0*/ __Vtemp835;
-    VlWide<4>/*127:0*/ __Vtemp844;
-    VlWide<4>/*127:0*/ __Vtemp847;
-    VlWide<4>/*127:0*/ __Vtemp857;
-    VlWide<4>/*127:0*/ __Vtemp860;
-    VlWide<4>/*127:0*/ __Vtemp870;
-    VlWide<10>/*319:0*/ __Vtemp875;
+    VlWide<3>/*95:0*/ __Vtemp679;
+    VlWide<3>/*95:0*/ __Vtemp683;
+    VlWide<3>/*95:0*/ __Vtemp684;
+    VlWide<3>/*95:0*/ __Vtemp686;
+    VlWide<3>/*95:0*/ __Vtemp687;
+    VlWide<3>/*95:0*/ __Vtemp688;
+    VlWide<9>/*287:0*/ __Vtemp692;
+    VlWide<4>/*127:0*/ __Vtemp695;
+    VlWide<4>/*127:0*/ __Vtemp702;
+    VlWide<4>/*127:0*/ __Vtemp705;
+    VlWide<4>/*127:0*/ __Vtemp712;
+    VlWide<4>/*127:0*/ __Vtemp715;
+    VlWide<4>/*127:0*/ __Vtemp724;
+    VlWide<4>/*127:0*/ __Vtemp727;
+    VlWide<4>/*127:0*/ __Vtemp736;
+    VlWide<4>/*127:0*/ __Vtemp739;
+    VlWide<4>/*127:0*/ __Vtemp749;
+    VlWide<4>/*127:0*/ __Vtemp752;
+    VlWide<4>/*127:0*/ __Vtemp762;
+    VlWide<10>/*319:0*/ __Vtemp767;
     vluint32_t* const oldp = tracep->oldp(vlSymsp->__Vm_baseCode + 1);
     if (false && oldp) {}  // Prevent unused
     // Body
@@ -263,209 +234,92 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                      >> 0xfU)))))));
             tracep->chgQData(oldp+59,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src1Reg),64);
             tracep->chgQData(oldp+61,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2Reg),64);
-            __Vtemp594[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                            >> 6U));
-            __Vtemp594[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                                            >> 6U));
-            __Vtemp594[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                                    >> 6U));
-            VL_EXTEND_WW(130,66, __Vtemp595, __Vtemp594);
-            __Vtemp600[0U] = 0U;
-            __Vtemp600[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
-                               << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                            >> 4U));
-            __Vtemp600[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                               << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
-                                            >> 4U));
-            __Vtemp600[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                                 >> 5U)))) 
-                               << 2U) | (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                               >> 4U)));
-            __Vtemp600[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                                >> 5U)))) 
-                              >> 0x1eU);
-            VL_ADD_W(5, __Vtemp601, __Vtemp595, __Vtemp600);
-            __Vtemp606[0U] = 0U;
-            __Vtemp606[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
-                               << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U] 
-                                            >> 2U));
-            __Vtemp606[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                               << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
-                                            >> 2U));
-            __Vtemp606[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                                 >> 3U)))) 
-                               << 2U) | (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                               >> 2U)));
-            __Vtemp606[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                                >> 3U)))) 
-                              >> 0x1eU);
-            VL_ADD_W(5, __Vtemp607, __Vtemp601, __Vtemp606);
-            __Vtemp611[0U] = 0U;
-            __Vtemp611[1U] = 0U;
-            __Vtemp611[2U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[0U];
-            __Vtemp611[3U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[1U];
-            __Vtemp611[4U] = (3U & vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U]);
-            VL_ADD_W(5, __Vtemp612, __Vtemp607, __Vtemp611);
             tracep->chgQData(oldp+63,((((QData)((IData)(
-                                                        __Vtemp612[3U])) 
+                                                        vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[3U])) 
                                         << 0x20U) | (QData)((IData)(
-                                                                    __Vtemp612[2U])))),64);
-            __Vtemp616[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
+                                                                    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[2U])))),64);
+            tracep->chgQData(oldp+65,((((QData)((IData)(
+                                                        vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[1U])) 
+                                        << 0x20U) | (QData)((IData)(
+                                                                    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[0U])))),64);
+            __Vtemp562[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
                                << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
                                             >> 6U));
-            __Vtemp616[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
+            __Vtemp562[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
                                << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
                                             >> 6U));
-            __Vtemp616[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
+            __Vtemp562[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
                                     >> 6U));
-            VL_EXTEND_WW(130,66, __Vtemp617, __Vtemp616);
-            tracep->chgQData(oldp+65,((((((QData)((IData)(
-                                                          __Vtemp617[1U])) 
-                                          << 0x20U) 
-                                         | (QData)((IData)(
-                                                           __Vtemp617[0U]))) 
-                                        + ((QData)((IData)(
-                                                           ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
-                                                             << 0x1cU) 
-                                                            | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                                               >> 4U)))) 
-                                           << 0x20U)) 
-                                       + ((QData)((IData)(
-                                                          ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
-                                                            << 0x1eU) 
-                                                           | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U] 
-                                                              >> 2U)))) 
-                                          << 0x20U))),64);
-            __Vtemp620[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                            >> 6U));
-            __Vtemp620[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                                            >> 6U));
-            __Vtemp620[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                                    >> 6U));
-            tracep->chgWData(oldp+67,(__Vtemp620),66);
-            __Vtemp623[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
+            tracep->chgWData(oldp+67,(__Vtemp562),66);
+            __Vtemp565[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
                                << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
                                             >> 4U));
-            __Vtemp623[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
+            __Vtemp565[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
                                << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
                                             >> 4U));
-            __Vtemp623[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
+            __Vtemp565[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
                                     >> 4U));
-            tracep->chgWData(oldp+70,(__Vtemp623),66);
-            __Vtemp626[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
+            tracep->chgWData(oldp+70,(__Vtemp565),66);
+            __Vtemp568[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
                                << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U] 
                                             >> 2U));
-            __Vtemp626[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
+            __Vtemp568[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
                                << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
                                             >> 2U));
-            __Vtemp626[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
+            __Vtemp568[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
                                     >> 2U));
-            tracep->chgWData(oldp+73,(__Vtemp626),66);
-            __Vtemp629[0U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[0U];
-            __Vtemp629[1U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[1U];
-            __Vtemp629[2U] = (3U & vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U]);
-            tracep->chgWData(oldp+76,(__Vtemp629),66);
-            __Vtemp632[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
+            tracep->chgWData(oldp+73,(__Vtemp568),66);
+            __Vtemp571[0U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[0U];
+            __Vtemp571[1U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[1U];
+            __Vtemp571[2U] = (3U & vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U]);
+            tracep->chgWData(oldp+76,(__Vtemp571),66);
+            __Vtemp574[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
                                << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
                                             >> 6U));
-            __Vtemp632[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
+            __Vtemp574[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
                                << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
                                             >> 6U));
-            __Vtemp632[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
+            __Vtemp574[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
                                     >> 6U));
-            VL_EXTEND_WW(130,66, __Vtemp633, __Vtemp632);
-            tracep->chgWData(oldp+79,(__Vtemp633),130);
-            __Vtemp638[0U] = 0U;
-            __Vtemp638[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
+            VL_EXTEND_WW(130,66, __Vtemp575, __Vtemp574);
+            tracep->chgWData(oldp+79,(__Vtemp575),130);
+            __Vtemp580[0U] = 0U;
+            __Vtemp580[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
                                << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
                                             >> 4U));
-            __Vtemp638[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
+            __Vtemp580[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
                                << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
                                             >> 4U));
-            __Vtemp638[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
+            __Vtemp580[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
                                                  >> 5U)))) 
                                << 2U) | (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
                                                >> 4U)));
-            __Vtemp638[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
+            __Vtemp580[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
                                                 >> 5U)))) 
                               >> 0x1eU);
-            tracep->chgWData(oldp+84,(__Vtemp638),130);
-            __Vtemp643[0U] = 0U;
-            __Vtemp643[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
+            tracep->chgWData(oldp+84,(__Vtemp580),130);
+            __Vtemp585[0U] = 0U;
+            __Vtemp585[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
                                << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U] 
                                             >> 2U));
-            __Vtemp643[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
+            __Vtemp585[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
                                << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
                                             >> 2U));
-            __Vtemp643[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
+            __Vtemp585[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
                                                  >> 3U)))) 
                                << 2U) | (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
                                                >> 2U)));
-            __Vtemp643[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
+            __Vtemp585[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
                                                 >> 3U)))) 
                               >> 0x1eU);
-            tracep->chgWData(oldp+89,(__Vtemp643),130);
-            __Vtemp647[0U] = 0U;
-            __Vtemp647[1U] = 0U;
-            __Vtemp647[2U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[0U];
-            __Vtemp647[3U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[1U];
-            __Vtemp647[4U] = (3U & vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U]);
-            tracep->chgWData(oldp+94,(__Vtemp647),130);
-            __Vtemp651[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                            >> 6U));
-            __Vtemp651[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                                            >> 6U));
-            __Vtemp651[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                                    >> 6U));
-            VL_EXTEND_WW(130,66, __Vtemp652, __Vtemp651);
-            __Vtemp657[0U] = 0U;
-            __Vtemp657[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
-                               << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                            >> 4U));
-            __Vtemp657[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                               << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
-                                            >> 4U));
-            __Vtemp657[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                                 >> 5U)))) 
-                               << 2U) | (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                               >> 4U)));
-            __Vtemp657[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                                >> 5U)))) 
-                              >> 0x1eU);
-            VL_ADD_W(5, __Vtemp658, __Vtemp652, __Vtemp657);
-            __Vtemp663[0U] = 0U;
-            __Vtemp663[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
-                               << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U] 
-                                            >> 2U));
-            __Vtemp663[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                               << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
-                                            >> 2U));
-            __Vtemp663[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                                 >> 3U)))) 
-                               << 2U) | (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                               >> 2U)));
-            __Vtemp663[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                                >> 3U)))) 
-                              >> 0x1eU);
-            VL_ADD_W(5, __Vtemp664, __Vtemp658, __Vtemp663);
-            __Vtemp668[0U] = 0U;
-            __Vtemp668[1U] = 0U;
-            __Vtemp668[2U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[0U];
-            __Vtemp668[3U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[1U];
-            __Vtemp668[4U] = (3U & vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U]);
-            VL_ADD_W(5, __Vtemp669, __Vtemp664, __Vtemp668);
-            __Vtemp670[0U] = __Vtemp669[0U];
-            __Vtemp670[1U] = __Vtemp669[1U];
-            __Vtemp670[2U] = __Vtemp669[2U];
-            __Vtemp670[3U] = __Vtemp669[3U];
-            __Vtemp670[4U] = (3U & __Vtemp669[4U]);
-            tracep->chgWData(oldp+99,(__Vtemp670),130);
+            tracep->chgWData(oldp+89,(__Vtemp585),130);
+            __Vtemp589[0U] = 0U;
+            __Vtemp589[1U] = 0U;
+            __Vtemp589[2U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[0U];
+            __Vtemp589[3U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[1U];
+            __Vtemp589[4U] = (3U & vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U]);
+            tracep->chgWData(oldp+94,(__Vtemp589),130);
+            tracep->chgWData(oldp+99,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2),130);
             tracep->chgWData(oldp+104,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout),264);
             tracep->chgCData(oldp+113,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__div_type_r),2);
             tracep->chgQData(oldp+114,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__divisor_N_r),64);
@@ -1569,86 +1423,33 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                   << 0x20U) 
                                                  | (QData)((IData)(
                                                                    vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividendReg[0U])))))
-                                         : 0ULL)),64);
-            __Vtemp673[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                            >> 6U));
-            __Vtemp673[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                                            >> 6U));
-            __Vtemp673[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                                    >> 6U));
-            VL_EXTEND_WW(130,66, __Vtemp674, __Vtemp673);
-            __Vtemp678[0U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                            >> 6U));
-            __Vtemp678[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                               << 0x1aU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[7U] 
-                                            >> 6U));
-            __Vtemp678[2U] = (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[8U] 
-                                    >> 6U));
-            VL_EXTEND_WW(130,66, __Vtemp679, __Vtemp678);
-            __Vtemp684[0U] = 0U;
-            __Vtemp684[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
-                               << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                            >> 4U));
-            __Vtemp684[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                               << 0x1cU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
-                                            >> 4U));
-            __Vtemp684[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                                 >> 5U)))) 
-                               << 2U) | (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                               >> 4U)));
-            __Vtemp684[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[6U] 
-                                                >> 5U)))) 
-                              >> 0x1eU);
-            VL_ADD_W(5, __Vtemp685, __Vtemp679, __Vtemp684);
-            __Vtemp690[0U] = 0U;
-            __Vtemp690[1U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
-                               << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U] 
-                                            >> 2U));
-            __Vtemp690[2U] = ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                               << 0x1eU) | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
-                                            >> 2U));
-            __Vtemp690[3U] = (((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                                 >> 3U)))) 
-                               << 2U) | (3U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                               >> 2U)));
-            __Vtemp690[4U] = ((- (IData)((1U & (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                                >> 3U)))) 
-                              >> 0x1eU);
-            VL_ADD_W(5, __Vtemp691, __Vtemp685, __Vtemp690);
-            __Vtemp695[0U] = 0U;
-            __Vtemp695[1U] = 0U;
-            __Vtemp695[2U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[0U];
-            __Vtemp695[3U] = vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[1U];
-            __Vtemp695[4U] = (3U & vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U]);
-            VL_ADD_W(5, __Vtemp696, __Vtemp691, __Vtemp695);
+                                         : ((0U == 
+                                             (3U & 
+                                              (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
+                                               >> 2U)))
+                                             ? (((QData)((IData)(
+                                                                 vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[1U])) 
+                                                 << 0x20U) 
+                                                | (QData)((IData)(
+                                                                  vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[0U])))
+                                             : (((QData)((IData)(
+                                                                 vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[3U])) 
+                                                 << 0x20U) 
+                                                | (QData)((IData)(
+                                                                  vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[2U])))))),64);
             tracep->chgQData(oldp+407,(((0U == (3U 
                                                 & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
                                                    >> 2U)))
-                                         ? (((((QData)((IData)(
-                                                               __Vtemp674[1U])) 
-                                               << 0x20U) 
-                                              | (QData)((IData)(
-                                                                __Vtemp674[0U]))) 
-                                             + ((QData)((IData)(
-                                                                ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[5U] 
-                                                                  << 0x1cU) 
-                                                                 | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[4U] 
-                                                                    >> 4U)))) 
-                                                << 0x20U)) 
-                                            + ((QData)((IData)(
-                                                               ((vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[3U] 
-                                                                 << 0x1eU) 
-                                                                | (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT____Vcellout__id_reg__o_dout[2U] 
-                                                                   >> 2U)))) 
-                                               << 0x20U))
-                                         : (((QData)((IData)(
-                                                             __Vtemp696[3U])) 
+                                         ? (((QData)((IData)(
+                                                             vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[1U])) 
                                              << 0x20U) 
                                             | (QData)((IData)(
-                                                              __Vtemp696[2U]))))),64);
+                                                              vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[0U])))
+                                         : (((QData)((IData)(
+                                                             vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[3U])) 
+                                             << 0x20U) 
+                                            | (QData)((IData)(
+                                                              vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[2U]))))),64);
             tracep->chgQData(oldp+409,(((8U & vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])
                                          ? ((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividend_sign)
                                              ? (1ULL 
@@ -1705,58 +1506,58 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                  >> 6U)))) 
                                       & (0U != (IData)(vlSelf->top__DOT__forwarding_u__DOT__reg_wb_idx)))));
             if (vlSelf->top__DOT__in_intr_ls) {
-                __Vtemp702[0U] = Vtop__ConstPool__CONST_d5724acc_0[0U];
-                __Vtemp702[1U] = Vtop__ConstPool__CONST_d5724acc_0[1U];
-                __Vtemp702[2U] = Vtop__ConstPool__CONST_d5724acc_0[2U];
-                __Vtemp702[3U] = Vtop__ConstPool__CONST_d5724acc_0[3U];
-                __Vtemp702[4U] = Vtop__ConstPool__CONST_d5724acc_0[4U];
-                __Vtemp702[5U] = Vtop__ConstPool__CONST_d5724acc_0[5U];
-                __Vtemp702[6U] = Vtop__ConstPool__CONST_d5724acc_0[6U];
-                __Vtemp702[7U] = Vtop__ConstPool__CONST_d5724acc_0[7U];
+                __Vtemp594[0U] = Vtop__ConstPool__CONST_d5724acc_0[0U];
+                __Vtemp594[1U] = Vtop__ConstPool__CONST_d5724acc_0[1U];
+                __Vtemp594[2U] = Vtop__ConstPool__CONST_d5724acc_0[2U];
+                __Vtemp594[3U] = Vtop__ConstPool__CONST_d5724acc_0[3U];
+                __Vtemp594[4U] = Vtop__ConstPool__CONST_d5724acc_0[4U];
+                __Vtemp594[5U] = Vtop__ConstPool__CONST_d5724acc_0[5U];
+                __Vtemp594[6U] = Vtop__ConstPool__CONST_d5724acc_0[6U];
+                __Vtemp594[7U] = Vtop__ConstPool__CONST_d5724acc_0[7U];
             } else {
-                __Vtemp702[0U] = (((IData)(vlSelf->top__DOT__alures_ex) 
+                __Vtemp594[0U] = (((IData)(vlSelf->top__DOT__alures_ex) 
                                    << 3U) | ((4U & 
                                               (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
                                                >> 0xeU)) 
                                              | (3U 
                                                 & vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])));
-                __Vtemp702[1U] = (((IData)(vlSelf->top__DOT__alures_ex) 
+                __Vtemp594[1U] = (((IData)(vlSelf->top__DOT__alures_ex) 
                                    >> 0x1dU) | ((IData)(
                                                         (vlSelf->top__DOT__alures_ex 
                                                          >> 0x20U)) 
                                                 << 3U));
-                __Vtemp702[2U] = (((IData)((vlSelf->top__DOT__alures_ex 
+                __Vtemp594[2U] = (((IData)((vlSelf->top__DOT__alures_ex 
                                             >> 0x20U)) 
                                    >> 0x1dU) | ((IData)(vlSelf->top__DOT__ex_stage_u__DOT__rs2) 
                                                 << 3U));
-                __Vtemp702[3U] = (((IData)(vlSelf->top__DOT__ex_stage_u__DOT__rs2) 
+                __Vtemp594[3U] = (((IData)(vlSelf->top__DOT__ex_stage_u__DOT__rs2) 
                                    >> 0x1dU) | ((IData)(
                                                         (vlSelf->top__DOT__ex_stage_u__DOT__rs2 
                                                          >> 0x20U)) 
                                                 << 3U));
-                __Vtemp702[4U] = (((IData)((vlSelf->top__DOT__ex_stage_u__DOT__rs2 
+                __Vtemp594[4U] = (((IData)((vlSelf->top__DOT__ex_stage_u__DOT__rs2 
                                             >> 0x20U)) 
                                    >> 0x1dU) | ((vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U] 
                                                  << 7U) 
                                                 | (0x78U 
                                                    & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[6U] 
                                                       >> 0x19U))));
-                __Vtemp702[5U] = ((7U & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U] 
+                __Vtemp594[5U] = ((7U & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U] 
                                          >> 0x19U)) 
                                   | ((vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[8U] 
                                       << 7U) | (0x78U 
                                                 & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U] 
                                                    >> 0x19U))));
-                __Vtemp702[6U] = ((7U & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[8U] 
+                __Vtemp594[6U] = ((7U & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[8U] 
                                          >> 0x19U)) 
                                   | ((vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[9U] 
                                       << 7U) | (0x78U 
                                                 & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[8U] 
                                                    >> 0x19U))));
-                __Vtemp702[7U] = (7U & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[9U] 
+                __Vtemp594[7U] = (7U & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[9U] 
                                         >> 0x19U));
             }
-            tracep->chgWData(oldp+416,(__Vtemp702),227);
+            tracep->chgWData(oldp+416,(__Vtemp594),227);
             tracep->chgBit(oldp+424,(((0U == (0x1fU 
                                               & (vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[6U] 
                                                  >> 3U))) 
@@ -2026,98 +1827,98 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                             >> 0x18U)))))
                                        ? 0U : (1U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__wrLast)))));
-            VL_EXTEND_WQ(256,64, __Vtemp707, vlSelf->top__DOT__Dcache_u__DOT__wrDataLatch);
+            VL_EXTEND_WQ(256,64, __Vtemp599, vlSelf->top__DOT__Dcache_u__DOT__wrDataLatch);
             if ((4U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-                __Vtemp712[0U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
+                __Vtemp604[0U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
                                    ? vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[0U]
                                    : vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[0U]);
-                __Vtemp712[1U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
+                __Vtemp604[1U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
                                    ? vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[1U]
                                    : vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[1U]);
-                __Vtemp712[2U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
+                __Vtemp604[2U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
                                    ? vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[2U]
                                    : vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[2U]);
-                __Vtemp712[3U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
+                __Vtemp604[3U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
                                    ? vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[3U]
                                    : vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[3U]);
-                __Vtemp712[4U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
+                __Vtemp604[4U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
                                    ? vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[0U]
                                    : vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[0U]);
-                __Vtemp712[5U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
+                __Vtemp604[5U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
                                    ? vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[1U]
                                    : vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[1U]);
-                __Vtemp712[6U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
+                __Vtemp604[6U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
                                    ? vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[2U]
                                    : vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[2U]);
-                __Vtemp712[7U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
+                __Vtemp604[7U] = ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))
                                    ? vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[3U]
                                    : vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[3U]);
             } else {
-                __Vtemp712[0U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                   ? __Vtemp707[0U]
+                __Vtemp604[0U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                   ? __Vtemp599[0U]
                                    : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                        ? vlSelf->top__DOT__Dcache_u__DOT__way2Data[0U]
                                        : vlSelf->top__DOT__Dcache_u__DOT__way1Data[0U]));
-                __Vtemp712[1U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                   ? __Vtemp707[1U]
+                __Vtemp604[1U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                   ? __Vtemp599[1U]
                                    : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                        ? vlSelf->top__DOT__Dcache_u__DOT__way2Data[1U]
                                        : vlSelf->top__DOT__Dcache_u__DOT__way1Data[1U]));
-                __Vtemp712[2U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                   ? __Vtemp707[2U]
+                __Vtemp604[2U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                   ? __Vtemp599[2U]
                                    : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                        ? vlSelf->top__DOT__Dcache_u__DOT__way2Data[2U]
                                        : vlSelf->top__DOT__Dcache_u__DOT__way1Data[2U]));
-                __Vtemp712[3U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                   ? __Vtemp707[3U]
+                __Vtemp604[3U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                   ? __Vtemp599[3U]
                                    : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                        ? vlSelf->top__DOT__Dcache_u__DOT__way2Data[3U]
                                        : vlSelf->top__DOT__Dcache_u__DOT__way1Data[3U]));
-                __Vtemp712[4U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                   ? __Vtemp707[4U]
+                __Vtemp604[4U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                   ? __Vtemp599[4U]
                                    : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                        ? vlSelf->top__DOT__Dcache_u__DOT__way2Data[4U]
                                        : vlSelf->top__DOT__Dcache_u__DOT__way1Data[4U]));
-                __Vtemp712[5U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                   ? __Vtemp707[5U]
+                __Vtemp604[5U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                   ? __Vtemp599[5U]
                                    : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                        ? vlSelf->top__DOT__Dcache_u__DOT__way2Data[5U]
                                        : vlSelf->top__DOT__Dcache_u__DOT__way1Data[5U]));
-                __Vtemp712[6U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                   ? __Vtemp707[6U]
+                __Vtemp604[6U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                   ? __Vtemp599[6U]
                                    : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                        ? vlSelf->top__DOT__Dcache_u__DOT__way2Data[6U]
                                        : vlSelf->top__DOT__Dcache_u__DOT__way1Data[6U]));
-                __Vtemp712[7U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
-                                   ? __Vtemp707[7U]
+                __Vtemp604[7U] = ((6U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+                                   ? __Vtemp599[7U]
                                    : ((IData)(vlSelf->top__DOT__Dcache_u__DOT__randomBit)
                                        ? vlSelf->top__DOT__Dcache_u__DOT__way2Data[7U]
                                        : vlSelf->top__DOT__Dcache_u__DOT__way1Data[7U]));
             }
-            tracep->chgWData(oldp+569,(__Vtemp712),256);
+            tracep->chgWData(oldp+569,(__Vtemp604),256);
             tracep->chgBit(oldp+577,((((IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_arready) 
                                        & (IData)(vlSelf->top__DOT__clint_axi_arvalid)) 
                                       & (~ (IData)(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_rvalid)))));
             if ((0x40U & (IData)(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt))) {
-                __Vtemp716[0U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[0U];
-                __Vtemp716[1U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[1U];
-                __Vtemp716[2U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[2U];
-                __Vtemp716[3U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[3U];
-                __Vtemp716[4U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[0U];
-                __Vtemp716[5U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[1U];
-                __Vtemp716[6U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[2U];
-                __Vtemp716[7U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[3U];
+                __Vtemp608[0U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[0U];
+                __Vtemp608[1U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[1U];
+                __Vtemp608[2U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[2U];
+                __Vtemp608[3U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_1[3U];
+                __Vtemp608[4U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[0U];
+                __Vtemp608[5U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[1U];
+                __Vtemp608[6U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[2U];
+                __Vtemp608[7U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay2_2[3U];
             } else {
-                __Vtemp716[0U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[0U];
-                __Vtemp716[1U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[1U];
-                __Vtemp716[2U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[2U];
-                __Vtemp716[3U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[3U];
-                __Vtemp716[4U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[0U];
-                __Vtemp716[5U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[1U];
-                __Vtemp716[6U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[2U];
-                __Vtemp716[7U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[3U];
+                __Vtemp608[0U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[0U];
+                __Vtemp608[1U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[1U];
+                __Vtemp608[2U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[2U];
+                __Vtemp608[3U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_1[3U];
+                __Vtemp608[4U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[0U];
+                __Vtemp608[5U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[1U];
+                __Vtemp608[6U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[2U];
+                __Vtemp608[7U] = vlSelf->top__DOT__Dcache_u__DOT__dataWay1_2[3U];
             }
-            tracep->chgWData(oldp+578,(__Vtemp716),256);
+            tracep->chgWData(oldp+578,(__Vtemp608),256);
             tracep->chgBit(oldp+586,((((IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_arready) 
                                        & (IData)(vlSelf->top__DOT__axi_mmio_ar_valid_o)) 
                                       & (~ (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rvalid)))));
@@ -2436,16 +2237,16 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                       & (IData)(vlSelf->top__DOT__cache_dut__DOT__cacheHit))));
             tracep->chgCData(oldp+718,(vlSelf->top__DOT__cache_dut__DOT__cacheCurState),3);
             tracep->chgBit(oldp+719,(vlSelf->top__DOT__cache_dut__DOT__cacheHit));
-            __Vtemp717[0U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[0U];
-            __Vtemp717[1U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[1U];
-            __Vtemp717[2U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[2U];
-            __Vtemp717[3U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[3U];
-            tracep->chgWData(oldp+720,(__Vtemp717),128);
-            __Vtemp718[0U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[4U];
-            __Vtemp718[1U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[5U];
-            __Vtemp718[2U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[6U];
-            __Vtemp718[3U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[7U];
-            tracep->chgWData(oldp+724,(__Vtemp718),128);
+            __Vtemp609[0U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[0U];
+            __Vtemp609[1U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[1U];
+            __Vtemp609[2U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[2U];
+            __Vtemp609[3U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[3U];
+            tracep->chgWData(oldp+720,(__Vtemp609),128);
+            __Vtemp610[0U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[4U];
+            __Vtemp610[1U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[5U];
+            __Vtemp610[2U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[6U];
+            __Vtemp610[3U] = vlSelf->top__DOT__cache_dut__DOT__rdBuffer[7U];
+            tracep->chgWData(oldp+724,(__Vtemp610),128);
             tracep->chgBit(oldp+728,(vlSelf->top__DOT__cache_dut__DOT__wenWay1));
             tracep->chgBit(oldp+729,(vlSelf->top__DOT__cache_dut__DOT__wenWay2));
             tracep->chgBit(oldp+730,(vlSelf->top__DOT__cache_dut__DOT__uncached));
@@ -2474,19 +2275,19 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                             (vlSelf->top__DOT__sram_rdata 
                                                              >> 0x20U))
                                                   : (IData)(vlSelf->top__DOT__sram_rdata)))),32);
-            __Vtemp719[0U] = ((IData)(vlSelf->top__DOT__id_flush)
+            __Vtemp611[0U] = ((IData)(vlSelf->top__DOT__id_flush)
                                ? 0U : ((1U & (IData)(
                                                      (vlSelf->top__DOT__pc_new 
                                                       >> 2U)))
                                         ? (IData)((vlSelf->top__DOT__sram_rdata 
                                                    >> 0x20U))
                                         : (IData)(vlSelf->top__DOT__sram_rdata)));
-            __Vtemp719[1U] = (IData)(((IData)(vlSelf->top__DOT__id_flush)
+            __Vtemp611[1U] = (IData)(((IData)(vlSelf->top__DOT__id_flush)
                                        ? 0ULL : vlSelf->top__DOT__pc_new));
-            __Vtemp719[2U] = (IData)((((IData)(vlSelf->top__DOT__id_flush)
+            __Vtemp611[2U] = (IData)((((IData)(vlSelf->top__DOT__id_flush)
                                         ? 0ULL : vlSelf->top__DOT__pc_new) 
                                       >> 0x20U));
-            tracep->chgWData(oldp+755,(__Vtemp719),96);
+            tracep->chgWData(oldp+755,(__Vtemp611),96);
             tracep->chgWData(oldp+758,(vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout),96);
             tracep->chgCData(oldp+761,(vlSelf->top__DOT__ID_u__DOT__ext_op),5);
             tracep->chgCData(oldp+762,((0x1fU & (vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U] 
@@ -2527,15 +2328,15 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+787,(vlSelf->top__DOT__ex_stage_u__DOT__src1),64);
             tracep->chgQData(oldp+789,(vlSelf->top__DOT__ex_stage_u__DOT__src2),64);
             tracep->chgQData(oldp+791,(vlSelf->top__DOT__ex_stage_u__DOT__rs1),64);
-            VL_EXTEND_WQ(65,64, __Vtemp721, vlSelf->top__DOT__ex_stage_u__DOT__src1);
-            VL_EXTEND_WQ(65,64, __Vtemp722, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin);
-            VL_ADD_W(3, __Vtemp723, __Vtemp721, __Vtemp722);
-            VL_EXTEND_WI(65,1, __Vtemp724, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
-            VL_ADD_W(3, __Vtemp725, __Vtemp723, __Vtemp724);
+            VL_EXTEND_WQ(65,64, __Vtemp613, vlSelf->top__DOT__ex_stage_u__DOT__src1);
+            VL_EXTEND_WQ(65,64, __Vtemp614, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin);
+            VL_ADD_W(3, __Vtemp615, __Vtemp613, __Vtemp614);
+            VL_EXTEND_WI(65,1, __Vtemp616, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
+            VL_ADD_W(3, __Vtemp617, __Vtemp615, __Vtemp616);
             tracep->chgBit(oldp+793,((1U & ((0x4000000U 
                                              & vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])
                                              ? ((1U 
-                                                 & __Vtemp725[2U]) 
+                                                 & __Vtemp617[2U]) 
                                                 ^ (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin))
                                              : ((IData)(
                                                         (vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Adder_o 
@@ -2553,12 +2354,12 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgCData(oldp+804,((7U & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U] 
                                               >> 0x17U))),3);
             tracep->chgQData(oldp+805,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__shift),64);
-            VL_EXTEND_WQ(65,64, __Vtemp728, vlSelf->top__DOT__ex_stage_u__DOT__src1);
-            VL_EXTEND_WQ(65,64, __Vtemp729, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin);
-            VL_ADD_W(3, __Vtemp730, __Vtemp728, __Vtemp729);
-            VL_EXTEND_WI(65,1, __Vtemp731, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
-            VL_ADD_W(3, __Vtemp732, __Vtemp730, __Vtemp731);
-            tracep->chgBit(oldp+807,((1U & __Vtemp732[2U])));
+            VL_EXTEND_WQ(65,64, __Vtemp620, vlSelf->top__DOT__ex_stage_u__DOT__src1);
+            VL_EXTEND_WQ(65,64, __Vtemp621, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__src2_cin);
+            VL_ADD_W(3, __Vtemp622, __Vtemp620, __Vtemp621);
+            VL_EXTEND_WI(65,1, __Vtemp623, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__cin));
+            VL_ADD_W(3, __Vtemp624, __Vtemp622, __Vtemp623);
+            tracep->chgBit(oldp+807,((1U & __Vtemp624[2U])));
             tracep->chgBit(oldp+808,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__overflow));
             tracep->chgQData(oldp+809,((vlSelf->top__DOT__ex_stage_u__DOT__src1 
                                         ^ vlSelf->top__DOT__ex_stage_u__DOT__src2)),64);
@@ -2640,52 +2441,52 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+845,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1),33);
             tracep->chgQData(oldp+847,((QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2))),33);
             tracep->chgQData(oldp+849,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2),33);
-            VL_EXTEND_WI(66,32, __Vtemp735, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1));
-            VL_EXTEND_WI(66,32, __Vtemp736, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2));
-            VL_MUL_W(3, __Vtemp737, __Vtemp735, __Vtemp736);
-            __Vtemp738[0U] = __Vtemp737[0U];
-            __Vtemp738[1U] = __Vtemp737[1U];
-            __Vtemp738[2U] = (3U & __Vtemp737[2U]);
-            tracep->chgWData(oldp+851,(__Vtemp738),66);
-            VL_EXTENDS_WQ(66,33, __Vtemp741, (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1)));
-            __Vtemp742[0U] = __Vtemp741[0U];
-            __Vtemp742[1U] = __Vtemp741[1U];
-            __Vtemp742[2U] = (3U & __Vtemp741[2U]);
-            VL_EXTENDS_WQ(66,33, __Vtemp744, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2);
-            __Vtemp745[0U] = __Vtemp744[0U];
-            __Vtemp745[1U] = __Vtemp744[1U];
-            __Vtemp745[2U] = (3U & __Vtemp744[2U]);
-            VL_MULS_WWW(66,66,66, __Vtemp746, __Vtemp742, __Vtemp745);
-            __Vtemp747[0U] = __Vtemp746[0U];
-            __Vtemp747[1U] = __Vtemp746[1U];
-            __Vtemp747[2U] = (3U & __Vtemp746[2U]);
-            tracep->chgWData(oldp+854,(__Vtemp747),66);
-            VL_EXTENDS_WQ(66,33, __Vtemp750, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1);
-            __Vtemp751[0U] = __Vtemp750[0U];
-            __Vtemp751[1U] = __Vtemp750[1U];
-            __Vtemp751[2U] = (3U & __Vtemp750[2U]);
-            VL_EXTENDS_WQ(66,33, __Vtemp753, (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)));
-            __Vtemp754[0U] = __Vtemp753[0U];
-            __Vtemp754[1U] = __Vtemp753[1U];
-            __Vtemp754[2U] = (3U & __Vtemp753[2U]);
-            VL_MULS_WWW(66,66,66, __Vtemp755, __Vtemp751, __Vtemp754);
-            __Vtemp756[0U] = __Vtemp755[0U];
-            __Vtemp756[1U] = __Vtemp755[1U];
-            __Vtemp756[2U] = (3U & __Vtemp755[2U]);
-            tracep->chgWData(oldp+857,(__Vtemp756),66);
-            VL_EXTENDS_WQ(66,33, __Vtemp759, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1);
-            __Vtemp760[0U] = __Vtemp759[0U];
-            __Vtemp760[1U] = __Vtemp759[1U];
-            __Vtemp760[2U] = (3U & __Vtemp759[2U]);
-            VL_EXTENDS_WQ(66,33, __Vtemp762, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2);
-            __Vtemp763[0U] = __Vtemp762[0U];
-            __Vtemp763[1U] = __Vtemp762[1U];
-            __Vtemp763[2U] = (3U & __Vtemp762[2U]);
-            VL_MULS_WWW(66,66,66, __Vtemp764, __Vtemp760, __Vtemp763);
-            __Vtemp765[0U] = __Vtemp764[0U];
-            __Vtemp765[1U] = __Vtemp764[1U];
-            __Vtemp765[2U] = (3U & __Vtemp764[2U]);
-            tracep->chgWData(oldp+860,(__Vtemp765),66);
+            VL_EXTEND_WI(66,32, __Vtemp627, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1));
+            VL_EXTEND_WI(66,32, __Vtemp628, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2));
+            VL_MUL_W(3, __Vtemp629, __Vtemp627, __Vtemp628);
+            __Vtemp630[0U] = __Vtemp629[0U];
+            __Vtemp630[1U] = __Vtemp629[1U];
+            __Vtemp630[2U] = (3U & __Vtemp629[2U]);
+            tracep->chgWData(oldp+851,(__Vtemp630),66);
+            VL_EXTENDS_WQ(66,33, __Vtemp633, (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1)));
+            __Vtemp634[0U] = __Vtemp633[0U];
+            __Vtemp634[1U] = __Vtemp633[1U];
+            __Vtemp634[2U] = (3U & __Vtemp633[2U]);
+            VL_EXTENDS_WQ(66,33, __Vtemp636, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2);
+            __Vtemp637[0U] = __Vtemp636[0U];
+            __Vtemp637[1U] = __Vtemp636[1U];
+            __Vtemp637[2U] = (3U & __Vtemp636[2U]);
+            VL_MULS_WWW(66,66,66, __Vtemp638, __Vtemp634, __Vtemp637);
+            __Vtemp639[0U] = __Vtemp638[0U];
+            __Vtemp639[1U] = __Vtemp638[1U];
+            __Vtemp639[2U] = (3U & __Vtemp638[2U]);
+            tracep->chgWData(oldp+854,(__Vtemp639),66);
+            VL_EXTENDS_WQ(66,33, __Vtemp642, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1);
+            __Vtemp643[0U] = __Vtemp642[0U];
+            __Vtemp643[1U] = __Vtemp642[1U];
+            __Vtemp643[2U] = (3U & __Vtemp642[2U]);
+            VL_EXTENDS_WQ(66,33, __Vtemp645, (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)));
+            __Vtemp646[0U] = __Vtemp645[0U];
+            __Vtemp646[1U] = __Vtemp645[1U];
+            __Vtemp646[2U] = (3U & __Vtemp645[2U]);
+            VL_MULS_WWW(66,66,66, __Vtemp647, __Vtemp643, __Vtemp646);
+            __Vtemp648[0U] = __Vtemp647[0U];
+            __Vtemp648[1U] = __Vtemp647[1U];
+            __Vtemp648[2U] = (3U & __Vtemp647[2U]);
+            tracep->chgWData(oldp+857,(__Vtemp648),66);
+            VL_EXTENDS_WQ(66,33, __Vtemp651, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1);
+            __Vtemp652[0U] = __Vtemp651[0U];
+            __Vtemp652[1U] = __Vtemp651[1U];
+            __Vtemp652[2U] = (3U & __Vtemp651[2U]);
+            VL_EXTENDS_WQ(66,33, __Vtemp654, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2);
+            __Vtemp655[0U] = __Vtemp654[0U];
+            __Vtemp655[1U] = __Vtemp654[1U];
+            __Vtemp655[2U] = (3U & __Vtemp654[2U]);
+            VL_MULS_WWW(66,66,66, __Vtemp656, __Vtemp652, __Vtemp655);
+            __Vtemp657[0U] = __Vtemp656[0U];
+            __Vtemp657[1U] = __Vtemp656[1U];
+            __Vtemp657[2U] = (3U & __Vtemp656[2U]);
+            tracep->chgWData(oldp+860,(__Vtemp657),66);
             tracep->chgBit(oldp+863,(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_stg1_vld_set));
             tracep->chgBit(oldp+864,(((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_stg1_vld_q) 
                                       | (IData)(vlSelf->top__DOT__ex_flush))));
@@ -2694,58 +2495,58 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                           & (~ ((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_stg1_vld_q) 
                                                 | (IData)(vlSelf->top__DOT__ex_flush)))) 
                                          & (~ (IData)(vlSelf->top__DOT__ex_flush))))));
-            VL_EXTEND_WI(66,32, __Vtemp767, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1));
-            VL_EXTEND_WI(66,32, __Vtemp768, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2));
-            VL_MUL_W(3, __Vtemp769, __Vtemp767, __Vtemp768);
-            VL_EXTENDS_WQ(66,33, __Vtemp773, (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1)));
-            __Vtemp774[0U] = __Vtemp773[0U];
-            __Vtemp774[1U] = __Vtemp773[1U];
-            __Vtemp774[2U] = (3U & __Vtemp773[2U]);
-            VL_EXTENDS_WQ(66,33, __Vtemp776, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2);
-            __Vtemp777[0U] = __Vtemp776[0U];
-            __Vtemp777[1U] = __Vtemp776[1U];
-            __Vtemp777[2U] = (3U & __Vtemp776[2U]);
-            VL_MULS_WWW(66,66,66, __Vtemp778, __Vtemp774, __Vtemp777);
-            VL_EXTENDS_WQ(66,33, __Vtemp782, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1);
-            __Vtemp783[0U] = __Vtemp782[0U];
-            __Vtemp783[1U] = __Vtemp782[1U];
-            __Vtemp783[2U] = (3U & __Vtemp782[2U]);
-            VL_EXTENDS_WQ(66,33, __Vtemp785, (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)));
-            __Vtemp786[0U] = __Vtemp785[0U];
-            __Vtemp786[1U] = __Vtemp785[1U];
-            __Vtemp786[2U] = (3U & __Vtemp785[2U]);
-            VL_MULS_WWW(66,66,66, __Vtemp787, __Vtemp783, __Vtemp786);
-            VL_EXTENDS_WQ(66,33, __Vtemp791, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1);
-            __Vtemp792[0U] = __Vtemp791[0U];
-            __Vtemp792[1U] = __Vtemp791[1U];
-            __Vtemp792[2U] = (3U & __Vtemp791[2U]);
-            VL_EXTENDS_WQ(66,33, __Vtemp794, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2);
-            __Vtemp795[0U] = __Vtemp794[0U];
-            __Vtemp795[1U] = __Vtemp794[1U];
-            __Vtemp795[2U] = (3U & __Vtemp794[2U]);
-            VL_MULS_WWW(66,66,66, __Vtemp796, __Vtemp792, __Vtemp795);
-            __Vtemp800[0U] = __Vtemp796[0U];
-            __Vtemp800[1U] = __Vtemp796[1U];
-            __Vtemp800[2U] = ((__Vtemp787[0U] << 2U) 
-                              | (3U & __Vtemp796[2U]));
-            __Vtemp800[3U] = ((__Vtemp787[0U] >> 0x1eU) 
-                              | (__Vtemp787[1U] << 2U));
-            __Vtemp800[4U] = ((__Vtemp778[0U] << 4U) 
-                              | ((__Vtemp787[1U] >> 0x1eU) 
-                                 | (0xcU & (__Vtemp787[2U] 
+            VL_EXTEND_WI(66,32, __Vtemp659, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1));
+            VL_EXTEND_WI(66,32, __Vtemp660, (IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2));
+            VL_MUL_W(3, __Vtemp661, __Vtemp659, __Vtemp660);
+            VL_EXTENDS_WQ(66,33, __Vtemp665, (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1)));
+            __Vtemp666[0U] = __Vtemp665[0U];
+            __Vtemp666[1U] = __Vtemp665[1U];
+            __Vtemp666[2U] = (3U & __Vtemp665[2U]);
+            VL_EXTENDS_WQ(66,33, __Vtemp668, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2);
+            __Vtemp669[0U] = __Vtemp668[0U];
+            __Vtemp669[1U] = __Vtemp668[1U];
+            __Vtemp669[2U] = (3U & __Vtemp668[2U]);
+            VL_MULS_WWW(66,66,66, __Vtemp670, __Vtemp666, __Vtemp669);
+            VL_EXTENDS_WQ(66,33, __Vtemp674, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1);
+            __Vtemp675[0U] = __Vtemp674[0U];
+            __Vtemp675[1U] = __Vtemp674[1U];
+            __Vtemp675[2U] = (3U & __Vtemp674[2U]);
+            VL_EXTENDS_WQ(66,33, __Vtemp677, (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)));
+            __Vtemp678[0U] = __Vtemp677[0U];
+            __Vtemp678[1U] = __Vtemp677[1U];
+            __Vtemp678[2U] = (3U & __Vtemp677[2U]);
+            VL_MULS_WWW(66,66,66, __Vtemp679, __Vtemp675, __Vtemp678);
+            VL_EXTENDS_WQ(66,33, __Vtemp683, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1);
+            __Vtemp684[0U] = __Vtemp683[0U];
+            __Vtemp684[1U] = __Vtemp683[1U];
+            __Vtemp684[2U] = (3U & __Vtemp683[2U]);
+            VL_EXTENDS_WQ(66,33, __Vtemp686, vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2);
+            __Vtemp687[0U] = __Vtemp686[0U];
+            __Vtemp687[1U] = __Vtemp686[1U];
+            __Vtemp687[2U] = (3U & __Vtemp686[2U]);
+            VL_MULS_WWW(66,66,66, __Vtemp688, __Vtemp684, __Vtemp687);
+            __Vtemp692[0U] = __Vtemp688[0U];
+            __Vtemp692[1U] = __Vtemp688[1U];
+            __Vtemp692[2U] = ((__Vtemp679[0U] << 2U) 
+                              | (3U & __Vtemp688[2U]));
+            __Vtemp692[3U] = ((__Vtemp679[0U] >> 0x1eU) 
+                              | (__Vtemp679[1U] << 2U));
+            __Vtemp692[4U] = ((__Vtemp670[0U] << 4U) 
+                              | ((__Vtemp679[1U] >> 0x1eU) 
+                                 | (0xcU & (__Vtemp679[2U] 
                                             << 2U))));
-            __Vtemp800[5U] = ((__Vtemp778[0U] >> 0x1cU) 
-                              | (__Vtemp778[1U] << 4U));
-            __Vtemp800[6U] = ((__Vtemp769[0U] << 6U) 
-                              | ((__Vtemp778[1U] >> 0x1cU) 
-                                 | (0x30U & (__Vtemp778[2U] 
+            __Vtemp692[5U] = ((__Vtemp670[0U] >> 0x1cU) 
+                              | (__Vtemp670[1U] << 4U));
+            __Vtemp692[6U] = ((__Vtemp661[0U] << 6U) 
+                              | ((__Vtemp670[1U] >> 0x1cU) 
+                                 | (0x30U & (__Vtemp670[2U] 
                                              << 4U))));
-            __Vtemp800[7U] = ((__Vtemp769[0U] >> 0x1aU) 
-                              | (__Vtemp769[1U] << 6U));
-            __Vtemp800[8U] = ((__Vtemp769[1U] >> 0x1aU) 
-                              | (0xc0U & (__Vtemp769[2U] 
+            __Vtemp692[7U] = ((__Vtemp661[0U] >> 0x1aU) 
+                              | (__Vtemp661[1U] << 6U));
+            __Vtemp692[8U] = ((__Vtemp661[1U] >> 0x1aU) 
+                              | (0xc0U & (__Vtemp661[2U] 
                                           << 6U)));
-            tracep->chgWData(oldp+866,(__Vtemp800),264);
+            tracep->chgWData(oldp+866,(__Vtemp692),264);
             tracep->chgQData(oldp+875,((1ULL + (~ vlSelf->top__DOT__ex_stage_u__DOT__src1))),64);
             tracep->chgQData(oldp+877,((1ULL + (~ vlSelf->top__DOT__ex_stage_u__DOT__src2))),64);
             tracep->chgCData(oldp+879,((7U & (vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[7U] 
@@ -2877,86 +2678,86 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgBit(oldp+908,(vlSelf->top__DOT__Dcache_u__DOT__cacheHit));
             tracep->chgBit(oldp+909,(vlSelf->top__DOT__Dcache_u__DOT__way1Hit));
             tracep->chgBit(oldp+910,(vlSelf->top__DOT__Dcache_u__DOT__way2Hit));
-            VL_EXTEND_WQ(128,64, __Vtemp803, vlSelf->top__DOT__Dcache_u__DOT__storeData);
+            VL_EXTEND_WQ(128,64, __Vtemp695, vlSelf->top__DOT__Dcache_u__DOT__storeData);
             if ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-                __Vtemp810[0U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[0U];
-                __Vtemp810[1U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[1U];
-                __Vtemp810[2U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[2U];
-                __Vtemp810[3U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[3U];
+                __Vtemp702[0U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[0U];
+                __Vtemp702[1U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[1U];
+                __Vtemp702[2U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[2U];
+                __Vtemp702[3U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[3U];
             } else {
-                __Vtemp810[0U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp702[0U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((1U & (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                      >> 3U)))
-                                       ? 0U : __Vtemp803[0U])
+                                       ? 0U : __Vtemp695[0U])
                                    : 0U);
-                __Vtemp810[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp702[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((1U & (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                      >> 3U)))
-                                       ? 0U : __Vtemp803[1U])
+                                       ? 0U : __Vtemp695[1U])
                                    : 0U);
-                __Vtemp810[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp702[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((1U & (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                      >> 3U)))
                                        ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__storeData)
-                                       : __Vtemp803[2U])
+                                       : __Vtemp695[2U])
                                    : 0U);
-                __Vtemp810[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp702[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((1U & (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                      >> 3U)))
                                        ? (IData)((vlSelf->top__DOT__Dcache_u__DOT__storeData 
                                                   >> 0x20U))
-                                       : __Vtemp803[3U])
+                                       : __Vtemp695[3U])
                                    : 0U);
             }
-            tracep->chgWData(oldp+911,(__Vtemp810),128);
-            VL_EXTEND_WQ(128,64, __Vtemp813, vlSelf->top__DOT__Dcache_u__DOT__storeData);
+            tracep->chgWData(oldp+911,(__Vtemp702),128);
+            VL_EXTEND_WQ(128,64, __Vtemp705, vlSelf->top__DOT__Dcache_u__DOT__storeData);
             if ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-                __Vtemp820[0U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[4U];
-                __Vtemp820[1U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[5U];
-                __Vtemp820[2U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[6U];
-                __Vtemp820[3U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[7U];
+                __Vtemp712[0U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[4U];
+                __Vtemp712[1U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[5U];
+                __Vtemp712[2U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[6U];
+                __Vtemp712[3U] = vlSelf->top__DOT__Dcache_u__DOT__rdBuffer[7U];
             } else {
-                __Vtemp820[0U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp712[0U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((1U & (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                      >> 3U)))
-                                       ? 0U : __Vtemp813[0U])
+                                       ? 0U : __Vtemp705[0U])
                                    : 0U);
-                __Vtemp820[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp712[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((1U & (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                      >> 3U)))
-                                       ? 0U : __Vtemp813[1U])
+                                       ? 0U : __Vtemp705[1U])
                                    : 0U);
-                __Vtemp820[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp712[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((1U & (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                      >> 3U)))
                                        ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__storeData)
-                                       : __Vtemp813[2U])
+                                       : __Vtemp705[2U])
                                    : 0U);
-                __Vtemp820[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp712[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((1U & (IData)(
                                                     (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                      >> 3U)))
                                        ? (IData)((vlSelf->top__DOT__Dcache_u__DOT__storeData 
                                                   >> 0x20U))
-                                       : __Vtemp813[3U])
+                                       : __Vtemp705[3U])
                                    : 0U);
             }
-            tracep->chgWData(oldp+915,(__Vtemp820),128);
+            tracep->chgWData(oldp+915,(__Vtemp712),128);
             tracep->chgBit(oldp+919,(vlSelf->top__DOT__Dcache_u__DOT__wenWay1));
             tracep->chgBit(oldp+920,(vlSelf->top__DOT__Dcache_u__DOT__wenWay2));
             tracep->chgBit(oldp+921,(vlSelf->top__DOT__Dcache_u__DOT__uncached));
@@ -2992,39 +2793,39 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+947,(vlSelf->top__DOT__Dcache_u__DOT__storeData),64);
             tracep->chgCData(oldp+949,(vlSelf->top__DOT__Dcache_u__DOT__storeMask),8);
             tracep->chgQData(oldp+950,(vlSelf->top__DOT__Dcache_u__DOT__sramMask),64);
-            VL_EXTEND_WQ(128,64, __Vtemp823, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
+            VL_EXTEND_WQ(128,64, __Vtemp715, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
             if ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-                __Vtemp832[0U] = 0xffffffffU;
-                __Vtemp832[1U] = 0xffffffffU;
-                __Vtemp832[2U] = 0xffffffffU;
-                __Vtemp832[3U] = 0xffffffffU;
+                __Vtemp724[0U] = 0xffffffffU;
+                __Vtemp724[1U] = 0xffffffffU;
+                __Vtemp724[2U] = 0xffffffffU;
+                __Vtemp724[3U] = 0xffffffffU;
             } else {
-                __Vtemp832[0U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp724[0U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
                                        ? ((1U & (IData)(
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
-                                           ? 0U : __Vtemp823[0U])
+                                           ? 0U : __Vtemp715[0U])
                                        : 0U) : 0U);
-                __Vtemp832[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp724[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
                                        ? ((1U & (IData)(
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
-                                           ? 0U : __Vtemp823[1U])
+                                           ? 0U : __Vtemp715[1U])
                                        : 0U) : 0U);
-                __Vtemp832[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp724[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
                                        ? ((1U & (IData)(
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
                                            ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
-                                           : __Vtemp823[2U])
+                                           : __Vtemp715[2U])
                                        : 0U) : 0U);
-                __Vtemp832[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp724[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrLow)
                                        ? ((1U & (IData)(
@@ -3033,43 +2834,43 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                            ? (IData)(
                                                      (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
                                                       >> 0x20U))
-                                           : __Vtemp823[3U])
+                                           : __Vtemp715[3U])
                                        : 0U) : 0U);
             }
-            tracep->chgWData(oldp+952,(__Vtemp832),128);
-            VL_EXTEND_WQ(128,64, __Vtemp835, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
+            tracep->chgWData(oldp+952,(__Vtemp724),128);
+            VL_EXTEND_WQ(128,64, __Vtemp727, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
             if ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
-                __Vtemp844[0U] = 0xffffffffU;
-                __Vtemp844[1U] = 0xffffffffU;
-                __Vtemp844[2U] = 0xffffffffU;
-                __Vtemp844[3U] = 0xffffffffU;
+                __Vtemp736[0U] = 0xffffffffU;
+                __Vtemp736[1U] = 0xffffffffU;
+                __Vtemp736[2U] = 0xffffffffU;
+                __Vtemp736[3U] = 0xffffffffU;
             } else {
-                __Vtemp844[0U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp736[0U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
                                        ? ((1U & (IData)(
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
-                                           ? 0U : __Vtemp835[0U])
+                                           ? 0U : __Vtemp727[0U])
                                        : 0U) : 0U);
-                __Vtemp844[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp736[1U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
                                        ? ((1U & (IData)(
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
-                                           ? 0U : __Vtemp835[1U])
+                                           ? 0U : __Vtemp727[1U])
                                        : 0U) : 0U);
-                __Vtemp844[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp736[2U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
                                        ? ((1U & (IData)(
                                                         (vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                          >> 3U)))
                                            ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
-                                           : __Vtemp835[2U])
+                                           : __Vtemp727[2U])
                                        : 0U) : 0U);
-                __Vtemp844[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
+                __Vtemp736[3U] = ((1U & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                  >> 0x20U)))
                                    ? ((IData)(vlSelf->top__DOT__Dcache_u__DOT__wrHigh)
                                        ? ((1U & (IData)(
@@ -3078,10 +2879,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                            ? (IData)(
                                                      (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
                                                       >> 0x20U))
-                                           : __Vtemp835[3U])
+                                           : __Vtemp727[3U])
                                        : 0U) : 0U);
             }
-            tracep->chgWData(oldp+956,(__Vtemp844),128);
+            tracep->chgWData(oldp+956,(__Vtemp736),128);
             tracep->chgBit(oldp+960,((((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
                                        & (IData)((vlSelf->top__DOT__Dcache_u__DOT__reqLatch 
                                                   >> 0x20U))) 
@@ -3097,8 +2898,8 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgCData(oldp+965,(vlSelf->top__DOT__Dcache_u__DOT__cleanCnt),7);
             tracep->chgBit(oldp+966,(vlSelf->top__DOT__Dcache_u__DOT__cleanWrValid));
             tracep->chgBit(oldp+967,((1U & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__wenWay1)))));
-            VL_EXTEND_WQ(128,64, __Vtemp847, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
-            __Vtemp857[0U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+            VL_EXTEND_WQ(128,64, __Vtemp739, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
+            __Vtemp749[0U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
                                                     & (IData)(
@@ -3113,10 +2914,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                  >> 3U)))
                                                       ? 0U
                                                       : 
-                                                     __Vtemp847[0U])
+                                                     __Vtemp739[0U])
                                                      : 0U)
                                                     : 0U)));
-            __Vtemp857[1U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+            __Vtemp749[1U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
                                                     & (IData)(
@@ -3131,10 +2932,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                  >> 3U)))
                                                       ? 0U
                                                       : 
-                                                     __Vtemp847[1U])
+                                                     __Vtemp739[1U])
                                                      : 0U)
                                                     : 0U)));
-            __Vtemp857[2U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+            __Vtemp749[2U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
                                                     & (IData)(
@@ -3149,10 +2950,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                  >> 3U)))
                                                       ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
                                                       : 
-                                                     __Vtemp847[2U])
+                                                     __Vtemp739[2U])
                                                      : 0U)
                                                     : 0U)));
-            __Vtemp857[3U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+            __Vtemp749[3U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
                                                     & (IData)(
@@ -3169,12 +2970,12 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                 (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
                                                                  >> 0x20U))
                                                       : 
-                                                     __Vtemp847[3U])
+                                                     __Vtemp739[3U])
                                                      : 0U)
                                                     : 0U)));
-            tracep->chgWData(oldp+968,(__Vtemp857),128);
-            VL_EXTEND_WQ(128,64, __Vtemp860, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
-            __Vtemp870[0U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+            tracep->chgWData(oldp+968,(__Vtemp749),128);
+            VL_EXTEND_WQ(128,64, __Vtemp752, vlSelf->top__DOT__Dcache_u__DOT__sramMask);
+            __Vtemp762[0U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
                                                     & (IData)(
@@ -3189,10 +2990,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                  >> 3U)))
                                                       ? 0U
                                                       : 
-                                                     __Vtemp860[0U])
+                                                     __Vtemp752[0U])
                                                      : 0U)
                                                     : 0U)));
-            __Vtemp870[1U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+            __Vtemp762[1U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
                                                     & (IData)(
@@ -3207,10 +3008,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                  >> 3U)))
                                                       ? 0U
                                                       : 
-                                                     __Vtemp860[1U])
+                                                     __Vtemp752[1U])
                                                      : 0U)
                                                     : 0U)));
-            __Vtemp870[2U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+            __Vtemp762[2U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
                                                     & (IData)(
@@ -3225,10 +3026,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                  >> 3U)))
                                                       ? (IData)(vlSelf->top__DOT__Dcache_u__DOT__sramMask)
                                                       : 
-                                                     __Vtemp860[2U])
+                                                     __Vtemp752[2U])
                                                      : 0U)
                                                     : 0U)));
-            __Vtemp870[3U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
+            __Vtemp762[3U] = (~ ((7U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))
                                   ? 0xffffffffU : (
                                                    (1U 
                                                     & (IData)(
@@ -3245,10 +3046,10 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                 (vlSelf->top__DOT__Dcache_u__DOT__sramMask 
                                                                  >> 0x20U))
                                                       : 
-                                                     __Vtemp860[3U])
+                                                     __Vtemp752[3U])
                                                      : 0U)
                                                     : 0U)));
-            tracep->chgWData(oldp+972,(__Vtemp870),128);
+            tracep->chgWData(oldp+972,(__Vtemp762),128);
             tracep->chgBit(oldp+976,((1U & (~ (IData)(vlSelf->top__DOT__Dcache_u__DOT__wenWay2)))));
             tracep->chgCData(oldp+977,(vlSelf->top__DOT__axi_ls_u__DOT__w_state),2);
             tracep->chgWData(oldp+978,(vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout),289);
@@ -3365,7 +3166,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
             tracep->chgQData(oldp+999,(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
                                          ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                         [vlSelf->top__DOT__rs1_idx_id])),64);
-            __Vtemp875[0U] = (((IData)(vlSelf->top__DOT__ID_u__DOT__imm) 
+            __Vtemp767[0U] = (((IData)(vlSelf->top__DOT__ID_u__DOT__imm) 
                                << 0x1cU) | (((IData)(vlSelf->top__DOT__aluctr_id) 
                                              << 0x17U) 
                                             | ((((~ (IData)(vlSelf->top__DOT__ex_flush)) 
@@ -3398,11 +3199,11 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                               << 1U) 
                                                                              | ((~ (IData)(vlSelf->top__DOT__ex_flush)) 
                                                                                 & (IData)(vlSelf->top__DOT__fence_id)))))))))))))));
-            __Vtemp875[1U] = (((IData)(vlSelf->top__DOT__ID_u__DOT__imm) 
+            __Vtemp767[1U] = (((IData)(vlSelf->top__DOT__ID_u__DOT__imm) 
                                >> 4U) | ((IData)((vlSelf->top__DOT__ID_u__DOT__imm 
                                                   >> 0x20U)) 
                                          << 0x1cU));
-            __Vtemp875[2U] = (((IData)((vlSelf->top__DOT__ID_u__DOT__imm 
+            __Vtemp767[2U] = (((IData)((vlSelf->top__DOT__ID_u__DOT__imm 
                                         >> 0x20U)) 
                                >> 4U) | ((IData)(((0U 
                                                    == (IData)(vlSelf->top__DOT__rs1_idx_id))
@@ -3411,7 +3212,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                   vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                                   [vlSelf->top__DOT__rs1_idx_id])) 
                                          << 0x1cU));
-            __Vtemp875[3U] = (((IData)(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
+            __Vtemp767[3U] = (((IData)(((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
                                          ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                         [vlSelf->top__DOT__rs1_idx_id])) 
                                >> 4U) | ((IData)(((
@@ -3423,7 +3224,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                    [vlSelf->top__DOT__rs1_idx_id]) 
                                                   >> 0x20U)) 
                                          << 0x1cU));
-            __Vtemp875[4U] = (((IData)((((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
+            __Vtemp767[4U] = (((IData)((((0U == (IData)(vlSelf->top__DOT__rs1_idx_id))
                                           ? 0ULL : 
                                          vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                          [vlSelf->top__DOT__rs1_idx_id]) 
@@ -3435,7 +3236,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                   vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                                   [vlSelf->top__DOT__rs2_idx_id])) 
                                          << 0x1cU));
-            __Vtemp875[5U] = (((IData)(((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
+            __Vtemp767[5U] = (((IData)(((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
                                          ? 0ULL : vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                         [vlSelf->top__DOT__rs2_idx_id])) 
                                >> 4U) | ((IData)(((
@@ -3447,7 +3248,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                    [vlSelf->top__DOT__rs2_idx_id]) 
                                                   >> 0x20U)) 
                                          << 0x1cU));
-            __Vtemp875[6U] = (((IData)((((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
+            __Vtemp767[6U] = (((IData)((((0U == (IData)(vlSelf->top__DOT__rs2_idx_id))
                                           ? 0ULL : 
                                          vlSelf->top__DOT__ID_u__DOT__regfile_u__DOT__regfiles
                                          [vlSelf->top__DOT__rs2_idx_id]) 
@@ -3455,7 +3256,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                >> 4U) | (((IData)(vlSelf->top__DOT__ex_flush)
                                            ? 0U : vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U]) 
                                          << 0x1cU));
-            __Vtemp875[7U] = ((((IData)(vlSelf->top__DOT__ex_flush)
+            __Vtemp767[7U] = ((((IData)(vlSelf->top__DOT__ex_flush)
                                  ? 0U : vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[0U]) 
                                >> 4U) | ((IData)(((IData)(vlSelf->top__DOT__ex_flush)
                                                    ? 0ULL
@@ -3466,7 +3267,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                    | (QData)((IData)(
                                                                      vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[1U]))))) 
                                          << 0x1cU));
-            __Vtemp875[8U] = (((IData)(((IData)(vlSelf->top__DOT__ex_flush)
+            __Vtemp767[8U] = (((IData)(((IData)(vlSelf->top__DOT__ex_flush)
                                          ? 0ULL : (
                                                    ((QData)((IData)(
                                                                     vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[2U])) 
@@ -3483,7 +3284,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                                       vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[1U])))) 
                                                   >> 0x20U)) 
                                          << 0x1cU));
-            __Vtemp875[9U] = ((IData)((((IData)(vlSelf->top__DOT__ex_flush)
+            __Vtemp767[9U] = ((IData)((((IData)(vlSelf->top__DOT__ex_flush)
                                          ? 0ULL : (
                                                    ((QData)((IData)(
                                                                     vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[2U])) 
@@ -3491,7 +3292,7 @@ void Vtop___024root__traceChgSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep) 
                                                    | (QData)((IData)(
                                                                      vlSelf->top__DOT__ID_reg_u__DOT____Vcellout__id_reg__o_dout[1U])))) 
                                        >> 0x20U)) >> 4U);
-            tracep->chgWData(oldp+1001,(__Vtemp875),316);
+            tracep->chgWData(oldp+1001,(__Vtemp767),316);
         }
         if (VL_UNLIKELY(vlSelf->__Vm_traceActivity[4U])) {
             tracep->chgBit(oldp+1011,(((1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_id))
