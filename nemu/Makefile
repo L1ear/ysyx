@@ -48,4 +48,4 @@ endif
 
 count:
 	@echo count
-	find . -name "*.c" -or -name "*.h" |xargs cat|grep -v ^$$|wc -l
+	@find . -name "*.c" -or -name "*.h" |xargs cat|grep -v ^$$|wc -l
