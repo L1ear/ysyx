@@ -5,6 +5,7 @@
 _start:
   mv s0, zero
   la sp, _stack_pointer
+  #little test for timer interrupt
   # li t0,8
   # csrrs t0,mstatus,t0
   # li t0,128
