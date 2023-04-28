@@ -73,6 +73,7 @@ static int cmd_c(char *args) {
 static int cmd_si(char *args) {
   if (args == NULL) { 
     Log("PC: %lx\n",cpu.pc);
+    printf("%s\n",args);
     cpu_exec(1);
     isa_reg_display();
   }
