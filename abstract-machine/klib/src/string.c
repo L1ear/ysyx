@@ -170,7 +170,7 @@ void *memcpy(void *dst, const void *src, size_t n) {
   return dst;
 }
 
-int mymemcmp(const void *s1, const void *s2, size_t n) {
+int memcmp(const void *s1, const void *s2, size_t n) {
   // panic("Not implemented");
   int result;
   asm volatile (
@@ -192,14 +192,5 @@ int mymemcmp(const void *s1, const void *s2, size_t n) {
   );
   return result;
 }
-int memcmp(const void *s1, const void *s2, size_t n) {
-  // panic("Not implemented");
-  size_t i = 0;
-  while(((char*)s1)[i] == ((char *)s2)[i] && i < n)
-  {
-    i++;
-  }
-  return i == n? 0:((char*)s1)[i] - ((char *)s2)[i];
-  
-}
+
 #endif
