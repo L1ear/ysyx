@@ -118,10 +118,11 @@ void *mymemset(void *s, int c, size_t n) {
   // panic("Not implemented");
   asm volatile (
     "li a6, 0 \n\t"
+    "mv a5, %0 \n\t"
     "memsetloop: \n\t"
     "beq a6, %2, memsetend \n\t"
-    "sb %1, 0(%0) \n\t"
-    "addi %0, %0, 1 \n\t"
+    "sb %1, 0(a5) \n\t"
+    "addi a5, a5, 1 \n\t"
     "addi a6, a6, 1 \n\t"
     "j memsetloop \n\t"
     "memsetend: \n\t"
