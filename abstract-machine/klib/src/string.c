@@ -56,6 +56,12 @@ char *strcat(char *dst, const char *src) {
     return dst;
 }
 
+/*
+The  strcmp() and strncmp() functions return an integer less than, 
+equal to, or greater than zero if s1(or the first n bytes thereof) 
+is found, respectively, to be less than, to match, or  be  greater  
+than s2.
+*/
 int strcmp(const char *s1, const char *s2) {
   // panic("Not implemented");
   int result;
@@ -70,7 +76,7 @@ int strcmp(const char *s1, const char *s2) {
       "addi %1, %1, 1 \n\t"
       "j strcmploop \n\t"
       "strcmpend: \n\t"
-      "sub %2, a4, a5 \n\t"
+      "sub %2, %0, %1 \n\t"
       : "+r"(s1), "+r"(s2), "=r"(result)
       :
       : "a4", "a5", "memory"
