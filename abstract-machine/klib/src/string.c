@@ -76,7 +76,7 @@ int mystrcmp(const char *s1, const char *s2) {
       "addi %1, %1, 1 \n\t"
       "j strcmploop \n\t"
       "strcmpend: \n\t"
-      "sub %2, %0, %1 \n\t"
+      "sub %2, a4, a5 \n\t"
       : "+r"(s1), "+r"(s2), "=r"(result)
       :
       : "a4", "a5", "memory"
