@@ -62,7 +62,7 @@ equal to, or greater than zero if s1(or the first n bytes thereof)
 is found, respectively, to be less than, to match, or  be  greater  
 than s2.
 */
-int mystrcmp(const char *s1, const char *s2) {
+int strcmp(const char *s1, const char *s2) {
   // panic("Not implemented");
   int result;
   asm volatile (
@@ -82,17 +82,6 @@ int mystrcmp(const char *s1, const char *s2) {
       : "a4", "a5", "memory"
   );
   return result;
-}
-int strcmp(const char *s1, const char *s2) {
-  // panic("Not implemented");
-  char const *p1 = s1,*p2 = s2;
-  while(*p1 == *p2 && *p1 != '\0' && *p2 != '\0')
-  {
-    //printf("%c %c\n",*p1,*p2);
-    p1++;
-    p2++;
-  }
-  return *p1-*p2;
 }
 
 int strncmp(const char *s1, const char *s2, size_t n) {
@@ -180,7 +169,7 @@ void *memcpy(void *dst, const void *src, size_t n) {
   return dst;
 }
 
-int memcmp(const void *s1, const void *s2, size_t n) {
+int mymemcmp(const void *s1, const void *s2, size_t n) {
   // panic("Not implemented");
   int result;
   asm volatile (
@@ -202,5 +191,14 @@ int memcmp(const void *s1, const void *s2, size_t n) {
   );
   return result;
 }
-
+int memcmp(const void *s1, const void *s2, size_t n) {
+  // panic("Not implemented");
+  size_t i = 0;
+  while(((char*)s1)[i] == ((char *)s2)[i] && i < n)
+  {
+    i++;
+  }
+  return i == n? 0:((char*)s1)[i] - ((char *)s2)[i];
+  
+}
 #endif
