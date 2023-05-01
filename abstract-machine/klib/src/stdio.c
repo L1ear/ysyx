@@ -125,8 +125,8 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
     else{
       *str = *fmt;
       str++;
-      fmt++;
     }
+    fmt++;
   }
   str = '\0';
   return str-str_s;
