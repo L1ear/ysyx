@@ -60,7 +60,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   int ilen = s->snpc - s->pc;
   // int i;
   uint8_t *inst = (uint8_t *)&s->isa.inst.val;
-  printf("!!!!!!!!!!!!!!\n%s\n",(char *)inst);
+  printf("!!!!!!!!!!!!!!\n%08x\n",inst);
   // for (i = ilen-1; i >= 0; i --) {
     p += snprintf(p, strlen((char *)inst), " %s", (char *)inst);
   // }
