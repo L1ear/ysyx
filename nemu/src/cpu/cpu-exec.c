@@ -59,8 +59,8 @@ static void exec_once(Decode *s, vaddr_t pc) {
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
   int ilen = s->snpc - s->pc;
   // int i;
-  char *inst = (char *)&s->isa.inst.val;
-  printf("!!!!!!!!!!!!!!\n%s\n",inst);
+  uint8_t *inst = (uint8_t *)&s->isa.inst.val;
+  printf("!!!!!!!!!!!!!!\n%s\n",(char *)inst);
   // for (i = ilen-1; i >= 0; i --) {
     p += snprintf(p, strlen(inst), " %s", inst);
   // }
