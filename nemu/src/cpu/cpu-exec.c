@@ -57,7 +57,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
-  // int ilen = s->snpc - s->pc;
+  int ilen = s->snpc - s->pc;
   p += snprintf(p, 32, " %08x", s->isa.inst.val);
   int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
   // int space_len = ilen_max - ilen;
