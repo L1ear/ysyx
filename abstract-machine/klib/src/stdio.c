@@ -131,9 +131,21 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
   str = '\0';
   return str-str_s;
 }
+/*
+va_start 是一个宏，它用于初始化 va_list 类型的变量，该变量用于访问函数的可变参数列表。
+它的原型为 void va_start(va_list ap, last_arg)，其中 ap 是要初始化的 va_list 变量，
+last_arg 是函数中最后一个已知的固定参数，即省略号之前的参数1。
 
+在使用 va_arg 和 va_end 宏之前，必须先调用 va_start 宏来初始化 va_list 变量1。
+*/
 int sprintf(char *out, const char *fmt, ...) {
-  panic("Not implemented");
+  // panic("Not implemented");
+  va_list ap;
+  int ret = 0;
+  va_start(ap, fmt);
+  ret = vsprintf(out, fmt, ap);
+  va_end(ap);
+  return ret;
 }
 
 int snprintf(char *out, size_t n, const char *fmt, ...) {
