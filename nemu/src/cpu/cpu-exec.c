@@ -59,10 +59,10 @@ static void exec_once(Decode *s, vaddr_t pc) {
   p += snprintf(p, sizeof(s->logbuf), FMT_WORD ":", s->pc);
   int ilen = s->snpc - s->pc;
   // int i;
-  uint8_t *inst = (uint8_t *)&s->isa.inst.val;
+  // uint8_t *inst = (uint8_t *)&s->isa.inst.val;
   // printf("!!!!!!!!!!!!!!\n%08x\n",*inst);
   // for (i = ilen-1; i >= 0; i --) {
-    p += snprintf(p, 32, " %08x", *inst);
+    p += snprintf(p, 32, " %08x", s->isa.inst.val);
   // }
   int ilen_max = MUXDEF(CONFIG_ISA_x86, 8, 4);
   int space_len = ilen_max - ilen;
