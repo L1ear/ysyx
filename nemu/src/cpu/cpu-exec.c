@@ -56,7 +56,7 @@ static void exec_once(Decode *s, vaddr_t pc) {
   cpu.pc = s->dnpc;
 #ifdef CONFIG_ITRACE
   char *p = s->logbuf;
-  p += snprintf(p, sizeof(s->logbuf), FMT_WORD ": %08x ", s->pc, s->isa.inst.val);
+  p += snprintf(p, 128, FMT_WORD ": %08x ", s->pc, s->isa.inst.val);
   // p += snprintf(p, 32, " %08x ");
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   disassemble(p, s->logbuf + sizeof(s->logbuf) - p, s->pc, (uint8_t *)&s->isa.inst.val, 4);
