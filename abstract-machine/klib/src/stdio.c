@@ -118,7 +118,7 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
         break;
       }
       default:
-        printf("format %%c is not implementated yet/n",*fmt);
+        printf("format /%%c is not implementated yet/n",*fmt);
         assert(0);
         break;
       }
