@@ -117,8 +117,15 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
         str += strlen(s);
         break;
       }
+      case 'p':{
+        num = va_arg(ap,uint64_t);
+        xtoa(num, buf);
+        strcpy(str, buf);
+        str +=strlen(buf);
+        break;
+      }
       default:
-        printf("format %c is not implementated yet\n",*fmt);
+        printf("!!!!!!!!!!!!format %c is not implementated yet\n",*fmt);
         assert(0);
         break;
       }
