@@ -167,8 +167,8 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
     }
     fmt++;
   }
-  str = '\0';
-  return (uint64_t)str_s;
+  *str = '\0';
+  return str-str_s+1;
 }
 /*
 va_start 是一个宏，它用于初始化 va_list 类型的变量，该变量用于访问函数的可变参数列表。
