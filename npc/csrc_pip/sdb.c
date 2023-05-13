@@ -79,7 +79,7 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_c(char *args) {
-#ifdef log
+#ifdef inst_log
   char *logfile="/home/qw/ysyx-workbench/npc/log.log";
   FILE *logfp;
   logfp = fopen(logfile, "w+");
@@ -91,13 +91,13 @@ static int cmd_c(char *args) {
         // nvboard_update();
       sim_time = sim_time+2;
         //if(i>=1000) en = 0;
-        #ifdef log
+        #ifdef inst_log
           uint32_t instruction;
           mem.read(cpu.pc, 4, &instruction);
           fprintf(logfp, "%08x\n", instruction);
         #endif
     }
-#ifdef log
+#ifdef inst_log
   fclose(logfile);
 #endif
     Log("program has finished,please quit and restart\n");
