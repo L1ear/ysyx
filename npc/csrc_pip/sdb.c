@@ -93,7 +93,7 @@ static int cmd_c(char *args) {
         //if(i>=1000) en = 0;
         #ifdef inst_log
           uint32_t instruction;
-          mem.read(cpu.pc, 4, (uint8_t *)&instruction);
+          mem.read(cpu.pc, 4, (uint8_t*)&instruction);
           fprintf(logfp, "%08x\n", instruction);
         #endif
     }
