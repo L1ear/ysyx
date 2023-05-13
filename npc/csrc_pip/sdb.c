@@ -98,7 +98,7 @@ static int cmd_c(char *args) {
         #endif
     }
 #ifdef inst_log
-  fclose(logfile);
+  fclose(logfp);
 #endif
     Log("program has finished,please quit and restart\n");
     Log("after %d instructions and %d clock cycle", nr_instr, nr_cycle);
