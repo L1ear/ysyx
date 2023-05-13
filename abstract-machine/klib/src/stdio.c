@@ -183,7 +183,7 @@ int sprintf(char *out, const char *fmt, ...) {
   int ret = 0;
   va_start(ap, fmt);
   ret = vsprintf(out, fmt, ap);
-  printf("%d\n",ret);
+  printf("ret:%d\n",ret);
   va_end(ap);
   return ret;
 }
