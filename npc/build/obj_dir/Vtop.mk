@@ -50,14 +50,16 @@ VM_USER_LDLIBS = \
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	diff_test \
+	keyboard \
 	main \
 	mem \
 	sdb \
 	timer \
+	vga \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	/home/qw/ysyx-workbench/npc/csrc \
+	/home/qw/ysyx-workbench/npc/csrc_pip \
 
 
 ### Default rules...
@@ -69,15 +71,19 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-diff_test.o: /home/qw/ysyx-workbench/npc/csrc/diff_test.cpp
+diff_test.o: /home/qw/ysyx-workbench/npc/csrc_pip/diff_test.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-main.o: /home/qw/ysyx-workbench/npc/csrc/main.cpp
+keyboard.o: /home/qw/ysyx-workbench/npc/csrc_pip/keyboard.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-mem.o: /home/qw/ysyx-workbench/npc/csrc/mem.cpp
+main.o: /home/qw/ysyx-workbench/npc/csrc_pip/main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: /home/qw/ysyx-workbench/npc/csrc/sdb.c
+mem.o: /home/qw/ysyx-workbench/npc/csrc_pip/mem.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-timer.o: /home/qw/ysyx-workbench/npc/csrc/timer.c
+sdb.o: /home/qw/ysyx-workbench/npc/csrc_pip/sdb.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+timer.o: /home/qw/ysyx-workbench/npc/csrc_pip/timer.c
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+vga.o: /home/qw/ysyx-workbench/npc/csrc_pip/vga.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
