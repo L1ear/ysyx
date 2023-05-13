@@ -81,7 +81,7 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
   // int length;
   char buf[65];
   char *str_s=str;
-  assert(str_s==NULL);
+  // assert(str_s==NULL);
   int tab_index;
 
   while(*fmt != '\0'){
