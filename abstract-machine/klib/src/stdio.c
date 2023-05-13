@@ -81,7 +81,6 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
   // int length;
   char buf[65];
   char *str_s=str;
-  // assert(str_s==NULL);
   int tab_index;
 
   while(*fmt != '\0'){
@@ -169,7 +168,7 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
     fmt++;
   }
   str = '\0';
-  return str-str_s+1;
+  return (uint64_t)str-(uint64_t)str_s+1;
 }
 /*
 va_start 是一个宏，它用于初始化 va_list 类型的变量，该变量用于访问函数的可变参数列表。
