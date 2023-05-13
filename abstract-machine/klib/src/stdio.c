@@ -81,12 +81,43 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
   // int length;
   char buf[65];
   char *str_s=str;
+  int tab_index;
 
   while(*fmt != '\0'){
     if(*fmt == '%'){
       fmt ++;
-      switch (*fmt)
-      {
+      switch (*fmt){
+      case '0':{
+        fmt ++;
+        if(*fmt>'9' || *fmt<'0'){
+          printf("wrong format\n");
+          assert(0);
+        }
+        tab_index = *fmt - '0';
+        fmt ++;
+        switch (*fmt){
+          case 'd':{  
+            num = va_arg(ap, int);
+            if(num < 0){
+              *str = '-';
+              str++;
+              num = -num;
+            }
+            itoa(num, buf);
+            if(strlen(buf)<tab_index){
+              int index;
+              for(index = 0; index < tab_index-strlen(buf); index++){
+                *str = '0';
+                str++;
+              }
+            }
+            strcpy(str, buf);
+            str += strlen(buf);
+            break;
+          }
+        }
+        break;
+      }
       case 'd':{  
         num = va_arg(ap, int);
         if(num < 0){
