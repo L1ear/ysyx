@@ -7,6 +7,7 @@
 extern CPU_state cpu;
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
+extern FILE *logfp;
 
 void device_update();
 void init_screen();
@@ -307,6 +308,11 @@ void single_cycle(int i) {
       if(en == 1 )
         {
 #ifdef  difftest
+          #ifdef inst_log
+            uint32_t instruction;
+            mem.read(cpu.pc, 4, (uint8_t*)&instruction);
+            fprintf(logfp, "%08x\n", instruction);
+          #endif
           //               写串口的指令
           if(instr_last == 0x3ea78c23 ||instr_last == 0x0487b783 || instr_last == 0x00d72023|| instr_last == 0x10e78223 || instr_last == 0x0607a783){    //跳过printf和读取时间
             difftest_skip_ref();
@@ -340,9 +346,6 @@ void single_cycle(int i) {
   // }
 #endif
 
-#ifdef log
-
-#endif
 }
 
 //for DPI-C
