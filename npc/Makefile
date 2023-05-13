@@ -87,6 +87,7 @@ run_pip:
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VSRCS_PIP) $(CSRCS_PIP)
 	@echo
 	@echo "-- BUILD -------------------"
+	touch log.log
 	$(MAKE) -j -C build/obj_dir -f Vtop.mk
 
 	@echo

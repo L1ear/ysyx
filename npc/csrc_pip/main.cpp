@@ -339,6 +339,10 @@ void single_cycle(int i) {
 
   // }
 #endif
+
+#ifdef log
+
+#endif
 }
 
 //for DPI-C

@@ -12,6 +12,7 @@ extern int en;
 extern int is_batch_mode;
 
 CPU_state cpu = {};
+
 uint64_t htoi(char s[])
 {
     int i;
@@ -78,6 +79,11 @@ static int cmd_q(char *args) {
 }
 
 static int cmd_c(char *args) {
+#ifdef log
+  char *logfile="/home/qw/ysyx-workbench/npc/log.log";
+  FILE *logfp;
+  logfp = fopen(logfile, "w+");
+#endif
     while(en)
     {
       nr_cycle++;
@@ -85,7 +91,15 @@ static int cmd_c(char *args) {
         // nvboard_update();
       sim_time = sim_time+2;
         //if(i>=1000) en = 0;
+        #ifdef log
+          uint32_t instruction;
+          mem.read(cpu.pc, 4, &instruction);
+          fprintf(logfp, "%08x\n", instruction);
+        #endif
     }
+#ifdef log
+  fclose(logfile);
+#endif
     Log("program has finished,please quit and restart\n");
     Log("after %d instructions and %d clock cycle", nr_instr, nr_cycle);
     Log("IPC: %f", nr_instr*1.0/(uint64_t)nr_cycle);
