@@ -32,7 +32,7 @@ word_t mmio_read(paddr_t addr, int len) {
   else
     Log("read device: %s\n",namer);
   #endif
-  
+  log_write("???????");
   return map_read(addr, len, map);
 }
 
