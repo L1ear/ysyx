@@ -45,6 +45,7 @@ void mmio_write(paddr_t addr, int len, word_t data) {
   sscanf(map->name,"%s",name);
   if(strcmp(name,"vmem")==0 || strcmp(name,"serial") == 0){    
     log_write("write "FMT_WORD" to device: %s\n", data, name);
+    log_write("read device: %s\n",name);
   }
   else {
     Log("write "FMT_WORD" to device: %s\n", data, name);
