@@ -28,7 +28,6 @@ word_t mmio_read(paddr_t addr, int len) {
   char namer[32];
   sscanf(map->name,"%s",namer);
   if(strcmp(namer,"rtc")==0 || strcmp(namer,"serial")==0)      //如果是rtc或串口，就只写入log不输出，防止挤爆终端，下同
-    
     log_write("read device: %s\n",namer);
   else
     Log("read device: %s\n",namer);
@@ -43,9 +42,11 @@ void mmio_write(paddr_t addr, int len, word_t data) {
   #ifdef CONFIG_DTRACE
   char name[32];
   sscanf(map->name,"%s",name);
-  if(strcmp(name,"serial") == 0){    log_write("write "FMT_WORD" to device: %s\n", data, map->name);
-    Log("write "FMT_WORD" to device: %s\n", data, map->name);}
-
+  if(strcmp(name,"serial") == 0){    
+    log_write("read device: %s\n",map->name);
+    log_write("write "FMT_WORD" to device: %s\n", data, map->name);
+    Log("write "FMT_WORD" to device: %s\n", data, map->name);
+  }
   else 
     Log("write "FMT_WORD" to device: %s\n", data, map->name);
   // else
