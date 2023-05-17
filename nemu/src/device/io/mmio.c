@@ -47,7 +47,7 @@ void mmio_write(paddr_t addr, int len, word_t data) {
   }
   else {
     Log("write "FMT_WORD" to device: %s\n", data, name);
-    log_write("write "FMT_WORD" to device: %s\n", data, name);
+    log_write("read "FMT_WORD" to device: %s\n", data, name);
     }
   // else
   //   
