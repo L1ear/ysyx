@@ -32,13 +32,13 @@ word_t mmio_read(paddr_t addr, int len) {
   else
     Log("read device: %s\n",namer);
   #endif
-  log_write("???????");
+  log_write("???????\n");
   return map_read(addr, len, map);
 }
 
 void mmio_write(paddr_t addr, int len, word_t data) {
   IOMap* map = fetch_mmio_map(addr);
-  log_write("???????");
+  log_write("!!!!!!!\n");
   #ifdef CONFIG_DTRACE
   char name[32];
   sscanf(map->name,"%s",name);
