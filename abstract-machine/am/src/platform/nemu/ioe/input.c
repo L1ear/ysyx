@@ -1,6 +1,7 @@
 #include <am.h>
 #include <nemu.h>
 
+//from: "/home/qw/ysyx-workbench/nemu/src/device/keyboard.c"
 #define KEYDOWN_MASK 0x8000
 
 void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
