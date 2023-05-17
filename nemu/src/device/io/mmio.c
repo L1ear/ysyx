@@ -27,10 +27,11 @@ word_t mmio_read(paddr_t addr, int len) {
   #ifdef CONFIG_DTRACE
   char namer[32];
   sscanf(map->name,"%s",namer);
-  if(strcmp(namer,"rtc")==0)   {}   //如果是rtc或串口，就只写入log不输出，防止挤爆终端，下同
-    // log_write("read device: %s\n",namer);
-  else
+  if(strcmp(namer,"rtc")==0)      //如果是rtc或串口，就只写入log不输出，防止挤爆终端，下同
+    log_write("read device: %s\n",namer);
     Log("read device: %s\n",namer);
+  // else
+    
   #endif
   return map_read(addr, len, map);
 }
