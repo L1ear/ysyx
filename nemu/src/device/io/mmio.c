@@ -41,14 +41,14 @@ void mmio_write(paddr_t addr, int len, word_t data) {
   IOMap* map = fetch_mmio_map(addr);
   log_write("!!!!!!!\n");
   #ifdef CONFIG_DTRACE
-  char name[32];
-  sscanf(map->name,"%s",name);
-  if(strcmp(name,"vmem")==0 || strcmp(name,"serial") == 0){    
-    log_write("write "FMT_WORD" to device: %s\n", data, name);
-    log_write("read device: %s\n",name);
+  char namer[32];
+  sscanf(map->name,"%s",namer);
+  if(strcmp(namer,"vmem")==0 || strcmp(namer,"serial") == 0){    
+    log_write("write "FMT_WORD" to device: %s\n", data, namer);
+    log_write("read device: %s\n",namer);
   }
   else {
-    Log("write "FMT_WORD" to device: %s\n", data, name);
+    Log("write "FMT_WORD" to device: %s\n", data, namer);
     }  
   #endif
   map_write(addr, len, data, map);
