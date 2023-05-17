@@ -45,8 +45,10 @@ void mmio_write(paddr_t addr, int len, word_t data) {
   if(strcmp(name,"serial") == 0){    
     log_write("write "FMT_WORD" to device: %s\n", data, name);
   }
-  else 
+  else {
     Log("write "FMT_WORD" to device: %s\n", data, name);
+    log_write("write "FMT_WORD" to device: %s\n", data, name);
+    }
   // else
   //   
   #endif
