@@ -75,6 +75,7 @@ static word_t csrrs(word_t csr, word_t rs1){
     assert(0);
     break;
   }
+  return 0;
 }
 
 static word_t csrrw(word_t csr, word_t rs1){
@@ -106,6 +107,7 @@ static word_t csrrw(word_t csr, word_t rs1){
     assert(0);
     break;
   }
+  return 0;
 }
 
 static int decode_exec(Decode *s) {
