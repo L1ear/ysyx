@@ -52,7 +52,7 @@ static const uint32_t img [] = {
 0x00100073,// ebreak (used as npctrap)
 };
 
-static char *img_file = "/home/qw/ysyx-workbench/npc/rv64ui-p-sll.bin";
+static char *img_file = NULL;
 
 
 long load_img() {
