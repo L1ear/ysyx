@@ -6,7 +6,10 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    */
   cpu.mepc = epc;
   cpu.mcause = NO;
-  Log("exception,mcause: %016lx, epc %016lx\n",NO, epc);
+  //etrace
+  #ifdef CONFIG_MTRACE
+    Log("exception,mcause: %016lx, epc %016lx\n",NO, epc);
+  #endif
   return cpu.mtvec;
 }
 // core   0: exception trap_illegal_instruction, epc 0x00000000800002e4
