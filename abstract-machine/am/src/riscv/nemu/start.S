@@ -11,7 +11,7 @@ _start:
   addi s11,s11,0x10;
   csrw mepc,s11;
   mret;
-  addi s11,s11,0x8;
+  addi s11,s11,0xb;
   csrw mepc,s11;
   mret;
   li s11,0;
