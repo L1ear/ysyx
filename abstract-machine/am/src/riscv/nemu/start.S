@@ -7,6 +7,9 @@ _start:
   la sp, _stack_pointer
   li s11,0xa00001800;
   csrw mstatus,s11;
-  csrr s11,mstatus;
+  auipc s11,0;
+  addi s11,s11,0xc;
+  csrw mepc,s11;
+  mret;
   li s11,0;
   jal _trm_init
