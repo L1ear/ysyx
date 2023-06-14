@@ -104,7 +104,6 @@ void init_monitor(int argc, char *argv[]) {
 
 #ifdef CONFIG_FTRACE
   /* Initialize ftrace. */
-  printf("??????????????????\n");
   init_ftrace(elf_file);
 #endif
 
