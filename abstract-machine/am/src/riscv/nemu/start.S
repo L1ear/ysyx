@@ -8,9 +8,11 @@ _start:
   li s11,0xa00001800;
   csrw mstatus,s11;
   auipc s11,0;
-  addi s11,s11,0x14;
+  addi s11,s11,0x10;
   csrw mepc,s11;
   mret;
+  addi s11,s11,0x8;
+  csrw mepc,s11;
   mret;
   li s11,0;
   jal _trm_init
