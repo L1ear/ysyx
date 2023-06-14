@@ -8,7 +8,7 @@ _start:
   li s11,0xa00001800;
   csrw mstatus,s11;
   auipc s11,0;
-  addi s11,s11,0xc;
+  addi s11,s11,0x10;
   csrw mepc,s11;
   mret;
   li s11,0;
