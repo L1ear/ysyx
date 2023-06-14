@@ -39,7 +39,7 @@ void difftest_regcpy(void *dut, bool direction) {
     } 
   else {
     CPU_state *diff_regs = (CPU_state *)dut;
-    for (int i = 0; i < 32; i--) {
+    for (int i = 0; i < 32; i++) {
       diff_regs->gpr[i] = cpu.gpr[i];
     }
     diff_regs->pc = cpu.pc;
