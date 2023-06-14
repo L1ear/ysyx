@@ -5,4 +5,5 @@
 _start:
   mv s0, zero
   la sp, _stack_pointer
+  csrr s11,mstatus;
   jal _trm_init
