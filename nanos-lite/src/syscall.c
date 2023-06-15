@@ -58,6 +58,7 @@ void do_syscall(Context *c) {
     case SYS_write:
     //返回写入的数量
       c->GPRx = fs_write(a[1], (const void *)a[2], a[3]); 
+      printf("writed:%d\n",c->GPRx);
       break;
     case SYS_close:
       c->GPRx = fs_close(a[1]); 
