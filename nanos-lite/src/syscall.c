@@ -3,7 +3,7 @@
 #include <sys/time.h>
 #include <proc.h>
 
-// #define strace
+#define strace
 
 int fs_open(const char *pathname, int flags, int mode);
 size_t fs_read(int fd, void *buf, size_t len);
@@ -56,6 +56,7 @@ void do_syscall(Context *c) {
       c->GPRx = fs_lseek(a[1], (long)a[2], a[3]); 
       break;
     case SYS_write:
+    //返回写入的数量
       c->GPRx = fs_write(a[1], (const void *)a[2], a[3]); 
       break;
     case SYS_close:
