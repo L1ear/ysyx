@@ -139,13 +139,10 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
       case 'x':{
         num = va_arg(ap, int);
         xtoa(num, buf);
-                    int p;
-            for(p=0;p<65;p++){
-              putch('x');
-              putch(buf[p]);
-            }
         strcpy(str, buf);
+        putch('1');
         str +=strlen(buf);
+        putch('2');
             }
       case 's': {
         s = va_arg(ap, char *);
