@@ -171,6 +171,7 @@ size_t fs_lseek(int fd, size_t offset, int whence)
   return ret;
 }
 extern uint8_t ramdisk_start;
+//返回写入的数量
 size_t fs_write(int fd, const void *buf, size_t len){
   Finfo* f = &file_table[fd];
   if(f->write!=NULL) 
