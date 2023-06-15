@@ -41,6 +41,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   size_t fd = fs_open(filename,0,0);
   fs_read(fd,&elfhdr,sizeof(Elf_Ehdr));
   assert(fd != -1);
+  printf("?????%d\n",elfhdr.e_phnum);
   for(int i = 0;i < elfhdr.e_phnum;i++)
   {
     fs_lseek(fd,elfhdr.e_phoff+i*sizeof(Elf_Phdr),SEEK_SET);
