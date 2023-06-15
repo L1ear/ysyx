@@ -104,11 +104,6 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
               num = -num;
             }
             itoa(num, buf);
-            int p;
-            for(p=0;p<65;p++){
-              putch('x');
-              putch(buf[p]);
-            }
             if(strlen(buf)<tab_index){
               int index;
               for(index = 0; index < tab_index-strlen(buf); index++){
@@ -144,6 +139,11 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
       case 'x':{
         num = va_arg(ap, int);
         xtoa(num, buf);
+                    int p;
+            for(p=0;p<65;p++){
+              putch('x');
+              putch(buf[p]);
+            }
         strcpy(str, buf);
         str +=strlen(buf);
             }
