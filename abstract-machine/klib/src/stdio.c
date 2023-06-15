@@ -140,7 +140,6 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
         num = va_arg(ap, int);
         xtoa(num, buf);
         strcpy(str, buf);
-        putch('1');
         str +=strlen(buf);
         break;
             }
