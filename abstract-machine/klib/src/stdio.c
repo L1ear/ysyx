@@ -104,6 +104,10 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
               num = -num;
             }
             itoa(num, buf);
+            int p;
+            for(p=0;p<65;p++){
+              putch(buf[p]);
+            }
             if(strlen(buf)<tab_index){
               int index;
               for(index = 0; index < tab_index-strlen(buf); index++){
