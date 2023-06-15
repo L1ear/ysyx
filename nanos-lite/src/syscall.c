@@ -3,7 +3,7 @@
 #include <sys/time.h>
 #include <proc.h>
 
-// #define strace
+#define strace
 
 int fs_open(const char *pathname, int flags, int mode);
 size_t fs_read(int fd, void *buf, size_t len);
@@ -41,7 +41,7 @@ void do_syscall(Context *c) {
     #ifdef strace
       printf("syscall brk\n");
     #endif
-      c->GPRx = 0; 
+      c->GPRx = -1; 
       break;
     case SYS_open: 
       c->GPRx = fs_open((void *)a[1], a[2], a[3]); 
