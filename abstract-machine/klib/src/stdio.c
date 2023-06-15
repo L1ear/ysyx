@@ -142,7 +142,7 @@ int vsprintf(char *str, const char *fmt, va_list ap) {
         strcpy(str, buf);
         putch('1');
         str +=strlen(buf);
-        putch('2');
+        break;
             }
       case 's': {
         s = va_arg(ap, char *);
