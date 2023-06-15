@@ -41,13 +41,13 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
   size_t fd = fs_open(filename,0,0);
   fs_read(fd,&elfhdr,sizeof(Elf_Ehdr));
   assert(fd != -1);
-  printf("?????%d\n",elfhdr.e_phnum);
   for(int i = 0;i < elfhdr.e_phnum;i++)
   {
     fs_lseek(fd,elfhdr.e_phoff+i*sizeof(Elf_Phdr),SEEK_SET);
     fs_read(fd,&prohdr,sizeof(Elf_Phdr));
     if(prohdr.p_type == PT_LOAD){
       fs_lseek(fd,prohdr.p_offset,SEEK_SET);
+      printf("entry:%08x\n",prohdr.p_vaddr);
       fs_read(fd,(void *)prohdr.p_vaddr,prohdr.p_filesz);
       memset((void*)(prohdr.p_vaddr+prohdr.p_filesz),0,prohdr.p_memsz-prohdr.p_filesz);
     }
