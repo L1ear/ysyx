@@ -47,7 +47,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
     fs_read(fd,&prohdr,sizeof(Elf_Phdr));
     if(prohdr.p_type == PT_LOAD){
       fs_lseek(fd,prohdr.p_offset,SEEK_SET);
-      printf("entry:%08x\n",prohdr.p_vaddr);
+      printf("entry:%8x\n",prohdr.p_vaddr);
       fs_read(fd,(void *)prohdr.p_vaddr,prohdr.p_filesz);
       memset((void*)(prohdr.p_vaddr+prohdr.p_filesz),0,prohdr.p_memsz-prohdr.p_filesz);
     }
