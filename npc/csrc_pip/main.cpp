@@ -237,7 +237,7 @@ void single_cycle(int i) {
   // mmio_sigs.update_input(*mmioref);
   mem_sigs.update_input(*memref);
   //********************************************
-  top->eval();
+  // top->eval();
   //********************************************
   mem.beat(mem_sigs_ref);
   // mmio.beat(mmio_sigs_ref);
