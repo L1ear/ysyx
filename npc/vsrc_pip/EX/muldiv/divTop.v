@@ -114,18 +114,20 @@ assign x2 = dividendReg[126] ? divisor_P_r : divisor_N_r;
 
 wire    [63:0]  r_64;
 
-wire        unused1,unused2;
-cla_64 cla_64_u1 (
-  .a_64 (dividendReg[126-:64] ),
-  .b_64 (x2 ),
-  .cin_64 (0 ),
-  .p_64 (dividendReg[126-:64] | x2 ),
-  .g_64 (dividendReg[126-:64] & x2 ),
+// wire        unused1,unused2;
+// cla_64 cla_64_u1 (
+//   .a_64 (dividendReg[126-:64] ),
+//   .b_64 (x2 ),
+//   .cin_64 (0 ),
+//   .p_64 (dividendReg[126-:64] | x2 ),
+//   .g_64 (dividendReg[126-:64] & x2 ),
 
-  .s_64 (r_64 ),
-  .gx_64 (unused1 ),
-  .px_64  (unused2 )
-);
+//   .s_64 (r_64 ),
+//   .gx_64 (unused1 ),
+//   .px_64  (unused2 )
+// );
+
+assign r_64 = dividendReg[126-:64] + x2;
 
 wire        partial_q;
 assign partial_q = r_64[63] ? 'b0 : 'b1;
