@@ -53,7 +53,7 @@ size_t fs_write(int fd, const void *buf, size_t len);
 size_t fs_lseek(int fd, size_t offset, int whence);
 int fs_close(int fd);
 
-
+static int w,h;
 
 #define NAME(key) \
   [AM_KEY_##key] = #key,
@@ -92,14 +92,11 @@ size_t events_read(void *buf, size_t offset, size_t len) {
 }
 
 size_t dispinfo_read(void *buf, size_t offset, size_t len) {
-  int w = io_read(AM_GPU_CONFIG).width;
-  int h = io_read(AM_GPU_CONFIG).height;
+
   return sprintf((char*)buf,"WIDTH:%d\nHEIGHT:%d\n",w,h);
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
-  int w = io_read(AM_GPU_CONFIG).width;
-  int h = io_read(AM_GPU_CONFIG).height;
   int x = (offset/4)%w;
   int y = (offset/4)/w;
   if(offset+len > w*h*4) len = w*h*4 - offset;
@@ -144,6 +141,7 @@ int sys_gettimeofday(struct timeval *tz,struct timezone *tv)
 void init_device() {
   Log("Initializing devices...");
   ioe_init();
-
+  w = io_read(AM_GPU_CONFIG).width;
+  h = io_read(AM_GPU_CONFIG).height;
   
 }

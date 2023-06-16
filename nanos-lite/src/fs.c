@@ -107,7 +107,6 @@ size_t fs_read(int fd, void *buf, size_t len){
     if(f->seek_offset >= f->size)
     {
       assert(f->seek_offset <= f->size);
-      // printf("%s seek_offset = %d size = %d FULL\n",f->name,f->seek_offset,f->size);
       return 0;
     }
     else {
@@ -171,6 +170,7 @@ size_t fs_lseek(int fd, size_t offset, int whence)
   return ret;
 }
 extern uint8_t ramdisk_start;
+
 //返回写入的数量
 size_t fs_write(int fd, const void *buf, size_t len){
   Finfo* f = &file_table[fd];
