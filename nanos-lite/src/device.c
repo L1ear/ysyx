@@ -70,7 +70,10 @@ size_t serial_write(const void *buf, size_t offset, size_t len) {
   return len;
 }
 
-
+/*
+    按下按键事件, 如 kd RETURN  表示按下回车键
+    松开按键事件, 如 ku A       表示松开A键
+*/
 
 size_t events_read(void *buf, size_t offset, size_t len) {
   AM_INPUT_KEYBRD_T ev = io_read(AM_INPUT_KEYBRD);

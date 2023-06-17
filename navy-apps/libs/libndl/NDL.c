@@ -34,14 +34,15 @@ int NDL_PollEvent(char *buf, int len) {
   //printf("%d\n",len);
   int ret = read(fb_event,buf,len);
   if(ret == 0) return 0;
-  for(int i = 0; i < len&&ret != 0;i++)
-  {
-    if(buf[i] == '\n') 
-    {
-      buf[i] = '\0';
-      return ret;
-    }
-  }
+  return ret;
+  // for(int i = 0; i < len&&ret != 0;i++)
+  // {
+  //   if(buf[i] == '\n') 
+  //   {
+  //     buf[i] = '\0';
+  //     return ret;
+  //   }
+  // }
   /* if(buf[0]=='0') {
     //printf("NDL NULL\n");
     return 0;
@@ -163,7 +164,6 @@ int NDL_Init(uint32_t flags) {
     evtdev = 3;
   }
   fb = open("/dev/fb","w");
-  printf("fb:%d\n",fb);
   fb_event = open("/dev/events","r");
   fb_sync = open("/dev/sync","w");
   fb_dispinfo = open("/proc/dispinfo","r");

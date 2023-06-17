@@ -166,7 +166,6 @@ int open(const char *path, int flags, ...) {
   } else if (strcmp(path, "/dev/events") == 0) {
     return evt_fd;
   } else if (strcmp(path, "/dev/fb") == 0) {
-    printf("native\n");
     return fb_memfd;
   } else if (strcmp(path, "/dev/sb") == 0) {
     return sb_fifo[1];
