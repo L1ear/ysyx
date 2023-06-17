@@ -72,35 +72,14 @@ int fs_open(const char *pathname, int flags, int mode){
     }
   }
 
-  if(i == nr_files) assert(0);
+  if(i == nr_files) {
+    Log("Loading unknown file!!");
+    assert(0);
+  }
   return i;
 }
 
 size_t fs_read(int fd, void *buf, size_t len){
-//   ramdisk_read(buf, file_table[fd].disk_offset + file_table[fd].seek_offset, len);
-//   file_table[fd].seek_offset += len; 
-// }
-//   if(file_table[fd].read == NULL)
-//   {
-//     if(file_table[fd].seek_offset >= file_table[fd].size)
-//     {
-//       assert(file_table[fd].seek_offset <= file_table[fd].size);
-//       return 0;
-//     }
-//     else {
-//       len = len <= file_table[fd].size - file_table[fd].seek_offset? len:file_table[fd].size - file_table[fd].seek_offset;
-//       ramdisk_read(buf,file_table[fd].disk_offset+file_table[fd].seek_offset,len);
-//       file_table[fd].seek_offset += len;
-//       assert(file_table[fd].seek_offset <= file_table[fd].size);
-//       return len;
-//     }
-//   }
-//   else{
-//     int ret = file_table[fd].read(buf,file_table[fd].seek_offset,len);
-//     file_table[fd].seek_offset += len;
-//     return ret;
-//   }
-// }
   Finfo* f = &file_table[fd];
   if(f->read == NULL)
   {
