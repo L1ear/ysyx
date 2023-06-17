@@ -144,10 +144,10 @@ long int tv_sec; // 秒数
 long int tv_usec; // 微秒数
 }
 */
-int sys_gettimeofday(struct timeval *tz,struct timezone *tv)
+int sys_gettimeofday(struct timeval *tv,struct timezone *tz)
 {
-  tz->tv_sec = io_read(AM_TIMER_UPTIME).us /1000000;
-  tz->tv_usec = io_read(AM_TIMER_UPTIME).us%1000000;
+  tv->tv_sec = io_read(AM_TIMER_UPTIME).us /1000000;
+  tv->tv_usec = io_read(AM_TIMER_UPTIME).us%1000000;
   return 0;
 }
 
