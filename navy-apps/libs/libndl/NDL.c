@@ -35,7 +35,7 @@ int NDL_PollEvent(char *buf, int len) {
   int ret = read(fb_event,buf,len);
   if(ret == 0) return 0;
   // return ret;
-  for(int i = 0; i < len&&ret != 0;i++)
+  for(int i = 0; i < len;i++)
   {
     if(buf[i] == '\n') 
     {
