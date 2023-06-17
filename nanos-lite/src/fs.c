@@ -71,7 +71,6 @@ int fs_open(const char *pathname, int flags, int mode){
       break;
     }
   }
-
   if(i == nr_files) {
     Log("Loading unknown file!!");
     assert(0);
@@ -89,7 +88,6 @@ size_t fs_read(int fd, void *buf, size_t len){
       return 0;
     }
     else {
-      
       size_t l = len <= f->size - f->seek_offset? len:f->size - f->seek_offset;
       // printf("third %d %d %d\n",file_table[fd].seek_offset,file_table[fd].size,l);
       ramdisk_read(buf,f->disk_offset+f->seek_offset,l);

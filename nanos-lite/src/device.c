@@ -131,6 +131,19 @@ size_t fb_sync(const void *buf,size_t offset,size_t len)
   return 1;
 }
 
+
+/*其参数tv是保存获取时间结果的结构体，参数tz用于保存时区结果：
+struct timezone{
+int tz_minuteswest;//格林威治时间往西方的时差
+int tz_dsttime;//DST 时间的修正方式
+}
+timezone 参数若不使用则传入NULL即可。
+而结构体timeval的定义为：
+struct timeval{
+long int tv_sec; // 秒数
+long int tv_usec; // 微秒数
+}
+*/
 int sys_gettimeofday(struct timeval *tz,struct timezone *tv)
 {
   tz->tv_sec = io_read(AM_TIMER_UPTIME).us /1000000;
