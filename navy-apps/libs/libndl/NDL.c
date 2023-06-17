@@ -28,21 +28,21 @@ uint32_t NDL_GetTicks() {
 int NDL_PollEvent(char *buf, int len) {
   // lseek(fb_event,0,SEEK_SET);
   assert(fb_event != NULL);
-  memset(buf,'\0',len+2);
+  memset(buf,0,len);
   /* int ret = fread(buf ,1,3,fp);
   fscanf(fp,"%s",buf+3); */
   //printf("%d\n",len);
   int ret = read(fb_event,buf,len);
   if(ret == 0) return 0;
-  return ret;
-  // for(int i = 0; i < len&&ret != 0;i++)
-  // {
-  //   if(buf[i] == '\n') 
-  //   {
-  //     buf[i] = '\0';
-  //     return ret;
-  //   }
-  // }
+  // return ret;
+  for(int i = 0; i < len&&ret != 0;i++)
+  {
+    if(buf[i] == '\n') 
+    {
+      buf[i] = '\0';
+      return ret;
+    }
+  }
   /* if(buf[0]=='0') {
     //printf("NDL NULL\n");
     return 0;
