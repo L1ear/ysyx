@@ -20,7 +20,7 @@ VERILATOR_FLAGS += -MMD --build -cc  --trace --exe  -y ./vsrc_pip -top $(TOPNAME
 				-O3 --x-assign fast --x-initial fast --noassert --Mdir $(OBJ_DIR)\
 				-o $(abspath $(BIN)) $(addprefix -I, $(INC_PATH))\
 				$(addprefix -LDFLAGS , $(LDFLAGS)) \
-				-prof-cfuncs
+				#-prof-cfuncs
 
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
