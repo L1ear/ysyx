@@ -123,7 +123,7 @@ size_t fs_read(int fd, void *buf, size_t len){
   }
   else{
     //printf("%d\n",len);
-    int ret = f->read(buf,file_table[fd].seek_offset,len);
+    int ret = f->read(buf,f->seek_offset,len);
     f->seek_offset+=len;
     //size_t l = len <= file_table[fd].size - file_table[fd].seek_offset? len:file_table[fd].size - file_table[fd].seek_offset;
     //file_table[fd].seek_offset = file_table[fd].seek_offset+l;
@@ -186,10 +186,10 @@ size_t fs_write(int fd, const void *buf, size_t len){
   }
   else{
     // printf("**********write %x at %d,len:%d\n",buf,file_table[fd].disk_offset+file_table[fd].seek_offset,len);
-    int ret = file_table[fd].size - file_table[fd].seek_offset <= len? file_table[fd].size - file_table[fd].seek_offset:len;
-    ramdisk_write((const void *)buf,file_table[fd].disk_offset+file_table[fd].seek_offset,len);
-    file_table[fd].seek_offset +=ret;
-    assert(file_table[fd].seek_offset <= file_table[fd].size);
+    int ret = f->size - f->seek_offset <= len? f->size - f->seek_offset:len;
+    ramdisk_write((const void *)buf,f->disk_offset+f->seek_offset,len);
+    f->seek_offset +=ret;
+    assert(f->seek_offset <= f->size);
     //printf("write %s\n",f->name);
     return ret;
   }
