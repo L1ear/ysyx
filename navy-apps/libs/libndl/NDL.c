@@ -26,7 +26,7 @@ uint32_t NDL_GetTicks() {
 
 
 int NDL_PollEvent(char *buf, int len) {
-  lseek(fb_event,0,SEEK_SET);
+  // lseek(fb_event,0,SEEK_SET);
   assert(fb_event != NULL);
   memset(buf,0,len);
   /* int ret = fread(buf ,1,3,fp);
@@ -163,6 +163,7 @@ int NDL_Init(uint32_t flags) {
     evtdev = 3;
   }
   fb = open("/dev/fb","w");
+  printf("fb:%d\n",fb);
   fb_event = open("/dev/events","r");
   fb_sync = open("/dev/sync","w");
   fb_dispinfo = open("/proc/dispinfo","r");
