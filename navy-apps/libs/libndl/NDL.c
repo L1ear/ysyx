@@ -35,7 +35,6 @@ int NDL_PollEvent(char *buf, int len) {
 
 void NDL_OpenCanvas(int *w, int *h) {
   //printf("h = %d  w = %d\n",*h,*w);
-  get_screen();
   if(*w == 0&&*h == 0) {
     canvas_w = screen_w;
     canvas_h = screen_h;
@@ -88,8 +87,6 @@ void get_screen() {
   printf("%s",buf);
   sscanf(buf,"%*[^:]:%d\n%*[^:]:%d\n",&screen_w,&screen_h);
   printf("w: %d   h: %d\n", screen_w, screen_h);
-  // screen_w = 400;
-  // screen_h = 300;
   assert(screen_w >0);
   return;
 }
@@ -145,6 +142,7 @@ int NDL_Init(uint32_t flags) {
   fb_event = open("/dev/events","r");
   fb_sync = open("/dev/sync","w");
   fb_dispinfo = open("/proc/dispinfo","r");
+  get_screen();
   assert(fb_sync != NULL);
   now.tv_sec = now.tv_usec = 0;
   return 0;
