@@ -102,23 +102,7 @@ size_t fb_write(const void *buf, size_t offset, size_t len) {
   int x = offset_byte%w;
   int y = offset_byte/w;
   if(offset+len > w*h*4) len = w*h*4 - offset;
-  //printf("x = %d y = %d offset = %d len = %d fb = %x\n",x,y,offset,len,((uint32_t*)buf)[0]);
-  /* for(int i = 0; i < len/4;i ++)
-    printf("i = %d buf = %x\n",i,((uint32_t*)buf)[i]);
-  printf("\n"); */
-  //printf("fb = %d\n",*(uint32_t*)buf);
-  /* for(int i = 0;i < len/4;i++)
-  {
-    x = (offset+i)%w;
-    y = (offset+i)/w;
-    io_write(AM_GPU_FBDRAW,1,1,(uint32_t*)(buf+4*i),x,y,false);
-  } */
-/*   if(((uint32_t*)buf)[0] == 0xff000000||((char*)buf)[sizeof(buf)-4]==0xff) {
-    io_write(AM_GPU_FBDRAW, 0, 0, NULL, 0, 0, true);
-    return 4;
-  } */
   io_write(AM_GPU_FBDRAW,x,y,(uint32_t*)buf,len/4,1,false);
-  //io_write(AM_GPU_FBDRAW, 0, 0, NULL, 0, 0, true);
   assert(offset <= w*h*4);
   return len;
 }

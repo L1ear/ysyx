@@ -80,7 +80,6 @@ void NDL_OpenCanvas(int *w, int *h) {
   }//pa3 ignore
 }
 
-//不能用fscanf，要改    //已改
 void get_screen() {
   char buf[128]={0};
   read(fb_dispinfo,buf,sizeof(buf));
@@ -91,7 +90,8 @@ void get_screen() {
   return;
 }
 
-//static int k = 0;
+// 向画布`(x, y)`坐标处绘制`w*h`的矩形图像, 并将该绘制区域同步到屏幕上
+// 图像像素按行优先方式存储在`pixels`中, 每个像素用32位整数以`00RRGGBB`的方式描述颜色
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
   assert(fb != NULL);
   if(h == 0||h > canvas_h)
@@ -101,18 +101,20 @@ void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
   //printf("Draw in: w = %d h = %d,canvas: w=%d h=%d\n",w,h,canvas_w,canvas_h);
   //printf("screen h = %d w = %d\n",screen_w,screen_h);
   //printf("%d\n",4*(y*wid+x)); 
-  for(int i = 0;i < h;i ++)
+  for(int i = 0;i < h;i ++){
     for(int j = 0;j < w;j ++)
     {
       canvas[(y+i)*canvas_w+x+j] = pixels[i*w+j];
     }
-    
-  for(int i = 0;i < canvas_h;i ++)
-  {
-    //printf("seek %d color = %d\n",4*((i+place_y)*screen_w+place_x),*(canvas+i*canvas_w+canvas_w/2));
-    lseek(fb,4*((i+place_y)*screen_w+place_x),SEEK_SET);
-    write(fb,(void*)(canvas+i*canvas_w),4*canvas_w);
+    lseek(fb,4*((y+i+place_y)*screen_w+place_x),SEEK_SET);
+    write(fb,(void*)(canvas+(y+i)*canvas_w),4*canvas_w);
   }
+  // for(int i = 0;i < canvas_h;i ++)
+  // {
+  //   //printf("seek %d color = %d\n",4*((i+place_y)*screen_w+place_x),*(canvas+i*canvas_w+canvas_w/2));
+  //   lseek(fb,4*((i+place_y)*screen_w+place_x),SEEK_SET);
+  //   write(fb,(void*)(canvas+i*canvas_w),4*canvas_w);
+  // }
   //有可能有问题的部分  
   //画布应该是一个虚拟对象，而不是一个实体数组(不知道）
   // fseek(fb_sync,0,SEEK_SET);
