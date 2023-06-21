@@ -98,8 +98,9 @@ size_t dispinfo_read(void *buf, size_t offset, size_t len) {
 }
 
 size_t fb_write(const void *buf, size_t offset, size_t len) {
-  int x = (offset/4)%w;
-  int y = (offset/4)/w;
+  size_t offset_byte = offset >> 2;
+  int x = offset_byte%w;
+  int y = offset_byte/w;
   if(offset+len > w*h*4) len = w*h*4 - offset;
   //printf("x = %d y = %d offset = %d len = %d fb = %x\n",x,y,offset,len,((uint32_t*)buf)[0]);
   /* for(int i = 0; i < len/4;i ++)
