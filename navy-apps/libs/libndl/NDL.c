@@ -94,10 +94,10 @@ void get_screen() {
 // 图像像素按行优先方式存储在`pixels`中, 每个像素用32位整数以`00RRGGBB`的方式描述颜色
 void NDL_DrawRect(uint32_t *pixels, int x, int y, int w, int h) {
 
-  if(h == 0||h > canvas_h)
-    h = canvas_h;
-  if(w == 0||w > canvas_w)
-    w = canvas_w;
+  // if(h == 0||h > canvas_h)
+  //   h = canvas_h;
+  // if(w == 0||w > canvas_w)
+  //   w = canvas_w;
   //printf("Draw in: w = %d h = %d,canvas: w=%d h=%d\n",w,h,canvas_w,canvas_h);
   //printf("screen h = %d w = %d\n",screen_w,screen_h);
   //printf("%d\n",4*(y*wid+x)); 
