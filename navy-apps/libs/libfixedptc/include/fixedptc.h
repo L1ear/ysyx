@@ -138,7 +138,7 @@ static inline fixedpt fixedpt_divi(fixedpt A, int B) {
 /* Multiplies two fixedpt numbers, returns the result. */
 static inline fixedpt fixedpt_mul(fixedpt A, fixedpt B) {
 	if((fixedpt)(((fixedptd)A*(fixedptd)B)>>8)!=(fixedpt)(((fixedptd)A*(fixedptd)B)/(fixedptd)256))
-		printf("Error!\n%x:%x\n",(fixedpt)(((fixedptd)A*(fixedptd)B)>>8),(fixedpt)(((fixedptd)A*(fixedptd)B)/(fixedptd)256));
+		printf("Error!\n%x,%x,\n%x:%x\n",A,B,(fixedpt)(((fixedptd)A*(fixedptd)B)>>8),(fixedpt)(((fixedptd)A*(fixedptd)B)/(fixedptd)256));
 	return (fixedpt)(((fixedptd)A*(fixedptd)B)>>8);
 }
 
