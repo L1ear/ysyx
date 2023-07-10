@@ -26,7 +26,7 @@ int SDL_WaitEvent(SDL_Event *event) {
   key[0] = '0';
   int keycode = 0;
   while(!NDL_PollEvent(key,sizeof(key)));
-  //printf("%s\n",key);
+  printf("%s\n",key);
   char* str = key+3;
   for(int i = 0,cnt = 0;i < sizeof(keyname);i+=sizeof(keyname[cnt]),cnt+=1)
   {
