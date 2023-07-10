@@ -137,17 +137,14 @@ static inline fixedpt fixedpt_divi(fixedpt A, int B) {
 
 /* Multiplies two fixedpt numbers, returns the result. */
 static inline fixedpt fixedpt_mul(fixedpt A, fixedpt B) {
-	if((fixedpt)(((fixedptd)A*(fixedptd)B)>>8)!=(fixedpt)(((fixedptd)A*(fixedptd)B)/(fixedptd)256))
-		printf("Error!\n%x,%x,\n%x:%x\n",A,B,(fixedpt)(((fixedptd)A*(fixedptd)B)>>8),(fixedpt)(((fixedptd)A*(fixedptd)B)/(fixedptd)256));
-	return (fixedpt)(((fixedptd)A*(fixedptd)B)/(fixedptd)256);
+	return (fixedpt)(((fixedptd)A*(fixedptd)B)>>8);
 }
 
 
 /* Divides two fixedpt numbers, returns the result. */
 static inline fixedpt fixedpt_div(fixedpt A, fixedpt B) {
 	fixedptd C = (fixedptd)A << 32;
-	fixedptd ret = C / B; 
-	//printf("C = %lld A = %d B = %d  res = %lld\n",C,A,B,(ret >> 24));
+	fixedptd ret = C / B; // 由于前面的左移，保留了一部分余数
 	return (fixedpt)(ret >> 24);
 }
 
