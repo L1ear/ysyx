@@ -29,17 +29,10 @@ int SDL_WaitEvent(SDL_Event *event) {
   printf("%s\n",key);
   char* str = key+3;
   char* k=key+3;
-  int key_val=((*k)-48)*10+((*(k+1))-48);
+  keycode =((*k)-48)*10+((*(k+1))-48);
 
-  printf("%02d: %s\n",key_val,keyname[key_val]);
-  for(int i = 0,cnt = 0;i < sizeof(keyname);i+=sizeof(keyname[cnt]),cnt+=1)
-  {
-    if(!strncmp(keyname[cnt],str,strlen(str))&&!strncmp(keyname[cnt],str,strlen(keyname[cnt]))) {
-        keycode = cnt;
-        break;
-      }
-    assert(i <= sizeof(keyname));
-  }
+  printf("%02d: %s\n",keycode,keyname[keycode]);
+
   //printf("in waitevent\n");
   if(key[1] == 'u')
   {
