@@ -350,7 +350,7 @@ reg [1:0]   rdCnt;
 //这一部分将axi过来的数据保持在buffer中，在一次存入cache的sram
 //icache每次读内存都是固定的读4个64位word，所以使用一个2位的计数器循环计数
 always @(posedge clk or negedge rst_n) begin
-    if(~rst_n || axi_r_valid_i) begin
+    if(~rst_n || rdLast_i) begin
         rdCnt <= 'b0;
     end
     else if(getdataEn && dataValid_i) begin
