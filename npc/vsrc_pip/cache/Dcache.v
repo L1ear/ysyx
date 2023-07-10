@@ -356,9 +356,6 @@ always @(posedge clk or negedge rst_n) begin
     else if(getdataEn && dataValid_i) begin
         rdCnt <= rdCnt + 'b1;
     end
-    else begin
-        rdCnt <= 'b0;
-    end
 end
 reg [255:0] rdBuffer;
 always @(posedge clk or negedge rst_n) begin
