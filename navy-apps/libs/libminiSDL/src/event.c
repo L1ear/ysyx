@@ -30,11 +30,19 @@ int SDL_PollEvent(SDL_Event *ev) {
   if(key[0] == '\0') {
     ev->key.keysym.sym = SDLK_NONE;
     ev->type = SDL_USEREVENT;
-  return 0;
-}
+    return 0;
+  }
   else {
-    char* k=key+3;
-    keycode =((*k)-48)*10+((*(k+1))-48);
+    char* str = key+3;
+    //printf("%s %d\n",key,strlen(key));
+    for(int i = 0,cnt = 0;i < sizeof(keyname);i+=strlen(keyname[cnt]),cnt++)
+    {
+      //printf("start %d %s %s %d %d %d end\n",cnt,keyname[cnt],str,strlen(str),!strncmp(keyname[cnt],str,strlen(str)),i);
+      if(!strncmp(keyname[cnt],str,strlen(str))&&!strncmp(keyname[cnt],str,strlen(keyname[cnt]))) {
+        keycode = cnt;
+        break;
+      }
+    }
     //printf("in waitevent %d\n",keycode);
     if(key[1] == 'u')
     {
@@ -62,10 +70,17 @@ int SDL_WaitEvent(SDL_Event *event) {
   key[0] = '0';
   int keycode = 0;
   while(!NDL_PollEvent(key,sizeof(key)));
-  // printf("%s\n",key);
-  char* k=key+3;
-  keycode =((*k)-48)*10+((*(k+1))-48);
-
+  //printf("%s\n",key);
+  char* str = key+3;
+  for(int i = 0,cnt = 0;i < sizeof(keyname);i+=sizeof(keyname[cnt]),cnt+=1)
+  {
+    if(!strncmp(keyname[cnt],str,strlen(str))&&!strncmp(keyname[cnt],str,strlen(keyname[cnt]))) {
+        keycode = cnt;
+        break;
+      }
+    assert(i <= sizeof(keyname));
+  }
+  //printf("in waitevent\n");
   if(key[1] == 'u')
   {
     event->key.keysym.sym = keycode;
