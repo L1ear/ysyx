@@ -350,7 +350,7 @@ reg [1:0]   rdCnt;
 //这一部分将axi过来的数据保持在buffer中，在一次存入cache的sram
 //icache每次读内存都是固定的读4个64位word，所以使用一个2位的计数器循环计数
 always @(posedge clk or negedge rst_n) begin
-    if(~rst_n || rdLast_i) begin
+    if(~rst_n) begin
         rdCnt <= 'b0;
     end
     else if(getdataEn && dataValid_i) begin
@@ -571,7 +571,7 @@ end
 wire            axiWrBusy = needWrBk_Reg;
 assign cacheWrValid_o = cleanEn ? cleanWrValid : needWrBk_Reg;
 wire    [31:0]  addrToWrite;
-//  这里vsrc_pip有问题
+
 assign addrToWrite = uncacheOpEn ? {reqLatch[31:3],3'b0} : randomBit ? {tagArray2[index],index,5'b0} : {tagArray1[index],index,5'b0};
 assign cacheWrAddr_o = cleanEn ? cleanWrAddr : addrToWrite;
 
