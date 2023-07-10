@@ -456,15 +456,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
                   << (0x3fU & (IData)((vlSelf->top__DOT__cache_dut__DOT__reqLatch 
                                        >> 5U)))));
     }
-    if (vlSelf->rst_n) {
-        if (((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
-             & (IData)(vlSelf->top__DOT__lsAxiRdDataVAlid))) {
-            vlSelf->__Vdly__top__DOT__Dcache_u__DOT__rdCnt 
-                = (3U & ((IData)(1U) + (IData)(vlSelf->top__DOT__Dcache_u__DOT__rdCnt)));
-        }
-    } else {
-        vlSelf->__Vdly__top__DOT__Dcache_u__DOT__rdCnt = 0U;
-    }
+    vlSelf->__Vdly__top__DOT__Dcache_u__DOT__rdCnt 
+        = ((IData)(vlSelf->rst_n) ? (((3U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState)) 
+                                      & (IData)(vlSelf->top__DOT__lsAxiRdDataVAlid))
+                                      ? (3U & ((IData)(1U) 
+                                               + (IData)(vlSelf->top__DOT__Dcache_u__DOT__rdCnt)))
+                                      : 0U) : 0U);
     if (vlSelf->rst_n) {
         if ((1U == (IData)(vlSelf->top__DOT__Dcache_u__DOT__cacheCurState))) {
             vlSelf->top__DOT__Dcache_u__DOT__replaceWay 
