@@ -31,7 +31,7 @@ int SDL_WaitEvent(SDL_Event *event) {
   char* k=key+3;
   int key_val=((*k)-48)*10+((*(k+1))-48);
 
-  printf("%02d\n",key_val);
+  printf("%02d: %s\n",key_val,keyname[key_val]);
   for(int i = 0,cnt = 0;i < sizeof(keyname);i+=sizeof(keyname[cnt]),cnt+=1)
   {
     if(!strncmp(keyname[cnt],str,strlen(str))&&!strncmp(keyname[cnt],str,strlen(keyname[cnt]))) {
