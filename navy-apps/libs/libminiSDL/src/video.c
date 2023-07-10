@@ -114,7 +114,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
   //assert(0);
   
   if(s->format->palette == NULL)
-    NDL_DrawRect((uint32_t*)s->pixels,x,y,400,300);//32位的颜色,直接使用NDL
+    NDL_DrawRect((uint32_t*)s->pixels,x,y,w,h);//x,y,w,h为0的时候默认全屏
   else{
     uint32_t s_h = s->h,s_w = s->w;
     if(w == 0||w > s_w) w = s_w;
