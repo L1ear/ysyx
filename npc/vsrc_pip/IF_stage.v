@@ -46,7 +46,23 @@ assign  instr_o = pc_new_o[2] ? sram_rdata[63:32] : sram_rdata[31:0];
 // end
 
 
-wire    [`XLEN-1:0] pc_next_o =  in_intr_ls ? csr_mtvec : is_jump_i ? pc_jump_i : ((in_trap_id)? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
+reg    [`XLEN-1:0] pc_next_o;// =  in_intr_ls ? csr_mtvec : is_jump_i ? pc_jump_i : ((in_trap_id)? csr_mtvec : (out_trap_id? csr_mepc : (pc_new_o+`XLEN'd4)));     //对于ex阶段前的trap，有jump先jump
+
+always @( *) begin 
+    case({in_intr_ls, is_jump_i, in_trap_id, out_trap_id})
+        4'b1000,4'b1001,4'b1010,4'b1011,4'b1100,4'b1101,4'b1110,4'b1111:
+            pc_next_o = csr_mtvec;
+        4'b0100,4'b0101,4'b0110,4'b0111:
+            pc_next_o = pc_jump_i;
+        4'b0010:
+            pc_next_o = csr_mtvec;
+        4'b0001:
+            pc_next_o = csr_mepc;
+        default :
+            pc_next_o = pc_new_o+`XLEN'd4;
+    endcase
+end
+
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
