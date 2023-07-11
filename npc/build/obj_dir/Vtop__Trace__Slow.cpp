@@ -1995,7 +1995,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x18U)))))
@@ -2006,7 +2006,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x18U)))))
@@ -2026,7 +2026,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x18U)))))
@@ -2350,7 +2350,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x18U)))))
@@ -2359,7 +2359,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x18U)))))
@@ -2368,7 +2368,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x18U)))))
@@ -2377,7 +2377,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x18U)))))
@@ -2386,7 +2386,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x18U)))))
@@ -2396,7 +2396,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x18U)))))
@@ -2410,23 +2410,25 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullBit(oldp+195,(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_arready));
         tracep->fullCData(oldp+196,(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_rresp),2);
         tracep->fullBit(oldp+197,(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_rvalid));
-        tracep->fullCData(oldp+198,(((2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                             >> 0x18U))))
+        tracep->fullCData(oldp+198,(((2U == (0xffU 
+                                             & (IData)(
+                                                       (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                        >> 0x18U))))
                                       ? (7U & (IData)(vlSelf->top__DOT__axi_ls_u__DOT__wrSize_reg))
                                       : 0U)),3);
-        tracep->fullQData(oldp+199,(((2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                             >> 0x18U))))
+        tracep->fullQData(oldp+199,(((2U == (0xffU 
+                                             & (IData)(
+                                                       (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                        >> 0x18U))))
                                       ? vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg
                                       : 0ULL)),64);
         tracep->fullBit(oldp+201,(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_awready));
         tracep->fullCData(oldp+202,(vlSelf->top__DOT__clint_axi_wstrb),8);
         tracep->fullBit(oldp+203,(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_wready));
         tracep->fullBit(oldp+204,(vlSelf->top__DOT__ls_u__DOT__clint_u__DOT__axi_bvalid));
-        tracep->fullBit(oldp+205,((2U == (0xfU & (IData)(
-                                                         (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
-                                                          >> 0x18U))))));
+        tracep->fullBit(oldp+205,((2U == (0xffU & (IData)(
+                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
+                                                           >> 0x18U))))));
         tracep->fullBit(oldp+206,((0xaU == (0xfU & (IData)(
                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                             >> 0x1cU))))));
@@ -2464,7 +2466,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x18U)))))
@@ -2475,7 +2477,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x18U)))))
@@ -2484,7 +2486,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                               & (IData)(
                                                         (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                          >> 0x1cU)))) 
-                                    | (2U == (0xfU 
+                                    | (2U == (0xffU 
                                               & (IData)(
                                                         (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                          >> 0x18U)))))
@@ -2599,7 +2601,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x18U)))))
@@ -2608,7 +2610,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x18U)))))
@@ -2617,7 +2619,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x18U)))))
@@ -2626,7 +2628,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x1cU)))) 
-                                      | (2U == (0xfU 
+                                      | (2U == (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                            >> 0x18U)))))
@@ -2635,7 +2637,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                               & (IData)(
                                                         (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                          >> 0x1cU)))) 
-                                    | (2U == (0xfU 
+                                    | (2U == (0xffU 
                                               & (IData)(
                                                         (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                          >> 0x18U)))))
@@ -2845,20 +2847,22 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                       vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[1U])) 
                                       << 0x20U) | (QData)((IData)(
                                                                   vlSelf->top__DOT__wb_reg_u__DOT____Vcellout__wb_reg__o_dout[0U])))),64);
-        tracep->fullQData(oldp+425,(((2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                             >> 0x18U))))
+        tracep->fullQData(oldp+425,(((2U == (0xffU 
+                                             & (IData)(
+                                                       (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                        >> 0x18U))))
                                       ? vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr
                                       : 0ULL)),64);
         tracep->fullBit(oldp+427,(vlSelf->top__DOT__clint_axi_arvalid));
-        tracep->fullCData(oldp+428,(((2U == (0xfU & (IData)(
-                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                             >> 0x18U))))
+        tracep->fullCData(oldp+428,(((2U == (0xffU 
+                                             & (IData)(
+                                                       (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                        >> 0x18U))))
                                       ? (7U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size))
                                       : 0U)),3);
-        tracep->fullBit(oldp+429,(((2U == (0xfU & (IData)(
-                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                           >> 0x18U))))
+        tracep->fullBit(oldp+429,(((2U == (0xffU & (IData)(
+                                                           (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                            >> 0x18U))))
                                     ? (1U & (IData)(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready))
                                     : 0U)));
         tracep->fullBit(oldp+430,(vlSelf->top__DOT__clint_axi_awvalid));
@@ -2883,9 +2887,9 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
         tracep->fullQData(oldp+448,(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr),64);
         tracep->fullCData(oldp+450,(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_size),3);
         tracep->fullBit(oldp+451,(vlSelf->top__DOT__axi_crossbar_u__DOT__axi_r_ready));
-        tracep->fullBit(oldp+452,((2U == (0xfU & (IData)(
-                                                         (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
-                                                          >> 0x18U))))));
+        tracep->fullBit(oldp+452,((2U == (0xffU & (IData)(
+                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
+                                                           >> 0x18U))))));
         tracep->fullBit(oldp+453,((0xaU == (0xfU & (IData)(
                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                             >> 0x1cU))))));
@@ -3910,7 +3914,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 : (
                                                    (2U 
                                                     == 
-                                                    (0xfU 
+                                                    (0xffU 
                                                      & (IData)(
                                                                (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                                 >> 0x18U))))
@@ -3920,7 +3924,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                              >> 0x1cU))))
                                     ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_awready)
-                                    : ((2U == (0xfU 
+                                    : ((2U == (0xffU 
                                                & (IData)(
                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                           >> 0x18U))))
@@ -3930,7 +3934,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                             (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                              >> 0x1cU))))
                                     ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bvalid)
-                                    : ((2U == (0xfU 
+                                    : ((2U == (0xffU 
                                                & (IData)(
                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                           >> 0x18U))))
@@ -3941,7 +3945,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                           >> 0x1cU))))
                                       ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_bresp)
-                                      : ((2U == (0xfU 
+                                      : ((2U == (0xffU 
                                                  & (IData)(
                                                            (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                             >> 0x18U))))
@@ -3952,7 +3956,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                           >> 0x1cU))))
                                       ? 1U : ((2U == 
-                                               (0xfU 
+                                               (0xffU 
                                                 & (IData)(
                                                           (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                            >> 0x18U))))
@@ -3965,7 +3969,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                               >> 0x1cU))))
                                           ? (IData)(vlSelf->top__DOT__axi_mmio_b_user_i)
                                           : ((2U == 
-                                              (0xfU 
+                                              (0xffU 
                                                & (IData)(
                                                          (vlSelf->top__DOT__axi_ls_u__DOT__wrAddr_reg 
                                                           >> 0x18U))))
@@ -3985,7 +3989,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                 : (
                                                    (2U 
                                                     == 
-                                                    (0xfU 
+                                                    (0xffU 
                                                      & (IData)(
                                                                (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                                 >> 0x18U))))
@@ -4046,7 +4050,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                           >> 0x1cU))))
                                       ? (IData)(vlSelf->top__DOT__lsAxiSlaveRam_u__DOT__axi_rresp)
-                                      : ((2U == (0xfU 
+                                      : ((2U == (0xffU 
                                                  & (IData)(
                                                            (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                             >> 0x18U))))
@@ -4058,7 +4062,7 @@ void Vtop___024root__traceFullSub0(Vtop___024root* vlSelf, VerilatedVcd* tracep)
                                                               >> 0x1cU))))
                                           ? (IData)(vlSelf->top__DOT__axi_mmio_r_user_i)
                                           : ((2U == 
-                                              (0xfU 
+                                              (0xffU 
                                                & (IData)(
                                                          (vlSelf->top__DOT__axi_crossbar_u__DOT__axi_ar_addr 
                                                           >> 0x18U))))
