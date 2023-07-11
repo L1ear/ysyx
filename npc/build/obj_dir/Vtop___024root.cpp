@@ -5574,10 +5574,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                                    : 0ULL)))));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT____Vcellinp__divider__divisor 
         = ((0x8000000U & vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])
-            ? (((QData)((IData)((- (IData)((1U & (IData)(
-                                                         (vlSelf->top__DOT__ex_stage_u__DOT__src2 
-                                                          >> 0x1fU))))))) 
-                << 0x20U) | (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2)))
+            ? (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src2))
             : vlSelf->top__DOT__ex_stage_u__DOT__src2);
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src2 
         = (((QData)((IData)((1U & ((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul_signed) 
@@ -5603,10 +5600,7 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                                            >> 0x3fU)))));
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT____Vcellinp__divider__dividend 
         = ((0x8000000U & vlSelf->top__DOT__EX_reg_u__DOT____Vcellout__ex_reg__o_dout[0U])
-            ? (((QData)((IData)((- (IData)((1U & (IData)(
-                                                         (vlSelf->top__DOT__ex_stage_u__DOT__src1 
-                                                          >> 0x1fU))))))) 
-                << 0x20U) | (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1)))
+            ? (QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__src1))
             : vlSelf->top__DOT__ex_stage_u__DOT__src1);
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_hi_src1 
         = (((QData)((IData)((1U & (((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul_signed) 
