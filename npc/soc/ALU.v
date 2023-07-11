@@ -1,15 +1,14 @@
 
 module ALU(
-    input                       clk,rst_n,
     input       [4:0]           ALUctr,
     input       [`XLEN-1:0]     src1,
     input       [`XLEN-1:0]     src2,
     input                       DivEn,
     input       [2:0]           DivSel,
-    input                       flush_alu,
 
     output      [`XLEN-1:0]     ALUres,
-    output                      aluNotOk
+    output  reg                 less,
+    output                      zero
 );
 
 /*
@@ -27,8 +26,6 @@ ALUctr[3]|[2:0]
        x | 111:   and
 */
 
-reg                 less;
-// wire                zero;
 reg [`XLEN-1:0]     ALUout;
 wire                    cin;
 wire    [`XLEN-1:0]     src2_cin = src2 ^ {`XLEN{cin}};
@@ -52,7 +49,7 @@ Adder   Adder_main(
     .cin(cin),
     .Adder_o(Adder_o),
     .carry(carry),
-    // .zero(zero),
+    .zero(zero),
     .overflow(overflow)
 );
 
@@ -73,59 +70,14 @@ shifter64 shifter(
     .sft_a_l(sft_a_l), 
     .shift(shift)  
 );
-//lock src1&ssrc2 
-reg [63:0]  src1Reg,src2Reg;
-wire        diffIn;
-assign diffIn = ~(src1Reg == src1) || ~(src2Reg == src2);
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        src1Reg <= 'b0;
-        src2Reg <= 'b0;
-    end
-    else if(DivEn && diffIn) begin
-        src1Reg <= src1;
-        src2Reg <= src2;
-    end
-end
-wire mul_valid;
-assign mul_valid = diffIn && DivEn && ~DivSel[2];  //with diffIn, valid will only last for 1 cycle
-wire mul_resValid;
-mul_top Multiplier (
-  .clk          (clk ),
-  .rst_n        (rst_n ),
-  .mul_valid    (mul_valid ),
-  .flush        (flush_alu ),
-  .mul_type     (DivSel[1:0] ),
-  .multiplicand (src1 ),
-  .multiplier   (src2 ),
-  .out_valid    (mul_resValid ),
-  .result       (mulOut )
-);
-
-
-assign aluNotOk = DivEn && ~mul_resValid || DivEn && ~div_resValid;
 
 wire    [`XLEN-1:0]     DivOut;
-wire    [`XLEN-1:0]     mulOut;
-wire    [`XLEN-1:0]     divOut;
-wire div_valid;
-assign div_valid = diffIn && DivEn && DivSel[2];  //with diffIn, valid will only last for 1 cycle
-wire div_resValid;
-
-divTop divider(
-  .clk (clk ),
-  .rst_n (rst_n ),
-  .dividend (src1 ),
-  .divisor (src2 ),
-  .div_valid (div_valid ),
-  .div_type (DivSel[1:0] ),
-  .flush (flush_alu ),
-  .out_valid (div_resValid ),
-  .result (divOut )
+DIVIDER  divider(
+    .src1(src1),
+    .src2(src2),
+    .DivSel(DivSel),
+    .DivOut(DivOut)
 );
-
-assign DivOut = DivSel[2] ? divOut : mulOut;
-
 
 //Less
 // assign less = (u_s_mux)? carry^cin : ALUout[`XLEN-1]^overflow;
@@ -180,13 +132,13 @@ module Adder(
     input                       cin,
     output  reg [`XLEN-1:0]     Adder_o,
     output  reg                 carry,
-    // output  reg                 zero,
+    output  reg                 zero,
     output  reg                 overflow
 );
 always @(*) begin
     {carry,Adder_o} = src1 + src2 +{63'b000,cin};
     overflow = (src1[`XLEN-1] == src2[`XLEN-1]) && (Adder_o[`XLEN-1] != src1[`XLEN-1]);
-    // zero = ~(|Adder_o);
+    zero = ~(|Adder_o);
 end
 
 endmodule
@@ -243,23 +195,20 @@ wire    [`XLEN-1:0]         sr_mask_n;
 wire    [`XLEN-1:0]         srl_res;
 wire    [`XLEN-1:0]         sra_res;
 wire    [`XLEN-1:0]         sll_res;
-wire    [5:0]               shft_src2;
-wire    [`XLEN-1:0]         shft_src1;
-assign shft_src2 = ALUctr ? {1'b0,src2[4:0]} : src2;
-assign shft_src1 = ALUctr ? {32'b0,src1[31:0]} : src1;
-assign shft_src = sft_l_r ? ALUctr ? {32'b0,src1[31:0]} : src1 :
+
+assign shft_src = sft_l_r ? src1 :
                             {
-                             shft_src1[ 0], shft_src1[ 1], shft_src1[ 2], shft_src1[ 3], shft_src1[ 4], shft_src1[ 5], shft_src1[ 6], shft_src1[ 7], 
-                             shft_src1[ 8], shft_src1[ 9], shft_src1[10], shft_src1[11], shft_src1[12], shft_src1[13], shft_src1[14], shft_src1[15],
-                             shft_src1[16], shft_src1[17], shft_src1[18], shft_src1[19], shft_src1[20], shft_src1[21], shft_src1[22], shft_src1[23],
-                             shft_src1[24], shft_src1[25], shft_src1[26], shft_src1[27], shft_src1[28], shft_src1[29], shft_src1[30], shft_src1[31],
-                             shft_src1[32], shft_src1[33], shft_src1[34], shft_src1[35], shft_src1[36], shft_src1[37], shft_src1[38], shft_src1[39],
-                             shft_src1[40], shft_src1[41], shft_src1[42], shft_src1[43], shft_src1[44], shft_src1[45], shft_src1[46], shft_src1[47],
-                             shft_src1[48], shft_src1[49], shft_src1[50], shft_src1[51], shft_src1[52], shft_src1[53], shft_src1[54], shft_src1[55],
-                             shft_src1[56], shft_src1[57], shft_src1[58], shft_src1[59], shft_src1[60], shft_src1[61], shft_src1[62], shft_src1[63]
+                             src1[ 0], src1[ 1], src1[ 2], src1[ 3], src1[ 4], src1[ 5], src1[ 6], src1[ 7], 
+                             src1[ 8], src1[ 9], src1[10], src1[11], src1[12], src1[13], src1[14], src1[15],
+                             src1[16], src1[17], src1[18], src1[19], src1[20], src1[21], src1[22], src1[23],
+                             src1[24], src1[25], src1[26], src1[27], src1[28], src1[29], src1[30], src1[31],
+                             src1[32], src1[33], src1[34], src1[35], src1[36], src1[37], src1[38], src1[39],
+                             src1[40], src1[41], src1[42], src1[43], src1[44], src1[45], src1[46], src1[47],
+                             src1[48], src1[49], src1[50], src1[51], src1[52], src1[53], src1[54], src1[55],
+                             src1[56], src1[57], src1[58], src1[59], src1[60], src1[61], src1[62], src1[63]
                             };
-assign shft_res  = shft_src >> shft_src2;
-assign sr_mask   = (`XLEN'hffff_ffff_ffff_ffff >> shft_src2[5:0]);
+assign shft_res  = shft_src >> src2;
+assign sr_mask   = (`XLEN'hffff_ffff_ffff_ffff >> src2[5:0]);
 assign sr_mask_n = ~sr_mask;
 assign srl_res   = ALUctr ? shft_res & {32'b0, sr_mask[63:32]} :                                                              //32位
                           shft_res;                                                                                         //64位
@@ -293,13 +242,13 @@ always @(*) begin
                 DivOut = (src1 * src2);
         end
         `DivMulh: begin
-            DivOut = ($signed(src1) * $signed(src2))>>64;
+            DivOut = $signed(src1) * $signed(src2);
         end
         `DivMulhsu: begin
-            DivOut = ($signed(src1) * $unsigned(src2))>>64;
+            DivOut = $signed(src1) * $unsigned(src2);
         end
         `DivMulhu: begin
-            DivOut = ($unsigned(src1) * $unsigned(src2))>>64;
+            DivOut = $unsigned(src1) * $unsigned(src2);
         end
         `DivDiv: begin
                 DivOut = $signed(src1) / $signed(src2);

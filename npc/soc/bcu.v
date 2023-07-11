@@ -20,7 +20,7 @@ assign pc_imm_res = pc_i + imm_i;
 assign rs1_imm_res = rs1_i + imm_i;
 
 //is_jump_o = jal | jalr | branch(with condition)
-wire                    zero;
+wire                    less,zero;
 wire                    carry,overflow;
 wire    [`XLEN-1:0]     subres;
 wire    [`XLEN-1:0]     rs2_2s;

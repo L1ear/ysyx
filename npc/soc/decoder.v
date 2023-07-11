@@ -1,6 +1,6 @@
 
 module decoder (
-    // input           [`XLEN-1:0]     pc_i,
+    input           [`XLEN-1:0]     pc_i,
     input           [`inst_len-1:0] instr_i,
 
     output   reg    [4      :0]     rs1_idx_o,rs2_idx_o,
