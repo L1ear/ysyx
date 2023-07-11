@@ -12,6 +12,7 @@ extern int en;
 extern int is_batch_mode;
 
 CPU_state cpu = {};
+
 uint64_t htoi(char s[])
 {
     int i;
@@ -76,8 +77,14 @@ static char* rl_gets() {
 static int cmd_q(char *args) {
   return -1;
 }
-
+#ifdef inst_log
+  char *logfile="/home/qw/ysyx-workbench/npc/log.log";
+  FILE *logfp;
+#endif
 static int cmd_c(char *args) {
+#ifdef inst_log
+  logfp = fopen(logfile, "w+");
+#endif
     while(en)
     {
       nr_cycle++;
@@ -85,7 +92,11 @@ static int cmd_c(char *args) {
         // nvboard_update();
       sim_time = sim_time+2;
         //if(i>=1000) en = 0;
+
     }
+#ifdef inst_log
+  fclose(logfp);
+#endif
     Log("program has finished,please quit and restart\n");
     Log("after %d instructions and %d clock cycle", nr_instr, nr_cycle);
     Log("IPC: %f", nr_instr*1.0/(uint64_t)nr_cycle);

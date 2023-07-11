@@ -19,7 +19,8 @@ VERILATOR_CFLAGS += -MMD --build -cc  --trace\
 VERILATOR_FLAGS += -MMD --build -cc  --trace --exe  -y ./vsrc_pip -top $(TOPNAME)\
 				-O3 --x-assign fast --x-initial fast --noassert --Mdir $(OBJ_DIR)\
 				-o $(abspath $(BIN)) $(addprefix -I, $(INC_PATH))\
-				$(addprefix -LDFLAGS , $(LDFLAGS)) 
+				$(addprefix -LDFLAGS , $(LDFLAGS)) \
+				#-prof-cfuncs
 
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
@@ -87,6 +88,7 @@ run_pip:
 	$(VERILATOR) $(VERILATOR_FLAGS) $(VSRCS_PIP) $(CSRCS_PIP)
 	@echo
 	@echo "-- BUILD -------------------"
+	touch log.log
 	$(MAKE) -j -C build/obj_dir -f Vtop.mk
 
 	@echo
@@ -99,7 +101,7 @@ wave:
 	gtkwave ./vlt.vcd
 
 cat:
-	cat /home/qw/ysyx-workbench/npc/soc/defines.v /home/qw/ysyx-workbench/npc/soc/top.v /home/qw/ysyx-workbench/npc/soc/ID_stage.v  /home/qw/ysyx-workbench/npc/soc/CSR.v /home/qw/ysyx-workbench/npc/soc/WB_stage.v /home/qw/ysyx-workbench/npc/soc/EX_stage.v /home/qw/ysyx-workbench/npc/soc/imm_ext.v /home/qw/ysyx-workbench/npc/soc/lsu.v /home/qw/ysyx-workbench/npc/soc/forwarding.v /home/qw/ysyx-workbench/npc/soc/Dcache.v /home/qw/ysyx-workbench/npc/soc/Icache.v /home/qw/ysyx-workbench/npc/soc/decoder.v /home/qw/ysyx-workbench/npc/soc/rst_sync.v /home/qw/ysyx-workbench/npc/soc/IF_stage.v /home/qw/ysyx-workbench/npc/soc/WB_reg.v /home/qw/ysyx-workbench/npc/soc/L_S_stage.v \/home/qw/ysyx-workbench/npc/soc/ID_reg.v /home/qw/ysyx-workbench/npc/soc/axi_dcache.v  /home/qw/ysyx-workbench/npc/soc/pipline_ctrl.v /home/qw/ysyx-workbench/npc/soc/axi_icache.v /home/qw/ysyx-workbench/npc/soc/L_S_reg.v /home/qw/ysyx-workbench/npc/soc/hazard_detect.v /home/qw/ysyx-workbench/npc/soc/bcu.v /home/qw/ysyx-workbench/npc/soc/ls_ctr.v /home/qw/ysyx-workbench/npc/soc/axi_arbiter.v /home/qw/ysyx-workbench/npc/soc/EX_reg.v /home/qw/ysyx-workbench/npc/soc/regfile.v /home/qw/ysyx-workbench/npc/soc/ALU.v /home/qw/ysyx-workbench/npc/soc/clint.v /home/qw/ysyx-workbench/npc/soc/dff.v  > ysyx_22040734.v
+	cat /home/qw/ysyx-workbench/npc/soc/defines.v /home/qw/ysyx-workbench/npc/soc/top.v /home/qw/ysyx-workbench/npc/soc/ID_stage.v  /home/qw/ysyx-workbench/npc/soc/CSR.v /home/qw/ysyx-workbench/npc/soc/divTop.v /home/qw/ysyx-workbench/npc/soc/mul64.v /home/qw/ysyx-workbench/npc/soc/mulTop.v /home/qw/ysyx-workbench/npc/soc/cla_4.v /home/qw/ysyx-workbench/npc/soc/cla_6.v /home/qw/ysyx-workbench/npc/soc/cla_16.v /home/qw/ysyx-workbench/npc/soc/cla_64.v /home/qw/ysyx-workbench/npc/soc/WB_stage.v /home/qw/ysyx-workbench/npc/soc/EX_stage.v /home/qw/ysyx-workbench/npc/soc/imm_ext.v /home/qw/ysyx-workbench/npc/soc/lsu.v /home/qw/ysyx-workbench/npc/soc/forwarding.v /home/qw/ysyx-workbench/npc/soc/Dcache.v /home/qw/ysyx-workbench/npc/soc/Icache.v /home/qw/ysyx-workbench/npc/soc/decoder.v /home/qw/ysyx-workbench/npc/soc/rst_sync.v /home/qw/ysyx-workbench/npc/soc/IF_stage.v /home/qw/ysyx-workbench/npc/soc/WB_reg.v /home/qw/ysyx-workbench/npc/soc/L_S_stage.v /home/qw/ysyx-workbench/npc/soc/ID_reg.v /home/qw/ysyx-workbench/npc/soc/axi_dcache.v  /home/qw/ysyx-workbench/npc/soc/pipline_ctrl.v /home/qw/ysyx-workbench/npc/soc/axi_icache.v /home/qw/ysyx-workbench/npc/soc/L_S_reg.v /home/qw/ysyx-workbench/npc/soc/hazard_detect.v /home/qw/ysyx-workbench/npc/soc/bcu.v /home/qw/ysyx-workbench/npc/soc/ls_ctr.v /home/qw/ysyx-workbench/npc/soc/axi_arbiter.v /home/qw/ysyx-workbench/npc/soc/EX_reg.v /home/qw/ysyx-workbench/npc/soc/regfile.v /home/qw/ysyx-workbench/npc/soc/ALU.v /home/qw/ysyx-workbench/npc/soc/clint.v /home/qw/ysyx-workbench/npc/soc/dff.v  > ysyx_22040734.v
 	cp ysyx_22040734.v /home/qw/ysyxSoC/ysyx/soc/
 clean:
 	rm -rf $(BUILD_DIR)
