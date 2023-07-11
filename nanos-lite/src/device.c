@@ -84,9 +84,9 @@ size_t events_read(void *buf, size_t offset, size_t len) {
     // memset(buf,0,len);
     if(ev.keydown)
     {
-      sprintf((char*)buf,"kd %s\0",keyname[ev.keycode]);
+      sprintf((char*)buf,"kd %02d\0",ev.keycode);
     }
-    else sprintf((char*)buf,"ku %s\0",keyname[ev.keycode]);
+    else sprintf((char*)buf,"ku %02d\0",ev.keycode);
     //printf("%s %d",(char*)buf,strlen((char*)buf));
     return strlen((char*)buf);
   }

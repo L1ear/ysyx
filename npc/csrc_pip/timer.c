@@ -11,7 +11,7 @@ static uint64_t get_time_internal() {
 
 uint64_t get_time() {
   if (boot_time == 0) boot_time = get_time_internal();
-  uint64_t now = boot_time + nr_cycle>>(uint8_t)7;//get_time_internal();
+  uint64_t now = boot_time + nr_cycle>>(uint8_t)5;//get_time_internal();
   // if(nr_cycle>>6 >= 1000000)
   // printf("+1ms\n");
   return now - boot_time;
