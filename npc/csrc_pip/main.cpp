@@ -298,10 +298,7 @@ void single_cycle(int i) {
 #endif
 
 #ifdef  difftest    
-    int r;
-    for (r = 0; r < 32; r++) {
-      cpu.gpr[r] = cpu_gpr[r];
-    }
+
 #endif
     if((cpu.pc != 0x7ffffffc) && (cpu.pc != 0) && (instr_last != 0)&& (instr_last != 0x100073) && (stall == 1)){ 
       // assert(0); 
@@ -325,6 +322,10 @@ void single_cycle(int i) {
             
           }
           // Log("%08lx",instr_last);
+          int r;
+            for (r = 0; r < 32; r++) {
+              cpu.gpr[r] = cpu_gpr[r];
+            }
           difftest_step(cpu.pc);
 #endif          
         
