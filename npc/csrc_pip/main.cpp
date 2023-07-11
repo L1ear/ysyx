@@ -306,9 +306,11 @@ void single_cycle(int i) {
         {
 #ifdef  difftest
           #ifdef inst_log
-            uint32_t instruction;
-            mem.read(cpu.pc, 4, (uint8_t*)&instruction);
-            fprintf(logfp, "%08x\n", instruction);
+            if((uint64_t)i>(uint64_t)324874557){
+              uint32_t instruction;
+              mem.read(cpu.pc, 4, (uint8_t*)&instruction);
+              fprintf(logfp, "%08x\n", instruction);
+            }
           #endif
           //               写串口的指令
           // printf("%04d   %04d   %d\n",instr_last&(uint8_t)0x7f,(uint8_t)0x23,(instr_last&(uint8_t)0x7f)==((uint8_t)0x23));
