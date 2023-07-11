@@ -1,7 +1,6 @@
 
 module ls_ctr (
-    input       [`inst_len-1:0] instr_i,
-    input       [14:0]          instr_last_i,
+    input       [`inst_len-1:0] instr_i,instr_last_i,
     input       [`XLEN-1:0]     rs2_i,
     input       [`XLEN-1:0]     wb_data_i,wb_csr_data_i,                
     output                      wren,rden,

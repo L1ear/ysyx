@@ -54,7 +54,7 @@ void _exit(int status) {
   _syscall_(SYS_exit, status, 0, 0);
   while (1);
 }
-
+/**/
 int _open(const char *path, int flags, mode_t mode) {
   // _exit(SYS_open);
   printf("%s\n",path);
@@ -63,14 +63,16 @@ int _open(const char *path, int flags, mode_t mode) {
 
 int _write(int fd, void *buf, size_t count) {
   // _exit(SYS_write);
+  //返回写入的数量
   return _syscall_(SYS_write,fd,(intptr_t)buf,count);
 }
 
 extern char _end;
 static void* program_break = &_end;
-
 void *_sbrk(intptr_t increment) {
   void* old_break = program_break;
+  //(program_break + increment)表示新的program break的位置
+  //若SYS_brk系统调用成功, 该系统调用会返回0, 此时更新之前记录的program break的位置, 并将旧program break的位置作为_sbrk()的返回值返回
   if (_syscall_(SYS_brk, (intptr_t)(program_break + increment), 0, 0) == 0){
     program_break += increment;
     return old_break;
@@ -79,26 +81,31 @@ void *_sbrk(intptr_t increment) {
     return (void *)-1;
 }
 
+/**/
 int _read(int fd, void *buf, size_t count) {
   // _exit(SYS_read);
   return _syscall_(SYS_read,fd, (intptr_t)buf, count);
 }
 
+/**/
 int _close(int fd) {
   // _exit(SYS_close);
   return _syscall_(SYS_close, fd, 0, 0);
 }
 
+/**/
 off_t _lseek(int fd, off_t offset, int whence) {
   // _exit(SYS_lseek);
   return _syscall_(SYS_lseek, fd, offset, whence);
 }
 
+/**/
 int _gettimeofday(struct timeval *tv, struct timezone *tz) {
   // _exit(SYS_gettimeofday);
   return _syscall_(SYS_gettimeofday,(intptr_t)tv,(intptr_t)tz,0);
 }
 
+/**/
 int _execve(const char *fname, char * const argv[], char *const envp[]) {
   // _exit(SYS_execve);
   return _syscall_(SYS_execve, fname, argv, envp);

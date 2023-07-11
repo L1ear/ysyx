@@ -216,7 +216,7 @@ wire    [`XLEN-1:0]     sram_addr;
 wire                    sram_ren;
 wire                    sram_addr_valid;
 wire                    cacheAddrOk_i;
-wire                    cacheDataNotOk_i;
+wire                    cacheDataOk_i;
 
 //id signal-----------------------------------------------------
 wire    [`inst_len-1:0] instr_if_id_reg;
@@ -541,7 +541,7 @@ IF_stage IF_u(
     .sram_rdata     (sram_rdata),
     .sram_data_valid(sram_data_valid),
     .cacheAddrOk_i  (cacheAddrOk_i),
-    .cacheDataNotOk_i  (cacheDataNotOk_i),
+    .cacheDataOk_i  (cacheDataOk_i),
     .sram_addr      (sram_addr),
     .sram_ren       (sram_ren),
     .sram_addr_valid(sram_addr_valid)
@@ -559,7 +559,7 @@ Icache cache_dut (
   .wr_mask_i (0 ),
   .addr_ok_o (cacheAddrOk_i ),
   .data_ok_o ( ),
-  .data_notok_o(cacheDataNotOk_i),
+  .data_notok_o(cacheDataOk_i),
   .rd_data_o (sram_rdata ),
   .clrValid     (clear_Icache),
 //to AXI
@@ -759,8 +759,6 @@ ex_stage ex_stage_u(
     // .mem_wren_ex_i,
     // .mem_lden_ex_i,
     // .mem_op_ex_i,
-    .clk            (clk),
-    .rst_n          (rst_n),
     .aluctr         (aluctr_ex),
     // .src1           (src1_ex),
     // .src2           (src2_ex),
@@ -781,7 +779,6 @@ ex_stage ex_stage_u(
     .rs2_sel_i      (rs2_sel),
     .DivEn_i        (DivEn_ex),
     .DivSel_i       (DivSel_ex),
-    .flush_ex_i     (ex_flush),
 
 
     // .PC_ex_o,

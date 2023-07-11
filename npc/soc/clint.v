@@ -2,20 +2,20 @@
 module clint (
         input                                   clk,rst_n,
 
-		input  [31 : 0]                         clint_axi_araddr,
-		// input  [2 : 0]                          clint_axi_arprot,
+		input  [63 : 0]                         clint_axi_araddr,
+		input  [2 : 0]                          clint_axi_arprot,
 		input                                   clint_axi_arvalid,
 		output                                  clint_axi_arready,
-		// input  [2:0]                            clint_axi_arsize,
+		input  [2:0]                            clint_axi_arsize,
 
 		output  [63 : 0]                        clint_axi_rdata,
 		output  [1 : 0]                         clint_axi_rresp,
 		output                                  clint_axi_rvalid,
 		input                                   clint_axi_rready,   
 
-		// input  [2:0]                            clint_axi_awsize,
-		input  [31 : 0]                         clint_axi_awaddr,
-		// input  [2 : 0]                          clint_axi_awprot,
+		input  [2:0]                            clint_axi_awsize,
+		input  [63 : 0]                         clint_axi_awaddr,
+		input  [2 : 0]                          clint_axi_awprot,
 		input                                   clint_axi_awvalid,
 		output                                  clint_axi_awready,
 
@@ -31,12 +31,12 @@ module clint (
         output                                  hart0_time_int_o
 );
 
-reg [15 : 0] 	axi_awaddr;
+reg [63 : 0] 	axi_awaddr;
 reg  	        axi_awready;
 reg  	        axi_wready;
 reg [1 : 0] 	axi_bresp;
 reg  	        axi_bvalid;
-reg [15 : 0] 	axi_araddr;
+reg [63 : 0] 	axi_araddr;
 reg  	        axi_arready;
 reg [1 : 0] 	axi_rresp;
 reg  	        axi_rvalid;
@@ -49,7 +49,7 @@ reg             mtimeWrEn,mtimecmpWrEn;
 
 assign clint_axi_awready = axi_awready;
 assign clint_axi_wready = axi_wready;
-assign clint_axi_bresp = axi_bresp;
+assign clint_axi_bresp = axi_rresp;
 assign clint_axi_bvalid = axi_bvalid;
 assign clint_axi_arready = axi_arready;
 assign clint_axi_rresp = axi_rresp;
@@ -57,7 +57,7 @@ assign clint_axi_rvalid = axi_rvalid;
 
 assign clint_axi_rdata = reg_data_out;
 
-always @( posedge clk or negedge rst_n) begin
+always @( posedge clk ) begin
 	  if (~rst_n)
 	    begin
 	      axi_awready <= 1'b0;
@@ -86,7 +86,7 @@ always @( posedge clk or negedge rst_n) begin
 	    end 
 end   
 
-always @( posedge clk or negedge rst_n)
+always @( posedge clk )
 begin
   if (~rst_n)
     begin
@@ -97,12 +97,12 @@ begin
       if (~axi_awready && clint_axi_awvalid && aw_en)
         begin
           // Write Address latching 
-          axi_awaddr <= clint_axi_awaddr[15:0];
+          axi_awaddr <= clint_axi_awaddr;
         end
     end 
 end  
 
-always @( posedge clk or negedge rst_n)
+always @( posedge clk )
 begin
   if (~rst_n)
     begin
@@ -150,7 +150,7 @@ always @(*) begin
       end  
 end   
 
-always @( posedge clk or negedge rst_n)
+always @( posedge clk )
 	begin
 	  if (~rst_n)
 	    begin
@@ -177,12 +177,12 @@ always @( posedge clk or negedge rst_n)
 	    end
 	end
 
-always @( posedge clk or negedge rst_n)
+always @( posedge clk )
 	begin
 	  if (~rst_n)
 	    begin
 	      axi_arready <= 1'b0;
-	      axi_araddr  <= 'b0;
+	      axi_araddr  <= 64'b0;
 	    end 
 	  else
 	    begin    
@@ -191,7 +191,7 @@ always @( posedge clk or negedge rst_n)
 	          // indicates that the slave has acceped the valid read address
 	          axi_arready <= 1'b1;
 	          // Read address latching
-	          axi_araddr  <= clint_axi_araddr[15:0];
+	          axi_araddr  <= clint_axi_araddr;
 	        end
 	      else
 	        begin
@@ -200,7 +200,7 @@ always @( posedge clk or negedge rst_n)
 	    end 
 	end
 
-always @( posedge clk or negedge rst_n)
+always @( posedge clk )
 	begin
 	  if (~rst_n)
 	    begin
@@ -227,22 +227,22 @@ always @( posedge clk or negedge rst_n)
     assign slv_reg_rden = axi_arready & clint_axi_arvalid & ~axi_rvalid;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-		reg_data_out <= 'b0;   
+		reg_data_out = 'b0;   
 	end
 	else if (slv_reg_rden)
     case(axi_araddr[15:0])
         16'h4000: begin
-            reg_data_out       <= mtimecmp;
+            reg_data_out       = mtimecmp;
         end
         16'hbff8: begin
-            reg_data_out       <= mtime;
+            reg_data_out       = mtime;
         end
         default:begin
-            reg_data_out       <= 'b0;
+            reg_data_out       = 'b0;
         end
     endcase
     else
-        reg_data_out <= 'b0;        
+        reg_data_out = 'b0;        
 end
 
 integer	 byte_index;

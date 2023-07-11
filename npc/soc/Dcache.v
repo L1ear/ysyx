@@ -304,7 +304,7 @@ reg [20:0]  tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
 wire [20:0] tagWay1_q,tagWay2_q;
-// reg        validWay1_q,validWay2_q;
+reg        validWay1_q,validWay2_q;
 
 //tag的写入同样在getdata的末尾写入
 //此处是否能优化呢，即将tagArray1_d和tagArray2_d用一个信号表示，使用信号控制写入tagarray1还是2
@@ -318,8 +318,8 @@ end
 assign tagWay1_q = tagArray1[index];
 assign tagWay2_q = tagArray2[index];
 
-// wire [20:0] testTag = tagArray1['h3c];
-// wire [20:0] tagtest = tagArray2['h23];
+wire [20:0] testTag = tagArray1['h3c];
+wire [20:0] tagtest = tagArray2['h23];
 //hit信号产生
 assign  way1Hit = (~(|(tagWay1_q ^ tag)) && bitValid1) ? 'b1 : 'b0;
 assign  way2Hit = (~(|(tagWay2_q ^ tag)) && bitValid2) ? 'b1 : 'b0;
@@ -383,7 +383,7 @@ assign rd_data_o = uncacheOpEn ? (rdData_i ): ({64{way1Hit}}&rdDataRegWay1)
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
-wire [31:0] addrToRead = {tag,index,5'b0};
+wire [63:0] addrToRead = {32'b0,tag,index,5'b0};
 reg        randomBit;
 reg        missFlag;//或者叫replacedFlag？
 //由于根据sram模型，写入数据再读出至少需要两个周期，而为了获得更好的性能，在写入后即可读出数据，故需一个信号指示使用rdBUffer里存放的数据而不是sram的
@@ -504,16 +504,16 @@ end
 
 //在compare阶段锁存要写入的数据、mask
 reg [63:0]  wrDataLatch;
-// reg [7:0]   wrMaskLatch;
+reg [7:0]   wrMaskLatch;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
         wrDataLatch <= 'b0;
-        // wrMaskLatch <= 'b0;
+        wrMaskLatch <= 'b0;
     end
     //在compare的末尾锁存data以及mask，且锁存的是处理完成后的，保证数据正确
     else if(compareEn && reqLatch[32]) begin
         wrDataLatch <= storeData;
-        // wrMaskLatch <= storeMask;
+        wrMaskLatch <= storeMask;
     end
 end
 
@@ -588,18 +588,18 @@ assign wrMiss = compareEn && reqLatch[32] && ~cacheHit;
 wire        rdMiss;
 assign rdMiss = compareEn && ~reqLatch[32] && ~cacheHit;
 
-
+//TODO
 // reg [31:0] randomBit2 ;
 // always randomBit2 = 1;
-// reg replaceWay;//0就是way1,1就是way2
-// always @(posedge clk or negedge rst_n) begin
-//     if(~rst_n) begin
-//         replaceWay <= 'b0;
-//     end
-//     else if(compareEn)begin
-//         replaceWay <= randomBit;
-//     end
-// end
+reg replaceWay;//0就是way1,1就是way2
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        replaceWay <= 'b0;
+    end
+    else if(compareEn)begin
+        replaceWay <= randomBit;
+    end
+end
 
 
 
@@ -620,10 +620,10 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-// reg            uncache ;//= reqLatch[32] && ~(reqLatch[31-:4] == 4'b1000);                //TODO
-// always @(posedge clk or negedge rst_n) begin
-//     uncache <= uncached;
-// end
+reg            uncache ;//= reqLatch[32] && ~(reqLatch[31-:4] == 4'b1000);                //TODO
+always @(posedge clk or negedge rst_n) begin
+    uncache <= uncached;
+end
 wire            axiWrBusy = needWrBk_Reg;
 assign cacheWrValid_o = cleanEn ? cleanWrValid : needWrBk_Reg;
 wire    [31:0]  addrToWrite;
@@ -658,12 +658,12 @@ reg     uncacheRdOk;
 reg     uncacheWrOk;
 wire  [31:0]  uncacheRdAddr  = reqLatch[31:0];
 
-// reg [63:0]  temp;       //后面记得改
-// always @(posedge clk or negedge rst_n) begin
-//     if(uncacheOpEn && rdLast_i) begin
-//         temp <= rdData_i;
-//     end
-// end
+reg [63:0]  temp;       //后面记得改
+always @(posedge clk or negedge rst_n) begin
+    if(uncacheOpEn && rdLast_i) begin
+        temp <= rdData_i;
+    end
+end
 
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
