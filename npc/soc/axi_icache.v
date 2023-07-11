@@ -2,12 +2,12 @@
 
 module axi_icache # (
     parameter RW_DATA_WIDTH     = 64,
-    parameter RW_ADDR_WIDTH     = 32,
+    parameter RW_ADDR_WIDTH     = 64,
     parameter AXI_DATA_WIDTH    = 64,
-    parameter AXI_ADDR_WIDTH    = 32,
-    parameter AXI_ID_WIDTH      = 4
-    // parameter AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8,
-    // parameter AXI_USER_WIDTH    = 1
+    parameter AXI_ADDR_WIDTH    = 64,
+    parameter AXI_ID_WIDTH      = 4,
+    parameter AXI_STRB_WIDTH    = AXI_DATA_WIDTH/8,
+    parameter AXI_USER_WIDTH    = 1
 )(
     input                               clock,
     input                               reset,
@@ -28,26 +28,26 @@ module axi_icache # (
     input                               axi_ar_ready_i,     //lite              
     output                              axi_ar_valid_o,     //lite
     output [AXI_ADDR_WIDTH-1:0]         axi_ar_addr_o,      //lite
-    // output [2:0]                        axi_ar_prot_o,
+    output [2:0]                        axi_ar_prot_o,
     output [AXI_ID_WIDTH-1:0]           axi_ar_id_o,
-    // output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
+    output [AXI_USER_WIDTH-1:0]         axi_ar_user_o,
     output [7:0]                        axi_ar_len_o,       //lite
     output [2:0]                        axi_ar_size_o,      //lite
     output [1:0]                        axi_ar_burst_o,
-    // output                              axi_ar_lock_o,
-    // output [3:0]                        axi_ar_cache_o,
-    // output [3:0]                        axi_ar_qos_o,
-    // output [3:0]                        axi_ar_region_o,
+    output                              axi_ar_lock_o,
+    output [3:0]                        axi_ar_cache_o,
+    output [3:0]                        axi_ar_qos_o,
+    output [3:0]                        axi_ar_region_o,
     
     output                              axi_r_ready_o,      //lite            
     input                               axi_r_valid_i,      //lite            
     input  [1:0]                        axi_r_resp_i,
     input  [AXI_DATA_WIDTH-1:0]         axi_r_data_i,       //lite
     input                               axi_r_last_i,
-    input  [AXI_ID_WIDTH-1:0]           axi_r_id_i
-    // input  [AXI_USER_WIDTH-1:0]         axi_r_user_i
+    input  [AXI_ID_WIDTH-1:0]           axi_r_id_i,
+    input  [AXI_USER_WIDTH-1:0]         axi_r_user_i
 );
-// assign  axi_ar_region_o = 'b0;
+assign  axi_ar_region_o = 'b0;
     // ------------------State Machine------------------TODO
 
     // 写通道状态切换
@@ -56,12 +56,12 @@ module axi_icache # (
     // 读通道状态切换
     parameter       r_state_idle = 2'b00,
                     r_state_ar_wait = 2'b01,
-                    r_state_r_wait = 2'b11;
-                    // r_state_trans_ok = 2'b10;    
+                    r_state_r_wait = 2'b11,
+                    r_state_trans_ok = 2'b10;    
     reg     [1:0]   r_state,r_state_next;
     wire            ar_valid,r_ready;
     // reg             instr_valid;
-    reg     [AXI_ADDR_WIDTH-1:0]     addr_reg;
+    reg     [`XLEN-1:0]     addr_reg;
     always @(posedge clock or negedge reset) begin
         if(~reset) begin
             r_state <= r_state_idle;
@@ -116,15 +116,15 @@ assign instr_fetching = ~(r_state == r_state_idle);
     // Read address channel signals
     assign axi_ar_valid_o   = ar_valid;
     assign axi_ar_addr_o    = addr_reg;
-    // assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
+    assign axi_ar_prot_o    = `AXI_PROT_UNPRIVILEGED_ACCESS | `AXI_PROT_SECURE_ACCESS | `AXI_PROT_DATA_ACCESS;  //初始化信号即可
     assign axi_ar_id_o      = axi_id;                                                                           //初始化信号即可                        
-    // assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
+    assign axi_ar_user_o    = axi_user;                                                                         //初始化信号即可
     assign axi_ar_len_o     = axi_len;                                                                          
     assign axi_ar_size_o    = axi_size;
     assign axi_ar_burst_o   = `AXI_BURST_TYPE_INCR;
-    // assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
-    // assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可
-    // assign axi_ar_qos_o     = 4'h0;                                                                             //初始化信号即可
+    assign axi_ar_lock_o    = 1'b0;                                                                             //初始化信号即可
+    assign axi_ar_cache_o   = `AXI_ARCACHE_NORMAL_NON_CACHEABLE_NON_BUFFERABLE;                                 //初始化信号即可
+    assign axi_ar_qos_o     = 4'h0;                                                                             //初始化信号即可
 
     // Read data channel signals
     assign axi_r_ready_o    = r_ready;
@@ -132,7 +132,7 @@ assign instr_fetching = ~(r_state == r_state_idle);
     // // ------------------Write Transaction------------------
     parameter AXI_SIZE      = $clog2(AXI_DATA_WIDTH / 8);
     wire [AXI_ID_WIDTH-1:0] axi_id              = {AXI_ID_WIDTH{1'b0}};
-    // wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
+    wire [AXI_USER_WIDTH-1:0] axi_user          = {AXI_USER_WIDTH{1'b0}};
     wire [7:0] axi_len      =  fetchLenth ;                           //lenth为长度减1
     wire [2:0] axi_size     =  fetchLenth=='b0 ? 'd2 : AXI_SIZE[2:0];
     // // 写地址通道  以下没有备注初始化信号的都可能是你需要产生和用到的
