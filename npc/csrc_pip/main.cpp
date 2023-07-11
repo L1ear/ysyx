@@ -7,7 +7,6 @@
 extern CPU_state cpu;
 extern axi4_mem<64,64,4> mem;
 extern axi4_ptr<64,64,4> mem_ptr;
-extern FILE *logfp;
 
 void device_update();
 void init_screen();
@@ -93,7 +92,7 @@ int main(int argc, char *argv[])
     Verilated::traceEverOn(true);
     fp = new VerilatedVcdC;
     top->trace(fp, 99); 
-    fp ->open("npc.vcd");
+    fp ->open("vlt.vcd");
     fp ->dump(0);
 #endif 
 
@@ -237,7 +236,7 @@ void single_cycle(int i) {
   // mmio_sigs.update_input(*mmioref);
   mem_sigs.update_input(*memref);
   //********************************************
-  // top->eval();
+  top->eval();
   //********************************************
   mem.beat(mem_sigs_ref);
   // mmio.beat(mmio_sigs_ref);
@@ -293,41 +292,26 @@ void single_cycle(int i) {
   // }
   top->eval();
 #ifdef vcd
-  if((uint64_t)i>=(0)) 
+  // if((uint64_t)i>=(6000000)) 
     fp ->dump(i);
 #endif
 
 #ifdef  difftest    
-
+    int r;
+    for (r = 0; r < 32; r++) {
+      cpu.gpr[r] = cpu_gpr[r];
+    }
 #endif
     if((cpu.pc != 0x7ffffffc) && (cpu.pc != 0) && (instr_last != 0)&& (instr_last != 0x100073) && (stall == 1)){ 
       // assert(0); 
       if(en == 1 )
         {
 #ifdef  difftest
-          #ifdef inst_log
-            if((uint64_t)i>(uint64_t)324874557){
-              uint32_t instruction;
-              mem.read(cpu.pc, 4, (uint8_t*)&instruction);
-              fprintf(logfp, "%08x\n", instruction);
-            }
-          #endif
           //               写串口的指令
-          // printf("%04d   %04d   %d\n",instr_last&(uint8_t)0x7f,(uint8_t)0x23,(instr_last&(uint8_t)0x7f)==((uint8_t)0x23));
-          if((((instr_last & (uint8_t)0x7f) == ((uint8_t)0x23)) ||((instr_last & (uint8_t)0x7f) == ((uint8_t)0x03))) ){    //跳过printf和读取时间
-                          // printf("PC:%08x inst%08x\n",cpu.pc,instr_last);
-              // printf("inst:%08x, reg:%08x,value:%08x\n",instr_last,(instr_last & 0xf8000)>>15,cpu.gpr[(instr_last & 0xf8000)>>15]);
-
-            if(((cpu.gpr[(instr_last & 0xf8000)>>15])>>28)==0xa){
-              difftest_skip_ref();
-            }
-            
+          if(instr_last == 0x3ea78c23 ||instr_last == 0x0487b783 || instr_last == 0x00d72023|| instr_last == 0x10e78223 || instr_last == 0x0607a783){    //跳过printf和读取时间
+            difftest_skip_ref();
           }
           // Log("%08lx",instr_last);
-          int r;
-            for (r = 0; r < 32; r++) {
-              cpu.gpr[r] = cpu_gpr[r];
-            }
           difftest_step(cpu.pc);
 #endif          
         
@@ -344,7 +328,7 @@ void single_cycle(int i) {
   top->clk = 0;
   top->eval();
 #ifdef vcd
-  if((uint64_t)i>=(0)) 
+  // if((uint64_t)i>=(6000000)) 
     fp ->dump(i+1);
 #endif
   // pc = top->pc_decoding;
@@ -355,7 +339,6 @@ void single_cycle(int i) {
 
   // }
 #endif
-
 }
 
 //for DPI-C
