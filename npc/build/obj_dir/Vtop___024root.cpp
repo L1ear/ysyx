@@ -6101,7 +6101,12 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__6(Vtop___024root* vlSelf) {
                                                            >> 0x1cU)))))
                                                    : 
                                                   ((IData)(vlSelf->top__DOT__in_trap_id)
-                                                    ? vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mtvec
+                                                    ? 
+                                                   ((IData)(vlSelf->top__DOT__out_trap_id)
+                                                     ? 
+                                                    (4ULL 
+                                                     + vlSelf->top__DOT__pc_new)
+                                                     : vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mtvec)
                                                     : 
                                                    ((IData)(vlSelf->top__DOT__out_trap_id)
                                                      ? vlSelf->top__DOT__ls_u__DOT__CSR_u__DOT__mepc
