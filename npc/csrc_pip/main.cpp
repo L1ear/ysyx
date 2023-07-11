@@ -317,7 +317,7 @@ void single_cycle(int i) {
           // printf("%04d   %04d   %d\n",instr_last&(uint8_t)0x7f,(uint8_t)0x23,(instr_last&(uint8_t)0x7f)==((uint8_t)0x23));
           if((((instr_last & (uint8_t)0x7f) == ((uint8_t)0x23)) ||((instr_last & (uint8_t)0x7f) == ((uint8_t)0x03))) ){    //跳过printf和读取时间
                           // printf("PC:%08x inst%08x\n",cpu.pc,instr_last);
-              printf("inst:%08x, reg:%08x,value:%08x\n",instr_last,(instr_last & 0xf8000)>>15,cpu.gpr[(instr_last & 0xf8000)>>15]>>24);
+              printf("inst:%08x, reg:%08x,value:%08x\n",instr_last,(instr_last & 0xf8000)>>15,cpu.gpr[(instr_last & 0xf8000)>>15]);
 
             if(((cpu.gpr[(instr_last & 0xf8000)>>15])>>28)==0xa){
               difftest_skip_ref();
