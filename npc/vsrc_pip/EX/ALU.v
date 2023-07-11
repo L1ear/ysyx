@@ -115,8 +115,8 @@ wire div_resValid;
 divTop divider(
   .clk (clk ),
   .rst_n (rst_n ),
-  .dividend (ALUctr[4]? {32{src1[31]},src1[31:0]} : src1 ),
-  .divisor (ALUctr[4]? {32{src2[31]},src2[31:0]} : src2 ),
+  .dividend (ALUctr[4]? {{32{src1[31]}},src1[31:0]} : src1 ),
+  .divisor (ALUctr[4]? {{32{src2[31]}},src2[31:0]} : src2 ),
   .div_valid (div_valid ),
   .div_type (DivSel[1:0] ),
   .flush (flush_alu ),
