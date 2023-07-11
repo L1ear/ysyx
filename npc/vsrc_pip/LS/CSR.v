@@ -106,7 +106,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 //mcause更新策略
 wire [`XLEN-1:0]    mcause_n;
-assign  mcause_n = system ? `XLEN'd11 : in_intr_ls ? `XLEN'h8000000000000007
+assign  mcause_n = (system && trap) ? `XLEN'd11 : in_intr_ls ? `XLEN'h8000000000000007
                                                      : `XLEN'b0;   //支持ecall，暂时
                                                     //时钟中断为0x8000000000000007
 
@@ -156,7 +156,7 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-assign in_intr_ls = mip_MTIP && mstatus_MIE;
+assign in_intr_ls = (mip_MTIP || timer_int_i) && mstatus_MIE;
 //timer_int_i是一个上升沿触发的信号（也就是说只持续一个周期），其一旦拉高，即设置MTIP位（使能的情况下），同时
 //拉高in_intr的信号（在mstatus.mie为高时），然后，在非stall的情况下，pc_new变成mtvec，wb阶段前的流水线被
 //全部flush，mstatus更新（关闭中断，mie置低），mepc更新，mcause更新，然后进入trap处理程序

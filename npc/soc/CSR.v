@@ -2,7 +2,7 @@
 module CSR (
     input                           clk,rst_n,
     input           [`XLEN-1:0]     pc_i,
-    input           [63:0]          wb_pc,
+    // input           [63:0]          wb_pc,
     input           [63:0]          ex_pc,id_pc,if_pc,
     input           [`inst_len-1:0] instr_i,
     // input                           csr_wr_en,
@@ -22,16 +22,6 @@ assign  mtvec_o = mtvec;
 assign  mepc_o = mepc;
 
 
-//commitPC:保存最后提交的一条质量pc
-reg [63:0]  commitPC;
-always @(posedge clk or negedge rst_n) begin
-    if(~rst_n) begin
-        commitPC <= 'b0;
-    end
-    else if((|wb_pc)) begin
-        commitPC <= wb_pc;
-    end
-end
 
 wire    csrrw = (instr_i[14:12] == `csrrw) || (instr_i[14:12] == `csrrwi);
 wire    csrrs = (instr_i[14:12] == `csrrs) || (instr_i[14:12] == `csrrsi);
@@ -106,7 +96,7 @@ always @(posedge clk or negedge rst_n) begin
 end
 //mcause更新策略
 wire [`XLEN-1:0]    mcause_n;
-assign  mcause_n = system ? `XLEN'd11 : in_intr_ls ? `XLEN'h8000000000000007
+assign  mcause_n = (system && trap) ? `XLEN'd11 : in_intr_ls ? `XLEN'h8000000000000007
                                                      : `XLEN'b0;   //支持ecall，暂时
                                                     //时钟中断为0x8000000000000007
 
@@ -164,6 +154,7 @@ assign in_intr_ls = mip_MTIP && mstatus_MIE;
 //注意：当ecall指令后跟着load-use的指令序列时，将会发生严重错误，导致程序有可能无法进入中断，虽然目前程序不会出现这种情况
 //解决方法：in_trap拉高后，直接flush wb前所有流水线,同时flush all时ld-use hazard无效，这时，所有流水级的stall信号相同，
 //然面出来与上面相同
+//*******已解决*********
 
 
 endmodule

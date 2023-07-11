@@ -6,8 +6,8 @@ module Icache(
     //valid表示有效的读取请求，op表示操作类型，icache恒为0,表示读
     input                                   valid_i,op_i,
     //写数据以及mask，icache无效
-    input           [`XLEN-1:0]             wr_data_i,
-    input           [7:0]                   wr_mask_i,
+    // input           [`XLEN-1:0]             wr_data_i,
+    // input           [7:0]                   wr_mask_i,
     //流水线stall信号，低有效
     input                                   stall_n,
     //回给if模块的地址接收有效信号，为高时表示可以处理新的请求的地址
@@ -98,8 +98,8 @@ localparam  idle        = 3'b000,
             compare     = 3'b001,
             miss        = 3'b010,           //ls要加一个状态：wrWait，确保发生写缺失的时候要先写后读（其实可以判断一下是否需要写，若不要写则进入getData）
             getdata     = 3'b011,
-            replace     = 3'b111,
-            unCacheOp   = 3'b110;
+            replace     = 3'b111;
+            // unCacheOp   = 3'b110;
 
 reg     [2:0]   cacheCurState,cacheNexState;
 wire            cacheHit;
@@ -181,7 +181,7 @@ always @(*) begin
 end
 
 wire                    idleEn = cacheCurState == idle;
-reg [`addr_width:0]     reqLatch;
+reg [`addr_width-1:0]     reqLatch;
 wire    [4:0]           offset = reqLatch[4:0];
 wire    [5:0]           index = reqLatch[10:5];
 wire    [20:0]          tag = reqLatch[31:11];
@@ -193,7 +193,7 @@ always @(posedge clk or negedge rst_n) begin
     //同时要保证在stall时不锁存，因为1、stall有可能是由cache缺失或其他自身原因造成，此时不能锁存其他数据
     //2、有可能由其他阶段造成如ls部分stall等，此时也不能锁存，否则会锁存下一拍的地址，但是pc还没有变化，导致取得的指令出错
     else if(((idleEn && valid_i && diffAddr) || (compareEn && valid_i && cacheHit && diffAddr) && stall_n)) begin
-        reqLatch <= {op_i,addr_i};
+        reqLatch <= addr_i;
     end
 end
 
@@ -233,7 +233,7 @@ reg [20:0]  tagArray2[0:63];
 reg [20:0]  tagArray1_d,tagArray2_d;
 
 wire [20:0] tagWay1_q,tagWay2_q;
-reg        validWay1_q,validWay2_q;
+// reg        validWay1_q,validWay2_q;
 
 //tag的写入同样在getdata的末尾写入
 //此处是否能优化呢，即将tagArray1_d和tagArray2_d用一个信号表示，使用信号控制写入tagarray1还是2
@@ -302,7 +302,7 @@ end
 
 wire    missEn = cacheCurState == miss;
 wire    getdataEn = cacheCurState == getdata;
-wire [63:0] addrToRead = {32'b0,tag,index,5'b0};
+wire [31:0] addrToRead = {tag,index,5'b0};
 reg [31:0] randomBit;
 reg        missFlag;
 //由于根据sram模型，写入数据再读出至少需要两个周期，而为了获得更好的性能，在写入后即可读出数据，故需一个信号指示使用rdBUffer里存放的数据而不是sram的
