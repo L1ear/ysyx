@@ -759,8 +759,6 @@ ex_stage ex_stage_u(
     // .mem_wren_ex_i,
     // .mem_lden_ex_i,
     // .mem_op_ex_i,
-    .clk            (clk),
-    .rst_n          (rst_n),
     .aluctr         (aluctr_ex),
     // .src1           (src1_ex),
     // .src2           (src2_ex),
@@ -781,7 +779,6 @@ ex_stage ex_stage_u(
     .rs2_sel_i      (rs2_sel),
     .DivEn_i        (DivEn_ex),
     .DivSel_i       (DivSel_ex),
-    .flush_ex_i     (ex_flush),
 
 
     // .PC_ex_o,
