@@ -314,7 +314,7 @@ void single_cycle(int i) {
             fprintf(logfp, "%08x\n", instruction);
           #endif
           //               写串口的指令
-          printf("%04x   %04x   %d\n",instr_last&(uint8_t)0x7f,(uint8_t)0x23,instr_last&(uint8_t)0x7f==(uint8_t)0x23);
+          printf("%04d   %04d   %d\n",instr_last&(uint8_t)0x7f,(uint8_t)0x23,instr_last&(uint8_t)0x7f==(uint8_t)0x23);
           if(((instr_last & (uint8_t)0x7f == (uint8_t)0x23) ||(instr_last & (uint8_t)0x7f == (uint8_t)0x03)) ){    //跳过printf和读取时间
             printf("!!!!!!!!!!!!!!!!!reg:%d,value:%08x",(instr_last & (uint8_t)0xf8000)>>14,cpu.gpr[(instr_last & (uint8_t)0xf8000)>>14]);
             if((cpu.gpr[(instr_last & (uint8_t)0xf8000)>>14])>>31){
