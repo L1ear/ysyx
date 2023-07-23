@@ -1141,8 +1141,8 @@ VL_INLINE_OPT void Vtop___024root___sequent__TOP__3(Vtop___024root* vlSelf) {
         = __Vtemp109[3U];
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2[4U] 
         = (3U & __Vtemp109[4U]);
-    vlSelf->nr = VL_EXTENDS_QI(64,32, vlSelf->top__DOT__Dcache_u__DOT__Num_req);
-    vlSelf->nh = VL_EXTENDS_QI(64,32, vlSelf->top__DOT__Dcache_u__DOT__Num_hit);
+    vlSelf->nr = (QData)((IData)(vlSelf->top__DOT__Dcache_u__DOT__Num_req));
+    vlSelf->nh = (QData)((IData)(vlSelf->top__DOT__Dcache_u__DOT__Num_hit));
     vlSelf->top__DOT__axi_ls_u__DOT__r_state = ((IData)(vlSelf->rst_n)
                                                  ? (IData)(vlSelf->top__DOT__axi_ls_u__DOT__r_state_next)
                                                  : 0U);

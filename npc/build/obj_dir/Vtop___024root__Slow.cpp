@@ -85,8 +85,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->axi_ar_prot_o = 0U;
     vlSelf->axi_ar_lock_o = 0U;
     vlSelf->axi_ar_qos_o = 0U;
-    vlSelf->nr = VL_EXTENDS_QI(64,32, vlSelf->top__DOT__Dcache_u__DOT__Num_req);
-    vlSelf->nh = VL_EXTENDS_QI(64,32, vlSelf->top__DOT__Dcache_u__DOT__Num_hit);
+    vlSelf->nr = (QData)((IData)(vlSelf->top__DOT__Dcache_u__DOT__Num_req));
+    vlSelf->nh = (QData)((IData)(vlSelf->top__DOT__Dcache_u__DOT__Num_hit));
     vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy = vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg;
     vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__r_64 
         = ((((QData)((IData)(vlSelf->top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividendReg[3U])) 
