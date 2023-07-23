@@ -482,6 +482,9 @@ double get_dhit(){
   uint64_t num_req,num_hit;
   num_req = top->nr;
   num_hit = top->nh;
+  printf("***************Data cache trace info***************");
+  Log("Number of request %ld",num_req);
+  Log("Number of hit %ld",num_hit);
   return 1.0*num_hit/num_req;
 }
 
@@ -489,5 +492,8 @@ double get_ihit(){
   uint64_t num_req,num_hit;
   num_req = top->inr;
   num_hit = top->inh;
+  printf("***************Instuction cache trace info***************");
+  Log("Number of request %ld",num_req);
+  Log("Number of hit %ld",num_hit);
   return 1.0*num_hit/num_req;
 }

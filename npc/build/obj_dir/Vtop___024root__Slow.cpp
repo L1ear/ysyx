@@ -85,6 +85,8 @@ void Vtop___024root___settle__TOP__2(Vtop___024root* vlSelf) {
     vlSelf->axi_ar_prot_o = 0U;
     vlSelf->axi_ar_lock_o = 0U;
     vlSelf->axi_ar_qos_o = 0U;
+    vlSelf->inr = (QData)((IData)(vlSelf->top__DOT__cache_dut__DOT__Num_req));
+    vlSelf->inh = (QData)((IData)(vlSelf->top__DOT__cache_dut__DOT__Num_hit));
     vlSelf->nr = (QData)((IData)(vlSelf->top__DOT__Dcache_u__DOT__Num_req));
     vlSelf->nh = (QData)((IData)(vlSelf->top__DOT__Dcache_u__DOT__Num_hit));
     vlSelf->top__DOT__Dcache_u__DOT__axiWrBusy = vlSelf->top__DOT__Dcache_u__DOT__needWrBk_Reg;
@@ -4431,6 +4433,8 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->axi_b_user_i = 0;
     vlSelf->nh = 0;
     vlSelf->nr = 0;
+    vlSelf->inh = 0;
+    vlSelf->inr = 0;
     vlSelf->top__DOT__axi_mmio_ar_valid_o = 0;
     vlSelf->top__DOT__axi_mmio_r_last_i = 0;
     vlSelf->top__DOT__axi_mmio_r_id_i = 0;
@@ -4527,6 +4531,9 @@ void Vtop___024root___ctor_var_reset(Vtop___024root* vlSelf) {
     vlSelf->top__DOT__cache_dut__DOT__uncached = 0;
     vlSelf->top__DOT__cache_dut__DOT__uncachedOk = 0;
     vlSelf->top__DOT__cache_dut__DOT__diffAddr = 0;
+    vlSelf->top__DOT__cache_dut__DOT__Num_req = 0;
+    vlSelf->top__DOT__cache_dut__DOT__Num_hit = 0;
+    vlSelf->top__DOT__cache_dut__DOT__missed = 0;
     vlSelf->top__DOT__cache_dut__DOT__reqLatch = 0;
     vlSelf->top__DOT__cache_dut__DOT__validArray1 = 0;
     vlSelf->top__DOT__cache_dut__DOT__validArray2 = 0;
