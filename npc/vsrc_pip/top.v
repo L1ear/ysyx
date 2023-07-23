@@ -955,7 +955,7 @@ Dcache Dcache_u (
   .cacheWrSize_o    (lsStoreSize),
   .cacheRdSize_o    (lsLoadSize),
   .nh               (nh),
-  .nr               (nr),
+  .nr               (nr)
 );
 
 wire        DcacheRdValid,DcacheWrValid;
