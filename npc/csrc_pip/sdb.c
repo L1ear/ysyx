@@ -11,7 +11,8 @@ extern int sim_time;
 extern int en;
 extern int is_batch_mode;
 
-double get_hit();
+double get_dhit();
+double get_ihit();
 
 CPU_state cpu = {};
 
@@ -102,7 +103,8 @@ static int cmd_c(char *args) {
     Log("program has finished,please quit and restart\n");
     Log("after %d instructions and %d clock cycle", nr_instr, nr_cycle);
     Log("IPC: %f", nr_instr*1.0/(uint64_t)nr_cycle);
-    Log("Hit ratio: %lf",get_hit());
+    Log("D$ Hit ratio: %lf",get_dhit());
+    Log("I$ Hit ratio: %lf",get_ihit());
   return 0;
 }
 

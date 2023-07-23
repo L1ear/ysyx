@@ -31,7 +31,10 @@ module Icache(
     output          [`addr_width-1:0]       cacheAddr_o,
     input           [`XLEN-1:0]             rdData_i,
     //数据有效信号
-    input                                   dataValid_i
+    input                                   dataValid_i,
+
+    output          [63:0]                  nh,
+    output          [63:0]                  nr
 );
 
 
@@ -65,6 +68,31 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 wire diffAddr = addr_i != reqLatch[31:0];
+
+
+integer  Num_req,Num_hit;
+reg missed;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        Num_req <= 'b0;
+        Num_hit <= 'b0;
+        missed <= 'b0;
+    end
+    if(compareEn && ~missed && ~uncached) begin
+        Num_req <= Num_req + 1;
+    end
+    if(compareEn && cacheHit && ~missed && ~uncached) begin
+        Num_hit <= Num_hit +1;
+    end
+    if(compareEn && ~cacheHit && ~uncached) begin
+        missed <= 'b1;
+    end
+    if(compareEn && missed && ~uncached) begin
+        missed <= 'b0;
+    end
+end
+assign nr = {32'b0,Num_req};
+assign nh = {32'b0,Num_hit};
 
 always @(*) begin
     case (cacheCurState)

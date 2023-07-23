@@ -71,7 +71,7 @@ module top # (
     input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
 
 
-    output  [63:0]                      nh,nr
+    output  [63:0]                      nh,nr,inh,inr
 
 
 
@@ -572,7 +572,9 @@ Icache cache_dut (
   .rdLast_i         (rdLast_o   ),
   .cacheAddr_o      (rw_addr_i  ),
   .rdData_i         (data_read_o),
-  .dataValid_i      (dataValid_o)
+  .dataValid_i      (dataValid_o),
+  .nr               (inr),
+  .nh               (inh)
 );
 wire rw_valid_i ;
 wire rw_ready_o ;
