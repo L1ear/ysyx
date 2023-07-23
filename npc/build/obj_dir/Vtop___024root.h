@@ -73,6 +73,8 @@ VL_MODULE(Vtop___024root) {
     VL_IN64(axi_r_data_i,63,0);
     VL_OUT64(axi_aw_addr_o,63,0);
     VL_OUT64(axi_w_data_o,63,0);
+    VL_OUT64(nh,63,0);
+    VL_OUT64(nr,63,0);
 
     // LOCAL SIGNALS
     // Anonymous structures to workaround compiler member-count bugs
@@ -222,6 +224,7 @@ VL_MODULE(Vtop___024root) {
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenWay1;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__wenWay2;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__uncached;
+        CData/*0:0*/ top__DOT__Dcache_u__DOT__missed;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__bitValid1_d;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__bitValid2_d;
         CData/*0:0*/ top__DOT__Dcache_u__DOT__validWay1_q;
@@ -272,9 +275,9 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__cache_dut__DOT__dataWay2_2;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__way1Data;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__way2Data;
-        IData/*31:0*/ top__DOT__cache_dut__DOT__randomBit;
     };
     struct {
+        IData/*31:0*/ top__DOT__cache_dut__DOT__randomBit;
         VlWide<8>/*255:0*/ top__DOT__cache_dut__DOT__rdBuffer;
         VlWide<5>/*129:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__Multiplier__DOT__mul64_u__DOT__mul_rslt_stg2_ex2;
         VlWide<4>/*127:0*/ top__DOT__ex_stage_u__DOT__u_ALU__DOT__divider__DOT__dividendReg;
@@ -284,6 +287,8 @@ VL_MODULE(Vtop___024root) {
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay1_2;
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_1;
         VlWide<4>/*127:0*/ top__DOT__Dcache_u__DOT__dataWay2_2;
+        IData/*31:0*/ top__DOT__Dcache_u__DOT__Num_req;
+        IData/*31:0*/ top__DOT__Dcache_u__DOT__Num_hit;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray1_d;
         IData/*20:0*/ top__DOT__Dcache_u__DOT__tagArray2_d;
         VlWide<8>/*255:0*/ top__DOT__Dcache_u__DOT__way1Data;
@@ -336,11 +341,11 @@ VL_MODULE(Vtop___024root) {
         QData/*63:0*/ top__DOT__ls_u__DOT__csr_wr_data;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__commitPC;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__wr_data;
+    };
+    struct {
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mepc;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mtvec;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mstatus;
-    };
-    struct {
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mcause;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mie;
         QData/*63:0*/ top__DOT__ls_u__DOT__CSR_u__DOT__mip;

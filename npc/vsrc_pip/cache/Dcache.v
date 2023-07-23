@@ -101,13 +101,13 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-integer Num_req,Num_hit;
+integer  Num_req,Num_hit;
 reg missed;
 always @(posedge clk or negedge rst_n) begin
     if(~rst_n) begin
-        Num_req <= 0;
-        Num_hit <= 0;
-        missed <= 0;
+        Num_req <= 'b0;
+        Num_hit <= 'b0;
+        missed <= 'b0;
     end
     if(compareEn && ~missed && ~uncached) begin
         Num_req <= Num_req + 1;
@@ -122,8 +122,8 @@ always @(posedge clk or negedge rst_n) begin
         missed <= 'b0;
     end
 end
-assign nr = Num_req;
-assign nh = Num_hit;
+assign nr = {32'b0,Num_req};
+assign nh = {32'b0,Num_hit};
 
 always @(*) begin
     case (cacheCurState)

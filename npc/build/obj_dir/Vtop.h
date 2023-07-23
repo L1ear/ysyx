@@ -80,6 +80,8 @@ class Vtop VL_NOT_FINAL {
     VL_IN8(&axi_b_resp_i,1,0);
     VL_IN8(&axi_b_id_i,3,0);
     VL_IN8(&axi_b_user_i,0,0);
+    VL_OUT64(&nh,63,0);
+    VL_OUT64(&nr,63,0);
 
     // CELLS
     // Public to allow access to /* verilator public */ items.
