@@ -477,3 +477,10 @@ extern "C"  void axiSlaveWrite(long long waddr, char size, long long wdata, char
     //   break;
     // }
 }
+
+double get_hit(){
+  uint64_t num_req,num_hit;
+  num_req = top->nr;
+  num_hit = top->nh;
+  return 1.0*num_hit/num_req;
+}

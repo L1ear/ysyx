@@ -68,7 +68,10 @@ module top # (
     input                               axi_b_valid_i,      //lite
     input  [1:0]                        axi_b_resp_i,       //lite        
     input  [AXI_ID_WIDTH-1:0]           axi_b_id_i,
-    input  [AXI_USER_WIDTH-1:0]         axi_b_user_i
+    input  [AXI_USER_WIDTH-1:0]         axi_b_user_i,
+
+
+    output  [63:0]                      nh,nr
 
 
 
@@ -950,7 +953,9 @@ Dcache Dcache_u (
   .storeLenth       (lsStoreLenth ),
   .cacheWrMask_o    (lsStoreMask),
   .cacheWrSize_o    (lsStoreSize),
-  .cacheRdSize_o    (lsLoadSize)
+  .cacheRdSize_o    (lsLoadSize),
+  .nh               (nh),
+  .nr               (nr),
 );
 
 wire        DcacheRdValid,DcacheWrValid;

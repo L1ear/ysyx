@@ -355,8 +355,8 @@ assign axi_r_id = clint_r_trans ? 'b01 : axi_r_id_i;
 // assign if_axi_r_user_o = 'b0;
 // assign axi_ar_region_o = 'b0;
 
-wire clint_r_trans = axi_ar_addr[27:24] == 4'h2;
-wire clint_w_trans = axi_aw_addr[27:24] == 4'h2;
+wire clint_r_trans = axi_ar_addr[31:24] == 8'h02;
+wire clint_w_trans = axi_aw_addr[31:24] == 8'h02;
 
 
 assign clint_axi_araddr = (~clint_r_trans) ? 'b0 : axi_ar_addr;

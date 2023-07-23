@@ -49,7 +49,10 @@ module Dcache(
     output          [7:0]                   storeLenth,//
 
     output          [7:0]                   cacheWrMask_o,
-    output          [2:0]                   cacheWrSize_o
+    output          [2:0]                   cacheWrSize_o,
+
+//for dubug
+    output          [63:0]                  nr,nh
 );
 
 
@@ -97,6 +100,30 @@ always @(posedge clk or negedge rst_n) begin
         cacheCurState <= cacheNexState;
     end
 end
+
+integer Num_req,Num_hit;
+reg missed;
+always @(posedge clk or negedge rst_n) begin
+    if(~rst_n) begin
+        Num_req <= 0;
+        Num_hit <= 0;
+        missed <= 0;
+    end
+    if(compareEn && ~missed && ~uncached) begin
+        Num_req <= Num_req + 1;
+    end
+    if(compareEn && cacheHit && ~missed && ~uncached) begin
+        Num_hit <= Num_hit +1;
+    end
+    if(compareEn && ~cacheHit && ~uncached) begin
+        missed <= 'b1;
+    end
+    if(compareEn && missed && ~uncached) begin
+        missed <= 'b0;
+    end
+end
+assign nr = Num_req;
+assign nh = Num_hit;
 
 always @(*) begin
     case (cacheCurState)
