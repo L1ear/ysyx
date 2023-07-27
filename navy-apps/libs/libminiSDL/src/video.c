@@ -13,18 +13,32 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   assert(dst->format->BitsPerPixel == src->format->BitsPerPixel);
   int dst_x,dst_y,dst_w = dst->w,dst_h = dst->h;
   int src_x,src_y,src_w = src->w, src_h = src->h;
-  assert(srcrect);
-  src_x = srcrect->x;
-  src_y = srcrect->y;
-  src_w = srcrect->w;
-  src_h = srcrect->h;
-  assert(dstrect);
-  dst_x = dstrect->x;
-  dst_y = dstrect->y;
-  dst_w = dstrect->w;
-  dst_h = dstrect->h;
+  if(srcrect == NULL)
+  {
+    src_x = src_y = 0;
+    src_w = src->w;
+    src_h = src->h;
+  }
+  else {
+    src_x = srcrect->x;
+    src_y = srcrect->y;
+    src_w = srcrect->w;
+    src_h = srcrect->h;
+  }
+  if(dstrect == NULL)
+  {
+    dst_x = dst_y = 0;
+    dst_w = dst->w;
+    dst_h = dst->h;
+  }
+  else {
+    dst_x = dstrect->x;
+    dst_y = dstrect->y;
+    dst_w = dstrect->w;
+    dst_h = dstrect->h;
+  }
   uint8_t* dst_color = dst->pixels,*src_color = src->pixels;
-  uint32_t color_width = 4;
+  uint32_t color_width = dst->format->palette?1:4;
   //printf("color width %d\n",color_width);
   for(int i = 0;i < src_h;i++)
     memcpy(dst_color+color_width*((i+dst_y)*dst->w+dst_x),src_color+color_width*((i+src_y)*src->w+src_x),color_width*src_w);
@@ -57,6 +71,16 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   }
   if(dst->format->palette == NULL)
   {
+    /* if(dstrect == NULL)
+    {
+      x = y = 0;
+      w = dst->w;
+      h = dst->h;
+    }
+    else{
+      x = dstrect->x,y = dstrect->y,w = dstrect->w,h = dstrect->h;
+    } */
+    //NDL_OpenCanvas(&w,&h);
     uint32_t s_w = dst->w;
     uint32_t * value = (uint32_t*)dst->pixels;
     for(int i = 0;i < h;i ++)
@@ -64,15 +88,53 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
       {
         value[(i+y)*s_w+j+x] = color;
       }
+    //NDL_DrawRect((uint32_t*)dst->pixels,x,y,w,h);
   }
-  else assert(0);
+  else{
+    //assert(0);
+    uint8_t r = (color>>16)&0xff;
+    uint8_t g = (color>>8)&0xff;
+    uint8_t b = color&0xff;
+    for(int i = 0;i < dst->format->palette->ncolors;i++)
+    {
+      dst->format->palette->colors[i].r = r; 
+      dst->format->palette->colors[i].g = g; 
+      dst->format->palette->colors[i].b = b; 
+    }
+    //SDL_UpdateRect(dst,x,y,w,h);
+    //assert(0);
+    //uint32_t * palette = malloc(sizeof(uint32_t)*s_w*s->h);
+  } 
+  
+  //printf("please implement me\n");
+  //assert(0);
 }
 
 //SDL_UpdateRect()的作用是将画布中的指定矩形区域同步到屏幕上.
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
   if(s->format->palette == NULL)
     NDL_DrawRect((uint32_t*)s->pixels,x,y,w,h);//32位的颜色,直接使用NDL
-  else assert(0);
+  else{
+    uint32_t s_h = s->h,s_w = s->w;
+    if(w == 0||w > s_w) w = s_w;
+    if(h == 0||h > s_h) h = s_h;
+    uint32_t * palette = malloc(sizeof(uint32_t)*w*h);
+    memset(palette,0,sizeof(palette));
+    for(int i = 0;i < h;i++)
+      for(int j = 0;j < w;j++)
+      {
+        uint8_t r = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].r;
+        uint8_t g = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].g;
+        uint8_t b = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].b;
+        palette[i*w+j] = ((r<<16)|(g<<8)|b);
+      }
+    NDL_DrawRect(palette,x,y,w,h);
+    free(palette);
+    /* printf("%d %d %d %d\n",x,y,w,h);
+    for(int i = 0;i < w;i++)
+      printf("%x\n",palette[i]); */
+    //printf("1\n");
+  }//pal8位的索引颜色
   //printf("please implement me\n");
   //assert(0);
 }
