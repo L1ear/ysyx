@@ -60,6 +60,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   //assert(0);
   assert(dst);
   int x,y,w,h;
+  uint32_t s_w = dst->w;
   if(dstrect == NULL)
   {
     x = y = 0;
@@ -81,7 +82,6 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
       x = dstrect->x,y = dstrect->y,w = dstrect->w,h = dstrect->h;
     } */
     //NDL_OpenCanvas(&w,&h);
-    uint32_t s_w = dst->w;
     uint32_t * value = (uint32_t*)dst->pixels;
     for(int i = 0;i < h;i ++)
       for(int j = 0;j < w;j ++)
@@ -90,9 +90,29 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
       }
     //NDL_DrawRect((uint32_t*)dst->pixels,x,y,w,h);
   }
-  else
-    assert(0);
-
+  else{
+    //assert(0);
+    uint8_t r = (color>>16)&0xff;
+    uint8_t g = (color>>8)&0xff;
+    uint8_t b = color&0xff;
+    // for(int i = 0;i < dst->format->palette->ncolors;i++)
+    // {
+    //   dst->format->palette->colors[i].r = r; 
+    //   dst->format->palette->colors[i].g = g; 
+    //   dst->format->palette->colors[i].b = b; 
+    // }
+    for(int i = 0;i < h;i ++)
+      for(int j = 0;j < w;j ++)
+      {
+        dst->format->palette->colors[dst->pixels[(i+y)*s_w+j+x]].r = r;
+        dst->format->palette->colors[dst->pixels[(i+y)*s_w+j+x]].g = g;
+        dst->format->palette->colors[dst->pixels[(i+y)*s_w+j+x]].b = b;
+      }
+    //NDL_DrawRect((uint32_t*)dst->pixels,x,y,w,h);
+  }
+  
+  //printf("please implement me\n");
+  //assert(0);
 }
 
 //SDL_UpdateRect()的作用是将画布中的指定矩形区域同步到屏幕上.
