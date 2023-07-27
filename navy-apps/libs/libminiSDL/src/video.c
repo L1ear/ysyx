@@ -93,8 +93,8 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
     //NDL_DrawRect((uint32_t*)dst->pixels,x,y,w,h);
   }
   else{
-    printf("\n%08x\n",color);
-    assert(0);
+    // printf("\n%08x\n",color);
+    // assert(0);
     uint8_t r = (color>>16)&0xff;
     uint8_t g = (color>>8)&0xff;
     uint8_t b = color&0xff;
