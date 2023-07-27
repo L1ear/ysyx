@@ -79,50 +79,14 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
         value[(i+y)*s_w+j+x] = color;
       }
   }
-  else{
-    uint8_t r = (color>>16)&0xff;
-    uint8_t g = (color>>8)&0xff;
-    uint8_t b = color&0xff;
-    for(int i = 0;i < dst->format->palette->ncolors;i++)
-    {
-      dst->format->palette->colors[i].r = r; 
-      dst->format->palette->colors[i].g = g; 
-      dst->format->palette->colors[i].b = b; 
-    }
-    //SDL_UpdateRect(dst,x,y,w,h);
-    //assert(0);
-    //uint32_t * palette = malloc(sizeof(uint32_t)*s_w*s->h);
-  } 
-  
-  //printf("please implement me\n");
-  //assert(0);
+  else assert(0);
 }
 
 //SDL_UpdateRect()的作用是将画布中的指定矩形区域同步到屏幕上.
 void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
   if(s->format->palette == NULL)
     NDL_DrawRect((uint32_t*)s->pixels,x,y,w,h);//32位的颜色,直接使用NDL
-  else{
-    uint32_t s_h = s->h,s_w = s->w;
-    if(w == 0||w > s_w) w = s_w;
-    if(h == 0||h > s_h) h = s_h;
-    uint32_t * palette = malloc(sizeof(uint32_t)*w*h);
-    memset(palette,0,sizeof(palette));
-    for(int i = 0;i < h;i++)
-      for(int j = 0;j < w;j++)
-      {
-        // uint8_t r = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].r;
-        // uint8_t g = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].g;
-        // uint8_t b = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].b;
-        // palette[i*w+j] = ((r<<16)|(g<<8)|b);
-      }
-    NDL_DrawRect(palette,x,y,w,h);
-    free(palette);
-    /* printf("%d %d %d %d\n",x,y,w,h);
-    for(int i = 0;i < w;i++)
-      printf("%x\n",palette[i]); */
-    //printf("1\n");
-  }//pal8位的索引颜色
+  else assert(0);
   //printf("please implement me\n");
   //assert(0);
 }
