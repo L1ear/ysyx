@@ -28,7 +28,7 @@ typedef union {
 
 typedef struct {
 	int ncolors;
-	SDL_Color *colors;
+	SDL_Color *colors;	//SDL_Color 是 Simple DirectMedia Layer (SDL) 库中用于表示颜色的结构体。它包含了红色、绿色、蓝色和透明度（可选）通道的值。
 } SDL_Palette;
 
 typedef struct {

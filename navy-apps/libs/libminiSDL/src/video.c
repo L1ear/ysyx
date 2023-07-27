@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <SDL.h>
 
-
+//SDL_BlitSurface(): 将一张画布中的指定矩形区域复制到另一张画布的指定位置
 void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_Rect *dstrect) {
   //assert(0);
   assert(dst && src);
@@ -55,6 +55,7 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   //assert(0);
 }
 
+//SDL_FillRect(): 往画布的指定矩形区域中填充指定的颜色
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   //assert(0);
   assert(dst);
@@ -70,16 +71,6 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   }
   if(dst->format->palette == NULL)
   {
-    /* if(dstrect == NULL)
-    {
-      x = y = 0;
-      w = dst->w;
-      h = dst->h;
-    }
-    else{
-      x = dstrect->x,y = dstrect->y,w = dstrect->w,h = dstrect->h;
-    } */
-    //NDL_OpenCanvas(&w,&h);
     uint32_t s_w = dst->w;
     uint32_t * value = (uint32_t*)dst->pixels;
     for(int i = 0;i < h;i ++)
@@ -87,10 +78,8 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
       {
         value[(i+y)*s_w+j+x] = color;
       }
-    //NDL_DrawRect((uint32_t*)dst->pixels,x,y,w,h);
   }
-  /* else{
-    //assert(0);
+  else{
     uint8_t r = (color>>16)&0xff;
     uint8_t g = (color>>8)&0xff;
     uint8_t b = color&0xff;
@@ -103,7 +92,7 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
     //SDL_UpdateRect(dst,x,y,w,h);
     //assert(0);
     //uint32_t * palette = malloc(sizeof(uint32_t)*s_w*s->h);
-  } */
+  } 
   
   //printf("please implement me\n");
   //assert(0);
@@ -122,10 +111,10 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
     for(int i = 0;i < h;i++)
       for(int j = 0;j < w;j++)
       {
-        uint8_t r = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].r;
-        uint8_t g = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].g;
-        uint8_t b = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].b;
-        palette[i*w+j] = ((r<<16)|(g<<8)|b);
+        // uint8_t r = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].r;
+        // uint8_t g = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].g;
+        // uint8_t b = s->format->palette->colors[s->pixels[(i+y)*s_w+j+x]].b;
+        // palette[i*w+j] = ((r<<16)|(g<<8)|b);
       }
     NDL_DrawRect(palette,x,y,w,h);
     free(palette);

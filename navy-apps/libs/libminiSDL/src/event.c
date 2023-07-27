@@ -22,7 +22,7 @@ int SDL_PushEvent(SDL_Event *ev) {
 
 int SDL_PollEvent(SDL_Event *ev) {
   //printf("in\n");
-  char key[66]={0};
+  char key[6]={0};
   key[0] = '\0';
   int keycode = 0;
   int ret = NDL_PollEvent(key,sizeof(key));
