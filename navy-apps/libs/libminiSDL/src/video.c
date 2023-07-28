@@ -39,20 +39,8 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   }
   uint8_t* dst_color = dst->pixels,*src_color = src->pixels;
   uint32_t color_width = dst->format->palette?1:4;
-  //printf("color width %d\n",color_width);
   for(int i = 0;i < src_h;i++)
     memcpy(dst_color+color_width*((i+dst_y)*dst->w+dst_x),src_color+color_width*((i+src_y)*src->w+src_x),color_width*src_w);
-    //memcpy(dst_color+4*(i+dst_y)*dst->w+4*dst_x,src_color+4*(i+src_y)*src->w+4*src_x,4*src_w);
-  //SDL_UpdateRect(dst,dst_x,dst_y,dst_w,dst_h);
-  /* for(int i = 0; i < h;i++)
-    //memcpy(dst_color+dst_w*(y+i)+x,src_color+i*w,4*w);
-    for(int j = 0;j < w;j ++)
-    {
-      dst_color[dst_w*(y+i)+x+j] = src_color[i*w+j];
-    } */
-    
-  //printf("please implement me\n");
-  //assert(0);
 }
 
 /*
