@@ -38,7 +38,7 @@ static uintptr_t loader(PCB *pcb, const char *filename) {
 
   Elf_Ehdr elfhdr;
   Elf_Phdr prohdr;
-  size_t fd = fs_open(filename,0,0);
+  size_t fd = fs_open("/bin/pal",0,0);
   fs_read(fd,&elfhdr,sizeof(Elf_Ehdr));
   assert(fd != -1);
   for(int i = 0;i < elfhdr.e_phnum;i++)
