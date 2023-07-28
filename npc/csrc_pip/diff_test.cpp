@@ -75,22 +75,8 @@ void difftest_step(long long pc) {
 
   // Log("diff step!!!PC: %08lx, time:%d",pc,sim_time);
   CPU_state ref_r;
-  // if (skip_dut_nr_inst > 0) {
-  //   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
-  //   if (ref_r.pc == npc) {
-  //     skip_dut_nr_inst = 0;
-  //     checkregs(&ref_r, npc);
-  //     return;
-  //   }
-  //   skip_dut_nr_inst --;
-  //   if (skip_dut_nr_inst == 0)
-  //     panic("can not catch up with ref.pc = " FMT_WORD " at pc = " FMT_WORD, ref_r.pc, pc);
-  //   return;
-  // }
 
   if (is_skip_ref) {
-    // to skip the checking of an instruction, just copy the reg state to reference design
-    // printf("??????????????????????????");
     cpu.pc +=4;                                                     //此处要加4跳过
     ref_difftest_regcpy(&cpu, DIFFTEST_TO_REF);
     is_skip_ref = false;
