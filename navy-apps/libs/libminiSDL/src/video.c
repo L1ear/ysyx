@@ -73,37 +73,24 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   }
   if(dst->format->palette == NULL)
   {
-        printf("\n%08x\n",color);
-    assert(0);
-    
     for(int i = 0;i < h;i ++)
       for(int j = 0;j < w;j ++)
       {
         value[(i+y)*s_w+j+x] = color;
       }
-  }
-  else{
-    // printf("\n%08x\n",color);
-    // assert(0);
-    uint8_t r = (color>>16)&0xff;
-    uint8_t g = (color>>8)&0xff;
-    uint8_t b = color&0xff;
-    // for(int i = 0;i < dst->format->palette->ncolors;i++)
-    // {
-    //   dst->format->palette->colors[i].r = r; 
-    //   dst->format->palette->colors[i].g = g; 
-    //   dst->format->palette->colors[i].b = b; 
-    // }
-    for(int i = 0;i < h;i ++)
-      for(int j = 0;j < w;j ++)
-      {
-        r = dst->format->palette->colors[dst->pixels[(i+y)*s_w+j+x]].r;
-        g = dst->format->palette->colors[dst->pixels[(i+y)*s_w+j+x]].g;
-        b = dst->format->palette->colors[dst->pixels[(i+y)*s_w+j+x]].b;
-        value[(i+y)*s_w+j+x] = ((r<<16)|(g<<8)|b);
+  } else if (dst->format->BitsPerPixel == 8) {
+    SDL_Color *target = &(dst->format->palette->colors[255]);
+    target->a = (color >> 24) & 0xff;
+    target->r = (color >> 16) & 0xff;
+    target->g = (color >> 8) & 0xff;
+    target->b = (color)&0xff;
+    for (size_t i = y; i < h + y; i++) {
+      for (size_t j = x; j < w + x; j++) {
+        dst->pixels[i * (dst->w) + j] = 255;
       }
-    //NDL_DrawRect((uint32_t*)dst->pixels,x,y,w,h);
-  }
+    }
+  } else
+    assert(0);
   
   //printf("please implement me\n");
   //assert(0);
