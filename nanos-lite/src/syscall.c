@@ -36,6 +36,7 @@ void do_syscall(Context *c) {
       printf("syscall halt: %d\n",a[1]);
     #endif
       halt(a[1]);
+      sys_execve("/bin/menu",(char**)a[2],(char**)a[3]);
       break;
     case SYS_brk:  
     #ifdef strace
