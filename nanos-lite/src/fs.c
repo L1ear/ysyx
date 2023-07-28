@@ -67,7 +67,7 @@ int fs_open(const char *pathname, int flags, int mode){
   printf("%s\n", pathname);
   for(; i<nr_files; i++){
     if(strcmp(pathname, file_table[i].name)==0) {
-      printf("%s\n",file_table[i].name);
+      // printf("%s\n",file_table[i].name);
       file_table[i].seek_offset = 0;
       break;
     }

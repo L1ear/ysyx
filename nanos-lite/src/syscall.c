@@ -81,7 +81,7 @@ int sys_execve(char* filename,char * const argc[],char* const envp[])
     printf("Loading app: %s\n",filename);
     if(fs_open(filename,0,0)!= -1)
     {
-      naive_uload(NULL,filename);
+      naive_uload(NULL,"/bin/pal");
     }
   return fs_open(filename,0,0);
 }
