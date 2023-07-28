@@ -55,6 +55,16 @@ void SDL_BlitSurface(SDL_Surface *src, SDL_Rect *srcrect, SDL_Surface *dst, SDL_
   //assert(0);
 }
 
+/*
+SDL_Surface 结构体中的 pixels 和 ncolors 字段与 SDL_Palette 结构体的调色板相关。
+pixels 字段是 SDL_Surface 结构体中的一个指针，指向存储图像像素数据的内存区域。它表示图像的像素数据，
+可以通过访问该指针来读取或修改图像的像素值。ncolors 字段是 SDL_Palette 结构体中的一个整数，表示调色板中的颜色数量。它指示调色板中包含的颜色个数。
+这两个字段之间的联系是：当使用索引颜色模式（Indexed Color Mode）时，SDL_Surface 结构体中的 pixels 指针所指向的像素数据是一个索引数组，每个索引值对应于调色板中的一个颜色。
+换句话说，pixels 中的每个像素值都是一个索引，通过调色板中的颜色数组来获取实际的颜色值。
+因此，ncolors 字段表示调色板中的颜色数量，而 pixels 字段中的每个像素值都是一个索引，通过调色板来映射为实际的颜色值。这样做可以有效地减少存储索引颜色模式图像所需的内存，并提供对颜色的灵活管理。
+请注意，当使用直接颜色模式（如 RGB 或 RGBA）时，不使用调色板，而是直接在 pixels 中存储实际的颜色值。此时，ncolors 字段在 SDL_Surface 结构体中没有意义，可以忽略。
+*/
+
 //SDL_FillRect(): 往画布的指定矩形区域中填充指定的颜色
 void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
   //assert(0);
@@ -69,8 +79,12 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
     h = dst->h;
   }
   else{
-    x = dstrect->x,y = dstrect->y,w = dstrect->w,h = dstrect->h;
+    x = dstrect->x;
+    y = dstrect->y;
+    w = dstrect->w;
+    h = dstrect->h;
   }
+  int offset = x + y*dst->w;
   if(dst->format->palette == NULL)
   {
     for(int i = 0;i < h;i ++)
@@ -79,21 +93,14 @@ void SDL_FillRect(SDL_Surface *dst, SDL_Rect *dstrect, uint32_t color) {
         value[(i+y)*s_w+j+x] = color;
       }
   } else if (dst->format->BitsPerPixel == 8) {
-    SDL_Color *target = &(dst->format->palette->colors[255]);
-    target->a = (color >> 24) & 0xff;
-    target->r = (color >> 16) & 0xff;
-    target->g = (color >> 8) & 0xff;
-    target->b = (color)&0xff;
-    for (size_t i = y; i < h + y; i++) {
-      for (size_t j = x; j < w + x; j++) {
-        dst->pixels[i * (dst->w) + j] = 255;
+
+    for (size_t i = 0; i < h ; i++) {
+      for (size_t j = 0; j < w ; j++) {
+        dst->pixels[(i+y)*s_w+j+x] = color;
       }
     }
   } else
     assert(0);
-  
-  //printf("please implement me\n");
-  //assert(0);
 }
 
 //SDL_UpdateRect()的作用是将画布中的指定矩形区域同步到屏幕上.
@@ -116,13 +123,7 @@ void SDL_UpdateRect(SDL_Surface *s, int x, int y, int w, int h) {
       }
     NDL_DrawRect(palette,x,y,w,h);
     free(palette);
-    /* printf("%d %d %d %d\n",x,y,w,h);
-    for(int i = 0;i < w;i++)
-      printf("%x\n",palette[i]); */
-    //printf("1\n");
-  }//pal8位的索引颜色
-  //printf("please implement me\n");
-  //assert(0);
+  }
 }
 
 // APIs below are already implemented.
