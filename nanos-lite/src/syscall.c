@@ -79,7 +79,7 @@ void do_syscall(Context *c) {
 int sys_execve(char* filename,char * const argc[],char* const envp[])
 {
     printf("Loading app: %s\n","pal/bin");
-    if(fs_open(filename,0,0)!= -1)
+    if(fs_open("pal/bin",0,0)!= -1)
     {
       naive_uload(NULL,"/bin/pal");
     }
