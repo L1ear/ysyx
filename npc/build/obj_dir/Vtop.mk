@@ -4,7 +4,7 @@
 # Execute this makefile from the object directory:
 #    make -f Vtop.mk
 
-default: /home/qw/ysyx-workbench/npc/build/top
+default: /home/qw/Desktop/ysyx-exam/ysyx/npc/build/top
 
 ### Constants...
 # Perl executable (from $PERL)
@@ -50,16 +50,14 @@ VM_USER_LDLIBS = \
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	diff_test \
-	keyboard \
 	main \
 	mem \
 	sdb \
 	timer \
-	vga \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	/home/qw/ysyx-workbench/npc/csrc_pip \
+	/home/qw/Desktop/ysyx-exam/ysyx/npc/csrc \
 
 
 ### Default rules...
@@ -71,23 +69,19 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-diff_test.o: /home/qw/ysyx-workbench/npc/csrc_pip/diff_test.cpp
+diff_test.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/diff_test.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-keyboard.o: /home/qw/ysyx-workbench/npc/csrc_pip/keyboard.cpp
+main.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-main.o: /home/qw/ysyx-workbench/npc/csrc_pip/main.cpp
+mem.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/mem.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-mem.o: /home/qw/ysyx-workbench/npc/csrc_pip/mem.cpp
+sdb.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/sdb.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: /home/qw/ysyx-workbench/npc/csrc_pip/sdb.c
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-timer.o: /home/qw/ysyx-workbench/npc/csrc_pip/timer.c
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-vga.o: /home/qw/ysyx-workbench/npc/csrc_pip/vga.cpp
+timer.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/timer.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
-/home/qw/ysyx-workbench/npc/build/top: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
+/home/qw/Desktop/ysyx-exam/ysyx/npc/build/top: $(VK_USER_OBJS) $(VK_GLOBAL_OBJS) $(VM_PREFIX)__ALL.a $(VM_HIER_LIBS)
 	$(LINK) $(LDFLAGS) $^ $(LOADLIBES) $(LDLIBS) $(LIBS) $(SC_LIBS) -o $@
 
 
