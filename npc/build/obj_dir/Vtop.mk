@@ -45,21 +45,19 @@ VM_USER_LDLIBS = \
 	pthread \
 	-std=gnu++11 \
 	-L \
-	/home/qw/ysyx-workbench/nemu/build/ \
+	../../nemu/build/ \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
 	diff_test \
-	keyboard \
 	main \
 	mem \
 	sdb \
 	timer \
-	vga \
 
 # User .cpp directories (from .cpp's on Verilator command line)
 VM_USER_DIR = \
-	/home/qw/Desktop/ysyx-exam/ysyx/npc/csrc_pip \
+	/home/qw/Desktop/ysyx-exam/ysyx/npc/csrc \
 
 
 ### Default rules...
@@ -71,19 +69,15 @@ include $(VERILATOR_ROOT)/include/verilated.mk
 ### Executable rules... (from --exe)
 VPATH += $(VM_USER_DIR)
 
-diff_test.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc_pip/diff_test.cpp
+diff_test.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/diff_test.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-keyboard.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc_pip/keyboard.cpp
+main.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/main.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-main.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc_pip/main.cpp
+mem.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/mem.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-mem.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc_pip/mem.cpp
+sdb.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/sdb.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-sdb.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc_pip/sdb.c
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-timer.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc_pip/timer.c
-	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
-vga.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc_pip/vga.cpp
+timer.o: /home/qw/Desktop/ysyx-exam/ysyx/npc/csrc/timer.c
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 
 ### Link rules... (from --exe)
