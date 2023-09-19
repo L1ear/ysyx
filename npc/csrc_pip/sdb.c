@@ -81,7 +81,7 @@ static int cmd_q(char *args) {
   return -1;
 }
 #ifdef inst_log
-  char *logfile="/home/qw/ysyx-workbench/npc/log.log";
+  char *logfile="../../../log.log";
   FILE *logfp;
 #endif
 static int cmd_c(char *args) {

@@ -10,7 +10,7 @@ module instr_mem (
 reg [31:0]  instr_mem   [0:65535];
 
 initial begin
-    $readmemh("/home/qw/ysyx-workbench/npc/vsrc/ADD",instr_mem);
+    // $readmemh("/home/qw/ysyx-workbench/npc/vsrc/ADD",instr_mem);
 end
 
 always @(posedge clk ) begin
