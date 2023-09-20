@@ -64,7 +64,7 @@ endif
 #rules for batch mode
 ARGS += -b
 
-run: 
+run_single: 
 	$(call git_commit, "sim RTL")
 	@echo
 	@echo "-- VERILATE ----------------"
@@ -81,7 +81,7 @@ run:
 	build/top +trace $(ARGS)
 
 
-run_pip: 
+run: 
 	$(call git_commit, "sim RTL") 
 	@echo
 	@echo "-- VERILATE ----------------"
