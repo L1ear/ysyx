@@ -56,8 +56,9 @@ ARGS += -i $(IMG)
 endif
 
 ifdef CONFIG_DIFFTEST
-# DIFF_REF_SO = ../nemu/build/riscv64-nemu-interpreter-so
-# LDFLAGS +=-L ../nemu/build/
+DIFF_REF_SO = ../nemu/build/riscv64-nemu-interpreter-so
+LDFLAGS +=-L ../nemu/build/
+
 
 ARGS += -d $(DIFF_REF_SO)
 endif

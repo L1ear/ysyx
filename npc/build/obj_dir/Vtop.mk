@@ -44,8 +44,6 @@ VM_USER_LDLIBS = \
 	-l \
 	pthread \
 	-std=gnu++11 \
-	-L \
-	../nemu/build/ \
 
 # User .cpp files (from .cpp's on Verilator command line)
 VM_USER_CLASSES = \
